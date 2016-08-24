@@ -1,10 +1,37 @@
 
   <script>
 //document.domain = "getsporty.in";
-$(document).ready(function(){
-  
 
-  $('#filename').live('change', function()
+		
+$(document).ready(function(){
+		$('#city').focusout(function(){
+			var city_key = $('#city').val();
+			$.ajax({
+			    method: "POST",
+			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
+				data: { key: city_key }
+			}).done(function( html ) {
+				var res = jQuery.parseJSON(html)
+				$( "#state_value" ).val( res.state );
+				$( "#state" ).val( res.id );
+				
+			  });
+		});
+		$('#orgcity').focusout(function(){
+			var city_key = $('#orgcity').val();
+			$.ajax({
+			    method: "POST",
+			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
+				data: { key: city_key }
+			}).done(function( html ) {
+				var res = jQuery.parseJSON(html)
+				$( "#orgstate_value" ).val( res.state );
+				$( "#orgstate" ).val( res.id );
+				
+			  });
+		});
+
+  $('#filename').on('change', function()
     {
       $("#preview").html('');
       $("#preview").html('<img src="loader.gif" alt="Uploading...."/>');
@@ -100,6 +127,162 @@ alert(result);
     </section>
          <section class="content"> 
       <div class="row">
+	  <div class="col-md-6">
+			<div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab_event" data-toggle="tab">Event </a></li>
+              <li><a href="#tab_organiser" data-toggle="tab">Organiser</a></li>
+              <li><a href="#tab_eligible" data-toggle="tab">Eligibility</a></li>
+             </ul> 	 
+               
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_event">
+                <h4><b>Event Details:</b></h4 > 	
+
+                <div class="box-body">
+					<div class="form-group">
+					  <label>Event Description</label>
+					  <textarea class="form-control" rows="3" style="resize:none;" placeholder="Enter ..." class="desc" id="edesc" ></textarea>
+					</div>
+					 <div class="form-group">
+					  <label for="eventName">Event Name</label>
+					  <input type="text" class="form-control"  id="evname" placeholder="Enter Event">
+					</div >
+					<div class="form-group">
+						<?php  $types = $this->register->getEventType();
+							
+						?>
+					  <label for="eventtype">Event Type</label>
+						<select id="evtype" class="form-control" >
+						<option>- Select -</option> 
+							<?php if(!empty($types)){
+									foreach($types as $type){?>
+								<option value ="<?php echo $type['id'];?>"><?php echo $type['type'];?> </option>
+							<?php 	}
+								  }	
+							?>
+						</select>
+					</div >
+					<div class="form-group">
+						<?php  $sports = $this->register->getSport();
+							
+						?>
+					  <label for="sports">Sport</label>
+						<select id="sport" class="form-control" >
+						<option>- Select -</option> 
+							<?php if(!empty($sports)){
+									foreach($sports as $sport){?>
+								<option value ="<?php echo $sport['id'];?>"><?php echo $sport['sports'];?> </option>
+							<?php 	}
+								  }	
+							?>
+						</select>
+					</div >
+					<div class="form-group">
+					  <label for="address1">Address Line1</label>
+					  <input type="text" class="form-control"  id="add1" placeholder="Enter Address">
+					</div >
+					<div class="form-group">
+					  <label for="address2">Address Line2</label>
+					  <input type="text" class="form-control"  id="add2" placeholder="Enter Address">
+					</div >
+					<div class="form-group">
+					  <label for="city">City</label>
+					  <input type="text" class="form-control"  id="city" placeholder="Enter City">
+					</div >
+					<div class="form-group">
+					  <label for="state">State</label>
+					  <input type="hidden" class="form-control"  id="state">
+					  <input type="text" class="form-control"  id="state_value" placeholder="Enter State" disabled>
+					</div >
+					<div class="form-group">
+					  <label for="pin">Pin</label>
+					  <input type="text" class="form-control"  id="pin" placeholder="Enter Pin">
+					</div >
+					<div class="form-group">
+					  <label for="link">Event Link</label>
+					  <input type="text" class="form-control" value="http://"  id="evlink" placeholder="Enter Pin">
+					</div >
+					<div class="form-group">
+					  <label for="link">Start Date</label>
+					  <input type="text" class="form-control"  id="startD" placeholder="Enter Start Date">
+					</div >
+					<div class="form-group">
+					  <label for="link">End Date</label>
+					  <input type="text" class="form-control"  id="endD" placeholder="Enter End Date">
+					</div >
+				</div>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_organiser">
+                <h4><b>Organiser Details:</b></h4 > 	
+
+                <div class="box-body">
+					
+					 <div class="form-group">
+					  <label for="eventName">Organiser Name</label>
+					  <input type="text" class="form-control" id="orgName" placeholder="Enter Event">
+					</div >
+					<div class="form-group">
+					  <label for="eventName">Email</label>
+					  <input type="text" class="form-control" id="email_app_collection" placeholder="Enter Event">
+					</div >
+					<div class="form-group">
+					  <label for="eventName">Phone No.</label>
+					  <input type="text" class="form-control" id="contact" placeholder="Enter Event">
+					</div >
+					<div class="form-group">
+					  <label for="address1">Address Line1</label>
+					  <input type="text" class="form-control"  id="orgadd1" placeholder="Enter Address">
+					</div >
+					<div class="form-group">
+					  <label for="address2">Address Line2</label>
+					  <input type="text" class="form-control"  id="orgadd2" placeholder="Enter Address">
+					</div >
+					<div class="form-group">
+					  <label for="city">City</label>
+					  <input type="text" class="form-control"  id="orgcity" placeholder="Enter City">
+					</div >
+					<div class="form-group">
+					  <label for="state">State</label>
+					  <input type="hidden" class="form-control"  id="orgstate">
+					  <input type="text" class="form-control"  id="orgstate_value" placeholder="Enter State" disabled>
+					</div >
+					<div class="form-group">
+					  <label for="pin">Pin</label>
+					  <input type="text" class="form-control"  id="pin" placeholder="Enter Pin">
+					</div >
+					<div class="form-group">
+					  <label for="link">Event Link</label>
+					  <input type="text" class="form-control" value="http://"  id="evlink" placeholder="Enter Pin">
+					</div >
+					<div class="form-group">
+					  <label for="link">Start Date</label>
+					  <input type="text" class="form-control"  id="startD" placeholder="Enter Start Date">
+					</div >
+					<div class="form-group">
+					  <label for="link">End Date</label>
+					  <input type="text" class="form-control"  id="endD" placeholder="Enter End Date">
+					</div >
+				</div>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_eligible">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                It has survived not only five centuries, but also the leap into electronic typesetting,
+                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                like Aldus PageMaker including versions of Lorem Ipsum.
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+	  </div>
+	  
+	 
         <!-- left column -->
         <div class="col-md-6">
           <!-- general form elements -->

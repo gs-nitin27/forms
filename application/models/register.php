@@ -62,7 +62,22 @@ else
 
 }
 
-
+	public function getEventType($id = false){
+		
+		$qry = $this->db->get('gs_eventType');
+		return $qry->result_array();
+	}
+	public function getSport($id = false){
+		
+		$qry = $this->db->get('gs_sports');
+		return $qry->result_array();
+	}
+	public function getStateByKey($key){
+		$this->db->where('city', $key);
+		$qry = $this->db->get('location');
+		$q =  $qry->row_array();
+		return $q;
+	}
 }
 
  ?>

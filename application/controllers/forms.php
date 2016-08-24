@@ -2,7 +2,11 @@
 
 class Forms extends CI_Controller {
 
-	
+	public function __construct() {
+        parent::__construct();
+		$this->load->model('register');
+    }
+ 
  
 
 	public function index()
@@ -198,7 +202,11 @@ echo "Job has not been saved";
 
 }
 }
-
+	public function getStateByCity(){
+		$key = $_POST['key'];
+		$results = $this->register->getStateByKey($key);
+		echo  json_encode($results);
+	}
 }
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
