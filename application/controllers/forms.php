@@ -48,7 +48,8 @@ public function event()
 
 $data1 = json_decode($_REQUEST[ 'data' ]);
 $item = new stdClass();
-
+// echo ($data1->start_date); exit;
+//strtotime()
 $item->id                 = $data1->id;
 $item->userid             = $data1->userid;
 $item->type               = $data1->type;
@@ -71,11 +72,11 @@ $item->organizer_city     = $data1->organizer_city;
 $item->organizer_pin      = $data1->organizer_pin;
 $item->organizer_state    = $data1->organizer_state;
 $item->event_links        = $data1->event_links;
-$item->start_date         = strtotime($data1->start_date);//strtotime();
-$item->end_date           = strtotime($data1->end_date);//strtotime($data1['end_date']);
+$item->start_date         = @strtotime($data1->start_date);//strtotime();
+$item->end_date           = @strtotime($data1->end_date);//strtotime($data1['end_date']);
 $item->sport              = $data1->sport;
-$item->entry_start_date   = strtotime($data1->entry_start_date);//strtotime($data1['entry_start_date']);
-$item->entry_end_date     = strtotime($data1->entry_end_date);//strtotime($data1['entry_end_date']);
+$item->entry_start_date   = @strtotime($data1->entry_start_date);//strtotime($data1['entry_start_date']);
+$item->entry_end_date     = @strtotime($data1->entry_end_date);//strtotime($data1['entry_end_date']);
 $item->file_name          = $data1->file_name;
 $item->email_app_collection     = $data1->email_app_collection;
 
@@ -175,7 +176,7 @@ $item->keyreq                = $data1->key_requirement;
 $item->org_address1          = $data1->org_address1;
 $item->org_address2          = $data1->org_address2;
 $item->org_city              = $data1->org_city;
-$item->org_state             = $data1->org_state;
+$item->org_state             = @$data1->org_state;
 $item->org_pin               = $data1->org_pin;
 $item->org_name              = $data1->organisation_name;
 $item->about                 = $data1->about;

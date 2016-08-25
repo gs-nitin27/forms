@@ -43,6 +43,7 @@ $(document).ready(function(){
   
 
 $('#save').click(function(){
+	
 var data1 = {
 
 
@@ -91,8 +92,11 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-
-alert(result);
+		$( "#msgdiv" ).show();
+		$( "#msg" ).html(result);
+		setTimeout(function() {
+			$('#msgdiv').fadeOut('fast');
+		}, 2000);
     }
 
 
@@ -128,17 +132,23 @@ alert(result);
          <section class="content"> 
       <div class="row">
 	  <div class="col-md-6">
+		<div class=" alert alert-success" id="msgdiv" style="display:none">
+			<strong>Info! <span id = "msg"></span></strong> 
+		</div>
+
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_event" data-toggle="tab">Event </a></li>
               <li><a href="#tab_organiser" data-toggle="tab">Organiser</a></li>
               <li><a href="#tab_eligible" data-toggle="tab">Eligibility</a></li>
              </ul> 	 
-               
+             <form role="form" action="" class="register">  
             <div class="tab-content">
               <div class="tab-pane active" id="tab_event">
-                <h4><b>Event Details:</b></h4 > 	
-
+                
+				<div class="box-header with-border">
+					<h4>Event Details:</h4 > 		
+				</div>
                 <div class="box-body">
 					<div class="form-group">
 					  <label>Event Description</label>
@@ -154,8 +164,9 @@ alert(result);
 						?>
 					  <label for="eventtype">Event Type</label>
 						<select id="evtype" class="form-control" >
-						<option>- Select -</option> 
+						<option value="0">- Select -</option> 
 							<?php if(!empty($types)){
+								
 									foreach($types as $type){?>
 								<option value ="<?php echo $type['id'];?>"><?php echo $type['type'];?> </option>
 							<?php 	}
@@ -169,7 +180,7 @@ alert(result);
 						?>
 					  <label for="sports">Sport</label>
 						<select id="sport" class="form-control" >
-						<option>- Select -</option> 
+						<option value="0">- Select -</option> 
 							<?php if(!empty($sports)){
 									foreach($sports as $sport){?>
 								<option value ="<?php echo $sport['id'];?>"><?php echo $sport['sports'];?> </option>
@@ -215,21 +226,22 @@ alert(result);
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_organiser">
-                <h4><b>Organiser Details:</b></h4 > 	
-
+			  <div class="box-header with-border">
+                <h4>Organiser Details:</h4 > 	
+			</div>
                 <div class="box-body">
 					
 					 <div class="form-group">
 					  <label for="eventName">Organiser Name</label>
-					  <input type="text" class="form-control" id="orgName" placeholder="Enter Event">
+					  <input type="text" class="form-control" id="orgName" >
 					</div >
 					<div class="form-group">
 					  <label for="eventName">Email</label>
-					  <input type="text" class="form-control" id="email_app_collection" placeholder="Enter Event">
+					  <input type="text" class="form-control" id="email_app_collection" >
 					</div >
 					<div class="form-group">
 					  <label for="eventName">Phone No.</label>
-					  <input type="text" class="form-control" id="contact" placeholder="Enter Event">
+					  <input type="text" class="form-control" id="contact" >
 					</div >
 					<div class="form-group">
 					  <label for="address1">Address Line1</label>
@@ -250,275 +262,66 @@ alert(result);
 					</div >
 					<div class="form-group">
 					  <label for="pin">Pin</label>
-					  <input type="text" class="form-control"  id="pin" placeholder="Enter Pin">
+					  <input type="text" class="form-control"  id="orgpin" placeholder="Enter Pin">
 					</div >
-					<div class="form-group">
-					  <label for="link">Event Link</label>
-					  <input type="text" class="form-control" value="http://"  id="evlink" placeholder="Enter Pin">
-					</div >
-					<div class="form-group">
-					  <label for="link">Start Date</label>
-					  <input type="text" class="form-control"  id="startD" placeholder="Enter Start Date">
-					</div >
-					<div class="form-group">
-					  <label for="link">End Date</label>
-					  <input type="text" class="form-control"  id="endD" placeholder="Enter End Date">
-					</div >
+					
 				</div>
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_eligible">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                It has survived not only five centuries, but also the leap into electronic typesetting,
-                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-                sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-                like Aldus PageMaker including versions of Lorem Ipsum.
+                 <div class="box-header with-border">
+					<h4>Eligibility Criteria:</h4 > 		
+				</div>
+				
+				
+
+                <div class="box-body">
+					
+					 <div class="form-group">
+					  <label for="eventName">Criteria 1</label>
+					  <input type="text" class="form-control" id="criteria1" placeholder="Enter Eligibility">
+					</div >
+					<div class="form-group">
+					  <label for="eventName">Criteria 2</label>
+					  <input type="text" class="form-control" id="criteria2" placeholder="Enter Eligibility">
+					</div >
+					
+					<div class="form-group">
+					  <label for="link">Entry Start Date</label>
+					  <input type="text" class="form-control"  id="estartD" placeholder="Enter Start Date">
+					</div >
+					<div class="form-group">
+					  <label for="link">Entry End Date</label>
+					  <input type="text" class="form-control"  id="eendD" placeholder="Enter End Date">
+					</div >
+					
+					 <h4><b>Terms & Conditions:</b></h4 > 	
+					  <div class="form-group">
+					  <label for="eventName">T & C 1</label>
+					  <input type="text" class="form-control" id="terms1" placeholder="">
+					</div >
+					<div class="form-group">
+					  <label for="eventName">T & C 2</label>
+					  <input type="text" class="form-control" id="terms2" placeholder="">
+					  <input type="hidden" class="form-control" id="filename" placeholder="">
+					  
+					</div >
+				</div>
               </div>
               <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
+			<div class="box-footer">
+			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Create Event" name="Create">
+			</div>
+			 </form>
+			
           </div>
 	  </div>
 	  
 	 
-        <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-               <h3 class="box-title">Event Details</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form role="form" action="" class="register">
-              <div class="box-body">
-                <div class="form-group">
-                  <label>Event Description</label>
-                  <textarea class="form-control" rows="3" placeholder="Enter ..." class="desc" id="edesc" ></textarea>
-                </div>
-                 <div class="form-group">
-                  <label for="eventName">Event Name</label>
-                  <input type="text" class="form-control"  id="evname" placeholder="Enter Event">
-                </div>
-              
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-          </div>          
-        <form action="" class="register" style="height: 1000px">
-            <h1></h1>
-           
-                </p>
-                <p>
-                    <label>Event Name
-                    </label>
-                   <input type="text" id="evname">
-                         
-                     </input> 
-                    
-                </p>
-                 <p>
-                    <label>Event Type
-                    </label>
-                    <select id="evtype">
-                        <option>
-                        </option>
-                        <option value="Type 1">Type 1
-                        </option>
-                        <option value="Type 2">Type 2
-                        </option>
-                        <option value="Type 3">Type 3
-                        </option>
-                    </select></p>
-                     <p>
-                    <label>Sport
-                    </label>
-                    <select id="sport">
-                        <option>
-                        </option>
-                        <option value="Football">Football
-                        </option>
-                        <option value="Cricket">Cricket
-                        </option>
-                        <option value="Swimming">Swimming
-                        </option>
-                    </select></p>
-                 <p>
-                    <label>Address Line1
-                    </label>
-                    <input type="text" class="long" id="add1"/>
-                </p>
-                <p>
-                    <label>Address Line2
-                    </label>
-                    <input type="text" class="long" id="add2"/>
-                </p>
-                <p>
-                    <label>City
-                    </label>
-                    <select class="city" id="city">
-                        <option value="New Delhi">New Delhi</option>
-                        <option value="Noida">Noida</option>
-                        <option value="Ghaziabad">Ghaziabad</option>
-                        <option value="Gurgaon">Gurgaon</option>
-                    </select></p>
-                </p>
-               
-               <p>
-                    <label>State
-                    </label>
-                    <select class="State" id="state">
-                          <option value="Delhi">Delhi</option>
-                        <option value="Uttar Pradesh">Uttar Pradesh</option>
-                        <option value="Madhya Pradesh">Madhya Pradesh</option>
-                        <option value="Andhra Pradesh">Andhra Pradesh</option>
-                        <option value="Maharashtra">Maharashtra</option>
-                        <option value="Karnataka">Karnataka</option>
-                    </select></p>
-                </p>
-                <p>
-                    <label>Pin
-                    </label>
-                    <input type="text" class="pin" id="pin"/>
-                </p>
-               
-                    
-                    <p>
-                    <label class="optional">Event Link
-                    </label>
-                    <input class="long" type="text" value="http://" id="evlink" />
-
-                </p>
-                <p>
-                    <label>Start Date</label>
-                    <input type="text" id="startD"></input>
-                </p>
-                <p>
-                    <label>End Date</label>
-                    <input type="text" id="endD"></input>
-                </p>
-                <div id="preview"></div>
-            </fieldset>
-            <fieldset class="row2">
-                <legend>Organiser Details
-                </legend>
-                <p>
-                    <label>Organiser Name
-                    </label>
-                     <input type="text" id="orgName" />
-                </p>
-                <p>
-                    <label>Email
-                    </label>
-                   <input type="text"  id="email_app_collection">
-                         
-                     </input> 
-                </p>
-                 <p>
-                    <label>Phone No.
-                    </label>
-                   <input type="text" id="contact">
-                         
-                     </input> 
-                </p>
-                <p>
-                    <label>Address Line1
-                    </label>
-                    <input type="text" class="long" id="orgadd1"/>
-                </p>
-                <p>
-                    <label>Address Line2
-                    </label>
-                    <input type="text" class="long" id="orgadd2"/>
-                </p>
-                <p>
-                    <label>City
-                    </label>
-                    <select class="city" id="orgcity">
-                        <option value="New Delhi">New Delhi</option>
-                        <option value="Noida">Noida</option>
-                        <option value="Ghaziabad">Ghaziabad</option>
-                        <option value="Gurgaon">Gurgaon</option>
-                    </select></p>
-                </p>
-               
-               <p>
-                    <label>State
-                    </label>
-                    <select class="State" id="orgstate">
-                          <option value="Delhi">Delhi</option>
-                        <option value="Uttar Pradesh">Uttar Pradesh</option>
-                        <option value="Madhya Pradesh">Madhya Pradesh</option>
-                        <option value="Andhra Pradesh">Andhra Pradesh</option>
-                        <option value="Maharashtra">Maharashtra</option>
-                        <option value="Karnataka">Karnataka</option>
-                    </select></p>
-                </p>
-                <p>
-                    <label>Pin
-                    </label>
-                    <input type="text" class="pin" id="orgpin"/>
-                </p>
-                <p>
-                    <label>Entry Start Date</label>
-                    <input type="text" id="estartD"></input>
-                </p>
-                <p>
-                    <label>Entry End Date</label>
-                    <input type="text" id="eendD"></input>
-                </p>
-            </fieldset>
-            <fieldset class="row3" style="margin-bottom: 27px;margin-top: -230px;">
-                <legend>Eligibility Criteria
-                </legend>
-                <p>
-                    <label>Criteria 1</label>
-                    <input type="text" id="criteria1"/></p><p>
-                    <label>Criteria 2</label>
-                    <input type="text" id="criteria2"/></p>
-                </p>
-               
-
-                 <legend>Terms and conditions
-                </legend>
-                <p>
-                    <label>T&C1</label>
-                    <input type="text" id="terms1"/></p><p>
-                    <label>T&C2</label>
-                    <input type="text" id="terms2"/></p>
-                </p>
-
-                <div class="infobox" style="display: none"><h4>Helpful Information</h4>
-                    <p>Here comes some explaining text, sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                </div>
-            </fieldset>
-            <fieldset class="row4" style="margin-top: 50px;display: none">
-                <legend>Terms and Mailing
-                </legend>
-                <p class="agreement">
-                    <input type="checkbox" value="" id="terms" />
-                    <label>*  I accept the <a href="#">Terms and Conditions</a></label>
-                </p>
-                <p class="agreement">
-                    <input type="checkbox" value=""/>
-                    <label>I want to receive personalized offers by your site</label>
-                </p>
-                <p class="agreement">
-                    <input type="checkbox" value=""/>
-                    <label>Allow partners to send me personalized offers and related services</label>
-                </p>
-            </fieldset>
-            <div><input type="button" class="button" id="save" onclick="#" value="Create" name="Create" style="margin-left: 500px"></input></div>
-        </form>
-        <form id="con" enctype='multipart/form-data' action="<?php echo site_url('forms/imageupload')  ?>" method="POST" style="display: none">
-    <input type="file" name="eventImage" id="filename">
-    <input type="text" name="imagena" id="imagena">
-</form>
+        
+       
     
 
 

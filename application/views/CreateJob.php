@@ -1,33 +1,33 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <script type="text/javascript" src="http://ajax.googleapis.com/
-ajax/libs/jquery/1.5/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/jquery.form.js'); ?>"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-        <title>Create Job</title>
-         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/default.css'); ?>"/>
-  <style type="text/css">
-form.register {
-    background-color: #fff;
-    height: 610px !important;
-    margin: 20px auto 0;
-    padding: 5px;
-    width: 800px;
-}
-  </style>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <title>Create Event</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/default.css'); ?>"/>
+
    <script>
 //document.domain = "getsporty.in";
 $(document).ready(function(){
-  
+  $('#jcity').focusout(function(){
+			var city_key = $('#jcity').val();
+			$.ajax({
+			    method: "POST",
+			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
+				data: { key: city_key }
+			}).done(function( html ) {
+				var res = jQuery.parseJSON(html)
+				$( "#jstate_value" ).val( res.state );
+				$( "#jstate" ).val( res.id );
+				
+			  });
+		});
+		$('#orgcity').focusout(function(){
+			var city_key = $('#orgcity').val();
+			$.ajax({
+			    method: "POST",
+			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
+				data: { key: city_key }
+			}).done(function( html ) {
+				var res = jQuery.parseJSON(html)
+				$( "#orgstate_value" ).val( res.state );
+				$( "#orgstate" ).val( res.id );
+				
+			  });
+		});
 clear();
    var gender = $('input[name=gender]:checked').val();
 $('#save').click(function(){
@@ -81,8 +81,11 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-
-alert(result);
+		$( "#msgdiv" ).show();
+		$( "#msg" ).html(result);
+		setTimeout(function() {
+			$('#msgdiv').fadeOut('fast');
+		}, 2000);
 clear();
     }
 
@@ -127,195 +130,218 @@ function clear()
 }
 
   </script>
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Create Job
+        
+      </h1>
+     
+    </section>
+         <section class="content"> 
+      <div class="row">
+	  
+		<div class="col-md-6">
+		<div class=" alert alert-success" id="msgdiv" style="display:none">
+			<strong>Info! <span id = "msg"></span></strong> 
+		</div>
 
-
-    </head>
-    <body>    
-        <form action="" class="register">
-            <h1>Create Job</h1>
-            <fieldset class="row1">
-                <legend>Job Details
-                </legend>
-                <p>
-                    <label>Job Title
+			<div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab_event" data-toggle="tab">Job Details </a></li>
+              <li><a href="#tab_organiser" data-toggle="tab">Organisation</a></li>
+              <li><a href="#tab_eligible" data-toggle="tab">Requirements</a></li>
+             </ul> 	 
+             <form role="form" action="" class="register">  
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_event">
+			   <div class="box-header with-border">
+                <h4>Job Details:</h4 > 	
+				</div>
+                <div class="box-body">
+					
+					<div class="form-group">
+					  <label for="eventName">Job Title</label>
+					  <input type="text" class="form-control"  id="jtitle" >
+					</div >
+					<div class="form-group">
+					  <label>Job Description</label>
+					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="jdesc" ></textarea>
+					</div>
+					 
+					<div class="form-group">
+						
+					  <label for="eventtype">Job Type</label>
+						<select id="jtype" class="form-control" >
+						<option value="0">- Select -</option> 
+							
+						<option value ="Part Time">Part Time </option>
+						<option value ="Full Time">Full Time </option>
+							
+						</select>
+					</div >
+					<div class="form-group">
+						<?php  
+						// SPORTS IS ID BASED
+						$sports = $this->register->getSport();
+							
+						?>
+					  <label for="sports">Sport</label>
+						<select id="jsports" class="form-control" >
+						<option value="0">- Select -</option> 
+							<?php if(!empty($sports)){
+									foreach($sports as $sport){?>
+								<option value ="<?php echo $sport['id'];?>"><?php echo $sport['sports'];?> </option>
+							<?php 	}
+								  }	
+							?>
+						</select>
+					</div>
+					<div class="form-group">
+					  <label for="city">Job Location</label>
+					  <input type="text" class="form-control"  id="jcity" placeholder="Enter City">
+					</div>
+					
+					<div class="form-group">
+					  <label for="address1">Address Line1</label>
+					  <input type="text" class="form-control"  id="jadd1" placeholder="Enter Address">
+					</div >
+					<div class="form-group">
+					  <label for="address2">Address Line2</label>
+					  <input type="text" class="form-control"  id="jadd2" placeholder="Enter Address">
+					</div >
+					<!-- STATE IS ID BASED -->
+					<div class="form-group">
+					  <label for="state">State</label>
+					  <input type="hidden" class="form-control"  id="jstate">
+					  <input type="text" class="form-control"  id="jstate_value" placeholder="Enter State" disabled>
+					</div >
+					<div class="form-group">
+					  <label for="pin">Pin</label>
+					  <input type="text" class="form-control"  id="jpin" placeholder="Enter Pin">
+					</div >
+					
+              </div>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_organiser">
+			   <div class="box-header with-border">
+                <h4>Organisation Details:</h4> 	
+			  </div>
+                <div class="box-body">
+					
+					 <div class="form-group">
+					  <label for="eventName">Organisation Name</label>
+					  <input type="text" class="form-control" id="orgName" >
+					</div >
+					<div class="form-group">
+					  <label>About Organisation</label>
+					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="abOrg" ></textarea>
+					</div>
+					
+					
+					
+					<div class="form-group">
+					  <label for="address1">Address Line1</label>
+					  <input type="text" class="form-control"  id="add1" placeholder="Enter Address">
+					</div >
+					<div class="form-group">
+					  <label for="address2">Address Line2</label>
+					  <input type="text" class="form-control"  id="add2" placeholder="Enter Address">
+					</div >
+					<div class="form-group">
+					  <label for="city">Location</label>
+					  <input type="text" class="form-control"  id="orgcity" placeholder="Enter City">
+					</div>
+					
+					<!-- STATE IS ID BASED -->
+					<div class="form-group">
+					  <label for="state">State</label>
+					  <input type="hidden" class="form-control"  id="orgstate">
+					  <input type="text" class="form-control"  id="orgstate_value" placeholder="Enter State" disabled>
+					</div >
+					<div class="form-group">
+					  <label for="pin">Pin</label>
+					  <input type="text" class="form-control"  id="orgpin" placeholder="Enter Pin">
+					</div >
+					<div class="form-group">
+					  <label for="eventName">Email</label>
+					  <input type="text" class="form-control" id="email">
+					</div >
+					
+					<div class="form-group">
+					  <label for="eventName">Contact No.</label>
+					  <input type="text" class="form-control" id="cont">
+					</div >
+				</div>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_eligible">
+			  <div class="box-header with-border">
+                <h4>Requirements:</h4> 	
+			</div>
+                <div class="box-body">
+					
+					 <div class="form-group">
+					  <label for="eventName">Work Experience</label>
+					   <select id="jexp" class="form-control">
+							<?php for($i=0; $i<=10; $i++){?>	
+							<option value="<?php echo $i;?>"><?php echo str_pad($i, 2, '0', STR_PAD_LEFT)." year";?></option>
+							<?php } ?>
+						</select>
+					</div >
+					<div class="form-group">
+					  <label for="eventName">Qualifications</label>
+					  <input type="text" class="form-control" id="jqualification" >
+					</div >
+					
+					<div class="form-group">
+					  <label for="link">Desired skills</label>
+					  <input type="text" class="form-control"  id="skill" >
+					</div >
+					<div class="form-group">
+					  <label for="link">Key Requirement</label>
+					  <input type="text" class="form-control"  id="jreq">
+					</div >
+					
+					<div class="form-group">
+					  <label for="link">Gender</label>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="gender" value="Male" >
+                      Male
                     </label>
-                    <input type="text" id="jtitle" />
-                    <label>Job Description
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="gender"  value="Female" >
+                      Female
                     </label>
-                     <textarea rows="4" cols="50" class="desc" id="jdesc">
-                         
-                     </textarea> 
-                </p>
-                <p>
-                    <label>Job Type</label>
-                    <input type="text" id="jtype" /></p>
-                    <p>
-                    <label> Sports</label>
-                    <select id="jsports">
-                        <option value="foortball">Football</option>
-                        <option value="Cricket">Cricket</option>
-                        <option value="Tennis">Tennis</option>
-                        <option value="Basketball">Basketball</option>
-                        <option value="Swimming">Swimming</option>
-                    </select>    
-                    </p>
-                    <p>
-                    <label>Job Location
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="gender" value="Transgender">
+                     Transgender 
                     </label>
-                    <select id="jcity">
-                        <option>
-                        </option>
-                        <option value="New Delhi">New Delhi
-                        </option>
-                        <option value="Noida">Noida
-                        </option>
-                        <option value="Pune">Pune
-                        </option>
-                    </select></p>
-                    <p>
-                    <label class="optional">Address1
-                    </label>
-                    <input type="text" class="long" id="jadd1"/>
-                </p>
-                <p>
-                    <label class="optional">Address2
-                    </label>
-                    <input type="text" class="long" id="jadd2"/>
-                </p>
-                 
-                <p>
-                    <label class="optional">PIN
-                    </label>
-                    <input type="text" class="long" id="jpin"/>
-                </p>
-               <p>    
-              <label class="optional">State
-                    </label>
-                    <input type="text" class="long" id="jstate"/>
-                </p>
-            </fieldset>
-            <fieldset class="row2">
-                <legend>Organisation Details
-                </legend>
-                <p>
-                    <label>Organisation Name
-                    </label>
-                     <input type="text" id="orgName" />
-                </p>
-                <p>
-                    <label>About Organisation
-                    </label>
-                   <textarea rows="4" cols="30" class="abOrg" id="abOrg" style=" border: 1.5px solid #e1e1e1;
-    height: 32px;
-    width: 248px;">
-                         
-                     </textarea> 
-                </p>
-                <p>
-                    <label class="optional">Address1
-                    </label>
-                    <input type="text" class="long" id="add1"/>
-                </p>
-                <p>
-                    <label class="optional">Address2
-                    </label>
-                    <input type="text" class="long" id="add2"/>
-                </p>
-                <p>
-                <p>
-                    <label>Job Location
-                    </label>
-                    <select id="orgcity">
-                        <option>
-                        </option>
-                        <option value="New Delhi">New Delhi
-                        </option>
-                        <option value="Noida">Noida
-                        </option>
-                        <option value="Pune">Pune
-                        </option>
-                    </select></p>
-                    
-                <p>
-                    <label class="optional">PIN
-                    </label>
-                    <input type="text" class="long" id="orgpin"/>
-                </p>
-                <p>
-                <label class="optional">State
-                    </label>
-                    <input type="text" class="long" id="orgstate"/>
-                </p>
-                <p>
-                    <label>emailId
-                    </label>
-                    <input type="text" class="long" id="email" />
-                </p>
-                <p>
-                    <label>Contact No.
-                    </label>
-                     <input type="text" class="long" id="cont" />
-                </p>
-                
-            </fieldset>
-            <fieldset class="row3">
-                <legend style="margin-top: 44px">Requirements
-                </legend>
-                <p><label>Experience(years)</label></p>
-                <select id="jexp">
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                </select>
-                <p><label>Qualifications</label>
-                <input type="text" id="jqualification"></input>
-                </p>
-                <p><label>Desired skills</label>
-                <input id="skill" type="text"></input>
-                </p>
-                 <p><label>Key Requirement</label>
-                <input id="jreq" type="text"></input>
-                </p>
-                <p>
-                    <label>Gender </label>
-                    <input type="radio"  name ="gender" value="Male"/>
-                    <label class="gender">Male</label>
-                    <input type="radio"  name ="gender" value="Female"/>
-                    <label class="gender">Female</label>
-                </p>
-               
-                <div class="infobox" style="display: none"><h4>Helpful Information</h4>
+                  </div>
                 </div>
-            </fieldset>
-            <fieldset class="row4" style="display: none">
-                <legend>Terms and Mailing
-                </legend>
-                <p class="agreement">
-                    <input type="checkbox" value=""/>
-                    <label>*  I accept the <a href="#">Terms and Conditions</a></label>
-                </p>
-                <p class="agreement">
-                    <input type="checkbox" value=""/>
-                    <label>I want to receive personalized offers by your site</label>
-                </p>
-                <p class="agreement">
-                    <input type="checkbox" value=""/>
-                    <label>Allow partners to send me personalized offers and related services</label>
-                </p>
-            </fieldset>
-            <div><input type="button" class="button" id="save" onclick="#" value="Create" name="Create" style="margin-left: 500px"></input></div>
-        </form>
-    </body>
-</html>
-
-
+				</div>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+			<div class="box-footer">
+			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Create Job" name="Create">
+			</div>
+			 </form>
+			
+          </div>
+	  </div>
+	  
+</div>
+</div>
+</section>
 
 
 
