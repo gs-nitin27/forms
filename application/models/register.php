@@ -61,21 +61,33 @@ else
 }
 
 }
-
+	#Function for Get all the event type
 	public function getEventType($id = false){
-		
 		$qry = $this->db->get('gs_eventType');
 		return $qry->result_array();
 	}
+	#Function for Get all the Sport
 	public function getSport($id = false){
-		
 		$qry = $this->db->get('gs_sports');
 		return $qry->result_array();
 	}
+	#Function for Get State By Enter City
 	public function getStateByKey($key){
 		$this->db->where('city', $key);
 		$qry = $this->db->get('location');
 		$q =  $qry->row_array();
+		return $q;
+	}
+	#Function for Get all the Level
+	public function getLevel(){
+		$qry = $this->db->get('gs_level');
+		$q =  $qry->result_array();
+		return $q;
+	}
+	#Function for Get all the Level
+	public function getTournamentCategory(){
+		$qry = $this->db->get('gs_tournament_category');
+		$q =  $qry->result_array();
 		return $q;
 	}
 }

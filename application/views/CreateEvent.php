@@ -295,7 +295,9 @@ var data = JSON.stringify(data1);
 					  <input type="text" class="form-control"  id="eendD" placeholder="Enter End Date">
 					</div >
 					
-					 <h4><b>Terms & Conditions:</b></h4 > 	
+					<div class="box-header with-border">
+					<h4>Terms & Conditions:</h4> 
+					</div>	
 					  <div class="form-group">
 					  <label for="eventName">T & C 1</label>
 					  <input type="text" class="form-control" id="terms1" placeholder="">

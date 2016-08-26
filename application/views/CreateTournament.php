@@ -1,18 +1,34 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    
-    <head>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <title>Create Tournament</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/default.css'); ?>"/>
+
   <script>
 //document.domain = "getsporty.in";
 $(document).ready(function(){
-  
+   $('#city').focusout(function(){
+			var city_key = $('#city').val();
+			$.ajax({
+			    method: "POST",
+			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
+				data: { key: city_key }
+			}).done(function( html ) {
+				var res = jQuery.parseJSON(html)
+				$( "#state_value" ).val( res.state );
+				$( "#state" ).val( res.id );
+				
+			  });
+		});
+		
+		$('#orgcity').focusout(function(){
+			var city_key = $('#orgcity').val();
+			$.ajax({
+			    method: "POST",
+			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
+				data: { key: city_key }
+			}).done(function( html ) {
+				var res = jQuery.parseJSON(html)
+				$( "#orgstate_value" ).val( res.state );
+				$( "#orgstate" ).val( res.id );
+				
+			  });
+		});
 clear();
     
 $('#save').click(function(){
@@ -68,9 +84,12 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-
-alert(result);
-clear();
+		$( "#msgdiv" ).show();
+		$( "#msg" ).html(result);
+		setTimeout(function() {
+			$('#msgdiv').fadeOut('fast');
+		}, 2000);
+		clear();
     }
 
 
@@ -129,272 +148,271 @@ $("#tcatagory").val('');
 }
 
   </script>
+    <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Create Tournament
         
-    </head>
-    <body>    
-        <form action="" class="register" style="height: 1000px">
-            <h1>Create Tournament</h1>
-            <fieldset class="row1">
-                <legend>Tournament Details
-                </legend>
-                <p>
-                    <label>Tournament Description
-                    </label>
-                   <textarea rows="4" cols="50" class="desc" id="tdesc">
-                         
-                     </textarea> 
-                    
-                </p>
-                <p>
-                    <label>Tournament Name
-                    </label>
-                   <input type="text" id="tname"> 
-                </p>
-                
+      </h1>
+     
+    </section>
+         <section class="content"> 
+      <div class="row">
+		<div class="col-md-7">
+		<div class=" alert alert-success" id="msgdiv" style="display:none">
+			<strong>Info! <span id = "msg"></span></strong> 
+		</div>
 
-                 <p>
-                    <label>Sport
-                    </label>
-                   <select id="tsport">
-                       <option></option>
-                       <option value="Tennis">Tennis</option>
-                       <option value="Cricket">Cricket</option>
-                       <option value="Hockey">Hockey</option>
-                       <option value="Basketball">Basketball</option>
-                       <option value="Football">Football</option>
-                       <option value="Swimming">Swimming</option>
-                       <option value="Badminton">Badminton</option>
-                       <option value="Volleyball">Volleyball</option>
-                   </select>
-                    
-                </p>
+			<div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab_event" data-toggle="tab">Tournament Details </a></li>
+              <li><a href="#tab_info" data-toggle="tab">Tournament Info</a></li>
+              <li><a href="#tab_organiser" data-toggle="tab">Organiser Details</a></li>
+              <li><a href="#tab_eligible" data-toggle="tab">Eligibility Criteria</a></li>
+             </ul> 	 
+             <form role="form" action="" class="register">  
+             <div class="tab-content">
+              <div class="tab-pane active" id="tab_event">
+			   <div class="box-header with-border">
+                <h4>Tournament Details:</h4 > 	
+				</div>
+                <div class="box-body">
+					<div class="form-group">
+					  <label>Tournament Description</label>
+					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="tdesc" ></textarea>
+					</div>
+					<div class="form-group">
+					  <label for="eventName">Tournament Name</label>
+					  <input type="text" class="form-control"  id="tname" >
+					</div >
+					
+					 <div class="form-group">
+						<?php  
+						// SPORTS IS ID BASED
+						$sports = $this->register->getSport();
+							
+						?>
+					  <label for="sports">Sport</label>
+						<select id="tsport" class="form-control" >
+						<option value="0">- Select -</option> 
+							<?php if(!empty($sports)){
+									foreach($sports as $sport){?>
+								<option value ="<?php echo $sport['id'];?>"><?php echo $sport['sports'];?> </option>
+							<?php 	}
+								  }	
+							?>
+						</select>
+					</div>
+					 
+					<div class="form-group">
+						<?php  
+						// LEVEL IS ID BASED
+						$levels = $this->register->getLevel();
+							
+						?><label for="level">Level</label>
+						<select id="tlevel" class="form-control" >
+						<option value="0">- Select -</option>
+							<?php if(!empty($levels)){
+									foreach($levels as $level){?>
+								<option value ="<?php echo $level['id'];?>"><?php echo $level['level'];?> </option>
+							<?php 	}
+								  }	
+							?>
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<?php  
+						// LEVEL IS ID BASED
+						$Categories = $this->register->getTournamentCategory();
+							
+						?><label for="sports">Category</label>
+						<select id="tcatagory" class="form-control" >
+						<option value="0">- Select -</option>
+							<?php if(!empty($Categories)){
+									foreach($Categories as $Category){?>
+								<option value ="<?php echo $Category['id'];?>"><?php echo $Category['category'];?> </option>
+							<?php 	}
+								  }	
+							?>
+						</select>
+					</div>
+					
+					<div class="form-group">
+					<label for="sports">Age Group</label>
+						<select id="tage" class="form-control" >
+							<option></option>
+							<option id="15-18">15-18</option>
+							<option id="18-22">18-22</option>
+							<option id="20-25">20-25</option>
+							<option id="24-28">24-28</option>
+						</select>
+					</div>
+					<div class="form-group">
+					<label for="sports">Gender</label>
+						<select id="tgen" class="form-control" >
+							<option></option>
+							<option id="Male">Male</option>
+							<option id="Female">Female</option>
+							<option id="Transgender">Transgender</option>
+						</select>
+					</div>
 
-                <p>
-                    <label>Level
-                    </label>
-                   <select id="tlevel">
-                       <option></option>
-                       <option value="school">School</option>
-                       <option value="district">District</option>
-                       <option value="state">State</option>
-                       <option value="zonal">Zonal</option>
-                       <option value="national">National</option>
-                       <option value="international">International</option>
-                       </select>
-                    
-                </p>
-                <p>
-                    <label>Category
-                    </label>
-                   <select id="tcatagory">
-                       <option></option>
-                       <option value="Category 1">Category 1</option>
-                       <option value="Category 2">Category 2</option>
-                       <option value="Category 3">Category 3</option>
-                   </select> 
-                    
-                </p>
-                 <p>
-                    <label>Age-group</label>
-                    <select id="tage">
-                        <option></option>
-                        <option id="15-18">15-18</option>
-                        <option id="18-22">18-22</option>
-                        <option id="20-25">20-25</option>
-                        <option id="24-28">24-28</option>
-                    </select>
-                </p>
-                <p>
-                    <label>Gender</label>
-                    <select id="tgen">
-                        <option></option>
-                        <option id="Male">Male</option>
-                        <option id="Female">Female</option>
-                        <option id="Unisex">Unisex</option>
-                    </select>
-                </p>
-                
-                <p>
-                    <label>Start Date</label>
-                    <input type="text" id="startD"></input>
-                </p>
-                <p>
-                    <label>End Date</label>
-                    <input type="text" id="endD"></input>
-                </p>
-            </fieldset>
-             <fieldset class="row5" style="margin-left:54%;position: relative; top: -325px;  ">
-                    
-                 <legend style="background: #fff">Tournament Info</legend>
-                     <p>
-                   
-                 <p>
-                    <label>Address Line1
-                    </label>
-                    <input type="text" class="long" id="add1"/>
-                </p>
-                <p>
-                    <label>Address Line2
-                    </label>
-                    <input type="text" class="long" id="add2"/>
-                </p>
-                <p>
-                    <label>City
-                    </label>
-                    <select class="city" id="city">
-                        <option value="New Delhi">New Delhi</option>
-                        <option value="New Delhi">Noida</option>
-                        <option value="New Delhi">Ghaziabad</option>
-                        <option value="New Delhi">Gurgaon</option>
-                    </select></p>
-                </p>
-               
-               <p>
-                    <label>State
-                    </label>
-                    <select class="State" id="state">
-                        <option value="Delhi">Delhi</option>
-                        <option value="up">Uttar Pradesh</option>
-                        <option value="mp">Madhya Pradesh</option>
-                        <option value="ap">Andhra Pradesh</option>
-                        <option value="ap">Maharashtra</option>
-                        <option value="ap">Karnataka</option>
-                    </select></p>
-                </p>
-                <p>
-                    <label>Pin
-                    </label>
-                    <input type="text" class="pin" id="pin"/>
-                </p>
-               
-                    <p><label>Tournament Link</label>
-                <input type="text" id="evlink" value="http://"></input>
-                </p>
+					<div class="form-group">
+					  <label for="link">Start Date</label>
+					  <input type="text" class="form-control"  id="startD" placeholder="Enter Start Date">
+					</div >
+					<div class="form-group">
+					  <label for="link">End Date</label>
+					  <input type="text" class="form-control"  id="endD" placeholder="Enter End Date">
+					</div >
+					
+				</div>
+              </div>
+			  
+			  
+			  <div class="tab-pane" id="tab_info">
+			   <div class="box-header with-border">
+                <h4>Tournament Info</h4> 	
+			  </div>
+                <div class="box-body">
+					
+					
+					<div class="form-group">
+					  <label for="address1">Address Line1</label>
+					  <input type="text" class="form-control"  id="add1" placeholder="Enter Address">
+					</div >
+					<div class="form-group">
+					  <label for="address2">Address Line2</label>
+					  <input type="text" class="form-control"  id="add2" placeholder="Enter Address">
+					</div >
+					<div class="form-group">
+					  <label for="city">City</label>
+					  <input type="text" class="form-control"  id="city" placeholder="Enter City">
+					</div>
+					
+					<!-- STATE IS ID BASED -->
+					<div class="form-group">
+					  <label for="state">State</label>
+					  <input type="hidden" class="form-control"  id="state">
+					  <input type="text" class="form-control"  id="state_value" placeholder="Enter State" disabled>
+					</div >
+					<div class="form-group">
+					  <label for="pin">Pin</label>
+					  <input type="text" class="form-control"  id="pin" placeholder="Enter Pin">
+					</div >
+					<div class="form-group">
+					  <label for="pin">Tournament Link</label>
+					  <input type="text" class="form-control"  id="evlink" value="http://" />
+					</div >
+					<div class="form-group">
+					  <label for="link">Entry Start Date</label>
+					  <input type="text" class="form-control"  id="estartD" placeholder="Enter Start Date">
+					</div >
+					<div class="form-group">
+					  <label for="link">Entry End Date</label>
+					  <input type="text" class="form-control"  id="eendD" placeholder="Enter End Date">
+					</div >
+				</div>
+              </div>
+			  
+              <div class="tab-pane" id="tab_organiser">
+			   <div class="box-header with-border">
+                <h4>Organiser Details:</h4> 	
+			  </div>
+                <div class="box-body">
+					
+					 <div class="form-group">
+					  <label for="eventName">Organiser Name</label>
+					  <input type="text" class="form-control" id="orgName" >
+					</div >
+					<div class="form-group">
+					  <label for="eventName">Email</label>
+					  <input type="text" class="form-control" id="email">
+					</div >
+					<div class="form-group">
+					  <label for="eventName">Contact No.</label>
+					  <input type="text" class="form-control" id="contact">
+					</div >
+					<div class="form-group">
+					  <label for="address1">Address Line1</label>
+					  <input type="text" class="form-control"  id="orgadd1" placeholder="Enter Address">
+					</div >
+					<div class="form-group">
+					  <label for="address2">Address Line2</label>
+					  <input type="text" class="form-control"  id="orgadd2" placeholder="Enter Address">
+					</div >
+					<div class="form-group">
+					  <label for="city">City</label>
+					  <input type="text" class="form-control"  id="orgcity" placeholder="Enter City">
+					</div>
+					
+					<!-- STATE IS ID BASED -->
+					<div class="form-group">
+					  <label for="state">State</label>
+					  <input type="hidden" class="form-control"  id="orgstate">
+					  <input type="text" class="form-control"  id="orgstate_value" placeholder="Enter State" disabled>
+					</div >
+					<div class="form-group">
+					  <label for="pin">Pin</label>
+					  <input type="text" class="form-control"  id="orgpin" placeholder="Enter Pin">
+					</div >
+					
+					
+					
+				</div>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_eligible">
+                 <div class="box-header with-border">
+					<h4>Eligibility Criteria:</h4 > 		
+				</div>
+				
+				
 
-                </p>
-                <p>
-                    <label>Entry Start Date</label>
-                    <input type="text" id="estartD"></input>
-                </p>
-                <p>
-                    <label>Entry End Date</label>
-                    <input type="text" id="eendD"></input>
-                </p>
-            </fieldset>
-            <fieldset class="row2" style=" margin-top: -263px;">
-                <legend>Organiser Details
-                </legend>
-                <p>
-                    <label>Organiser Name
-                    </label>
-                     <input type="text" id="orgName" />
-                </p>
-                <p>
-                    <label>Email
-                    </label>
-                   <input type="text"  id="email">
-                         
-                     </input> 
-                </p>
-                 <p>
-                    <label>Phone No.
-                    </label>
-                   <input type="text" id="contact">
-                         
-                     </input> 
-                </p>
-                <p>
-                    <label>Address Line1
-                    </label>
-                    <input type="text" class="long" id="orgadd1"/>
-                </p>
-                <p>
-                    <label>Address Line2
-                    </label>
-                    <input type="text" class="long" id="orgadd2"/>
-                </p>
-                <p>
-                    <label>City
-                    </label>
-                    <select class="city" id="orgcity">
-                        <option value="New Delhi">New Delhi</option>
-                        <option value="New Delhi">Noida</option>
-                        <option value="New Delhi">Ghaziabad</option>
-                        <option value="New Delhi">Gurgaon</option>
-                    </select></p>
-                </p>
-               
-               <p>
-                    <label>State
-                    </label>
-                    <select class="State" id="orgstate">
-                        <option value="Delhi">Delhi</option>
-                        <option value="up">Uttar Pradesh</option>
-                        <option value="mp">Madhya Pradesh</option>
-                        <option value="ap">Andhra Pradesh</option>
-                        <option value="ap">Maharashtra</option>
-                        <option value="ap">Karnataka</option>
-                    </select></p>
-                </p>
-                <p>
-                    <label>Pin
-                    </label>
-                    <input type="text" class="pin" id="orgpin"/>
-                </p>
-               
-            </fieldset>
-            <fieldset class="row3" style="margin-left: 426px;
-    margin-top: -266px;">
-                <legend>Eligibility Criteria
-                </legend>
-                <p>
-                    <label>Criteria 1</label>
-                    <input type="text" id="criteria1"/></p><p>
-                    <label>Criteria 2</label>
-                    <input type="text" id="criteria2"/></p>
-                </p>
-               
-
-                 <legend>Terms and conditions
-                </legend>
-                <p>
-                    <label>T&C1</label>
-                    <input type="text" id="terms1"/></p><p>
-                    <label>T&C2</label>
-                    <input type="text" id="terms2"/></p>
-                </p>
-
-                <div class="infobox" style="display: none"><h4>Helpful Information</h4>
-                    <p>Here comes some explaining text, sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                </div>
-            </fieldset>
-            <fieldset class="row4" style="margin-top: 50px;display: none">
-                <legend>Terms and Mailing
-                </legend>
-                <p class="agreement">
-                    <input type="checkbox" value="" id="terms" />
-                    <label>*  I accept the <a href="#">Terms and Conditions</a></label>
-                </p>
-                <p class="agreement">
-                    <input type="checkbox" value=""/>
-                    <label>I want to receive personalized offers by your site</label>
-                </p>
-                <p class="agreement">
-                    <input type="checkbox" value=""/>
-                    <label>Allow partners to send me personalized offers and related services</label>
-                </p>
-            </fieldset>
-            <div><input type="button" class="button" id="save" onclick="#" value="Create" name="Create" style="margin-left: 500px"></input></div>
-        </form>
-        <form id="con" enctype='multipart/form-data' action="Image_upload.php" method="POST">
-    <input type="file" name="eventImage">
-    <input type="text" name="userid" value="16" id="filename">
-    <input name="submit" type="submit" value="Submit">
-</form>
-    </body>
-</html>
-
-
-
+                <div class="box-body">
+					
+					 <div class="form-group">
+					  <label for="eventName">Criteria 1</label>
+					  <input type="text" class="form-control" id="criteria1" placeholder="Enter Eligibility">
+					</div >
+					<div class="form-group">
+					  <label for="eventName">Criteria 2</label>
+					  <input type="text" class="form-control" id="criteria2" placeholder="Enter Eligibility">
+					</div >
+					
+					
+					<div class="box-header with-border">
+					<h4>Terms & Conditions:</h4> 
+					</div>
+					 	
+					  <div class="form-group">
+					  <label for="eventName">T & C 1</label>
+					  <input type="text" class="form-control" id="terms1" placeholder="">
+					</div >
+					<div class="form-group">
+					  <label for="eventName">T & C 2</label>
+					  <input type="text" class="form-control" id="terms2" placeholder="">
+					  <input type="hidden" class="form-control" id="filename" placeholder="">
+					  
+					</div >
+				</div>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+			<div class="box-footer">
+			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Create Tournament" name="Create">
+			</div>
+			 </form>
+			
+          </div>
+	  </div>
+		
+	  
+</div>
+</div>
+</section>
 
 

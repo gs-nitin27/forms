@@ -136,10 +136,10 @@ $item->organizer_city          = $data1->organizer_city;
 $item->organizer_state         = $data1->organizer_state;
 $item->organizer_pin           = $data1->organizer_pin;
 $item->tournament_links        = $data1->tournament_links;
-$item->start_date              = strtotime($data1->start_date);//$data1['start_date'];
-$item->end_date                = strtotime($data1->end_date);//$data1['end_date'];
-$item->entry_start_date        = strtotime($data1->entry_start_date);//$data1['entry_start_date'];
-$item->entry_end_date          = strtotime($data1->entry_end_date);//$data1['entry_end_date'];
+$item->start_date              = @strtotime($data1->start_date);//$data1['start_date'];
+$item->end_date                = @strtotime($data1->end_date);//$data1['end_date'];
+$item->entry_start_date        = @strtotime($data1->entry_start_date);//$data1['entry_start_date'];
+$item->entry_end_date          = @strtotime($data1->entry_end_date);//$data1['entry_end_date'];
 $item->file_name               = $data1->file_name;
 $item->sport                   = $data1->sport;
 
