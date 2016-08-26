@@ -4,6 +4,25 @@
 class Register extends CI_Model
 {
 
+
+public function login($username,$password)
+{
+
+// $where = " email = '$username'  AND password = '$password'";
+$this->db->where("email", $username);
+$this->db->where("password", $password);
+$qry = $this->db->get('user');
+
+if($qry->num_rows() > 0)
+{
+$q =  $qry->row_array();
+return $q;
+}
+else
+return 0;
+}
+
+
 public function saveEvent($item)
 {
 

@@ -5,20 +5,29 @@ class Forms extends CI_Controller {
 	public function __construct() {
         parent::__construct();
 		$this->load->model('register');
+		$this->load->library('session');
     }
  
  
-
-	public function index()
+ public function index()
 	{   
     $this->load->view('login');
     }
-    // public function login()
-    // {
+ public function login()
+    {
 
-    
+      $username = $_POST['username'];
+      $password = md5($_POST['password']);
+      $this->load->model('register');
+      $res = $this->register->login($username, $password); 
+      if($res != 0)
+      {
+      	$this->session->set_userdata('item',$res);
+         $sessdata = $this->session->userdata('item');
+         redirect('forms/home');
 
-    // }
+      }
+    }
     public function home()
     {
     $data['middle'] = 'dashboard';
