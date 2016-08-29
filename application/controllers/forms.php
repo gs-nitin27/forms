@@ -36,18 +36,18 @@ class Forms extends CI_Controller {
     public function CreateEvent()
 	{
 		
-	    $data['middle'] = 'CreateEvent';
+	    $data['middle'] = 'event/CreateEvent';
 
 		$this->load->view('templates/template',$data);
     }
 	public function CreateJob()
 	{
-     $data['middle'] = 'CreateJob';
+     $data['middle'] = 'job/CreateJob';
 	 $this->load->view('templates/template',$data);
 	}
 public function CreateTournament()
 	{
-	$data['middle'] = 'CreateTournament';
+	$data['middle'] = 'tournament/CreateTournament';
     $this->load->view('templates/template',$data);	
 	}
 
@@ -217,6 +217,23 @@ echo "Job has not been saved";
 		$results = $this->register->getStateByKey($key);
 		echo  json_encode($results);
 	}
+	
+	public function getJob(){
+		$data['middle'] = 'job/index';
+
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function viewJob($id){
+		$data['middle'] = 'job/view';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+
+		$this->load->view('templates/template',$data);
+	}
+	
+	
 }
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */

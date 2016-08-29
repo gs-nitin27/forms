@@ -109,6 +109,24 @@ else
 		$q =  $qry->result_array();
 		return $q;
 	}
+	
+	public function getJobInfo($id){
+		$this->db->select('*, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
+		$this->db->from('gs_jobInfo JI');
+		$this->db->join('gs_sports SP', 'SP.id = JI.sport', "left");
+		$this->db->join('location L', 'JI.state = L.id', "left");
+		$this->db->join('location LM', 'JI.org_state = LM.id', "left");
+		// $this->db->order_by("da", "desc"); 
+		if($id > 0){
+			$this->db->where('JI.id', $id);
+		}
+		$query = $this->db->get();
+		$q =  $query->result_array();
+		return $q;
+	}
+	
+	
+	
 }
 
  ?>
