@@ -64,7 +64,7 @@ $(document).ready(function(){
                   <th>Sport</th>
                   <th>Location</th>
                   <th>Organisation</th>
-                  <th style="width: 40px">Status</th>
+                  <th style="width: 40px">Action</th>
                 </tr>
 				<?php $i =1;
 				$jobs = $this->register->getJobInfo();
