@@ -122,6 +122,7 @@ $item  = new stdClass();
 $item->id                      = $data1->id;
 $item->organizer_name          = $data1->organizer_name;
 $item->tournament_level        = $data1->tournament_level;
+$item->tournament_category        = $data1->catagory;
 $item->tournament_ageGroup     = $data1->tournament_ageGroup;
 $item->tournament_gender       = $data1->tournament_gender;
 $item->userid                  = $data1->userid;
@@ -233,7 +234,34 @@ echo "Job has not been saved";
 		$this->load->view('templates/template',$data);
 	}
 	
+	public function getEvent(){
+		$data['middle'] = 'event/index';
+
+		$this->load->view('templates/template',$data);
+	}
 	
+	public function viewEvent($id){
+		$data['middle'] = 'event/view';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function getTournament(){
+		$data['middle'] = 'tournament/index';
+
+		$this->load->view('templates/template',$data);
+	}
+	public function viewTournament($id){
+		$data['middle'] = 'tournament/view';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+
+		$this->load->view('templates/template',$data);
+	}
 }
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */

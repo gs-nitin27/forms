@@ -81,7 +81,7 @@ var data1 = {
 
 
 };
-
+var url = '<?php echo site_url();?>';
 console.log(JSON.stringify(data1));
 
 var data = JSON.stringify(data1);
@@ -97,6 +97,7 @@ var data = JSON.stringify(data1);
 		setTimeout(function() {
 			$('#msgdiv').fadeOut('fast');
 		}, 2000);
+		window.location.href = url+"/forms/getevent";
     }
 
 

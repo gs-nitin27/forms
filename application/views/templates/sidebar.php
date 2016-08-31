@@ -44,7 +44,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo site_url('forms/CreateEvent'); ?>"><i class="fa fa-circle-o"></i>Create Events</a></li>
-            <li><a href="<?php echo site_url('forms/CreateEvent'); ?>"><i class="fa fa-circle-o"></i>View Events</a></li>
+            <li><a href="<?php echo site_url('forms/getEvent'); ?>"><i class="fa fa-circle-o"></i>View Events</a></li>
             </li>
           </ul>
         </li>
@@ -58,7 +58,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo site_url('forms/CreateTournament');?>"><i class="fa fa-circle-o"></i>Create Tournaments</a></li>
-            <li><a href="<?php echo site_url('forms/CreateTournament');?>"><i class="fa fa-circle-o"></i>View Tournaments</a></li>
+            <li><a href="<?php echo site_url('forms/getTournament');?>"><i class="fa fa-circle-o"></i>View Tournaments</a></li>
           </ul></li>
 
 
@@ -72,7 +72,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo site_url('forms/CreateJob');?>"><i class="fa fa-circle-o"></i>Create Job</a></li>
-            <li><a href="<?php echo site_url('forms/CreateJob');?>"><i class="fa fa-circle-o"></i>View Job</a></li>
+            <li><a href="<?php echo site_url('forms/getJob');?>"><i class="fa fa-circle-o"></i>View Job</a></li>
           </ul></li>
 
           <li class="treeview">

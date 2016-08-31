@@ -84,6 +84,8 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
+		// console.log(result);
+		//alert(result);
 		$( "#msgdiv" ).show();
 		$( "#msg" ).html(result);
 		setTimeout(function() {
