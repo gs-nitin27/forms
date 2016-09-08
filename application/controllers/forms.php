@@ -25,7 +25,11 @@ class Forms extends CI_Controller {
       	$this->session->set_userdata('item',$res);
          $sessdata = $this->session->userdata('item');
          redirect('forms/home');
-
+      }
+      else
+      { $res = array();
+      	$res['message'] ='Invalid login credentials';
+      	echo json_encode($res);
       }
     }
     public function home()
@@ -212,7 +216,8 @@ echo "Job has not been saved";
 
 }
 }
-	public function getStateByCity(){
+	public function getStateByCity()
+	{
 		$key = $_POST['key'];
 		$results = $this->register->getStateByKey($key);
 		echo  json_encode($results);
