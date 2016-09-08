@@ -40,18 +40,18 @@ class Forms extends CI_Controller {
     public function CreateEvent()
 	{
 		
-	    $data['middle'] = 'CreateEvent';
+	    $data['middle'] = 'event/CreateEvent';
 
 		$this->load->view('templates/template',$data);
     }
 	public function CreateJob()
 	{
-     $data['middle'] = 'CreateJob';
+     $data['middle'] = 'job/CreateJob';
 	 $this->load->view('templates/template',$data);
 	}
 public function CreateTournament()
 	{
-	$data['middle'] = 'CreateTournament';
+	$data['middle'] = 'tournament/CreateTournament';
     $this->load->view('templates/template',$data);	
 	}
 
@@ -126,6 +126,7 @@ $item  = new stdClass();
 $item->id                      = $data1->id;
 $item->organizer_name          = $data1->organizer_name;
 $item->tournament_level        = $data1->tournament_level;
+$item->tournament_category        = $data1->catagory;
 $item->tournament_ageGroup     = $data1->tournament_ageGroup;
 $item->tournament_gender       = $data1->tournament_gender;
 $item->userid                  = $data1->userid;
@@ -221,6 +222,50 @@ echo "Job has not been saved";
 		$key = $_POST['key'];
 		$results = $this->register->getStateByKey($key);
 		echo  json_encode($results);
+	}
+	
+	public function getJob(){
+		$data['middle'] = 'job/index';
+
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function viewJob($id){
+		$data['middle'] = 'job/view';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function getEvent(){
+		$data['middle'] = 'event/index';
+
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function viewEvent($id){
+		$data['middle'] = 'event/view';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function getTournament(){
+		$data['middle'] = 'tournament/index';
+
+		$this->load->view('templates/template',$data);
+	}
+	public function viewTournament($id){
+		$data['middle'] = 'tournament/view';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+
+		$this->load->view('templates/template',$data);
 	}
 }
 /* End of file welcome.php */
