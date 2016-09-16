@@ -263,10 +263,71 @@ echo "Job has not been saved";
 		$data['middle'] = 'tournament/view';
 		$data['required'] = array(
 									'id'=>$id	
+								 ); 
+
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function getResources(){
+		$data['middle'] = 'resources/index';
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function createResources(){
+		if(isset($_POST) && !empty(($_POST))){
+			unset($_POST['_wysihtml5_mode']);
+			$rid = $this->register->addResource($_POST);
+			$img = 'resource_'.$rid.".jpg";
+			if(!empty($_FILES)){
+				$target_dir = "uploads/resources/";
+				// $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+				$target_file = $target_dir . $img;
+				$uploadOk = 1;
+				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+				// Check if image file is a actual image or fake image
+				
+				
+				// Allow certain file formats
+				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+				&& $imageFileType != "gif" ) {
+					echo $imageFileType;
+					$data['msg'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+					$uploadOk = 0;
+				}
+				// Check if $uploadOk is set to 0 by an error
+				if ($uploadOk == 0) {
+					echo "Sorry, your file was not uploaded.";
+				// if everything is ok, try to upload file
+				} else {
+					if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+						//echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
+						$v= $this->register->updateResourceImage($img);
+						if($v){
+							$data['msg'] = "Resource Added.";
+						}
+						
+					} else {
+						$data['msg'] = "Sorry, there was an error uploading your file.";
+					}
+				}
+			}
+				
+			
+		}
+		
+		$data['middle'] = 'resources/createResource';
+		$this->load->view('templates/template',$data);
+	}
+	public function viewResources($id){
+		$data['middle'] = 'resources/view';
+		$data['required'] = array(
+									'id'=>$id	
 								 );
 
 		$this->load->view('templates/template',$data);
 	}
+		
+	
 }
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */

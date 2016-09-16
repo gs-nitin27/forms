@@ -43,8 +43,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('forms/CreateEvent'); ?>"><i class="fa fa-circle-o"></i>Create Events</a></li>
-            <li><a href="<?php echo site_url('forms/getEvent'); ?>"><i class="fa fa-circle-o"></i>View Events</a></li>
+            <li><a href="<?php echo site_url('forms/createevent'); ?>"><i class="fa fa-circle-o"></i>Create Events</a></li>
+            <li><a href="<?php echo site_url('forms/getevent'); ?>"><i class="fa fa-circle-o"></i>View Events</a></li>
             </li>
           </ul>
         </li>
@@ -57,8 +57,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('forms/CreateTournament');?>"><i class="fa fa-circle-o"></i>Create Tournaments</a></li>
-            <li><a href="<?php echo site_url('forms/getTournament');?>"><i class="fa fa-circle-o"></i>View Tournaments</a></li>
+            <li><a href="<?php echo site_url('forms/createtournament');?>"><i class="fa fa-circle-o"></i>Create Tournaments</a></li>
+            <li><a href="<?php echo site_url('forms/gettournament');?>"><i class="fa fa-circle-o"></i>View Tournaments</a></li>
           </ul></li>
 
 
@@ -71,8 +71,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('forms/CreateJob');?>"><i class="fa fa-circle-o"></i>Create Job</a></li>
-            <li><a href="<?php echo site_url('forms/getJob');?>"><i class="fa fa-circle-o"></i>View Job</a></li>
+            <li><a href="<?php echo site_url('forms/createjob');?>"><i class="fa fa-circle-o"></i>Create Job</a></li>
+            <li><a href="<?php echo site_url('forms/getjob');?>"><i class="fa fa-circle-o"></i>View Job</a></li>
           </ul></li>
 
           <li class="treeview">
@@ -84,8 +84,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('forms/index');?>"><i class="fa fa-circle-o"></i>Create Resources</a></li>
-            <li><a href="<?php echo site_url('forms/index');?>"><i class="fa fa-circle-o"></i>View Resources</a></li>
+            <li><a href="<?php echo site_url('forms/createresources');?>"><i class="fa fa-circle-o"></i>Create Resources</a></li>
+            <li><a href="<?php echo site_url('forms/getresources');?>"><i class="fa fa-circle-o"></i>View Resources</a></li>
           </ul></li></ul>
 
     </section>

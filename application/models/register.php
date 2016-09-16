@@ -162,7 +162,32 @@ else
 		
 		return $q;
 	}
+	public function getResourceInfo($id = false){
+		$this->db->select('*');
+		$this->db->from('gs_resources GR');
+		if($id > 0){
+			$this->db->where('GR.id', $id);
+		}else{
+		 $this->db->order_by("GR.id", "desc"); 
+		}
+		$query = $this->db->get();
+		$q =  $query->result_array();
+		//_pr($q);
+		return $q;
+	}
 	
+	public function addResource($data, $id=false){
+		$this->db->insert('gs_resources', $data);
+		 return $this->db->insert_id();
+	}
+	
+	public function updateResourceImage($img){
+		list($label, $id) = explode("_",$img);
+		$data['image'] = $img;
+		$this->db->where('id', $id);
+		$this->db->update('gs_resources', $data);
+		return true;
+	}
 }
 
  ?>
