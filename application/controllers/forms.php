@@ -230,7 +230,7 @@ echo "Job has not been saved";
 		$data['required'] = array(
 									'id'=>$id	
 								 );
-
+$data['noheader'] = true;
 		$this->load->view('templates/template',$data);
 	}
 	
@@ -314,6 +314,7 @@ echo "Job has not been saved";
 		$this->load->view('templates/template',$data);
 	}
 	public function viewResources($id){
+		
 		$data['middle'] = 'resources/view';
 		$data['required'] = array(
 									'id'=>$id	
@@ -322,7 +323,13 @@ echo "Job has not been saved";
 		$this->load->view('templates/template',$data);
 	}
 		
-	
+	public function mobileview(){
+		$data['noheader'] = false;
+		$data['middle'] = 'sagar';
+		$this->load->view('templates/template',$data);
+		//$this->load->view('sagar');
+		
+	}
 }
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
