@@ -45,10 +45,14 @@
 if(empty($required)){
   $required = array();
 }
+// echo $noheader;
+if(@$noheader != false){
 $this->load->view('templates/header');
+}
 $this->load->view($middle, $required);
+if(@$noheader != false){
 $this->load->view('templates/sidebar');
-
+}
 $this->load->view('templates/footer');
 
 ?>
