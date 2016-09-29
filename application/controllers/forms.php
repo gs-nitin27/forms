@@ -2,19 +2,32 @@
 
 class Forms extends CI_Controller {
 
-	
+	public function __construct() {
+        parent::__construct();
+		$this->load->model('register');
+		$this->load->library('session');
+    }
  
-
-	public function index()
+ 
+ public function index()
 	{   
     $this->load->view('login');
     }
-    // public function login()
-    // {
+ public function login()
+    {
 
-    
+      $username = $_POST['username'];
+      $password = md5($_POST['password']);
+      $this->load->model('register');
+      $res = $this->register->login($username, $password); 
+      if($res != 0)
+      {
+      	$this->session->set_userdata('item',$res);
+         $sessdata = $this->session->userdata('item');
+         redirect('forms/home');
 
-    // }
+      }
+    }
     public function home()
     {
     $data['middle'] = 'dashboard';
@@ -23,18 +36,18 @@ class Forms extends CI_Controller {
     public function CreateEvent()
 	{
 		
-	    $data['middle'] = 'CreateEvent';
+	    $data['middle'] = 'event/CreateEvent';
 
 		$this->load->view('templates/template',$data);
     }
 	public function CreateJob()
 	{
-     $data['middle'] = 'CreateJob';
+     $data['middle'] = 'job/CreateJob';
 	 $this->load->view('templates/template',$data);
 	}
 public function CreateTournament()
 	{
-	$data['middle'] = 'CreateTournament';
+	$data['middle'] = 'tournament/CreateTournament';
     $this->load->view('templates/template',$data);	
 	}
 
@@ -44,7 +57,8 @@ public function event()
 
 $data1 = json_decode($_REQUEST[ 'data' ]);
 $item = new stdClass();
-
+// echo ($data1->start_date); exit;
+//strtotime()
 $item->id                 = $data1->id;
 $item->userid             = $data1->userid;
 $item->type               = $data1->type;
@@ -67,11 +81,11 @@ $item->organizer_city     = $data1->organizer_city;
 $item->organizer_pin      = $data1->organizer_pin;
 $item->organizer_state    = $data1->organizer_state;
 $item->event_links        = $data1->event_links;
-$item->start_date         = strtotime($data1->start_date);//strtotime();
-$item->end_date           = strtotime($data1->end_date);//strtotime($data1['end_date']);
+$item->start_date         = @strtotime($data1->start_date);//strtotime();
+$item->end_date           = @strtotime($data1->end_date);//strtotime($data1['end_date']);
 $item->sport              = $data1->sport;
-$item->entry_start_date   = strtotime($data1->entry_start_date);//strtotime($data1['entry_start_date']);
-$item->entry_end_date     = strtotime($data1->entry_end_date);//strtotime($data1['entry_end_date']);
+$item->entry_start_date   = @strtotime($data1->entry_start_date);//strtotime($data1['entry_start_date']);
+$item->entry_end_date     = @strtotime($data1->entry_end_date);//strtotime($data1['entry_end_date']);
 $item->file_name          = $data1->file_name;
 $item->email_app_collection     = $data1->email_app_collection;
 
@@ -108,6 +122,7 @@ $item  = new stdClass();
 $item->id                      = $data1->id;
 $item->organizer_name          = $data1->organizer_name;
 $item->tournament_level        = $data1->tournament_level;
+$item->tournament_category        = $data1->catagory;
 $item->tournament_ageGroup     = $data1->tournament_ageGroup;
 $item->tournament_gender       = $data1->tournament_gender;
 $item->userid                  = $data1->userid;
@@ -131,10 +146,10 @@ $item->organizer_city          = $data1->organizer_city;
 $item->organizer_state         = $data1->organizer_state;
 $item->organizer_pin           = $data1->organizer_pin;
 $item->tournament_links        = $data1->tournament_links;
-$item->start_date              = strtotime($data1->start_date);//$data1['start_date'];
-$item->end_date                = strtotime($data1->end_date);//$data1['end_date'];
-$item->entry_start_date        = strtotime($data1->entry_start_date);//$data1['entry_start_date'];
-$item->entry_end_date          = strtotime($data1->entry_end_date);//$data1['entry_end_date'];
+$item->start_date              = @strtotime($data1->start_date);//$data1['start_date'];
+$item->end_date                = @strtotime($data1->end_date);//$data1['end_date'];
+$item->entry_start_date        = @strtotime($data1->entry_start_date);//$data1['entry_start_date'];
+$item->entry_end_date          = @strtotime($data1->entry_end_date);//$data1['entry_end_date'];
 $item->file_name               = $data1->file_name;
 $item->sport                   = $data1->sport;
 
@@ -171,7 +186,7 @@ $item->keyreq                = $data1->key_requirement;
 $item->org_address1          = $data1->org_address1;
 $item->org_address2          = $data1->org_address2;
 $item->org_city              = $data1->org_city;
-$item->org_state             = $data1->org_state;
+$item->org_state             = @$data1->org_state;
 $item->org_pin               = $data1->org_pin;
 $item->org_name              = $data1->organisation_name;
 $item->about                 = $data1->about;
@@ -198,7 +213,123 @@ echo "Job has not been saved";
 
 }
 }
+	public function getStateByCity(){
+		$key = $_POST['key'];
+		$results = $this->register->getStateByKey($key);
+		echo  json_encode($results);
+	}
+	
+	public function getJob(){
+		$data['middle'] = 'job/index';
 
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function viewJob($id){
+		$data['middle'] = 'job/view';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+$data['noheader'] = true;
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function getEvent(){
+		$data['middle'] = 'event/index';
+
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function viewEvent($id){
+		$data['middle'] = 'event/view';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function getTournament(){
+		$data['middle'] = 'tournament/index';
+
+		$this->load->view('templates/template',$data);
+	}
+	public function viewTournament($id){
+		$data['middle'] = 'tournament/view';
+		$data['required'] = array(
+									'id'=>$id	
+								 ); 
+
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function getResources(){
+		$data['middle'] = 'resources/index';
+		$this->load->view('templates/template',$data);
+	}
+	
+	public function createResources(){
+		if(isset($_POST) && !empty(($_POST))){
+			unset($_POST['_wysihtml5_mode']);
+			$rid = $this->register->addResource($_POST);
+			$img = 'resource_'.$rid.".jpg";
+			if(!empty($_FILES)){
+				$target_dir = "uploads/resources/";
+				// $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+				$target_file = $target_dir . $img;
+				$uploadOk = 1;
+				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+				// Check if image file is a actual image or fake image
+				
+				
+				// Allow certain file formats
+				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+				&& $imageFileType != "gif" ) {
+					echo $imageFileType;
+					$data['msg'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+					$uploadOk = 0;
+				}
+				// Check if $uploadOk is set to 0 by an error
+				if ($uploadOk == 0) {
+					echo "Sorry, your file was not uploaded.";
+				// if everything is ok, try to upload file
+				} else {
+					if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+						//echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
+						$v= $this->register->updateResourceImage($img);
+						if($v){
+							$data['msg'] = "Resource Added.";
+						}
+						
+					} else {
+						$data['msg'] = "Sorry, there was an error uploading your file.";
+					}
+				}
+			}
+				
+			
+		}
+		
+		$data['middle'] = 'resources/createResource';
+		$this->load->view('templates/template',$data);
+	}
+	public function viewResources($id){
+		
+		$data['middle'] = 'resources/view';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+
+		$this->load->view('templates/template',$data);
+	}
+		
+	public function mobileview(){
+		$data['noheader'] = false;
+		$data['middle'] = 'sagar';
+		$this->load->view('templates/template',$data);
+		//$this->load->view('sagar');
+		
+	}
 }
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
