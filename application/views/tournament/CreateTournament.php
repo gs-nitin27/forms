@@ -75,7 +75,7 @@ var data1 = {
 };
 
 console.log(JSON.stringify(data1));
-
+var url = '<?php echo site_url();?>';
 var data = JSON.stringify(data1);
   $.ajax({
 
@@ -84,13 +84,12 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-		// console.log(result);
-		//alert(result);
 		$( "#msgdiv" ).show();
 		$( "#msg" ).html(result);
 		setTimeout(function() {
 			$('#msgdiv').fadeOut('fast');
 		}, 2000);
+		window.location.href = url+"/forms/gettournament";
 		clear();
     }
 
@@ -161,7 +160,7 @@ $("#tcatagory").val('');
     </section>
          <section class="content"> 
       <div class="row">
-		<div class="col-md-7">
+		<div class="col-md-11">
 		<div class=" alert alert-success" id="msgdiv" style="display:none">
 			<strong>Info! <span id = "msg"></span></strong> 
 		</div>

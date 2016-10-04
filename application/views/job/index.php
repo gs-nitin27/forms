@@ -2,7 +2,7 @@
    <script>
 //document.domain = "getsporty.in";
 $(document).ready(function(){
-	$("#example1").DataTable();
+	//$("#example1").DataTable();
   $('#jcity').focusout(function(){
 			var city_key = $('#jcity').val();
 			$.ajax({

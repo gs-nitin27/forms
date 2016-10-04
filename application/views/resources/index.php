@@ -26,7 +26,7 @@
                 <tr>
 					<td><?php echo $i++; ?></td>
 					<td><?php echo $resource['title']; ?></td>
-					<td><?php echo word_limiter($resource['description'], 5); ?></td>
+					<td><?php echo $resource['description']; ?></td>
 					<td><?php echo $resource['url']; ?></td>
 					<td><a href = "<?php echo site_url('forms/viewresources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="fa fa-search"></i></a></td>
                 </tr>

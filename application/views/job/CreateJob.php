@@ -2,6 +2,7 @@
    <script>
 //document.domain = "getsporty.in";
 $(document).ready(function(){
+	$('input[value=All]').prop("checked",true);
   $('#jcity').focusout(function(){
 			var city_key = $('#jcity').val();
 			$.ajax({
@@ -29,7 +30,7 @@ $(document).ready(function(){
 			  });
 		});
 clear();
-   var gender = $('input[name=gender]:checked').val();
+
 $('#save').click(function(){
 
 var data1 = {
@@ -66,13 +67,10 @@ var data1 = {
     "sports"                  : $("#jsports").val(),
     "gender"                  : $('input[name=gender]:checked').val()
 
- 
-
-
 };
-
+var url = '<?php echo site_url();?>';
 console.log(JSON.stringify(data1));
-
+//console.log($("input[name='gender']:checked").val()+'nitin');return; 
 var data = JSON.stringify(data1);
   $.ajax({
 
@@ -86,6 +84,7 @@ var data = JSON.stringify(data1);
 		setTimeout(function() {
 			$('#msgdiv').fadeOut('fast');
 		}, 2000);
+		window.location.href = url+"/forms/getJob";
 clear();
     }
 
@@ -125,7 +124,7 @@ function clear()
     $("#startD").val('');
     $("#endD").val('');
     $("#jsports").val('');
-    $("input[name='gender']:checked").val(''); 
+    $("input[name='gender']:checked").val('All'); 
 
 }
 
@@ -321,8 +320,8 @@ function clear()
                   </div>
                   <div class="radio">
                     <label>
-                      <input type="radio" name="gender" value="Transgender">
-                     Transgender 
+                      <input type="radio" name="gender" value="All">
+                     All 
                     </label>
                   </div>
                 </div>
