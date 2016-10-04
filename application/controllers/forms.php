@@ -277,7 +277,7 @@ $data['noheader'] = true;
 	public function createResources(){
 		if(isset($_POST) && !empty($_POST)){
 			//ini_set('display_errors',1);
-			print_r($_POST);
+			//print_r($_POST);
 			unset($_POST['_wysihtml5_mode']);
 			$rid = $this->register->addResource($_POST);
 			$img = 'resource_'.$rid.".jpg";
@@ -338,6 +338,58 @@ $data['noheader'] = true;
 		//$this->load->view('sagar');
 		
 	}
+	// harshvardhan
+
+	public function createContent(){
+			
+		$data['middle'] = 'content/create_Content';
+		$this->load->view('templates/template',$data);
+	}
+	public function getContent(){
+		$data['middle'] = 'content/list';
+		$this->load->view('templates/template',$data);
+	}
+
+      public function viewContent($id){
+		
+		$data['middle'] = 'content/view';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+
+		$this->load->view('templates/template',$data);
+	}
+
+public function saveContent()
+{
+$data12 = json_decode($_REQUEST['data']);
+
+$item  = new stdClass(); 
+
+$item->id                    = $data12->id;
+$item->title                 = $data12->title;
+$item->url                   = $data12->url;
+$item->content               = $data12->content;
+$item->date_created          = @strtotime($data1->date_created);
+$item->date_updated          = @strtotime($data1->date_updated);
+
+//print_r($item);die();
+$this->load->model('register');
+$res = $this->register->create_content($item);
+if($res == 1)
+{
+
+echo "Content Created";
+
+}
+else
+{
+
+echo "Content has not been saved";
+
+}
+}
+
 }
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */

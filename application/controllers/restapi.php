@@ -55,7 +55,6 @@ class Restapi extends CI_Controller
 			}
 	}
 
-
 	public function login()
 	{
      $status   = array('sucess' => 1, 'failure'=>0);

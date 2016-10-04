@@ -188,6 +188,40 @@ else
 		$this->db->update('gs_resources', $data);
 		return true;
 	}
+   //harshvardhan
+	public function getContentInfo($id = false){
+		$this->db->select('*');
+		$this->db->from('cms_content GR');
+		if($id > 0){
+			$this->db->where('GR.id', $id);
+		}else{
+		 $this->db->order_by("GR.id", "desc"); 
+		}
+		$query = $this->db->get();
+		$q =  $query->result_array();
+		//_pr($q);
+		return $q;
+	}
+
+
+	public function create_content($item)
+{
+
+  $insert = "INSERT INTO `cms_content`(`id`, `title`, `url`, `content`, `date_created`, `date_updated`) VALUES ('$item->id','$item->title','$item->url','$item->content',FROM_UNIXTIME('$item->date_created'),FROM_UNIXTIME('$item->date_updated')) ON DUPLICATE   KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`content` = '$item->content'  , `date_created` =FROM_UNIXTIME('$item->date_created'), `date_updated` = FROM_UNIXTIME('$item->date_updated')";
+$query = $this->db->query($insert);
+if($query)
+{
+
+	return 1;
+}
+else
+{
+
+   return 0;
+
+}
+
+}
 }
 
  ?>

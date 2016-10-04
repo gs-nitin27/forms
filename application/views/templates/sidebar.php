@@ -86,7 +86,22 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo site_url('forms/createresources');?>"><i class="fa fa-circle-o"></i>Create Resources</a></li>
             <li><a href="<?php echo site_url('forms/getresources');?>"><i class="fa fa-circle-o"></i>View Resources</a></li>
+          </ul></li>
+		  
+		  <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Content</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">4</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo site_url('forms/createContent');?>"><i class="fa fa-circle-o"></i>Create Content</a></li>
+            <li><a href="<?php echo site_url('forms/getContent');?>"><i class="fa fa-circle-o"></i>List</a></li>
           </ul></li></ul>
+		  
+		  
 
     </section>
     <!-- /.sidebar -->
