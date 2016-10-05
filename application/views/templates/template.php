@@ -46,13 +46,14 @@ if(empty($required)){
   $required = array();
 }
 // echo $noheader;
-if(@$noheader != false){
+if(!isset($noheader)){
 $this->load->view('templates/header');
 }
 $this->load->view($middle, $required);
-if(@$noheader != false){
+	//echo "adwadads"; exit;
+//if(!isset($noheader)){
 $this->load->view('templates/sidebar');
-}
+//}
 $this->load->view('templates/footer');
 
 ?>

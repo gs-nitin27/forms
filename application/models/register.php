@@ -172,7 +172,7 @@ else
 		}
 		$query = $this->db->get();
 		$q =  $query->result_array();
-		//_pr($q);
+		
 		return $q;
 	}
 	
