@@ -26,7 +26,12 @@ class Forms extends CI_Controller {
       	$this->session->set_userdata('item',$res);
          $sessdata = $this->session->userdata('item');
          redirect('forms/home');
-
+      }
+      else
+      { $res = array();
+      	echo $res['message'] ='Invalid login credentials';
+      	//echo json_encode($res);
+      	$this->index();
       }
     }
     public function home()
@@ -214,7 +219,8 @@ echo "Job has not been saved";
 
 }
 }
-	public function getStateByCity(){
+	public function getStateByCity()
+	{
 		$key = $_POST['key'];
 		$results = $this->register->getStateByKey($key);
 		echo  json_encode($results);
@@ -271,7 +277,9 @@ $data['noheader'] = true;
 	}
 	
 	public function createResources(){
-		if(isset($_POST) && !empty(($_POST))){
+		if(isset($_POST) && !empty($_POST)){
+			//ini_set('display_errors',1);
+			print_r($_POST);
 			unset($_POST['_wysihtml5_mode']);
 			$rid = $this->register->addResource($_POST);
 			$img = 'resource_'.$rid.".jpg";
@@ -310,7 +318,7 @@ $data['noheader'] = true;
 			}
 				
 			
-		}
+		 }
 		
 		$data['middle'] = 'resources/createResource';
 		$this->load->view('templates/template',$data);

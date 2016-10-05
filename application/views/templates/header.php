@@ -1,3 +1,6 @@
+<head><script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script></head>
 <header class="main-header">
     <!-- Logo -->
     <a href="index2.html" class="logo">
