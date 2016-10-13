@@ -9,13 +9,12 @@ class Forms extends CI_Controller {
     }
  
  
- public function index()
-	{   
-    $this->load->view('login');
-    }
- public function login()
-    {
-
+	 public function index()
+		{   
+	    $this->load->view('login');
+	    }
+     public function login()
+      {
       $username = $_POST['username'];
       $password = md5($_POST['password']);
       $this->load->model('register');
@@ -29,7 +28,6 @@ class Forms extends CI_Controller {
       else
       { $res = array();
       	echo $res['message'] ='Invalid login credentials';
-      	//echo json_encode($res);
       	$this->index();
       }
     }
