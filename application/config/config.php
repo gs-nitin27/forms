@@ -22,8 +22,8 @@
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://stage.smartcooky.com/';
-$config['site_url'] = 'http://stage.smartcooky.com/index.php/';
+$config['base_url'] = 'http://localhost/forms';
+$config['site_url'] = 'http://localhost/forms/index.php/';
 
 /*
 |--------------------------------------------------------------------------
