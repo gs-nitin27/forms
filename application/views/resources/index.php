@@ -21,6 +21,7 @@
                 </tr>
 				<?php $i =1;
 				$resources = $this->register->getResourceInfo();
+					//echo "<pre>"; print_r($resources); exit;
 				if(!empty($resources)){
 						foreach($resources as $resource){ ?>
                 <tr>

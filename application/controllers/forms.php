@@ -6,6 +6,7 @@ class Forms extends CI_Controller {
         parent::__construct();
 		$this->load->model('register');
 		$this->load->library('session');
+		
     }
  
  
@@ -268,6 +269,7 @@ $data['noheader'] = true;
 	}
 	
 	public function getResources(){
+		
 		$data['middle'] = 'resources/index';
 		$this->load->view('templates/template',$data);
 	}
@@ -330,10 +332,18 @@ $data['noheader'] = true;
 	}
 		
 	public function mobileview(){
-		$data['noheader'] = false;
-		$data['middle'] = 'sagar';
-		$this->load->view('templates/template',$data);
-		//$this->load->view('sagar');
+		
+		 $job = $this->register->getJobInfo($_POST['infoid']); 
+	$data['required'] = array(
+									'job'=>$job	
+								 );
+		
+	//echo "sagar"; exit;
+		//$data['noheader'] = false;
+		//$data['middle'] = 'job/mobile_view';
+		
+		 $this->load->view('job/mobile_view', $data);
+		
 		
 	}
 }

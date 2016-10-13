@@ -12,6 +12,11 @@
   <div class="control-sidebar-bg"></div>
 </div>
 
+<<<<<<< HEAD
+<!-- jQuery UI 1.11.4 >
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script -->
+=======
+>>>>>>> 72400c88c95342dfb6ecdb8e54cfde466cf2372c
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button);
