@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        View Job<a href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a>
+        View Job<a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a>
         
       </h1>
      
@@ -18,6 +18,7 @@
 					
 					$job = $job[0];
 				}
+			
 			?>
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -149,39 +150,6 @@
 </div>
 </section>
 
-<style>
-#text .inner{
-    font-size: 15px;margin-left: 21px;
-}
-#container {
-  height: 74px;
-  width: 400px;
-  position: relative;
-}
-
-#image {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-#text {
-  z-index: 100;
-  position: absolute;
-  color: white;
-  
-  left: 150px;
-  top: 15px;
-}
-
-.detail {
-   z-index: 100;
-  color:  	#707070;
-  top: -404px;
-   left: 16px;
-   position: relative;
-}
-</style>
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -191,31 +159,11 @@
         <h4 class="modal-title" id="myModalLabel">Mobile View</h4>
       </div>
       <div class="modal-body">
-		<img src="/jobheader.png"><br>
-<div id="container">
-<img src="/jobtitle.png" id="image" style="position: absolute;">
-<p id="text">
-   <span style="font-weight: bold; margin-left: 24px;"> <?php echo ucfirst($job['title']);?><br></span>
-	<span class = "inner">
-	<?php echo $job['organisation_name'];?>,<br>
-	<label style="margin-left: 45px;"><?php echo $job['city_org'];?></label><br>
-	<label style="font-size: 20px;    position: relative;    left: 135px;    top: 33px;">Job Posted 72 hours</label>
-	
-	
-	</span>
-	
-  </p>
-</div>
-<div >
-<img src="/jobdetail.png" style="position: static; margin-top: 77px;">
-<p class="detail" style="font-size: 14px;  font-weight: bold;"><?php echo $job['description'];?></p>
-  	<label for="type" class="detail" style="top: -354px;left: 60px;font-size: 18px;"><?php echo ucfirst($job['title']);?></label>
-  	<label for="type" class="detail" style="top: -318px;left: -78px;font-size: 18px;"><?php echo $job['key_requirement'];?></label>
-  	<label for="type" class="detail" style="top: -281px;left: -131px;font-size: 18px;"><?php echo $job['work_experience'];?></label>
-  	<label for="type" class="detail" style="top: -248px;left: 18px;font-size: 18px;"><?php echo @$job['skill'];?></label>
-  	<label for="type" class="detail" style="top: -170px;    left: 13px;    float: left;    font-size: 18px;"><?php echo $job['about'];?></label>
-</div>
-<img src="/jobbutton.png" style="margin: -220px 0 -90px 0px">
+		
+
+
+
+
       </div>
       
     </div>
@@ -224,4 +172,20 @@
 
 
 
-
+<script>
+	$('#myModal').click(function(){
+		window.location.href='<?php echo site_url("forms/viewjob/$job[infoId]");?>';
+	});	
+	
+	$('#btnbbb').click(function(){
+//		alert("hi");
+		$.ajax({
+			method:"POST",
+			data:{infoid:'<?php echo $job["infoId"];?>'},
+			url: "<?php echo site_url('forms/mobileview'); ?>",
+			success: function(result){
+        		$(".modal-body").html(result);
+    		}
+			   });
+	});
+</script>

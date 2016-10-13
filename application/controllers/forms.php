@@ -8,8 +8,6 @@ class Forms extends CI_Controller {
 		$this->load->library('session');
 		
     }
- 
- 
  public function index()
 	{   
         $this->load->view('login');
@@ -19,6 +17,7 @@ class Forms extends CI_Controller {
  public function login()
     {
 
+	
       $username = $_POST['username'];
       $password = md5($_POST['password']);
       $this->load->model('register');
@@ -32,7 +31,6 @@ class Forms extends CI_Controller {
       else
       { $res = array();
       	echo $res['message'] ='Invalid login credentials';
-      	//echo json_encode($res);
       	$this->index();
       }
     }
@@ -270,6 +268,7 @@ echo "Job has not been saved";
 	}
 	
 	public function getResources(){
+		
 		$data['middle'] = 'resources/index';
 		$this->load->view('templates/template',$data);
 	}
@@ -330,10 +329,18 @@ echo "Job has not been saved";
 	}
 		
 	public function mobileview(){
-		$data['noheader'] = false;
-		$data['middle'] = 'sagar';
-		$this->load->view('templates/template',$data);
-		//$this->load->view('sagar');
+		
+		 $job = $this->register->getJobInfo($_POST['infoid']); 
+	$data['required'] = array(
+									'job'=>$job	
+								 );
+		
+	//echo "sagar"; exit;
+		//$data['noheader'] = false;
+		//$data['middle'] = 'job/mobile_view';
+		
+		 $this->load->view('job/mobile_view', $data);
+		
 		
 	}
 	// harshvardhan
