@@ -1,3 +1,13 @@
+
+<?php
+
+$file =base_url('/assets/menu.json');
+$data = file_get_contents($file);
+ $json_array = (array)(json_decode($data));
+
+ $var=$json_array['data'][0]->Event[0]->CreateEvent[0]->url;
+
+?>
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -12,7 +22,7 @@
         </div>
       </div>
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
+      <!-- <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
               <span class="input-group-btn">
@@ -20,7 +30,7 @@
                 </button>
               </span>
         </div>
-      </form>
+      </form> -->
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
@@ -34,6 +44,7 @@
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul> -->
         </li>
+        <?php foreach ($json_array as $value){ ?> 
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
@@ -41,7 +52,7 @@
             <span class="pull-right-container">
               <span class="label label-primary pull-right">4</span>
             </span>
-          </a>
+          </a><?php }?>
           <ul class="treeview-menu">
             <li><a href="<?php echo site_url('forms/createevent'); ?>"><i class="fa fa-circle-o"></i>Create Events</a></li>
             <li><a href="<?php echo site_url('forms/getevent'); ?>"><i class="fa fa-circle-o"></i>View Events</a></li>
@@ -99,7 +110,21 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo site_url('forms/createContent');?>"><i class="fa fa-circle-o"></i>Create Content</a></li>
             <li><a href="<?php echo site_url('forms/getContent');?>"><i class="fa fa-circle-o"></i>List</a></li>
-          </ul></li></ul>
+          </ul></li>
+
+           <li class="treeview">
+          <a href="<?php echo site_url('forms/usermodule')?>">
+            <i class="fa fa-files-o"></i>
+            <span>User Role Management</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">4</span>
+            </span>
+          </a>
+
+            
+
+          </li>
+          </ul>
 		  
 		  
 

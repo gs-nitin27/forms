@@ -3,13 +3,8 @@
 
 class Api_model extends CI_Model
 {
-
-
-
-
 /**
-
-     * function to check the existing user while registration
+    * function to check the existing user while registration
  
      * @param in variable $where
      

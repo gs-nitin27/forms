@@ -15,7 +15,7 @@ $qry = $this->db->get('user');
 
 if($qry->num_rows() > 0)
 {
-$q =  $qry->row_array();
+$q = $qry->row_array();
 return $q;
 }
 else
@@ -202,12 +202,21 @@ else
 		//_pr($q);
 		return $q;
 	}
-
+     
+    public function editcontent($id)
+    {
+     $this->db->select('*');
+      $this->db->from('cms_content cm ');
+     $this->db->where('cm.id', $id);
+      $query = $this->db->get();
+	  $data =  $query->result_array();
+	  return $data;
+    }
 
 	public function create_content($item)
 {
 
-  $insert = "INSERT INTO `cms_content`(`id`, `title`, `url`, `content`, `date_created`, `date_updated`) VALUES ('$item->id','$item->title','$item->url','$item->content',FROM_UNIXTIME('$item->date_created'),FROM_UNIXTIME('$item->date_updated')) ON DUPLICATE   KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`content` = '$item->content'  , `date_created` =FROM_UNIXTIME('$item->date_created'), `date_updated` = FROM_UNIXTIME('$item->date_updated')";
+  $insert = "INSERT INTO `cms_content`(`id`, `title`, `url`, `content`, `date_created`, `date_updated`) VALUES ('$item->id','$item->title','$item->url','$item->content',CURDATE(),CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`content` = '$item->content', `date_updated` = CURDATE()";
 $query = $this->db->query($insert);
 if($query)
 {
@@ -222,6 +231,41 @@ else
 }
 
 }
+
+public function create_userModule($item)
+{ 
+    $insert = "INSERT INTO `gs_usermodule`(`id`, `event`, `tournament`, `job`, `resources`, `content`) VALUES ('$item->id','$item->event','$item->tournament','$item->job','$item->resources','$item->content') ON DUPLICATE KEY UPDATE `event` ='$item->event' , `tournament` = '$item->tournament',`job` = '$item->job',`resources` = '$item->resources',`content` = '$item->content'";
+$query = $this->db->query($insert);
+if($query)
+{
+
+	return 1;
+}
+else
+{
+
+   return 0;
+
+}
+
+
+   
+}
+
+public function profile($id)
+{
+       
+      $this->db->select('*');
+       $this->db->from('user u');
+      $this->db->where('u.userid', $id);
+      $query = $this->db->get();
+	  $data =  $query->result_array();
+	  return $data;
+    
+
+}
+
+
 }
 
  ?>

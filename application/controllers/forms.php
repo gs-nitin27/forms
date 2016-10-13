@@ -6,13 +6,16 @@ class Forms extends CI_Controller {
         parent::__construct();
 		$this->load->model('register');
 		$this->load->library('session');
+		
     }
  
  
  public function index()
 	{   
-    $this->load->view('login');
+        $this->load->view('login');
+
     }
+
  public function login()
     {
 
@@ -24,7 +27,7 @@ class Forms extends CI_Controller {
       {
       	$this->session->set_userdata('item',$res);
          $sessdata = $this->session->userdata('item');
-         redirect('forms/home');
+           redirect('forms/home');
       }
       else
       { $res = array();
@@ -33,6 +36,8 @@ class Forms extends CI_Controller {
       	$this->index();
       }
     }
+
+
     public function home()
     {
     $data['middle'] = 'dashboard';
@@ -127,7 +132,7 @@ $item  = new stdClass();
 $item->id                      = $data1->id;
 $item->organizer_name          = $data1->organizer_name;
 $item->tournament_level        = $data1->tournament_level;
-$item->tournament_category        = $data1->catagory;
+$item->tournament_category     = $data1->catagory;
 $item->tournament_ageGroup     = $data1->tournament_ageGroup;
 $item->tournament_gender       = $data1->tournament_gender;
 $item->userid                  = $data1->userid;
@@ -170,12 +175,11 @@ else
  echo "Tournament Not created";
 }
 
+
 public function saveJob()
 {
-
 $data1 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
-
 
 $item->id                    = $data1->id;
 $item->userid                = $data1->userid;
@@ -207,15 +211,11 @@ $this->load->model('register');
 $res = $this->register->create_job($item);
 if($res == 1)
 {
-
 echo "Job Created";
-
 }
 else
 {
-
 echo "Job has not been saved";
-
 }
 }
 	public function getStateByCity()
@@ -236,7 +236,7 @@ echo "Job has not been saved";
 		$data['required'] = array(
 									'id'=>$id	
 								 );
-$data['noheader'] = true;
+        $data['noheader'] = true;
 		$this->load->view('templates/template',$data);
 	}
 	
@@ -313,9 +313,7 @@ $data['noheader'] = true;
 						$data['msg'] = "Sorry, there was an error uploading your file.";
 					}
 				}
-			}
-				
-			
+			}		
 		 }
 		
 		$data['middle'] = 'resources/createResource';
@@ -356,8 +354,21 @@ $data['noheader'] = true;
 		$data['required'] = array(
 									'id'=>$id	
 								 );
+         // print_r($data);die();
+		$this->load->view('templates/template',$data);
+	}
+
+	 public function editContent($id){
+		
+		$data['middle'] = 'content/editcontent';
+		$data1=$this->register->editcontent($id);
+        //$this->load->view('content/editcontent',$data1);
+		$data['required'] = array(
+									'id'=>$id	
+								 );
 
 		$this->load->view('templates/template',$data);
+		//print_r($data1);
 	}
 
 public function saveContent()
@@ -390,6 +401,102 @@ echo "Content has not been saved";
 }
 }
 
+
+public function saveEditContent()
+{
+
+$data2 = json_decode($_REQUEST['data']);
+//print_r($data2);
+$item  = new stdClass(); 
+//echo $item->id;die;
+$item->id                    = $data2->id;
+$item->title                 = $data2->title;
+$item->url                   = $data2->url;
+$item->content               = $data2->content;
+$item->date_created          = @strtotime($data1->date_created);
+$item->date_updated          = @strtotime($data1->date_updated);
+
+//print_r($item);die();
+$this->load->model('register');
+$res = $this->register->create_content($item);
 }
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+
+public function usermodule()
+{
+	   $data['middle'] = 'userModule/usermodule';
+
+		$this->load->view('templates/template',$data);
+}
+
+public function edituser()
+{
+
+
+	      $data=$this->session->userdata('item');
+          $id=$data['userid'];
+		  $data['required'] = array(
+									'id'=>$id	
+								 );
+		 // print_r($data);
+		  //   die();
+         //echo "$id";
+        $data['middle'] = 'userModule/edituser';
+		//  print_r($data);
+		$this->load->view('templates/template',$data);
+
+}
+
+
+
+public function saveuserModule()
+{
+$data = json_decode($_REQUEST['data']);
+//print_r($data);
+$item  = new stdClass(); 
+
+$item->id                      = $data->id;
+$item->event                   = $data->event;
+$item->tournament              = $data->tournament;
+$item->job                     = $data->job;
+$item->resources               = $data->resources;
+$item->content                 = $data->content;
+
+
+
+$this->load->model('register');
+$res = $this->register->create_userModule($item);
+if($res == 1)
+{
+echo "Module Created";
+}
+else
+{
+echo "Module Creation Not Saved";
+}
+}
+
+ public function signout()
+ {
+   $newdata = array(
+                'name'  =>'',
+                'email' => '',
+                'logged_in' => FALSE,
+               );
+
+     $this->session->unset_userdata($newdata);
+     $this->session->sess_destroy();
+
+      redirect('forms');
+
+ }
+
+
+// public function profile()
+// {         
+	
+// 	      $data=$this->session->userdata('item');
+//           $id=$data['userid'];
+//           echo "$id";
+		
+// }
+ }

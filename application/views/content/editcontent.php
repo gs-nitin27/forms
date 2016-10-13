@@ -9,7 +9,7 @@ $('#save').click(function(){
 var data12 = {
 
 
-    "id"                      : "", 
+    "id"                      : $("#cid").val(),
     "title"                   : $("#ctitle").val(),
     "url"                     : $("#curl").val(), 
     "content"                 : $("#ccontent").val(), 
@@ -25,7 +25,7 @@ var data = JSON.stringify(data12);
 
     type: "POST",
 
-    url: '<?php echo site_url('forms/saveContent'); ?>',
+    url: '<?php echo site_url('forms/saveEditContent'); ?>',
     data: "data="+data,
     dataType: "text",
     success: function(result) {
@@ -34,7 +34,7 @@ var data = JSON.stringify(data12);
     setTimeout(function() {
      $('#msgdiv').fadeOut('fast');
    }, 2000);
-   window.location.href = url+"/forms/getContent";
+  window.location.href = url+"/forms/getContent";
     }
 
 
@@ -46,9 +46,9 @@ var data = JSON.stringify(data12);
 function clear()
 {
 
-    $("#ctitle").val('');
-    $("#curl").val('');
-    $("#ccontent").val(''); 
+   // $("#ctitle").val('');
+    //$("#curl").val('');
+    //$("#ccontent").val(''); 
     //$("#cdate").val('');
    // $("#udate").val(''); 
 }
@@ -76,56 +76,39 @@ function clear()
     <head>
         <script type='text/javascript' src="<?php echo base_url(); ?>assets/dist/js/ckeditor.js"></script>
     </head>
+      <?php  $contant = $this->register->editcontent($id); 
+           // print_r($contant); 
+            foreach ($contant as $value) 
+              
+            {?>
         <form>
+          <div class="form-group">
+                  <label for="exampleInputEmail1">Id</label>
+                  <input type="hidden" class="form-control" name="title"  id="cid" value="<?php echo $value['id']; ?>">
+                </div>
             <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" name="title" id="ctitle" placeholder="Enter Title">
+                  <input type="text" class="form-control" name="title" id="ctitle" value="<?php echo $value['title']; ?>">
                 </div>
             <div class="form-group">
                   <label for="exampleInputEmail1">Link</label>
-                  <input type="text" class="form-control" name="url" id="curl" placeholder="Enter Link">
+                  <input type="text" class="form-control" name="url" id="curl" value="<?php echo $value['url']; ?>">
                 </div>
-           <!--  <label>Description</label>
-            <textarea name="editor1" id="editor1" rows="10" cols="80" >
-                This is my textarea to be replaced with CKEditor.
-            </textarea> -->
+               
+           
             <div class="form-group">
                      <label for="exampleInputEmail1">Content</label>
-                    <textarea class="textarea" name="content" id="ccontent" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    <textarea class="textarea" name="content" id="ccontent"  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['content']; ?></textarea>
                    </div>
-          <!--  <div class="form-group">
-            <label for="link">Create Date</label>
-            <input type="text" class="form-control"  id="cdate" placeholder="Enter Create Date">
-          </div >
-          <div class="form-group">
-            <label for="link">Update Date</label>
-            <input type="text" class="form-control"  id="udate" placeholder="Enter Update Date">
-          </div > -->
-
-
-            <script>
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.replace( 'editor1' );
-            </script>
-
+                   <?php } ?>
+          
+           
             <div class="box-footer">
                 <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Create Content" name="Create">
               </div>
         </form>
-
-
-			
           </div>
 	  </div>
 </section>
 </div>
 <script type='text/javascript' src="<?php echo base_url(); ?>assets/dist/js/ckeditor.js"></script>
-<script type="text/javascript">
-  
-  $(function() {
-    $( "#cdate" ).datepicker();
-    $( "#udate" ).datepicker();  
-  });
-
-</script>

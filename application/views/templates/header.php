@@ -1,6 +1,13 @@
 <head><script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script></head>
+<?php
+
+if($this->session->userdata('item')==''){
+  redirect('forms');
+}
+
+ ?>
 <header class="main-header">
     <!-- Logo -->
     <a href="index2.html" class="logo">
@@ -15,7 +22,7 @@
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
-
+  
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
@@ -243,12 +250,13 @@
                 <!-- /.row -->
               </li>
               <!-- Menu Footer-->
+                 
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                 <a href="<?php echo site_url('forms/edituser')?>" class="btn btn-default btn-flat">Profile</a>                 <!--  <a href="<?php //echo site_url('forms/editContent/'.$contants['id']); ?>" class="btn btn-default btn-flat">Profile</a> -->
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo site_url('forms/signout');?>" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

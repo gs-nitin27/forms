@@ -30,7 +30,7 @@
 					
 					<td><?php echo $contants['url']; ?></td>
 					<td><?php echo $contants['content']; ?></td>
-					<td><a href = "<?php echo site_url('forms/viewcontent/'.$contants['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="fa fa-search"></i></a></td>
+					<td><a href = "<?php echo site_url('forms/editContent/'.$contants['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="fa fa-search"></i></a></td>
                 </tr>
 				<?php } } ?>
               </tbody></table>

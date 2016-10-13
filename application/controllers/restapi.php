@@ -12,19 +12,18 @@ class Restapi extends CI_Controller
          $this->load->model('api_model');
       
 	}
-
 	public function register()
 	{
 	 
 		 $name       =  urldecode($_POST ['name']);
 		 $email      =  urldecode($_POST ['email']);
-		 $password1  =md5(urldecode($_POST ['password']));
-		 $phone      =urldecode($_POST ['phone']);
-		 $gender     =urldecode($_POST ['gender']);
-		 $prof       =urldecode($_POST ['prof']);
-		 $sport      =urldecode($_POST ['sport']);
-		 $location   =urldecode($_POST ['location']);
-		 $token      =urldecode($_POST ['token']);
+		 $password1  =  md5(urldecode($_POST ['password']));
+		 $phone      =  urldecode($_POST ['phone']);
+		 $gender     =  urldecode($_POST ['gender']);
+		 $prof       =  urldecode($_POST ['prof']);
+		 $sport      =  urldecode($_POST ['sport']);
+		 $location   =  urldecode($_POST ['location']);
+		 $token      =  urldecode($_POST ['token']);
 		 $where = "WHERE `email` = '".$email."'";
 		 $res = $this->api_model->userVarify($where);
 		 $data   = array('name'=>$name,'email'=>$email,'password'=> $password1,'phone'=>$phone,'gender'=>$gender,'prof'=>$prof,'sport'=>$sport,'location'=>$location,'token'=>$token);
