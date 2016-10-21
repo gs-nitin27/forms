@@ -24,17 +24,30 @@
             <!-- form start -->
             <form role="form" enctype='multipart/form-data' id="form_resource"  action="<?php echo site_url('forms/createresources'); ?>" 	method="post">
               <div class="box-body">
+
+
+
+
+
+
+ <div class="form-group">
+                  <label for="exampleInputEmail1">Title</label>
+                  <input type="text" class="form-control" name="title" id="exampleInputEmail1" placeholder="Enter title">
+                </div>
+
        <div class="form-group">
          <label for="exampleInputEmail1">Summary</label>
                    <textarea class="textarea" name="summary" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
 
-                   <div class="form-group">
-                    <label for="mysearch">Location</label>
-                     <input type="text" class="form-control" name="location" id="mysearch" placeholder="Enter Location" onkeyup="doSearch();">
                    
+                    <label for="mysearch">Location</label>
+                    <div class="ui multiple dropdown">
+                     
+
+                     <input type="text" class="form-control" name="location" id="mysearch" placeholder="Enter Location" onkeyup="doSearch();">
+                   </div>
              
-                    </div>
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Add Link Here</label>
@@ -45,13 +58,22 @@
                   <input type="text" class="form-control" name="url" id="exampleInputEmail1" placeholder="Enter Link">
                 </div>
                 
+            <!-- <div class="form-group">
+                  <label for="artical">Topic Of The Artical</label>
+                  <input type="text" class="form-control" name="artical" id="artical" placeholder="Enter ">
+                </div> -->
+
+
                 <div class="form-group">
             
                      <label for="eventtype">Topic Of The Artical</label>
                      <select id="artical" class="form-control" >
                      <option value="0">- Select -</option> 
-                     <option value ="1">1 </option>
-                     <option value ="2">2</option>
+                     <option value ="Jobs">Jobs </option>
+                     <option value ="Tournaments">Tournaments</option>
+                      <option value="Event">Event</option> 
+                     <option value ="news_aticle">News Aticle </option>
+                     <option value ="t&k">Training & Knowledge</option>
                      </select>
                   </div >
 
@@ -99,11 +121,7 @@
                 <input id="sub" type="submit" class="btn btn-primary" value="Submit"/>
               </div>
 
-              <div class="frmSearch">
-             <input type="text" id="search-box" placeholder="Country Name" />
-              <div id="suggesstion-box"></div>
-               </div>
-
+              
             </form>
           </div>
 	  </div>
@@ -117,7 +135,7 @@
 
    <script>
    $("#mysearch").autocomplete({
-  minLength: 1,
+  minLength: 3,
   source: function(req, add){
     $.ajax({
       url: '<?php echo site_url('forms/getCityName'); ?>', 
@@ -138,11 +156,10 @@
 });
   </script>
 
-
-<!-- <script>
-
-
+<!-- 
+<script >
 $('#mysearch').autocomplete({
+   minLength: 1,
   source: function( request, response ) {
       $.ajax({
         url : '<?php //echo site_url('forms/getCityName'); ?>',
@@ -154,25 +171,25 @@ $('#mysearch').autocomplete({
       },
        success: function( data ) {
 
-         if(data.response =='true'){
-           add(data.message);
-        }
-        //  response( $.map( data, function( item ) {
-        //   var code = item.split("|");
-        //   return {
-        //     label: code[0],
-        //     value: code[0],
-        //     data : item
-        //   }
-        // }));
-      }
+        //  if(data.response =='true'){
+        //    add(data.message);
+        // }
+         response( $.map( data, function( item ) {
+            var code = item.split("|");
+             return {
+              label: code[0],
+             value: code[0],
+            data : item
+         }
+    }));
+     }
       });
     },
     autoFocus: true,          
     minLength: 0,
     select: function( event, ui ) {
     var names = ui.item.data.split("|");            
-    $('#country_no_1').val(names[1]);
+    $('#city').val(names[1]);
     $('#phone_code_1').val(names[2]);
     $('#country_code_1').val(names[3]);
   }           
@@ -182,39 +199,3 @@ $('#mysearch').autocomplete({
 
  -->
 
-
-
-<!-- 
-  <script>
-$(document).ready(function(){
-  $("#search-box").keyup(function(){
-    $.ajax({
-    type: "POST",
-    url: "readCountry.php",
-    data:'keyword='+$(this).val(),
-    beforeSend: function(){
-      $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
-    },
-    success: function(data){
-      $("#suggesstion-box").show();
-      $("#suggesstion-box").html(data);
-      $("#search-box").css("background","#FFF");
-    }
-    });
-  });
-});
-
-function selectCountry(val) {
-$("#search-box").val(val);
-$("#suggesstion-box").hide();
-}
-</script>
-
-<style>
-body{width:610px;}
-.frmSearch {border: 1px solid #F0F0F0;background-color:#C8EEFD;margin: 2px 0px;padding:40px;}
-#country-list{float:left;list-style:none;margin:0;padding:0;width:190px;}
-#country-list li{padding: 10px; background:#FAFAFA;border-bottom:#F0F0F0 1px solid;}
-#country-list li:hover{background:#F0F0F0;}
-#search-box{padding: 10px;border: #F0F0F0 1px solid;}
-</style> -->

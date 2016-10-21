@@ -16,7 +16,12 @@
                   <th style="width: 10px">#</th>
                   <th>Title</th>
                   <th>Description</th>
+                  <th>Summary</th>
                   <th>Link</th>
+                  <th>Keyword</th>
+                  <th>Sport</th>
+                  <th>Location</th>
+                  <th>Topic</th>
                   <th style="width: 40px">View</th>
                   <th style="width: 40px">Edit</th>
                 </tr>
@@ -28,7 +33,12 @@
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $resource['title']; ?></td>
                     <td><?php echo word_limiter($resource['summary'], 5); ?></td>
+                    <td><?php echo word_limiter($resource['description'], 5); ?></td>
                     <td><?php echo $resource['url']; ?></td>
+                    <td><?php echo $resource['keyword']; ?></td>
+                    <td><?php echo $resource['sport']; ?></td>
+                    <td><?php echo $resource['location']; ?></td>
+                     <td><?php echo $resource['topic_of_artical']; ?></td>
                     <td><a href = "<?php echo site_url('forms/viewresources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                     <td><a href = "<?php echo site_url('forms/editResources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-edit"></i></a></td>
                 </tr>

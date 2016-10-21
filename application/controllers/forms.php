@@ -279,10 +279,11 @@ echo "Job has not been saved";
 
 	public function createResources(){
 		if(isset($_POST) && !empty($_POST)){
-			//ini_set('display_errors',1);
-			//print_r($_POST);
+		//	ini_set('display_errors',1);
+		   //print_r($_POST);die();
 			unset($_POST['_wysihtml5_mode']);
 			$rid = $this->register->addResource($_POST);
+			//print_r($rid);die();
 			$img = 'resource_'.$rid.".jpg";
 			if(!empty($_FILES)){
 				$target_dir = "uploads/resources/";
@@ -352,7 +353,8 @@ echo "Job has not been saved";
 public function saveEditResources()
 {
 $data2 = json_decode($_REQUEST['data']);
-
+//print_r($data2);
+//die();
 $item  = new stdClass(); 
 //echo $item->id;die;
 $item->id                    = $data2->id;
@@ -360,13 +362,21 @@ $item->user_id               = $data2->user_id;
 $item->title                 = $data2->title;
 $item->url                   = $data2->url;
 $item->summary               = $data2->summary;
-$item->description            =$data2->description;
+$item->description           = $data2->description;
+$item->keyword               = $data2->keyword;
+$item->topic_of_artical      = $data2->topic_of_artical;
+$item->sport                 = $data2->sport;
+$item->location              = $data2->location;
+$item->image                 = @$data2->image;
+$item->date_created          = @$data2->date_created;
 
 
-//print_r($item);die();
+
+
 $this->load->model('register');
 $res = $this->register->saveResources($item);
 }
+
 
 public function mobileviewResources(){
 		// echo"hiiiiiiiiiii";
