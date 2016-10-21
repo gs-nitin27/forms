@@ -78,7 +78,7 @@ $(document).ready(function(){
 					<td><?php echo $job['city']; ?></td>
 					<td><?php echo $job['organisation_name']; ?></td>
 					<!--td><span class="badge bg-red">55%</span></td-->
-					<td><a href = "<?php echo site_url('forms/viewJob/'.$job['infoId']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="fa fa-search"></i></a></td>
+					<td><a href = "<?php echo site_url('forms/viewJob/'.$job['infoId']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                 </tr>
 				<?php } } ?>
               </tbody></table>

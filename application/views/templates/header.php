@@ -1,6 +1,6 @@
 <head><script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script></head>
+<script src="<?php echo base_url('assets/jquery-ui.min.js'); ?>"></script></head>
 <?php
 
 if($this->session->userdata('item')==''){
@@ -10,7 +10,7 @@ if($this->session->userdata('item')==''){
  ?>
 <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="<?php echo site_url('forms/home');?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -39,7 +39,7 @@ if($this->session->userdata('item')==''){
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<?php echo base_url('assets/dist/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image">
+                        <img src="<?php echo base_url('/assets/dist/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -52,7 +52,7 @@ if($this->session->userdata('item')==''){
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<?php echo base_url('assets/dist/img/user3-128x128.jpg'); ?>" class="img-circle" alt="User Image">
+                        <img src="<?php echo base_url('/assets/dist/img/user3-128x128.jpg'); ?>" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -64,7 +64,7 @@ if($this->session->userdata('item')==''){
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo base_url('/assets/dist/img/user4-128x128.jpg');?>" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Developers
@@ -76,7 +76,7 @@ if($this->session->userdata('item')==''){
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo base_url('/assets/dist/img/user3-128x128.jpg');?>" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -88,7 +88,7 @@ if($this->session->userdata('item')==''){
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="<?php echo base_url('/assets/dist/img/user4-128x128.jpg');?>" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -221,13 +221,13 @@ if($this->session->userdata('item')==''){
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo base_url('/assets/dist/img/user2-160x160.jpg');?>" class="user-image" alt="User Image">
               <span class="hidden-xs">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url('/assets/dist/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image">
 
                 <p>
                   Alexander Pierce - Web Developer

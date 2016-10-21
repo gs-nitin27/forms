@@ -1,0 +1,112 @@
+{
+  "data": [
+    {
+      "Event": [
+        {
+          "CreateEvent": [
+            {
+              "url": "/forms/createevent",
+              "name": "create event"
+            }
+          ],
+          "View Event": [
+            {
+              "url": "/forms/getevent",
+              "name": "View event"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Tournament": [
+        {
+          "Create Tournament": [
+            {
+              "url": "/forms/createtournament",
+              "name": "Create Tournament"
+            }
+          ],
+          "View Tournament": [
+            {
+              "url": "/forms/gettournament",
+              "name": "View Tournament"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Job": [
+        {
+          "Create Job": [
+            {
+              "url": "/forms/createjob",
+              "name": "create job"
+            }
+          ],
+          "View Job": [
+            {
+              "url": "/forsm/getjob",
+              "name": "view job"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Resources": [
+        {
+          "Create Resources": [
+            {
+              "url": "/forms/createresources",
+              "name": "create resources"
+            }
+          ],
+          "View Resources": [
+            {
+              "url": "/forms/getresources",
+              "name": "view resources"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "Create Content": [
+            {
+              "url": "/forms/createContent",
+              "name": "create content"
+            }
+          ],
+          "View content": [
+            {
+              "url": "/forms/getContent",
+              "name": "View content"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "usermenu": [
+        {
+          "User Module": [
+            {
+              "url": "/forms/usermodule",
+              "name": "usermodule"
+            }
+          ],
+          "Edit user": [
+            {
+              "url": "/forms/edituser",
+              "name": "Edit User"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

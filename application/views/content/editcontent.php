@@ -12,7 +12,7 @@ var data12 = {
     "id"                      : $("#cid").val(),
     "title"                   : $("#ctitle").val(),
     "url"                     : $("#curl").val(), 
-    "content"                 : $("#ccontent").val(), 
+    "content"                 : $("#ccontent").val()
     //"date_created"             : $("#cdate").val(),
     //"date_updated"             : $("#udate").val()
 

@@ -38,8 +38,11 @@ class Forms extends CI_Controller {
 
     public function home()
     {
-    $data['middle'] = 'dashboard';
-    $this->load->view('templates/template',$data);
+          
+          $data['middle'] = 'dashboard';
+
+           $this->load->view('templates/template',$data);
+
     }
     public function CreateEvent()
 	{
@@ -273,6 +276,7 @@ echo "Job has not been saved";
 		$this->load->view('templates/template',$data);
 	}
 	
+
 	public function createResources(){
 		if(isset($_POST) && !empty($_POST)){
 			//ini_set('display_errors',1);
@@ -318,6 +322,9 @@ echo "Job has not been saved";
 		$data['middle'] = 'resources/createResource';
 		$this->load->view('templates/template',$data);
 	}
+
+
+
 	public function viewResources($id){
 		
 		$data['middle'] = 'resources/view';
@@ -327,6 +334,54 @@ echo "Job has not been saved";
 
 		$this->load->view('templates/template',$data);
 	}
+
+
+	//=============harshvardhan==(Edit Resources)==============
+
+      public function editResources($id){
+		
+		$data['middle'] = 'resources/editResources';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+
+		$this->load->view('templates/template',$data);
+	}
+
+
+public function saveEditResources()
+{
+$data2 = json_decode($_REQUEST['data']);
+
+$item  = new stdClass(); 
+//echo $item->id;die;
+$item->id                    = $data2->id;
+$item->user_id               = $data2->user_id;
+$item->title                 = $data2->title;
+$item->url                   = $data2->url;
+$item->summary               = $data2->summary;
+$item->description            =$data2->description;
+
+
+//print_r($item);die();
+$this->load->model('register');
+$res = $this->register->saveResources($item);
+}
+
+public function mobileviewResources(){
+		// echo"hiiiiiiiiiii";
+    $resources = $this->register->getResourceInfo($_POST['infoid']); 
+	$data['required'] = array(
+									'resources'=>$resources	
+								 );
+		
+		 $this->load->view('resources/mobile_viewResources', $data);
+		
+		
+	}
+
+
+//================================================================
 		
 	public function mobileview(){
 		
@@ -343,7 +398,14 @@ echo "Job has not been saved";
 		
 		
 	}
-	// harshvardhan
+	public function shareresource()
+	{
+      $data['middle']='resources/shareResources';
+      $this->load->view('templates/template',$data);
+
+	}
+
+//	=======================// harshvardhan
 
 	public function createContent(){
 			
@@ -388,8 +450,8 @@ $item->id                    = $data12->id;
 $item->title                 = $data12->title;
 $item->url                   = $data12->url;
 $item->content               = $data12->content;
-$item->date_created          = @strtotime($data1->date_created);
-$item->date_updated          = @strtotime($data1->date_updated);
+$item->date_created          = @strtotime($data12->date_created);
+$item->date_updated          = @strtotime($data12->date_updated);
 
 //print_r($item);die();
 $this->load->model('register');
@@ -420,8 +482,8 @@ $item->id                    = $data2->id;
 $item->title                 = $data2->title;
 $item->url                   = $data2->url;
 $item->content               = $data2->content;
-$item->date_created          = @strtotime($data1->date_created);
-$item->date_updated          = @strtotime($data1->date_updated);
+$item->date_created          = @strtotime($data2->date_created);
+$item->date_updated          = @strtotime($data2->date_updated);
 
 //print_r($item);die();
 $this->load->model('register');
@@ -448,6 +510,7 @@ public function edituser()
 		  //   die();
          //echo "$id";
         $data['middle'] = 'userModule/edituser';
+
 		//  print_r($data);
 		$this->load->view('templates/template',$data);
 
@@ -497,13 +560,66 @@ echo "Module Creation Not Saved";
 
  }
 
+public function profile()
+{
 
-// public function profile()
-// {         
-	
-// 	      $data=$this->session->userdata('item');
-//           $id=$data['userid'];
-//           echo "$id";
-		
-// }
+$data=json_decode($_REQUEST['data']);
+
+$item= new stdClass();
+
+$item->userid                     =$data->userid;
+$item->name                       =$data->name;
+$item->email                      =$data->email;
+$item->prof_id                    =$data->prof_id;
+$item->contact_no                 =$data->contact_no;
+$item->sport                      =$data->sport;
+$item->Gender                     =$data->Gender;
+$item->dob                        =$data->dob;
+$item->address1                   =$data->address1;
+$item->address2                   =$data->address2;
+$item->address3                   =$data->address3;
+$item->location                   =$data->location;
+$item->password                   =@$data->password;
+$item->user_image                 =@$data->user_image;
+$item->profile_status             =@$data->profile_status;
+$item->prof_language              =@$data->prof_language;
+$item->other_skill_name           =@$data->other_skill_name;
+$item->other_skill_detail         =@$data->other_skill_detail;
+$item->age_catered                =@$data->age_catered;
+$item->device_id                  =@$data->device_id;
+$item->about_me                   =@$data->about_me;
+
+//print_r($data);
+$this->load->model('register');
+$res= $this->register->updateProfile($item);
+if($res==1)
+{
+	echo "Profile  Updated";
+}
+else {
+	echo "Profile Not Updated";
+}
+}
+
+
+
+
+public function getCityName()
+	{
+		 $keyword = $this->input->post('term');
+         $data['response'] = 'false'; //Set default response
+         $query = $this->register->getCityName($keyword); //Model DB search
+ 
+          if($query->num_rows() > 0){
+          $data['response'] = 'true'; //Set response
+          $data['message'] = array(); //Create array
+          foreach($query->result() as $row){
+	     $data['message'][] = array('value'=> $row->city); //Add a row to array
+   }
+}
+echo json_encode($data);
+ 
+	}
+
+
  }

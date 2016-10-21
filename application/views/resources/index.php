@@ -4,8 +4,8 @@
    
          <section class="content"> 
       <div class="row">
-	  
-		<div class="box">
+      
+        <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Resource List</h3></h3>
             </div>
@@ -17,21 +17,22 @@
                   <th>Title</th>
                   <th>Description</th>
                   <th>Link</th>
-                  <th style="width: 40px">Action</th>
+                  <th style="width: 40px">View</th>
+                  <th style="width: 40px">Edit</th>
                 </tr>
-				<?php $i =1;
-				$resources = $this->register->getResourceInfo();
-					//echo "<pre>"; print_r($resources); exit;
-				if(!empty($resources)){
-						foreach($resources as $resource){ ?>
+                <?php $i =1;
+                $resources = $this->register->getResourceInfo();
+                if(!empty($resources)){
+                        foreach($resources as $resource){ ?>
                 <tr>
-					<td><?php echo $i++; ?></td>
-					<td><?php echo $resource['title']; ?></td>
-					<td><?php echo $resource['description']; ?></td>
-					<td><?php echo $resource['url']; ?></td>
-					<td><a href = "<?php echo site_url('forms/viewresources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="fa fa-search"></i></a></td>
+                    <td><?php echo $i++; ?></td>
+                    <td><?php echo $resource['title']; ?></td>
+                    <td><?php echo word_limiter($resource['summary'], 5); ?></td>
+                    <td><?php echo $resource['url']; ?></td>
+                    <td><a href = "<?php echo site_url('forms/viewresources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
+                    <td><a href = "<?php echo site_url('forms/editResources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-edit"></i></a></td>
                 </tr>
-				<?php } } ?>
+                <?php } } ?>
               </tbody></table>
             </div>
             <!-- /.box-body -->
@@ -45,7 +46,7 @@
               </ul>
             </div-->
           </div>
-	  
+      
 </div>
 </section>
 </div>

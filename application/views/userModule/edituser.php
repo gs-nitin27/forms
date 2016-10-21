@@ -7,37 +7,20 @@ $(document).ready(function(){
     
 var data1 = {
 
-
-     
     "userid"                  : $("#uid").val(),
     "name"                    : $("#name").val(),
-    "type"                    : $("#utype").val(),
     "email"                   : $("#email").val(), 
-    "contact"                 : $("#contact").val(), 
-    "city"                    : $("#city").val(), 
-    "pin"                     : $("#pin").val(), 
-    "description"             : $("#edesc").val(),
-    "eligibility1"            : $("#criteria1").val(),
-    "eligibility2"            : $("#criteria2").val(),
-    "state"                   : $("#state").val(),
-    "terms_and_conditions1"   : $("#terms1").val(),
-    "terms_and_conditions2"   : $("#terms2").val(),
-    "organizer_name"          : $("#orgName").val(),
-    "mobile"                  : $("#contact").val(),
-    "organizer_address_line1" : $("#orgadd1").val(), 
-    "organizer_address_line2" : $("#orgadd2").val(), 
-    "organizer_city"          : $("#orgcity").val(), 
-    "organizer_pin"           : $("#orgpin").val(),
-    "organizer_state"         : $("#orgstate").val(),
-    "event_links"             : $("#evlink").val(),
-    "start_date"              : $("#startD").val(),
-    "end_date"                : $("#endD").val(),
+    "prof_id"                 : $("#utype").val(),
+    "contact_no"              : $("#contact").val(),
     "sport"                   : $("#sport").val(),
-    "entry_start_date"        : $("#estartD").val(),
-    "entry_end_date"          : $("#eendD").val(),
-    "email_app_collection"    : $("#email_app_collection").val(),
-    "file_name"               : $("#filename").val()
+    "Gender"                  : $("#gen").val(), 
+    "dob"                     : $("#dob").val(),
+    "address1"                : $("#add1").val(),
+    "address2"                : $("#add2").val(),    
+    "address3"                : $("#state").val(),
+    "location"                : $("#city").val()
 
+    
 };
 
 console.log(JSON.stringify(data1));
@@ -56,7 +39,7 @@ var data = JSON.stringify(data1);
         setTimeout(function() {
             $('#msgdiv').fadeOut('fast');
         }, 2000);
-       
+      window.location.href = url+"/forms/edituser";
     }
 
 
@@ -141,7 +124,7 @@ var data = JSON.stringify(data1);
                         <option ><?php echo $value['sport']; ?></option> 
                             <?php if(!empty($sports)){
                                     foreach($sports as $sport){?>
-                                <option value ="<?php echo $sport['id'];?>"><?php echo $sport['sports'];?> </option>
+                                <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
                             <?php   }
                                   } 
                             ?>
@@ -185,11 +168,11 @@ var data = JSON.stringify(data1);
                      
                     <div class="form-group">
                       <label for="address1">Address Line1</label>
-                      <input type="text" class="form-control"  id="orgadd1" placeholder="Enter Address" value="<?php echo $value['address1']; ?>">
+                      <input type="text" class="form-control"  id="add1" placeholder="Enter Address" value="<?php echo $value['address1']; ?>">
                     </div >
                     <div class="form-group">
                       <label for="address2">Address Line2</label>
-                      <input type="text" class="form-control"  id="orgadd2" value="<?php echo $value['address2']; ?>" placeholder="Enter Address">
+                      <input type="text" class="form-control"  id="add2" value="<?php echo $value['address2']; ?>" placeholder="Enter Address">
                     </div >
                     <div class="form-group">
                       <label for="city">City</label>
@@ -197,11 +180,7 @@ var data = JSON.stringify(data1);
                     </div >
                     <div class="form-group">
                       <label for="state">State</label>
-                      <input type="text" class="form-control"  id="state"  placeholder="Enter State">
-                    </div >
-                    <div class="form-group">
-                      <label for="pin">Pin</label>
-                      <input type="text" class="form-control"  id="pin" placeholder="Enter Pin">
+                      <input type="text" class="form-control"  id="state" value="<?php echo $value['address3']; ?>" placeholder="Enter State">
                     </div >
                     
                 </div>

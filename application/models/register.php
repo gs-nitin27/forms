@@ -188,7 +188,57 @@ else
 		$this->db->update('gs_resources', $data);
 		return true;
 	}
-   //harshvardhan
+   //==================harshvardhan========================
+
+// public function getResourceInfo($id = false){
+// 		$this->db->select('*, JI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
+// 		$this->db->from('gs_jobInfo JI');
+// 		$this->db->join('gs_sports SP', 'SP.id = JI.sport', "left");
+// 		$this->db->join('location L', 'JI.state = L.id', "left");
+// 		$this->db->join('location LM', 'JI.org_state = LM.id', "left");
+// 		if($id > 0){
+// 			$this->db->where('JI.id', $id);
+// 		}else{
+// 		 $this->db->order_by("JI.id", "desc"); 
+// 		}
+// 		$query = $this->db->get();
+// 		$q =  $query->result_array();
+// 		return $q;
+// 	}
+
+
+
+public function editresources($id)
+{
+	$this->db->select('*');
+      $this->db->from('gs_resources gs ');
+     $this->db->where('gs.id', $id);
+      $query = $this->db->get();
+	  $data =  $query->result_array();
+	  return $data;
+}
+
+public function saveResources($item)
+{
+
+  $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`, `date_created`) VALUES ('$item->id','$item->user_id','$item->title','$item->url','$item->description','$item->summary','$item->image',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description',`summary` = '$item->summary', `date_created` = CURDATE()";
+
+$query = $this->db->query($insert);
+if($query)
+{
+
+	return 1;
+}
+else
+{
+
+   return 0;
+
+}
+
+}
+
+
 	public function getContentInfo($id = false){
 		$this->db->select('*');
 		$this->db->from('cms_content GR');
@@ -213,7 +263,7 @@ else
 	  return $data;
     }
 
-	public function create_content($item)
+public function create_content($item)
 {
 
   $insert = "INSERT INTO `cms_content`(`id`, `title`, `url`, `content`, `date_created`, `date_updated`) VALUES ('$item->id','$item->title','$item->url','$item->content',CURDATE(),CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`content` = '$item->content', `date_updated` = CURDATE()";
@@ -234,7 +284,7 @@ else
 
 public function create_userModule($item)
 { 
-    $insert = "INSERT INTO `gs_usermodule`(`id`, `event`, `tournament`, `job`, `resources`, `content`) VALUES ('$item->id','$item->event','$item->tournament','$item->job','$item->resources','$item->content') ON DUPLICATE KEY UPDATE `event` ='$item->event' , `tournament` = '$item->tournament',`job` = '$item->job',`resources` = '$item->resources',`content` = '$item->content'";
+    $insert ="INSERT INTO `gs_usermodule`(`id`, `event`, `tournament`, `job`, `resources`, `content`) VALUES ('$item->id','$item->event','$item->tournament','$item->job','$item->resources','$item->content') ON DUPLICATE KEY UPDATE `event` ='$item->event' , `tournament` = '$item->tournament',`job` = '$item->job',`resources` = '$item->resources',`content` = '$item->content'";
 $query = $this->db->query($insert);
 if($query)
 {
@@ -265,7 +315,40 @@ public function profile($id)
 
 }
 
+public function updateProfile($item)
+{
 
+
+  $insert ="INSERT INTO `user`(`userid`,`name`,`password`,`email`,`contact_no`,`sport`,`Gender`,   `address1`, `address2`, `address3`, `dob`,`prof_id`,`user_image`,`profile_status`, `location`, `prof_language`, `other_skill_name`, `other_skill_detail`, `age_catered`, `device_id`,`about_me`)  VALUES ('$item->userid','$item->name','$item->password','$item->email','$item->contact_no','$item->sport','$item->Gender','$item->address1','$item->address2','$item->address3','$item->dob','$item->prof_id','$item->user_image','$item->profile_status','$item->location','$item->prof_language','$item->other_skill_name','$item->other_skill_detail','$item->age_catered','$item->device_id','$item->about_me' )  ON DUPLICATE KEY UPDATE `name` ='$item->name', `contact_no` = '$item->contact_no',`sport` = '$item->sport' ,`Gender` = '$item->Gender' ,`address1` = '$item->address1' ,`address2` = '$item->address2' , `address3` = '$item->address3' , `dob` = '$item->dob' , `prof_id` = '$item->prof_id' , `location` = '$item->location'";
+
+  $query = $this->db->query($insert);
+if($query)
+{
+
+	return 1;
+}
+else
+{
+   return 0;
+}
+}
+
+
+public function getCityName($keyword){
+		 
+		$this->db->select('city');
+        $this->db->from('location');
+        $this->db->where('city', 0);
+        $this->db->like('city', $keyword);
+       
+      //  $this->db->limit(0, 6);
+        $query = $this->db->get();
+        foreach($query->result_array() as $row){
+            $data[] = $row;
+        }   
+        return $query;
+
+	}
 }
 
  ?>
