@@ -51,52 +51,48 @@ $data = file_get_contents($file);
         </li>
 		</ul>
       <?php 
-        foreach ($array as $value){  
-        //  print_r($value); 
-          foreach ($value as  $value1) {
-          // print_r($value1); 
-            foreach ($value1 as $value2) {
-            // print_r($value2); 
-
+        foreach($array as $value){ 
+         //print_r($value->child);
+          if(isset($value->child)){
               ?>
-
             <li class="treeview">
-              <a href="#">
+            <a href="<?php echo $value->url;?>">
             <i class="glyphicon glyphicon-chevron-down"></i>
-            <span><?php echo $value2->name;?></span>
+            <span><?php echo $value->name;?></span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
+            <!-- <span class="label label-primary pull-right">4</span> -->
             </span>
           </a>
-
-              <?php
-
-                foreach ($value2 as $key =>$value3) {
-                   $i= count($value3);
-                 //  if(isset($value3)) 
-                    if($i>1){
-                         foreach ($value3 as $value4) {
-            
-                           ?>
-
-
-       <ul class="treeview-menu">
-       <li><a href="<?php echo site_url($value4->url);?>">
+      
+        <ul id="<?php echo $value->url ?>" class="treeview-menu parent">
+        <?php 
+      foreach ($value->child as $key => $value1) {?>
+        <li><a href="<?php echo site_url($value1->url);?>">
             <i class="glyphicon glyphicon-menu-right"></i>
-            <span><b><?php echo $value4->name;?></b></span>
+            <span><b><?php echo $value1->name;?></b></span>
+          </a></li>
+          
+      <?php  } ?></ul></li>
+    <?php }else{?> <li class="treeview">
+          <a href="<?php //echo site_url('forms/usermodule')?>">
+            <i class="glyphicon glyphicon-menu-right"></i>
+            <span>User Role Management</span>
+            <span class="pull-right-container">
+          </span>
+          </a>
+
+            
+
+          </li>
+ <?php } }?>
+       <!-- <ul class="treeview-menu">
+       <li><a href="<?php //echo site_url($value4->url);?>">
+            <i class="glyphicon glyphicon-menu-right"></i>
+            <span><b><?php //echo $value->name;?></b></span>
           </a></li>  </ul>
           </li>
-		  
-          <?php
-          }  ?>   <?php
-         }
-         }
-         }
-          }
-           }?>
-
-		   
-    <!--   <ul class="sidebar-menu">
+		   -->
+		<!--   <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
           <a href="<?php //echo site_url('forms/home');?>">

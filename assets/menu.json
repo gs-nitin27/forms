@@ -1,111 +1,100 @@
 {
-  "data": [
+  "1": 
     {
-      "Event": {
-        "url": "#",
+      
+        "url": "#EVENT",
         "name": "EVENT",
-        "child": [
-          {
-            "url": "/forms/createevent",
-            "name": "create event"
-          },
-          {
-            "url": "/forms/getevent",
-            "name": "View event"
-          }
-        ]
-      }
-    },
+        "child":{
+                "1":   {
+                          "url": "/forms/createevent",
+                          "name": "create event"
+                      },
+                 "2": {
+                    "url": "/forms/getevent",
+                    "name": "View event"
+                  }
+                }
+      },
 
 
-    {
-      "Tournament": {
-        
-          "url": "#",
+   "2": {
+          "url": "#TOURNAMENT",
           "name": "TOURNAMENT",
-        
-        "child":[
-        {
-          "url": "/forms/createtournament",
-          "name": "Create Tournament"
-        },
-        {
-          "url": "/forms/gettournament",
-          "name": "View Tournament"
-        }
-      ]
-        }
+          "child":{
+                "1" :  {
+                        "url": "/forms/createtournament",
+                        "name": "Create Tournament"
+                      },
+                "2" : {
+                        "url": "/forms/gettournament",
+                        "name": "View Tournament"
+                      }
       
-    },
+        }
+      },
 
 
-    {
-      "Job":{
-          "url": "#",
-          "name": "JOB",
-      
-    "child":  [
-        {
+  "3":  {
+      "url": "#JOB",
+      "name": "JOB",
+      "child":  {
+       "1": {
           "url": "/forms/createjob",
           "name": "create job"
         },
-        {
+       "2": {
           "url": "/forms/getjob",
           "name": "view job"
         }
-      ]
       }
+      
     },
 
 
     
-    {
-      "Resources": {
-           "url": "#",
-          "name": "RESOURCES",
-      "child" :[
-        {
+  "4":{
+      
+           "url": "#RESOURCES",
+           "name": "RESOURCES",
+           "child" :{
+        "1":{
           "url": "/forms/createresources",
           "name": "create resources"
         },
-        {
+        
+        "2":{
           "url": "/forms/shareresource",
           "name": "Share resources"
         },
-        {
+        
+        "3":{
           "url": "/forms/getresources",
           "name": "view resources"
         }
-      ]
       }
+      
     },
 
 
-    {
-      "Content": {
-         "url": "#",
+ "5" :  {
+
+         "url": "#CONTENT",
           "name": "CONTENT",
-        "child" :[
-        {
+        "child" :{
+       "1" : {
           "url": "/forms/createContent",
           "name": "create content"
         },
-        {
+        "2" : {
           "url": "/forms/getContent",
           "name": "View content"
         }
-      ]
       }
     },
 
 
-    {
-      "UserModule": 
-        {
-          "url": "/forms/usermodule",
-          "name": "USER ROLE MANAGEMENT"
+ "6":   {     "url": "/forms/usermodule",
+              "name": "USER ROLE MANAGEMENT"
         }
-
-    } 
-  ]
-}
+         
+      }
