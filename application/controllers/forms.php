@@ -311,7 +311,9 @@ echo "Job has not been saved";
 						$v= $this->register->updateResourceImage($img);
 						if($v){
 							$data['msg'] = "Resource Added.";
+
 						}
+						$this->getResources();
 						
 					} else {
 						$data['msg'] = "Sorry, there was an error uploading your file.";
