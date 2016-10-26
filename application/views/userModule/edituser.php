@@ -39,7 +39,7 @@ var data = JSON.stringify(data1);
         setTimeout(function() {
             $('#msgdiv').fadeOut('fast');
         }, 2000);
-      window.location.href = url+"/forms/edituser";
+     // window.location.href = url+"/forms/edituser";
     }
 
 
@@ -190,7 +190,7 @@ var data = JSON.stringify(data1);
             </div>
             <!-- /.tab-content -->
             <div class="box-footer">
-            <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Save" name="Save">
+            <input type="button" class="btn btn-lg btn-primary" id="save" onclick=" " value="Save" name="Save">
             </div>
              </form>
             

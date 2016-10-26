@@ -16,8 +16,6 @@ class Forms extends CI_Controller {
 
  public function login()
     {
-
-	
       $username = $_POST['username'];
       $password = md5($_POST['password']);
       $this->load->model('register');
@@ -355,10 +353,9 @@ echo "Job has not been saved";
 public function saveEditResources()
 {
 $data2 = json_decode($_REQUEST['data']);
-//print_r($data2);
-//die();
+
 $item  = new stdClass(); 
-//echo $item->id;die;
+
 $item->id                    = $data2->id;
 $item->user_id               = $data2->user_id;
 $item->title                 = $data2->title;
@@ -371,8 +368,6 @@ $item->sport                 = $data2->sport;
 $item->location              = $data2->location;
 $item->image                 = @$data2->image;
 $item->date_created          = @$data2->date_created;
-
-
 
 
 $this->load->model('register');
@@ -574,9 +569,9 @@ echo "Module Creation Not Saved";
 
 public function profile()
 {
-
 $data=json_decode($_REQUEST['data']);
 
+//print_r($data);die;
 $item= new stdClass();
 
 $item->userid                     =$data->userid;

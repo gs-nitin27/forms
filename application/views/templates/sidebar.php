@@ -74,7 +74,7 @@ $data = file_get_contents($file);
           
       <?php  } ?></ul></li>
     <?php }else{?> <li class="treeview">
-          <a href="<?php //echo site_url('forms/usermodule')?>">
+          <a href="<?php echo site_url('forms/usermodule')?>">
             <i class="glyphicon glyphicon-menu-right"></i>
             <span>User Role Management</span>
             <span class="pull-right-container">

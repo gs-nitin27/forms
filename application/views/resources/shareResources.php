@@ -1,5 +1,6 @@
 
-   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -31,8 +32,8 @@
 
 
  <div class="form-group">
-                  <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" name="title" id="exampleInputEmail1" placeholder="Enter title">
+                  <label for="title">Title</label>
+                  <input type="text" class="form-control" name="title" id="title" placeholder="Enter title">
                 </div>
 
        <div class="form-group">
@@ -41,21 +42,33 @@
                 </div>
 
                    
-                    <label for="mysearch">Location</label>
-                    <div class="ui multiple dropdown">
+                     <div class="form-group">
+                    <label for="mysearch"  >Location</label>
+                    <!-- <div class="ui multiple dropdown">
                      
 
                      <input type="text" class="form-control" name="location" id="mysearch" placeholder="Enter Location" onkeyup="doSearch();">
                    </div>
+                   </div> -->
+             
+                  <div>
+                   <select id="location" name="location" style="width:300px;">
+                    <!-- Dropdown List Option -->
+                   </select>
+                      </div>
+                   </div>
+
              
 
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Add Link Here</label>
-                  <input type="text" class="form-control" name="title" id="exampleInputEmail1" placeholder="Enter title">
+                  <label for="url">Add Link Here</label>
+                  <input type="text" class="form-control" name="url" id="url" placeholder="Enter title">
                 </div>
-				<div class="form-group">
-                  <label for="exampleInputEmail1">Keyword</label>
-                  <input type="text" class="form-control" name="url" id="exampleInputEmail1" placeholder="Enter Link">
+			
+
+      	<div class="form-group">
+                  <label for="keyword">Keyword</label>
+                  <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Enter Link">
                 </div>
                 
             <!-- <div class="form-group">
@@ -66,8 +79,8 @@
 
                 <div class="form-group">
             
-                     <label for="eventtype">Topic Of The Artical</label>
-                     <select id="artical" class="form-control" >
+                     <label for="eventtype">Topic Of The Article</label>
+                     <select id="article" class="form-control" name="topic_of_artical">
                      <option value="0">- Select -</option> 
                      <option value ="Jobs">Jobs </option>
                      <option value ="Tournaments">Tournaments</option>
@@ -78,12 +91,13 @@
                   </div >
 
 
-                    <div class="form-group">
+
+                       <div class="form-group">
                         <?php  $sports = $this->register->getSport();
                             
                         ?>
                       <label for="sports">Sport</label>
-                        <select id="sport" class="form-control" >
+                        <select id="sport" class="form-control" name="sport">
                         <option >-Select-</option> 
                             <?php if(!empty($sports)){
                                     foreach($sports as $sport){?>
@@ -93,7 +107,6 @@
                             ?>
                         </select>
                     </div >
-				
 
                   <!-- <div class="form-group">
                      <label for="eventtype">Location</label>
@@ -108,8 +121,8 @@
                  
 
                 <div class="form-group">
-                  <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile" name="file" accept="image/*">
+                  <label for="file">File input</label>
+                  <input type="file" id="file" name="file" accept="image/*">
 
                   <p class="help-block">Upload image file only.</p>
                 </div>
@@ -133,12 +146,12 @@
 
 
 
-   <script>
+  <!--  <script>
    $("#mysearch").autocomplete({
   minLength: 3,
   source: function(req, add){
     $.ajax({
-      url: '<?php echo site_url('forms/getCityName'); ?>', 
+      url: '<?php // echo site_url('forms/getCityName'); ?>', 
       dataType: 'json',
       type: 'POST',
       data: req,
@@ -154,48 +167,13 @@
     });
   }
 });
-  </script>
+  </script> -->
 
-<!-- 
-<script >
-$('#mysearch').autocomplete({
-   minLength: 1,
-  source: function( request, response ) {
-      $.ajax({
-        url : '<?php //echo site_url('forms/getCityName'); ?>',
-        dataType: "json",
-      data: {
-         name_startsWith: request.term,
-         type: 'location',
-         row_num : 1
-      },
-       success: function( data ) {
-
-        //  if(data.response =='true'){
-        //    add(data.message);
-        // }
-         response( $.map( data, function( item ) {
-            var code = item.split("|");
-             return {
-              label: code[0],
-             value: code[0],
-            data : item
-         }
-    }));
-     }
+  <script type="text/javascript">
+      $(document).ready(function() {
+        var location =["-Select City-","Bangalore","Chennai","Delhi","Hyderabad","Kolkata","Mumbai","             Pune","Indore","Jaipur","Surat","Nagpur","Lucknow","Patna","Bhopal","Nashik","Aurangabad","Madurai","Aligarh","Kochi","Visakhapatnam","Coimbatore","Vijayawada","Jabalpur",           "Rajkot","Solapur","Anand","Ludhiana","Agra","Meerut","Thiruvananthapuram","            Kozhikode","Faridabad","Varanasi","Jamshedpur","Allahabad", "Amritsar","Dhanbad",           "Gorakhpur","Hubli-Dharwad","Raipur","Mysore","Thrissur","Mangalore","Guntur","            Bhubaneshwar","Amravati","Srinagar","Bhilai","Warangal","Kakinada","Nellore","            Ranchi","Guwahati","Gwalior","Chandigarh","Patiala","Jodhpur","Tiruchirapall",            "Pondicherry","Salem","Dehradun","Hajipur","Kollam","Sangli","Jamnagar","Jammu"            ,"Kurnool","Roorkee","Vellore","Kannur","Etawah"];
+        $("#location").select2({
+          data: location
+        });
       });
-    },
-    autoFocus: true,          
-    minLength: 0,
-    select: function( event, ui ) {
-    var names = ui.item.data.split("|");            
-    $('#city').val(names[1]);
-    $('#phone_code_1').val(names[2]);
-    $('#country_code_1').val(names[3]);
-  }           
-});
-</script>
-
-
- -->
-
+    </script>

@@ -33,8 +33,7 @@
 						<h5 class="timeline-header no-border" style="color:rgb(0,0,255);opacity:0.6;"><b> Title: </b></h5> &nbsp;<?php echo ucfirst($resource['title']);?>
 					</div>
 					<div class="timeline-item">
-                        <h5 class="timeline-header no-border" style="color:rgb(0,0,255);opacity:0.6;">
-                        <b> Link: </b></h5>&nbsp;
+                        <h5 class="timeline-header no-border" style="color:rgb(0,0,255);opacity:0.6;"><b> Link: </b></h5>&nbsp;
 				    	<a href="<?php echo ucfirst($resource['url']);?>" target="_blank"><?php echo ucfirst($resource['url']);?></a>
 					</div>
 

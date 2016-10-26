@@ -15,7 +15,6 @@
                 <tbody><tr>
                   <th style="width: 10px">#</th>
                   <th>Title</th>
-                  <th>Description</th>
                   <th>Summary</th>
                   <th>Link</th>
                   <th>Keyword</th>
@@ -33,7 +32,7 @@
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $resource['title']; ?></td>
                     <td><?php echo word_limiter($resource['summary'], 5); ?></td>
-                    <td><?php echo word_limiter($resource['description'], 5); ?></td>
+                   <!--  <td><?php// echo word_limiter($resource['description'], 5); ?></td> -->
                     <td><?php echo $resource['url']; ?></td>
                     <td><?php echo $resource['keyword']; ?></td>
                     <td><?php echo $resource['sport']; ?></td>

@@ -1,3 +1,8 @@
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+
+
+
  <script>
 //document.domain = "getsporty.in";
 $(document).ready(function(){
@@ -25,8 +30,8 @@ var data = JSON.stringify(data1);
   $.ajax({
 
     type: "POST",
-
     url: '<?php echo site_url('forms/saveEditResources'); ?>',
+   // url: '<?php //echo site_url('forms/saveEditResources');?>',
     data: "data="+data,
     dataType: "text",
     success: function(result) {
@@ -35,7 +40,7 @@ var data = JSON.stringify(data1);
     setTimeout(function() {
      $('#msgdiv').fadeOut('fast');
    }, 2000);
- // window.location.href = url+"/forms/getResources";
+  window.location.href = url+"/forms/getResources";
     }
 
 
@@ -43,8 +48,6 @@ var data = JSON.stringify(data1);
 
     
 });});
-
-
 
 </script>
 
@@ -111,10 +114,23 @@ var data = JSON.stringify(data1);
                 </div>
 
 
-            <div class="form-group">
+                 <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter title" value="<?php echo $value['location']; ?>">
-                </div>
+                </div> 
+
+
+<!-- 
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Location</label>
+                   
+                  <div>
+                   <select id="location" name="location" style="width:700px;"><?php //echo $value['location']; ?>
+                   </select>
+                      </div>
+                   </div> -->
+
+
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Keyword</label>
@@ -125,9 +141,9 @@ var data = JSON.stringify(data1);
 
                 <div class="form-group">
             
-                     <label for="eventtype">Topic Of The Artical</label>
+                     <label for="eventtype">Topic Of The Article</label>
                      <select id="rartical" class="form-control" >
-                     <option value="0"><?php echo $value['topic_of_artical']; ?></option> 
+                     <option value="<?php echo $value['topic_of_artical']; ?>"><?php echo $value['topic_of_artical']; ?></option> 
                      <option value ="Jobs">Jobs </option>
                      <option value ="Tournaments">Tournaments</option>
                       <option value="Event">Event</option> 
@@ -167,8 +183,8 @@ var data = JSON.stringify(data1);
               </div>
               <!-- /.box-body -->
                <?php } ?>
-              <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Save Resources" name="Save">
+             <div class="box-footer">
+                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Edit Resources" name="Create">
               </div>
             </form>
           </div>
@@ -178,4 +194,12 @@ var data = JSON.stringify(data1);
 </div>
 </section>
 
+<script type="text/javascript">
+      $(document).ready(function() {
+        var location =["-Select City-","Bangalore","Chennai","Delhi","Hyderabad","Kolkata","Mumbai","           Pune","Indore","Jaipur","Surat","Nagpur","Lucknow","Patna","Bhopal","Nashik","Aurangabad","Madurai","Aligarh","Kochi","Visakhapatnam","Coimbatore","Vijayawada","Jabalpur",           "Rajkot","Solapur","Anand","Ludhiana","Agra","Meerut","Thiruvananthapuram","            Kozhikode","Faridabad","Varanasi","Jamshedpur","Allahabad", "Amritsar","Dhanbad",           "Gorakhpur","Hubli-Dharwad","Raipur","Mysore","Thrissur","Mangalore","Guntur","            Bhubaneshwar","Amravati","Srinagar","Bhilai","Warangal","Kakinada","Nellore","            Ranchi","Guwahati","Gwalior","Chandigarh","Patiala","Jodhpur","Tiruchirapall",            "Pondicherry","Salem","Dehradun","Hajipur","Kollam","Sangli","Jamnagar","Jammu"            ,"Kurnool","Roorkee","Vellore","Kannur","Etawah"];
+        $("#location").select2({
+          data: location
+        });
+      });
+    </script>
 
