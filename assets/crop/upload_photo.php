@@ -2,6 +2,7 @@
 // get the tmp url
 $photo_src = $_FILES['photo']['tmp_name'];
 
+
 // test if the photo realy exists
 if (is_file($photo_src)) {
 	// photo path in our example

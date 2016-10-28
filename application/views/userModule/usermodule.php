@@ -69,13 +69,13 @@ var data = JSON.stringify(data);
 
       <div class="row text-center" style="margin-left:-300px ;margin-top:70px">
        
-        <label for="event" class="btn btn-default">Event  <input type="checkbox" id="event" class="badgebox" value="1"><span class="badge">&check;</span></label>
+        <label for="event" class="btn btn-default">Event  <input type="checkbox" id="event" class="badgebox" value="1" checked><span class="badge">&check;</span></label>
 
-        <label for="tournament" class="btn btn-primary">Tournament  <input type="checkbox" id="tournament" class="badgebox" value="1"><span class="badge">&check;</span></label>
+        <label for="tournament" class="btn btn-primary">Tournament  <input type="checkbox" id="tournament" class="badgebox" value="1" checked><span class="badge">&check;</span></label>
 
-        <label for="job" class="btn btn-info">job <input type="checkbox" id="job" class="badgebox" value="1"><span class="badge" >&check;</span></label>
+        <label for="job" class="btn btn-info">job <input type="checkbox" id="job" class="badgebox" value="1" checked><span class="badge" >&check;</span></label>
         
-        <label for="resources" class="btn btn-success">Resources <input type="checkbox" id="resources" class="badgebox" value="1"><span class="badge">&check;</span></label>
+        <label for="resources" class="btn btn-success">Resources <input type="checkbox" id="resources" class="badgebox" value="1" checked><span class="badge">&check;</span></label>
        
         <label for="content" class="btn btn-warning">Content <input type="checkbox" id="content" class="badgebox" value="0"><span class="badge">&check;</span></label>
         

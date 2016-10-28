@@ -54,7 +54,7 @@
 						<h5 class="timeline-header" style="color:rgb(0,0,255);opacity:0.6;"><b href="#"> Description: </b></h5>
 
 						<div class="timeline-body">
-						  <?php echo $resource['description'];?>
+						  <?php echo substr($resource['description'],0,200);?>
 						</div>
 					   
 					  </div>

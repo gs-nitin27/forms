@@ -22,9 +22,11 @@ function close_popup(id) {
 
 // show_popup_crop : show the crop popup
 function show_popup_crop(url) {
-   alert(url);
+  // alert(url);
+     var purl="<?php echo base_url('/assets/crop/');?>";
   // change the photo source
-  $('#cropbox').attr('src', url);
+  $('#cropbox').attr('src',purl+'/'+url);
+  //alert(purl+'/'+url);
   // destroy the Jcrop object to create a new one
   try {
     jcrop_api.destroy();
@@ -70,6 +72,7 @@ function crop_photo() {
     type: 'POST',
     data: {x:x_, y:y_, w:w_, h:h_, photo_url:photo_url_, targ_w:TARGET_W, targ_h:TARGET_H},
     success:function(data){
+		
       // display the croped photo
       $('#photo_container').html(data);
     }

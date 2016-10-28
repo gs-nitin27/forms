@@ -601,6 +601,8 @@ $this->load->model('register');
 $res= $this->register->updateProfile($item);
 if($res==1)
 {
+		//$this->session->set_userdata('item',$data->name);
+      // $sessdata = $this->session->userdata('item');
 	echo "Profile  Updated";
 }
 else {

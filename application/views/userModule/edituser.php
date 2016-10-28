@@ -39,7 +39,7 @@ var data = JSON.stringify(data1);
         setTimeout(function() {
             $('#msgdiv').fadeOut('fast');
         }, 2000);
-     // window.location.href = url+"/forms/edituser";
+      window.location.href = url+"/forms/edituser";
     }
 
 

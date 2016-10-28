@@ -341,6 +341,8 @@ public function getCityName($keyword){
         $this->db->from('location');
          $this->db->where('city', 0);
          $this->db->like('city', $keyword);
+         $this->db->order_by("city", "asc");
+        $this->db->limit('10');
 
      // $this->db->where("city LIKE '%$keyword%'")->get();       
 

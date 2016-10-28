@@ -1,7 +1,15 @@
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
 
+<link rel="stylesheet" href="<?php //echo base_url('assets/crop/css/style.css') ?>" />
+<link rel="stylesheet" href="<?php //echo base_url('assets/crop/css/jquery.Jcrop.min.css')?>"/>
+<script type="text/javascript" src="<?php ///echo base_url('assets/crop/js/jquery.min.js')?>"></script>
+<script src="<?php //echo base_url('assets/crop/js/jquery.Jcrop.min.js')?>"></script>
+<script src="<?php //echo base_url('assets/crop/js/script.js')?>"></script> -->
 
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/base/jquery-ui.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/   css" media="all" />
+        <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js" type="text/javascript"></script> -->
+       <!--  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" type="text/javascript"></script>
+ -->
 
  <script>
 //document.domain = "getsporty.in";
@@ -117,9 +125,7 @@ var data = JSON.stringify(data1);
                  <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter title" value="<?php echo $value['location']; ?>">
-                </div> 
-
-
+                </div>
 <!-- 
               <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
@@ -187,6 +193,77 @@ var data = JSON.stringify(data1);
                 <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Edit Resources" name="Create">
               </div>
             </form>
+
+
+            <style>
+            /* Autocomplete
+            ----------------------------------*/
+            .ui-autocomplete { position: absolute; cursor: default; }   
+            .ui-autocomplete-loading { background: white url('http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/flick/images/ui-anim_basic_16x16.gif') right center no-repeat; }*/
+  
+            /* workarounds */
+            * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+  
+            /* Menu
+            ----------------------------------*/
+            .ui-menu {
+                list-style:none;
+                padding: 2px;
+                margin: 0;
+                display:block;
+            }
+            .ui-menu .ui-menu {
+                margin-top: -3px;
+            }
+            .ui-menu .ui-menu-item {
+                margin:0;
+                padding: 0;
+                zoom: 1;
+                float: left;
+                clear: left;
+                width: 100%;
+                font-size:80%;
+            }
+            .ui-menu .ui-menu-item a {
+                text-decoration:none;
+                display:block;
+                padding:.2em .4em;
+                line-height:1.5;
+                zoom:1;
+            }
+            .ui-menu .ui-menu-item a.ui-state-hover,
+            .ui-menu .ui-menu-item a.ui-state-active {
+                font-weight: normal;
+                margin: -1px;
+            }
+        </style>
+          
+        <script type="text/javascript">
+        $(this).ready( function() {
+            $("#rlocation").autocomplete({
+                minLength: 1,
+
+                source: 
+                function(req, add){
+                    $.ajax({
+                        url: "<?php echo site_url('forms/getCityName'); ?>",
+                        dataType: 'json',
+                        type: 'POST',
+                        data: req,
+                        success:    
+                        function(data){
+                            if(data.response =="true"){
+                                add(data.message);
+                            }
+                        },
+                    });
+                }
+                
+            });
+        });
+        </script>
+     
+
           </div>
     </div>
     
@@ -194,7 +271,7 @@ var data = JSON.stringify(data1);
 </div>
 </section>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
       $(document).ready(function() {
         var location =["-Select City-","Bangalore","Chennai","Delhi","Hyderabad","Kolkata","Mumbai","           Pune","Indore","Jaipur","Surat","Nagpur","Lucknow","Patna","Bhopal","Nashik","Aurangabad","Madurai","Aligarh","Kochi","Visakhapatnam","Coimbatore","Vijayawada","Jabalpur",           "Rajkot","Solapur","Anand","Ludhiana","Agra","Meerut","Thiruvananthapuram","            Kozhikode","Faridabad","Varanasi","Jamshedpur","Allahabad", "Amritsar","Dhanbad",           "Gorakhpur","Hubli-Dharwad","Raipur","Mysore","Thrissur","Mangalore","Guntur","            Bhubaneshwar","Amravati","Srinagar","Bhilai","Warangal","Kakinada","Nellore","            Ranchi","Guwahati","Gwalior","Chandigarh","Patiala","Jodhpur","Tiruchirapall",            "Pondicherry","Salem","Dehradun","Hajipur","Kollam","Sangli","Jamnagar","Jammu"            ,"Kurnool","Roorkee","Vellore","Kannur","Etawah"];
         $("#location").select2({
@@ -202,4 +279,4 @@ var data = JSON.stringify(data1);
         });
       });
     </script>
-
+ -->
