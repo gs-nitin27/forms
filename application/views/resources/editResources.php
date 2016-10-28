@@ -190,7 +190,7 @@ var data = JSON.stringify(data1);
             <img id="cropbox" />  
             <!-- This is the form that our event handler fills -->
            
-                <input type="hidden" id="x"/>
+                <input type="hidden" id="x" />
                 <input type="hidden" id="y"/>
                 <input type="hidden" id="w"/>
                 <input type="hidden" id="h"/>
@@ -208,7 +208,7 @@ var data = JSON.stringify(data1);
               </div>
             </form>
 
-<div id="popup_upload">
+    <div id="popup_upload">
         <div class="form_upload">
             <span class="close" onclick="close_popup('popup_upload')">x</span>
             <h2>Upload photo</h2>
@@ -220,74 +220,7 @@ var data = JSON.stringify(data1);
             <iframe name="upload_frame" class="upload_frame"></iframe>
         </div>
     </div>
-            <style>
-            /* Autocomplete
-            ----------------------------------*/
-            .ui-autocomplete { position: absolute; cursor: default; }   
-            .ui-autocomplete-loading { background: white url('http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/flick/images/ui-anim_basic_16x16.gif') right center no-repeat; }*/
-  
-            /* workarounds */
-            * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
-  
-            /* Menu
-            ----------------------------------*/
-            .ui-menu {
-                list-style:none;
-                padding: 2px;
-                margin: 0;
-                display:block;
-            }
-            .ui-menu .ui-menu {
-                margin-top: -3px;
-            }
-            .ui-menu .ui-menu-item {
-                margin:0;
-                padding: 0;
-                zoom: 1;
-                float: left;
-                clear: left;
-                width: 100%;
-                font-size:80%;
-            }
-            .ui-menu .ui-menu-item a {
-                text-decoration:none;
-                display:block;
-                padding:.2em .4em;
-                line-height:1.5;
-                zoom:1;
-            }
-            .ui-menu .ui-menu-item a.ui-state-hover,
-            .ui-menu .ui-menu-item a.ui-state-active {
-                font-weight: normal;
-                margin: -1px;
-            }
-        </style>
-          
-        <script type="text/javascript">
-        $(this).ready( function() {
-            $("#rlocation").autocomplete({
-                minLength: 1,
-
-                source: 
-                function(req, add){
-                    $.ajax({
-                        url: "<?php echo site_url('forms/getCityName'); ?>",
-                        dataType: 'json',
-                        type: 'POST',
-                        data: req,
-                        success:    
-                        function(data){
-                            if(data.response =="true"){
-                                add(data.message);
-                            }
-                        },
-                    });
-                }
-                
-            });
-        });
-        </script>
-     
+           
 
           </div>
     </div>
@@ -295,6 +228,7 @@ var data = JSON.stringify(data1);
 </div>
 </div>
 </section>
+</div>
 
 <script >
 var TARGET_W = 200;
@@ -395,3 +329,71 @@ function updateCoords(c) {
   $('#h').val(c.h);
 }
 </script>
+ <style>
+            /* Autocomplete
+            ----------------------------------*/
+            .ui-autocomplete { position: absolute; cursor: default; }   
+            .ui-autocomplete-loading { background: white url('http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/flick/images/ui-anim_basic_16x16.gif') right center no-repeat; }*/
+  
+            /* workarounds */
+            * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+  
+            /* Menu
+            ----------------------------------*/
+            .ui-menu {
+                list-style:none;
+                padding: 2px;
+                margin: 0;
+                display:block;
+            }
+            .ui-menu .ui-menu {
+                margin-top: -3px;
+            }
+            .ui-menu .ui-menu-item {
+                margin:0;
+                padding: 0;
+                zoom: 1;
+                float: left;
+                clear: left;
+                width: 100%;
+                font-size:80%;
+            }
+            .ui-menu .ui-menu-item a {
+                text-decoration:none;
+                display:block;
+                padding:.2em .4em;
+                line-height:1.5;
+                zoom:1;
+            }
+            .ui-menu .ui-menu-item a.ui-state-hover,
+            .ui-menu .ui-menu-item a.ui-state-active {
+                font-weight: normal;
+                margin: -1px;
+            }
+        </style>
+          
+        <script type="text/javascript">
+        $(this).ready( function() {
+            $("#rlocation").autocomplete({
+                minLength: 1,
+
+                source: 
+                function(req, add){
+                    $.ajax({
+                        url: "<?php echo site_url('forms/getCityName'); ?>",
+                        dataType: 'json',
+                        type: 'POST',
+                        data: req,
+                        success:    
+                        function(data){
+                            if(data.response =="true"){
+                                add(data.message);
+                            }
+                        },
+                    });
+                }
+                
+            });
+        });
+        </script>
+     

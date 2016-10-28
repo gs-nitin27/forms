@@ -207,8 +207,6 @@ else
 // 		return $q;
 // 	}
 
-
-
 public function editresources($id)
 {
 	$this->db->select('*');
@@ -227,16 +225,12 @@ public function saveResources($item)
 $query = $this->db->query($insert);
 if($query)
 {
-
 	return 1;
 }
 else
 {
-
    return 0;
-
 }
-
 }
 
 
@@ -271,16 +265,12 @@ public function create_content($item)
 $query = $this->db->query($insert);
 if($query)
 {
-
 	return 1;
 }
 else
 {
-
    return 0;
-
 }
-
 }
 
 public function create_userModule($item)
@@ -289,18 +279,12 @@ public function create_userModule($item)
 $query = $this->db->query($insert);
 if($query)
 {
-
 	return 1;
 }
 else
 {
-
    return 0;
-
-}
-
-
-   
+}   
 }
 
 public function profile($id)
@@ -340,7 +324,7 @@ public function getCityName($keyword){
         $this->db->from('location');
          $this->db->where('city', 0);
          $this->db->like('city', $keyword);
-         $this->db->order_by("city", "asc");
+         //$this->db->order_by("city", "asc");
         $this->db->limit('10');
 
      // $this->db->where("city LIKE '%$keyword%'")->get();       
@@ -353,6 +337,16 @@ public function getCityName($keyword){
         return $query;
 
 	}
+
+ //  public function getusername($id){
+ //  	$this->db-select('name');
+ //  	$this->db->form('user');
+ //  	$this->db->where('userid',$id);
+ //  	$query = $this->db->get();
+	// $data =  $query->result_array();
+	//   return $data;
+
+  //} 
 }
 
  ?>

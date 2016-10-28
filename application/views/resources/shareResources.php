@@ -24,7 +24,7 @@
 		<?php }?>
 <div class="col-md-8">
 			<div class="box box-primary">
-            <form role="form" enctype='multipart/form-data' id="form_resource"  action="<?php echo site_url('forms/createresources'); ?>" 	method="post">
+            <form role="form" enctype='multipart/form-data' id="form_resource"  action="<?php echo site_url('forms/shareresources'); ?>" 	method="post">
               <div class="box-body">
          <div class="form-group">
                   <label for="title">Title</label>
