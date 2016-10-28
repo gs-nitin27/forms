@@ -1,17 +1,9 @@
 
-<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script> -->
-
 <link rel="stylesheet" href="<?php echo base_url('assets/crop/css/style.css') ?>" />
-
-<script type="text/javascript" src="<?php echo base_url('assets/crop/js/jquery.min.js')?>"></script>
 <script src="<?php echo base_url('assets/crop/js/jquery.Jcrop.min.js')?>"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/crop/css/jquery.Jcrop.min.css')?>"/>
-
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/base/jquery-ui.css" type="text/css" media="all" />
 <link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/ css" media="all" />
-
-
 
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,46 +24,29 @@
 		<?php }?>
 <div class="col-md-8">
 			<div class="box box-primary">
-       
-            <!-- /.box-header -->
-            <!-- form start -->
             <form role="form" enctype='multipart/form-data' id="form_resource"  action="<?php echo site_url('forms/createresources'); ?>" 	method="post">
               <div class="box-body">
-
-
          <div class="form-group">
                   <label for="title">Title</label>
                   <input type="text" class="form-control" name="title" id="title" placeholder="Enter title">
                 </div>
-
        <div class="form-group">
          <label for="exampleInputEmail1">Summary</label>
                    <textarea class="textarea" name="summary" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
-
-
-
                   <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter title">
                 </div>
-             
-
-
-
                 <div class="form-group">
                   <label for="url">Add Link Here</label>
-                  <input type="text" class="form-control" name="url" id="url" placeholder="Enter title">
+                <input type="text" class="form-control" name="url" id="url" placeholder="Enter title">
                 </div>
-			
-
       	<div class="form-group">
                   <label for="keyword">Keyword</label>
                   <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Enter Link">
                 </div>
-
                 <div class="form-group">
-            
                      <label for="eventtype">Topic Of The Article</label>
                      <select id="article" class="form-control" name="topic_of_artical">
                      <option value="0">- Select -</option> 
@@ -81,14 +56,9 @@
                      <option value ="news_aticle">News Aticle </option>
                      <option value ="t&k">Training & Knowledge</option>
                      </select>
-                  </div >
-
-
-
+                  </div>
                        <div class="form-group">
-                        <?php  $sports = $this->register->getSport();
-                            
-                        ?>
+                        <?php  $sports = $this->register->getSport();?>
                       <label for="sports">Sport</label>
                         <select id="sport" class="form-control" name="sport">
                         <option >-Select-</option> 
@@ -99,47 +69,48 @@
                                   } 
                             ?>
                         </select>
-                    </div >
-
-                
-                 
-
-                <div class="form-group">
-                  <label for="file">File input</label>
-                  <input type="file" id="file" name="file" accept="image/*">
-
-                  <p class="help-block">Upload image file only.</p>
-                </div>
-                
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-                <input id="sub" type="submit" class="btn btn-primary" value="Submit"/>
-              </div>
-
-              
-            </form>
+                    </div>
 
 
 
-
-
-<!-- image corp ======================================================= -->
-
-
-
-
-
-    <div class="container">
+<div class="container">
         <div class="content">
             <span class="upload_btn" onclick="show_popup('popup_upload')">Click to upload photo</span>
             <div id="photo_container">
             </div>
         </div><!-- content -->    
-        
-    </div><!-- container -->
+    </div>
 
+        <div id="popup_crop">
+        <div class="form_crop">
+            <span class="close" onclick="close_popup('popup_crop')">x</span>
+            <h2>Crop photo</h2>
+            <!-- This is the image we're attaching the crop to -->
+            <img id="cropbox" />  
+            <!-- This is the form that our event handler fills -->
+           
+                <input type="hidden" id="x"/>
+                <input type="hidden" id="y"/>
+                <input type="hidden" id="w"/>
+                <input type="hidden" id="h"/>
+                <input type="hidden" id="photo_url" name="image"/>
+                <input type="button" value="Crop Image" id="crop_btn" onclick="crop_photo()"/>
+            
+        </div>
+    </div>
+                <!-- <div class="form-group">
+                  <label for="file">File input</label>
+                  <input type="file" id="file" name="file" accept="image/*">
+                  <p class="help-block">Upload image file only.</p>
+                </div> -->
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <input id="sub" type="submit" class="btn btn-primary" value="Submit"/>
+              </div>
+            </form>
+<!-- image corp ======================================================= -->
+    
     <!-- The popup for upload new photo -->
     <div id="popup_upload">
         <div class="form_upload">
@@ -153,39 +124,13 @@
             <iframe name="upload_frame" class="upload_frame"></iframe>
         </div>
     </div>
-
-    <!-- The popup for crop the uploaded photo -->
-    <div id="popup_crop">
-        <div class="form_crop">
-            <span class="close" onclick="close_popup('popup_crop')">x</span>
-            <h2>Crop photo</h2>
-            <!-- This is the image we're attaching the crop to -->
-            <img id="cropbox" />
-            
-            <!-- This is the form that our event handler fills -->
-            <form>
-                <input type="hidden" id="x" name="x" />
-                <input type="hidden" id="y" name="y" />
-                <input type="hidden" id="w" name="w" />
-                <input type="hidden" id="h" name="h" />
-                <input type="hidden" id="photo_url" name="photo_url" />
-                <input type="button" value="Crop Image" id="crop_btn" onclick="crop_photo()" />
-            </form>
-        </div>
-    </div>
-
-
-
-
-
+   
           </div>
 	  </div>
-	  
 </div>
 </div>
 </section>
 </div>
-
 
 <script >
 var TARGET_W = 200;
@@ -285,16 +230,13 @@ function updateCoords(c) {
   $('#w').val(c.w);
   $('#h').val(c.h);
 }
-
 </script>
 
-
-   <style>
+<style>
             /* Autocomplete
             ----------------------------------*/
             .ui-autocomplete { position: absolute; cursor: default; }   
-            .ui-autocomplete-loading { background: white url('http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/flick/images/ui-anim_basic_16x16.gif') right center no-repeat; }*/
-  
+            .ui-autocomplete-loading { background: white url('http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/flick/images/ui-anim_basic_16x16.gif') right center no-repeat; }*/  
             /* workarounds */
             * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
   
@@ -330,13 +272,11 @@ function updateCoords(c) {
                 font-weight: normal;
                 margin: -1px;
             }
-        </style>
-          
+        </style>          
         <script type="text/javascript">
         $(this).ready( function() {
             $("#rlocation").autocomplete({
                 minLength: 1,
-
                 source: 
                 function(req, add){
                     $.ajax({
@@ -356,13 +296,3 @@ function updateCoords(c) {
             });
         });
         </script>
-
-   <!-- <script type="text/javascript">
-      $(document).ready(function() {
-        var location =["-Select City-","Bangalore","Chennai","Delhi","Hyderabad","Kolkata","Mumbai","             Pune","Indore","Jaipur","Surat","Nagpur","Lucknow","Patna","Bhopal","Nashik","Aurangabad","Madurai","Aligarh","Kochi","Visakhapatnam","Coimbatore","Vijayawada","Jabalpur",           "Rajkot","Solapur","Anand","Ludhiana","Agra","Meerut","Thiruvananthapuram","            Kozhikode","Faridabad","Varanasi","Jamshedpur","Allahabad", "Amritsar","Dhanbad",           "Gorakhpur","Hubli-Dharwad","Raipur","Mysore","Thrissur","Mangalore","Guntur","            Bhubaneshwar","Amravati","Srinagar","Bhilai","Warangal","Kakinada","Nellore","            Ranchi","Guwahati","Gwalior","Chandigarh","Patiala","Jodhpur","Tiruchirapall",            "Pondicherry","Salem","Dehradun","Hajipur","Kollam","Sangli","Jamnagar","Jammu"            ,"Kurnool","Roorkee","Vellore","Kannur","Etawah"];
-        $("#location").select2({
-          data: location
-        });
-      });
-    </script>
-  -->

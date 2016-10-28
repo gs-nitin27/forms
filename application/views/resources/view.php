@@ -57,18 +57,14 @@
 						  <?php echo substr($resource['description'],0,200);?>
 						</div>
 					   
-					  </div>
-					
-					
-					
-					
+					  </div>		
               </div>
 			  </td>
 			  <td style="width: 10px; height: 10px; ">
 						
 
-						<div >
-                        <img style="display:block; border:2px solid SteelBlue"; width="220px" height="220px" src = "<?php  echo base_url()."uploads/resources/".$resource['image']; ?>">
+						<div>
+                        <img style="display:block; border:2px solid SteelBlue"; width="220px" height="220px" src = "<?php  echo base_url()."assets/crop/".$resource['image']; ?>">
 				     </div>
 			  
 			  </td>

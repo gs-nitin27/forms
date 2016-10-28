@@ -354,6 +354,9 @@ public function saveEditResources()
 {
 $data2 = json_decode($_REQUEST['data']);
 
+
+
+
 $item  = new stdClass(); 
 
 $item->id                    = $data2->id;
@@ -366,12 +369,13 @@ $item->keyword               = $data2->keyword;
 $item->topic_of_artical      = $data2->topic_of_artical;
 $item->sport                 = $data2->sport;
 $item->location              = $data2->location;
-$item->image                 = @$data2->image;
+$item->image                 = $data2->image;
 $item->date_created          = @$data2->date_created;
 
 
 $this->load->model('register');
 $res = $this->register->saveResources($item);
+
 }
 
 

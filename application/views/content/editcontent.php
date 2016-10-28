@@ -83,7 +83,7 @@ function clear()
             {?>
         <form>
           <div class="form-group">
-                  <label for="exampleInputEmail1">Id</label>
+                 
                   <input type="hidden" class="form-control" name="title"  id="cid" value="<?php echo $value['id']; ?>">
                 </div>
             <div class="form-group">
