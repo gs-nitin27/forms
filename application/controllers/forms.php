@@ -401,9 +401,9 @@ public function saveEditResources()
 {
 $data2 = json_decode($_REQUEST['data']);
 
+//print_r($data2);die();
 
-
-
+  
 $item  = new stdClass(); 
 
 $item->id                    = $data2->id;
@@ -425,6 +425,13 @@ $res = $this->register->saveResources($item);
 
 }
 
+public function deleteResources($id)
+{
+
+        $this->register->deleteResources($id);
+        $data['middle'] = 'resources/index';
+		$this->load->view('templates/template',$data);
+}
 
 public function mobileviewResources(){
 		// echo"hiiiiiiiiiii";
@@ -467,7 +474,7 @@ public function mobileviewResources(){
 
 	public function createContent(){
 			
-		$data['middle'] = 'content/create_Content';
+		$data['middle'] = 'content/create_content';
 		$this->load->view('templates/template',$data);
 	}
 	public function getContent(){

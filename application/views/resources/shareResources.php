@@ -26,10 +26,21 @@
 			<div class="box box-primary">
             <form role="form" enctype='multipart/form-data' id="form_resource"  action="<?php echo site_url('forms/shareresources'); ?>" 	method="post">
               <div class="box-body">
+
+            <div class="form-group">
+                  <input type="hidden" class="form-control" name="token" id="token" value="0">
+                </div>
+
+
+
+
          <div class="form-group">
                   <label for="title">Title</label>
                   <input type="text" class="form-control" name="title" id="title" placeholder="Enter title">
                 </div>
+
+
+
        <div class="form-group">
          <label for="exampleInputEmail1">Summary</label>
                    <textarea class="textarea" name="summary" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
@@ -133,8 +144,8 @@
 </div>
 
 <script >
-var TARGET_W = 200;
-var TARGET_H = 200;
+var TARGET_W = 1112;
+var TARGET_H = 640;
 
 // show loader while uploading photo
 function submit_photo() {

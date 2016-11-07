@@ -1,4 +1,8 @@
-
+<style>
+table, td {
+    border: 3px solid black;
+}
+</style>
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -11,7 +15,7 @@
          <section class="content"> 
       <div class="row">
 	  
-		<div class="col-md-6">
+		<div class="col-md-8">
 				
 			<?php $resource = $this->register->getResourceInfo($id); 
 				if(!empty($resource)){
@@ -27,8 +31,12 @@
             <!-- /.box-header -->
             <!-- form start -->
                 <table class="table table-bordered">
-				<tr><td>
-              <div class="box-body">
+              <tr>
+			     
+			
+				
+				<td>
+               <div class="box-body">
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border" style="color:rgb(0,0,255);opacity:0.6;"><b> Title: </b></h5> &nbsp;<?php echo ucfirst($resource['title']);?>
 					</div>
@@ -38,9 +46,9 @@
 				    	<a href="<?php echo ucfirst($resource['url']);?>" target="_blank"><?php echo ucfirst($resource['url']);?></a>
 					</div>
 
-					<div class="timeline-item">
+					<!-- <div class="timeline-item">
                         <h5 class="timeline-header no-border" style="color:rgb(0,0,255);opacity:0.6;"><b> Image: </b>&nbsp;</h5>
-					</div>
+					</div> -->
 
 					<div class="timeline-item">
 						<h5 class="timeline-header" style="color:rgb(0,0,255);opacity:0.6;"><b href="#"> Summary: </b></h5>
@@ -54,21 +62,23 @@
 						<h5 class="timeline-header" style="color:rgb(0,0,255);opacity:0.6;"><b href="#"> Description: </b></h5>
 
 						<div class="timeline-body">
-						  <?php echo substr($resource['description'],0,200);?>
+						  <?php echo $resource['description'];?>
 						</div>
 					   
 					  </div>		
               </div>
 			  </td>
-			  <td style="width: 10px; height: 10px; ">
-						
 
+               <td>
 						<div>
-                        <img style="display:block; border:2px solid SteelBlue"; width="220px" height="220px" src = "<?php  echo base_url()."assets/crop/".$resource['image']; ?>">
+                        <img style="display:block; border:2px solid SteelBlue";  width="220px" height="220px" margin-left="20px" src = "<?php  echo base_url()."assets/crop/".$resource['image']; ?>">
 				     </div>
 			  
 			  </td>
+
+
 			  </tr>
+
 			  </table>
               <!-- /.box-body -->
 

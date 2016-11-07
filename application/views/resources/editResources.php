@@ -111,8 +111,29 @@ var data = JSON.stringify(data1);
                 <label for="exampleInputEmail1">Summary</label>
                    <textarea class="textarea" name="summary" id="rsummary" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['summary']; ?></textarea>
                 </div>
-         <div class="form-group">
-          <label for="exampleInputEmail1">Description</label>
+                
+
+             <div class="form-group">
+                  <input type="hidden" class="form-control" id="token" value="<?php echo $value['token']; ?>">
+                </div>
+                   <script>
+                 $(document).ready(function() {
+                 
+                  if($('#token').val() == '1')
+                {
+                     $('#abc').show();
+      
+                }
+                   if($('#token').val() == '0')
+                 {
+                  $('#abc').hide();
+                 }
+                    });
+                    
+                       </script>
+
+           <div class="form-group" id="abc">
+           <label for="exampleInputEmail1">Description</label>
                    <textarea class="textarea" name="description" id="rdescription" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['description']; ?></textarea>
                 </div>
 
@@ -194,7 +215,7 @@ var data = JSON.stringify(data1);
                 <input type="hidden" id="y"/>
                 <input type="hidden" id="w"/>
                 <input type="hidden" id="h"/>
-                <input type="hidden" id="photo_url" name="image"/>
+                <input type="hidden" id="photo_url" value="<?php echo $value['image']; ?>" name="image"/>
                 <input type="button" value="Crop Image" id="crop_btn" onclick="crop_photo()"/>
             
         </div>
@@ -204,7 +225,7 @@ var data = JSON.stringify(data1);
               <!-- /.box-body -->
                <?php } ?>
              <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Edit Resources" name="Create">
+                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Edit Resources" name="Create">
               </div>
             </form>
 
@@ -220,19 +241,18 @@ var data = JSON.stringify(data1);
             <iframe name="upload_frame" class="upload_frame"></iframe>
         </div>
     </div>
-           
-
           </div>
     </div>
     
 </div>
 </div>
 </section>
+
 </div>
 
 <script >
-var TARGET_W = 200;
-var TARGET_H = 200;
+var TARGET_W = 1112;
+var TARGET_H = 640;
 
 // show loader while uploading photo
 function submit_photo() {
@@ -299,7 +319,6 @@ function crop_photo() {
   var h_ = $('#h').val();
   var photo_url_ = $('#photo_url').val();
  
-
   // hide thecrop  popup
   $('#popup_crop').hide();
 
@@ -396,4 +415,3 @@ function updateCoords(c) {
             });
         });
         </script>
-     

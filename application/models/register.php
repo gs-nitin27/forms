@@ -209,18 +209,24 @@ else
 
 public function editresources($id)
 {
-	$this->db->select('*');
+	  $this->db->select('*');
       $this->db->from('gs_resources gs ');
-     $this->db->where('gs.id', $id);
+      $this->db->where('gs.id', $id);
       $query = $this->db->get();
 	  $data =  $query->result_array();
 	  return $data;
 }
 
+public function deleteResources($id)
+{
+  $this -> db -> where('id', $id);
+  $this -> db -> delete('gs_resources');
+}
+
 public function saveResources($item)
 {
 
-  $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`date_created`) VALUES ('$item->id','$item->user_id','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description',`summary` = '$item->summary',`image` ='$item->image',`keyword` ='$item->keyword' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`location` ='$item->location', `date_created` = CURDATE()";
+  $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`date_created`) VALUES ('$item->id','$item->user_id','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image',`keyword` ='$item->keyword' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`location` ='$item->location', `date_created` = CURDATE()";
 
 $query = $this->db->query($insert);
 if($query)
@@ -286,6 +292,7 @@ else
    return 0;
 }   
 }
+
 
 public function profile($id)
 {
