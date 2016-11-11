@@ -226,7 +226,7 @@ public function deleteResources($id)
 public function saveResources($item)
 {
 
-  $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`date_created`) VALUES ('$item->id','$item->user_id','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image',`keyword` ='$item->keyword' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`location` ='$item->location', `date_created` = CURDATE()";
+  $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`, `topic_of_artical`, `sport`,`location`,`date_created`) VALUES ('$item->id','$item->user_id','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->topic_of_artical','$item->sport','$item->location','$item->date_created') ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`location` ='$item->location'";
 
 $query = $this->db->query($insert);
 if($query)
@@ -327,6 +327,7 @@ else
 
 public function getCityName($keyword){
 		 
+		 $this->db->distinct();
 		$this->db->select('city');
         $this->db->from('location');
          $this->db->where('city', 0);

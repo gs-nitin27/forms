@@ -70,26 +70,26 @@ $item = new stdClass();
 //strtotime()
 $item->id                 = $data1->id;
 $item->userid             = $data1->userid;
-$item->type               = $data1->type;
-$item->name               = $data1->name;
-$item->address1           = $data1->address_line1;
-$item->address2           = $data1->address_line2;
-$item->city               = $data1->city;
-$item->pin                = $data1->pin;
-$item->description        = $data1->description;
-$item->eligibility1       = $data1->eligibility1;
-$item->eligibility2       = $data1->eligibility2;
-$item->state              = $data1->state;
-$item->tandc1             = $data1->terms_and_conditions1;
-$item->tandc2             = $data1->terms_and_conditions2;
-$item->organizer_name     = $data1->organizer_name;
-$item->mobile             = $data1->mobile;
-$item->org_address1       = $data1->organizer_address_line1;
-$item->org_address2       = $data1->organizer_address_line2;
-$item->organizer_city     = $data1->organizer_city;
-$item->organizer_pin      = $data1->organizer_pin;
-$item->organizer_state    = $data1->organizer_state;
-$item->event_links        = $data1->event_links;
+$item->type               = addslashes($data1->type);
+$item->name               = addslashes($data1->name);
+$item->address1           = addslashes($data1->address_line1);
+$item->address2           = addslashes($data1->address_line2);
+$item->city               = addslashes($data1->city);
+$item->pin                = addslashes($data1->pin);
+$item->description        = addslashes($data1->description);
+$item->eligibility1       = addslashes($data1->eligibility1);
+$item->eligibility2       = addslashes($data1->eligibility2);
+$item->state              = addslashes($data1->state);
+$item->tandc1             = addslashes($data1->terms_and_conditions1);
+$item->tandc2             = addslashes($data1->terms_and_conditions2);
+$item->organizer_name     = addslashes($data1->organizer_name);
+$item->mobile             = addslashes($data1->mobile);
+$item->org_address1       = addslashes($data1->organizer_address_line1);
+$item->org_address2       = addslashes($data1->organizer_address_line2);
+$item->organizer_city     = addslashes($data1->organizer_city);
+$item->organizer_pin      = addslashes($data1->organizer_pin);
+$item->organizer_state    = addslashes($data1->organizer_state);
+$item->event_links        = addslashes($data1->event_links);
 $item->start_date         = @strtotime($data1->start_date);//strtotime();
 $item->end_date           = @strtotime($data1->end_date);//strtotime($data1['end_date']);
 $item->sport              = $data1->sport;
@@ -129,32 +129,32 @@ $data1 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
 
 $item->id                      = $data1->id;
-$item->organizer_name          = $data1->organizer_name;
-$item->tournament_level        = $data1->tournament_level;
-$item->tournament_category     = $data1->catagory;
-$item->tournament_ageGroup     = $data1->tournament_ageGroup;
+$item->organizer_name          = addslashes($data1->organizer_name);
+$item->tournament_level        = addslashes($data1->tournament_level);
+$item->tournament_category     = addslashes($data1->catagory);
+$item->tournament_ageGroup     = addslashes($data1->tournament_ageGroup);
 $item->tournament_gender       = $data1->tournament_gender;
 $item->userid                  = $data1->userid;
-$item->type                    = $data1->tournament_name;
-$item->address_line1           = $data1->address_line1;
-$item->address_line2           = $data1->address_line2;
-$item->city                    = $data1->city;
-$item->state                   = $data1->state;
+$item->type                    = addslashes($data1->tournament_name);
+$item->address_line1           = addslashes($data1->address_line1);
+$item->address_line2           = addslashes($data1->address_line2);
+$item->city                    = addslashes($data1->city);
+$item->state                   = addslashes($data1->state);
 $item->pin                     = $data1->pin;
-$item->description             = $data1->description;
-$item->eligibility1            = $data1->eligibility1;
-$item->eligibility2            = $data1->eligibility2;
-$item->terms_and_conditions1   = $data1->terms_and_conditions1;
-$item->terms_and_conditions2   = $data1->terms_and_conditions2;
-$item->organizer_name          = $data1->organizer_name;
+$item->description             = addslashes($data1->description);
+$item->eligibility1            = addslashes($data1->eligibility1);
+$item->eligibility2            = addslashes($data1->eligibility2);
+$item->terms_and_conditions1   = addslashes($data1->terms_and_conditions1);
+$item->terms_and_conditions2   = addslashes($data1->terms_and_conditions2);
+$item->organizer_name          = addslashes($data1->organizer_name);
 $item->mobile                  = $data1->mobile;
-$item->emailid                 = $data1->emailid;
-$item->organizer_address_line1 = $data1->organizer_address_line1;
-$item->organizer_address_line2 = $data1->organizer_address_line2;
-$item->organizer_city          = $data1->organizer_city;
-$item->organizer_state         = $data1->organizer_state;
+$item->emailid                 = addslashes($data1->emailid);
+$item->organizer_address_line1 = addslashes( $data1->organizer_address_line1);
+$item->organizer_address_line2 = addslashes($data1->organizer_address_line2);
+$item->organizer_city          = addslashes($data1->organizer_city);
+$item->organizer_state         = addslashes($data1->organizer_state);
 $item->organizer_pin           = $data1->organizer_pin;
-$item->tournament_links        = $data1->tournament_links;
+$item->tournament_links        = addslashes($data1->tournament_links);
 $item->start_date              = @strtotime($data1->start_date);//$data1['start_date'];
 $item->end_date                = @strtotime($data1->end_date);//$data1['end_date'];
 $item->entry_start_date        = @strtotime($data1->entry_start_date);//$data1['entry_start_date'];
@@ -182,29 +182,29 @@ $item  = new stdClass();
 
 $item->id                    = $data1->id;
 $item->userid                = $data1->userid;
-$item->title                 = $data1->title;
-$item->type                  = $data1->type;
+$item->title                 = addslashes($data1->title);
+$item->type                  = addslashes($data1->type);
 $item->sports                = $data1->sports;
 $item->gender                = $data1->gender;
-$item->work_exp              = $data1->work_experience;
-$item->desc                  = $data1->description;
-$item->desiredskill          = $data1->desired_skills;
-$item->qualification         = $data1->qualification;
-$item->keyreq                = $data1->key_requirement;
-$item->org_address1          = $data1->org_address1;
-$item->org_address2          = $data1->org_address2;
+$item->work_exp              = addslashes($data1->work_experience);
+$item->desc                  = addslashes($data1->description);
+$item->desiredskill          = addslashes($data1->desired_skills);
+$item->qualification         = addslashes($data1->qualification);
+$item->keyreq                = addslashes($data1->key_requirement);
+$item->org_address1          = addslashes($data1->org_address1);
+$item->org_address2          = addslashes($data1->org_address2);
 $item->org_city              = $data1->org_city;
 $item->org_state             = @$data1->org_state;
 $item->org_pin               = $data1->org_pin;
-$item->org_name              = $data1->organisation_name;
-$item->about                 = $data1->about;
-$item->address1              = $data1->address_line1; 
-$item->address2              = $data1->address_line1; 
+$item->org_name              = addslashes($data1->organisation_name);
+$item->about                 = addslashes($data1->about);
+$item->address1              = addslashes($data1->address_line1); 
+$item->address2              = addslashes($data1->address_line1); 
 $item->state                 = $data1->state;
 $item->city                  = $data1->city;
 $item->pin                   = $data1->pin;  
 $item->contact               = $data1->contact;
-$item->email                 = $data1->email_app_collection;
+$item->email                 = addslashes($data1->email_app_collection);
 //print_r($item);die();
 $this->load->model('register');
 $res = $this->register->create_job($item);
@@ -274,104 +274,117 @@ echo "Job has not been saved";
 		$this->load->view('templates/template',$data);
 	}
 	
-
-	public function createResources(){
-		if(isset($_POST) && !empty($_POST)){
-		//	ini_set('display_errors',1);
-		   //print_r($_POST);die();
-			unset($_POST['_wysihtml5_mode']);
-			$rid = $this->register->addResource($_POST);
-			//print_r($rid);die();
-			$img = 'resource_'.$rid.".jpg";
-			if(!empty($_FILES)){
-				$target_dir = "uploads/resources/";
-				// $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-				$target_file = $target_dir . $img;
-				$uploadOk = 1;
-				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-				// Check if image file is a actual image or fake image
-				
-				
-				// Allow certain file formats
-				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-				&& $imageFileType != "gif" ) {
-					echo $imageFileType;
-					$data['msg'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-					$uploadOk = 0;
-				}
-				// Check if $uploadOk is set to 0 by an error
-				if ($uploadOk == 0) {
-					echo "Sorry, your file was not uploaded.";
-				// if everything is ok, try to upload file
-				} else {
-					if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-						//echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
-						$v= $this->register->updateResourceImage($img);
-						if($v){
-							$data['msg'] = "Resource Added.";
-
-						}
-						$this->getResources();
-						
-					} else {
-						$data['msg'] = "Sorry, there was an error uploading your file.";
-					}
-				}
-			}		
-		 }
-		
+public function createresources(){
+			
 		$data['middle'] = 'resources/createResource';
 		$this->load->view('templates/template',$data);
 	}
 
 public function shareResources(){
-		if(isset($_POST) && !empty($_POST)){
-		//	ini_set('display_errors',1);
-		   //print_r($_POST);die();
-			unset($_POST['_wysihtml5_mode']);
-			$rid = $this->register->addResource($_POST);
-			//print_r($rid);die();
-			$img = 'resource_'.$rid.".jpg";
-			if(!empty($_FILES)){
-				$target_dir = "uploads/resources/";
-				// $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-				$target_file = $target_dir . $img;
-				$uploadOk = 1;
-				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-				// Check if image file is a actual image or fake image
-				
-				
-				// Allow certain file formats
-				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-				&& $imageFileType != "gif" ) {
-					echo $imageFileType;
-					$data['msg'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-					$uploadOk = 0;
-				}
-				// Check if $uploadOk is set to 0 by an error
-				if ($uploadOk == 0) {
-					echo "Sorry, your file was not uploaded.";
-				// if everything is ok, try to upload file
-				} else {
-					if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-						//echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
-						$v= $this->register->updateResourceImage($img);
-						if($v){
-							$data['msg'] = "Resource Added.";
-
-						}
-						$this->getResources();
-						
-					} else {
-						$data['msg'] = "Sorry, there was an error uploading your file.";
-					}
-				}
-			}		
-		 }
-		
+			
 		$data['middle'] = 'resources/shareResources';
 		$this->load->view('templates/template',$data);
 	}
+
+
+	public function SavecreateResources(){
+		//if(isset($_POST) && !empty($_POST)){
+		//	ini_set('display_errors',1);
+		   //print_r($_POST);die();
+		//	unset($_POST['_wysihtml5_mode']);
+		//	$rid = $this->register->addResource($_POST);
+			//$this->getResources();
+			//print_r($rid);die();
+			// $img = 'resource_'.$rid.".jpg";
+			// if(!empty($_FILES)){
+			// 	$target_dir = "uploads/resources/";
+			// 	// $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+			// 	$target_file = $target_dir . $img;
+			// 	$uploadOk = 1;
+			// 	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+			// 	// Check if image file is a actual image or fake image
+				
+				
+			// 	// Allow certain file formats
+			// 	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+			// 	&& $imageFileType != "gif" ) {
+			// 		echo $imageFileType;
+			// 		$data['msg'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			// 		$uploadOk = 0;
+			// 	}
+			// 	// Check if $uploadOk is set to 0 by an error
+			// 	if ($uploadOk == 0) {
+			// 		echo "Sorry, your file was not uploaded.";
+			// 	// if everything is ok, try to upload file
+			// 	} else {
+			// 		if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+			// 			//echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
+			// 			$v= $this->register->updateResourceImage($img);
+			// 			if($v){
+			// 				$data['msg'] = "Resource Added.";
+
+			// 			}
+			// 			$this->getResources();
+						
+			// 		} else {
+			// 			$data['msg'] = "Sorry, there was an error uploading your file.";
+					//}
+				//}
+		//	}		
+	//	 }
+		
+		//$data['middle'] = 'resources/createResource';
+		//$this->load->view('templates/template',$data);
+
+
+$data2 = json_decode($_REQUEST['data']);
+  
+$item  = new stdClass(); 
+
+print_r($data2);
+
+$item->id                    = $data2->id;
+$item->user_id               = $data2->user_id;
+$item->title                 = $data2->title;
+$item->url                   = $data2->url;
+$item->summary               = $data2->summary;
+$item->description           = $data2->description;
+$item->topic_of_artical      = $data2->topic_of_artical;
+$item->sport                 = $data2->sport;
+$item->location              = $data2->location;
+$item->image                 = $data2->image;
+$item->date_created          = $data2->date_created;
+
+
+$this->load->model('register');
+$res = $this->register->saveResources($item);
+
+}
+
+
+
+public function SaveshareResources(){
+
+$data2 = json_decode($_REQUEST['data']);
+  
+$item  = new stdClass(); 
+
+$item->id                    = $data2->id;
+$item->title                 = $data2->title;
+$item->url                   = $data2->url;
+$item->summary               = $data2->summary;
+$item->description           = $data2->description;
+$item->topic_of_artical      = $data2->topic_of_artical;
+$item->sport                 = $data2->sport;
+$item->location              = $data2->location;
+$item->image                 = $data2->image;
+$item->date_created          = $data2->date_created;
+
+
+$this->load->model('register');
+$res = $this->register->saveResources($item);
+
+}
 
 	public function viewResources($id){
 		
@@ -382,7 +395,6 @@ public function shareResources(){
 
 		$this->load->view('templates/template',$data);
 	}
-
 
 	//=============harshvardhan==(Edit Resources)==============
 
@@ -397,14 +409,13 @@ public function shareResources(){
 	}
 
 
+
 public function saveEditResources()
 {
 $data2 = json_decode($_REQUEST['data']);
 
-//print_r($data2);die();
-
-  
 $item  = new stdClass(); 
+
 
 $item->id                    = $data2->id;
 $item->user_id               = $data2->user_id;
@@ -412,13 +423,11 @@ $item->title                 = $data2->title;
 $item->url                   = $data2->url;
 $item->summary               = $data2->summary;
 $item->description           = $data2->description;
-$item->keyword               = $data2->keyword;
 $item->topic_of_artical      = $data2->topic_of_artical;
 $item->sport                 = $data2->sport;
 $item->location              = $data2->location;
 $item->image                 = $data2->image;
 $item->date_created          = @$data2->date_created;
-
 
 $this->load->model('register');
 $res = $this->register->saveResources($item);
@@ -508,13 +517,19 @@ public function mobileviewResources(){
 public function saveContent()
 {
 $data12 = json_decode($_REQUEST['data']);
-
+ 
 $item  = new stdClass(); 
 
-$item->id                    = $data12->id;
-$item->title                 = $data12->title;
-$item->url                   = $data12->url;
-$item->content               = $data12->content;
+//print_r($data12);
+$cid=mysqli_real_escape_string($data12->id);
+$ctitle=mysqli_real_escape_string($data12->title);
+$curl=mysqli_real_escape_string($data12->url);
+$ccontent=mysqli_real_escape_string($data12->content);
+
+$item->id                    = $cid;
+$item->title                 = $ctitle;
+$item->url                   = $curl;
+$item->content               = $ccontent;
 $item->date_created          = @strtotime($data12->date_created);
 $item->date_updated          = @strtotime($data12->date_updated);
 
@@ -540,9 +555,11 @@ public function saveEditContent()
 {
 
 $data2 = json_decode($_REQUEST['data']);
-//print_r($data2);
+//print_r($data2); die;
+
 $item  = new stdClass(); 
 //echo $item->id;die;
+
 $item->id                    = $data2->id;
 $item->title                 = $data2->title;
 $item->url                   = $data2->url;
@@ -633,16 +650,16 @@ $data=json_decode($_REQUEST['data']);
 $item= new stdClass();
 
 $item->userid                     =$data->userid;
-$item->name                       =$data->name;
-$item->email                      =$data->email;
+$item->name                       =addslashes($data->name);
+$item->email                      =addslashes($data->email);
 $item->prof_id                    =$data->prof_id;
 $item->contact_no                 =$data->contact_no;
 $item->sport                      =$data->sport;
 $item->Gender                     =$data->Gender;
 $item->dob                        =$data->dob;
-$item->address1                   =$data->address1;
-$item->address2                   =$data->address2;
-$item->address3                   =$data->address3;
+$item->address1                   =addslashes($data->address1);
+$item->address2                   =addslashes($data->address2);
+$item->address3                   =addslashes($data->address3);
 $item->location                   =$data->location;
 $item->password                   =@$data->password;
 $item->user_image                 =@$data->user_image;
@@ -659,8 +676,6 @@ $this->load->model('register');
 $res= $this->register->updateProfile($item);
 if($res==1)
 {
-		//$this->session->set_userdata('item',$data->name);
-      // $sessdata = $this->session->userdata('item');
 	echo "Profile  Updated";
 }
 else {

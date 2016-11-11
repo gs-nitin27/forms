@@ -21,7 +21,6 @@ var data1 = {
     "description"             : $("#rdescription").val(), 
     "summary"                 : $("#rsummary").val(),
     "location"                : $("#rlocation").val(), 
-    "keyword"                 : $("#rkeyword").val(),
     "topic_of_artical"        : $("#rartical").val(), 
     "image"                   : $("#photo_url").val(),
     "sport"                   : $("#sport").val()
@@ -43,7 +42,7 @@ var data = JSON.stringify(data1);
     setTimeout(function() {
      $('#msgdiv').fadeOut('fast');
    }, 2000);
-  window.location.href = url+"/forms/getResources";
+//  window.location.href = url+"/forms/getResources";
     }
 
 
@@ -101,7 +100,7 @@ var data = JSON.stringify(data1);
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" name="rtitle" id="rtitle" placeholder="Enter title" value="<?php echo $value['title']; ?>">
+                  <input type="text" class="form-control" maxlength="30" name="rtitle" id="rtitle" placeholder="Enter title" value="<?php echo $value['title']; ?>">
                 </div>
         <div class="form-group">
                   <label for="exampleInputEmail1">Link</label>
@@ -112,6 +111,13 @@ var data = JSON.stringify(data1);
                    <textarea class="textarea" name="summary" id="rsummary" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['summary']; ?></textarea>
                 </div>
                 
+                  <script>
+                 $("#rsummary").keyup(function() {
+                  var val=$("#rsummary").val();
+                  alert(val);
+                    });               
+                       </script>
+
 
              <div class="form-group">
                   <input type="hidden" class="form-control" id="token" value="<?php echo $value['token']; ?>">
@@ -151,13 +157,10 @@ var data = JSON.stringify(data1);
                    </select>
                       </div>
                    </div> -->
-
-
-
-                <div class="form-group">
+               <!--  <div class="form-group">
                   <label for="exampleInputEmail1">Keyword</label>
-                  <input type="text" class="form-control" name="keyword" id="rkeyword" placeholder="Enter title" value="<?php echo $value['keyword']; ?>">
-                </div>
+                  <input type="text" class="form-control" name="keyword" id="rkeyword" placeholder="Enter title" value="<?php //echo $value['keyword']; ?>">
+                </div> -->
 
 
 
@@ -171,6 +174,7 @@ var data = JSON.stringify(data1);
                       <option value="Event">Event</option> 
                      <option value ="News Aticle">News Aticle </option>
                      <option value ="Training And Knowledge">Training And Knowledge</option>
+                      <option value ="other">Other</option>
                      </select>
                   </div >
 
@@ -197,9 +201,24 @@ var data = JSON.stringify(data1);
 
           <div class="container">
         <div class="content">
+        <table>
+        <tr>
+        <td>
+             <div>
+                <img style="display:block; border:2px solid SteelBlue";  width="400px" height="300px" margin-left="20px" src = "<?php  echo base_url()."assets/crop/".$value['image']; ?>">
+             </div>
+            
+
+          </td>
+          </tr>
+          <tr style="margin-top:20px">
+          <td >
             <span class="upload_btn" onclick="show_popup('popup_upload')">Click to upload photo</span>
             <div id="photo_container">
             </div>
+             </td>
+             </tr>
+             </table>
         </div><!-- content -->    
     </div>
 
@@ -407,6 +426,11 @@ function updateCoords(c) {
                         function(data){
                             if(data.response =="true"){
                                 add(data.message);
+                            }
+                            else
+                            {
+                              alert("Choose Currect City Name");
+                              $("#rlocation").val("");
                             }
                         },
                     });

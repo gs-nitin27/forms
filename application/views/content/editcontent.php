@@ -1,9 +1,6 @@
   <script>
 //document.domain = "getsporty.in";
-$(document).ready(function(){
- 
-clear();
-   
+$(document).ready(function(){ 
 $('#save').click(function(){
 
 var data12 = {
@@ -43,15 +40,7 @@ var data = JSON.stringify(data12);
     
 });});
 
-function clear()
-{
 
-   // $("#ctitle").val('');
-    //$("#curl").val('');
-    //$("#ccontent").val(''); 
-    //$("#cdate").val('');
-   // $("#udate").val(''); 
-}
 
 </script>
 

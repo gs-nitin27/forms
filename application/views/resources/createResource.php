@@ -5,34 +5,63 @@
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/base/jquery-ui.css" type="text/css" media="all" />
 <link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/ css" media="all" />
 
+ <script>
+//document.domain = "getsporty.in";
+$(document).ready(function(){
+   
+$('#save').click(function(){
 
+var data1 = {
+
+
+    "id"                      : "", 
+    "user_id"                 : $("#userid").val(),
+    "title"                   : $("#rtitle").val(),
+    "url"                     : $("#rurl").val(),
+    "description"             : $("#rdescription").val(), 
+    "summary"                 : $("#rsummary").val(),
+    "location"                : $("#rlocation").val(), 
+    "topic_of_artical"        : $("#article").val(), 
+    "image"                   : $("#photo_url").val(),
+    "date_created"            : $("#date_created").val(),
+    "sport"                   : $("#sport").val()
+};
+//alert(data1);
+console.log(JSON.stringify(data1));
+var url = '<?php echo site_url();?>'
+var data = JSON.stringify(data1);
+  $.ajax({
+
+    type: "POST",
+    url: '<?php echo site_url('forms/SavecreateResources'); ?>',
+    data: "data="+data,
+    dataType: "text",
+    success: function(result) {
+    $( "#msgdiv" ).show();
+   $( "#msg" ).html(result);
+    setTimeout(function() {
+     $('#msgdiv').fadeOut('fast');
+   }, 2000);
+  window.location.href = url+"/forms/getResources";
+    }
+
+
+});
+
+    
+});});
+
+</script>
 
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-     Create Resources
+     Edit Resources
         
       </h1>
      
     </section>
-
-    <script>
-$(document).ready(function() {
-$('#types').change(function(){
-if($('#types').val() == 'video')
-   {
-        $('#xyz').hide();
-      
-      }
-
-if($('#types').val() == 'text')
-{
- $('#xyz').show();
-}
-});
-});
-</script>
          <section class="content"> 
       <div class="row">
     <?php if(isset($msg) && $msg != ""){?>
@@ -43,13 +72,41 @@ if($('#types').val() == 'text')
     <?php }?>
 <div class="col-md-8">
       <div class="box box-primary">
+       
+            <!-- /.box-header -->
 
-      
-            <form role="form" enctype='multipart/form-data' id="form_resource"  action="<?php echo site_url('forms/createresources'); ?>"   method="post">
+        
+            <form>
               <div class="box-body">
 
-
+            <?php
+          $data=$this->session->userdata('item');
+          $name=$data['userid'];
+        {  ?>
           <div class="form-group">
+                  <input type="hidden" class="form-control" name="id" id="userid" value="<?php echo $name;?>">
+            </div>
+        <?php }?>
+
+                <div class="form-group">
+                  <input type="hidden" class="form-control" name="token" id="token" value="1">
+                </div>
+
+            <script>
+            $(document).ready(function() {
+            $('#types').change(function(){
+            if($('#types').val() == 'video')
+           {
+            $('#abc').hide();     
+            }
+            if($('#types').val() == 'text')
+            {
+             $('#abc').show();
+            }
+            });
+            });
+            </script>
+             <div class="form-group">
             
                       <label for="exampleInputEmail1">Resource Type</label>
                      <select  id="types" class="form-control" >
@@ -59,41 +116,62 @@ if($('#types').val() == 'text')
                      </select>
               </div >
 
+               <?php
+              
+                date_default_timezone_set("Asia/Kolkata");
+             {
+              ?>
 
-         <div class="form-group">
-                  <label for="title">Title</label>
-                  <input type="text" class="form-control" name="title" id="title" placeholder="Enter title">
+              <div class="form-group">
+                  <input type="hidden" class="form-control" name="date_created" id="date_created" value= "<?php  echo date("Y-m-d h:i:sa");?>">
                 </div>
+                  <?php
+                  }?>
+
+
 
                 <div class="form-group">
-                  <input type="hidden" class="form-control" name="token" id="token" value="1">
+                  <label for="exampleInputEmail1">Title</label>
+                  <input type="text" class="form-control" maxlength="30" name="rtitle" id="rtitle" placeholder="Enter title">
                 </div>
-          
+        <div class="form-group">
+                  <label for="exampleInputEmail1">Link</label>
+                  <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link">
+                </div>
+                <div class="form-group">
+                <label for="exampleInputEmail1">Summary</label>
+                   <textarea class="textarea" name="summary" id="rsummary" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                </div>
+                
+                
+                
 
-          <div class="form-group">
-              <label for="exampleInputEmail1">Summary</label>
-                   <textarea class="textarea" name="summary" id="rsummary" placeholder="Place some text here"  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+           <div class="form-group" id="abc">
+           <label for="exampleInputEmail1">Description</label>
+                   <textarea class="textarea" name="description" id="rdescription" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
 
 
-
-           <div class="form-group" id="xyz">
-               <label for="exampleInputEmail1">Description</label>
-                   <textarea class="textarea" name="description" id="description" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                </div>
-
-                  <div class="form-group">
+                 <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter title">
                 </div>
-                <div class="form-group">
-                  <label for="url">Add Link Here</label>
-                <input type="text" class="form-control" name="url" id="url" placeholder="Enter title">
-                </div>
-        <div class="form-group">
-                  <label for="keyword">Keyword</label>
-                  <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Enter Link">
-                </div>
+<!-- 
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Location</label>
+                   
+                  <div>
+                   <select id="location" name="location" style="width:700px;"><?php //echo $value['location']; ?>
+                   </select>
+                      </div>
+                   </div> -->
+               <!--  <div class="form-group">
+                  <label for="exampleInputEmail1">Keyword</label>
+                  <input type="text" class="form-control" name="keyword" id="rkeyword" placeholder="Enter title" value="<?php //echo $value['keyword']; ?>">
+                </div> -->
+
+
+
                 <div class="form-group">
                      <label for="eventtype">Topic Of The Article</label>
                      <select id="article" class="form-control" name="topic_of_artical">
@@ -103,9 +181,14 @@ if($('#types').val() == 'text')
                       <option value="Event">Event</option> 
                      <option value ="news_aticle">News Aticle </option>
                      <option value ="t&k">Training & Knowledge</option>
+                      <option value ="other">Other</option>
                      </select>
                   </div>
-                       <div class="form-group">
+
+
+
+
+                <div class="form-group">
                         <?php  $sports = $this->register->getSport();?>
                       <label for="sports">Sport</label>
                         <select id="sport" class="form-control" name="sport">
@@ -121,11 +204,17 @@ if($('#types').val() == 'text')
 
 
 
-<div class="container">
+          <div class="container">
         <div class="content">
+        
+            
+
+         
+         
             <span class="upload_btn" onclick="show_popup('popup_upload')">Click to upload photo</span>
             <div id="photo_container">
             </div>
+             
         </div><!-- content -->    
     </div>
 
@@ -137,29 +226,43 @@ if($('#types').val() == 'text')
             <img id="cropbox" />  
             <!-- This is the form that our event handler fills -->
            
-                <input type="hidden" id="x"/>
+                <input type="hidden" id="x" />
                 <input type="hidden" id="y"/>
                 <input type="hidden" id="w"/>
                 <input type="hidden" id="h"/>
-                <input type="hidden" id="photo_url" name="image"/>
+                <input type="hidden" id="photo_url"  name="image"/>
                 <input type="button" value="Crop Image" id="crop_btn" onclick="crop_photo()"/>
             
         </div>
     </div>
-                <!-- <div class="form-group">
-                  <label for="file">File input</label>
-                  <input type="file" id="file" name="file" accept="image/*">
-                  <p class="help-block">Upload image file only.</p>
-                </div> -->
+                
               </div>
               <!-- /.box-body -->
-              <div class="box-footer">
-                <input id="sub" type="submit" class="btn btn-primary" value="Submit"/>
+           
+             <div class="box-footer">
+                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Edit Resources" name="Create">
               </div>
             </form>
-<!-- image corp ======================================================= -->
-    
-    <!-- The popup for upload new photo -->
+
+
+ <script>
+                
+              $('#save').click(function(){
+                if($('#photo_url').val() =="")
+                         {
+                        if(!confirm("Do you want to continue without uploading the photo"))
+                                          {
+                                            return false;
+                                          }
+                     
+                       }
+
+});
+
+</script>
+
+
+
     <div id="popup_upload">
         <div class="form_upload">
             <span class="close" onclick="close_popup('popup_upload')">x</span>
@@ -172,12 +275,13 @@ if($('#types').val() == 'text')
             <iframe name="upload_frame" class="upload_frame"></iframe>
         </div>
     </div>
-   
           </div>
     </div>
+    
 </div>
 </div>
 </section>
+
 </div>
 
 <script >
@@ -249,7 +353,6 @@ function crop_photo() {
   var h_ = $('#h').val();
   var photo_url_ = $('#photo_url').val();
  
-
   // hide thecrop  popup
   $('#popup_crop').hide();
 
@@ -279,12 +382,12 @@ function updateCoords(c) {
   $('#h').val(c.h);
 }
 </script>
-
-<style>
+ <style>
             /* Autocomplete
             ----------------------------------*/
             .ui-autocomplete { position: absolute; cursor: default; }   
-            .ui-autocomplete-loading { background: white url('http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/flick/images/ui-anim_basic_16x16.gif') right center no-repeat; }*/  
+            .ui-autocomplete-loading { background: white url('http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/flick/images/ui-anim_basic_16x16.gif') right center no-repeat; }*/
+  
             /* workarounds */
             * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
   
@@ -320,11 +423,13 @@ function updateCoords(c) {
                 font-weight: normal;
                 margin: -1px;
             }
-        </style>          
+        </style>
+          
         <script type="text/javascript">
         $(this).ready( function() {
             $("#rlocation").autocomplete({
                 minLength: 1,
+
                 source: 
                 function(req, add){
                     $.ajax({
@@ -336,6 +441,11 @@ function updateCoords(c) {
                         function(data){
                             if(data.response =="true"){
                                 add(data.message);
+                            }
+                            else
+                            {
+                              alert("Choose Currect City Name");
+                              $("#rlocation").val("");
                             }
                         },
                     });
