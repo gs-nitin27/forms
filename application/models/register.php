@@ -9,6 +9,7 @@ public function login($username,$password)
 {
 
 // $where = " email = '$username'  AND password = '$password'";
+//$this->db->select('userType');
 $this->db->where("email", $username);
 $this->db->where("password", $password);
 $qry = $this->db->get('user');
@@ -16,7 +17,10 @@ $qry = $this->db->get('user');
 if($qry->num_rows() > 0)
 {
 $q = $qry->row_array();
+if($q['userType']==1)
+{
 return $q;
+}
 }
 else
 return 0;
@@ -225,6 +229,7 @@ public function deleteResources($id)
 
 public function saveResources($item)
 {
+	 
 
   $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`, `topic_of_artical`, `sport`,`location`,`date_created`) VALUES ('$item->id','$item->user_id','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->topic_of_artical','$item->sport','$item->location','$item->date_created') ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`location` ='$item->location'";
 

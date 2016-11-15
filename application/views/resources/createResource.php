@@ -11,6 +11,16 @@ $(document).ready(function(){
    
 $('#save').click(function(){
 
+
+var summary1=$("#rsummary").val();
+var summary12=summary1.toString();
+var string = summary12.replace(/[&\/\\#,+$~%.':*?<>{}<p>]/g, '');
+
+var description1=$("#rdescription").val();
+var description2=description1.toString();
+var description3 = description2.replace(/[&\/\\#,+$~%.':*?<>{}<p>]/g, '');
+
+
 var data1 = {
 
 
@@ -18,8 +28,8 @@ var data1 = {
     "user_id"                 : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#rurl").val(),
-    "description"             : $("#rdescription").val(), 
-    "summary"                 : $("#rsummary").val(),
+    "description"             : description3, 
+    "summary"                 : string,
     "location"                : $("#rlocation").val(), 
     "topic_of_artical"        : $("#article").val(), 
     "image"                   : $("#photo_url").val(),
@@ -140,8 +150,16 @@ var data = JSON.stringify(data1);
                 </div>
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
-                   <textarea class="textarea" name="summary" id="rsummary" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                   <textarea class="form-control" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
+
+            <div id="rem"></div>
+
+            <script>
+            document.getElementById('rsummary').onkeyup = function () {
+            document.getElementById('rem').innerHTML = "Characters left: " + (360 - this.value.length);
+                };
+            </script>
                 
                 
                 
