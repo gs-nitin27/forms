@@ -5,6 +5,10 @@ $file =base_url('/assets/menu.json');
 $data = file_get_contents($file);
  $array=json_decode($data);
 
+ //print_r($json_array);die();
+// $var=$json_array['data'][0]->Event[0]->url;
+
+ //echo $var; die();
 
 ?>
 <aside class="main-sidebar">

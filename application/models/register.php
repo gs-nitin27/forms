@@ -4,12 +4,21 @@
 class Register extends CI_Model
 {
 
+//public function __construct() 
+    // {
+     //      parent::__construct(); 
+          // $this->load->database();
+
+          
+
+        // $db = $this->load->database('default', TRUE);
+          // $db1 = $this->load->database('other', TRUE);
+    // }
 
 public function login($username,$password)
 {
 
 // $where = " email = '$username'  AND password = '$password'";
-//$this->db->select('userType');
 $this->db->where("email", $username);
 $this->db->where("password", $password);
 $qry = $this->db->get('user');
@@ -115,7 +124,7 @@ else
 	}
 	
 	public function getJobInfo($id = false){
-		$this->db->select('*, JI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
+	    $this->db->select('*, JI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
 		$this->db->from('gs_jobInfo JI');
 		$this->db->join('gs_sports SP', 'SP.id = JI.sport', "left");
 		$this->db->join('location L', 'JI.state = L.id', "left");
@@ -167,14 +176,17 @@ else
 		return $q;
 	}
 	public function getResourceInfo($id = false){
-		$this->db->select('*');
-		$this->db->from('gs_resources GR');
+
+
+        $other_db= $this->load->database('other', TRUE);
+		$other_db->select('*');
+		$other_db->from('gs_resources GR');
 		if($id > 0){
-			$this->db->where('GR.id', $id);
+			$other_db->where('GR.id', $id);
 		}else{
-		 $this->db->order_by("GR.id", "desc"); 
+		 $other_db->order_by("GR.id", "desc"); 
 		}
-		$query = $this->db->get();
+		$query = $other_db->get();
 		$q =  $query->result_array();
 		
 		return $q;
@@ -223,15 +235,15 @@ public function editresources($id)
 
 public function deleteResources($id)
 {
-  $this -> db -> where('id', $id);
-  $this -> db -> delete('gs_resources');
+  $this ->db-> where('id', $id);
+  $this ->db-> delete('gs_resources');
 }
 
 public function saveResources($item)
 {
-	 
+	
 
-  $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`, `topic_of_artical`, `sport`,`location`,`date_created`) VALUES ('$item->id','$item->user_id','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->topic_of_artical','$item->sport','$item->location','$item->date_created') ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`location` ='$item->location'";
+  $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`date_created`) VALUES ('$item->id','$item->user_id','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->date_created') ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image',`keyword` ='$item->keyword' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`location` ='$item->location'";
 
 $query = $this->db->query($insert);
 if($query)
@@ -246,6 +258,9 @@ else
 
 
 	public function getContentInfo($id = false){
+
+      //  $this->load->database('other', TRUE);
+
 		$this->db->select('*');
 		$this->db->from('cms_content GR');
 		if($id > 0){
@@ -261,9 +276,9 @@ else
      
     public function editcontent($id)
     {
-     $this->db->select('*');
+      $this->db->select('*');
       $this->db->from('cms_content cm ');
-     $this->db->where('cm.id', $id);
+      $this->db->where('cm.id', $id);
       $query = $this->db->get();
 	  $data =  $query->result_array();
 	  return $data;
@@ -273,6 +288,7 @@ public function create_content($item)
 {
 
   $insert = "INSERT INTO `cms_content`(`id`, `title`, `url`, `content`, `date_created`, `date_updated`) VALUES ('$item->id','$item->title','$item->url','$item->content',CURDATE(),CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`content` = '$item->content', `date_updated` = CURDATE()";
+
 $query = $this->db->query($insert);
 if($query)
 {
@@ -298,7 +314,6 @@ else
 }   
 }
 
-
 public function profile($id)
 {
        
@@ -314,7 +329,6 @@ public function profile($id)
 
 public function updateProfile($item)
 {
-
 
   $insert ="INSERT INTO `user`(`userid`,`name`,`password`,`email`,`contact_no`,`sport`,`Gender`,   `address1`, `address2`, `address3`, `dob`,`prof_id`,`user_image`,`profile_status`, `location`, `prof_language`, `other_skill_name`, `other_skill_detail`, `age_catered`, `device_id`,`about_me`)  VALUES ('$item->userid','$item->name','$item->password','$item->email','$item->contact_no','$item->sport','$item->Gender','$item->address1','$item->address2','$item->address3','$item->dob','$item->prof_id','$item->user_image','$item->profile_status','$item->location','$item->prof_language','$item->other_skill_name','$item->other_skill_detail','$item->age_catered','$item->device_id','$item->about_me' )  ON DUPLICATE KEY UPDATE `name` ='$item->name', `contact_no` = '$item->contact_no',`sport` = '$item->sport' ,`Gender` = '$item->Gender' ,`address1` = '$item->address1' ,`address2` = '$item->address2' , `address3` = '$item->address3' , `dob` = '$item->dob' , `prof_id` = '$item->prof_id' , `location` = '$item->location'";
 
@@ -332,11 +346,11 @@ else
 
 public function getCityName($keyword){
 		 
-		 $this->db->distinct();
+		$this->db->distinct();
 		$this->db->select('city');
         $this->db->from('location');
-         $this->db->where('city', 0);
-         $this->db->like('city', $keyword);
+        $this->db->where('city', 0);
+        $this->db->like('city', $keyword);
          //$this->db->order_by("city", "asc");
         $this->db->limit('10');
 
@@ -360,6 +374,67 @@ public function getCityName($keyword){
 	//   return $data;
 
   //} 
+
+
+function StatusResources($item)
+{
+//print_r($item);die;
+	//echo $item->id
+$update = "UPDATE  `gs_resources` SET  `status` ='$item->status' WHERE `id` = '$item->id' ";
+
+$query = $this->db->query($update);
+if($query)
+{
+	return 1;
+}
+else
+{
+   return 0;
+}
+
+}	
+
+public function addStatusData($item){
+
+     $id=$item[0]['id'];
+     $user_id=$item[0]['user_id'];
+     $title=$item[0]['title'];
+     $description=$item[0]['description'];
+     $summary=$item[0]['summary'];
+     $url=$item[0]['url'];
+     $image=$item[0]['image'];
+     $keyword=$item[0]['keyword'];
+     $topic_of_artical=$item[0]['topic_of_artical'];
+     $sport=$item[0]['sport'];
+     $location=$item[0]['location'] ;
+     $date_created=$item[0]['date_created'];
+     $token=$item[0]['token'];
+     $status=$item[0]['status'];
+
+     $other_db= $this->load->database('default', TRUE);
+
+ $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`,`keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$id','$user_id', '$title', '$description', '$summary', '$url', '$image', '$keyword', '$topic_of_artical', '$sport', '$location' , '$date_created', '$token', '$status') ON DUPLICATE KEY UPDATE `title` ='$title' , `url` = '$url',`description` = '$description', `summary` = '$summary',`image` ='$image',`keyword` ='$keyword' , `topic_of_artical` ='$topic_of_artical',`sport` = '$sport',`location` ='$location'";
+
+//echo $insert;die;
+$query = $other_db->query($insert);
+
+if($query)
+{
+	return 1;
+}
+else
+{
+   return 0;
+}	 
+}
+
+public function deleteStatusResources($id)
+{
+      $other=$this->load->database('default',TRUE);
+       $other->where('id', $id);
+       $other->delete('gs_resources');
+}
+
 }
 
  ?>

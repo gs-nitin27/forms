@@ -34,7 +34,7 @@ var data = JSON.stringify(data12);
     setTimeout(function() {
      $('#msgdiv').fadeOut('fast');
    }, 2000);
- //  window.location.href = url+"/forms/getContent";
+   window.location.href = url+"/forms/getContent";
     }
 
 
@@ -110,7 +110,7 @@ function clear()
             </script>
 
             <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Create Content" name="Create">
+                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Create Content" name="Create">
               </div>
         </form>
 

@@ -213,7 +213,7 @@ var data = JSON.stringify(data1);
 					</div >
 					<div class="form-group">
 					  <label for="link">Event Link</label>
-					  <input type="text" class="form-control" value="http://"  id="evlink" placeholder="Enter Url">
+					  <input type="text" class="form-control" value="http://"  id="evlink" placeholder="Enter Pin">
 					</div >
 					<div class="form-group">
 					  <label for="link">Start Date</label>

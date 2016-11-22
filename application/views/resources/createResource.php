@@ -10,16 +10,16 @@
 $(document).ready(function(){
    
 $('#save').click(function(){
-
-
+	
+	
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
-var string = summary12.replace(/[&\/\\#,+$~%.':*?<>{}<p>]/g, '');
+var string = summary12.replace(/[\/\\<>~{}]/g, '');
 
 var description1=$("#rdescription").val();
 var description2=description1.toString();
-var description3 = description2.replace(/[&\/\\#,+$~%.':*?<>{}<p>]/g, '');
-
+var description3 = description2.replace(/[\/\\<>~\{}]/g, '');
+	
 
 var data1 = {
 
@@ -34,6 +34,7 @@ var data1 = {
     "topic_of_artical"        : $("#article").val(), 
     "image"                   : $("#photo_url").val(),
     "date_created"            : $("#date_created").val(),
+	 "token"                  : $("#token").val(),
     "sport"                   : $("#sport").val()
 };
 //alert(data1);
@@ -67,7 +68,7 @@ var data = JSON.stringify(data1);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-     Edit Resources
+    Create  Resources
         
       </h1>
      
@@ -94,7 +95,7 @@ var data = JSON.stringify(data1);
           $name=$data['userid'];
         {  ?>
           <div class="form-group">
-                  <input type="hidden" class="form-control" name="id" id="userid" value="<?php echo $name;?>">
+                  <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $name;?>">
             </div>
         <?php }?>
 
@@ -150,17 +151,15 @@ var data = JSON.stringify(data1);
                 </div>
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
-                   <textarea class="form-control" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                   <textarea class="form-control" maxlength="308" name="summary" id="rsummary" placeholder="Place some text here(Maximum 308 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
-
-            <div id="rem"></div>
+                <div id="rem"></div>
 
             <script>
             document.getElementById('rsummary').onkeyup = function () {
-            document.getElementById('rem').innerHTML = "Characters left: " + (360 - this.value.length);
+            document.getElementById('rem').innerHTML = "Characters left: " + (308 - this.value.length);
                 };
             </script>
-                
                 
                 
 
@@ -172,7 +171,7 @@ var data = JSON.stringify(data1);
 
                  <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
-                  <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter title">
+                  <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location">
                 </div>
 <!-- 
               <div class="form-group">
@@ -193,7 +192,7 @@ var data = JSON.stringify(data1);
                 <div class="form-group">
                      <label for="eventtype">Topic Of The Article</label>
                      <select id="article" class="form-control" name="topic_of_artical">
-                     <option value="0">- Select -</option> 
+                     <option value="">- Select -</option> 
                      <option value ="Jobs">Jobs </option>
                      <option value ="Tournaments">Tournaments</option>
                       <option value="Event">Event</option> 
@@ -210,7 +209,7 @@ var data = JSON.stringify(data1);
                         <?php  $sports = $this->register->getSport();?>
                       <label for="sports">Sport</label>
                         <select id="sport" class="form-control" name="sport">
-                        <option >-Select-</option> 
+                        <option ></option> 
                             <?php if(!empty($sports)){
                                     foreach($sports as $sport){?>
                                 <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
@@ -253,12 +252,21 @@ var data = JSON.stringify(data1);
             
         </div>
     </div>
-                
+                <div id="message"></div>
+          <script>
+            document.getElementById('crop_btn').onfocus = function () {
+              var d=$('#crop_btn').val();
+              if(d!="")
+              {
+            document.getElementById('message').innerHTML = "Image Successfully Uploaded";
+               }
+                };
+            </script>
               </div>
               <!-- /.box-body -->
            
              <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Edit Resources" name="Create">
+                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
               </div>
             </form>
 

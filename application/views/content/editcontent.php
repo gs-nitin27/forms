@@ -1,6 +1,9 @@
   <script>
 //document.domain = "getsporty.in";
-$(document).ready(function(){ 
+$(document).ready(function(){
+ 
+clear();
+   
 $('#save').click(function(){
 
 var data12 = {
@@ -40,7 +43,15 @@ var data = JSON.stringify(data12);
     
 });});
 
+function clear()
+{
 
+   // $("#ctitle").val('');
+    //$("#curl").val('');
+    //$("#ccontent").val(''); 
+    //$("#cdate").val('');
+   // $("#udate").val(''); 
+}
 
 </script>
 
@@ -72,7 +83,6 @@ var data = JSON.stringify(data12);
             {?>
         <form>
           <div class="form-group">
-                 
                   <input type="hidden" class="form-control" name="title"  id="cid" value="<?php echo $value['id']; ?>">
                 </div>
             <div class="form-group">
@@ -84,11 +94,13 @@ var data = JSON.stringify(data12);
                   <input type="text" class="form-control" name="url" id="curl" value="<?php echo $value['url']; ?>">
                 </div>
                
+           
             <div class="form-group">
                      <label for="exampleInputEmail1">Content</label>
                     <textarea class="textarea" name="content" id="ccontent"  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['content']; ?></textarea>
                    </div>
                    <?php } ?>
+          
            
             <div class="box-footer">
                 <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Create Content" name="Create">

@@ -16,10 +16,11 @@
                   <th style="width: 10px">#</th>
                   <th>Title</th>
                   <th>Summary</th>
-                  <th>Description</th>
+				        <!--  <th>Description</th> -->
                   <th>Link</th>
                   <th>Sport</th>
                   <th>Location</th>
+                  <th style="width: 40px">Status</th>
                   <th style="width: 40px">View</th>
                   <th style="width: 40px">Edit</th>
                   <th style="width: 40px">Delete</th>
@@ -32,17 +33,25 @@
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $resource['title']; ?></td>
                     <td><?php echo substr($resource['summary'],0,170); ?></td>
-                    <td><?php echo substr($resource['description'],0,170); ?></td>
+				          <!-- 	<td><?php //echo substr($resource['description'],0,170); ?></td> -->
                     <td><?php echo $resource['url']; ?></td>
                     <td><?php echo $resource['sport']; ?></td>
                     <td><?php echo $resource['location']; ?></td>
+
+
+                 <td>
+                    <?php if($resource['status']==0){?>
+                    <button class="badge bg-red" onclick="myfunction(<?php echo $resource['id'];?>,1)"><?php echo "Activate";?></button>
+                    <?php }else{?> 
+                    <button class="badge bg-green" onclick="myfunction(<?php echo $resource['id'];?>,0)"><?php echo "Deactivate";?></button>
+                    <?php } ?>
+                    </td>
+
+                    <!-- <td><button id="status" onclick="myfunction(<?php //echo $resource['id'];?>,<?php// echo $resource['status'];?>)" value="<?php //echo $resource['status'];?>"><?php //echo $resource['status'];?></button></td> -->
+
                     <td><a href = "<?php echo site_url('forms/viewresources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                     <td><a href = "<?php echo site_url('forms/editResources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
                     <td><a href = "<?php echo site_url('forms/deleteResources/'.$resource['id']); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
-
-                   
-
-
                 </tr>
                 <?php } } ?>
               </tbody></table>
@@ -54,4 +63,28 @@
 </section>
 </div>
 
+<script>
+  function myfunction(id,uid)
+  {  
+    var data1 = {
+    "id"                      : id, 
+    "status"                  : uid
+};
+console.log(JSON.stringify(data1));
+var url = '<?php echo site_url();?>'
+var data = JSON.stringify(data1);
+  $.ajax({
 
+    type: "POST",
+    url: '<?php echo site_url('forms/StatusResources'); ?>',
+    data: "data="+data,
+    dataType: "text",
+    success: function(result) {
+      window.location.href = url+"/forms/getResources";
+
+    }
+});    
+}
+
+ 
+</script>

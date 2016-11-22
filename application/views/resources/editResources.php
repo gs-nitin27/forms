@@ -11,6 +11,14 @@ $(document).ready(function(){
    
 $('#save').click(function(){
 
+var summary1=$("#rsummary").val();
+var summary12=summary1.toString();
+var string = summary12.replace(/[\/\\<>~{}]/g, '');
+
+var description1=$("#rdescription").val();
+var description2=description1.toString();
+var description3 = description2.replace(/[\/\\<>~{}]/g, '');
+
 var data1 = {
 
 
@@ -18,9 +26,10 @@ var data1 = {
     "user_id"                 : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#rurl").val(),
-    "description"             : $("#rdescription").val(), 
-    "summary"                 : $("#rsummary").val(),
+    "description"             : description3, 
+    "summary"                 : string,
     "location"                : $("#rlocation").val(), 
+    "keyword"                 : $("#rkeyword").val(),
     "topic_of_artical"        : $("#rartical").val(), 
     "image"                   : $("#photo_url").val(),
     "sport"                   : $("#sport").val()
@@ -42,7 +51,7 @@ var data = JSON.stringify(data1);
     setTimeout(function() {
      $('#msgdiv').fadeOut('fast');
    }, 2000);
-//  window.location.href = url+"/forms/getResources";
+    window.location.href = url+"/forms/getResources";
     }
 
 
@@ -90,7 +99,7 @@ var data = JSON.stringify(data1);
           $name=$data['userid'];
         {  ?>
           <div class="form-group">
-                  <input type="hidden" class="form-control" name="id" id="userid" value="<?php echo $name;?>">
+                  <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $name;?>">
             </div>
         <?php }?>
 
@@ -100,33 +109,29 @@ var data = JSON.stringify(data1);
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" maxlength="30" name="rtitle" id="rtitle" placeholder="Enter title" value="<?php echo $value['title']; ?>">
+                  <input type="text" class="form-control" name="rtitle" maxlength="30" id="rtitle" placeholder="Enter title" value="<?php echo $value['title']; ?>">
                 </div>
+				
+				
+				
+				
+				
         <div class="form-group">
                   <label for="exampleInputEmail1">Link</label>
                   <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link" value="<?php echo $value['url']; ?>">
                 </div>
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
-                   <textarea class="form-control" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['summary']; ?></textarea>
+                   <textarea class="form-control" maxlength="308" name="summary" id="rsummary" placeholder="Place some text here(Maximum 308 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['summary']; ?></textarea>
                 </div>
-
-            <div id="rem"></div>
+                <div id="rem"></div>
 
             <script>
             document.getElementById('rsummary').onkeyup = function () {
-            document.getElementById('rem').innerHTML = "Characters left: " + (360 - this.value.length);
+            document.getElementById('rem').innerHTML = "Characters left: " + (308 - this.value.length);
                 };
             </script>
-
-                
-                  <script>
-                 $("#rsummary").keyup(function() {
-                  var val=$("#rsummary").val();
-                  alert(val);
-                    });               
-                       </script>
-
+				
 
              <div class="form-group">
                   <input type="hidden" class="form-control" id="token" value="<?php echo $value['token']; ?>">
@@ -155,7 +160,7 @@ var data = JSON.stringify(data1);
 
                  <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
-                  <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter title" value="<?php echo $value['location']; ?>">
+                  <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location" value="<?php echo $value['location']; ?>">
                 </div>
 <!-- 
               <div class="form-group">
@@ -166,6 +171,9 @@ var data = JSON.stringify(data1);
                    </select>
                       </div>
                    </div> -->
+
+
+
                <!--  <div class="form-group">
                   <label for="exampleInputEmail1">Keyword</label>
                   <input type="text" class="form-control" name="keyword" id="rkeyword" placeholder="Enter title" value="<?php //echo $value['keyword']; ?>">
@@ -253,7 +261,7 @@ var data = JSON.stringify(data1);
               <!-- /.box-body -->
                <?php } ?>
              <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Edit Resources" name="Create">
+                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
               </div>
             </form>
 

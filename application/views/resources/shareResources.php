@@ -10,10 +10,7 @@
 $(document).ready(function(){
    
 $('#save').click(function(){
-
-
-
-
+	
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
 var string = summary12.replace(/[&\/\\#,+$~%.':*?{}]/g, '');
@@ -24,12 +21,13 @@ var data1 = {
     "user_id"                 : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#rurl").val(),
-    "description"             : "",
+    "description"             : "", 
     "summary"                 : string,
     "location"                : $("#rlocation").val(), 
     "topic_of_artical"        : $("#article").val(), 
     "image"                   : $("#photo_url").val(),
     "date_created"            : $("#date_created").val(),
+    "token"                   : $("#token").val(),
     "sport"                   : $("#sport").val()
 };
 //alert(data1);
@@ -63,7 +61,7 @@ var data = JSON.stringify(data1);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-     Edit Resources
+     Share Resources
         
       </h1>
      
@@ -90,12 +88,12 @@ var data = JSON.stringify(data1);
           $name=$data['userid'];
         {  ?>
           <div class="form-group">
-                  <input type="hidden" class="form-control" name="id" id="userid" value="<?php echo $name;?>">
+                  <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $name;?>">
             </div>
         <?php }?>
 
                 <div class="form-group">
-                  <input type="hidden" class="form-control" name="token" id="token" value="1">
+                  <input type="hidden" class="form-control" name="token" id="token" value="0">
                 </div>
 
         <!--     <script>
@@ -140,24 +138,22 @@ var data = JSON.stringify(data1);
                   <label for="exampleInputEmail1">Title</label>
                   <input type="text" class="form-control" maxlength="30" name="rtitle" id="rtitle" placeholder="Enter title">
                 </div>
-
-
         <div class="form-group">
                   <label for="exampleInputEmail1">Link</label>
                   <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link">
                 </div>
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
-                   <textarea class="form-control" maxlength="170" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                   <textarea class="form-control" maxlength="308" name="summary" id="rsummary" placeholder="Place some text here(Maximum 308 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
-                <div id="rem"></div>
+                
+            <div id="rem"></div>
 
             <script>
             document.getElementById('rsummary').onkeyup = function () {
-            document.getElementById('rem').innerHTML = "Characters left: " + (360 - this.value.length);
-               };
+            document.getElementById('rem').innerHTML = "Characters left: " + (308 - this.value.length);
+                };
             </script>
- 
                 
 
            <!-- <div class="form-group" id="abc">
@@ -168,7 +164,7 @@ var data = JSON.stringify(data1);
 
                  <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
-                  <input type="text" class="form-control" name="location"  id="rlocation" placeholder="Enter title">
+                  <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location">
                 </div>
 <!-- 
               <div class="form-group">
@@ -249,28 +245,40 @@ var data = JSON.stringify(data1);
             
         </div>
     </div>
-                
+                <div id="message"></div>
+          <script>
+            document.getElementById('crop_btn').onfocus = function () {
+              var d=$('#crop_btn').val();
+              if(d!="")
+              {
+            document.getElementById('message').innerHTML = "Image Successfully Uploaded";
+               }
+                };
+            </script>
               </div>
               <!-- /.box-body -->
            
              <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Edit Resources" name="Create">
+                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
               </div>
             </form>
 
 
-            <script>  
+ <script>
+                
               $('#save').click(function(){
-                   if($('#photo_url').val() =="")
+                if($('#photo_url').val() =="")
                          {
                         if(!confirm("Do you want to continue without uploading the photo"))
                                           {
                                             return false;
                                           }
+                     
                        }
-                     });
 
-               </script>
+});
+
+</script>
 
 
 
