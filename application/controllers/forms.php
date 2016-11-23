@@ -431,7 +431,9 @@ $item->topic_of_artical      = $data2->topic_of_artical;
 $item->sport                 = $data2->sport;
 $item->location              = $data2->location;
 $item->image                 = $data2->image;
+$item->status                 = $data2->status;
 $item->date_created          = @$data2->date_created;
+
 
 
 $this->load->model('register');
@@ -718,15 +720,125 @@ $this->load->model('register');
 $res = $this->register->StatusResources($item);
 if($data2->status==1)
 {
-
+       
 	$rdata=$this->register->getResourceInfo($data2->id);
-	$this->register->addStatusData($rdata);
+	
+	
+	$this->register->addResourcesData($rdata);
 }
 else{
 
 	$this->register->deleteStatusResources($data2->id);
 
 }
+
+}
+
+
+public function StatusEvent()
+{
+
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
+
+$item->id                    = $data2->id;
+$item->publish               = $data2->publish;
+
+$this->load->model('register');
+//$res1 = $this->register->addStatusData($data2->id);
+$res = $this->register->StatusEvent($item);
+if($data2->publish==1)
+{
+       
+	$edata=$this->register->getEventInfo($data2->id);
+	
+	
+	$this->register->addEventData($edata);
+}
+else{
+    
+	$this->register->deletePublishEvent($data2->id);
+
+}
+
+
+}
+
+
+
+public function StatusTournament()
+{
+
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
+
+$item->id                    = $data2->id;
+$item->publish               = $data2->publish;
+
+$this->load->model('register');
+$res = $this->register->Statustournament($item);
+if($data2->publish==1)
+{    
+	$tdata=$this->register->getTournamentInfo($data2->id);
+	$this->register->addTournamentData($tdata);
+}
+else{
+	$this->register->deletePublishTournament($data2->id);
+
+}
+
+
+}
+
+public function StatusJob()
+{
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
+
+$item->id                    = $data2->id;
+$item->publish               = $data2->publish;
+
+$this->load->model('register');
+$res = $this->register->StatusJob($item);
+if($data2->publish==1)
+{    
+	$jdata=$this->register->getJobInfo($data2->id);
+
+    print_r($jdata);
+	$this->register->addJobData($jdata);
+}
+else{
+	$this->register->deletePublishJob($data2->id);
+
+}
+
+
+}
+
+
+
+public function StatusContent()
+{
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
+
+$item->id                    = $data2->id;
+$item->publish               = $data2->publish;
+
+$this->load->model('register');
+$res = $this->register->StatusContent($item);
+if($data2->publish==1)
+{    
+	$jdata=$this->register->getContentInfo($data2->id);
+
+    print_r($jdata);
+	$this->register->addContentData($jdata);
+}
+else{
+	$this->register->deletePublishContent($data2->id);
+
+}
+
 
 }
 

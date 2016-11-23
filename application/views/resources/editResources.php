@@ -32,6 +32,7 @@ var data1 = {
     "keyword"                 : $("#rkeyword").val(),
     "topic_of_artical"        : $("#rartical").val(), 
     "image"                   : $("#photo_url").val(),
+    "status"                  : $("#status").val(),
     "sport"                   : $("#sport").val()
 };
 //alert(data1);
@@ -106,6 +107,10 @@ var data = JSON.stringify(data1);
               <div class="form-group">
                   <input type="hidden" class="form-control" name="id" id="rid" value="<?php echo $value['id']; ?>">
                 </div>
+
+                  <div class="form-group">
+                  <input type="hidden" class="form-control" name="status" id="status" value="0">
+                   </div>
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>

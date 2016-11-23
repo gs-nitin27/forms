@@ -20,7 +20,7 @@
                   <th>Link</th>
                   <th>Sport</th>
                   <th>Location</th>
-                  <th style="width: 40px">Status</th>
+                  <th style="width: 40px">Publish</th>
                   <th style="width: 40px">View</th>
                   <th style="width: 40px">Edit</th>
                   <th style="width: 40px">Delete</th>
@@ -47,8 +47,6 @@
                     <?php } ?>
                     </td>
 
-                    <!-- <td><button id="status" onclick="myfunction(<?php //echo $resource['id'];?>,<?php// echo $resource['status'];?>)" value="<?php //echo $resource['status'];?>"><?php //echo $resource['status'];?></button></td> -->
-
                     <td><a href = "<?php echo site_url('forms/viewresources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                     <td><a href = "<?php echo site_url('forms/editResources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
                     <td><a href = "<?php echo site_url('forms/deleteResources/'.$resource['id']); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
@@ -62,8 +60,8 @@
 </div>
 </section>
 </div>
+<script type="text/javascript">
 
-<script>
   function myfunction(id,uid)
   {  
     var data1 = {
@@ -80,6 +78,7 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
+     
       window.location.href = url+"/forms/getResources";
 
     }

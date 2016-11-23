@@ -185,7 +185,7 @@ var data = JSON.stringify(data1);
                 <div class="form-group">
                      <label for="eventtype">Topic Of The Article</label>
                      <select id="article" class="form-control" name="topic_of_artical">
-                     <option value="0">- Select -</option> 
+                     <option value="">- Select -</option> 
                      <option value ="Jobs">Jobs </option>
                      <option value ="Tournaments">Tournaments</option>
                       <option value="Event">Event</option> 
@@ -202,7 +202,7 @@ var data = JSON.stringify(data1);
                         <?php  $sports = $this->register->getSport();?>
                       <label for="sports">Sport</label>
                         <select id="sport" class="form-control" name="sport">
-                        <option >-Select-</option> 
+                        <option ></option> 
                             <?php if(!empty($sports)){
                                     foreach($sports as $sport){?>
                                 <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>

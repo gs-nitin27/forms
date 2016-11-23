@@ -21,12 +21,17 @@
                   <th>Location</th>
                   <th>Organiser</th>
                   <th style="width: 40px">Status</th>
-                  <th style="width: 40px">Action</th>
+                  <th style="width: 40px">Publish</th>
+                  <th style="width: 40px">View</th>
                 </tr>
 				<?php $i =1;
 				$tournaments = $this->register->getTournamentInfo();
+
+          
+
 				if(!empty($tournaments)){
-						foreach($tournaments as $tournament){ ?>
+						foreach($tournaments as $tournament){
+             ?>
                 <tr>
 					<td><?php echo $i++; ?></td>
 					<td><?php echo $tournament['name']; ?></td>
@@ -44,6 +49,16 @@
 					<span class="badge bg-green"><?php echo "Active";?></span>
 					<?php } ?>
 					</td>
+
+          <td>
+          <?php if($tournament['publish']==0){?>
+          <button class="badge bg-red" onclick="myfunction(<?php echo $tournament['infoId'];?>,1)"><?php echo "Activate";?></button>
+          <?php }else{?> 
+          <button class="badge bg-green" onclick="myfunction(<?php echo $tournament['infoId'];?>,0)"><?php echo "Deactivate";?></button>
+          <?php } ?>
+          </td>
+
+
 					<td><a href = "<?php echo site_url('forms/viewtournament/'.$tournament['infoId']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                 </tr>
 				<?php } } ?>
@@ -65,5 +80,29 @@
 </section>
 </div>
 
+<script>
+  function myfunction(id,uid)
+  {  
+    var data1 = {
+    "id"                      : id, 
+    "publish"                 : uid
+};
+console.log(JSON.stringify(data1));
+var url = '<?php echo site_url();?>'
+var data = JSON.stringify(data1);
+  $.ajax({
 
+    type: "POST",
+    url: '<?php echo site_url('forms/StatusTournament'); ?>',
+    data: "data="+data,
+    dataType: "text",
+    success: function(result) {
+      window.location.href = url+"/forms/gettournament";
+
+    }
+});    
+}
+
+ 
+</script>
 

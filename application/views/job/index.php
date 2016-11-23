@@ -64,7 +64,8 @@ $(document).ready(function(){
                   <th>Sport</th>
                   <th>Location</th>
                   <th>Organisation</th>
-                  <th style="width: 40px">Action</th>
+                  <th style="width: 40px">Publish</th>
+                  <th style="width: 40px">View</th>
                 </tr>
 				<?php $i =1;
 				$jobs = $this->register->getJobInfo();
@@ -78,6 +79,14 @@ $(document).ready(function(){
 					<td><?php echo $job['city']; ?></td>
 					<td><?php echo $job['organisation_name']; ?></td>
 					<!--td><span class="badge bg-red">55%</span></td-->
+          <td>
+          <?php if($job['publish']==0){?>
+          <button class="badge bg-red" onclick="myfunction(<?php echo $job['infoId'];?>,1)"><?php echo "Activate";?></button>
+          <?php }else{?> 
+          <button class="badge bg-green" onclick="myfunction(<?php echo $job['infoId'];?>,0)"><?php echo "Deactivate";?></button>
+          <?php } ?>
+          </td>
+
 					<td><a href = "<?php echo site_url('forms/viewJob/'.$job['infoId']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                 </tr>
 				<?php } } ?>
@@ -100,4 +109,28 @@ $(document).ready(function(){
 </div>
 
 
+<script>
+  function myfunction(id,uid)
+  {  
+    var data1 = {
+    "id"                      : id, 
+    "publish"                 : uid
+};
+console.log(JSON.stringify(data1));
+var url = '<?php echo site_url();?>'
+var data = JSON.stringify(data1);
+  $.ajax({
 
+    type: "POST",
+    url: '<?php echo site_url('forms/StatusJob'); ?>',
+    data: "data="+data,
+    dataType: "text",
+    success: function(result) {
+      window.location.href = url+"/forms/getJob";
+
+    }
+});    
+}
+
+ 
+</script>
