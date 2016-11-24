@@ -140,7 +140,7 @@ else
 	}
 	
 	public function getEventInfo($id = false){
-		$this->db->select('*, EI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
+	 $this->db->select('*, EI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
 		$this->db->from('gs_eventinfo EI');
 		$this->db->join('gs_sports SP', 'SP.id = EI.sport', "left");
 		$this->db->join('location L', 'EI.state = L.id', "left");
@@ -243,17 +243,17 @@ public function saveResources($item)
 {
 	
 
-  $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$item->id','$item->user_id','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->status','$item->date_created') ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image',`keyword` ='$item->keyword' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`status` ='$item->status',`location` ='$item->location'";
+  $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$ item->id','$item->user_id','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->status','$item->date_created') ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image',`keyword` ='$item->keyword' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`status` ='$item->status',`location` ='$item->location'";
 
-$query = $this->db->query($insert);
-if($query)
-{
-	return 1;
-}
-else
-{
-   return 0;
-}
+   $query = $this->db->query($insert);
+   if($query)
+    {
+	  return 1;
+    }
+    else
+    {
+      return 0;
+    }
 }
 
 
@@ -286,8 +286,7 @@ else
 
 public function create_content($item)
 {
-
-  $insert = "INSERT INTO `cms_content`(`id`, `title`, `url`, `content`, `date_created`, `date_updated`) VALUES ('$item->id','$item->title','$item->url','$item->content',CURDATE(),CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`content` = '$item->content', `date_updated` = CURDATE()";
+      $insert = "INSERT INTO `cms_content`(`id`, `title`, `url`, `content`, `publish`, `date_created`, `date_updated`) VALUES ('$item->id','$item->title','$item->url','$item->content','$item->publish',CURDATE(),CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`content` = '$item->content', `publish` = '$item->publish', `date_updated` = CURDATE()";
 
 $query = $this->db->query($insert);
 if($query)
@@ -303,46 +302,41 @@ else
 public function create_userModule($item)
 { 
     $insert ="INSERT INTO `gs_usermodule`(`id`, `event`, `tournament`, `job`, `resources`, `content`) VALUES ('$item->id','$item->event','$item->tournament','$item->job','$item->resources','$item->content') ON DUPLICATE KEY UPDATE `event` ='$item->event' , `tournament` = '$item->tournament',`job` = '$item->job',`resources` = '$item->resources',`content` = '$item->content'";
-$query = $this->db->query($insert);
-if($query)
-{
-	return 1;
-}
-else
-{
-   return 0;
-}   
+    $query = $this->db->query($insert);
+    if($query)
+     {
+	    return 1;
+     }
+     else
+     {
+        return 0;
+     }   
 }
 
 public function profile($id)
-{
-       
+{   
       $this->db->select('*');
-       $this->db->from('user u');
+      $this->db->from('user u');
       $this->db->where('u.userid', $id);
       $query = $this->db->get();
 	  $data =  $query->result_array();
 	  return $data;
-    
-
 }
 
 public function updateProfile($item)
 {
-
   $insert ="INSERT INTO `user`(`userid`,`name`,`password`,`email`,`contact_no`,`sport`,`Gender`,   `address1`, `address2`, `address3`, `dob`,`prof_id`,`user_image`,`profile_status`, `location`, `prof_language`, `other_skill_name`, `other_skill_detail`, `age_catered`, `device_id`,`about_me`)  VALUES ('$item->userid','$item->name','$item->password','$item->email','$item->contact_no','$item->sport','$item->Gender','$item->address1','$item->address2','$item->address3','$item->dob','$item->prof_id','$item->user_image','$item->profile_status','$item->location','$item->prof_language','$item->other_skill_name','$item->other_skill_detail','$item->age_catered','$item->device_id','$item->about_me' )  ON DUPLICATE KEY UPDATE `name` ='$item->name', `contact_no` = '$item->contact_no',`sport` = '$item->sport' ,`Gender` = '$item->Gender' ,`address1` = '$item->address1' ,`address2` = '$item->address2' , `address3` = '$item->address3' , `dob` = '$item->dob' , `prof_id` = '$item->prof_id' , `location` = '$item->location'";
 
   $query = $this->db->query($insert);
-if($query)
-{
+  if($query)
+  {
 	return 1;
+  }
+  else
+  {
+    return 0;
+   }
 }
-else
-{
-   return 0;
-}
-}
-
 
 public function getCityName($keyword){
 		 
@@ -352,10 +346,7 @@ public function getCityName($keyword){
         $this->db->where('city', 0);
         $this->db->like('city', $keyword);
          //$this->db->order_by("city", "asc");
-        $this->db->limit('10');
-
-     // $this->db->where("city LIKE '%$keyword%'")->get();       
-
+        $this->db->limit('10');      
       //  $this->db->limit(0, 6);
         $query = $this->db->get();
         foreach($query->result_array() as $row){
@@ -365,37 +356,24 @@ public function getCityName($keyword){
 
 	}
 
- //  public function getusername($id){
- //  	$this->db-select('name');
- //  	$this->db->form('user');
- //  	$this->db->where('userid',$id);
- //  	$query = $this->db->get();
-	// $data =  $query->result_array();
-	//   return $data;
-
-  //} 
-
 
 function StatusResources($item)
 {
-//print_r($item);die;
-	//echo $item->id
-$update = "UPDATE  `gs_resources` SET  `status` ='$item->status' WHERE `id` = '$item->id' ";
-
-$query = $this->db->query($update);
-if($query)
-{
-	return 1;
-}
-else
-{
-   return 0;
-}
-
+        $update = "UPDATE  `gs_resources` SET  `status` ='$item->status' WHERE `id` = '$item->id' ";
+        $query = $this->db->query($update);
+        if($query)
+          {
+	        return 1;
+          }
+        else
+          {
+            return 0;
+          }
 }	
 
-public function addResourcesData($item){
 
+public function addResourcesData($item)
+{
      $id=$item[0]['id'];
      $user_id=$item[0]['user_id'];
      $title=(string)$item[0]['title'];
@@ -411,55 +389,45 @@ public function addResourcesData($item){
      $token=$item[0]['token'];
      $status=$item[0]['status'];
 
+     $other_db= $this->load->database('default', TRUE);
 
-     
+     $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`,`keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$id','$user_id', '$title', '$url', '$description', '$summary', '$image', '$keyword', '$topic_of_artical', '$sport', '$location', '$token', '$status' , '$date_created') ON DUPLICATE KEY UPDATE `title` ='$title' , `url` = '$url',`description` = '$description', `summary` = '$summary',`image` ='$image',`topic_of_artical` ='$topic_of_artical',`sport` = '$sport',`location` ='$location'";
 
-
-
- $other_db= $this->load->database('default', TRUE);
-
- $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`,`keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$id','$user_id', '$title', '$url', '$description', '$summary', '$image', '$keyword', '$topic_of_artical', '$sport', '$location', '$token', '$status' , '$date_created') ON DUPLICATE KEY UPDATE `title` ='$title' , `url` = '$url',`description` = '$description', `summary` = '$summary',`image` ='$image',`topic_of_artical` ='$topic_of_artical',`sport` = '$sport',`location` ='$location'";
-
-//echo $insert;die;
-$query = $other_db->query($insert);
-
-if($query)
-{
-	return 1;
-}
-else
-{
-   return 0;
-}	 
+    $query = $other_db->query($insert);
+       if($query)
+       {
+	      return 1;
+       }
+       else
+       {
+         return 0;
+       }	 
 }
 
 public function deleteStatusResources($id)
 {
-      $other=$this->load->database('default',TRUE);
+       $other=$this->load->database('default',TRUE);
        $other->where('id', $id);
        $other->delete('gs_resources');
 }
 
 public function StatusEvent($item)
 {
-	//print_r($item);
+   $update = "UPDATE  `gs_eventinfo` SET  `publish` ='$item->publish' WHERE `id` = '$item->id' ";
+   $query = $this->db->query($update);
+   if($query)
+    {
+	  return 1;
+    }
+   else
+    {
+      return 0;
+    }
+}
 
-$update = "UPDATE  `gs_eventinfo` SET  `publish` ='$item->publish' WHERE `id` = '$item->id' ";
-
-$query = $this->db->query($update);
-if($query)
+public function addEventData($item)
 {
-	return 1;
-}
-else
-{
-   return 0;
-}
-}
-
-public function addEventData($item){
-
-     $id=$item[0]['id'];
+     $id=$item[0]['infoId'];
      $userid=$item[0]['userid'];
      $name=$item[0]['name'];
      $type=$item[0]['type'];
@@ -491,24 +459,19 @@ public function addEventData($item){
      $email_app_collection=$item[0]['email_app_collection'];
      $dateCreated=$item[0]['dateCreated'];
      
+     $other_db= $this->load->database('default', TRUE);
 
-     
- $other_db= $this->load->database('default', TRUE);
+     $insert = "INSERT INTO `gs_eventinfo`(`id`, `userid`,`name`, `type`, `address_1`, `address_2`, `location`, `PIN`,`state` ,`description`, `sport`,`eligibility1`,`eligibility2`, `terms_cond1`, `terms_cond2`, `organizer_name`, `mobile`,`organizer_address_line1`, `organizer_address_line2`, `organizer_city`, `organizer_pin`,`organizer_state` ,`event_links`, `start_date`, `end_date`, `entry_start_date`, `entry_end_date`, `file_name` , `publish`, `email_app_collection`, `dateCreated`) VALUES('$id','$userid','$name', '$type','$address_1','$address_2','$location','$PIN','$state','$description','$sport','$eligibility1','$eligibility2','$terms_cond1','$terms_cond2','$organizer_name','$mobile','$organizer_address_line1','$organizer_address_line2','$organizer_city','$organizer_pin','$organizer_state','$event_links','$start_date','$end_date','$entry_start_date','$entry_end_date','$file_name','$publish','$email_app_collection',CURDATE()) ON DUPLICATE KEY UPDATE `name` = '$name',`address_1` = '$address_1' ,`address_2` = '$address_2' ,`location` = '$location' ,`state` = '$state', `PIN` = '$PIN' , `description` = '$description',`sport` = '$sport',`eligibility1` = '$eligibility1',`eligibility2` = '$eligibility2'  , `terms_cond1` = '$terms_cond1', `terms_cond2` = '$terms_cond2' , `organizer_name` = '$organizer_name' ,  `mobile` ='$mobile' ,`organizer_address_line1` = '$organizer_address_line1' , `organizer_address_line2` = '$organizer_address_line2' , `organizer_city` = '$organizer_city' , `organizer_pin` = '$organizer_pin', `organizer_state` = '$organizer_state' ,  `event_links` = '$event_links' , `start_date` = FROM_UNIXTIME ('$start_date') ,`end_date` = FROM_UNIXTIME ('$end_date') ,  `entry_start_date` = FROM_UNIXTIME ('$entry_start_date') , `entry_end_date` = FROM_UNIXTIME ('$entry_end_date') , `file_name` = '$file_name',`email_app_collection` = '$email_app_collection'";
 
-
-$insert = "INSERT INTO `gs_eventinfo`(`id`, `userid`,`name`, `type`, `address_1`, `address_2`, `location`, `PIN`,`state` ,`description`, `sport`,`eligibility1`,`eligibility2`, `terms_cond1`, `terms_cond2`, `organizer_name`, `mobile`,`organizer_address_line1`, `organizer_address_line2`, `organizer_city`, `organizer_pin`,`organizer_state` ,`event_links`, `start_date`, `end_date`, `entry_start_date`, `entry_end_date`, `file_name` , `publish`, `email_app_collection`, `dateCreated`) VALUES('$id','$userid','$name', '$type','$address_1','$address_2','$location','$PIN','$state','$description','$sport','$eligibility1','$eligibility2','$terms_cond1','$terms_cond2','$organizer_name','$mobile','$organizer_address_line1','$organizer_address_line2','$organizer_city','$organizer_pin','$organizer_state','$event_links',FROM_UNIXTIME ('$start_date'),FROM_UNIXTIME ('$end_date'),FROM_UNIXTIME ('$entry_start_date'),FROM_UNIXTIME ('$entry_end_date'),'$file_name','$publish','$email_app_collection',CURDATE()) ON DUPLICATE KEY UPDATE `name` = '$name',`address_1` = '$address_1' ,`address_2` = '$address_2' ,`location` = '$location' ,`state` = '$state', `PIN` = '$PIN' , `description` = '$description',`sport` = '$sport',`eligibility1` = '$eligibility1',`eligibility2` = '$eligibility2'  , `terms_cond1` = '$terms_cond1', `terms_cond2` = '$terms_cond2' , `organizer_name` = '$organizer_name' ,  `mobile` ='$mobile' ,`organizer_address_line1` = '$organizer_address_line1' , `organizer_address_line2` = '$organizer_address_line2' , `organizer_city` = '$organizer_city' , `organizer_pin` = '$organizer_pin', `organizer_state` = '$organizer_state' ,  `event_links` = '$event_links' , `start_date` = FROM_UNIXTIME ('$start_date') ,`end_date` = FROM_UNIXTIME ('$end_date') ,  `entry_start_date` = FROM_UNIXTIME ('$entry_start_date') , `entry_end_date` = FROM_UNIXTIME ('$entry_end_date') , `file_name` = '$file_name',`email_app_collection` = '$email_app_collection'";
-
-
-$query = $other_db->query($insert);
-
-if($query)
-{
-	return 1;
-}
-else
-{
-   return 0;
-}	 
+     $query = $other_db->query($insert);
+     if($query)
+      {
+	    return 1;
+      }
+     else
+      {
+        return 0;
+      }	 
 }
 
 public function deletePublishEvent($id)
@@ -516,25 +479,20 @@ public function deletePublishEvent($id)
        $other=$this->load->database('default',TRUE);
        $other->where('id', $id);
        $other->delete('gs_eventinfo');
-
 }
-
 
 public function Statustournament($item)
 {
-	//print_r($item);
-
-$update = "UPDATE  `gs_tournament_info` SET  `publish` ='$item->publish' WHERE `id` = '$item->id' ";
-
-$query = $this->db->query($update);
-if($query)
-{
-	return 1;
-}
-else
-{
-   return 0;
-}
+   $update = "UPDATE  `gs_tournament_info` SET  `publish` ='$item->publish' WHERE `id` = '$item->id' ";
+   $query = $this->db->query($update);
+   if($query)
+     {
+	   return 1;
+     }
+   else
+     {
+       return 0;
+     }
 }
 
 public function addTournamentData($item)
@@ -572,26 +530,20 @@ public function addTournamentData($item)
 	 $file_name=$item[0]['file_name'];
      $publish=$item[0]['publish'] ;
      $date_created=$item[0]['date_created'];
-     
-  
+       
      $other_db= $this->load->database('default', TRUE);
 
+     $insert = "INSERT INTO `gs_tournament_info`(`id`, `userid`, `name`, `category`, `address_1`, `address_2`, `location`,`state`, `pin`, `description`,`sport` ,`level`, `age_group`, `gender`, `eligibility1`,`eligibility2`, `terms_and_cond1`, `terms_and_cond2`, `organiser_name`, `mobile`, `email`, `org_address1`, `org_address2`, `org_city`, `org_pin`, `tournaments_link`, `start_date`, `end_date`, `event_entry_date`, `event_end_date`, `file_name`, `publish`,`date_created`) VALUES ('$id','$userid','$name','$category','$address_1','$address_2','$location','$state','$pin','$description','$sport','$level','$age_group','$gender','$eligibility1','$eligibility2','$terms_and_cond1','$terms_and_cond2','$organiser_name','$mobile','$email','$org_address1','$org_address2','$org_city','$org_pin','$tournaments_link','$start_date','$end_date','$event_entry_date' ,'$event_end_date','$file_name','$publish',CURDATE()) ON DUPLICATE KEY UPDATE `name` = '$name', `address_1` = '$address_1' , `address_2` = '$address_2' , `location` = '$location' ,`state`='$state' ,`pin` = '$pin' , `description` = '$description',`sport`='$sport',`level` = '$level',`age_group`='$age_group',`gender` = '$gender',`eligibility1` = '$eligibility1' ,`eligibility2` = '$eligibility2', `terms_and_cond1` = '$terms_and_cond1', `terms_and_cond2` = '$terms_and_cond2' ,`organiser_name` = '$organiser_name' , `mobile` = '$mobile' , `email` = '$email' , `org_address1` = '$org_address1' , `org_address2` = '$org_address2' , `org_city` = '$org_city', `org_pin` = '$org_pin' , `tournaments_link` = '$tournaments_link' ,`start_date` = FROM_UNIXTIME ('$start_date') , `end_date` = FROM_UNIXTIME ('$end_date') , `event_entry_date` = FROM_UNIXTIME ('$event_entry_date') , `event_end_date` = FROM_UNIXTIME ('$event_end_date')";
 
-$insert = "INSERT INTO `gs_tournament_info`(`id`, `userid`, `name`, `category`, `address_1`, `address_2`, `location`,`state`, `pin`, `description`,`sport` ,`level`, `age_group`, `gender`, `eligibility1`,`eligibility2`, `terms_and_cond1`, `terms_and_cond2`, `organiser_name`, `mobile`, `email`, `org_address1`, `org_address2`, `org_city`, `org_pin`, `tournaments_link`, `start_date`, `end_date`, `event_entry_date`, `event_end_date`, `file_name`, `publish`,`date_created`) VALUES ('$id','$userid','$name','$category','$address_1','$address_2','$location','$state','$pin','$description','$sport','$level','$age_group','$gender','$eligibility1','$eligibility2','$terms_and_cond1','$terms_and_cond2','$organiser_name','$mobile','$email','$org_address1','$org_address2','$org_city','$org_pin','$tournaments_link',FROM_UNIXTIME ('$start_date'),FROM_UNIXTIME ('$end_date'),FROM_UNIXTIME('$event_entry_date') ,FROM_UNIXTIME ('$event_end_date'),'$file_name','$publish',CURDATE()) ON DUPLICATE KEY UPDATE `name` = '$name', `address_1` = '$address_1' , `address_2` = '$address_2' , `location` = '$location' ,`state`='$state' ,`pin` = '$pin' , `description` = '$description',`sport`='$sport',`level` = '$level',`age_group`='$age_group',`gender` = '$gender',`eligibility1` = '$eligibility1' ,`eligibility2` = '$eligibility2', `terms_and_cond1` = '$terms_and_cond1', `terms_and_cond2` = '$terms_and_cond2' ,`organiser_name` = '$organiser_name' , `mobile` = '$mobile' , `email` = '$email' , `org_address1` = '$org_address1' , `org_address2` = '$org_address2' , `org_city` = '$org_city', `org_pin` = '$org_pin' , `tournaments_link` = '$tournaments_link' ,`start_date` = FROM_UNIXTIME ('$start_date') , `end_date` = FROM_UNIXTIME ('$end_date') , `event_entry_date` = FROM_UNIXTIME ('$event_entry_date') , `event_end_date` = FROM_UNIXTIME ('$event_end_date')";
-
-
-
-
-$query = $other_db->query($insert);
-
-if($query)
-{
-	return $id;
-}
-else
-{
-   return 0;
-}	 
+     $query = $other_db->query($insert);
+     if($query)
+      {
+	    return $id;
+      }
+     else
+      {
+        return 0;
+      }	 
 }
 
 public function deletePublishTournament($id)
@@ -599,28 +551,24 @@ public function deletePublishTournament($id)
        $other=$this->load->database('default',TRUE);
        $other->where('id', $id);
        $other->delete('gs_tournament_info');
-
 }
 
 function StatusJob($item)
 {
-//print_r($item);die;
-	//echo $item->id
-$update = "UPDATE  `gs_jobInfo` SET  `publish` ='$item->publish' WHERE `id` = '$item->id' ";
-
-$query = $this->db->query($update);
-if($query)
-{
-	return 1;
-}
-else
-{
-   return 0;
-}
-
+       $update = "UPDATE  `gs_jobInfo` SET  `publish` ='$item->publish' WHERE `id` = '$item->id' ";
+       $query = $this->db->query($update);
+       if($query)
+       {
+	     return 1;
+       }
+       else
+       {
+         return 0;
+       }
 }	
 
-public function addJobData($item){
+public function addJobData($item)
+{
 
      $id=$item[0]['infoId'];
      $userid=$item[0]['userid'];
@@ -649,53 +597,45 @@ public function addJobData($item){
      $contact=$item[0]['contact'];
      $email=$item[0]['email'];
      $date_created=$item[0]['date_created'];
-    
 
+     $other_db= $this->load->database('default', TRUE);
 
- $other_db= $this->load->database('default', TRUE);
+     $insert = "INSERT INTO `gs_jobInfo`(`id`, `userid`, `title`, `gender`, `sport`, `type`, `work_experience`, `description`, `desired_skills`, `qualification`, `key_requirement`, `org_address1`, `org_address2`, `org_city`, `org_state`, `org_pin`, `organisation_name`, `about`, `address1`, `address2`, `state`, `city`, `pin`, `publish`, `contact`, `email`, `date_created`) VALUES ('$id','$userid','$title','$gender','$sport','$type','$work_experience','$description','$desired_skills','$qualification','$key_requirement','$org_address1','$org_address2','$org_city','$org_state','$org_pin','$organisation_name','$about','$address1','$address2','$state','$city','$pin','$publish','$contact','$email',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$title' , `sport` = '$sport',`gender` = '$gender' ,`type` = '$type' , `work_experience` = '$work_experience' , `description` = '$description' , `desired_skills` = '$desired_skills' , `qualification` = '$qualification' , `key_requirement` = '$key_requirement' , `organisation_name` = '$organisation_name' , `about` = '$about', `contact` = '$contact' , `email` = '$email' , `date_created` = CURDATE(), `org_address1` = '$org_address1',`org_address2` = '$org_address2',`org_city` = '$org_city' , `org_pin` = '$org_pin' , `org_state`= '$org_state' , `address1`= '$address1' , `address2` = '$address2' , `city` = '$city' , `state` = '$state' , `pin` = '$pin'";
 
-$insert = "INSERT INTO `gs_jobInfo`(`id`, `userid`, `title`, `gender`, `sport`, `type`, `work_experience`, `description`, `desired_skills`, `qualification`, `key_requirement`, `org_address1`, `org_address2`, `org_city`, `org_state`, `org_pin`, `organisation_name`, `about`, `address1`, `address2`, `state`, `city`, `pin`, `publish`, `contact`, `email`, `date_created`)
-    VALUES ('$id','$userid','$title','$gender','$sport','$type','$work_experience','$description','$desired_skills','$qualification','$key_requirement','$org_address1','$org_address2','$org_city','$org_state','$org_pin','$organisation_name','$about','$address1','$address2','$state','$city','$pin','$publish','$contact','$email',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$title' , `sport` = '$sport',`gender` = '$gender' ,`type` = '$type' , `work_experience` = '$work_experience' , `description` = '$description' , `desired_skills` = '$desired_skills' , `qualification` = '$qualification' , `key_requirement` = '$key_requirement' , `organisation_name` = '$organisation_name' , `about` = '$about', `contact` = '$contact' , `email` = '$email' , `date_created` = CURDATE(), `org_address1` = '$org_address1',`org_address2` = '$org_address2',`org_city` = '$org_city' , `org_pin` = '$org_pin' , `org_state`= '$org_state' , `address1`= '$address1' , `address2` = '$address2' , `city` = '$city' , `state` = '$state' , `pin` = '$pin'";
-
-//echo $insert;die;
-$query = $other_db->query($insert);
-
-if($query)
-{
-	return 1;
-}
-else
-{
-   return 0;
-}	 
+     $query = $other_db->query($insert);
+     if($query)
+       {
+	     return 1;
+       }
+     else
+       {
+         return 0;
+       }	 
 }
 
 public function deletePublishJob($id)
 {
-      $other=$this->load->database('default',TRUE);
+       $other=$this->load->database('default',TRUE);
        $other->where('id', $id);
        $other->delete('gs_jobInfo');
 }
 
-
 function StatusContent($item)
 {
-$update = "UPDATE  `cms_content` SET  `publish` ='$item->publish' WHERE `id` = '$item->id' ";
-
-$query = $this->db->query($update);
-if($query)
-{
-	return 1;
-}
-else
-{
-   return 0;
-}
-
+     $update = "UPDATE  `cms_content` SET  `publish` ='$item->publish' WHERE `id` = '$item->id' ";
+     $query = $this->db->query($update);
+     if($query)
+       {
+	     return 1;
+       }
+     else
+       {
+         return 0;
+       }
 }	
 
-public function addContentData($item){
-
+public function addContentData($item)
+{
      $id=$item[0]['id'];
      $title=(string)$item[0]['title'];
      $content=(string)$item[0]['content'];
@@ -704,31 +644,27 @@ public function addContentData($item){
      $date_updated=$item[0]['date_updated'];
      $publish=$item[0]['publish'];
 
- $other_db= $this->load->database('default', TRUE);
+     $other_db= $this->load->database('default', TRUE);
 
-  $insert = "INSERT INTO `cms_content`(`id`, `title`, `url`, `content`, `publish`, `date_created`, `date_updated`) VALUES ('$id','$title','$url','$content','$publish',CURDATE(),CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$title' , `url` = '$url',`content` = '$content', `date_updated` = CURDATE()";
+     $insert = "INSERT INTO `cms_content`(`id`, `title`, `url`, `content`, `publish`, `date_created`, `date_updated`) VALUES ('$id','$title','$url','$content','$publish',CURDATE(),CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$title' , `url` = '$url',`content` = '$content', `date_updated` = CURDATE()";
 
-//echo $insert;die;
-$query = $other_db->query($insert);
-
-if($query)
-{
-	return 1;
-}
-else
-{
-   return 0;
-}	 
+     $query = $other_db->query($insert);
+     if($query)
+       {
+	     return 1;
+       }
+     else
+       {
+         return 0;
+       }	 
 }
 
 public function deletePublishContent($id)
 {
-      $other=$this->load->database('default',TRUE);
+       $other=$this->load->database('default',TRUE);
        $other->where('id', $id);
        $other->delete('cms_content');
 }
 
-
 }
-
  ?>

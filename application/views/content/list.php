@@ -15,7 +15,6 @@
                 <tbody><tr>
                   <th style="width: 10px">#</th>
                   <th>Title</th>
-                  
                   <th>Link</th>
                   <th>Content</th>
                   <th style="width: 40px">Publish</th>
@@ -25,10 +24,9 @@
 				$content = $this->register->getContentInfo();
 				if(!empty($content)){
 						foreach($content as $contants){ ?>
-                <tr>
+          <tr>
 					<td><?php echo $i++; ?></td>
 					<td><?php echo $contants['title']; ?></td>
-					
 					<td><?php echo $contants['url']; ?></td>
 					<td><?php echo $contants['content']; ?></td>
           <td>
@@ -38,19 +36,15 @@
           <button class="badge bg-green" onclick="myfunction(<?php echo $contants['id'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
-
-					<td><a href = "<?php echo site_url('forms/editContent/'.$contants['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+				<td><a href = "<?php echo site_url('forms/editContent/'.$contants['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
                 </tr>
 				<?php } } ?>
               </tbody></table>
-            </div>
-            
+            </div>  
           </div>
-	  
 </div>
 </section>
 </div>
-
 <script>
   function myfunction(id,uid)
   {  

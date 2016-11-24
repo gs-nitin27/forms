@@ -93,6 +93,7 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
+      alert(result);
       window.location.href = url+"/forms/getevent";
 
     }

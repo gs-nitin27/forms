@@ -6,12 +6,11 @@
 <link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/ css" media="all" />
 
  <script>
-//document.domain = "getsporty.in";
+
 $(document).ready(function(){
    
 $('#save').click(function(){
-	
-	
+
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
 var string = summary12.replace(/[\/\\<>~{}]/g, '');
@@ -20,10 +19,7 @@ var description1=$("#rdescription").val();
 var description2=description1.toString();
 var description3 = description2.replace(/[\/\\<>~\{}]/g, '');
 	
-
 var data1 = {
-
-
     "id"                      : "", 
     "user_id"                 : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
@@ -37,12 +33,11 @@ var data1 = {
 	 "token"                  : $("#token").val(),
     "sport"                   : $("#sport").val()
 };
-//alert(data1);
+
 console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>'
 var data = JSON.stringify(data1);
   $.ajax({
-
     type: "POST",
     url: '<?php echo site_url('forms/SavecreateResources'); ?>',
     data: "data="+data,
@@ -55,11 +50,7 @@ var data = JSON.stringify(data1);
    }, 2000);
   window.location.href = url+"/forms/getResources";
     }
-
-
-});
-
-    
+});  
 });});
 
 </script>
@@ -68,8 +59,7 @@ var data = JSON.stringify(data1);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-    Create  Resources
-        
+    Create  Resources  
       </h1>
      
     </section>
@@ -143,7 +133,7 @@ var data = JSON.stringify(data1);
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" maxlength="30" name="rtitle" id="rtitle" placeholder="Enter title">
+                  <input type="text" class="form-control" maxlength="32" name="rtitle" id="rtitle" placeholder="Enter title">
                 </div>
         <div class="form-group">
                   <label for="exampleInputEmail1">Link</label>

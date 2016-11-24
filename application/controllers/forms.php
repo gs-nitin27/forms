@@ -533,6 +533,7 @@ $item->id                    = $data12->id;
 $item->title                 = $data12->title;
 $item->url                   = $data12->url;
 $item->content               = $data12->content;
+$item->publish               = $data12->publish;
 $item->date_created          = @strtotime($data12->date_created);
 $item->date_updated          = @strtotime($data12->date_updated);
 
@@ -567,6 +568,7 @@ $item->id                    = $data2->id;
 $item->title                 = $data2->title;
 $item->url                   = $data2->url;
 $item->content               = $data2->content;
+$item->publish               = $data2->publish;
 $item->date_created          = @strtotime($data2->date_created);
 $item->date_updated          = @strtotime($data2->date_updated);
 
@@ -752,11 +754,11 @@ if($data2->publish==1)
        
 	$edata=$this->register->getEventInfo($data2->id);
 	
-	
-	$this->register->addEventData($edata);
+ 	$this->register->addEventData($edata);
 }
 else{
     
+   
 	$this->register->deletePublishEvent($data2->id);
 
 }
