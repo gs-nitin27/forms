@@ -15,6 +15,7 @@ $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
 
 imagecopyresampled($dst_r,$img_r,0,0,(int)$_POST['x'],(int)$_POST['y'], $targ_w,$targ_h,(int)$_POST['w'],(int)$_POST['h']);
 // create the physical photo
+
   imagejpeg($dst_r,$src,$jpeg_quality);
 // display the  photo - "?time()" to force refresh by the browser
 

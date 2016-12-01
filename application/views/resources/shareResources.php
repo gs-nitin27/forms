@@ -13,7 +13,7 @@ $('#save').click(function(){
 	
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
-var string = summary12.replace(/[&\/\\#,+$~%.':*?{}]/g, '');
+var string = summary12.replace(/[&\/\\#,+$~%.:*?{}]/g, '');
 
 var data1 = {
 
@@ -23,6 +23,8 @@ var data1 = {
     "url"                     : $("#rurl").val(),
     "description"             : "", 
     "summary"                 : string,
+    "keyword"                 : "",
+    "status"                  : 0,
     "location"                : $("#rlocation").val(), 
     "topic_of_artical"        : $("#article").val(), 
     "image"                   : $("#photo_url").val(),
@@ -214,7 +216,7 @@ var data = JSON.stringify(data1);
 
 
 
-          <div class="container">
+         <!--  <div class="container">
         <div class="content">
         
             
@@ -225,18 +227,18 @@ var data = JSON.stringify(data1);
             <div id="photo_container">
             </div>
              
-        </div><!-- content -->    
-    </div>
+        </div>   
+    </div> -->
 
-        <div id="popup_crop">
+       <!--  <div id="popup_crop">
         <div class="form_crop">
             <span class="close" onclick="close_popup('popup_crop')">x</span>
             <h2>Crop photo</h2>
-            <!-- This is the image we're attaching the crop to -->
-            <img id="cropbox" />  
+            This is the image we're attaching the crop to -->
+           <!--  <img id="cropbox" />   -->
             <!-- This is the form that our event handler fills -->
            
-                <input type="hidden" id="x" />
+              <!--   <input type="hidden" id="x" />
                 <input type="hidden" id="y"/>
                 <input type="hidden" id="w"/>
                 <input type="hidden" id="h"/>
@@ -244,9 +246,9 @@ var data = JSON.stringify(data1);
                 <input type="button" value="Crop Image" id="crop_btn" onclick="crop_photo()"/>
             
         </div>
-    </div>
-                <div id="message"></div>
-          <script>
+    </div> --> 
+             <!--    <div id="message"></div> -->
+          <!-- <script>
             document.getElementById('crop_btn').onfocus = function () {
               var d=$('#crop_btn').val();
               if(d!="")
@@ -254,17 +256,31 @@ var data = JSON.stringify(data1);
             document.getElementById('message').innerHTML = "Image Successfully Uploaded";
                }
                 };
-            </script>
+            </script> -->
               </div>
               <!-- /.box-body -->
            
-             <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
-              </div>
+             
             </form>
 
+     <form name="multiform" id="multiform" action="<?php echo site_url('forms/imageupload'); ?>" method="POST" enctype="multipart/form-data">
+               Image : <input type="file" name="file" id="file" />
 
- <script>
+               <div class="form-group">
+                  <input type="hidden" class="form-control" name="oldimageid" id="pid" value="0">
+                </div>
+          </form>
+               <input  type="button" id="multi-post" value="Submit Image"></input>
+
+               <input type="hidden" class="form-control" name="photo" id="photo_url"> 
+
+
+
+            <div class="box-footer">
+                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
+            </div>
+
+ <!-- <script>
                 
               $('#save').click(function(){
                 if($('#photo_url').val() =="")
@@ -277,23 +293,22 @@ var data = JSON.stringify(data1);
                        }
 
 });
-
-</script>
-
+</script> -->
 
 
-    <div id="popup_upload">
+
+   <!--  <div id="popup_upload">
         <div class="form_upload">
             <span class="close" onclick="close_popup('popup_upload')">x</span>
             <h2>Upload photo</h2>
-            <form action="<?php echo base_url('assets/crop/upload_photo.php')?>" method="post" enctype="multipart/form-data" target="upload_frame" onsubmit="submit_photo()">
+            <form action="<?php //echo base_url('assets/crop/upload_photo.php')?>" method="post" enctype="multipart/form-data" target="upload_frame" onsubmit="submit_photo()">
                 <input type="file" name="photo" id="photo" class="file_input">
                 <div id="loading_progress"></div>
                 <input type="submit" value="Upload photo" id="upload_btn">
             </form>
             <iframe name="upload_frame" class="upload_frame"></iframe>
         </div>
-    </div>
+    </div> -->
           </div>
     </div>
     
@@ -302,15 +317,55 @@ var data = JSON.stringify(data1);
 </section>
 
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+ 
+$("#multiform").submit(function(e)
+{
+    var formObj = $(this);
+    var formURL = formObj.attr("action");
 
-<script >
+if(window.FormData !== undefined)  
+    {
+        var formData = new FormData(this);
+        $.ajax({
+            url: formURL,
+            type: 'POST',
+            data:  formData,
+            dataType: 'json',
+            mimeType:"multipart/form-data",
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(data)
+            {
+               // alert(data.response);
+                $("#photo_url").val(data.response);   
+            }
+                  
+       });
+        e.preventDefault();
+        e.unbind();
+   }
+});
+
+
+$("#multi-post").click(function()
+    {
+    //sending form from here
+    $("#multiform").submit();
+});
+});
+</script>
+
+<!-- <script >
 var TARGET_W = 1112;
 var TARGET_H = 640;
 
 // show loader while uploading photo
 function submit_photo() {
   // display the loading texte
-  $('#loading_progress').html('<img src="<?php echo base_url('/assets/crop/images/loader.gif')?>"> Uploading your photo...');
+  $('#loading_progress').html('<img src="<?php //echo base_url('/assets/crop/images/loader.gif')?>"> Uploading your photo...');
 }
 
 // show_popup : show the popup
@@ -329,7 +384,7 @@ function close_popup(id) {
 function show_popup_crop(url) {
    //  alert(url);
 
-     var purl="<?php echo base_url('/assets/crop/');?>";
+     var purl="<?php //echo base_url('/assets/crop/');?>";
   // change the photo source
   $('#cropbox').attr('src',purl+'/'+url);
   //alert(purl+'/'+url);
@@ -376,10 +431,10 @@ function crop_photo() {
   $('#popup_crop').hide();
 
   // display the loading texte
-  $('#photo_container').html('<img src="<?php echo base_url('/assets/crop/images/loader.gif')?>"> Processing...');
+  $('#photo_container').html('<img src="<?php// echo base_url('/assets/crop/images/loader.gif')?>"> Processing...');
   // crop photo with a php file using ajax call
   $.ajax({
-   url: "<?php echo base_url('/assets/crop/crop_photo.php')?>",
+   url: "<?php //echo base_url('/assets/crop/crop_photo.php')?>",
     type: 'POST',
     data: {x:x_, y:y_, w:w_, h:h_, photo_url:photo_url_, targ_w:TARGET_W, targ_h:TARGET_H},
     success:function(data){
@@ -400,7 +455,7 @@ function updateCoords(c) {
   $('#w').val(c.w);
   $('#h').val(c.h);
 }
-</script>
+</script> -->
  <style>
             /* Autocomplete
             ----------------------------------*/

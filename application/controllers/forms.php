@@ -113,15 +113,49 @@ else
 
 }
 
-// public function imageupload()
-// {   
-// 	//$name =  $_POST['imagena'];
-// 	$file = $_FILES['eventImage'];
-// 	$temp_name = $file['tmp_name'];
-// 	$location = base_url('assets/uploads/');
-// move_uploaded_file($temp_name, $location);
-// echo $location;
-// }
+
+
+ public function imageupload()
+ {   
+
+       if ($_POST['oldimage'])
+        {
+        	$id = $_POST['oldimageid'];
+            $image = $_POST['oldimage'];
+        	$temp= $this->register->removeimage($id,$image);
+        }
+        
+            $temp = explode(".", $_FILES["file"]["name"]);
+            date_default_timezone_set("Asia/Kolkata");
+            $newfilename1='res_'.time();
+            $newfilename = $newfilename1. '.' . end($temp);
+            move_uploaded_file($_FILES["file"]["tmp_name"], "uploads/resources/" . $newfilename);
+  //===================image size fix ==============================================================
+            $uploadimage = "uploads/resources/".$newfilename;
+            $newname = $newfilename;
+           // Set the resize_image name
+            $resize_image = "uploads/resources/".$newname; 
+            $actual_image = "uploads/resources/".$newname;
+           // It gets the size of the image
+            list( $width,$height ) = getimagesize( $uploadimage );
+          // It makes the new image width of 350
+            $newwidth = 1115;
+          // It makes the new image height of 350
+            $newheight = 640;
+          // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
+            $thumb = imagecreatetruecolor( $newwidth, $newheight );
+            $source = imagecreatefromjpeg( $resize_image );
+          // Resize the $thumb image.
+            imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+          // It then save the new image to the location specified by $resize_image variable
+            imagejpeg( $thumb, $resize_image, 100 ); 
+          // 100 Represents the quality of an image you can set and ant number in place of 100.
+            $out_image=addslashes(file_get_contents($resize_image));      
+//====================================================================================================
+
+        echo json_encode(array('response' => $newfilename));
+     
+}
 
 public function saveTournament()
 {
@@ -342,13 +376,16 @@ $data2 = json_decode($_REQUEST['data']);
   
 $item  = new stdClass(); 
 
-print_r($data2);
+//print_r($data2); 
+
 
 $item->id                    = $data2->id;
 $item->user_id               = $data2->user_id;
 $item->title                 = $data2->title;
 $item->url                   = $data2->url;
+$item->status                = $data2->status;
 $item->summary               = $data2->summary;
+$item->keyword               = $data2->keyword;
 $item->description           = $data2->description;
 $item->topic_of_artical      = $data2->topic_of_artical;
 $item->sport                 = $data2->sport;
@@ -360,6 +397,8 @@ $item->date_created          = $data2->date_created;
 
 $this->load->model('register');
 $res = $this->register->saveResources($item);
+
+echo json_encode(array('response' => $res));
 
 }
 
@@ -375,7 +414,9 @@ $item->id                    = $data2->id;
 $item->user_id               = $data2->user_id;
 $item->title                 = $data2->title;
 $item->url                   = $data2->url;
+$item->status                = $data2->status;
 $item->summary               = $data2->summary;
+$item->keyword               = $data2->keyword;
 $item->description           = $data2->description;
 $item->topic_of_artical      = $data2->topic_of_artical;
 $item->sport                 = $data2->sport;
@@ -416,8 +457,10 @@ $res = $this->register->saveResources($item);
 
 public function saveEditResources()
 {
+
 $data2 = json_decode($_REQUEST['data']);
 
+print_r($data2); 
 $item  = new stdClass(); 
 
 
@@ -431,7 +474,9 @@ $item->topic_of_artical      = $data2->topic_of_artical;
 $item->sport                 = $data2->sport;
 $item->location              = $data2->location;
 $item->image                 = $data2->image;
-$item->status                 = $data2->status;
+$item->status                = $data2->status;
+$item->keyword               = $data2->keyword;
+$item->token                 = $data2->token;
 $item->date_created          = @$data2->date_created;
 
 
@@ -466,7 +511,7 @@ public function mobileviewResources(){
 		
 	public function mobileview(){
 		
-		 $job = $this->register->getJobInfo($_POST['infoid']); 
+   $job = $this->register->getJobInfo($_POST['infoid']); 
 	$data['required'] = array(
 									'job'=>$job	
 								 );

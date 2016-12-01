@@ -241,19 +241,17 @@ public function deleteResources($id)
 
 public function saveResources($item)
 {
-	
+  $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$item->id','$item->user_id','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->status','$item->date_created') ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image',`keyword` ='$item->keyword' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`status` ='$item->status',`location` ='$item->location'";
 
-  $insert = "INSERT INTO `gs_resources`(`id`, `user_id`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$ item->id','$item->user_id','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->status','$item->date_created') ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image',`keyword` ='$item->keyword' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`status` ='$item->status',`location` ='$item->location'";
-
-   $query = $this->db->query($insert);
-   if($query)
-    {
-	  return 1;
-    }
-    else
-    {
-      return 0;
-    }
+$query = $this->db->query($insert);
+if($query)
+{
+	return 1;
+}
+else
+{
+   return 0;
+}
 }
 
 
@@ -666,5 +664,16 @@ public function deletePublishContent($id)
        $other->delete('cms_content');
 }
 
+public function removeimage($id,$image)
+{	 
+                // $image="select image from gs_resources where id='$id'";
+                // $this->db->where('id', $id);
+                // unlink("uploads/resources".$image);
+                // $this->db->delete('gs_resources', array('id' => $id));
+	
+                $this->db->where('id', $id);
+                unlink("uploads/resources/".$image);
+                $this->db->delete('gs_resources', array('image' => $image));  
+}
 }
  ?>

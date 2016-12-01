@@ -65,7 +65,7 @@
 						
 
 						<div>
-                        <img style="display:block; border:2px solid SteelBlue"; width="220px" height="220px" src = "<?php  echo base_url()."assets/crop/".$resource['image']; ?>">
+                        <img style="display:block; border:2px solid SteelBlue"; width="300px" height="220px" src = "<?php  echo base_url()."uploads/resources/".$resource['image']; ?>">
 				     </div>
 			  
 			  </td>
@@ -82,56 +82,80 @@
 </div>
 </section>
 
+
+
 <!--  Mobile View  -->
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
   <div class="modal-dialog">
-    <div class="modal-content" style="    width: 511px;">
-      <div class="modal-header">
+<!-- <div id="corner"> -->
+    <div class="modal-content" style="width: 350px;">
+
+      <div class="modal-header" style="background-color:#4657b7;">
+       
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Mobile View</h4>
+        <h4 class="modal-title" id="myModalLabel"></h4>
       </div>
+      
       <div class="modal-body">
-     
       <div class="box-body">
+                    <div>
+                     <img style="display:block; border:2px solid SteelBlue"; width="300px" height="220px" src = "<?php  echo base_url()."uploads/resources/".$resource['image']; ?>">
+				    </div>
+
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border" style="color:rgb(0,0,255);opacity:0.6;"><b> Title: </b> &nbsp;</h5><?php echo ucfirst($resource['title']);?>
+						<h5 class="timeline-header no-border" style="color:rgb(0,0,255);opacity:0.6;"><b></b> &nbsp;</h5><h5 style="text-align: center;"><b><?php echo ucfirst($resource['title']);?></b></h5>
 					</div>
-					<div class="timeline-item">
+
+					<!-- <div class="timeline-item">
                         <h5 class="timeline-header no-border" style="color: rgb(0,0,255);opacity:0.6"><b> Link: </b>&nbsp;
-				    	<a href="<?php echo ucfirst($resource['url']);?>" target="_blank"><?php echo ucfirst($resource['url']);?></a></h5>
-					</div>
-
-					
-
+				    	<a href="<?php// echo ucfirst($resource['url']);?>" target="_blank"><?php //echo ucfirst($resource['url']);?></a></h5>
+					</div> -->
 					<div class="timeline-item">
-						<h5 class="timeline-header" style="color: rgb(0,0,255);opacity:0.6"><b href="#"> Summary: </b></h5>
+						<h5 class="timeline-header" style="color: rgb(0,0,255);opacity:0.6"> Summary: </h5>
 
 						<div class="timeline-body">
-						  <?php echo $resource['summary'];?>
+						  <h5><?php echo $resource['summary'];?></h5>
 						</div>
 					   
 				     </div>
-					  <div class="timeline-item">
+					 <!--  <div class="timeline-item">
 						<h5 class="timeline-header" style="color: rgb(0,0,255);opacity:0.6"><b href="#"> Description: </b></h5>
 
 						<div class="timeline-body">
-						  <?php echo $resource['description'];?>
+						  <?php// echo $resource['description'];?>
 						</div>
-					   
-					  </div>
-					
-					
-					
+					  </div> -->
+					  <div  class="timeline-item">
+                        <h5 class="timeline-header no-border" style="color: rgb(0,0,255);opacity:0.6"><b> Link: </b>&nbsp;
+				    	<a href="<?php echo ucfirst($resource['url']);?>" target="_blank"><?php echo ucfirst($resource['url']);?></a></h5>
+					</div>
 					
               </div>
       </div>
-      
+    <!--  </div> -->
     </div>
   </div>
 </div>
 
+<!-- <style> 
+#corner {
+    padding:2px;
+    border-radius: 10px;
+	border: 4px solid #e5e5e5;
+    width: 520px;
+    height: 590px;    
+}
 
-
+#corner2 {
+    border-radius: 20px;
+    border: 1px solid #e5e5e5;
+    padding: 10px; 
+    width: 235px;
+    height: 390px;    
+}
+</style> -->
 <script>
 	$('#mobile').click(function(){
 //		alert("hi");
