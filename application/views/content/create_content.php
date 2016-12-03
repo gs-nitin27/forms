@@ -92,7 +92,7 @@ function clear()
             </textarea> -->
             <div class="form-group">
                      <label for="exampleInputEmail1">Content</label>
-                    <textarea class="textarea" name="content" id="ccontent" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    <textarea class="form-control" name="content" id="ccontent" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                    </div>
           <!--  <div class="form-group">
             <label for="link">Create Date</label>
@@ -104,11 +104,7 @@ function clear()
           </div > -->
 
 
-            <script>
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.replace( 'editor1' );
-            </script>
+         
 
             <div class="box-footer">
                 <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Create Content" name="Create">
@@ -121,12 +117,3 @@ function clear()
 	  </div>
 </section>
 </div>
-<script type='text/javascript' src="<?php echo base_url(); ?>assets/dist/js/ckeditor.js"></script>
-<script type="text/javascript">
-  
-  $(function() {
-    $( "#cdate" ).datepicker();
-    $( "#udate" ).datepicker();  
-  });
-
-</script>

@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        View Event
+        View Tournament<a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a>
         
       </h1>
      
@@ -31,14 +31,14 @@
             <div class="tab-content">
               <div class="tab-pane active" id="tab_event">
 			   <div class="box-header with-border">
-                <h4>Job Details:</h4 > 	
+                <h4>Tournament Details:</h4 > 	
 				</div>
                 <div class="box-body">
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Event Title: </b> &nbsp;<?php echo ucfirst($event['name']);?></h5>
+						<h5 class="timeline-header no-border"><b>Tournament Title: </b> &nbsp;<?php echo ucfirst($event['name']);?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header"><b href="#">Event Description: </b></h5>
+						<h5 class="timeline-header"><b href="#">Tournament Description: </b></h5>
 
 						<div class="timeline-body">
 						  <?php echo $event['description'];?>
@@ -173,5 +173,45 @@
 </div>
 </section>
 
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="    width: 511px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Mobile View</h4>
+      </div>
+      <div class="modal-body">
+		
+
+
+
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+	$('#myModal').click(function(){
+		window.location.href='<?php echo site_url("forms/viewTournament/$event[infoId]");?>';
+	});	
+	
+	$('#btnbbb').click(function(){
+//		alert("hi");
+		$.ajax({
+			method:"POST",
+			data:{infoid:'<?php echo $event["infoId"];?>'},
+			url: "<?php echo site_url('forms/Tournamentmobileview'); ?>",
+			success: function(result){
+        		$(".modal-body").html(result);
+    		}
+			   });
+	});
+</script>
 
 

@@ -1,18 +1,28 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
 
- <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-   
-         <section class="content"> 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  
+</head>
+
+<div class="wrapper">
+  <div class="content-wrapper">
+    <section class="content">
       <div class="row">
-	  
-		<div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Tournament List</h3></h3>
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Content List</h3>
             </div>
-            <!-- /.box-header -->
             <div class="box-body">
-              <table class="table table-bordered">
-                <tbody><tr>
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
                   <th style="width: 10px">#</th>
                   <th>Tournament Name</th>
                   <th>Sport</th>
@@ -24,7 +34,9 @@
                   <th style="width: 40px">Publish</th>
                   <th style="width: 40px">View</th>
                 </tr>
-				<?php $i =1;
+                </thead>
+				<tbody>
+               <?php $i =1;
 				$tournaments = $this->register->getTournamentInfo();
 
           
@@ -62,23 +74,41 @@
 					<td><a href = "<?php echo site_url('forms/viewtournament/'.$tournament['infoId']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                 </tr>
 				<?php } } ?>
-              </tbody></table>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Tournament Name</th>
+                  <th>Sport</th>
+                  <th>Level</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                  <th>Organiser</th>
+                  <th style="width: 40px">Status</th>
+                  <th style="width: 40px">Publish</th>
+                  <th style="width: 40px">View</th>
+                </tr>
+                </tfoot>
+              </table>
             </div>
             <!-- /.box-body -->
-            <!--div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">«</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">»</a></li>
-              </ul>
-            </div-->
           </div>
-	  
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+
+  <div class="control-sidebar-bg"></div>
 </div>
-</section>
-</div>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+  });
+</script>
 
 <script>
   function myfunction(id,uid)

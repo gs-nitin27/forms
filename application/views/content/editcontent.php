@@ -98,7 +98,7 @@ function clear()
            
             <div class="form-group">
                      <label for="exampleInputEmail1">Content</label>
-                    <textarea class="textarea" name="content" id="ccontent"  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['content']; ?></textarea>
+                    <textarea class="form-control" name="content" id="ccontent"  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['content']; ?></textarea>
                    </div>
                    <?php } ?>
           

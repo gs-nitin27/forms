@@ -118,11 +118,13 @@ else
  public function imageupload()
  {   
 
-       if ($_POST['oldimage'])
+      if ($_POST['oldimageid'])
         {
+			if($_POST['oldimage']){
         	$id = $_POST['oldimageid'];
             $image = $_POST['oldimage'];
         	$temp= $this->register->removeimage($id,$image);
+        }
         }
         
             $temp = explode(".", $_FILES["file"]["name"]);
@@ -509,9 +511,36 @@ public function mobileviewResources(){
 
 //================================================================
 		
+public function Tournamentmobileview()
+{
+	  $tournament = $this->register->getTournamentInfo($_POST['infoid']); 
+	  $data['required'] = array(
+									'tournament'=>$tournament	
+								 );
+		
+		 $this->load->view('tournament/mobile_view_tournament', $data);
+		
+		
+}	
+
+public function Eventmobileview()
+{
+	  $event = $this->register->getEventInfo($_POST['infoid']); 
+	  $data['required'] = array(
+									'event'=>$event	
+								 );
+		
+		 $this->load->view('event/mobile_view', $data);
+		
+		
+}		
+
+
+
+
 	public function mobileview(){
 		
-   $job = $this->register->getJobInfo($_POST['infoid']); 
+    $job = $this->register->getJobInfo($_POST['infoid']); 
 	$data['required'] = array(
 									'job'=>$job	
 								 );

@@ -156,16 +156,16 @@
     height: 390px;    
 }
 </style> -->
-<script>
+<!-- <script>
 	$('#mobile').click(function(){
 //		alert("hi");
 		$.ajax({
 			method:"POST",
-			data:{infoid:'<?php echo $resource["infoId"];?>'},
-			url: "<?php echo site_url('forms/mobileviewResources'); ?>",
+			data:{infoid:'<?php //echo $resource["infoId"];?>'},
+			url: "<?php //echo site_url('forms/mobileviewResources'); ?>",
 			success: function(result){
         		$(".modal-body").html(result);
     		}
 			   });
 	});
-</script>
+</script> -->

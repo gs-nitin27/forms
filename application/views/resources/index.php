@@ -1,19 +1,29 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  
+ 
+  
+  
+</head>
 
- <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-   
-         <section class="content"> 
+<div class="wrapper">
+  <div class="content-wrapper">
+    <section class="content">
       <div class="row">
-      
-        <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Resource List</h3></h3>
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Content List</h3>
             </div>
-            <!-- /.box-header -->
             <div class="box-body">
-              <table class="table table-bordered">
-                <tbody><tr>
-                  <th style="width: 10px">#</th>
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                 <th style="width: 10px">#</th>
                   <th>Title</th>
                   <th>Summary</th>
 				        <!--  <th>Description</th> -->
@@ -25,6 +35,8 @@
                   <th style="width: 40px">Edit</th>
                   <th style="width: 40px">Delete</th>
                 </tr>
+                </thead>
+				<tbody>
                 <?php $i =1;
                 $resources = $this->register->getResourceInfo();
                 if(!empty($resources)){
@@ -46,44 +58,72 @@
                     <button class="badge bg-green" onclick="myfunction(<?php echo $resource['id'];?>,0)"><?php echo "Deactivate";?></button>
                     <?php } ?>
                     </td>
-
                     <td><a href = "<?php echo site_url('forms/viewresources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                     <td><a href = "<?php echo site_url('forms/editResources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
                     <td><a href = "<?php echo site_url('forms/deleteResources/'.$resource['id']); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
                 </tr>
                 <?php } } ?>
-              </tbody></table>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Title</th>
+                  <th>Summary</th>
+				        <!--  <th>Description</th> -->
+                  <th>Link</th>
+                  <th>Sport</th>
+                  <th>Location</th>
+                  <th style="width: 40px">Publish</th>
+                  <th style="width: 40px">View</th>
+                  <th style="width: 40px">Edit</th>
+                  <th style="width: 40px">Delete</th>
+                </tr>
+                </tfoot>
+              </table>
             </div>
-           
+            <!-- /.box-body -->
           </div>
-      
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+
+  <div class="control-sidebar-bg"></div>
 </div>
-</section>
-</div>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+  });
+</script>
 <script type="text/javascript">
 
   function myfunction(id,uid)
-  {  
+  { 
     var data1 = {
     "id"                      : id, 
     "status"                  : uid
-};
+  };
 console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>'
 var data = JSON.stringify(data1);
   $.ajax({
-
     type: "POST",
     url: '<?php echo site_url('forms/StatusResources'); ?>',
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-     
-      window.location.href = url+"/forms/getResources";
-
+    window.location.href = url+"/forms/getResources";
     }
 });    
 }
-
- 
 </script>
+
+
+
+
+
+

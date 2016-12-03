@@ -12,8 +12,9 @@ $(document).ready(function(){
 $('#save').click(function(){
 
 var summary1=$("#rsummary").val();
+
 var summary12=summary1.toString();
-var string = summary12.replace(/[\/\\<>~{}]/g, '');
+var string = summary12.replace(/[\/\\'/./"/<>~{}]/g, '');
 
 var description1=$("#rdescription").val();
 var description2=description1.toString();

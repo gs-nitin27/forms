@@ -32,7 +32,7 @@
 <!-- jQuery Knob Chart -->
 <script  type="text/javascript" src="<?php echo base_url('assets/plugins/knob/jquery.knob.js'); ?>"></script>
 <!-- daterangepicker -->
-<script type="text/javascript" src="<?php echo base_url('assets/moment.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/daterangepicker/moment.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/daterangepicker/daterangepicker.js'); ?>"></script>
 <!-- datepicker -->
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datepicker/bootstrap-datepicker.js'); ?>"></script>

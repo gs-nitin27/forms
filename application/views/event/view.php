@@ -1,9 +1,9 @@
 
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+ <section class="content-header">
       <h1>
-        View Event
+        View Event<a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a>
         
       </h1>
      
@@ -157,4 +157,41 @@
 </section>
 
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="    width: 511px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Mobile View</h4>
+      </div>
+      <div class="modal-body">
+		
 
+
+
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+	$('#myModal').click(function(){
+		window.location.href='<?php echo site_url("forms/viewEvent/$event[infoId]");?>';
+	});	
+	
+	$('#btnbbb').click(function(){
+//		alert("hi");
+		$.ajax({
+			method:"POST",
+			data:{infoid:'<?php echo $event["infoId"];?>'},
+			url: "<?php echo site_url('forms/Eventmobileview'); ?>",
+			success: function(result){
+        		$(".modal-body").html(result);
+    		}
+			   });
+	});
+</script>
