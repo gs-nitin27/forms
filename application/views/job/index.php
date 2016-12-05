@@ -56,8 +56,8 @@ $(document).ready(function(){
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Content List</h3>
+            <div class="box-header" style="text-align: center;">
+              <h3 class="box-title"><b> Job List</b></h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">

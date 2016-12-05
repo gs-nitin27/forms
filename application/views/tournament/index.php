@@ -16,8 +16,8 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Content List</h3>
+            <div class="box-header" style="text-align: center;">
+              <h3 class="box-title"><b> Tournament List</b></h3>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
@@ -35,25 +35,20 @@
                   <th style="width: 40px">View</th>
                 </tr>
                 </thead>
-				<tbody>
-               <?php $i =1;
-				$tournaments = $this->register->getTournamentInfo();
-
-          
-
-				if(!empty($tournaments)){
-						foreach($tournaments as $tournament){
-             ?>
-                <tr>
+			      	<tbody>
+              <?php $i =1;
+				        $tournaments = $this->register->getTournamentInfo();
+		        		if(!empty($tournaments)){
+				    		foreach($tournaments as $tournament){
+                ?>
+          <tr>
 					<td><?php echo $i++; ?></td>
 					<td><?php echo $tournament['name']; ?></td>
 					<td><?php echo $tournament['sports']; ?></td>
 					<td><?php echo $tournament['level']; ?></td>
 					<td><?php echo $tournament['category']; ?></td>
 					<td><?php echo $tournament['city_name']; ?></td>
-					<td><?php echo $tournament['organiser_name']; ?></td>
-					
-					
+					<td><?php echo $tournament['organiser_name']; ?></td>										
 					<td>
 					<?php if(@strtotime($tournament['end_date']) < time()){?>
 						<span class="badge bg-red"><?php echo "Expired";?></span>
@@ -61,7 +56,6 @@
 					<span class="badge bg-green"><?php echo "Active";?></span>
 					<?php } ?>
 					</td>
-
           <td>
           <?php if($tournament['publish']==0){?>
           <button class="badge bg-red" onclick="myfunction(<?php echo $tournament['infoId'];?>,1)"><?php echo "Activate";?></button>
@@ -69,8 +63,6 @@
           <button class="badge bg-green" onclick="myfunction(<?php echo $tournament['infoId'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
-
-
 					<td><a href = "<?php echo site_url('forms/viewtournament/'.$tournament['infoId']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                 </tr>
 				<?php } } ?>

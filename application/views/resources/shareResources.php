@@ -1,7 +1,4 @@
 
-<link rel="stylesheet" href="<?php echo base_url('assets/crop/css/style.css') ?>" />
-<script src="<?php echo base_url('assets/crop/js/jquery.Jcrop.min.js')?>"></script>
-<link rel="stylesheet" href="<?php echo base_url('assets/crop/css/jquery.Jcrop.min.css')?>"/>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/base/jquery-ui.css" type="text/css" media="all" />
 <link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/ css" media="all" />
 
@@ -12,8 +9,8 @@ $(document).ready(function(){
 $('#save').click(function(){
 	
 var summary1=$("#rsummary").val();
-var summary12=summary1.toString();
-var string = summary12.replace(/[&\/\\#,+$~%.:*?{}]/g, '');
+//var summary12=summary1.toString();
+//var string = summary12.replace(/[&\/\\#,+$~%.:*?{}]/g, '');
 
 var data1 = {
 
@@ -22,7 +19,7 @@ var data1 = {
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#rurl").val(),
     "description"             : "", 
-    "summary"                 : string,
+    "summary"                 : summary1,
     "keyword"                 : "",
     "status"                  : 0,
     "location"                : $("#rlocation").val(), 

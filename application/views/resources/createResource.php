@@ -14,7 +14,7 @@ $('#save').click(function(){
 var summary1=$("#rsummary").val();
 
 var summary12=summary1.toString();
-var string = summary12.replace(/[\/\\'/./"/<>~{}]/g, '');
+var string = summary12.replace(/[\/\\'\.\"<>~{}]/g, '');
 
 var description1=$("#rdescription").val();
 var description2=description1.toString();
@@ -33,7 +33,7 @@ var data1 = {
     "topic_of_artical"        : $("#article").val(), 
     "image"                   : $("#photo_url").val(),
     "date_created"            : $("#date_created").val(),
-	  "token"                  : $("#token").val(),
+	  "token"                   : $("#token").val(),
     "sport"                   : $("#sport").val()
 };
 
@@ -272,6 +272,8 @@ var data = JSON.stringify(data1);
           </form>
                <input  type="button" id="multi-post" value="Submit Image"></input>
 
+               <img src="<?php base_url("img/loader.gif");?>"  id="loader_img" ></img>
+
                <input type="hidden" class="form-control" name="photo" id="photo_url"> 
 
          <!--  <div id="photo_url"></div> -->
@@ -330,11 +332,13 @@ var data = JSON.stringify(data1);
 
 </div>
 
+
 <script type="text/javascript">
 $(document).ready(function(){
  
 $("#multiform").submit(function(e)
 {
+    $('#loader_img').show();
     var formObj = $(this);
     var formURL = formObj.attr("action");
 
@@ -352,7 +356,8 @@ if(window.FormData !== undefined)
             processData:false,
             success: function(data)
             {
-                alert(data.response);
+                $('#loader_img').hide();
+               // alert(data.response);
                 $("#photo_url").val(data.response);   
             }
                   

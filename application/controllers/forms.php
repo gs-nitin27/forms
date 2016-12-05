@@ -383,12 +383,12 @@ $item  = new stdClass();
 
 $item->id                    = $data2->id;
 $item->user_id               = $data2->user_id;
-$item->title                 = $data2->title;
+$item->title                 = mysql_real_escape_string($data2->title);
 $item->url                   = $data2->url;
 $item->status                = $data2->status;
-$item->summary               = $data2->summary;
+$item->summary               = mysql_real_escape_string($data2->summary);
 $item->keyword               = $data2->keyword;
-$item->description           = $data2->description;
+$item->description           = mysql_real_escape_string($data2->description);
 $item->topic_of_artical      = $data2->topic_of_artical;
 $item->sport                 = $data2->sport;
 $item->location              = $data2->location;
@@ -414,12 +414,12 @@ $item  = new stdClass();
 
 $item->id                    = $data2->id;
 $item->user_id               = $data2->user_id;
-$item->title                 = $data2->title;
+$item->title                 = mysql_real_escape_string($data2->title);
 $item->url                   = $data2->url;
 $item->status                = $data2->status;
-$item->summary               = $data2->summary;
+$item->summary               = mysql_real_escape_string($data2->summary);
 $item->keyword               = $data2->keyword;
-$item->description           = $data2->description;
+$item->description           = mysql_real_escape_string($data2->description);
 $item->topic_of_artical      = $data2->topic_of_artical;
 $item->sport                 = $data2->sport;
 $item->location              = $data2->location;
@@ -468,10 +468,10 @@ $item  = new stdClass();
 
 $item->id                    = $data2->id;
 $item->user_id               = $data2->user_id;
-$item->title                 = $data2->title;
+$item->title                 = mysql_real_escape_string($data2->title);
 $item->url                   = $data2->url;
-$item->summary               = $data2->summary;
-$item->description           = $data2->description;
+$item->summary               = mysql_real_escape_string($data2->summary);
+$item->description           = mysql_real_escape_string($data2->description);
 $item->topic_of_artical      = $data2->topic_of_artical;
 $item->sport                 = $data2->sport;
 $item->location              = $data2->location;
@@ -915,6 +915,26 @@ else{
 
 }
 
+
+}
+
+public function edituserProfile($id)
+{
+        $data['middle'] = 'userModule/edituserProfile';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+
+		$this->load->view('templates/template',$data);
+
+}
+
+
+public function deleteUser($id)
+{
+   $this->register->deleteUser($id);
+   $data['middle']='userModule/usermodule';
+   $this->load->view('templates/template',$data);
 
 }
 

@@ -16,8 +16,8 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Content List</h3>
+            <div class="box-header" style="text-align: center;">
+              <h2 class="box-title"><b>Resource List</b></h2>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">

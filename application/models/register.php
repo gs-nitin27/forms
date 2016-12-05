@@ -567,7 +567,6 @@ function StatusJob($item)
 
 public function addJobData($item)
 {
-
      $id=$item[0]['infoId'];
      $userid=$item[0]['userid'];
      $title=$item[0]['title'];
@@ -675,5 +674,23 @@ public function removeimage($id,$image)
                 unlink("uploads/resources/".$image);
                 $this->db->delete('gs_resources', array('image' => $image));  
 }
+
+
+public function getUserInfo($id=false)
+{
+        $qry = $this->db->get('user');
+		$q =  $qry->result_array();
+		return $q;
+
+}
+
+
+
+public function deleteUser($id)
+{
+	$this->db->where('userid',$id);
+	$this->db->delete('user');
+}
+
 }
  ?>
