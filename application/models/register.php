@@ -26,7 +26,7 @@ $qry = $this->db->get('user');
 if($qry->num_rows() > 0)
 {
 $q = $qry->row_array();
-if($q['userType']==1)
+if($q['userType']==101 || $q['userType']==102 || $q['userType']==103 )
 {
 return $q;
 }
@@ -65,14 +65,11 @@ if($query)
 {
 
 
-return 1;
+      return 1;
 
 }
 else 
-return 0;
-
-
-
+      return 0;
 }
 
 public function create_job($item)
@@ -322,8 +319,9 @@ public function profile($id)
 }
 
 public function updateProfile($item)
-{
-  $insert ="INSERT INTO `user`(`userid`,`name`,`password`,`email`,`contact_no`,`sport`,`Gender`,   `address1`, `address2`, `address3`, `dob`,`prof_id`,`user_image`,`profile_status`, `location`, `prof_language`, `other_skill_name`, `other_skill_detail`, `age_catered`, `device_id`,`about_me`)  VALUES ('$item->userid','$item->name','$item->password','$item->email','$item->contact_no','$item->sport','$item->Gender','$item->address1','$item->address2','$item->address3','$item->dob','$item->prof_id','$item->user_image','$item->profile_status','$item->location','$item->prof_language','$item->other_skill_name','$item->other_skill_detail','$item->age_catered','$item->device_id','$item->about_me' )  ON DUPLICATE KEY UPDATE `name` ='$item->name', `contact_no` = '$item->contact_no',`sport` = '$item->sport' ,`Gender` = '$item->Gender' ,`address1` = '$item->address1' ,`address2` = '$item->address2' , `address3` = '$item->address3' , `dob` = '$item->dob' , `prof_id` = '$item->prof_id' , `location` = '$item->location'";
+{//print_r($item); die();
+
+  $insert ="INSERT INTO `user`(`userid`,`name`,`password`,`email`,`contact_no`,`sport`,`Gender`,   `address1`, `address2`, `address3`, `dob`,`prof_id`,`userType`,`user_image`,`profile_status`, `location`, `prof_language`, `other_skill_name`, `other_skill_detail`, `age_catered`, `device_id`,`about_me`)  VALUES ('$item->userid','$item->name','$item->password','$item->email','$item->contact_no','$item->sport','$item->Gender','$item->address1','$item->address2','$item->address3','$item->dob','$item->prof_id','$item->userType','$item->user_image','$item->profile_status','$item->location','$item->prof_language','$item->other_skill_name','$item->other_skill_detail','$item->age_catered','$item->device_id','$item->about_me' )  ON DUPLICATE KEY UPDATE `name` ='$item->name', `contact_no` = '$item->contact_no',`sport` = '$item->sport' ,`Gender` = '$item->Gender' ,`address1` = '$item->address1' ,`address2` = '$item->address2' , `address3` = '$item->address3' , `dob` = '$item->dob' , `prof_id` = '$item->prof_id' , `userType` = '$item->userType', `location` = '$item->location'";
 
   $query = $this->db->query($insert);
   if($query)
@@ -374,9 +372,9 @@ public function addResourcesData($item)
 {
      $id=$item[0]['id'];
      $user_id=$item[0]['user_id'];
-     $title=(string)$item[0]['title'];
-     $description=(string)$item[0]['description'];
-     $summary=(string)$item[0]['summary'];
+     $title= mysql_real_escape_string($item[0]['title']);
+     $description= mysql_real_escape_string($item[0]['description']);
+     $summary= mysql_real_escape_string($item[0]['summary']);
      $url=$item[0]['url'];
      $image=$item[0]['image'];
      $keyword=$item[0]['keyword'];
@@ -690,6 +688,35 @@ public function deleteUser($id)
 {
 	$this->db->where('userid',$id);
 	$this->db->delete('user');
+}
+
+public function usermoduleData($id){
+
+      $this->db->select('*');
+      $this->db->from('user u');
+      $this->db->where('u.userid', $id);
+      $query = $this->db->get();
+	  $data =  $query->result_array();
+	  return $data;
+
+
+
+
+  } 
+
+public function update_userModule($id,$item)
+{
+
+     $update = "UPDATE  `user` SET  `access_module` ='$item' WHERE `userid` = '$id' ";
+     $query = $this->db->query($update);
+     if($query)
+       {
+	     return 1;
+       }
+     else
+       {
+         return 0;
+       }
 }
 
 }

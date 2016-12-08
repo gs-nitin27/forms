@@ -11,7 +11,7 @@
          <section class="content"> 
       <div class="row">
 	  
-		<div class="col-md-8">
+		<div class="col-md-12">
 				
 			<?php $resource = $this->register->getResourceInfo($id); 
 				if(!empty($resource)){

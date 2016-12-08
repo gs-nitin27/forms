@@ -75,12 +75,12 @@ var data = JSON.stringify(data1);
          <section class="content"> 
       <div class="row">
     <?php if(isset($msg) && $msg != ""){?>
-    <div class="col-md-8">
+    <div class="col-md-12">
     <div class=" alert alert-success" id="msgdiv" >
       <strong>Info! <span id = "msg"><?php echo $msg;?></span></strong> 
     </div>
     <?php }?>
-<div class="col-md-8">
+<div class="col-md-12">
       <div class="box box-primary">
        
             <!-- /.box-header -->

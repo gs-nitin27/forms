@@ -22,18 +22,20 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th style="width: 10px">#</th>
-                  <th>Tournament Name</th>
-                  <th>Sport</th>
-                  <th>Level</th>
-                  <th>Category</th>
-                  <th>Location</th>
-                  <th>Organiser</th>
-                  <th style="width: 40px">Status</th>
-                  <th style="width: 40px">Publish</th>
-                  <th style="width: 40px">View</th>
+                 <tr>
+                  <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Tournament Name <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Level <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Category <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Organiser <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Status <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
                 </tr>
+
+               
                 </thead>
 			      	<tbody>
               <?php $i =1;
@@ -68,17 +70,17 @@
 				<?php } } ?>
                 </tbody>
                 <tfoot>
-                <tr>
-                  <th style="width: 10px">#</th>
-                  <th>Tournament Name</th>
-                  <th>Sport</th>
-                  <th>Level</th>
-                  <th>Category</th>
-                  <th>Location</th>
-                  <th>Organiser</th>
-                  <th style="width: 40px">Status</th>
-                  <th style="width: 40px">Publish</th>
-                  <th style="width: 40px">View</th>
+                  <tr>
+                  <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Tournament Name</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Sport</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Level</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Category</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Location</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Organiser</th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Status</th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish</th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
                 </tr>
                 </tfoot>
               </table>

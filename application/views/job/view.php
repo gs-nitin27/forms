@@ -11,7 +11,7 @@
          <section class="content"> 
       <div class="row">
 	  
-		<div class="col-md-6">
+		<div class="col-md-12">
 				
 			<?php $job = $this->register->getJobInfo($id); 
 				if(!empty($job)){

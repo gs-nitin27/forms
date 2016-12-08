@@ -5,10 +5,6 @@ $file =base_url('/assets/menu.json');
 $data = file_get_contents($file);
  $array=json_decode($data);
 
- //print_r($json_array);die();
-// $var=$json_array['data'][0]->Event[0]->url;
-
- //echo $var; die();
 
 ?>
 <aside class="main-sidebar">
@@ -28,33 +24,37 @@ $data = file_get_contents($file);
           <p> <?php echo $name ;?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
-        <?php }?>
+        <?php
+            $id=$data['userid'];
+            $module = $this->register->usermoduleData($id);
+            foreach ($module as $mod) {
+           
+               } }?>
       </div>
-      <!-- search form -->
-      <!-- <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form> -->
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-	  <ul class="sidebar-menu">
+     
+    <ul class="sidebar-menu">
         <li class="active treeview">
           <a href="<?php echo site_url('forms/home');?>">
             <i class="fa fa-dashboard"></i> <span><b>Dashboard</b></span>
           </a>
          
         </li>
-		</ul>
+    </ul>
       <?php 
-        foreach($array as $value){ 
-         //print_r($value->child);
+       $module_list = $mod['access_module'];
+       $module_no = explode(',', $module_list);
+      
+     //  $module_no =  explode(',', $mod['access_module'])
+      // print_r($module_no);
+        foreach ($module_no as $module_id) {
+         // echo $module_id."nitin";        
+       
+        foreach($array as $key => $value){ 
+             if($module_id == $key)
+             {
+
           if(isset($value->child)){
-              ?>
+           ?>
             <li class="treeview">
             <a href="<?php echo $value->url;?>">
             <i class="glyphicon glyphicon-chevron-down"></i>
@@ -73,26 +73,18 @@ $data = file_get_contents($file);
           </a></li>
           
       <?php  } ?></ul></li>
-    <?php }else{?> <li class="treeview">
-          <a href="<?php echo site_url('forms/usermodule')?>">
-            <i class="glyphicon glyphicon-menu-right"></i>
-            <span>User Role Management</span>
-            <span class="pull-right-container">
-          </span>
-          </a>
-
-            
-
-          </li>
- <?php } }?>
+    <?php }  
+  }
+ }
+}?>
        <!-- <ul class="treeview-menu">
        <li><a href="<?php //echo site_url($value4->url);?>">
             <i class="glyphicon glyphicon-menu-right"></i>
             <span><b><?php //echo $value->name;?></b></span>
           </a></li>  </ul>
           </li>
-		   -->
-		<!--   <ul class="sidebar-menu">
+       -->
+    <!--   <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
           <a href="<?php //echo site_url('forms/home');?>">
@@ -155,8 +147,8 @@ $data = file_get_contents($file);
             <li><a href="<?php //echo site_url('forms/createresources');?>"><i class="glyphicon glyphicon-menu-right"></i>Create Resources</a></li>
             <li><a href="<?php //echo site_url('forms/getresources');?>"><i class="glyphicon glyphicon-menu-right"></i>View Resources</a></li>
           </ul></li>
-		  
-		  <li class="treeview">
+      
+      <li class="treeview">
           <a href="#">
             <i class="glyphicon glyphicon-chevron-down"></i>
             <span>Content</span>
@@ -182,8 +174,8 @@ $data = file_get_contents($file);
 
           </li>
           </ul>
-		   -->
-		  
+       -->
+      
 
     </section>
     <!-- /.sidebar -->

@@ -68,7 +68,7 @@ public function event()
 $data1 = json_decode($_REQUEST[ 'data' ]);
 $item = new stdClass();
 // echo ($data1->start_date); exit;
-//strtotime()
+
 $item->id                 = $data1->id;
 $item->userid             = $data1->userid;
 $item->type               = addslashes($data1->type);
@@ -616,15 +616,11 @@ $this->load->model('register');
 $res = $this->register->create_content($item);
 if($res == 1)
 {
-
 echo "Content Created";
-
 }
 else
 {
-
 echo "Content has not been saved";
-
 }
 }
 
@@ -677,25 +673,31 @@ public function edituser()
 
 }
 
-
-
 public function saveuserModule()
 {
 $data = json_decode($_REQUEST['data']);
-//print_r($data);
-$item  = new stdClass(); 
+ foreach ($data as  $value) {
 
-$item->id                      = $data->id;
-$item->event                   = $data->event;
-$item->tournament              = $data->tournament;
-$item->job                     = $data->job;
-$item->resources               = $data->resources;
-$item->content                 = $data->content;
+ 	if($value!=$data->id)
+         $res[]=$value; 
+ }
+ $commaList = implode(',',$res);
+ // print_r($commaList);
+
+
+// $item  = new stdClass(); 
+
+// $item->id                      = $data->id;
+// $item->event                   = $data->event;
+// $item->tournament              = $data->tournament;
+// $item->job                     = $data->job;
+// $item->resources               = $data->resources;
+// $item->content                 = $data->content;
 
 
 
 $this->load->model('register');
-$res = $this->register->create_userModule($item);
+$res = $this->register->update_userModule($data->id,$commaList);
 if($res == 1)
 {
 echo "Module Created";
@@ -705,6 +707,34 @@ else
 echo "Module Creation Not Saved";
 }
 }
+
+
+// public function saveuserModule()
+// {
+// $data = json_decode($_REQUEST['data']);
+// //print_r($data);
+// $item  = new stdClass(); 
+
+// $item->id                      = $data->id;
+// $item->event                   = $data->event;
+// $item->tournament              = $data->tournament;
+// $item->job                     = $data->job;
+// $item->resources               = $data->resources;
+// $item->content                 = $data->content;
+
+
+
+// $this->load->model('register');
+// $res = $this->register->create_userModule($item);
+// if($res == 1)
+// {
+// echo "Module Created";
+// }
+// else
+// {
+// echo "Module Creation Not Saved";
+// }
+// }
 
  public function signout()
  {
@@ -725,13 +755,17 @@ public function profile()
 {
 $data=json_decode($_REQUEST['data']);
 
-//print_r($data);die;
+$pass=md5($data->password);
+print_r($pass);
+
 $item= new stdClass();
 
 $item->userid                     =$data->userid;
 $item->name                       =$data->name;
+$item->password                   =$pass;
 $item->email                      =$data->email;
 $item->prof_id                    =$data->prof_id;
+$item->userType                   =$data->userType;
 $item->contact_no                 =$data->contact_no;
 $item->sport                      =$data->sport;
 $item->Gender                     =$data->Gender;
@@ -750,7 +784,7 @@ $item->age_catered                =@$data->age_catered;
 $item->device_id                  =@$data->device_id;
 $item->about_me                   =@$data->about_me;
 
-//print_r($data);
+//print_r($item); die();
 $this->load->model('register');
 $res= $this->register->updateProfile($item);
 if($res==1)
@@ -880,7 +914,7 @@ if($data2->publish==1)
 {    
 	$jdata=$this->register->getJobInfo($data2->id);
 
-    print_r($jdata);
+  //  print_r($jdata);
 	$this->register->addJobData($jdata);
 }
 else{
@@ -907,7 +941,7 @@ if($data2->publish==1)
 {    
 	$jdata=$this->register->getContentInfo($data2->id);
 
-    print_r($jdata);
+  //  print_r($jdata);
 	$this->register->addContentData($jdata);
 }
 else{
@@ -937,5 +971,11 @@ public function deleteUser($id)
    $this->load->view('templates/template',$data);
 
 }
+
+ public function createNewUser()
+ {
+ 	$data['middle']='userModule/createnewUser';
+ 	 $this->load->view('templates/template',$data);
+ }
 
  }

@@ -67,7 +67,7 @@ function clear()
     </section>
          <section class="content"> 
       <div class="row">
-	  <div class="col-md-6">
+	  <div class="col-md-12">
 		<div class=" alert alert-success" id="msgdiv" style="display:none">
 			<strong>Info! <span id = "msg"></span></strong> 
 		</div>

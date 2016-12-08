@@ -1,16 +1,58 @@
 
-  <script>
+
+<script>
+//document.domain = "getsporty.in";
+$(document).ready(function(){
+ 
+
+$('#module').click(function(){
+
+var data = {
+
+    "id"                       : $("#uid").val(),
+    "event"                    : $("#EVENT").val(),
+    "tournament"               : $("#TOURNAMENT").val(),
+    "job"                      : $("#JOB").val(), 
+    "resources"                : $("#RESOURCES").val(), 
+    "content"                  : $("#CONTENT").val(),
+    "usermenu"                 : $("#USER_ROLE_MANAGEMENT").val()
+
+
+};
+
+console.log(JSON.stringify(data));
+var data = JSON.stringify(data);
+  $.ajax({
+    type: "POST",
+    url: '<?php echo site_url('forms/saveuserModule'); ?>',
+    data: "data="+data,
+    dataType: "text",
+    success: function(result) {
+    $( "#msgdiv" ).show();
+   $( "#msg" ).html(result);
+    setTimeout(function() {
+     $('#msgdiv').fadeOut('fast');
+   }, 2000);
+    }
+
+});   
+});});
+</script>  
+
+
+<script>
 $(document).ready(function(){
              
-
   $('#save').click(function(){
     
 var data1 = {
 
     "userid"                  : $("#uid").val(),
     "name"                    : $("#name").val(),
+     "password"               : $("#Password").val(),
     "email"                   : $("#email").val(), 
-    "prof_id"                 : $("#utype").val(),
+    "prof_id"                 : $("#proftype").val(),
+    "userType"                : $("#utype").val(),
     "contact_no"              : $("#contact").val(),
     "sport"                   : $("#sport").val(),
     "Gender"                  : $("#gen").val(), 
@@ -19,8 +61,7 @@ var data1 = {
     "address2"                : $("#add2").val(),    
     "address3"                : $("#state").val(),
     "location"                : $("#city").val()
-
-    
+ 
 };
 
 console.log(JSON.stringify(data1));
@@ -28,7 +69,6 @@ var url = '<?php echo site_url();?>';
 var data = JSON.stringify(data1);
 
   $.ajax({
-
     type: "POST",
     url: '<?php echo site_url('forms/profile'); ?>',
     data: "data="+data,
@@ -41,82 +81,97 @@ var data = JSON.stringify(data1);
         }, 2000);
       window.location.href = url+"/forms/usermodule";
     }
-
-
-});
-
-    
+});  
 });});
 
- 
   $(function() {
     $( "#dob" ).datepicker();
-   
-    
-    
   });
 
   </script>
         
        <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
+    <section class="content-header" style="text-align: center;">
+      <h1><b>
         Profile
-        
+        </b>
       </h1>
      
     </section>
          <section class="content"> 
       <div class="row">
-      <div class="col-md-11">
-       
+      <div class="col-md-12">
 
-<form >
-    
-   <div class="container">
-   <div class="dropdown" style="margin-top:0%; margin-left: -1%">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">User Type
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Super User</a></li>
-      <li><a href="#">User</a></li>
-      
-    </ul>
-  </div>
+   
+   <!-- json data in button for module  start -->
 
-      <div class="row text-center" style="margin-left:-18% ;margin-top:-3%">
-       
-        <label for="event" class="btn btn-default">Event  <input type="checkbox" id="event" class="badgebox" value="1" checked><span class="badge">&check;</span></label>
+ <!-- <form >
+<?php
 
-        <label for="tournament" class="btn btn-primary">Tournament  <input type="checkbox" id="tournament" class="badgebox" value="1" checked><span class="badge">&check;</span></label>
+$file// =base_url('/assets/menu.json');
+//$data = file_get_contents($file);
+//$array=json_decode($data);
+?>
+  <div class="container">
+      <div class="row text-center" >
+     <?php 
+          //  foreach($array as $key => $mod){ 
+          //      if(isset($mod->child)){
+              ?>
+            <label for="<?php// echo $mod->name;?>" class="btn btn-primary"><?php //echo $mod->name;?><input type="checkbox" name="<?php //echo $mod->name;?>" id="<?php //echo $key;?>" class="badgebox" value="0" ><span class="badge">&check;</span></label>&nbsp;&nbsp;&nbsp;
+ //<?php   // }}?>
 
-        <label for="job" class="btn btn-info">job <input type="checkbox" id="job" class="badgebox" value="1" checked><span class="badge" >&check;</span></label>
-        
-        <label for="resources" class="btn btn-success">Resources <input type="checkbox" id="resources" class="badgebox" value="1" checked><span class="badge">&check;</span></label>
-       
-        <label for="content" class="btn btn-warning">Content <input type="checkbox" id="content" class="badgebox" value="0"><span class="badge">&check;</span></label>
-        
-       <!--  <label for="usermenu" class="btn btn-danger">User Menu <input type="checkbox" id="usermenu" class="badgebox" value="6"><span class="badge">&check;</span></label> -->
-  
+
   </div>
  
-
-  <button type="button" class="btn btn-success" id="save1" style="margin-top:-6%;margin-left: 81%">Save</button>
+  <button type="button" class="btn btn-success" id="module" style="margin-top:-6%;margin-left:88%"><b>Save Module</b></button>
 </div>
-  </form>
+  </form> -->
+
+<!-- json data in button for module  start -->
 
 
-
-
-
-
-         <?php  $profile = $this->register->profile($id); 
-           // print_r($profile); 
-            // print_r($id); 
+<?php  $profile = $this->register->profile($id); 
             foreach ($profile as $value) 
               
+              $module_list = $value['access_module'];
+              $module_no = explode(',', $module_list); 
             {?>
+
+<div class="row text-center" style="margin-left: ;margin-top:">
+
+<label for="USER_ROLE_MANAGEMENT" class="btn btn-danger">USER ROLE MANAGEMENT<input type="checkbox" id="USER_ROLE_MANAGEMENT" class="badgebox"><span class="badge">&check;</span></label>
+
+</div>
+<br>
+       <div class="row text-center">
+
+        <label for="EVENT" class="btn btn-info">Event  <input type="checkbox" id="EVENT" class="badgebox"><span class="badge">&check;</span></label>
+
+        <label for="TOURNAMENT" class="btn btn-primary">Tournament  <input type="checkbox" id="TOURNAMENT" class="badgebox"  ><span class="badge">&check;</span></label>
+
+        <label for="JOB" class="btn btn-info">job <input type="checkbox" id="JOB" class="badgebox"><span class="badge" >&check;</span></label>
+        
+        <label for="RESOURCES" class="btn btn-primary">Resources <input type="checkbox" id="RESOURCES" class="badgebox"><span class="badge">&check;</span></label>
+       
+        <label for="CONTENT" class="btn btn-warning">Content <input type="checkbox" id="CONTENT" class="badgebox"><span class="badge">&check;</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+       <!--  <label for="usermenu" class="btn btn-danger">User Menu <input type="checkbox" id="usermenu" class="badgebox" value="6"><span class="badge">&check;</span></label> -->
+  <button type="button" class="btn btn-success" id="module" style="margin-top:;margin-left:">Save Module</button>
+  </div>
+
+   
+
+
+
+
+  </div> 
+</div>
+
+ 
+
+        
         <div class=" alert alert-success" id="msgdiv" style="display:none">
             <strong>Info! <span id = "msg"></span></strong> 
         </div>
@@ -141,13 +196,22 @@ var data = JSON.stringify(data1);
                 </div>
                      <div class="form-group">
                       <label for="name">Name</label>
-                    <input type="text" class="form-control"  id="name" value="<?php echo $value['name']; ?>" >
+                    <input type="text" class="form-control"  id="name" value="<?php echo $value['name']; ?>" disabled >
                     </div >
 
+                   <div class="form-group">
+                      <label for="name">Usertype</label>
+                    <input type="text" class="form-control"  id="utype" value="<?php echo $value['userType']; ?>" >
+                    </div >
+
+                 <div class="form-group">
+                      <label for="Password">password</label>
+                    <input type="text" class="form-control"  id="Password" value="<?php echo $value['password']; ?>" >
+                    </div >
 
                     <div class="form-group">
-                    <label for="usertype">User Type </label>
-                        <select id="utype" class="form-control">
+                    <label for="usertype">Proffession</label>
+                        <select id="proftype" class="form-control">
                             <option><? echo $value['prof_id'];?></option>
                             <option id="Coach">Athletes</option>
                             <option id="player">Coach</option>
@@ -183,16 +247,16 @@ var data = JSON.stringify(data1);
 
                     <div class="form-group">
                       <label for="Email">Email Id</label>
-                      <input type="text" class="form-control"  id="email" placeholder="Enter Email Id" value="<?php echo $value['email']; ?>">
+                      <input type="text" class="form-control"  id="email" placeholder="Enter Email Id" value="<?php echo $value['email']; ?>" disabled>
                     </div >
                     <div class="form-group">
                       <label for="contact">Contact No</label>
-                      <input type="text" class="form-control"  id="contact" placeholder="Enter Contact No" value="<?php echo $value['contact_no']; ?>">
+                      <input type="text" class="form-control"  id="contact" placeholder="Enter Contact No" value="<?php echo $value['contact_no']; ?>" disabled>
                     </div >
 
                    <div class="form-group">
                     <label for="sports">Gender</label>
-                        <select id="gen" class="form-control" value="<?php echo $value['Gender']; ?>" >
+                        <select id="gen" class="form-control" value="<?php echo $value['Gender']; ?>" disabled>
                             <option><?php echo $value['Gender']; ?></option>
                             <option id="Male">Male</option>
                             <option id="Female">Female</option>
@@ -202,7 +266,7 @@ var data = JSON.stringify(data1);
 
                     <div class="form-group">
                       <label for="link">Date of Birth</label>
-                      <input type="text" class="form-control"  id="dob" value="<?php echo $value['dob']; ?>" placeholder="Date Of Birth">
+                      <input type="text" class="form-control"  id="dob" value="<?php echo $value['dob']; ?>" placeholder="Date Of Birth" disabled>
                     </div >
 
                    
@@ -218,19 +282,19 @@ var data = JSON.stringify(data1);
                      
                     <div class="form-group">
                       <label for="address1">Address Line1</label>
-                      <input type="text" class="form-control"  id="add1" placeholder="Enter Address" value="<?php echo $value['address1']; ?>">
+                      <input type="text" class="form-control"  id="add1" placeholder="Enter Address" value="<?php echo $value['address1']; ?>" disabled>
                     </div >
                     <div class="form-group">
                       <label for="address2">Address Line2</label>
-                      <input type="text" class="form-control"  id="add2" value="<?php echo $value['address2']; ?>" placeholder="Enter Address">
+                      <input type="text" class="form-control"  id="add2" value="<?php echo $value['address2']; ?>" placeholder="Enter Address" disabled>
                     </div >
                     <div class="form-group">
                       <label for="city">City</label>
-                      <input type="text" class="form-control"  id="city" value="<?php echo $value['location']; ?>" placeholder="Enter City">
+                      <input type="text" class="form-control"  id="city" value="<?php echo $value['location']; ?>" placeholder="Enter City" disabled>
                     </div >
                     <div class="form-group">
                       <label for="state">State</label>
-                      <input type="text" class="form-control"  id="state" value="<?php echo $value['address3']; ?>" placeholder="Enter State">
+                      <input type="text" class="form-control"  id="state" value="<?php echo $value['address3']; ?>" placeholder="Enter State" disabled>
                     </div >
                     
                 </div>
@@ -252,78 +316,116 @@ var data = JSON.stringify(data1);
 </div>
 
 
+
 <script type="text/javascript">
+$(document).ready(function(){
 
-    $('#tournament').change(function() {
+
+var module = '<?php echo $value['access_module']; ?>';
+var mod = module.split(',');
+window.onload = loadData();
+function loadData(){
+
+if(mod[0]==1 ){
+ $('#EVENT').prop('checked',true);
+ }
+if(mod[1] ==2){
+ $('#TOURNAMENT').prop('checked',true);
+ }
+ if(mod[2] ==3){
+ $('#JOB').prop('checked',true);
+ }
+ if(mod[3] ==4){
+ $('#RESOURCES').prop('checked',true);
+ }
+ if(mod[4] ==5){
+ $('#CONTENT').prop('checked',true);
+ }
+ if(mod[5]==6 ){
+ $('#USER_ROLE_MANAGEMENT').prop('checked',true);
+ }
+}
+
+    $('#EVENT').val(mod[0]);
+    $('#TOURNAMENT').val(mod[1]);
+    $('#JOB').val(mod[2]);
+    $('#RESOURCES').val(mod[3]);
+    $('#CONTENT').val(mod[4]);
+    $('#USER_ROLE_MANAGEMENT').val(mod[5]);
+
+ });
+
+
+$('#EVENT').change(function() {
         if ($(this).prop('checked')) {
-            var val=$("#tournament").val(1);
+            var val=$("#EVENT").val(1);
                val=1;
-            
+          // alert(val);
         }
         else {
-          var val=$("#tournament").val(0);
-               val=0;
-            
+          var val=$("#EVENT").val(0);
+               val=0;  
         }
     });
-     $('#job').change(function() {
+
+     $('#TOURNAMENT').change(function() {
         if ($(this).prop('checked')) {
-            var val=$("#job").val(1);
-               val=1;
-            
+            var val=$("#TOURNAMENT").val(2);
+               val=2;
+           // alert(val);
         }
         else {
-          var val=$("#job").val(0);
+          var val=$("#TOURNAMENT").val(0);
                val=0;
             
         }
     });
 
-      $('#event').change(function() {
+      $('#JOB').change(function() {
         if ($(this).prop('checked')) {
-            var val=$("#event").val(1);
-               val=1;
-            
+            var val=$("#JOB").val(3);
+               val=3;
+       //   alert(val);
         }
         else {
-          var val=$("#event").val(0);
+          var val=$("#JOB").val(0);
                val=0;
             
         }
     });
-       $('#resources').change(function() {
+       $('#RESOURCES').change(function() {
         if ($(this).prop('checked')) {
-            var val=$("#resources").val(1);
-               val=1;
+            var val=$("#RESOURCES").val(4);
+               val=4;
+        //  alert(val);
+        }
+        else {
+          var val=$("#RESOURCES").val(0);
+               val=0;
+           //  alert(val);
+        }
+    });
+
+        $('#CONTENT').change(function() {
+        if ($(this).prop('checked')) {
+            var val=$("#CONTENT").val(5);
+               val=5;
+          //  alert(val);
+        }
+        else {
+          var val=$("#CONTENT").val(0);
+               val=0;
            
         }
-        else {
-          var val=$("#resources").val(0);
-               val=0;
-           
-        }
     });
 
-        $('#content').change(function() {
+        $('#USER_ROLE_MANAGEMENT').change(function() {
         if ($(this).prop('checked')) {
-            var val=$("#content").val(1);
-               val=1;
-            
-        }
-        else {
-          var val=$("#content").val(0);
-               val=0;
-           
-        }
-    });
-
-        $('#usermenu').change(function() {
-        if ($(this).prop('checked')) {
-            var val=$("#usermenu").val(1);
-               val=1;
+            var val=$("#USER_ROLE_MANAGEMENT").val(6);
+               val=6;
                    }
         else {
-          var val=$("#usermenu").val(0);
+          var val=$("#USER_ROLE_MANAGEMENT").val(0);
                val=0;
             
         }

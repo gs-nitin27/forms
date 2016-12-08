@@ -22,18 +22,18 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                 <th style="width: 10px">#</th>
-                  <th>Title</th>
-                  <th>Summary</th>
-				        <!--  <th>Description</th> -->
-                  <th>Link</th>
-                  <th>Sport</th>
-                  <th>Location</th>
-                  <th style="width: 40px">Publish</th>
-                  <th style="width: 40px">View</th>
-                  <th style="width: 40px">Edit</th>
-                  <th style="width: 40px">Delete</th>
+               <tr>
+                 <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Title<img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Summary <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                <!--  <th>Description</th> -->
+                  <th style="background: #3c8dbc; color: #ffffff;">Link <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Edit</th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Delete</th>
                 </tr>
                 </thead>
 				<tbody>
@@ -65,18 +65,18 @@
                 <?php } } ?>
                 </tbody>
                 <tfoot>
-                <tr>
-                  <th style="width: 10px">#</th>
-                  <th>Title</th>
-                  <th>Summary</th>
-				        <!--  <th>Description</th> -->
-                  <th>Link</th>
-                  <th>Sport</th>
-                  <th>Location</th>
-                  <th style="width: 40px">Publish</th>
-                  <th style="width: 40px">View</th>
-                  <th style="width: 40px">Edit</th>
-                  <th style="width: 40px">Delete</th>
+                 <tr>
+                 <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Title</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Summary</th>
+                <!--  <th>Description</th> -->
+                  <th style="background: #3c8dbc; color: #ffffff;">Link</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Sport</th>
+                  <th style="background: #3c8dbc; color: #ffffff;"">Location</th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish</th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Edit</th>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Delete</th>
                 </tr>
                 </tfoot>
               </table>

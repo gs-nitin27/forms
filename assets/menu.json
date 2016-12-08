@@ -92,8 +92,25 @@
       }
     },
 
+    "6" :  {
 
- "6":   {     "url": "/forms/usermodule",
+         "url": "#USERROLE",
+          "name": "USER ROLE",
+        "child" :{
+       "1" : {
+          "url": "/forms/usermodule",
+          "name": "USER ROLE MANAGEMENT"
+        },
+        "2" : {
+          "url": "/forms/createnewUser",
+          "name": "Create New  User"
+        }
+      }
+    },
+
+
+
+ "7":   {     "url": "#",
               "name": "USER ROLE MANAGEMENT"
         }
          

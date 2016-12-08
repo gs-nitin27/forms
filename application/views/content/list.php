@@ -27,12 +27,12 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th style="width: 10px">#</th>
-                  <th>Title</th>
-                  <th>Link</th>
-                  <th>Content</th>
-                  <th>Publish</th>
-				   <th>Edit</th>
+                  <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Title <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Link <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Content <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+				          <th style="width: 10px; background: #3c8dbc; color: #ffffff;">Edit</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -57,13 +57,13 @@
 		  <?php } } ?>
                 </tbody>
                 <tfoot>
-                <tr>
-                  <th style="width: 10px">#</th>
-                  <th>Title</th>
-                  <th>Link</th>
-                  <th>Content</th>
-                  <th>Publish</th>
-				  <th>Edit</th>
+               <tr>
+                  <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Title</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Link</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Content</th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Publish</th>
+                  <th style="width: 10px; background: #3c8dbc; color: #ffffff;">Edit</th>
                 </tr>
                 </tfoot>
               </table>
