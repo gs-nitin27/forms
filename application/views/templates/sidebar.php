@@ -64,7 +64,7 @@ $data = file_get_contents($file);
             </span>
           </a>
       
-        <ul id="<?php echo $value->url ?>" class="treeview-menu parent">
+        <ul id="<?php echo $value->url; ?>" class="treeview-menu parent">
         <?php 
       foreach ($value->child as $key => $value1) {?>
         <li><a href="<?php echo site_url($value1->url);?>">

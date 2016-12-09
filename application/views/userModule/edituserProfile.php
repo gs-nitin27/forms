@@ -137,13 +137,17 @@ $file// =base_url('/assets/menu.json');
               
               $module_list = $value['access_module'];
               $module_no = explode(',', $module_list); 
-            {?>
-
+              {     
+                 $usertype=$value['userType']; 
+                  if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
 <div class="row text-center" style="margin-left: ;margin-top:">
 
 <label for="USER_ROLE_MANAGEMENT" class="btn btn-danger">USER ROLE MANAGEMENT<input type="checkbox" id="USER_ROLE_MANAGEMENT" class="badgebox"><span class="badge">&check;</span></label>
 
 </div>
+<?php } ?>
 <br>
        <div class="row text-center">
 

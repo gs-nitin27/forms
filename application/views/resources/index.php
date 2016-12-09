@@ -24,13 +24,22 @@
                 <thead>
                <tr>
                  <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Title<img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Summary <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Title<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Summary <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                 <!--  <th>Description</th> -->
-                  <th style="background: #3c8dbc; color: #ffffff;">Link <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Link <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+
+                  <?php        
+                 $data=$this->session->userdata('item');
+                 $usertype=$data['userType']; 
+                 {
+                  if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                    <?php }?>
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Edit</th>
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Delete</th>
@@ -50,6 +59,11 @@
                     <td><?php echo $resource['sport']; ?></td>
                     <td><?php echo $resource['location']; ?></td>
 
+              
+          <?php
+             if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
 
                  <td>
                     <?php if($resource['status']==0){?>
@@ -58,6 +72,7 @@
                     <button class="badge bg-green" onclick="myfunction(<?php echo $resource['id'];?>,0)"><?php echo "Deactivate";?></button>
                     <?php } ?>
                     </td>
+                    <?php } ?>
                     <td><a href = "<?php echo site_url('forms/viewresources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                     <td><a href = "<?php echo site_url('forms/editResources/'.$resource['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
                     <td><a href = "<?php echo site_url('forms/deleteResources/'.$resource['id']); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
@@ -73,7 +88,14 @@
                   <th style="background: #3c8dbc; color: #ffffff;">Link</th>
                   <th style="background: #3c8dbc; color: #ffffff;">Sport</th>
                   <th style="background: #3c8dbc; color: #ffffff;"">Location</th>
+
+          <?php
+             if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
+
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish</th>
+                  <?php } } ?>
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Edit</th>
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Delete</th>

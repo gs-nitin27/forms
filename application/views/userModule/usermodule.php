@@ -20,10 +20,10 @@
                 <thead>
                 <tr>
                  <th style="width: 10px;background: #3c8dbc; color: #ffffff;"><img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px>#</img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Userid <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img> </th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Proffession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px> </th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Usertype <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px> </th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Userid <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img> </th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Proffession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Usertype <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
                  <!--  <th style="width: 40px; background: #3c8dbc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Edit</th>
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Delete</th>

@@ -65,12 +65,23 @@ $(document).ready(function(){
                 <thead>
                 <tr>
                  <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Job Title <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Job Type <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Organisation <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Job Title <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Job Type <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Organisation <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+
+             <?php        
+                 $data=$this->session->userdata('item');
+                 $usertype=$data['userType']; 
+                 {
+                  if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
+
+                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+
+                    <?php }?>
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
                 </tr>
                 </thead>
@@ -87,6 +98,12 @@ $(document).ready(function(){
 					<td><?php echo $job['city']; ?></td>
 					<td><?php echo $job['organisation_name']; ?></td>
 					<!--td><span class="badge bg-red">55%</span></td-->
+
+          <?php
+             if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
+
           <td>
           <?php if($job['publish']==0){?>
           <button class="badge bg-red" onclick="myfunction(<?php echo $job['infoId'];?>,1)"><?php echo "Activate";?></button>
@@ -94,7 +111,7 @@ $(document).ready(function(){
           <button class="badge bg-green" onclick="myfunction(<?php echo $job['infoId'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
-
+           <?php } ?>
 					<td><a href = "<?php echo site_url('forms/viewJob/'.$job['infoId']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                 </tr>
 				<?php } } ?>
@@ -107,7 +124,13 @@ $(document).ready(function(){
                   <th style="background: #3c8dbc; color: #ffffff;">Sport</th>
                   <th style="background: #3c8dbc; color: #ffffff;">Location</th>
                   <th style="background: #3c8dbc; color: #ffffff;">Organisation</th>
+
+                  <?php
+             if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish</th>
+                  <?php } } ?>
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
                 </tr>
                 </tfoot>

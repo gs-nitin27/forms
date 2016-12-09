@@ -25,24 +25,35 @@
                   <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #3c8dbc; color: #ffffff;">Event Name <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #3c8dbc; color: #ffffff;">Event Type <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff; min-width:7%">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff; min-width: 8%;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #3c8dbc; color: #ffffff;">Organiser <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Status <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                 
+                  <?php
+        
+                 $data=$this->session->userdata('item');
+                 $usertype=$data['userType']; 
+                 {
+                 if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
                    <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                    <?php }?>
+
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
                 </tr>
                 </thead>
 				<tbody>
-                <?php $i =1;
-				$events = $this->register->getEventInfo();
-      
 
+        <?php $i =1;
+				$events = $this->register->getEventInfo();
 				if(!empty($events)){
 						foreach($events as $event){  ?>
 
                 <tr>
-					<td><?php echo $i++; ?></td>
+				<td><?php echo $i++; ?></td> 
+         <!--  <td><?//php echo $event['userid']; ?></td> -->
 					<td><?php echo $event['name']; ?></td>
 					<td><?php echo $event['type']; ?></td>
 					<td><?php echo $event['sports']; ?></td>
@@ -56,6 +67,10 @@
 					<span class="badge bg-green"><?php echo "Active";?></span>
 					<?php } ?>
 					</td>
+        <?php
+           if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
 
           <td>
           <?php if($event['publish']==0){?>
@@ -64,7 +79,7 @@
           <button class="badge bg-green" onclick="myfunction(<?php echo $event['infoId'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
-
+  <?php }?>
 					<td><a href = "<?php echo site_url('forms/viewevent/'.$event['infoId']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                 </tr>
 				<?php } } ?>
@@ -78,7 +93,14 @@
                   <th style="background: #3c8dbc; color: #ffffff;">Location</th>
                   <th style="background: #3c8dbc; color: #ffffff;">Organiser</th>
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Status</th>
+
+                <?php 
+                    if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
                    <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish</th>
+  <?php } }?>
+
                   <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
                 </tr>
                 </tfoot>

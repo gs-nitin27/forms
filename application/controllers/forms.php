@@ -756,7 +756,6 @@ public function profile()
 $data=json_decode($_REQUEST['data']);
 
 $pass=md5($data->password);
-print_r($pass);
 
 $item= new stdClass();
 
@@ -774,7 +773,6 @@ $item->address1                   =$data->address1;
 $item->address2                   =$data->address2;
 $item->address3                   =$data->address3;
 $item->location                   =$data->location;
-$item->password                   =@$data->password;
 $item->user_image                 =@$data->user_image;
 $item->profile_status             =@$data->profile_status;
 $item->prof_language              =@$data->prof_language;

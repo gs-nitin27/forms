@@ -28,10 +28,20 @@
                 <thead>
                 <tr>
                   <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Title <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Link <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Content <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=20px width=20px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Title <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Link <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #3c8dbc; color: #ffffff;">Content <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+
+              <?php        
+                 $data=$this->session->userdata('item');
+                 $usertype=$data['userType']; 
+                 {
+                  if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
+                  <th style="background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                   <?php }?>
+
 				          <th style="width: 10px; background: #3c8dbc; color: #ffffff;">Edit</th>
                 </tr>
                 </thead>
@@ -45,6 +55,11 @@
 					<td><?php echo $contants['title']; ?></td>
 					<td><?php echo $contants['url']; ?></td>
 					<td><?php echo $contants['content']; ?></td>
+
+          <?php
+             if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
           <td>
           <?php if($contants['publish']==0){?>
           <button class="badge bg-red" onclick="myfunction(<?php echo $contants['id'];?>,1)"><?php echo "Activate";?></button>
@@ -52,6 +67,7 @@
           <button class="badge bg-green" onclick="myfunction(<?php echo $contants['id'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
+            <?php } ?>
 		  <td><a href = "<?php echo site_url('forms/editContent/'.$contants['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
                 </tr>
 		  <?php } } ?>
@@ -62,7 +78,14 @@
                   <th style="background: #3c8dbc; color: #ffffff;">Title</th>
                   <th style="background: #3c8dbc; color: #ffffff;">Link</th>
                   <th style="background: #3c8dbc; color: #ffffff;">Content</th>
+
+                  <?php
+             if($usertype==101 || $usertype==102 )
+                   {
+                    ?>
                   <th style="background: #3c8dbc; color: #ffffff;">Publish</th>
+
+                    <?php } }?>
                   <th style="width: 10px; background: #3c8dbc; color: #ffffff;">Edit</th>
                 </tr>
                 </tfoot>
