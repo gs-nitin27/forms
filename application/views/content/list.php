@@ -46,8 +46,26 @@
                 </tr>
                 </thead>
                 <tbody>
-                 <?php $i =1;
-				  $content = $this->register->getContentInfo();
+          <?php 
+          $i =1;
+
+
+      if($usertype==101 || $usertype==102 )
+        {
+              $content = $this->register->getContentInfo();
+        }
+        else
+        {
+                
+            $data=$this->session->userdata('item');
+            $userid=$data['userid']; 
+            $content = $this->register->getContentInfo();
+          //  $content = $this->register->getUserContentInfo($userid);
+        }
+
+
+
+				 
 				  if(!empty($content)){
 						foreach($content as $contants){ ?>
           <tr>

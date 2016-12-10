@@ -50,8 +50,20 @@
                
                 </thead>
 			      	<tbody>
-              <?php $i =1;
-				        $tournaments = $this->register->getTournamentInfo();
+              <?php 
+              $i =1;
+             if($usertype==101 || $usertype==102 )
+               {
+                   $tournaments = $this->register->getTournamentInfo();
+               }
+             else
+              {
+                $data=$this->session->userdata('item');
+                $userid=$data['userid']; 
+               $tournaments = $this->register->getUserTournamentInfo($userid);
+               }
+
+				       
 		        		if(!empty($tournaments)){
 				    		foreach($tournaments as $tournament){
                 ?>

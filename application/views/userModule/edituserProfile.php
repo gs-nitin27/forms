@@ -161,25 +161,13 @@ $file// =base_url('/assets/menu.json');
        
         <label for="CONTENT" class="btn btn-warning">Content <input type="checkbox" id="CONTENT" class="badgebox"><span class="badge">&check;</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         
-       <!--  <label for="usermenu" class="btn btn-danger">User Menu <input type="checkbox" id="usermenu" class="badgebox" value="6"><span class="badge">&check;</span></label> -->
   <button type="button" class="btn btn-success" id="module" style="margin-top:;margin-left:">Save Module</button>
   </div>
-
-   
-
-
-
-
   </div> 
-</div>
-
- 
-
-        
+</div>  
         <div class=" alert alert-success" id="msgdiv" style="display:none">
             <strong>Info! <span id = "msg"></span></strong> 
         </div>
-
             <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_event" data-toggle="tab">Name </a></li>
@@ -271,9 +259,7 @@ $file// =base_url('/assets/menu.json');
                     <div class="form-group">
                       <label for="link">Date of Birth</label>
                       <input type="text" class="form-control"  id="dob" value="<?php echo $value['dob']; ?>" placeholder="Date Of Birth" disabled>
-                    </div >
-
-                   
+                    </div >                   
               </div>
               </div>
               <!-- /.tab-pane -->
@@ -281,9 +267,7 @@ $file// =base_url('/assets/menu.json');
               <div class="box-header with-border">
                 <h4>Address Details:</h4 >    
             </div>
-                <div class="box-body">
-                    
-                     
+                <div class="box-body">                    
                     <div class="form-group">
                       <label for="address1">Address Line1</label>
                       <input type="text" class="form-control"  id="add1" placeholder="Enter Address" value="<?php echo $value['address1']; ?>" disabled>
@@ -299,31 +283,24 @@ $file// =base_url('/assets/menu.json');
                     <div class="form-group">
                       <label for="state">State</label>
                       <input type="text" class="form-control"  id="state" value="<?php echo $value['address3']; ?>" placeholder="Enter State" disabled>
-                    </div >
-                    
+                    </div >                    
                 </div>
-              </div>
-            
+              </div>            
               <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
             <div class="box-footer">
             <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Save" name="Save">
             </div>
-             </form>
-            
+             </form>            
           </div>
           <?php }?>
       </div>
-
 </section>
 </div>
 
-
-
 <script type="text/javascript">
 $(document).ready(function(){
-
 
 var module = '<?php echo $value['access_module']; ?>';
 var mod = module.split(',');

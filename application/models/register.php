@@ -719,5 +719,94 @@ public function update_userModule($id,$item)
        }
 }
 
+
+public function getUserJobInfo($id)
+{
+
+       $this->db->select('*, JI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
+		$this->db->from('gs_jobInfo JI');
+		$this->db->join('gs_sports SP', 'SP.id = JI.sport', "left");
+		$this->db->join('location L', 'JI.state = L.id', "left");
+		$this->db->join('location LM', 'JI.org_state = LM.id', "left");
+		if($id > 0){
+			$this->db->where('JI.userid', $id);
+		}else{
+		 $this->db->order_by("JI.id", "desc"); 
+		}
+		$query = $this->db->get();
+		$q =  $query->result_array();
+		return $q;
+
+
+}
+
+public function getUserResourceInfo($id)
+{
+      //  $other_db= $this->load->database('other', TRUE);
+		$this->db->select('*');
+		$this->db->from('gs_resources GR');
+		if($id > 0){
+              $this->db->where('GR.userid', $id);
+		}else{
+		      $this->db->order_by("GR.id", "desc"); 
+		}
+		$query = $this->db->get();
+		$q =  $query->result_array();
+		
+		return $q;
+	}
+public function getUserTournamentInfo($id){
+		$this->db->select('*, TI.id as infoId, L.city as city_name, L.state as state_name');
+		$this->db->from('gs_tournament_info TI');
+		$this->db->join('gs_level LVL', 'LVL.id = TI.level', "left");
+		$this->db->join('gs_tournament_category TC', 'TC.id = TI.category', "left");
+		$this->db->join('gs_sports SP', 'SP.id = TI.sport', "left");
+		$this->db->join('location L', 'TI.state = L.id', "left");
+
+		if($id > 0){
+			$this->db->where('TI.userid', $id);
+		}else{
+		 $this->db->order_by("TI.id", "desc"); 
+		}
+		$query = $this->db->get();
+		$q =  $query->result_array();
+		
+		return $q;
+	}
+
+public function getUserEventInfo($id){
+	 $this->db->select('*, EI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
+		$this->db->from('gs_eventinfo EI');
+		$this->db->join('gs_sports SP', 'SP.id = EI.sport', "left");
+		$this->db->join('location L', 'EI.state = L.id', "left");
+		$this->db->join('location LM', 'EI.organizer_state = LM.id', "left");
+		$this->db->join('gs_eventType ET', 'ET.id = EI.type', "left");
+		if($id > 0){
+			$this->db->where('EI.userid', $id);
+		}else{
+		 $this->db->order_by("EI.id", "desc"); 
+		}
+		$query = $this->db->get();
+		$q =  $query->result_array();
+		
+		return $q;
+	}
+
+// public function getUserContentInfo($id)
+// {
+// 		$this->db->select('*');
+// 		$this->db->from('cms_content GR');
+// 		if($id > 0){
+// 			$this->db->where('GR.userid', $id);
+// 		}else{
+// 		 $this->db->order_by("GR.userid", "desc"); 
+// 		}
+// 		$query = $this->db->get();
+// 		$q =  $query->result_array();
+// 		//_pr($q);
+// 		return $q;
+// 	}
+
+
 }
  ?>

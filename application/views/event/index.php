@@ -45,9 +45,21 @@
                 </tr>
                 </thead>
 				<tbody>
+        <?php 
+        $i =1;
+      if($usertype==101 || $usertype==102 )
+        {
+            $events = $this->register->getEventInfo();
+        }
+        else
+        {
+                
+            $data=$this->session->userdata('item');
+            $userid=$data['userid']; 
+            $events = $this->register->getEventInfo($userid);
+        }
 
-        <?php $i =1;
-				$events = $this->register->getEventInfo();
+		
 				if(!empty($events)){
 						foreach($events as $event){  ?>
 

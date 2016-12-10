@@ -86,24 +86,36 @@ $(document).ready(function(){
                 </tr>
                 </thead>
                 <tbody>
-                 <?php $i =1;
-				$jobs = $this->register->getJobInfo();
-				if(!empty($jobs)){
-						foreach($jobs as $job){ ?>
-                <tr>
+         <?php 
+         $i =1;
+
+        if($usertype==101 || $usertype==102 )
+        {
+				    $jobs = $this->register->getJobInfo();
+        }
+        else
+        {
+                
+            $data=$this->session->userdata('item');
+            $userid=$data['userid']; 
+            // $jobs = $this->register->getJobInfo($userid);
+            $jobs = $this->register->getUserJobInfo($userid);
+        }
+			  if(!empty($jobs))
+        {
+					 foreach($jobs as $job)
+        { ?>
+          <tr>
 					<td><?php echo $i++; ?></td>
 					<td><?php echo $job['title']; ?></td>
 					<td><?php echo $job['type']; ?></td>
 					<td><?php echo $job['sports']; ?></td>
 					<td><?php echo $job['city']; ?></td>
 					<td><?php echo $job['organisation_name']; ?></td>
-					<!--td><span class="badge bg-red">55%</span></td-->
-
           <?php
              if($usertype==101 || $usertype==102 )
-                   {
-                    ?>
-
+              {
+            ?>
           <td>
           <?php if($job['publish']==0){?>
           <button class="badge bg-red" onclick="myfunction(<?php echo $job['infoId'];?>,1)"><?php echo "Activate";?></button>

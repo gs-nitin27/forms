@@ -31,7 +31,7 @@
                   <th style="background: #3c8dbc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #3c8dbc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
 
-                  <?php        
+              <?php        
                  $data=$this->session->userdata('item');
                  $usertype=$data['userType']; 
                  {
@@ -46,10 +46,19 @@
                 </tr>
                 </thead>
 				<tbody>
-                <?php $i =1;
-                $resources = $this->register->getResourceInfo();
-                if(!empty($resources)){
-                        foreach($resources as $resource){ ?>
+            <?php $i =1;
+            if($usertype==101 || $usertype==102 )
+           {
+               $resources = $this->register->getResourceInfo();
+           }
+        else
+           {      
+            $data=$this->session->userdata('item');
+            $userid=$data['userid']; 
+            $resources = $this->register->getResourceInfo($userid);   
+            }
+              if(!empty($resources)){
+                    foreach($resources as $resource){ ?>
                 <tr>
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $resource['title']; ?></td>
