@@ -1,4 +1,5 @@
 
+
 <?php
 
 $file =base_url('/assets/menu.json');
@@ -55,9 +56,10 @@ $data = file_get_contents($file);
 
           if(isset($value->child)){
            ?>
+
             <li class="treeview active">
             <a href="<?php echo $value->url;?>">
-            <i class="glyphicon glyphicon-chevron-down"></i>
+            <i class="<?php echo $value->class;?>"></i>
             <span><?php echo $value->name;?></span>
             <span class="pull-right-container">
             <!-- <span class="label label-primary pull-right">4</span> -->
@@ -77,106 +79,7 @@ $data = file_get_contents($file);
   }
  }
 }?>
-       <!-- <ul class="treeview-menu">
-       <li><a href="<?php //echo site_url($value4->url);?>">
-            <i class="glyphicon glyphicon-menu-right"></i>
-            <span><b><?php //echo $value->name;?></b></span>
-          </a></li>  </ul>
-          </li>
-       -->
-    <!--   <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
-          <a href="<?php //echo site_url('forms/home');?>">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-          </a>
-         
-        </li>
-        
-        <li class="treeview">
-          <a href="#">
-            <i class="glyphicon glyphicon-chevron-down"></i>
-            <span>EVENT</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-          </a>
-
-          <ul class="treeview-menu">
-            <li><a href="<?php //echo site_url('forms/createevent'); ?>"><i class="glyphicon glyphicon-menu-right"></i>Create Events</a></li>
-            <li><a href="<?php //echo site_url('forms/getevent'); ?>"><i class="glyphicon glyphicon-menu-right"></i>View Events</a></li>
-            </li>
-          </ul>
-        </li>
-      <li class="treeview">
-          <a href="#">
-            <i class="glyphicon glyphicon-chevron-down"></i>
-            <span>Tournaments</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php //echo site_url('forms/createtournament');?>"><i class="glyphicon glyphicon-menu-right"></i>Create Tournaments</a></li>
-            <li><a href="<?php// echo site_url('forms/gettournament');?>"><i class="glyphicon glyphicon-menu-right"></i>View Tournaments</a></li>
-          </ul></li>
-
-
-          <li class="treeview">
-          <a href="#">
-            <i class="glyphicon glyphicon-chevron-down"></i>
-            <span>Job</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php //echo site_url('forms/createjob');?>"><i class="glyphicon glyphicon-menu-right"></i>Create Job</a></li>
-            <li><a href="<?php //echo site_url('forms/getjob');?>"><i class="glyphicon glyphicon-menu-right"></i>View Job</a></li>
-          </ul></li>
-
-          <li class="treeview">
-          <a href="#">
-            <i class="glyphicon glyphicon-chevron-down"></i>
-            <span>Resources</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php //echo site_url('forms/createresources');?>"><i class="glyphicon glyphicon-menu-right"></i>Create Resources</a></li>
-            <li><a href="<?php //echo site_url('forms/getresources');?>"><i class="glyphicon glyphicon-menu-right"></i>View Resources</a></li>
-          </ul></li>
-      
-      <li class="treeview">
-          <a href="#">
-            <i class="glyphicon glyphicon-chevron-down"></i>
-            <span>Content</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php //echo site_url('forms/createContent');?>"><i class="glyphicon glyphicon-menu-right"></i>Create Content</a></li>
-            <li><a href="<?php // echo site_url('forms/getContent');?>"><i class="glyphicon glyphicon-menu-right"></i>List</a></li>
-          </ul></li>
-
-           <li class="treeview">
-          <a href="<?php //echo site_url('forms/usermodule')?>">
-            <i class="glyphicon glyphicon-menu-right"></i>
-            <span>User Role Management</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-          </a>
-
-            
-
-          </li>
-          </ul>
-       -->
-      
-
+       
     </section>
-    <!-- /.sidebar -->
+   
   </aside>

@@ -18,14 +18,14 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                 <th style="width: 10px;background: #3c8dbc; color: #ffffff;"><img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px>#</img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Userid <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img> </th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Proffession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Usertype <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
-                 <!--  <th style="width: 40px; background: #3c8dbc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Edit</th>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Delete</th>
+                 <th style="width: 10px;background: #5262bc; color: #ffffff;"><img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px>#</img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Userid <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img> </th>
+                  <th style="background: #5262bc; color: #ffffff;">Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
+                  <th style="background: #5262bc; color: #ffffff;">Proffession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
+                  <th style="background: #5262bc; color: #ffffff;">Usertype <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
+                 <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
                 </tr>
                 </thead>
         <tbody>
@@ -53,14 +53,14 @@
                 </tbody>
                 <tfoot>
                <tr>
-                 <th style="width: 10px;background: #3c8dbc; color: #ffffff;">#</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Userid  </th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Name  </th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Proffession  </th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Usertype  </th>
-                  <!-- <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Permission</th> -->
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Edit</th>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Delete</th>
+                 <th style="width: 10px;background: #5262bc; color: #ffffff;">#</th>
+                  <th style="background: #5262bc; color: #ffffff;">Userid  </th>
+                  <th style="background: #5262bc; color: #ffffff;">Name  </th>
+                  <th style="background: #5262bc; color: #ffffff;">Proffession  </th>
+                  <th style="background: #5262bc; color: #ffffff;">Usertype  </th>
+                  <!-- <th style="width: 40px; background: #5262bc; color: #ffffff;">Permission</th> -->
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
                 </tr>
                 </tfoot>
               </table>

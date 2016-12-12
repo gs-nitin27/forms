@@ -23,13 +23,13 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                <tr>
-                 <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Title<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Summary <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                 <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
+                  <th style="background: #5262bc; color: #ffffff;">Title<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Summary <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                 <!--  <th>Description</th> -->
-                  <th style="background: #3c8dbc; color: #ffffff;">Link <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Link <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
 
               <?php        
                  $data=$this->session->userdata('item');
@@ -38,11 +38,11 @@
                   if($usertype==101 || $usertype==102 )
                    {
                     ?>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                     <?php }?>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Edit</th>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Delete</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
                 </tr>
                 </thead>
 				<tbody>
@@ -90,24 +90,24 @@
                 </tbody>
                 <tfoot>
                  <tr>
-                 <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Title</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Summary</th>
+                 <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
+                  <th style="background: #5262bc; color: #ffffff;">Title</th>
+                  <th style="background: #5262bc; color: #ffffff;">Summary</th>
                 <!--  <th>Description</th> -->
-                  <th style="background: #3c8dbc; color: #ffffff;">Link</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Sport</th>
-                  <th style="background: #3c8dbc; color: #ffffff;"">Location</th>
+                  <th style="background: #5262bc; color: #ffffff;">Link</th>
+                  <th style="background: #5262bc; color: #ffffff;">Sport</th>
+                  <th style="background: #5262bc; color: #ffffff;"">Location</th>
 
           <?php
              if($usertype==101 || $usertype==102 )
                    {
                     ?>
 
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish</th>
                   <?php } } ?>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Edit</th>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Delete</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
                 </tr>
                 </tfoot>
               </table>

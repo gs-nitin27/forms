@@ -291,7 +291,7 @@ else
 
 public function create_content($item)
 {
-      $insert = "INSERT INTO `cms_content`(`id`, `title`, `url`, `content`, `publish`, `date_created`, `date_updated`) VALUES ('$item->id','$item->title','$item->url','$item->content','$item->publish',CURDATE(),CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`content` = '$item->content', `publish` = '$item->publish', `date_updated` = CURDATE()";
+      $insert = "INSERT INTO `cms_content`(`id`,`userid`, `title`, `url`, `content`, `publish`, `date_created`, `date_updated`) VALUES ('$item->id','$item->userid','$item->title','$item->url','$item->content','$item->publish',CURDATE(),CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`content` = '$item->content', `publish` = '$item->publish', `date_updated` = CURDATE()";
 
 $query = $this->db->query($insert);
 if($query)
@@ -642,6 +642,7 @@ function StatusContent($item)
 public function addContentData($item)
 {
      $id=$item[0]['id'];
+     $userid=$item[0]['userid'];
      $title=(string)$item[0]['title'];
      $content=(string)$item[0]['content'];
      $url=$item[0]['url'];
@@ -651,7 +652,7 @@ public function addContentData($item)
 
      $other_db= $this->load->database('default', TRUE);
 
-     $insert = "INSERT INTO `cms_content`(`id`, `title`, `url`, `content`, `publish`, `date_created`, `date_updated`) VALUES ('$id','$title','$url','$content','$publish',CURDATE(),CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$title' , `url` = '$url',`content` = '$content', `date_updated` = CURDATE()";
+     $insert = "INSERT INTO `cms_content`(`id`,`userid`, `title`, `url`, `content`, `publish`, `date_created`, `date_updated`) VALUES ('$id','$userid','$title','$url','$content','$publish',CURDATE(),CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$title' , `url` = '$url',`content` = '$content', `date_updated` = CURDATE()";
 
      $query = $other_db->query($insert);
      if($query)
@@ -817,20 +818,20 @@ public function getUserEventInfo($id)
 		return $q;
 	}
 
-// public function getUserContentInfo($id)
-// {
-// 		$this->db->select('*');
-// 		$this->db->from('cms_content GR');
-// 		if($id > 0){
-// 			$this->db->where('GR.userid', $id);
-// 		}else{
-// 		 $this->db->order_by("GR.userid", "desc"); 
-// 		}
-// 		$query = $this->db->get();
-// 		$q =  $query->result_array();
-// 		//_pr($q);
-// 		return $q;
-// 	}
+public function getUserContentInfo($id)
+{
+		$this->db->select('*');
+		$this->db->from('cms_content GR');
+		if($id > 0){
+			$this->db->where('GR.userid', $id);
+		}else{
+		 $this->db->order_by("GR.userid", "desc"); 
+		}
+		$query = $this->db->get();
+		$q =  $query->result_array();
+		//_pr($q);
+		return $q;
+	}
 
 
 }

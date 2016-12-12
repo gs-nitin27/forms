@@ -604,6 +604,7 @@ $item  = new stdClass();
 
 
 $item->id                    = $data12->id;
+$item->userid                = $data12->userid;
 $item->title                 = $data12->title;
 $item->url                   = $data12->url;
 $item->content               = $data12->content;

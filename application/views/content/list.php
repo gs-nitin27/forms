@@ -4,17 +4,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  
-  
-  
-  
 </head>
 
 <div class="wrapper">
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-
-    <!-- Main content -->
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
@@ -27,10 +20,10 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Title <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Link <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Content <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
+                  <th style="background: #5262bc; color: #ffffff;">Title <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Link <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Content <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
 
               <?php        
                  $data=$this->session->userdata('item');
@@ -39,10 +32,10 @@
                   if($usertype==101 || $usertype==102 )
                    {
                     ?>
-                  <th style="background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                    <?php }?>
 
-				          <th style="width: 10px; background: #3c8dbc; color: #ffffff;">Edit</th>
+				          <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -59,8 +52,8 @@
                 
             $data=$this->session->userdata('item');
             $userid=$data['userid']; 
-            $content = $this->register->getContentInfo();
-          //  $content = $this->register->getUserContentInfo($userid);
+           // $content = $this->register->getContentInfo();
+            $content = $this->register->getUserContentInfo($userid);
         }
 
 
@@ -92,19 +85,19 @@
                 </tbody>
                 <tfoot>
                <tr>
-                  <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Title</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Link</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Content</th>
+                  <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
+                  <th style="background: #5262bc; color: #ffffff;">Title</th>
+                  <th style="background: #5262bc; color: #ffffff;">Link</th>
+                  <th style="background: #5262bc; color: #ffffff;">Content</th>
 
                   <?php
              if($usertype==101 || $usertype==102 )
                    {
                     ?>
-                  <th style="background: #3c8dbc; color: #ffffff;">Publish</th>
+                  <th style="background: #5262bc; color: #ffffff;">Publish</th>
 
                     <?php } }?>
-                  <th style="width: 10px; background: #3c8dbc; color: #ffffff;">Edit</th>
+                  <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th>
                 </tr>
                 </tfoot>
               </table>

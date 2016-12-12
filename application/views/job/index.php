@@ -64,12 +64,12 @@ $(document).ready(function(){
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                 <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Job Title <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Job Type <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Organisation <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                 <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
+                  <th style="background: #5262bc; color: #ffffff;">Job Title <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Job Type <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Organisation <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
 
              <?php        
                  $data=$this->session->userdata('item');
@@ -79,10 +79,10 @@ $(document).ready(function(){
                    {
                     ?>
 
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
 
                     <?php }?>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -130,20 +130,20 @@ $(document).ready(function(){
                 </tbody>
                 <tfoot>
                  <tr>
-                 <th style="width: 10px; background: #3c8dbc; color: #ffffff;">#</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Job Title</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Job Type</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Sport</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Location</th>
-                  <th style="background: #3c8dbc; color: #ffffff;">Organisation</th>
+                 <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
+                  <th style="background: #5262bc; color: #ffffff;">Job Title</th>
+                  <th style="background: #5262bc; color: #ffffff;">Job Type</th>
+                  <th style="background: #5262bc; color: #ffffff;">Sport</th>
+                  <th style="background: #5262bc; color: #ffffff;">Location</th>
+                  <th style="background: #5262bc; color: #ffffff;">Organisation</th>
 
                   <?php
              if($usertype==101 || $usertype==102 )
                    {
                     ?>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">Publish</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish</th>
                   <?php } } ?>
-                  <th style="width: 40px; background: #3c8dbc; color: #ffffff;">View</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
                 </tr>
                 </tfoot>
               </table>

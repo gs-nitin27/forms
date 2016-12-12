@@ -10,6 +10,7 @@ var data12 = {
 
 
     "id"                      : "", 
+    "userid"                  : $("#userid").val(),
     "title"                   : $("#ctitle").val(),
     "url"                     : $("#curl").val(), 
     "content"                 : $("#ccontent").val(), 
@@ -78,6 +79,14 @@ function clear()
         <script type='text/javascript' src="<?php echo base_url(); ?>assets/dist/js/ckeditor.js"></script>
     </head>
         <form>
+         <?php
+          $data=$this->session->userdata('item');
+          $userid=$data['userid'];
+          {  ?>
+          <div class="form-group">
+                  <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
+            </div>
+          <?php }?>
             <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
                   <input type="text" class="form-control" name="title" id="ctitle" placeholder="Enter Title">
