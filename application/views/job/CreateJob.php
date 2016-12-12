@@ -37,7 +37,7 @@ var data1 = {
 
 
     "id"                      : "", 
-    "userid"                  : "16",
+    "userid"                  : $("#userid").val(),
     "title"                   : $("#jtitle").val(),
     "address_line1"           : $("#jadd1").val(), 
     "address_line2"           : $("#jadd2").val(), 
@@ -164,6 +164,17 @@ function clear()
 					  <label for="eventName">Job Title</label>
 					  <input type="text" class="form-control"  id="jtitle" >
 					</div >
+
+         <?php
+          $data=$this->session->userdata('item');
+          $userid=$data['userid'];
+          {  ?>
+          <div class="form-group">
+                  <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
+            </div>
+          <?php }?>
+
+
 					<div class="form-group">
 					  <label>Job Description</label>
 					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="jdesc" ></textarea>

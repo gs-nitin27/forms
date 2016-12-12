@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  
  
 </head>
 
@@ -47,32 +47,28 @@
 				<tbody>
         <?php 
         $i =1;
-      if($usertype==101 || $usertype==102 )
-        {
+        if($usertype==101 || $usertype==102 )
+         {
             $events = $this->register->getEventInfo();
-        }
+         }
         else
-        {
-                
+         {      
             $data=$this->session->userdata('item');
             $userid=$data['userid']; 
-            $events = $this->register->getEventInfo($userid);
-        }
-
-		
+            $events = $this->register->getUserEventInfo($userid);
+         }
 				if(!empty($events)){
-						foreach($events as $event){  ?>
-
-                <tr>
-				<td><?php echo $i++; ?></td> 
-         <!--  <td><?//php echo $event['userid']; ?></td> -->
+						foreach($events as $event)
+        { 
+         ?>
+        <tr>
+				  <td><?php echo $i++; ?></td> 
 					<td><?php echo $event['name']; ?></td>
 					<td><?php echo $event['type']; ?></td>
 					<td><?php echo $event['sports']; ?></td>
 					<td><?php echo $event['city']; ?></td>
 					<td><?php echo $event['organizer_name']; ?></td>
-					
-					<td>
+				<td>
 					<?php if(@strtotime($event['end_date']) < time()){?>
 						<span class="badge bg-red"><?php echo "Expired";?></span>
 					<?php }else{?> 
@@ -81,9 +77,8 @@
 					</td>
         <?php
            if($usertype==101 || $usertype==102 )
-                   {
-                    ?>
-
+            {
+            ?>
           <td>
           <?php if($event['publish']==0){?>
           <button class="badge bg-red" onclick="myfunction(<?php echo $event['infoId'];?>,1)"><?php echo "Activate";?></button>

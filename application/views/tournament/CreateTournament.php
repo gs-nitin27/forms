@@ -36,7 +36,7 @@ var data1 = {
 
 
     "id"                      : "", 
-    "userid"                  : "16",
+    "userid"                  : $("#userid").val(),
     "catagory"                : $("#tcatagory").val(),
     "address_line1"           : $("#add1").val(), 
     "address_line2"           : $("#add2").val(), 
@@ -188,6 +188,16 @@ $("#tcatagory").val('');
 					  <input type="text" class="form-control"  id="tname" >
 					</div >
 					
+         <?php
+          $data=$this->session->userdata('item');
+          $userid=$data['userid'];
+          {  ?>
+          <div class="form-group">
+                  <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
+            </div>
+          <?php }?>
+
+
 					 <div class="form-group">
 						<?php  
 						// SPORTS IS ID BASED

@@ -48,7 +48,7 @@ var data1 = {
 
 
     "id"                      : "", 
-    "userid"                  : "16",
+    "userid"                  : $("#userid").val(),
     "name"                    : $("#evname").val(),
     "type"                    : $("#evtype").val(),
     "address_line1"           : $("#add1").val(), 
@@ -155,6 +155,21 @@ var data = JSON.stringify(data1);
 					  <label>Event Description</label>
 					  <textarea class="form-control" rows="3" style="resize:none;" placeholder="Enter ..." class="desc" id="edesc" ></textarea>
 					</div>
+
+
+
+              <?php
+          $data=$this->session->userdata('item');
+          $userid=$data['userid'];
+          {  ?>
+          <div class="form-group">
+                  <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
+            </div>
+          <?php }?>
+
+
+
+
 					 <div class="form-group">
 					  <label for="eventName">Event Name</label>
 					  <input type="text" class="form-control"  id="evname" placeholder="Enter Event">

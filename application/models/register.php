@@ -174,23 +174,33 @@ else
 	}
 	public function getResourceInfo($id = false){
 
-
-        $other_db= $this->load->database('other', TRUE);
-		$other_db->select('*');
-		$other_db->from('gs_resources GR');
+        $this->db->select('*');
+		$this->db->from('gs_resources GR');
 		if($id > 0){
-			$other_db->where('GR.id', $id);
+			$this->db->where('GR.id', $id);
 		}else{
-		 $other_db->order_by("GR.id", "desc"); 
+		 $this->db->order_by("GR.id", "desc"); 
 		}
-		$query = $other_db->get();
+		$query = $this->db->get();
 		$q =  $query->result_array();
 		
 		return $q;
+        // $other_db= $this->load->database('other', TRUE);
+		// $other_db->select('*');
+		// $other_db->from('gs_resources GR');
+		// if($id > 0){
+		// 	$other_db->where('GR.id', $id);
+		// }else{
+		//  $other_db->order_by("GR.id", "desc"); 
+		// }
+		// $query = $other_db->get();
+		// $q =  $query->result_array();
+		
+		// return $q;
 	}
 	
-	public function addResource($data, $id=false){
-		//print_r($data);die();
+	public function addResource($data, $id=false)
+	{
 		$this->db->insert('gs_resources', $data);
 		 return $this->db->insert_id();
 	}
@@ -742,20 +752,34 @@ public function getUserJobInfo($id)
 
 public function getUserResourceInfo($id)
 {
-      //  $other_db= $this->load->database('other', TRUE);
-		$this->db->select('*');
+
+        $this->db->select('*');
 		$this->db->from('gs_resources GR');
 		if($id > 0){
-              $this->db->where('GR.userid', $id);
+			$this->db->where('GR.user_id', $id);
 		}else{
-		      $this->db->order_by("GR.id", "desc"); 
+		 $this->db->order_by("GR.id", "desc"); 
 		}
 		$query = $this->db->get();
 		$q =  $query->result_array();
 		
 		return $q;
+
+        // $other_db= $this->load->database('other', TRUE);
+		// $other_db->select('*');
+		// $other_db->from('gs_resources GR');
+		// if($id > 0){
+		// 	$other_db->where('GR.userid', $id);
+		// }else{
+		//  $other_db->order_by("GR.id", "desc"); 
+		// }
+		// $query = $other_db->get();
+		// $q =  $query->result_array();
+		
+		// return $q;
 	}
-public function getUserTournamentInfo($id){
+public function getUserTournamentInfo($id)
+{
 		$this->db->select('*, TI.id as infoId, L.city as city_name, L.state as state_name');
 		$this->db->from('gs_tournament_info TI');
 		$this->db->join('gs_level LVL', 'LVL.id = TI.level', "left");
@@ -774,7 +798,8 @@ public function getUserTournamentInfo($id){
 		return $q;
 	}
 
-public function getUserEventInfo($id){
+public function getUserEventInfo($id)
+{
 	 $this->db->select('*, EI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
 		$this->db->from('gs_eventinfo EI');
 		$this->db->join('gs_sports SP', 'SP.id = EI.sport', "left");

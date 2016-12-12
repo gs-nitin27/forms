@@ -55,7 +55,7 @@ $data = file_get_contents($file);
 
           if(isset($value->child)){
            ?>
-            <li class="treeview">
+            <li class="treeview active">
             <a href="<?php echo $value->url;?>">
             <i class="glyphicon glyphicon-chevron-down"></i>
             <span><?php echo $value->name;?></span>
@@ -64,11 +64,11 @@ $data = file_get_contents($file);
             </span>
           </a>
       
-        <ul id="<?php echo $value->url; ?>" class="treeview-menu parent">
+        <ul id="<?php echo $value->url; ?>" class="treeview-menu">
         <?php 
       foreach ($value->child as $key => $value1) {?>
         <li><a href="<?php echo site_url($value1->url);?>">
-            <i class="glyphicon glyphicon-menu-right"></i>
+            <i class="fa fa-circle-o"></i>
             <span><b><?php echo $value1->name;?></b></span>
           </a></li>
           
