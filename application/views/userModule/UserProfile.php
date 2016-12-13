@@ -1,10 +1,8 @@
-
-
+<script src="<?php echo base_url('assets/plugins/chartjs/Chart.min.js')?>"></script>
+<script src="<?php echo base_url('assets/plugins/morris/morris.min.js')?>"></script>
 <script>
-//document.domain = "getsporty.in";
 $(document).ready(function(){
  
-
 $('#module').click(function(){
 
 var data = {
@@ -16,10 +14,7 @@ var data = {
     "resources"                : $("#RESOURCES").val(), 
     "content"                  : $("#CONTENT").val(),
     "usermenu"                 : $("#USER_ROLE_MANAGEMENT").val()
-
-
 };
-
 console.log(JSON.stringify(data));
 var data = JSON.stringify(data);
   $.ajax({
@@ -34,19 +29,15 @@ var data = JSON.stringify(data);
      $('#msgdiv').fadeOut('fast');
    }, 2000);
     }
-
 });   
 });});
 </script>  
 
 
 <div class="wrapper">
-
-
- 
-
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+
     <section class="content-header">
       <h1>
         User Profile
@@ -61,7 +52,11 @@ var data = JSON.stringify(data);
     <section class="content">
 
       <div class="row">
+      <div class=" alert alert-success" id="msgdiv" style="display:none">
+            <strong>Info! <span id = "msg"></span></strong> 
+        </div>
         <div class="col-md-3">
+
        
     
 <?php  
@@ -71,6 +66,7 @@ var data = JSON.stringify(data);
 ?>
           <!-- Profile Image -->
           <div class="box box-primary">
+               
             <div class="box-body box-profile">
               <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('assets/dist/img/user4-128x128.jpg');?>" alt="User profile picture">
           
@@ -178,7 +174,7 @@ var data = JSON.stringify(data);
                 <!-- Post -->
                 <div class="post">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
+                    <img class="img-circle img-bordered-sm" src="<?php echo base_url('assets/dist/img/user1-128x128.jpg');?>" alt="user image">
                         <span class="username">
                           <a href="#">Jonathan Burke Jr.</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -209,7 +205,7 @@ var data = JSON.stringify(data);
                 <!-- Post -->
                 <div class="post clearfix">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
+                    <img class="img-circle img-bordered-sm" src="<?php echo base_url('assets/dist/img/user7-128x128.jpg');?>" alt="User Image">
                         <span class="username">
                           <a href="#">Sarah Ross</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -251,21 +247,21 @@ var data = JSON.stringify(data);
                   <!-- /.user-block -->
                   <div class="row margin-bottom">
                     <div class="col-sm-6">
-                      <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+                      <img class="img-responsive" src="<?php echo base_url('assets/dist/img/photo1.png');?>" alt="Photo">
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-6">
                       <div class="row">
                         <div class="col-sm-6">
-                          <img class="img-responsive" src="../../dist/img/photo2.png" alt="Photo">
+                          <img class="img-responsive" src="<?php echo base_url('assets/dist/img/photo2.png');?>" alt="Photo">
                           <br>
-                          <img class="img-responsive" src="../../dist/img/photo3.jpg" alt="Photo">
+                          <img class="img-responsive" src="<?php echo base_url('assets/dist/img/photo3.jpg');?>" alt="Photo">
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
-                          <img class="img-responsive" src="../../dist/img/photo4.jpg" alt="Photo">
+                          <img class="img-responsive" src="<?php echo base_url('assets/dist/img/photo4.jpg');?>" alt="Photo">
                           <br>
-                          <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+                          <img class="img-responsive" src="<?php echo base_url('assets/dist/img/photo1.png');?>" alt="Photo">
                         </div>
                         <!-- /.col -->
                       </div>
@@ -385,8 +381,36 @@ var data = JSON.stringify(data);
               </div>
               <!-- /.tab-pane -->
 
-              <div class="tab-pane" id="settings">
-                <form class="form-horizontal">
+         <div class="" id="settings"> 
+         <div class="row">
+        <div class="col-md-6">
+          <!-- DONUT CHART -->
+         <div class="chart">
+             <canvas id="areaChart" style="height:250px"></canvas>
+          </div>
+          <div class="box box-danger">
+      
+            <div class="box-header with-border">
+              <h3 class="box-title">Donut Chart</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <canvas id="pieChart" style="height:250px"></canvas>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+        </div>
+       
+      </div>
+      
+               <!--  <form class="form-horizontal">
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
@@ -436,7 +460,7 @@ var data = JSON.stringify(data);
                       <button type="submit" class="btn btn-danger">Submit</button>
                     </div>
                   </div>
-                </form>
+                </form> -->
               </div>
               <!-- /.tab-pane -->
             </div>
@@ -764,3 +788,81 @@ $('#EVENT').change(function() {
 </script>
 
 
+<script>
+  $(function () {
+    /* ChartJS
+     * -------
+     * Here we will create a few charts using ChartJS
+     */
+    //-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+    var pieChart = new Chart(pieChartCanvas);
+    var PieData = [
+      {
+        value: 100,
+        color: "#f56954",
+        highlight: "#f56954",
+        label: "Chrome"
+      },
+      {
+        value: 10,
+        color: "#00a65a",
+        highlight: "#00a65a",
+        label: "IE"
+      },
+      {
+        value: 300,
+        color: "#3c8dbc",
+        highlight: "#3c8dbc",
+        label: "Opera"
+      },
+      {
+        value: 100,
+        color: "#d2d6de",
+        highlight: "#d2d6de",
+        label: "Navigator"
+      }
+    ];
+    var pieOptions = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke: true,
+      //String - The colour of each segment stroke
+      segmentStrokeColor: "#fff",
+      //Number - The width of each segment stroke
+      segmentStrokeWidth: 2,
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout: 50, // This is 0 for Pie charts
+      //Number - Amount of animation steps
+      animationSteps: 100,
+      //String - Animation easing effect
+      animationEasing: "easeOutBounce",
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate: true,
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale: false,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true,
+      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //String - A legend template
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+    };
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    pieChart.Doughnut(PieData, pieOptions);
+  });
+</script>
+
+
+
+
+
+
+  
+  
+   
+  
+ 

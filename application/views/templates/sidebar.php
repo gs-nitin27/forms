@@ -16,21 +16,14 @@ $array=json_decode($data);
       <?php
           $data=$this->session->userdata('item');
           $name=$data['name'];
-        {  ?>
-
-         <div class="pull-left info">
-          <p> <?php echo $name ;?></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-
-        <?php
+        {  
             $id=$data['userid'];
             $module = $this->register->usermoduleData($id);
             foreach ($module as $mod) {
            
                } }?>
 
-
+     
 
       </div>
 
@@ -64,7 +57,7 @@ $array=json_decode($data);
           <ul class="treeview-menu">
         <?php 
         foreach ($value->child as $key => $value1) {?>
-            <li><a href="<?php echo site_url($value1->url);?>"><i class="fa fa-circle-o"></i><?php echo $value1->name;?></a></li>
+            <li><a href="<?php echo site_url($value1->url);?>"><i class="fa fa-circle-o text-purple"></i><?php echo $value1->name;?></a></li>
     <?php  } ?>
           </ul>
         </li>
