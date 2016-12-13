@@ -24,6 +24,8 @@
                   <th style="background: #5262bc; color: #ffffff;">Proffession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
                   <th style="background: #5262bc; color: #ffffff;">Usertype <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
+
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
                 </tr>
@@ -46,6 +48,7 @@
                     <button class="badge bg-green" onclick="myfunction(<?php //echo $user['userid'];?>,0)"><?php //echo "Deactivate";?></button>
                     <?php //} ?>
                     </td> -->
+                     <td><a href = "<?php echo site_url('forms/userprofile/'.$user['userid']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                     <td><a href = "<?php echo site_url('forms/edituserProfile/'.$user['userid']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-edit"></i></a></td>
                     <td><a href = "<?php echo site_url('forms/deleteUser/'.$user['userid']); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
                 </tr>
@@ -59,6 +62,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Proffession  </th>
                   <th style="background: #5262bc; color: #ffffff;">Usertype  </th>
                   <!-- <th style="width: 40px; background: #5262bc; color: #ffffff;">Permission</th> -->
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
                 </tr>

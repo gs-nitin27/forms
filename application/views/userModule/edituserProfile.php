@@ -146,6 +146,7 @@ $file// =base_url('/assets/menu.json');
 
 <label for="USER_ROLE_MANAGEMENT" class="btn btn-danger">USER ROLE MANAGEMENT<input type="checkbox" id="USER_ROLE_MANAGEMENT" class="badgebox"><span class="badge">&check;</span></label>
 
+
 </div>
 <?php } ?>
 <br>

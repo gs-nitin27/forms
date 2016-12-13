@@ -100,7 +100,7 @@
     "6" :  {
 
          "url": "#USERROLE",
-          "class": "fa fa-user fa-x",
+          "class": "fa fa-users fa-x",
           "name": "USER ROLE",
         "child" :{
        "1" : {

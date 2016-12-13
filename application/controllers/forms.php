@@ -977,4 +977,13 @@ public function deleteUser($id)
  	 $this->load->view('templates/template',$data);
  }
 
+ public function userprofile($id)
+ {
+ 	$data['middle']='userModule/userProfile';
+ 	$data['required'] = array(
+									'id'=>$id	
+								 );
+ 	$this->load->view('templates/template',$data);
+ }
+
  }

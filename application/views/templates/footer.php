@@ -5,10 +5,7 @@
   </footer>
  
 
-  
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
+
   <div class="control-sidebar-bg"></div>
 </div>
 
@@ -23,7 +20,7 @@
 <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
 <!-- Morris.js charts -->
 <script type="text/javascript" src="<?php echo base_url('assets/raphael-min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/plugins/morris/morris.min.js'); ?>"></script>
+<!-- <script type="text/javascript" src="<?//php echo base_url('assets/plugins/morris/morris.min.js'); ?>"></script> -->
 <!-- Sparkline -->
 <script  type="text/javascript" src="<?php echo base_url('assets/plugins/sparkline/jquery.sparkline.min.js'); ?>"></script>
 <!-- jvectormap -->
