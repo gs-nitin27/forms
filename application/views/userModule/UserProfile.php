@@ -1,5 +1,4 @@
-<script src="<?php echo base_url('assets/plugins/chartjs/Chart.min.js')?>"></script>
-<script src="<?php echo base_url('assets/plugins/morris/morris.min.js')?>"></script>
+
 <script>
 $(document).ready(function(){
  
@@ -120,26 +119,87 @@ var data = JSON.stringify(data);
           <!-- /.box -->
 
           <!-- About Me Box -->
-          <div class="box box-primary">
+          
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+              <li><a href="#statistics" data-toggle="tab">Statistics</a></li>
+              <!-- <li><a href="#timeline" data-toggle="tab">Timeline</a></li> -->
+             <!--  <li><a href="#settings" data-toggle="tab">Settings</a></li> -->
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+
+            <div class="row">
+           
+          <div class="col-md-6">
+            <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">About Me</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+              <strong><i class="fa fa-venus-double margin-r-5"></i>Gender</strong>
                 
               <p class="text-muted">
-                <?php echo $value['name'];?>
+                <?php echo $value['Gender'];?>
               </p>
 
               <hr>
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-              <p class="text-muted"><?php echo $value['location'];?></p>
+              <p class="text-muted"><?php echo $value['address1'];?></p>
+              <p class="text-muted"><?php echo $value['address2'];?></p>
+               <p class="text-muted"><?php echo $value['location'];?></p>
+              <p class="text-muted"><?php echo $value['address3'];?></p>
 
               <hr>
 
+              <strong><i class="fa fa-mobile margin-r-5"></i>Contact No</strong>
+
+               <p><?php echo $value['contact_no'];?></p>
+
+              <hr>
+
+              <strong><i class="fa fa-envelope margin-r-5"></i>Email</strong>
+
+              <p><?php echo $value['email'];?></p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <?php }?>
+          </div>
+         <div class="col-md-6">
+            <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">About Proffession</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-futbol-o margin-r-5"></i>Sport</strong>
+                
+              <p class="text-muted">
+                <?php echo $value['sport'];?>
+              </p>
+
+              <hr>
+  
+              <strong><i class="fa fa-calendar-check-o margin-r-5"></i>DOB</strong>
+
+              <p class="text-muted"><?php echo $value['dob'];?></p>
+
+              <!-- <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i>Gender</strong>
+
+              <p class="text-muted"><?//php echo $value['Gender'];?></p> -->
+
+              <hr>
               <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
 
               <p>
@@ -152,68 +212,59 @@ var data = JSON.stringify(data);
 
               <hr>
 
-              <strong><i class="fa fa-file-text-o margin-r-5"></i>Email</strong>
+              <strong><i class="fa fa-file-text-o margin-r-5"></i>About Me</strong>
 
-              <p><?php echo $value['email'];?></p>
+              <p><?php echo $value['about_me'];?></p>
             </div>
             <!-- /.box-body -->
           </div>
-          <?php }?>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-9">
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-              <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
-              <li><a href="#settings" data-toggle="tab">Settings</a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="active tab-pane" id="activity">
+          </div>
+
+          
+      </div>
                 <!-- Post -->
-                <div class="post">
+               <!--  <div class="post">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="<?php echo base_url('assets/dist/img/user1-128x128.jpg');?>" alt="user image">
+                    <img class="img-circle img-bordered-sm" src="<?//php echo base_url('assets/dist/img/user1-128x128.jpg');?>" alt="user image">
                         <span class="username">
                           <a href="#">Jonathan Burke Jr.</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
                     <span class="description">Shared publicly - 7:30 PM today</span>
                   </div>
-                  <!-- /.user-block -->
-                  <p>
+                 <!-  <!- /.user-block -->
+                  <!-- <p>
                     Lorem ipsum represents a long-held tradition for designers,
                     typographers and the like. Some people hate it and argue for
                     its demise, but others ignore the hate as they create awesome
                     tools to help create filler text for everyone from bacon lovers
                     to Charlie Sheen fans.
-                  </p>
-                  <ul class="list-inline">
+                  </p> -->
+                 <!--  <ul class="list-inline">
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
                     </li>
                     <li class="pull-right">
                       <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
                         (5)</a></li>
-                  </ul>
-
+                  </ul> -->
+<!-- 
                   <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                </div>
+                </div> -->
                 <!-- /.post -->
 
                 <!-- Post -->
-                <div class="post clearfix">
+               <!--  <div class="post clearfix">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="<?php echo base_url('assets/dist/img/user7-128x128.jpg');?>" alt="User Image">
+                    <img class="img-circle img-bordered-sm" src="<?//php echo base_url('assets/dist/img/user7-128x128.jpg');?>" alt="User Image">
                         <span class="username">
                           <a href="#">Sarah Ross</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
                     <span class="description">Sent you a message - 3 days ago</span>
-                  </div>
+                  </div> -->
                   <!-- /.user-block -->
-                  <p>
+                <!--   <p>
                     Lorem ipsum represents a long-held tradition for designers,
                     typographers and the like. Some people hate it and argue for
                     its demise, but others ignore the hate as they create awesome
@@ -231,47 +282,47 @@ var data = JSON.stringify(data);
                       </div>
                     </div>
                   </form>
-                </div>
+                </div> -->
                 <!-- /.post -->
 
                 <!-- Post -->
-                <div class="post">
+               <!--  <div class="post">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="<?php echo base_url('assets/dist/img/user6-128x128.jpg');?>" alt="User Image">
+                    <img class="img-circle img-bordered-sm" src="<?//php echo base_url('assets/dist/img/user6-128x128.jpg');?>" alt="User Image">
                         <span class="username">
                           <a href="#">Adam Jones</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
                     <span class="description">Posted 5 photos - 5 days ago</span>
-                  </div>
+                  </div> -->
                   <!-- /.user-block -->
-                  <div class="row margin-bottom">
+                  <!-- <div class="row margin-bottom">
                     <div class="col-sm-6">
-                      <img class="img-responsive" src="<?php echo base_url('assets/dist/img/photo1.png');?>" alt="Photo">
-                    </div>
+                      <img class="img-responsive" src="<?//php echo base_url('assets/dist/img/photo1.png');?>" alt="Photo">
+                    </div> -->
                     <!-- /.col -->
-                    <div class="col-sm-6">
+                    <!-- <div class="col-sm-6">
                       <div class="row">
                         <div class="col-sm-6">
-                          <img class="img-responsive" src="<?php echo base_url('assets/dist/img/photo2.png');?>" alt="Photo">
+                          <img class="img-responsive" src="<?//php echo base_url('assets/dist/img/photo2.png');?>" alt="Photo">
                           <br>
-                          <img class="img-responsive" src="<?php echo base_url('assets/dist/img/photo3.jpg');?>" alt="Photo">
-                        </div>
+                          <img class="img-responsive" src="<?//php echo base_url('assets/dist/img/photo3.jpg');?>" alt="Photo">
+                        </div> -->
                         <!-- /.col -->
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="<?php echo base_url('assets/dist/img/photo4.jpg');?>" alt="Photo">
+                        <!-- <div class="col-sm-6">
+                          <img class="img-responsive" src="<?//php echo base_url('assets/dist/img/photo4.jpg');?>" alt="Photo">
                           <br>
-                          <img class="img-responsive" src="<?php echo base_url('assets/dist/img/photo1.png');?>" alt="Photo">
-                        </div>
+                          <img class="img-responsive" src="<?//php echo base_url('assets/dist/img/photo1.png');?>" alt="Photo">
+                        </div> -->
                         <!-- /.col -->
-                      </div>
+                      <!-- </div> -->
                       <!-- /.row -->
-                    </div>
+                   <!--  </div> -->
                     <!-- /.col -->
-                  </div>
+                <!--   </div> -->
                   <!-- /.row -->
 
-                  <ul class="list-inline">
+                 <!--  <ul class="list-inline">
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
                     </li>
@@ -281,114 +332,20 @@ var data = JSON.stringify(data);
                   </ul>
 
                   <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                </div>
+                </div> -->
                 <!-- /.post -->
               </div>
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="timeline">
-                <!-- The timeline -->
-                <ul class="timeline timeline-inverse">
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-red">
-                          10 Feb. 2014
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-envelope bg-blue"></i>
 
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
 
-                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+            <div class="active tab-pane" id="statistics">
 
-                      <div class="timeline-body">
-                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                        quora plaxo ideeli hulu weebly balihoo...
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-user bg-aqua"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                      </h3>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-comments bg-yellow"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                      <div class="timeline-body">
-                        Take me to your leader!
-                        Switzerland is small and neutral!
-                        We are more like Germany, ambitious and misunderstood!
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-green">
-                          3 Jan. 2014
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-camera bg-purple"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                      <div class="timeline-body">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <li>
-                    <i class="fa fa-clock-o bg-gray"></i>
-                  </li>
-                </ul>
-              </div>
-              <!-- /.tab-pane -->
-
-         <div class="" id="settings"> 
-         <div class="row">
-        <div class="col-md-6">
+          <div class="row">
+          <div class="col-md-6">
           <!-- DONUT CHART -->
-         <div class="chart">
+          <div class="chart">
              <canvas id="areaChart" style="height:250px"></canvas>
           </div>
-          <div class="box box-danger">
+          <div  class="box box-primary" style="margin-top:-67%;">
       
             <div class="box-header with-border">
               <h3 class="box-title">Donut Chart</h3>
@@ -407,8 +364,135 @@ var data = JSON.stringify(data);
           <!-- /.box -->
 
         </div>
-       
       </div>
+      </div>
+
+
+              <!-- /.tab-pane -->
+              <!-- <div class="tab-pane" id="timeline"> -->
+                <!-- The timeline -->
+               <!--  <ul class="timeline timeline-inverse"> -->
+                  <!-- timeline time label -->
+                 <!--  <li class="time-label">
+                        <span class="bg-red">
+                          10 Feb. 2014
+                        </span>
+                  </li> -->
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <!-- <li>
+                    <i class="fa fa-envelope bg-blue"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+
+                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+
+                      <div class="timeline-body">
+                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                        quora plaxo ideeli hulu weebly balihoo...
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-xs">Read more</a>
+                        <a class="btn btn-danger btn-xs">Delete</a>
+                      </div>
+                    </div>
+                  </li> -->
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <!-- <li>
+                    <i class="fa fa-user bg-aqua"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+
+                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
+                      </h3>
+                    </div>
+                  </li> -->
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                 <!--  <li>
+                    <i class="fa fa-comments bg-yellow"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+
+                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+
+                      <div class="timeline-body">
+                        Take me to your leader!
+                        Switzerland is small and neutral!
+                        We are more like Germany, ambitious and misunderstood!
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                      </div>
+                    </div>
+                  </li> -->
+                  <!-- END timeline item -->
+                  <!-- timeline time label -->
+                 <!--  <li class="time-label">
+                        <span class="bg-green">
+                          3 Jan. 2014
+                        </span>
+                  </li> -->
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <!-- <li>
+                    <i class="fa fa-camera bg-purple"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+
+                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+
+                      <div class="timeline-body">
+                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                      </div>
+                    </div>
+                  </li> -->
+                  <!-- END timeline item -->
+                 <!--  <li>
+                    <i class="fa fa-clock-o bg-gray"></i>
+                  </li>
+                </ul>
+              </div> -->
+              <!-- /.tab-pane -->
+
+         <div class="" id="settings"> 
+         <!-- <div class="row">
+        <div class="col-md-6">
+          <!- DONUT CHART -->
+         <!-- <div class="chart">
+             <canvas id="areaChart" style="height:250px"></canvas>
+          </div>
+          <div  class="box box-danger" style="margin-top:-59%;">
+      
+            <div class="box-header with-border">
+              <h3 class="box-title">Donut Chart</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <canvas id="pieChart" style="height:250px"></canvas>
+            </div> -->
+            <!-- /.box-body -->
+         <!--  </div> -->
+          <!-- /.box -->
+
+       <!--  </div> -->
+       
+   <!--    </div>  -->
       
                <!--  <form class="form-horizontal">
                   <div class="form-group">
@@ -477,196 +561,7 @@ var data = JSON.stringify(data);
   </div>
   <!-- /.content-wrapper -->
  
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-user bg-yellow"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                <p>New phone +1(800)555-1234</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                <p>nora@example.com</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                <p>Execution time 5 seconds</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Update Resume
-                <span class="label label-success pull-right">95%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Laravel Integration
-                <span class="label label-warning pull-right">50%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Back End Framework
-                <span class="label label-primary pull-right">68%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Allow mail redirect
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Other sets of options are available
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Expose author name in posts
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Allow the user to show his name in blog posts
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Show me as online
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Turn off notifications
-              <input type="checkbox" class="pull-right">
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Delete chat history
-              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-            </label>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
+  
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
@@ -803,27 +698,33 @@ $('#EVENT').change(function() {
     var PieData = [
       {
         value: 100,
-        color: "#f56954",
-        highlight: "#f56954",
-        label: "Chrome"
+        color: "#00c0ef",
+        highlight: "#00c0ef",
+        label: "Event"
       },
       {
-        value: 10,
+        value: 100,
         color: "#00a65a",
         highlight: "#00a65a",
-        label: "IE"
+        label: "Job"
+      },
+      {
+        value: 300,
+        color: "#5262bc",
+        highlight: "#5262bc",
+        label: "Tournament"
       },
       {
         value: 300,
         color: "#3c8dbc",
         highlight: "#3c8dbc",
-        label: "Opera"
+        label: "Resources"
       },
       {
         value: 100,
-        color: "#d2d6de",
-        highlight: "#d2d6de",
-        label: "Navigator"
+        color: "#e08e0b",
+        highlight: "#e08e0b",
+        label: "Content"
       }
     ];
     var pieOptions = {

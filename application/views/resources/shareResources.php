@@ -15,7 +15,7 @@ var summary1=$("#rsummary").val();
 var data1 = {
 
     "id"                      : "", 
-    "user_id"                 : $("#userid").val(),
+    "userid"                 : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#rurl").val(),
     "description"             : "", 
@@ -269,8 +269,13 @@ var data = JSON.stringify(data1);
           </form>
                <input  type="button" id="multi-post" value="Submit Image"></input>
 
+                <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img> 
+
                <input type="hidden" class="form-control" name="photo" id="photo_url"> 
 
+
+
+              <div id="mess" hidden>Image Uploded</div>
 
 
             <div class="box-footer">
@@ -319,6 +324,7 @@ $(document).ready(function(){
  
 $("#multiform").submit(function(e)
 {
+   $('#loader_img').show();
     var formObj = $(this);
     var formURL = formObj.attr("action");
 
@@ -336,7 +342,8 @@ if(window.FormData !== undefined)
             processData:false,
             success: function(data)
             {
-               // alert(data.response);
+                $('#loader_img').hide();
+                $('#mess').show();
                 $("#photo_url").val(data.response);   
             }
                   

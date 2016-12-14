@@ -20,7 +20,7 @@ var data1 = {
 
 
     "id"                      : $("#rid").val(), 
-    "user_id"                 : $("#userid").val(),
+    "userid"                 : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#rurl").val(),
     "description"             : description3, 
@@ -46,9 +46,9 @@ var data = JSON.stringify(data1);
     dataType: "text",
     success: function(result) {
 
-      alert(result);
+   
     $( "#msgdiv" ).show();
-   $( "#msg" ).html(result);
+    $( "#msg" ).html(result);
     setTimeout(function() {
      $('#msgdiv').fadeOut('fast');
    }, 2000);
@@ -229,6 +229,9 @@ var data = JSON.stringify(data1);
                <input  type="button" id="multi-post" value="Submit Image"></input>
                <input type="hidden" class="form-control" name="photo" id="photo_url" value="<?php echo $value['image']; ?>"> 
 
+                <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img> 
+                 <div id="mess" hidden>Image Uploded</div>
+
             </div>
              </td>
              </tr>
@@ -254,6 +257,7 @@ $(document).ready(function(){
  
 $("#multiform").submit(function(e)
 {
+    $('#loader_img').show();
     var formObj = $(this);
     var formURL = formObj.attr("action");
 
@@ -271,7 +275,10 @@ if(window.FormData !== undefined)
             processData:false,
             success: function(data)
             {
-                alert(data.response);
+               // alert(data.response);
+
+                $('#loader_img').hide();
+                $('#mess').show();
                 $("#photo_url").val(data.response);   
             }
                   

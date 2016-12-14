@@ -113,6 +113,7 @@
 
   <div class="control-sidebar-bg"></div>
 </div>
+</div>
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->

@@ -382,7 +382,7 @@ $item  = new stdClass();
 
 
 $item->id                    = $data2->id;
-$item->user_id               = $data2->user_id;
+$item->userid               = $data2->userid;
 $item->title                 = mysql_real_escape_string($data2->title);
 $item->url                   = $data2->url;
 $item->status                = $data2->status;
@@ -410,10 +410,12 @@ public function SaveshareResources(){
 
 $data2 = json_decode($_REQUEST['data']);
   
+//print_r($data2);//die();
+
 $item  = new stdClass(); 
 
 $item->id                    = $data2->id;
-$item->user_id               = $data2->user_id;
+$item->userid               = $data2->userid;
 $item->title                 = mysql_real_escape_string($data2->title);
 $item->url                   = $data2->url;
 $item->status                = $data2->status;
@@ -462,12 +464,12 @@ public function saveEditResources()
 
 $data2 = json_decode($_REQUEST['data']);
 
-print_r($data2); 
+
 $item  = new stdClass(); 
 
 
 $item->id                    = $data2->id;
-$item->user_id               = $data2->user_id;
+$item->userid                = $data2->userid;
 $item->title                 = mysql_real_escape_string($data2->title);
 $item->url                   = $data2->url;
 $item->summary               = mysql_real_escape_string($data2->summary);
@@ -979,7 +981,7 @@ public function deleteUser($id)
 
  public function userprofile($id)
  {
- 	$data['middle']='userModule/userProfile';
+ 	$data['middle']='userModule/userprofile';
  	$data['required'] = array(
 									'id'=>$id	
 								 );

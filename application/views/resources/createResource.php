@@ -22,7 +22,7 @@ var description3 = description2.replace(/[\/\\<>~\{}]/g, '');
 	
 var data1 = {
     "id"                      : "", 
-    "user_id"                 : $("#userid").val(),
+    "userid"                 : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#rurl").val(),
     "description"             : description3, 
@@ -47,7 +47,7 @@ var data = JSON.stringify(data1);
     dataType: "text",
     success: function(result) {
        
-       alert(result.response);
+    //   alert(result.response);
       
 
     $( "#msgdiv" ).show();
@@ -272,11 +272,13 @@ var data = JSON.stringify(data1);
           </form>
                <input  type="button" id="multi-post" value="Submit Image"></input>
 
-               <img src="<?php base_url("img/loader.gif");?>"  id="loader_img" ></img>
+              <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img> 
 
                <input type="hidden" class="form-control" name="photo" id="photo_url"> 
 
-         <!--  <div id="photo_url"></div> -->
+
+
+              <div id="mess" hidden>Image Uploded</div>
 
 
 
@@ -339,6 +341,7 @@ $(document).ready(function(){
 $("#multiform").submit(function(e)
 {
     $('#loader_img').show();
+
     var formObj = $(this);
     var formURL = formObj.attr("action");
 
@@ -357,7 +360,7 @@ if(window.FormData !== undefined)
             success: function(data)
             {
                 $('#loader_img').hide();
-               // alert(data.response);
+                $('#mess').show();
                 $("#photo_url").val(data.response);   
             }
                   
