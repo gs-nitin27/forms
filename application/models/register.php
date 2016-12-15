@@ -640,6 +640,7 @@ function StatusContent($item)
        }
 }	
 
+
 public function addContentData($item)
 {
      $id=$item[0]['id'];

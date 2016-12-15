@@ -46,7 +46,6 @@ var data = JSON.stringify(data1);
     dataType: "text",
     success: function(result) {
 
-   
     $( "#msgdiv" ).show();
     $( "#msg" ).html(result);
     setTimeout(function() {
@@ -86,15 +85,10 @@ var data = JSON.stringify(data1);
             <!-- /.box-header -->
 
        <?php  $Resources = $this->register->editresources($id); 
-           // print_r($contant); 
-             foreach ($Resources as $value) 
-              
-            {?>
-
-        
+              foreach ($Resources as $value)      
+              {?>
             <form>
               <div class="box-body">
-
             <?php
           $data=$this->session->userdata('item');
           $name=$data['userid'];
@@ -114,7 +108,7 @@ var data = JSON.stringify(data1);
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" name="rtitle" maxlength="30" id="rtitle" placeholder="Enter title" value="<?php echo $value['title']; ?>">
+                  <input type="text" class="form-control" name="rtitle" maxlength="50" id="rtitle" placeholder="Enter title" value="<?php echo $value['title']; ?>">
                 </div>
         
         

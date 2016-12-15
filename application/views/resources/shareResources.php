@@ -135,7 +135,7 @@ var data = JSON.stringify(data1);
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" maxlength="30" name="rtitle" id="rtitle" placeholder="Enter title">
+                  <input type="text" class="form-control" maxlength="50" name="rtitle" id="rtitle" placeholder="Enter title">
                 </div>
         <div class="form-group">
                   <label for="exampleInputEmail1">Link</label>
