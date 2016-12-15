@@ -108,7 +108,7 @@ var data = JSON.stringify(data1);
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" name="rtitle" maxlength="30" id="rtitle" placeholder="Enter title" value="<?php echo $value['title']; ?>">
+                  <input type="text" class="form-control" name="rtitle" maxlength="50" id="rtitle" placeholder="Enter title" value="<?php echo $value['title']; ?>">
                 </div>
         
         
