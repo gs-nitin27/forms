@@ -980,12 +980,17 @@ public function deleteUser($id)
  }
 
  public function userprofile($id)
- {
- 	$data['middle']='userModule/userprofile';
- 	$data['required'] = array(
+ { 
+
+
+ 	$data['middle'] = 'userModule/Userprofile';
+		$data['required'] = array(
 									'id'=>$id	
 								 );
- 	$this->load->view('templates/template',$data);
- }
+
+		$this->load->view('templates/template',$data);
+
+
+}
 
  }
