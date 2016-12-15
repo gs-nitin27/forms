@@ -20,7 +20,7 @@
 
 
   <div class = "container">
-	<div class="wrapper">
+	<div class="wrapper" style="position:fiexd;">
 		<form action="<?php echo site_url('forms/login'); ?>" method="post" name="Login_Form" class="form-signin">  
 		  <h3 class="form-signin-heading">Sign In</h3>
 			<hr class="colorgraph"><br>
