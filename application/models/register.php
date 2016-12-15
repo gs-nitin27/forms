@@ -4,16 +4,7 @@
 class Register extends CI_Model
 {
 
-//public function __construct() 
-    // {
-     //      parent::__construct(); 
-          // $this->load->database();
 
-          
-
-        // $db = $this->load->database('default', TRUE);
-          // $db1 = $this->load->database('other', TRUE);
-    // }
 
 public function login($username,$password)
 {

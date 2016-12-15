@@ -12,18 +12,24 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"></head>
 <body>
+ <div class="pre-loader">
+        <div class="load-con">
+            <img src="<?php echo base_url('img/logo.png');?>" class="animated fadeInDown" alt=""> 
+        </div>
+    </div>
+
+
   <div class = "container">
 	<div class="wrapper">
-		<form action="<?php echo site_url('forms/login'); ?>" method="post" name="Login_Form" class="form-signin">       
-		    <h3 class="form-signin-heading">Sign In</h3>
-			  <hr class="colorgraph"><br>
-			  
-			  <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
-			  <input type="password" class="form-control" name="password" placeholder="Password" required=""/>     		  
-			 
-			  <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>  			
-		</form>			
+		<form action="<?php echo site_url('forms/login'); ?>" method="post" name="Login_Form" class="form-signin">  
+		  <h3 class="form-signin-heading">Sign In</h3>
+			<hr class="colorgraph"><br>
+			<input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
+			<input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+			<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>
+		</form>		
+    <div id="error_text"><h3 style="text-align: center;color: red"><?php echo $this->session->flashdata('error'); ?></h2></div>	
 	</div>
 </div>
-  </body>
-  </html>
+</body>
+</html>
