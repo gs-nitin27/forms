@@ -21,6 +21,7 @@ class Forms extends CI_Controller {
       $password = md5($_POST['password']);
       $this->load->model('register');
       $res = $this->register->login($username, $password); 
+     // print_r($res); die();
       if($res != 0)
       {
       	$this->session->set_userdata('item',$res);
@@ -28,9 +29,13 @@ class Forms extends CI_Controller {
            redirect('forms/home');
       }
       else
-      { $res = array();
-      	echo $res['message'] ='Invalid login credentials';
-      	$this->index();
+      { 
+             //$res = array();
+      	 $this->session->set_flashdata('error','Wrong email, password combination.');
+         redirect('forms/index','refresh');
+      	//echo $res['message'] ='Invalid login credentials';
+       // $res['message'] ='Invalid login credentials';
+       // $this->load->view('login',$res);
       }
     }
 
@@ -757,13 +762,20 @@ echo "Module Creation Not Saved";
 public function profile()
 {
 $data=json_decode($_REQUEST['data']);
+$name=$data->name;
+
+//$this->
+//$res=$this->session->userdata('item');
+//$this->session->unset_userdata('name');
+$this->session->set_userdata('name',$name);
+//print_r($this->session->userdata('item'));die;
 
 $pass=md5($data->password);
 
 $item= new stdClass();
 
 $item->userid                     =$data->userid;
-$item->name                       =$data->name;
+$item->name                       =$name;
 $item->password                   =$pass;
 $item->email                      =$data->email;
 $item->prof_id                    =$data->prof_id;
