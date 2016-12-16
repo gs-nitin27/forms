@@ -39,8 +39,15 @@ var jsondata = eval(data1);
     type: "POST",
     url: '<?php echo site_url('forms/SaveshareResources'); ?>',
     data: jsondata,
-    dataType: "jsonp",
+    dataType: "json",
     success: function(result) {
+      if(result.response == '1')
+      {
+        alert('Resource created');
+      }else
+      {
+       alert('Resource not created');
+      }
     $( "#msgdiv" ).show();
    $( "#msg" ).html(result);
     setTimeout(function() {
