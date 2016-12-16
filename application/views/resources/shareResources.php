@@ -45,7 +45,7 @@ var data = JSON.stringify(data1);
     setTimeout(function() {
      $('#msgdiv').fadeOut('fast');
    }, 2000);
-  window.location.href = url+"/forms/getResources";
+  //window.location.href = url+"/forms/getResources";
     }
 
 

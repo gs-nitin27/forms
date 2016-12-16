@@ -64,10 +64,9 @@ var data = JSON.stringify(data1);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Profile
+        Profile<a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Change Password</a>
         
       </h1>
-     
     </section>
          <section class="content"> 
       <div class="row">
@@ -220,3 +219,114 @@ var data = JSON.stringify(data1);
 
 </section>
 </div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="col-md-4">
+    <div class="modal-content" style="width: 511px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" style="text-align:center;" id="myModalLabel">Password Change</h4>
+      </div>
+         <div class=" alert alert-success" id="msgdiv1" style="display:none">
+          <strong> <span id = "msg1"></span></strong> 
+        </div>
+         <div class=" alert alert-danger" id="msgdiv2" style="display:none">
+          <strong> <span id = "msg2"></span></strong> 
+        </div>
+         <div class="form-group">
+        <label style="margin-left: 2%;" for="oldpassword">Old Password</label>
+        <input type="password" class="form-control"  id="oldpassword">
+        </div>
+         <div class="form-group">
+        <label style="margin-left: 2%;" for="newpassword">New Password</label>
+        <input type="password" class="form-control"  id="newpassword">
+        </div>
+         <div class="form-group">
+        <label style="margin-left: 2%;" for="confirmpassword">Confirm Password</label>
+        <input type="password" class="form-control"  id="confirmpassword"> 
+        </div>
+        <br>
+      <button class="btn btn-lg btn-primary btn-block"  name="Submit" onclick="passwordchange();">Save</button>
+       
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+function passwordchange()
+{
+  
+
+var pass1= $("#newpassword").val();
+var pass2= $("#confirmpassword").val();
+
+if(pass1.length<5)
+{
+        $( "#msgdiv1" ).hide();
+        $( "#msgdiv2" ).show();
+        $( "#msg2" ).html("Password length Atleast 6 Charactor");
+
+}
+else
+{
+if(pass1==pass2)
+{
+var data=  {
+   
+   "userid"           :$("#uid").val(),
+   "oldpassword1"     :$("#Password").val(),
+   "oldpassword"      :$("#oldpassword").val(),
+   "newpassword"      :$("#newpassword").val(),
+   "confirmpassword"  :$("#confirmpassword").val()
+};
+
+console.log(JSON.stringify(data));
+var data=JSON.stringify(data);
+var url='<?php echo site_url();?>';
+
+$.ajax({
+  type     : "POST",
+   url      :'<?php echo site_url('forms/passwordchange')?>',
+   data     :"data="+data,
+  dataType : "text",
+  success :function(result){
+
+   if(result==1)
+      {
+        $("#msgdiv2" ).hide();
+        $( "#msgdiv1" ).show();
+        $( "#msg1" ).html("Successfully update password");
+        setTimeout(function() {
+           $('#msgdiv1').fadeOut('fast');
+       }, 1000);
+       window.location.href = url+"/forms/edituser";
+      }
+      else if(result==2)
+      {
+        $("#msgdiv2" ).hide();
+        $( "#msgdiv1" ).show();
+        $( "#msg1" ).html("Password Not updated");
+
+      }
+       else
+       {
+        $("#msgdiv2" ).hide();
+        $("#msgdiv1" ).show();
+        $("#msg1" ).html("Old Password is Not Currect");
+       }   
+  }
+});
+}
+
+ else{
+    $("#msgdiv2" ).hide();
+    $( "#msgdiv1" ).show();
+    $( "#msg1" ).html('Password Not Match');
+ }
+}
+}
+</script>
