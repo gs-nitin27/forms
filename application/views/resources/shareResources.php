@@ -39,14 +39,14 @@ var jsondata = eval(data1);
     type: "POST",
     url: '<?php echo site_url('forms/SaveshareResources'); ?>',
     data: jsondata,
-    dataType: "jsonp",
+    dataType: "json",
     success: function(result) {
     $( "#msgdiv" ).show();
    $( "#msg" ).html(result);
     setTimeout(function() {
      $('#msgdiv').fadeOut('fast');
    }, 2000);
-  //window.location.href = url+"/forms/getResources";
+  window.location.href = url+"/forms/getResources";
     }
 
 
