@@ -12,6 +12,7 @@ var data1 = {
 
     "userid"                  : "",
     "name"                    : $("#name").val(),
+    "status"                  : 1,
     "password"                : $("#Password").val(),
     "email"                   : $("#email").val(), 
     "prof_id"                 : $("#proftype").val(),
@@ -44,7 +45,7 @@ var data = JSON.stringify(data1);
         setTimeout(function() {
             $('#msgdiv').fadeOut('fast');
         }, 2000);
-   //   window.location.href = url+"/forms/createnewUser";
+      window.location.href = url+"/forms/usermodule";
     }
 
 

@@ -655,6 +655,7 @@ public function edituser()
 {
 	   $data=$this->session->userdata('item');
        $id=$data['userid'];
+
 	   $data['required'] = array(
 									'id'=>$id	
 								 );
@@ -746,6 +747,7 @@ $item= new stdClass();
 $item->userid                     =$data->userid;
 $item->name                       =$name;
 $item->password                   =$pass;
+$item->status                     =$data->status;
 $item->email                      =$data->email;
 $item->prof_id                    =$data->prof_id;
 $item->userType                   =$data->userType;

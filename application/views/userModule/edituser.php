@@ -9,7 +9,8 @@ var data1 = {
 
     "userid"                  : $("#uid").val(),
     "name"                    : $("#name").val(),
-     "password"               : $("#Password").val(),
+    "password"                : $("#Password").val(),
+    "status"                  : $("#status").val(),
     "email"                   : $("#email").val(), 
     "prof_id"                 : $("#proftype").val(),
     "userType"                : $("#utype").val(),
@@ -111,7 +112,7 @@ var data = JSON.stringify(data1);
                     
                      
                     <input type="hidden" class="form-control"  id="utype" value="<?php echo $value['userType']; ?>" disabled >
-                  
+                   <input type="hidden" class="form-control"  id="status" value="<?php echo $value['status']; ?>" disabled >
 
 
                     <div class="form-group">

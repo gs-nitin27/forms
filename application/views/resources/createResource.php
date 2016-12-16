@@ -63,7 +63,8 @@ var data = eval(data1);//JSON.stringify(data1);
   window.location.href = url+"/forms/getResources";
     }
 });  
-});});
+});
+});
 
 </script>
 
@@ -153,13 +154,13 @@ var data = eval(data1);//JSON.stringify(data1);
                 </div>
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
-                   <textarea class="form-control" maxlength="308" name="summary" id="rsummary" placeholder="Place some text here(Maximum 308 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                   <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
                 <div id="rem"></div>
 
             <script>
             document.getElementById('rsummary').onkeyup = function () {
-            document.getElementById('rem').innerHTML = "Characters left: " + (308 - this.value.length);
+            document.getElementById('rem').innerHTML = "Characters left: " + (360 - this.value.length);
                 };
             </script>
                 
