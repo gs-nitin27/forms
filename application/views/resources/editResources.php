@@ -43,9 +43,15 @@ var data = eval(data1);//JSON.stringify(data1);
     url: '<?php echo site_url('forms/saveEditResources'); ?>',
    // url: '<?php //echo site_url('forms/saveEditResources');?>',
     data: data,
-    dataType: "text",
+    dataType: "json",
     success: function(result) {
-
+     if(result.response == '1')
+      {
+        alert('Resource updated');
+      }else
+      {
+       alert('Resource not updated');
+      }
     $( "#msgdiv" ).show();
     $( "#msg" ).html(result);
     setTimeout(function() {

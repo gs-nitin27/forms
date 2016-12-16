@@ -41,6 +41,13 @@ var jsondata = eval(data1);
     data: jsondata,
     dataType: "json",
     success: function(result) {
+      if(result.response == '1')
+      {
+        alert('Resource created');
+      }else
+      {
+       alert('Resource not created');
+      }
     $( "#msgdiv" ).show();
    $( "#msg" ).html(result);
     setTimeout(function() {

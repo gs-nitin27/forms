@@ -44,13 +44,18 @@ var data = eval(data1);//JSON.stringify(data1);
     type: "POST",
     url: '<?php echo site_url('forms/SavecreateResources'); ?>',
     data: data,
-    dataType: "text",
+    dataType: "json",
     success: function(result) {
        
-    //   alert(result.response);
-      
+    if(result.response == '1')
+      {
+        alert('Resource created');
+      }else
+      {
+       alert('Resource not created');
+      }      
 
-    $( "#msgdiv" ).show();
+   $( "#msgdiv" ).show();
    $( "#msg" ).html(result);
     setTimeout(function() {
      $('#msgdiv').fadeOut('fast');

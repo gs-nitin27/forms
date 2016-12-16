@@ -434,6 +434,7 @@ $item->date_created          = $_REQUEST['date_created'];//$data2->date_created;
 
 $this->load->model('register');
 $res = $this->register->saveResources($item);
+echo json_encode(array('response' => $res));
 //die;
 }
 public function viewResources($id)
@@ -482,6 +483,7 @@ $item->date_created          = @$_POST['date_created'];//$data2->date_created;
 
 $this->load->model('register');
 $res = $this->register->saveResources($item);
+echo json_encode(array('response' => $res));
 
 }
 
@@ -639,6 +641,7 @@ $item->date_updated          = @strtotime($data2->date_updated);
 //print_r($item);die();
 $this->load->model('register');
 $res = $this->register->create_content($item);
+echo json_encode(array('response' => $res));
 }
 
 public function usermodule()
