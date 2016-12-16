@@ -827,5 +827,24 @@ public function getUserContentInfo($id)
 	}
 
 
+public function changepassword($id,$password)
+{
+  // print_r($id);
+  // print_r($password); die();
+
+   $update="UPDATE `user` SET `password`='$password' WHERE `userid`='$id'";
+   $query=$this->db->query($update);
+   if($query)
+   {
+   	return 1;
+   }
+   else
+   {
+   	return 0;
+   }
+
+
+}
+
 }
  ?>

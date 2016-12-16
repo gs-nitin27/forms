@@ -7,6 +7,7 @@ class Forms extends CI_Controller {
 
 		$this->load->model('register');
 		$this->load->library('session');
+
 		
     }
  public function index()
@@ -410,6 +411,7 @@ echo json_encode(array('response' => $res));
 
 
 
+
 public function SaveshareResources(){
 
 $item  = new stdClass(); 
@@ -435,13 +437,13 @@ $res = $this->register->saveResources($item);
 echo json_encode(array('response' => $res));
 //die;
 }
-
-	public function viewResources($id){
-		
+public function viewResources($id)
+{
 		$data['middle'] = 'resources/view';
 		$data['required'] = array(
 									'id'=>$id	
 								 );
+
         $this->load->view('templates/template',$data);
 	}
 
@@ -453,16 +455,12 @@ echo json_encode(array('response' => $res));
 		$data['required'] = array(
 									'id'=>$id	
 								 );
-
 		$this->load->view('templates/template',$data);
 	}
-
-
 
 public function saveEditResources()
 {
 
-//$data2 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
 
 
@@ -502,8 +500,7 @@ public function mobileviewResources(){
     $resources = $this->register->getResourceInfo($_POST['infoid']); 
 	$data['required'] = array(
 									'resources'=>$resources	
-								 );
-		
+								 );	
 		 $this->load->view('resources/mobile_viewResources', $data);
 		
 		
@@ -518,7 +515,6 @@ public function Tournamentmobileview()
 	  $data['required'] = array(
 									'tournament'=>$tournament	
 								 );
-		
 		 $this->load->view('tournament/mobile_view_tournament', $data);
 		
 		
@@ -574,12 +570,10 @@ public function Eventmobileview()
 	}
 
       public function viewContent($id){
-		
 		$data['middle'] = 'content/view';
 		$data['required'] = array(
 									'id'=>$id	
 								 );
-         // print_r($data);die();
 		$this->load->view('templates/template',$data);
 	}
 
@@ -659,22 +653,15 @@ public function usermodule()
 
 public function edituser()
 {
-
-
-	      $data=$this->session->userdata('item');
-          $id=$data['userid'];
-		  $data['required'] = array(
+	   $data=$this->session->userdata('item');
+       $id=$data['userid'];
+	   $data['required'] = array(
 									'id'=>$id	
 								 );
-		 // print_r($data);
-		  //   die();
-         //echo "$id";
         $data['middle'] = 'userModule/edituser';
-
-		//  print_r($data);
 		$this->load->view('templates/template',$data);
-
 }
+
 
 public function saveuserModule()
 {
@@ -685,19 +672,6 @@ $data = json_decode($_REQUEST['data']);
          $res[]=$value; 
  }
  $commaList = implode(',',$res);
- // print_r($commaList);
-
-
-// $item  = new stdClass(); 
-
-// $item->id                      = $data->id;
-// $item->event                   = $data->event;
-// $item->tournament              = $data->tournament;
-// $item->job                     = $data->job;
-// $item->resources               = $data->resources;
-// $item->content                 = $data->content;
-
-
 
 $this->load->model('register');
 $res = $this->register->update_userModule($data->id,$commaList);
@@ -948,7 +922,6 @@ $res = $this->register->StatusContent($item);
 if($data2->publish==1)
 {    
 	$jdata=$this->register->getContentInfo($data2->id);
-
   //  print_r($jdata);
 	$this->register->addContentData($jdata);
 }
@@ -956,9 +929,8 @@ else{
 	$this->register->deletePublishContent($data2->id);
 
 }
-
-
 }
+
 
 public function edituserProfile($id)
 {
@@ -966,9 +938,7 @@ public function edituserProfile($id)
 		$data['required'] = array(
 									'id'=>$id	
 								 );
-
 		$this->load->view('templates/template',$data);
-
 }
 
 
@@ -987,6 +957,7 @@ public function deleteUser($id)
  }
 
  public function userprofile($id)
+
  { 
 
 
@@ -999,5 +970,43 @@ public function deleteUser($id)
 
 
 }
+
+public function passwordchange()
+{
+
+       
+       $data=json_decode($_REQUEST['data']);
+       $pass1=$data->oldpassword1;
+       $pass2=md5($data->oldpassword);
+       $userid=$data->userid;
+       $newpass=md5($data->newpassword);
+
+
+      if($pass1==$pass2)
+        {
+          
+          $this->load->model('register');
+          $res = $this->register->changepassword($userid,$newpass);
+          if($res)
+          { 
+
+           //echo json_encode(array('status' => 1, 'message' => "Successfully update password"));
+
+          	echo "1";
+          }
+          else
+          {
+          	//echo json_encode(array('status' => 2, 'message' => "Password Not updated"));
+          	echo "2";
+          }
+         }
+      else{
+           // echo json_encode(array('status' => 3, 'message' => "Old Password is Not Currect"));
+      //	return 3;
+	         echo "3";
+        }
+  
+}
+
 
  }
