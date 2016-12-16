@@ -20,7 +20,7 @@ var data1 = {
 
 
     "id"                      : $("#rid").val(), 
-    "userid"                 : $("#userid").val(),
+    "userid"                  : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#rurl").val(),
     "description"             : description3, 
@@ -36,13 +36,13 @@ var data1 = {
 //alert(data1);
 console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>'
-var data = JSON.stringify(data1);
+var data = eval(data1);//JSON.stringify(data1);
   $.ajax({
 
     type: "POST",
     url: '<?php echo site_url('forms/saveEditResources'); ?>',
    // url: '<?php //echo site_url('forms/saveEditResources');?>',
-    data: "data="+data,
+    data: data,
     dataType: "text",
     success: function(result) {
 

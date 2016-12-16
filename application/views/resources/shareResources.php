@@ -11,11 +11,11 @@ $('#save').click(function(){
 var summary1=$("#rsummary").val();
 //var summary12=summary1.toString();
 //var string = summary12.replace(/[&\/\\#,+$~%.:*?{}]/g, '');
-
+summary1 = summary1.toString();
 var data1 = {
 
     "id"                      : "", 
-    "userid"                 : $("#userid").val(),
+    "userid"                  : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#rurl").val(),
     "description"             : "", 
@@ -32,13 +32,14 @@ var data1 = {
 //alert(data1);
 console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>'
-var data = JSON.stringify(data1);
+var jsondata = eval(data1);
+//jsondata = JSON.stringify(jsondata);
   $.ajax({
 
     type: "POST",
     url: '<?php echo site_url('forms/SaveshareResources'); ?>',
-    data: "data="+data,
-    dataType: "text",
+    data: jsondata,
+    dataType: "jsonp",
     success: function(result) {
     $( "#msgdiv" ).show();
    $( "#msg" ).html(result);

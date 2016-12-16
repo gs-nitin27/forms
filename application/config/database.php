@@ -67,6 +67,7 @@ $db['default']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
+
 $active_group = 'other';
 $active_record = TRUE;
 
@@ -85,3 +86,4 @@ $db['other']['dbcollat'] = 'utf8_general_ci';
 $db['other']['swap_pre'] = '';
 $db['other']['autoinit'] = TRUE;
 $db['other']['stricton'] = FALSE;
+
