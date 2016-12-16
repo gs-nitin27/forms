@@ -379,27 +379,26 @@ public function shareResources(){
 		//$this->load->view('templates/template',$data);
 
 
-$data2 = json_decode($_REQUEST['data']);
-  
+//$data2 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
 
 //print_r($data2); 
 
 
-$item->id                    = $data2->id;
-$item->userid               = $data2->userid;
-$item->title                 = mysql_real_escape_string($data2->title);
-$item->url                   = $data2->url;
-$item->status                = $data2->status;
-$item->summary               = mysql_real_escape_string($data2->summary);
-$item->keyword               = $data2->keyword;
-$item->description           = mysql_real_escape_string($data2->description);
-$item->topic_of_artical      = $data2->topic_of_artical;
-$item->sport                 = $data2->sport;
-$item->location              = $data2->location;
-$item->image                 = $data2->image;
-$item->token                 = $data2->token;
-$item->date_created          = $data2->date_created;
+$item->id                    = $_POST['id'];//$data2->id;
+$item->userid                = $_POST['userid'];//$data2->userid;
+$item->title                 = mysql_real_escape_string($_POST['title']);//mysql_real_escape_string($data2->title);
+$item->url                   = $_POST['url'];//$data2->url;
+$item->status                = $_POST['status'];//$data2->status;
+$item->summary               = mysql_real_escape_string($_POST['summary']);//mysql_real_escape_string($data2->summary);
+$item->keyword               = $_POST['keyword'];//$data2->keyword;
+$item->description           = mysql_real_escape_string($_POST['description']);//mysql_real_escape_string($data2->description);
+$item->topic_of_artical      = $_POST['topic_of_artical'];//$data2->topic_of_artical;
+$item->sport                 = $_POST['sport'];//$data2->sport;
+$item->location              = $_POST['location'];//$data2->location;
+$item->image                 = $_POST['image'];//$data2->image;
+$item->token                 = $_POST['token'];//$data2->token;
+$item->date_created          = $_POST['date_created'];//$data2->date_created;
 
 
 $this->load->model('register');
@@ -413,31 +412,27 @@ echo json_encode(array('response' => $res));
 
 public function SaveshareResources(){
 
-$data2 = json_decode($_REQUEST['data']);
-  
-// print_r($data2);//die();
-
 $item  = new stdClass(); 
 
-$item->id                    = $data2->id;
-$item->userid               = $data2->userid;
-$item->title                 = mysql_real_escape_string($data2->title);
-$item->url                   = $data2->url;
-$item->status                = $data2->status;
-$item->summary               = mysql_real_escape_string($data2->summary);
-$item->keyword               = $data2->keyword;
-$item->description           = mysql_real_escape_string($data2->description);
-$item->topic_of_artical      = $data2->topic_of_artical;
-$item->sport                 = $data2->sport;
-$item->location              = $data2->location;
-$item->image                 = $data2->image;
-$item->token                 = $data2->token;
-$item->date_created          = $data2->date_created;
+$item->id                    = $_REQUEST['id'];
+$item->userid                = $_REQUEST['userid'];//$data2->userid;
+$item->title                 = mysql_real_escape_string($_REQUEST['title']);//mysql_real_escape_string($data2->title);
+$item->url                   = $_REQUEST['url'];//$data2->url;
+$item->status                = $_REQUEST['status'];//$data2->status;
+$item->summary               = $_REQUEST['summary'];//mysql_real_escape_string($data2->summary);
+$item->keyword               = $_REQUEST['keyword'];//$data2->keyword;
+$item->description           = mysql_real_escape_string($_REQUEST['description']);//mysql_real_escape_string($data2->description);
+$item->topic_of_artical      = $_REQUEST['topic_of_artical'];//$data2->topic_of_artical;
+$item->sport                 = $_REQUEST['sport'];//$data2->sport;
+$item->location              = $_REQUEST['location'];//$data2->location;
+$item->image                 = $_REQUEST['image'];//$data2->image;
+$item->token                 = $_REQUEST['token'];//$data2->token;
+$item->date_created          = $_REQUEST['date_created'];//$data2->date_created;
 
 
 $this->load->model('register');
 $res = $this->register->saveResources($item);
-
+//die;
 }
 
 	public function viewResources($id){
@@ -446,8 +441,7 @@ $res = $this->register->saveResources($item);
 		$data['required'] = array(
 									'id'=>$id	
 								 );
-
-		$this->load->view('templates/template',$data);
+        $this->load->view('templates/template',$data);
 	}
 
 	//=============harshvardhan==(Edit Resources)==============
@@ -467,26 +461,24 @@ $res = $this->register->saveResources($item);
 public function saveEditResources()
 {
 
-$data2 = json_decode($_REQUEST['data']);
-
-
+//$data2 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
 
 
-$item->id                    = $data2->id;
-$item->userid                = $data2->userid;
-$item->title                 = mysql_real_escape_string($data2->title);
-$item->url                   = $data2->url;
-$item->summary               = mysql_real_escape_string($data2->summary);
-$item->description           = mysql_real_escape_string($data2->description);
-$item->topic_of_artical      = $data2->topic_of_artical;
-$item->sport                 = $data2->sport;
-$item->location              = $data2->location;
-$item->image                 = $data2->image;
-$item->status                = $data2->status;
-$item->keyword               = $data2->keyword;
-$item->token                 = $data2->token;
-$item->date_created          = @$data2->date_created;
+$item->id                    = $_POST['id'];//$data2->id;
+$item->userid                = $_POST['userid'];//$data2->userid;
+$item->title                 = mysql_real_escape_string($_POST['title']);//mysql_real_escape_string($data2->title);
+$item->url                   = $_POST['url'];//$data2->url;
+$item->summary               = mysql_real_escape_string($_POST['summary']);//mysql_real_escape_string($data2->summary);
+$item->description           = mysql_real_escape_string($_POST['description']);//mysql_real_escape_string($data2->description);
+$item->topic_of_artical      = $_POST['topic_of_artical'];//$data2->topic_of_artical;
+$item->sport                 = $_POST['sport'];//$data2->sport;
+$item->location              = $_POST['location'];//$data2->location;
+$item->image                 = $_POST['image'];//$data2->image;
+$item->status                = $_POST['status'];//$data2->status;
+$item->keyword               = $_POST['keyword'];//$data2->keyword;
+$item->token                 = $_POST['token'];//$data2->token;
+$item->date_created          = @$_POST['date_created'];//$data2->date_created;
 
 
 
