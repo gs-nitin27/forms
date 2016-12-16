@@ -990,20 +990,20 @@ public function passwordchange()
           if($res)
           { 
 
-           //echo json_encode(array('status' => 1, 'message' => "Successfully update password"));
+           echo json_encode(array('response' =>'1'));
 
-          	echo "1";
+          	//echo "1";
           }
           else
           {
-          	//echo json_encode(array('status' => 2, 'message' => "Password Not updated"));
-          	echo "2";
+          	echo json_encode(array('response' => '2'));
+          	//echo "2";
           }
          }
       else{
-           // echo json_encode(array('status' => 3, 'message' => "Old Password is Not Currect"));
+            echo json_encode(array('response' => '3'));
       //	return 3;
-	         echo "3";
+	       //  echo "3";
         }
   
 }

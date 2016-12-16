@@ -292,10 +292,11 @@ $.ajax({
   type     : "POST",
    url      :'<?php echo site_url('forms/passwordchange')?>',
    data     :"data="+data,
-  dataType : "text",
+  dataType : "json",
   success :function(result){
+  // alert(result.response);
 
-   if(result==1)
+   if(result.response == '1')
       {
         $("#msgdiv2" ).hide();
         $( "#msgdiv1" ).show();
@@ -305,7 +306,7 @@ $.ajax({
        }, 1000);
        window.location.href = url+"/forms/edituser";
       }
-      else if(result==2)
+      else if(result.response == '2')
       {
         $("#msgdiv2" ).hide();
         $( "#msgdiv1" ).show();
