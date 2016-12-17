@@ -815,14 +815,16 @@ $res = $this->register->StatusResources($item);
 if($data2->status==1)
 {
        
-	$rdata=$this->register->getResourceInfo($data2->id);
+	//$rdata=$this->register->getResourceInfo($data2->id);
 	
 	
-	$this->register->addResourcesData($rdata);
+	//$this->register->addResourcesData($rdata);
+	echo "Resources Is Activate";
 }
 else{
+	echo "Resources Is Deactivate";
 
-	$this->register->deleteStatusResources($data2->id);
+	//$this->register->deleteStatusResources($data2->id);
 
 }
 
@@ -844,14 +846,14 @@ $res = $this->register->StatusEvent($item);
 if($data2->publish==1)
 {
        
-	$edata=$this->register->getEventInfo($data2->id);
+	//$edata=$this->register->getEventInfo($data2->id);
 	
- 	$this->register->addEventData($edata);
+ 	//$this->register->addEventData($edata);
 }
 else{
     
    
-	$this->register->deletePublishEvent($data2->id);
+//	$this->register->deletePublishEvent($data2->id);
 
 }
 
@@ -873,11 +875,11 @@ $this->load->model('register');
 $res = $this->register->Statustournament($item);
 if($data2->publish==1)
 {    
-	$tdata=$this->register->getTournamentInfo($data2->id);
-	$this->register->addTournamentData($tdata);
+	//$tdata=$this->register->getTournamentInfo($data2->id);
+	//$this->register->addTournamentData($tdata);
 }
 else{
-	$this->register->deletePublishTournament($data2->id);
+	//$this->register->deletePublishTournament($data2->id);
 
 }
 
@@ -896,13 +898,13 @@ $this->load->model('register');
 $res = $this->register->StatusJob($item);
 if($data2->publish==1)
 {    
-	$jdata=$this->register->getJobInfo($data2->id);
+	//$jdata=$this->register->getJobInfo($data2->id);
 
   //  print_r($jdata);
-	$this->register->addJobData($jdata);
+	//$this->register->addJobData($jdata);
 }
 else{
-	$this->register->deletePublishJob($data2->id);
+	//$this->register->deletePublishJob($data2->id);
 
 }
 
@@ -923,12 +925,12 @@ $this->load->model('register');
 $res = $this->register->StatusContent($item);
 if($data2->publish==1)
 {    
-	$jdata=$this->register->getContentInfo($data2->id);
+	//$jdata=$this->register->getContentInfo($data2->id);
   //  print_r($jdata);
-	$this->register->addContentData($jdata);
+	//$this->register->addContentData($jdata);
 }
 else{
-	$this->register->deletePublishContent($data2->id);
+	//$this->register->deletePublishContent($data2->id);
 
 }
 }

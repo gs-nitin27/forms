@@ -43,16 +43,20 @@ var jsondata = eval(data1);
     success: function(result) {
       if(result.response == '1')
       {
-        alert('Resource created');
+        $( "#msgdiv" ).show();
+         $( "#msg" ).html('Resource created');
+         setTimeout(function() {
+         $('#msgdiv').fadeOut('fast');
+          }, 2000);
       }else
       {
-       alert('Resource not created');
+       $( "#msgdiv" ).show();
+         $( "#msg" ).html('Resource not created');
+         setTimeout(function() {
+         $('#msgdiv').fadeOut('fast');
+          }, 2000);
       }
-    $( "#msgdiv" ).show();
-   $( "#msg" ).html(result);
-    setTimeout(function() {
-     $('#msgdiv').fadeOut('fast');
-   }, 2000);
+  
   window.location.href = url+"/forms/getResources";
     }
 

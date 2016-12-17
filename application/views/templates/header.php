@@ -36,6 +36,7 @@ if($this->session->userdata('item')==''){
          <?php
           $data=$this->session->userdata('item');
           $name=$data['name'];
+          $prof=$data['prof_id'];
         {  ?>
 
 
@@ -50,8 +51,8 @@ if($this->session->userdata('item')==''){
                 <img src="<?php echo base_url('/assets/dist/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image">
 
                 <p>
-                 <?php echo $name ;?> - Web Developer
-                  <small>Member since Nov. 2012</small>
+                 <?php echo $name ;?> - <?php echo $prof ;?>
+                  <!-- <small>Member since Nov. 2012</small> -->
                 </p>
               </li>
                <?php }?>
