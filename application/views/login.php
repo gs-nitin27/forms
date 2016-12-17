@@ -13,14 +13,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"></head>
 <body>
  <div class="pre-loader">
-        <div class="load-con">
-            <img src="<?php echo base_url('img/logo.png');?>" class="animated fadeInDown" alt=""> 
+        <div class="load-con" style="text-align: center;">
+            <img src="<?php echo base_url('img/logo.png');?>" class="animated fadeInDown"  alt=""> 
         </div>
     </div>
 
 
   <div class = "container">
-	<div class="wrapper" style="position:fiexd;">
+	<div class="wrapper" style="position:fiexd; margin-top:2%;">
 		<form action="<?php echo site_url('forms/login'); ?>" method="post" name="Login_Form" class="form-signin">  
 		  <h3 class="form-signin-heading">Sign In</h3>
 			<hr class="colorgraph"><br>
