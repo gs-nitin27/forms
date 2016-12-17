@@ -47,10 +47,11 @@ var data = eval(data1);//JSON.stringify(data1);
      if(result.response == '1')
       {
         $( "#msgdiv" ).show();
-         $( "#msg" ).html('Resource Updated');
+         $( "#msg" ).html("Resource Updated");
          setTimeout(function() {
          $('#msgdiv').fadeOut('fast');
           }, 2000);
+          window.location.href = url+"/forms/getResources";
       }else
       {
       $( "#msgdiv" ).show();
@@ -60,7 +61,7 @@ var data = eval(data1);//JSON.stringify(data1);
           }, 2000);
       }
    
-    window.location.href = url+"/forms/getResources";
+   
     }
 
 
@@ -82,13 +83,16 @@ var data = eval(data1);//JSON.stringify(data1);
     </section>
          <section class="content"> 
       <div class="row">
-    <?php if(isset($msg) && $msg != ""){?>
+    <?php  if(isset($msg) && $msg != ""){?>
     <div class="col-md-12">
-    <div class=" alert alert-success" id="msgdiv" >
-      <strong>Info! <span id = "msg"><?php echo $msg;?></span></strong> 
-    </div>
+    <!-- <div class=" alert alert-success" id="msgdiv" >
+      <strong>Info! <span id = "msg"><?php// echo $msg;?></span></strong> 
+    </div> -->
     <?php }?>
 <div class="col-md-12">
+<div class=" alert alert-success" id="msgdiv" style="display:none" >
+      <strong>Info! <span id = "msg"></span></strong> 
+    </div>
       <div class="box box-primary">
        
             <!-- /.box-header -->

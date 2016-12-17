@@ -48,6 +48,7 @@ var jsondata = eval(data1);
          setTimeout(function() {
          $('#msgdiv').fadeOut('fast');
           }, 2000);
+         window.location.href = url+"/forms/getResources";
       }else
       {
        $( "#msgdiv" ).show();
@@ -57,7 +58,7 @@ var jsondata = eval(data1);
           }, 2000);
       }
   
-  window.location.href = url+"/forms/getResources";
+  
     }
 
 
@@ -81,11 +82,14 @@ var jsondata = eval(data1);
       <div class="row">
     <?php if(isset($msg) && $msg != ""){?>
     <div class="col-md-12">
-    <div class=" alert alert-success" id="msgdiv" >
-      <strong>Info! <span id = "msg"><?php echo $msg;?></span></strong> 
-    </div>
+   <!--  <div class=" alert alert-success" id="msgdiv" >
+      <strong>Info! <span id = "msg"><?//php echo $msg;?></span></strong> 
+    </div> -->
     <?php }?>
 <div class="col-md-12">
+<div class=" alert alert-success" id="msgdiv" style="display:none" >
+      <strong>Info! <span id = "msg"></span></strong> 
+    </div>
       <div class="box box-primary">
        
             <!-- /.box-header -->
