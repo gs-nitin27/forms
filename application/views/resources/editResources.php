@@ -182,7 +182,7 @@ var data = eval(data1);//JSON.stringify(data1);
                      <option value ="Jobs">Jobs </option>
                      <option value ="Tournaments">Tournaments</option>
                       <option value="Event">Event</option> 
-                     <option value ="News Aticle">News Aticle </option>
+                     <option value ="News Aticle">News & article</option>
                      <option value ="Training And Knowledge">Training And Knowledge</option>
                       <option value ="other">Other</option>
                      </select>

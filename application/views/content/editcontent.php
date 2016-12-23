@@ -10,6 +10,7 @@ var data12 = {
 
 
     "id"                      : $("#cid").val(),
+   "userid"                   : $("#userid").val(),
     "title"                   : $("#ctitle").val(),
     "url"                     : $("#curl").val(), 
     "content"                 : $("#ccontent").val(),
@@ -28,14 +29,14 @@ var data = JSON.stringify(data12);
 
     url: '<?php echo site_url('forms/saveEditContent'); ?>',
     data: "data="+data,
-    dataType: "text",
+    dataType: "json",
     success: function(result) {
     $( "#msgdiv" ).show();
-   $( "#msg" ).html(result);
+   $( "#msg" ).html(result.response);
     setTimeout(function() {
      $('#msgdiv').fadeOut('fast');
    }, 2000);
-  window.location.href = url+"/forms/getContent";
+ // window.location.href = url+"/forms/getContent";
     }
 
 
@@ -77,6 +78,16 @@ function clear()
     <head>
         <script type='text/javascript' src="<?php echo base_url(); ?>assets/dist/js/ckeditor.js"></script>
     </head>
+
+<?php
+          $data=$this->session->userdata('item');
+          $userid=$data['userid'];
+          {  ?>
+          <div class="form-group">
+                  <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
+            </div>
+          <?php }?>
+
       <?php  $contant = $this->register->editcontent($id); 
            // print_r($contant); 
             foreach ($contant as $value) 

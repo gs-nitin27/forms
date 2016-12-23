@@ -19,6 +19,14 @@
             <div class="box-header" style="text-align: center;">
               <h2 class="box-title"><b>Resource List</b></h2>
             </div>
+            <div>
+            <div id="error_text"><h3 style="text-align: center;color: green"><?php echo $this->session->flashdata('error'); ?></h2></div> 
+            <form action="<?php echo site_url('forms/Csvfileupload'); ?>" method="post" enctype="multipart/form-data">
+            Select CSV file :
+             <input type="file" name="fileToUpload" id="fileToUpload">
+             <input type="submit" value="Upload CSV" name="submit"> 
+             </form>
+             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>

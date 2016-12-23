@@ -70,7 +70,6 @@ public function CreateTournament()
 
 public function event()
 {
-
 $data1 = json_decode($_REQUEST[ 'data' ]);
 $item = new stdClass();
 // echo ($data1->start_date); exit;
@@ -631,6 +630,7 @@ $item  = new stdClass();
 //echo $item->id;die;
 
 $item->id                    = $data2->id;
+$item->userid                = $data2->userid;
 $item->title                 = $data2->title;
 $item->url                   = $data2->url;
 $item->content               = $data2->content;
@@ -641,13 +641,12 @@ $item->date_updated          = @strtotime($data2->date_updated);
 //print_r($item);die();
 $this->load->model('register');
 $res = $this->register->create_content($item);
-echo json_encode(array('response' => $res));
+echo json_encode(array('response' => "Content Updated"));
 }
 
 public function usermodule()
 {
 	   $data['middle'] = 'userModule/usermodule';
-
 		$this->load->view('templates/template',$data);
 }
 
@@ -655,7 +654,6 @@ public function edituser()
 {
 	   $data=$this->session->userdata('item');
        $id=$data['userid'];
-
 	   $data['required'] = array(
 									'id'=>$id	
 								 );
@@ -667,8 +665,8 @@ public function edituser()
 public function saveuserModule()
 {
 $data = json_decode($_REQUEST['data']);
- foreach ($data as  $value) {
-
+ foreach ($data as  $value) 
+ {
  	if($value!=$data->id)
          $res[]=$value; 
  }
@@ -1013,4 +1011,212 @@ public function passwordchange()
 }
 
 
- }
+public function Csvfileupload()
+{
+   // if(isset($_FILES["fileToUpload"]["name"]) && !empty($_POST['fileToUpload']))
+   // {
+   $data=$_FILES["fileToUpload"]["name"];
+   $temp=$data;
+  // print_r($data);
+   move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "uploads/".'csv'."/".$data);
+   $file =base_url('/uploads/csv/'.$data);
+
+   $file = fopen($file,"r");
+
+   $data=$this->session->userdata('item');
+   $id=$data['userid'];
+   $i=0;
+
+   while(! feof($file))
+   { 
+    $data=fgetcsv($file);
+    $this->load->model('register');
+    $row[] = $data;
+    if($i!=0){
+    $res= $this->register->Csvfileupload($data,$id);
+    $csvresourcesid[]=$res;
+    
+    }
+    $i=$i+1;
+}
+//echo json_encode($row);//die;
+fclose($file);
+
+//print_r($file);
+ //print_r($temp);
+
+$path='uploads/csv/'.$temp;
+
+@unlink($path);
+
+
+
+    $CI = get_instance();
+    $CI->load->library('session');
+    $CI->session->set_flashdata('csvresourcesid',$csvresourcesid);
+    redirect("forms/upload_photo");
+
+}
+
+public function upload_photo()
+{
+	$resourcesArray=$this->session->flashdata('csvresourcesid');
+	$data['middle']='resources/upload_photo';
+    $data['required']= array(
+    	                     'resourcesArray' => $resourcesArray
+    	                    );
+ 	$this->load->view('templates/template',$data);
+}
+
+// public function imageuploadCSV()
+//  {   
+
+//  	  //  echo "harshvardhan";die;
+//             // if(isset($_POST['fileToUpload']) && !empty($_POST['fileToUpload']))
+//             //  {	
+//             $resourceid = $_POST['resourceid'];
+//           //  $imageRes = $_POST['fileToUpload']; 
+//             // if($resourceid && $imageRes)
+//              // print_r($resourceid); die();
+            
+//             $temp = explode(".", $_FILES["fileToUpload"]["name"]);
+//             date_default_timezone_set("Asia/Kolkata");
+//             $newfilename1='res_'.time();
+//             $newfilename = $newfilename1. '.' . end($temp);
+//             move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "uploads/resources/" . $newfilename);
+//   //===================image size fix ==============================================================
+//             $uploadimage = "uploads/resources/".$newfilename;
+//             $newname = $newfilename;
+//            // Set the resize_image name
+//             $resize_image = "uploads/resources/".$newname; 
+//             $actual_image = "uploads/resources/".$newname;
+//            // It gets the size of the image
+//             list( $width,$height ) = getimagesize( $uploadimage );
+//           // It makes the new image width of 350
+//             $newwidth = 1115;
+//           // It makes the new image height of 350
+//             $newheight = 640;
+//           // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
+//             $thumb = imagecreatetruecolor( $newwidth, $newheight );
+//             $source = imagecreatefromjpeg( $resize_image );
+//           // Resize the $thumb image.
+//             imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+//           // It then save the new image to the location specified by $resize_image variable
+//             imagejpeg( $thumb, $resize_image, 100 ); 
+//           // 100 Represents the quality of an image you can set and ant number in place of 100.
+//             $out_image=addslashes(file_get_contents($resize_image));      
+// //====================================================================================================
+
+//          // echo json_encode(array('response' => $newfilename));
+
+//              $this->load->model('register');
+//              $this->register->saveCSVImage($resourceid,$newfilename);
+
+//          // }
+
+//             $data['middle']='resources/upload_photo';
+//             $this->load->view('templates/template',$data);
+     
+// }
+
+public function uploadimg()
+{  
+
+  
+ //print_r($_FILES['image']);
+ print_r($_POST);
+ die;
+
+if(!empty($_FILES['image'])){
+
+		$ext = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
+
+                $image = 'res_'.time().'.'.$ext;
+
+                move_uploaded_file($_FILES["image"]["tmp_name"], 'uploads/resources/'.$image);
+
+ //===================image size fix ==============================================================
+            $uploadimage = "uploads/resources/".$image;
+            $newname = $image;
+           // Set the resize_image name
+            $resize_image = "uploads/resources/".$newname; 
+            $actual_image = "uploads/resources/".$newname;
+           // It gets the size of the image
+            list( $width,$height ) = getimagesize( $uploadimage );
+          // It makes the new image width of 350
+            $newwidth = 1115;
+          // It makes the new image height of 350
+            $newheight = 640;
+          // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
+            $thumb = imagecreatetruecolor( $newwidth, $newheight );
+            $source = imagecreatefromjpeg( $resize_image );
+          // Resize the $thumb image.
+            imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+          // It then save the new image to the location specified by $resize_image variable
+            imagejpeg( $thumb, $resize_image, 100 ); 
+          // 100 Represents the quality of an image you can set and ant number in place of 100.
+            $out_image=addslashes(file_get_contents($resize_image));      
+//====================================================================================================
+
+             // $this->load->model('register');
+             // $this->register->saveCSVImage($resourceid,$newfilename);
+		  // echo "Image uploaded successfully as ".$image;
+          echo "Image uploaded successfully";
+
+	}else{
+
+		echo "Image Is Empty";
+
+	}
+
+  // echo "harshvardhan" ;
+//	die;
+
+// 	print_r($_POST);
+//     print_r($_FILES);
+// 	die();
+
+// $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'bmp'); // valid extensions
+// $path = 'uploads/resources/'; // upload directory
+
+// if(isset($_FILES['image']))
+// {
+// 	$img = $_FILES['image']['name'];
+// 	$tmp = $_FILES['image']['tmp_name'];
+// 	// get uploaded file's extension
+// 	$ext = strtolower(pathinfo($img, PATHINFO_EXTENSION));
+// 	// can upload same image using rand function
+// 	$final_image = rand(1000,1000000).$img;	
+// 	// check's valid format
+// 	if(in_array($ext, $valid_extensions)) 
+// 	{			
+
+// 		    $path = $path.strtolower($final_image);	
+// 		    move_uploaded_file($tmp,$path);
+// 		    $uploadimage = $path;
+//             $newname = $path;
+//            // Set the resize_image name
+//             $resize_image = $newname; 
+//             $actual_image = $newname;
+//            // It gets the size of the image
+//             list( $width,$height ) = getimagesize( $uploadimage );
+//           // It makes the new image width of 350
+//             $newwidth = 1115;
+//           // It makes the new image height of 350
+//             $newheight = 640;
+//           // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
+//             $thumb = imagecreatetruecolor( $newwidth, $newheight );
+//             $source = imagecreatefromjpeg( $resize_image );
+//           // Resize the $thumb image.
+//             imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+//           // It then save the new image to the location specified by $resize_image variable
+//             imagejpeg( $thumb, $resize_image, 100 ); 
+//           // 100 Represents the quality of an image you can set and ant number in place of 100.
+//             $out_image=addslashes(file_get_contents($resize_image)); 
+//            // echo json_encode(array('response' => 'uploaded'));
+
+//            echo "Uploaded";	
+//          }
+//        }
+     }
+}

@@ -50,8 +50,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'gs_staging';
+$db['default']['password'] = 'mysql';
+$db['default']['database'] = 'getsport_gs';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;
@@ -68,22 +68,22 @@ $db['default']['stricton'] = FALSE;
 /* End of file database.php */
 /* Location: ./application/config/database.php */
 
-// $active_group = 'other';
-// $active_record = TRUE;
+$active_group = 'other';
+$active_record = TRUE;
 
-// $db['other']['hostname'] = 'localhost';
-// $db['other']['username'] = 'root';
-// $db['other']['password'] = 'mysql';
-// $db['other']['database'] = 'getsport_staging';
-// $db['other']['dbdriver'] = 'mysql';
-// $db['other']['dbprefix'] = '';
-// $db['other']['pconnect'] = FALSE;
-// $db['other']['db_debug'] = TRUE;
-// $db['other']['cache_on'] = FALSE;
-// $db['other']['cachedir'] = '';
-// $db['other']['char_set'] = 'utf8';
-// $db['other']['dbcollat'] = 'utf8_general_ci';
-// $db['other']['swap_pre'] = '';
-// $db['other']['autoinit'] = TRUE;
-// $db['other']['stricton'] = FALSE;
+$db['other']['hostname'] = 'localhost';
+$db['other']['username'] = 'root';
+$db['other']['password'] = 'mysql';
+$db['other']['database'] = 'getsport_staging';
+$db['other']['dbdriver'] = 'mysql';
+$db['other']['dbprefix'] = '';
+$db['other']['pconnect'] = FALSE;
+$db['other']['db_debug'] = TRUE;
+$db['other']['cache_on'] = FALSE;
+$db['other']['cachedir'] = '';
+$db['other']['char_set'] = 'utf8';
+$db['other']['dbcollat'] = 'utf8_general_ci';
+$db['other']['swap_pre'] = '';
+$db['other']['autoinit'] = TRUE;
+$db['other']['stricton'] = FALSE;
 

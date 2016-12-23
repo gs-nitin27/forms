@@ -204,7 +204,7 @@ var jsondata = eval(data1);
                      <option value ="Jobs">Jobs </option>
                      <option value ="Tournaments">Tournaments</option>
                       <option value="Event">Event</option> 
-                     <option value ="news_aticle">News Aticle </option>
+                     <option value ="news_aticle">News & article</option>
                      <option value ="t&k">Training & Knowledge</option>
                       <option value ="other">Other</option>
                      </select>
