@@ -40,11 +40,13 @@
                       <td><body ng-app="main-App" ng-controller="AdminController">
                       <form ng-submit="submit()" name="form" role="form">
 
-                      <input type="text"  name="resid"  ng-value="<?php echo $resource[0]['id']; ?>"> 
-                      <input ng-model="form.image" type="file" class="form-control input-lg" accept="image/*" onchange="angular.element(this).scope().uploadedFile(this)" style="width:300px;height: 0%;"></td>
+                    <input name="user_id" type="text" ng-model="form.user_id" ng-init="form.user_id = <?php echo $resource[0]['id']; ?>" >
+        
+                     <!--  <input type="text"  name="resid"  ng-init="form.resid ='<?php// echo $resource[0]['id']; ?>' " ng-model="form.resid" id="<?php //echo $resource[0]['id']; ?>" ng-value="<?php //echo $resource[0]['id']; ?>">  -->
+
+                      <input ng-model="form.image" type="file" name="<?php echo $resource[0]['id']; ?>" id="<?php echo $resource[0]['id']; ?>" class="form-control input-lg" accept="image/*" onchange="angular.element(this).scope().uploadedFile(this)" style="width:300px;height: 0%;"></td>
 
                        <td style="text-align: center;" ><input type="submit" id="submit" value="Submit" /></td>
-                      
                         </form>
                 </tr>
                 <?php  }?>
@@ -68,12 +70,12 @@
       </div>
       <!-- /.row -->
     </section>
-
   <div class="control-sidebar-bg"></div>
 </div>
 </div>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
+
 <script>
   $(function () {
     $("#example1").DataTable();
@@ -81,7 +83,8 @@
 </script>
 
  <script type="text/javascript">
-
+     
+ 
       var app =  angular.module('main-App',[]);
       app.controller('AdminController', function($scope, $http) {
       $scope.form = [];
@@ -90,16 +93,14 @@
       $scope.form.image = $scope.files[0];
       $http({
         method  : 'POST',
-        url     : '<?php echo site_url('forms/uploadimg');?>',
+        url     : '<?php echo site_url('forms/newimg');?>',
         processData: false,
         transformRequest: function (data) {
             var formData = new FormData();
             formData.append("image", $scope.form.image);  
-            formData.append("resid", $scope.resid);
+            formData.append("resid", $scope.form.user_id);
+             //formData.append("image", $scope.form.name);
               
-
-            
-
             return formData;  
         },  
       
@@ -111,8 +112,9 @@
             alert(data);
        });
         };
-        $scope.uploadedFile = function(element) {
+        $scope.uploadedFile = function(element,name) {
         $scope.currentFile = element.files[0];
+        //$scope.name = element.name[0];
         var reader = new FileReader();
         reader.onload = function(event) {
           $scope.image_source = event.target.result

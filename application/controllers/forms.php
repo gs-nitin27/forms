@@ -1123,9 +1123,12 @@ public function uploadimg()
 {  
 
   
- //print_r($_FILES['image']);
- print_r($_POST);
- die;
+ print_r($_REQUEST);
+
+// $resourceid=$_POST['resid'];
+
+ print_r($_FILES['image']);
+// die;
 
 if(!empty($_FILES['image'])){
 
@@ -1159,7 +1162,8 @@ if(!empty($_FILES['image'])){
 //====================================================================================================
 
              // $this->load->model('register');
-             // $this->register->saveCSVImage($resourceid,$newfilename);
+            //  $this->register->saveCSVImage($resourceid,$newname);
+
 		  // echo "Image uploaded successfully as ".$image;
           echo "Image uploaded successfully";
 
@@ -1219,4 +1223,34 @@ if(!empty($_FILES['image'])){
 //          }
 //        }
      }
+
+   public function newimg()
+   {
+         echo "harshvardhan";
+   	 $target_dir = "./uploads/";
+     $name = $_POST['name'];
+     print_r($_FILES);
+     $target_file = $target_dir . basename($_FILES["file"]["name"]);
+
+     move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+
+     //write code for saving to database 
+     include_once "config.php";
+
+     // Create connection
+     $conn = new mysqli($servername, $username, $password, $dbname);
+     // Check connection
+     if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+     }
+
+     $sql = "INSERT INTO MyData (name,filename) VALUES ('".$name."','".basename($_FILES["file"]["name"])."')";
+
+     if ($conn->query($sql) === TRUE) {
+         echo json_encode($_FILES["file"]); // new file uploaded
+     } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+     }
+
+   }
 }

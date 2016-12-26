@@ -891,8 +891,8 @@ public function Csvfileupload($item,$userid)
 public function saveCSVImage($id,$image)
 {
 
-	  // print_r($id);
-	  // print_r($image);die;
+	   print_r($id);
+	  print_r($image);//die;
 
      $update = "UPDATE  `gs_resources` SET  `image` = '$image' WHERE `id` = '$id' ";
      $query = $this->db->query($update);
