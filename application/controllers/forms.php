@@ -121,37 +121,75 @@ else
 
 
  public function imageupload()
- {   
+ {     
 
-      if ($_POST['oldimageid'])
-        {
-			if($_POST['oldimage']){
-        	$id = $_POST['oldimageid'];
-            $image = $_POST['oldimage'];
-        	$temp= $this->register->removeimage($id,$image);
-        }
-        }
-        
+ 	$newpath=$_POST['path'];
+
+  // print_r($newpath) ;die;
+     switch ($newpath) {
+     	case 'uploads/resources/':
+     		    if ($_POST['oldimageid'])
+                  {
+						if($_POST['oldimage'])
+						{
+			        	$id = $_POST['oldimageid'];
+			            $image = $_POST['oldimage'];
+			        	$temp= $this->register->removeimage($id,$image);
+			            }
+			        }
+     		break;
+     	
+     	case 'uploads/job/':
+     		      if ($_POST['oldimageid'])
+                     {
+						if($_POST['oldimage'])
+						{
+			        	$id = $_POST['oldimageid'];
+			            $image = $_POST['oldimage'];
+			        	$temp= $this->register->removejobimage($id,$image);
+			            }
+			        }
+     		break;
+     	default:
+     		 throw new Exception('Unknown image path.');
+     		break;
+     }
+
+      
+           $mime=$_FILES['file']['type'];
+           switch ($mime) {
+             case 'image/jpeg':
+                    $ftype = 'imagecreatefromjpeg';
+                    break;
+             case 'image/png':
+                    $ftype = 'imagecreatefrompng';
+                    break;
+             default: 
+                    throw new Exception('Unknown image type.');
+    }
+           
+            
             $temp = explode(".", $_FILES["file"]["name"]);
             date_default_timezone_set("Asia/Kolkata");
             $newfilename1='res_'.time();
             $newfilename = $newfilename1. '.' . end($temp);
-            move_uploaded_file($_FILES["file"]["tmp_name"], "uploads/resources/" . $newfilename);
+            move_uploaded_file($_FILES["file"]["tmp_name"], $newpath. $newfilename);
   //===================image size fix ==============================================================
-            $uploadimage = "uploads/resources/".$newfilename;
+            $uploadimage = $newpath.$newfilename;
             $newname = $newfilename;
            // Set the resize_image name
-            $resize_image = "uploads/resources/".$newname; 
-            $actual_image = "uploads/resources/".$newname;
+            $resize_image = $newpath.$newname; 
+            $actual_image = $newpath.$newname;
            // It gets the size of the image
             list( $width,$height ) = getimagesize( $uploadimage );
           // It makes the new image width of 350
-            $newwidth = 1115;
+            $newwidth =$_POST['width'];
           // It makes the new image height of 350
-            $newheight = 640;
+            $newheight =$_POST['height'];
           // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
             $thumb = imagecreatetruecolor( $newwidth, $newheight );
-            $source = imagecreatefromjpeg( $resize_image );
+           
+            $source = $ftype( $resize_image );
           // Resize the $thumb image.
             imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
           // It then save the new image to the location specified by $resize_image variable
@@ -160,7 +198,7 @@ else
             $out_image=addslashes(file_get_contents($resize_image));      
 //====================================================================================================
 
-        echo json_encode(array('response' => $newfilename));
+        echo  $newfilename;
      
 }
 
@@ -246,6 +284,7 @@ $item->state                 = $data1->state;
 $item->city                  = $data1->city;
 $item->pin                   = $data1->pin;  
 $item->contact               = $data1->contact;
+$item->image                 = $data1->image;
 $item->email                 = addslashes($data1->email_app_collection);
 //print_r($item);die();
 $this->load->model('register');
@@ -268,19 +307,21 @@ echo "Job has not been saved";
 	
 	public function getJob(){
 		$data['middle'] = 'job/index';
-
 		$this->load->view('templates/template',$data);
 	}
 	
+
 	public function viewJob($id){
 		$data['middle'] = 'job/view';
 		$data['required'] = array(
 									'id'=>$id	
 								 );
-        $data['noheader'] = true;
+          //$data['noheader'] = true;
 		$this->load->view('templates/template',$data);
 	}
 	
+
+
 	public function getEvent(){
 		$data['middle'] = 'event/index';
 
@@ -382,7 +423,7 @@ public function shareResources(){
 //$data2 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
 
-//print_r($data2); 
+
 
 
 $item->id                    = $_POST['id'];//$data2->id;
@@ -461,7 +502,6 @@ public function saveEditResources()
 {
 
 $item  = new stdClass(); 
-
 
 $item->id                    = $_POST['id'];//$data2->id;
 $item->userid                = $_POST['userid'];//$data2->userid;
@@ -1013,8 +1053,12 @@ public function passwordchange()
 
 public function Csvfileupload()
 {
-   // if(isset($_FILES["fileToUpload"]["name"]) && !empty($_POST['fileToUpload']))
-   // {
+
+    $temp = explode(".", $_FILES["fileToUpload"]["name"]);
+   // print_r(end($temp));die;
+
+   if($_FILES["fileToUpload"]["name"] && end($temp)=='csv')
+    {
    $data=$_FILES["fileToUpload"]["name"];
    $temp=$data;
   // print_r($data);
@@ -1055,6 +1099,14 @@ $path='uploads/csv/'.$temp;
     $CI->load->library('session');
     $CI->session->set_flashdata('csvresourcesid',$csvresourcesid);
     redirect("forms/upload_photo");
+}
+else{
+
+	$this->session->set_flashdata('error','Please Upload CSV file.');
+    redirect('forms/getResources','refresh');
+	//echo "Please Upload CSV file";
+	//$this->getResources();
+}
 
 }
 
@@ -1068,67 +1120,18 @@ public function upload_photo()
  	$this->load->view('templates/template',$data);
 }
 
-// public function imageuploadCSV()
-//  {   
 
-//  	  //  echo "harshvardhan";die;
-//             // if(isset($_POST['fileToUpload']) && !empty($_POST['fileToUpload']))
-//             //  {	
-//             $resourceid = $_POST['resourceid'];
-//           //  $imageRes = $_POST['fileToUpload']; 
-//             // if($resourceid && $imageRes)
-//              // print_r($resourceid); die();
-            
-//             $temp = explode(".", $_FILES["fileToUpload"]["name"]);
-//             date_default_timezone_set("Asia/Kolkata");
-//             $newfilename1='res_'.time();
-//             $newfilename = $newfilename1. '.' . end($temp);
-//             move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "uploads/resources/" . $newfilename);
-//   //===================image size fix ==============================================================
-//             $uploadimage = "uploads/resources/".$newfilename;
-//             $newname = $newfilename;
-//            // Set the resize_image name
-//             $resize_image = "uploads/resources/".$newname; 
-//             $actual_image = "uploads/resources/".$newname;
-//            // It gets the size of the image
-//             list( $width,$height ) = getimagesize( $uploadimage );
-//           // It makes the new image width of 350
-//             $newwidth = 1115;
-//           // It makes the new image height of 350
-//             $newheight = 640;
-//           // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
-//             $thumb = imagecreatetruecolor( $newwidth, $newheight );
-//             $source = imagecreatefromjpeg( $resize_image );
-//           // Resize the $thumb image.
-//             imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-//           // It then save the new image to the location specified by $resize_image variable
-//             imagejpeg( $thumb, $resize_image, 100 ); 
-//           // 100 Represents the quality of an image you can set and ant number in place of 100.
-//             $out_image=addslashes(file_get_contents($resize_image));      
-// //====================================================================================================
 
-//          // echo json_encode(array('response' => $newfilename));
-
-//              $this->load->model('register');
-//              $this->register->saveCSVImage($resourceid,$newfilename);
-
-//          // }
-
-//             $data['middle']='resources/upload_photo';
-//             $this->load->view('templates/template',$data);
-     
-// }
 
 public function uploadimg()
 {  
 
-  
- print_r($_REQUEST);
+ print_r($_POST);
 
 // $resourceid=$_POST['resid'];
 
- print_r($_FILES['image']);
-// die;
+ print_r($_FILES['image']['type']);
+ die();
 
 if(!empty($_FILES['image'])){
 
@@ -1224,33 +1227,58 @@ if(!empty($_FILES['image'])){
 //        }
      }
 
-   public function newimg()
-   {
-         echo "harshvardhan";
-   	 $target_dir = "./uploads/";
-     $name = $_POST['name'];
-     print_r($_FILES);
-     $target_file = $target_dir . basename($_FILES["file"]["name"]);
+public function profileimage()
+{       
 
-     move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+	$data=$this->session->userdata('item');
+    $id=$data['userid'];
 
-     //write code for saving to database 
-     include_once "config.php";
+ print_r($id);
 
-     // Create connection
-     $conn = new mysqli($servername, $username, $password, $dbname);
-     // Check connection
-     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-     }
+// $resourceid=$_POST['resid'];
 
-     $sql = "INSERT INTO MyData (name,filename) VALUES ('".$name."','".basename($_FILES["file"]["name"])."')";
+ //print_r($_FILES['userImage']);
+ //die;
 
-     if ($conn->query($sql) === TRUE) {
-         echo json_encode($_FILES["file"]); // new file uploaded
-     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+$valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'bmp'); // valid extensions
+$path = 'uploads/'; // upload directory
+$base=  base_url();
+if(isset($_FILES['image']))
+{
+	$img = $_FILES['image']['name'];
+	$tmp = $_FILES['image']['tmp_name'];
+		
+	// get uploaded file's extension
+	$ext = strtolower(pathinfo($img, PATHINFO_EXTENSION));
+	
+	// can upload same image using rand function
+	$final_image = rand(1000,1000000).$img;
+	
+	// check's valid format
+	if(in_array($ext, $valid_extensions)) 
+	{					
+		$path = $path.strtolower($final_image);	
+			
+		if(move_uploaded_file($tmp,$path)) 
+		{
+			echo "<img src='$base/$path' />";
+		}
+	} 
+	else 
+	{
+		echo 'invalid';
+	}
      }
 
    }
+
+   public function editjob($id)
+   {
+		$data['middle']="job/Editjob";
+		$data['required']= array(
+			                     'id' => $id 
+			                     );
+		$this->load->view('templates/template',$data);
+   }
+
 }

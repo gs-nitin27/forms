@@ -29,14 +29,14 @@ $(document).ready(function(){
 				
 			  });
 		});
-clear();
+
 
 $('#save').click(function(){
 
 var data1 = {
 
 
-    "id"                      : "", 
+    "id"                      : $("#jid").val(),
     "userid"                  : $("#userid").val(),
     "title"                   : $("#jtitle").val(),
     "address_line1"           : $("#jadd1").val(), 
@@ -86,7 +86,7 @@ var data = JSON.stringify(data1);
 			$('#msgdiv').fadeOut('fast');
 		}, 2000);
 		window.location.href = url+"/forms/getJob";
-clear();
+
     }
 
 
@@ -95,51 +95,25 @@ clear();
     
 });});
 
-function clear()
-{
 
-    $("#jtitle").val('');
-    $("#jadd1").val('');
-    $("#jadd2").val(''); 
-    $("#jtype").val('');
-    $("#jcity").val(''); 
-    $("#jpin").val('');
-    $("#jstate").val('');
-    $("#jdesc").val('');
-    $("#jexp").val('');
-    $("#skill").val('');
-    $("#jdesc").val('');
-    $("#jqualification").val('');
-    $("#jreq").val('');
-    $("#abOrg").val('');
-    $("#orgName").val('');
-    $("#contact").val('');
-    $("#add1").val('');
-    $("#add2").val('');
-    $("#orgcity").val(''); 
-    $("#orgpin").val('');
-    $("#email").val('');
-    $("#cont").val('');
-    $("#orgstate").val('');
-    $("#jlink").val('');
-    $("#startD").val('');
-    $("#endD").val('');
-    $("#jsports").val('');
-    $("input[name='gender']:checked").val('All'); 
-
-}
 
   </script>
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Create Job
-        
+        Edit Job
       </h1>
-     
     </section>
          <section class="content"> 
+
+         <?php $job = $this->register->getJobInfo($id); 
+				if(!empty($job)){
+					
+					$job = $job[0];
+				}
+			
+			?>
       <div class="row">
 	  
 		<div class="col-md-12">
@@ -160,10 +134,12 @@ function clear()
                 <h4>Job Details:</h4 > 	
 				</div>
                 <div class="box-body">
-					
+
+					 <input type="hidden" class="form-control"  id="jid" value="<?php echo $job['infoId'];?>" >
+
 					<div class="form-group">
 					  <label for="eventName">Job Title</label>
-					  <input type="text" class="form-control"  id="jtitle" >
+					  <input type="text" class="form-control"  id="jtitle" value="<?php echo $job['title'];?>" >
 					</div >
 
          <?php
@@ -178,14 +154,14 @@ function clear()
 
 					<div class="form-group">
 					  <label>Job Description</label>
-					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="jdesc" ></textarea>
+					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="jdesc" value="<?php echo $job['description'];?>"  ></textarea>
 					</div>
 					 
 					<div class="form-group">
 						
 					  <label for="eventtype">Job Type</label>
 						<select id="jtype" class="form-control" >
-						<option value="0">- Select -</option> 
+						<option value="0"><?php echo $job['type'];?></option> 
 							
 						<option value ="Part Time">Part Time </option>
 						<option value ="Full Time">Full Time </option>
@@ -200,7 +176,7 @@ function clear()
 						?>
 					  <label for="sports">Sport</label>
 						<select id="jsports" class="form-control" >
-						<option value="0">- Select -</option> 
+						<option value="0"><?php echo $job['sports'];?></option> 
 							<?php if(!empty($sports)){
 									foreach($sports as $sport){?>
 								<option value ="<?php echo $sport['id'];?>"><?php echo $sport['sports'];?> </option>
@@ -211,26 +187,26 @@ function clear()
 					</div>
 					<div class="form-group">
 					  <label for="city">Job Location</label>
-					  <input type="text" class="form-control"  id="jcity" placeholder="Enter City">
+					  <input type="text" class="form-control"  id="jcity" placeholder="Enter City" value="<?php echo $job['city_name'];?>">
 					</div>
 					
 					<div class="form-group">
 					  <label for="address1">Address Line1</label>
-					  <input type="text" class="form-control"  id="jadd1" placeholder="Enter Address">
+					  <input type="text" class="form-control"  id="jadd1" placeholder="Enter Address" value="<?php echo $job['address1'];?>">
 					</div >
 					<div class="form-group">
 					  <label for="address2">Address Line2</label>
-					  <input type="text" class="form-control"  id="jadd2" placeholder="Enter Address">
+					  <input type="text" class="form-control"  id="jadd2" placeholder="Enter Address" value="<?php echo $job['address2'];?>">
 					</div >
 					<!-- STATE IS ID BASED -->
 					<div class="form-group">
 					  <label for="state">State</label>
 					  <input type="hidden" class="form-control"  id="jstate">
-					  <input type="text" class="form-control"  id="jstate_value" placeholder="Enter State" disabled>
+					  <input type="text" class="form-control"  id="jstate_value" placeholder="Enter State" value="<?php echo $job['state_name'];?>"  disabled>
 					</div >
 					<div class="form-group">
 					  <label for="pin">Pin</label>
-					  <input type="text" class="form-control"  id="jpin" placeholder="Enter Pin">
+					  <input type="text" class="form-control"  id="jpin" placeholder="Enter Pin" value="<?php echo $job['pin'];?>">
 					</div >
 					
               </div>
@@ -244,46 +220,46 @@ function clear()
 					
 					 <div class="form-group">
 					  <label for="eventName">Organisation Name</label>
-					  <input type="text" class="form-control" id="orgName" >
+					  <input type="text" class="form-control" id="orgName" value="<?php echo $job['organisation_name'];?>">
 					</div >
 					<div class="form-group">
 					  <label>About Organisation</label>
-					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="abOrg" ></textarea>
+					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="abOrg"  ><?php echo $job['about'];?></textarea>
 					</div>
 					
 					
 					
 					<div class="form-group">
 					  <label for="address1">Address Line1</label>
-					  <input type="text" class="form-control"  id="add1" placeholder="Enter Address">
+					  <input type="text" class="form-control"  id="add1" placeholder="Enter Address" value="<?php echo $job['org_address1'];?>">
 					</div >
 					<div class="form-group">
 					  <label for="address2">Address Line2</label>
-					  <input type="text" class="form-control"  id="add2" placeholder="Enter Address">
+					  <input type="text" class="form-control"  id="add2" placeholder="Enter Address" value="<?php echo $job['org_address2'];?>">
 					</div >
 					<div class="form-group">
 					  <label for="city">Location</label>
-					  <input type="text" class="form-control"  id="orgcity" placeholder="Enter City">
+					  <input type="text" class="form-control"  id="orgcity" placeholder="Enter City" value="<?php echo $job['city_org'];?>">
 					</div>
 					
 					<!-- STATE IS ID BASED -->
 					<div class="form-group">
 					  <label for="state">State</label>
 					  <input type="hidden" class="form-control"  id="orgstate">
-					  <input type="text" class="form-control"  id="orgstate_value" placeholder="Enter State" disabled>
+					  <input type="text" class="form-control"  id="orgstate_value" placeholder="Enter State" value="<?php echo $job['state_org'];?>" disabled>
 					</div >
 					<div class="form-group">
 					  <label for="pin">Pin</label>
-					  <input type="text" class="form-control"  id="orgpin" placeholder="Enter Pin">
+					  <input type="text" class="form-control"  id="orgpin" placeholder="Enter Pin" value="<?php echo $job['org_pin'];?>">
 					</div >
 					<div class="form-group">
 					  <label for="eventName">Email</label>
-					  <input type="text" class="form-control" id="email">
+					  <input type="text" class="form-control" id="email" value="<?php echo $job['email'];?>">
 					</div >
 					
 					<div class="form-group">
 					  <label for="eventName">Contact No.</label>
-					  <input type="text" class="form-control" id="cont">
+					  <input type="text" class="form-control" id="cont" value="<?php echo $job['contact'];?>">
 					</div >
 				</div>
               </div>
@@ -296,7 +272,7 @@ function clear()
 					
 					 <div class="form-group">
 					  <label for="eventName">Work Experience</label>
-					   <select id="jexp" class="form-control">
+					   <select id="jexp" class="form-control"><?php echo $job['work_experience']." Years";?>
 							<?php for($i=0; $i<=10; $i++){?>	
 							<option value="<?php echo $i;?>"><?php echo str_pad($i, 2, '0', STR_PAD_LEFT)." year";?></option>
 							<?php } ?>
@@ -304,7 +280,7 @@ function clear()
 					</div >
 					<div class="form-group">
 					  <label for="eventName">Qualifications</label>
-					  <input type="text" class="form-control" id="jqualification" >
+					  <input type="text" class="form-control" id="jqualification" value="<?php echo $job['qualification'];?>"  >
 					</div >
 					
 					<div class="form-group">
@@ -313,7 +289,7 @@ function clear()
 					</div >
 					<div class="form-group">
 					  <label for="link">Key Requirement</label>
-					  <input type="text" class="form-control"  id="jreq">
+					  <input type="text" class="form-control"  id="jreq" value="<?php echo $job['key_requirement'];?>">
 					</div >
 					
 					<div class="form-group">
@@ -343,18 +319,20 @@ function clear()
             </div>
             <!-- /.tab-content -->
             </form>
+             <img style="display:block; border:2px solid SteelBlue"; width="300px" height="220px" src = "<?php  echo base_url()."uploads/job/".$job['image']; ?>">
             <form id="form"  method="post" enctype="multipart/form-data">
               Image : <input type="file" name="file" id="file" />
-              <div class="form-group">
-              <input type="hidden" class="form-control" name="oldimageid" id="pid" value="0">
-              <input type="hidden" class="form-control" name="path"   id="path" value="uploads/job/">
-              <input type="hidden" class="form-control" name="height" id="height" value="512">
-              <input type="hidden" class="form-control" name="width"  id="width" value="512">
+            <div class="form-group">
+            <input type="hidden" class="form-control" name="path"   id="path" value="uploads/job/">
+            <input type="hidden" class="form-control" name="height" id="height" value="512">
+            <input type="hidden" class="form-control" name="width"  id="width" value="512">
+            <input type="hidden" class="form-control" name="oldimage" id="oldimage" value="<?php echo $job['image']; ?>">
+            <input type="hidden" class="form-control" name="oldimageid" id="oldimageid" value="<?php echo $job['infoId']; ?>">
               </div>
               <input id="button" type="submit" value="Upload">
             </form>
               <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img> 
-              <input type="hidden" class="form-control" name="photo" id="photo_url"> 
+              <input type="hidden" class="form-control" name="photo" id="photo_url" value="<?php echo $job['image'];?>"> 
               <div id="mess" hidden>Image Uploded</div>
 
 			<div class="box-footer">

@@ -20,7 +20,6 @@
                <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
                <th style="background: #5262bc; color:#ffffff;">Title<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                <th style="background: #5262bc; color: #ffffff;">Summary <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-             
                <th style="background: #5262bc; color: #ffffff;">Image Upload<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                <th style="background: #5262bc; color: #ffffff;">Save Image  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                </tr>
@@ -29,6 +28,8 @@
                
                   <?php 
                        $i=1; 
+                      
+                        if($resourcesArray){
                        foreach ($resourcesArray as $res) {
                        $resource=$this->register->getResourceInfo($res);      
                     ?>
@@ -37,19 +38,32 @@
                     <td style="width:300px"><?php echo $resource[0]['title']; ?></td>
                     <td style="width:300px"><?php echo substr($resource[0]['summary'],0,170); ?></td>	
 
-                      <td><body ng-app="main-App" ng-controller="AdminController">
+
+
+                 <!-- <form id="uploadForm" action="" method="post">
+                 <td><input name="id" type="text" class="inputtext" value="<?php// echo $resource[0]['id'];?>" >
+                 <input name="image" type="file" class="inputFile" /></td>
+                 <td><input type="button" value="Submit" class="btnSubmit" /></td>
+                 </form> -->
+
+   <td><body ng-app="main-App" ng-controller="AdminController">
                       <form ng-submit="submit()" name="form" role="form">
 
-                    <input name="user_id" type="text" ng-model="form.user_id" ng-init="form.user_id = <?php echo $resource[0]['id']; ?>" >
+
+
+              <input name="resid" type="text" id="resid" value="{{<?php echo $resource[0]['id'];?>}}" > 
         
-                     <!--  <input type="text"  name="resid"  ng-init="form.resid ='<?php// echo $resource[0]['id']; ?>' " ng-model="form.resid" id="<?php //echo $resource[0]['id']; ?>" ng-value="<?php //echo $resource[0]['id']; ?>">  -->
+                  
 
-                      <input ng-model="form.image" type="file" name="<?php echo $resource[0]['id']; ?>" id="<?php echo $resource[0]['id']; ?>" class="form-control input-lg" accept="image/*" onchange="angular.element(this).scope().uploadedFile(this)" style="width:300px;height: 0%;"></td>
+              <input ng-model="form.image" type="file" name="<?php echo $resource[0]['id']; ?>" id="<?php echo $resource[0]['id']; ?>" class="form-control input-lg" accept="image/*" onchange="angular.element(this).scope().uploadedFile(this)" style="width:300px;height: 0%;"></td>
 
-                       <td style="text-align: center;" ><input type="submit" id="submit" value="Submit" /></td>
+                       <td style="text-align: center;width:98px;" ><input type="submit" id="submit" value="Submit" /></td>
                         </form>
                 </tr>
-                <?php  }?>
+                <?php  }
+                       }
+                     else {
+                      echo "No data Uploaded";} ?>
                 </tbody>
                 <tfoot>
                  <tr>
@@ -82,44 +96,67 @@
   });
 </script>
 
- <script type="text/javascript">
-     
- 
+<script type="text/javascript">
+$(document).ready(function (e){
+$("#uploadForm").on('submit',(function(e){
+alert($this);return;
+e.preventDefault();
+$.ajax({
+url: "<?php echo site_url('forms/uploadimg')?>",
+type: "POST",
+data:  new FormData(this),
+contentType: false,
+cache: false,
+processData:false,
+success: function(data){
+  alert(data);
+},
+error: function(){}           
+});
+}));
+});
+</script>
+
+
+<script type="text/javascript">
       var app =  angular.module('main-App',[]);
       app.controller('AdminController', function($scope, $http) {
       $scope.form = [];
       $scope.files = [];
       $scope.submit = function() {
       $scope.form.image = $scope.files[0];
+      //$scope.form.image= $scope.files[0];
       $http({
         method  : 'POST',
-        url     : '<?php echo site_url('forms/newimg');?>',
+        url     : '<?php echo site_url('forms/uploadimg');?>',
         processData: false,
         transformRequest: function (data) {
             var formData = new FormData();
             formData.append("image", $scope.form.image);  
-            formData.append("resid", $scope.form.user_id);
+           // formData.append("resid", $scope.form.resid);
              //formData.append("image", $scope.form.name);
               
             return formData;  
         },  
       
         data : $scope.form,
+
         headers: {
                'Content-Type': undefined
         }
        }).success(function(data){
+     
             alert(data);
        });
         };
-        $scope.uploadedFile = function(element,name) {
-        $scope.currentFile = element.files[0];
-        //$scope.name = element.name[0];
-        var reader = new FileReader();
-        reader.onload = function(event) {
+          $scope.uploadedFile = function(element,name) {
+          $scope.currentFile  = element.files[0];
+          //$scope.currentFile  = id;
+          var reader = new FileReader();
+          reader.onload = function(event) {
           $scope.image_source = event.target.result
           $scope.$apply(function($scope) {
-            $scope.files = element.files;
+          $scope.files = element.files;
           });
         }
           reader.readAsDataURL(element.files[0]);

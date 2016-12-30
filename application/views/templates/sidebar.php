@@ -10,7 +10,23 @@ $array=json_decode($data);
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
-        <div class="pull-left image">
+
+
+ 
+
+  <!-- <div id="preview" ><img src="<?php //echo base_url('/assets/dist/img/user2-160x160.jpg'); ?>" /></div> -->
+    
+  <!-- <form id="form" action="#" method="post" enctype="multipart/form-data">
+  <input id="uploadImage" type="file" accept="image/*" name="image" />
+  <input id="button" type="submit" value="Upload">
+  </form>
+  <div id="err"></div> -->
+
+  
+
+
+
+ <div class="pull-left image">
           <img src="<?php echo base_url('/assets/dist/img/user2-160x160.jpg'); ?>" class="" alt="User Image">
         </div>
       <?php
@@ -70,3 +86,44 @@ $array=json_decode($data);
     </section>
     <!-- /.sidebar -->
   </aside>
+  <script>
+
+$(document).ready(function (e) {
+  $("#form").on('submit',(function(e) {
+    e.preventDefault();
+    $.ajax({
+          url: "<?php echo site_url('forms/profileimage')?>",
+      type: "POST",
+      data:  new FormData(this),
+      contentType: false,
+          cache: false,
+      processData:false,
+      beforeSend : function()
+      {
+        //$("#preview").fadeOut();
+        $("#err").fadeOut();
+      },
+      success: function(data)
+        {
+        if(data=='invalid')
+        {
+          // invalid file format.
+          $("#err").html("Invalid File !").fadeIn();
+        }
+        else
+        {
+          // view uploaded file.
+          $("#preview").html(data).fadeIn();
+          $("#form")[0].reset();  
+        }
+        },
+        error: function(e) 
+        {
+        $("#err").html(e).fadeIn();
+        }           
+     });
+  }));
+});
+
+
+</script>

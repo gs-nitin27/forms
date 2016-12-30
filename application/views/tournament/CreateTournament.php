@@ -6,7 +6,7 @@ $(document).ready(function(){
 			var city_key = $('#city').val();
 			$.ajax({
 			    method: "POST",
-			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
+			    url: '<?php echo site_url('forms/getStateByCity');?>',
 				data: { key: city_key }
 			}).done(function( html ) {
 				var res = jQuery.parseJSON(html)
@@ -20,7 +20,7 @@ $(document).ready(function(){
 			var city_key = $('#orgcity').val();
 			$.ajax({
 			    method: "POST",
-			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
+			    url: '<?php echo site_url('forms/getStateByCity');?>',
 				data: { key: city_key }
 			}).done(function( html ) {
 				var res = jQuery.parseJSON(html)
@@ -30,6 +30,7 @@ $(document).ready(function(){
 			  });
 		});
 clear();
+    
     
 $('#save').click(function(){
 var data1 = {

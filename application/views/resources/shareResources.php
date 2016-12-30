@@ -276,21 +276,20 @@ var jsondata = eval(data1);
              
             </form>
 
-     <form name="multiform" id="multiform" action="<?php echo site_url('forms/imageupload'); ?>" method="POST" enctype="multipart/form-data">
-               Image : <input type="file" name="file" id="file" />
+     <form id="form" action="" method="post" enctype="multipart/form-data">
+       Image : <input type="file" name="file" id="file" />
+        <div class="form-group">
+        <input type="hidden" class="form-control" name="oldimageid" id="pid" value="0">
+        <input type="hidden" class="form-control" name="path"   id="path" value="uploads/resources/">
+        <input type="hidden" class="form-control" name="height" id="height" value="640">
+        <input type="hidden" class="form-control" name="width"  id="width" value="1115">
+        </div>
+       <input id="button" type="submit" value="Upload">
+       </form>
 
-               <div class="form-group">
-                  <input type="hidden" class="form-control" name="oldimageid" id="pid" value="0">
-                </div>
-          </form>
-               <input  type="button" id="multi-post" value="Submit Image"></input>
-
-                <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img> 
+              <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img> 
 
                <input type="hidden" class="form-control" name="photo" id="photo_url"> 
-
-
-
               <div id="mess" hidden>Image Uploded</div>
 
 
@@ -336,46 +335,35 @@ var jsondata = eval(data1);
 
 </div>
 <script type="text/javascript">
-$(document).ready(function(){
- 
-$("#multiform").submit(function(e)
-{
+  $(document).ready(function (e) {
+  $("#form").on('submit',(function(e) {
    $('#loader_img').show();
-    var formObj = $(this);
-    var formURL = formObj.attr("action");
-
-if(window.FormData !== undefined)  
-    {
-        var formData = new FormData(this);
-        $.ajax({
-            url: formURL,
-            type: 'POST',
-            data:  formData,
-            dataType: 'json',
-            mimeType:"multipart/form-data",
-            contentType: false,
-            cache: false,
-            processData:false,
-            success: function(data)
-            {
-                $('#loader_img').hide();
+    e.preventDefault();
+    $.ajax({
+      url: "<?php echo site_url('forms/imageupload'); ?>",
+      type: "POST",
+      data:  new FormData(this),
+      contentType: false,
+          cache: false,
+      processData:false,
+      beforeSend : function()
+      {
+        $("#err").fadeOut();
+      },
+      success: function(data)
+        {
+               $('#loader_img').hide();
                 $('#mess').show();
-                $("#photo_url").val(data.response);   
-            }
-                  
-       });
-        e.preventDefault();
-        e.unbind();
-   }
+                $("#photo_url").val(data);   
+        },
+        error: function(e) 
+        {
+      
+        }           
+     });
+  }));
 });
 
-
-$("#multi-post").click(function()
-    {
-    //sending form from here
-    $("#multiform").submit();
-});
-});
 </script>
 
 <!-- <script >

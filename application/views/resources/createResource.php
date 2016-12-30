@@ -274,40 +274,21 @@ var data = eval(data1);//JSON.stringify(data1);
             </form>
 
 
-
-
-      <form name="multiform" id="multiform" action="<?php echo site_url('forms/imageupload'); ?>" method="POST" enctype="multipart/form-data">
-               Image : <input type="file" name="file" id="file" />
-
-               <div class="form-group">
-                  <input type="hidden" class="form-control" name="oldimageid" id="pid" value="0">
-                </div>
-          </form>
-               <input  type="button" id="multi-post" value="Submit Image"></input>
-
+            <form id="form" action="" method="post" enctype="multipart/form-data">
+              Image : <input type="file" name="file" id="file" />
+              <div class="form-group">
+              <input type="hidden" class="form-control" name="oldimageid" id="pid" value="0">
+              <input type="hidden" class="form-control" name="path"   id="path" value="uploads/resources/">
+              <input type="hidden" class="form-control" name="height" id="height" value="640">
+              <input type="hidden" class="form-control" name="width"  id="width" value="1115">
+              </div>
+              <input id="button" type="submit" value="Upload">
+            </form>
               <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img> 
-
-               <input type="hidden" class="form-control" name="photo" id="photo_url"> 
-
-
-
+              <input type="hidden" class="form-control" name="photo" id="photo_url"> 
               <div id="mess" hidden>Image Uploded</div>
-
-
-
-         <!-- <form role="form" enctype='multipart/form-data' id="form_resource"  action="<?php// echo site_url('forms/imageupload'); ?>"   method="post">
-
-               <div class="form-group">
-                  <label for="file">File input</label>
-                  <input type="file" id="file" name="file" accept="image/*">
-                  <p class="help-block">Upload image file only.</p>
-                </div>
-            <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save1" onclick="" value="Submit Image" name="Create">
-              </div> 
-      </form> -->
-       <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
+              <div class="box-footer">
+              <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
               </div>
  <!-- <script>
                 
@@ -346,52 +327,42 @@ var data = eval(data1);//JSON.stringify(data1);
 </section>
 
 </div>
-
-
 <script type="text/javascript">
-$(document).ready(function(){
- 
-$("#multiform").submit(function(e)
-{
-    $('#loader_img').show();
-
-    var formObj = $(this);
-    var formURL = formObj.attr("action");
-
-if(window.FormData !== undefined)  
-    {
-        var formData = new FormData(this);
-        $.ajax({
-            url: formURL,
-            type: 'POST',
-            data:  formData,
-            dataType: 'json',
-            mimeType:"multipart/form-data",
-            contentType: false,
-            cache: false,
-            processData:false,
-            success: function(data)
-            {
-                $('#loader_img').hide();
+  $(document).ready(function (e) {
+  $("#form").on('submit',(function(e) {
+   $('#loader_img').show();
+    e.preventDefault();
+    $.ajax({
+      url: "<?php echo site_url('forms/imageupload'); ?>",
+      type: "POST",
+      data:  new FormData(this),
+      contentType: false,
+          cache: false,
+      processData:false,
+      beforeSend : function()
+      {
+        $("#err").fadeOut();
+      },
+      success: function(data)
+        {
+          //alert(data);
+               $('#loader_img').hide();
                 $('#mess').show();
-                $("#photo_url").val(data.response);   
-            }
-                  
-       });
-        e.preventDefault();
-        e.unbind();
-   }
-});
-
-
-$("#multi-post").click(function()
-    {
-    //sending form from here
-    $("#multiform").submit();
-});
+                $("#photo_url").val(data);   
+        },
+        error: function(e) 
+        {
+      
+        }           
+     });
+  }));
 });
 
 </script>
+
+
+
+
 
 
 <!-- <script >

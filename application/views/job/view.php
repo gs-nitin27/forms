@@ -1,25 +1,29 @@
 
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        View Job<a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a>
-        
-      </h1>
-     
-    </section>
-         <section class="content"> 
-      <div class="row">
-	  
-		<div class="col-md-12">
-				
-			<?php $job = $this->register->getJobInfo($id); 
+
+    <?php $job = $this->register->getJobInfo($id); 
 				if(!empty($job)){
 					
 					$job = $job[0];
 				}
 			
 			?>
+    <section class="content-header">
+      <h1>
+        View Job<a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a>
+      <a href = "<?php echo site_url('forms/editjob/'.$job['infoId']); ?>" class="glyphicon glyphicon-edit fa-x" value="Edit" name="Edit"  title="Edit"></a>
+      </h1>
+ 
+     	
+    
+    </section>
+         <section class="content"> 
+      <div class="row">
+	  
+		<div class="col-md-8">
+				
+			
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_event" data-toggle="tab">Job Details </a></li>
@@ -146,8 +150,15 @@
           </div>
 	  </div>
 	  
+
+	  <div class="col-md-4">
+       <img style="display:block; border:2px solid SteelBlue"; width="300px" height="220px" src = "<?php  echo base_url()."uploads/job/".$job['image']; ?>">
+	  </div>
 </div>
+
 </div>
+
+
 </section>
 
 <!-- Modal -->
