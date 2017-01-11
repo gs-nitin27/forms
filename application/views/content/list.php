@@ -78,10 +78,29 @@
           <button class="badge bg-green" onclick="myfunction(<?php echo $contants['id'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
-            <?php } ?>
-		  <td><a href = "<?php echo site_url('forms/editContent/'.$contants['id']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+            <?php } 
+            $list=array('a' => 0,
+                                'b' => 1,
+                                'c' => 2,
+                                'd' => 3,
+                                'e' => 4,
+                                'f' => 5,
+                                'g' => 6,
+                                'h' => 7,
+                                'i' => 8,
+                                'j' => 9);
+                                 $num=$contants['id']; //your value
+                                 $temp='';
+                                 $arr_num=str_split ($num);
+                                foreach($arr_num as $data)
+                                {
+                                $temp.=array_search($data,$list);
+                                }
+                                $num=$temp;
+                                { ?> 
+		  <td><a href = "<?php echo site_url('forms/editContent/'.$num); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
                 </tr>
-		  <?php } } ?>
+		  <?php } } } ?>
                 </tbody>
                 <tfoot>
                <tr>

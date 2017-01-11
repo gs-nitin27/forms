@@ -43,7 +43,7 @@ var jsondata = eval(data1);
     success: function(result) {
       if(result.response == '1')
       {
-        $( "#msgdiv" ).show();
+         $( "#msgdiv" ).show();
          $( "#msg" ).html('Resource created');
          setTimeout(function() {
          $('#msgdiv').fadeOut('fast');
@@ -51,66 +51,52 @@ var jsondata = eval(data1);
          window.location.href = url+"/forms/getResources";
       }else
       {
-       $( "#msgdiv" ).show();
+         $( "#msgdiv" ).show();
          $( "#msg" ).html('Resource not created');
          setTimeout(function() {
          $('#msgdiv').fadeOut('fast');
           }, 2000);
       }
-  
-  
     }
-
-
-});
-
-    
+}); 
 });});
 
 </script>
-
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-     Share Resources
-        
+       Share Resources
       </h1>
-     
     </section>
          <section class="content"> 
-      <div class="row">
-    <?php if(isset($msg) && $msg != ""){?>
-    <div class="col-md-12">
-   <!--  <div class=" alert alert-success" id="msgdiv" >
-      <strong>Info! <span id = "msg"><?//php echo $msg;?></span></strong> 
-    </div> -->
-    <?php }?>
-<div class="col-md-12">
-<div class=" alert alert-success" id="msgdiv" style="display:none" >
-      <strong>Info! <span id = "msg"></span></strong> 
-    </div>
-      <div class="box box-primary">
-       
-            <!-- /.box-header -->
-
-        
-            <form>
-              <div class="box-body">
-
-            <?php
+         <div class="row">
+         <?php if(isset($msg) && $msg != ""){?>
+         <div class="col-md-12">
+         <!--  <div class=" alert alert-success" id="msgdiv" >
+         <strong>Info! <span id = "msg"><?//php echo $msg;?></span></strong> 
+         </div> -->
+         <?php }?>
+         <div class="col-md-12">
+         <div class=" alert alert-success" id="msgdiv" style="display:none" >
+         <strong>Info! <span id = "msg"></span></strong> 
+         </div>
+         <div class="box box-primary">
+         <!-- /.box-header -->
+         <form>
+         <div class="box-body">
+         <?php
           $data=$this->session->userdata('item');
           $name=$data['userid'];
-        {  ?>
+         {  ?>
           <div class="form-group">
-                  <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $name;?>">
+          <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $name;?>">
+          </div>
+         <?php }?>
+
+            <div class="form-group">
+            <input type="hidden" class="form-control" name="token" id="token" value="0">
             </div>
-        <?php }?>
-
-                <div class="form-group">
-                  <input type="hidden" class="form-control" name="token" id="token" value="0">
-                </div>
-
         <!--     <script>
             $(document).ready(function() {
             $('#types').change(function(){
@@ -127,7 +113,7 @@ var jsondata = eval(data1);
             </script> -->
             <!--  <div class="form-group">
             
-                      <label for="exampleInputEmail1">Resource Type</label>
+                     <label for="exampleInputEmail1">Resource Type</label>
                      <select  id="types" class="form-control" >
                      <option >-Select-</option> 
                      <option value="text">Text</option>
@@ -138,37 +124,31 @@ var jsondata = eval(data1);
                <?php
               
                 date_default_timezone_set("Asia/Kolkata");
-             {
+              {
               ?>
-
-              <div class="form-group">
-                  <input type="hidden" class="form-control" name="date_created" id="date_created" value= "<?php  echo date("Y-m-d h:i:sa");?>">
-                </div>
-                  <?php
-                  }?>
-
-
-
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" maxlength="50" name="rtitle" id="rtitle" placeholder="Enter title">
+                <input type="hidden" class="form-control" name="date_created" id="date_created" value= "<?php  echo date("Y-m-d h:i:sa");?>">
                 </div>
-        <div class="form-group">
-                  <label for="exampleInputEmail1">Link</label>
-                  <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link">
+                <?php
+                  }?>
+                <div class="form-group">
+                <label for="exampleInputEmail1">Title</label>
+                <input type="text" class="form-control" maxlength="50" name="rtitle" id="rtitle" placeholder="Enter title">
+                </div>
+                <div class="form-group">
+                <label for="exampleInputEmail1">Link</label>
+                <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link">
                 </div>
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
-                   <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
-                
-            <div id="rem"></div>
-
-            <script>
-            document.getElementById('rsummary').onkeyup = function () {
-            document.getElementById('rem').innerHTML = "Characters left: " + (360 - this.value.length);
-                };
-            </script>
+                <div id="rem"></div>
+                <script>
+                  document.getElementById('rsummary').onkeyup = function () {
+                  document.getElementById('rem').innerHTML = "Characters left: " + (360 - this.value.length);
+                      };
+                </script>
                 
 
            <!-- <div class="form-group" id="abc">
@@ -203,29 +183,25 @@ var jsondata = eval(data1);
                      <option value="">- Select -</option> 
                      <option value ="Jobs">Jobs </option>
                      <option value ="Tournaments">Tournaments</option>
-                      <option value="Event">Event</option> 
+                     <option value="Event">Event</option> 
                      <option value ="news_aticle">News & article</option>
                      <option value ="t&k">Training & Knowledge</option>
-                      <option value ="other">Other</option>
+                     <option value ="other">Other</option>
                      </select>
                   </div>
-
-
-
-
-                <div class="form-group">
+                  <div class="form-group">
                         <?php  $sports = $this->register->getSport();?>
                       <label for="sports">Sport</label>
-                        <select id="sport" class="form-control" name="sport">
-                        <option ></option> 
-                            <?php if(!empty($sports)){
-                                    foreach($sports as $sport){?>
-                                <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
+                      <select id="sport" class="form-control" name="sport">
+                      <option ></option> 
+                      <?php if(!empty($sports)){
+                         foreach($sports as $sport){?>
+                      <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
                             <?php   }
                                   } 
                             ?>
-                        </select>
-                    </div>
+                      </select>
+                      </div>
 
 
 
@@ -276,26 +252,22 @@ var jsondata = eval(data1);
              
             </form>
 
-     <form id="form" action="" method="post" enctype="multipart/form-data">
-       Image : <input type="file" name="file" id="file" />
+        <form id="form" action="" method="post" enctype="multipart/form-data">
+        Image : <input type="file" name="file" id="file" />
         <div class="form-group">
         <input type="hidden" class="form-control" name="oldimageid" id="pid" value="0">
         <input type="hidden" class="form-control" name="path"   id="path" value="uploads/resources/">
         <input type="hidden" class="form-control" name="height" id="height" value="640">
         <input type="hidden" class="form-control" name="width"  id="width" value="1115">
         </div>
-       <input id="button" type="submit" value="Upload">
-       </form>
-
-              <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img> 
-
-               <input type="hidden" class="form-control" name="photo" id="photo_url"> 
-              <div id="mess" hidden>Image Uploded</div>
-
-
-            <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
-            </div>
+        <input id="button" type="submit" value="Upload">
+        </form>
+        <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img>
+        <input type="hidden" class="form-control" name="photo" id="photo_url"> 
+        <div id="mess" hidden>Image Uploded</div>
+        <div class="box-footer">
+        <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
+        </div>
 
  <!-- <script>
                 
@@ -326,18 +298,16 @@ var jsondata = eval(data1);
             <iframe name="upload_frame" class="upload_frame"></iframe>
         </div>
     </div> -->
-          </div>
-    </div>
-    
+</div>
+</div>
 </div>
 </div>
 </section>
-
 </div>
 <script type="text/javascript">
-  $(document).ready(function (e) {
-  $("#form").on('submit',(function(e) {
-   $('#loader_img').show();
+    $(document).ready(function (e) {
+    $("#form").on('submit',(function(e) {
+    $('#loader_img').show();
     e.preventDefault();
     $.ajax({
       url: "<?php echo site_url('forms/imageupload'); ?>",

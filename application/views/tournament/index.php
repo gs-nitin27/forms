@@ -92,10 +92,28 @@
           <?php } ?>
           </td>
 
-           <?php }?>
-					<td><a href = "<?php echo site_url('forms/viewtournament/'.$tournament['infoId']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
+           <?php } $list=array( 'a' => 0,
+                                'b' => 1,
+                                'c' => 2,
+                                'd' => 3,
+                                'e' => 4,
+                                'f' => 5,
+                                'g' => 6,
+                                'h' => 7,
+                                'i' => 8,
+                                'j' => 9);
+                                 $num=$tournament['infoId']; //your value
+                                 $temp='';
+                                 $arr_num=str_split ($num);
+                                foreach($arr_num as $data)
+                                {
+                                $temp.=array_search($data,$list);
+                                }
+                                $num=$temp;
+                                {  ?>
+					<td><a href = "<?php echo site_url('forms/viewtournament/'.$num); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                 </tr>
-				<?php } } ?>
+				<?php } } } ?>
                 </tbody>
                 <tfoot>
                   <tr>

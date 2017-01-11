@@ -7,60 +7,181 @@
 					
 					$job = $job[0];
 				}
+
+
+				$list=array('a' => 0,
+                                'b' => 1,
+                                'c' => 2,
+                                'd' => 3,
+                                'e' => 4,
+                                'f' => 5,
+                                'g' => 6,
+                                'h' => 7,
+                                'i' => 8,
+                                'j' => 9);
+                                 $num=$job['infoId']; //your value
+                                 $temp='';
+                                 $arr_num=str_split ($num);
+                                foreach($arr_num as $data)
+                                {
+                                $temp.=array_search($data,$list);
+                                }
+                                $num=$temp;
+                                { ?>
 			
 			?>
     <section class="content-header">
-      <h1>
-        View Job<a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a>
-      <a href = "<?php echo site_url('forms/editjob/'.$job['infoId']); ?>" class="glyphicon glyphicon-edit fa-x" value="Edit" name="Edit"  title="Edit"></a>
-      </h1>
- 
-     	
-    
-    </section>
-         <section class="content"> 
-      <div class="row">
-	  
+    <h1>
+       View Job<a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a>
+     <a href = "<?php echo site_url('forms/editjob/'.$num); ?>" class="glyphicon glyphicon-edit fa-x"  name="Edit"  title="Edit"></a>
+     </h1>	
+     </section>
+     <?php } ?>
+      <section class="content"> 
+        <div class="row">
 		<div class="col-md-8">
-				
-			
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_event" data-toggle="tab">Job Details </a></li>
-              <li><a href="#tab_organiser" data-toggle="tab">Organisation</a></li>
-              <li><a href="#tab_eligible" data-toggle="tab">Requirements</a></li>
+              <li class="active"><a href="#tab_event" class="tab" data-toggle="tab" id="JobDetails">Job Details </a></li>
+              <li><a href="#tab_organiser" class="tab" data-toggle="tab" id="Organisation">Organisation</a></li>
+              <li><a href="#tab_eligible" class="tab" data-toggle="tab" id="Requirements">Requirements</a></li>
              </ul> 	 
-             <form role="form" action="" class="register">  
-            <div class="tab-content">
-              <div class="tab-pane active" id="tab_event">
-			   <div class="box-header with-border">
+                <form role="form" action="" class="register">  
+                <div class="tab-content">
+                <div class="tab-pane active" id="tab_event">
+			    <div class="box-header with-border">
                 <h4>Job Details:</h4 > 	
 				</div>
                 <div class="box-body">
+				<div class="timeline-item">
+				<h5 class="timeline-header no-border"><b>Job Title: </b> &nbsp;<?php echo ucfirst($job['title']);?></h5>
+				</div>
+				<div class="timeline-item">
+				<h5 class="timeline-header"><b href="#">Job Description: </b></h5>
+				<div class="timeline-body">
+				<?php echo $job['description'];?>
+				</div> 
+				</div>
+				<div class="timeline-item">
+				<h5 class="timeline-header no-border"><b>Job Type: </b> &nbsp;<?php echo $job['type'];?></h5>
+				</div>
+				<div class="timeline-item">
+				<h5 class="timeline-header no-border"><b>Sports: </b> &nbsp;<?php echo $job['sport'];?></h5>
+				</div>
+				<div class="timeline-item">
+				<h5 class="timeline-header no-border"><b>Address Line1: </b> &nbsp;<?php echo $job['address1'];?></h5>
+				</div>
+				<div class="timeline-item">
+				<h5 class="timeline-header no-border"><b>Address Line2: </b> &nbsp;<?php echo $job['address2'];?></h5>
+				</div>
+				<div class="timeline-item">
+				<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['city_name'];?></h5>
+				</div>
+				<div class="timeline-item">
+				<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $job['state_name'];?></h5>
+				</div>
+				<div class="timeline-item">
+				<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['pin'];?></h5>
+				</div>
+				<!-- STATE IS ID BASED -->	
+                </div>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tab_organiser">
+			    <div class="box-header with-border">
+                <h4>Organisation Details:</h4> 	
+			    </div>
+                <div class="box-body">
+				<div class="timeline-item">
+				<h5 class="timeline-header no-border"><b>Organisation Name: </b> &nbsp;<?php echo $job['organisation_name'];?></h5>
+				</div>
+				<div class="timeline-item">
+				<h5 class="timeline-header"><b href="#">About Organisation: </b></h5>
+				<div class="timeline-body">
+				<?php echo $job['about'];?>
+					</div>
+				    </div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Job Title: </b> &nbsp;<?php echo ucfirst($job['title']);?></h5>
+					<h5 class="timeline-header no-border"><b>Address Line1: </b> &nbsp;<?php echo $job['org_address1'];?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header"><b href="#">Job Description: </b></h5>
-
-						<div class="timeline-body">
-						  <?php echo $job['description'];?>
-						</div>
-					   
-					  </div>
-					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Job Type: </b> &nbsp;<?php echo $job['type'];?></h5>
+					<h5 class="timeline-header no-border"><b>Address Line2: </b> &nbsp;<?php echo $job['org_address2'];?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Sports: </b> &nbsp;<?php echo $job['sports'];?></h5>
+					<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['city_org'];?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Address Line1: </b> &nbsp;<?php echo $job['address1'];?></h5>
+					<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $job['state_org'];?></h5>
 					</div>
 					<div class="timeline-item">
+					<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['org_pin'];?></h5>
+					</div>
+					<div class="timeline-item">
+					<h5 class="timeline-header no-border"><b>Email: </b> &nbsp;<?php echo $job['email'];?></h5>
+					</div>
+					<div class="timeline-item">
+					<h5 class="timeline-header no-border"><b>Contact No.: </b> &nbsp;<?php echo $job['contact'];?></h5>
+					</div>
+				</div>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_eligible">
+			  <div class="box-header with-border">
+                <h4>Requirements:</h4> 	
+			  </div>
+              <div class="box-body">
+			  <div class="timeline-item">
+			  <h5 class="timeline-header no-border"><b>Work Experience: </b> &nbsp;<?php echo $job['work_experience']." Years";?></h5>
+			  </div>
+			  <div class="timeline-item">
+			  <h5 class="timeline-header no-border"><b>Qualifications: </b> &nbsp;<?php echo $job['qualification'];?></h5>
+			  </div>
+			  <div class="timeline-item">
+			  <h5 class="timeline-header no-border"><b>Key Requirement: </b> &nbsp;<?php echo $job['key_requirement'];?></h5>
+			  </div>
+			  <div class="timeline-item">
+			  <h5 class="timeline-header no-border"><b>Gender: </b> &nbsp;<?php echo $job['gender'];?></h5>
+			  </div>	
+			  </div>
+              </div>
+              <!-- /.tab-pane -->
+              </div>
+              <!-- /.tab-content -->
+              </div>
+	          </div>
+	       <div class="col-md-4">
+           <div id="corner2">
+           <!--   <div id="corner1"> -->
+		   <div id="corner">
+		   <img style="display:block; border:2px"; width="244px" height="150px" src = "<?php  echo base_url()."uploads/job/".$job['image']; ?>">
+           <div class="nav-tabs-custom">
+           <div class="tab-content">
+           <div class="tab-pane active" id="tab_event1">
+		   <div class="box-header with-border" style="text-align: center;background-color:#6cac29; height:41px;">
+           <h5 style="color: #ffffff">Job Details:</h5> 	
+		   </div>
+           <div class="box-body">
+		   <div class="timeline-item">
+		   <h5 class="timeline-header no-border"><b>Job Title: </b> &nbsp;<?php echo ucfirst($job['title']);?></h5>
+		   </div>
+		   <div class="timeline-item">
+		   <h5 class="timeline-header"><b href="#">Job Description: </b></h5>
+		   <div class="timeline-body">
+		   <?php echo $job['description'];?>
+		   </div>  
+		   </div>
+		   <div class="timeline-item">
+		   <h5 class="timeline-header no-border"><b>Job Type: </b> &nbsp;<?php echo $job['type'];?></h5>
+		   </div>
+		   <div class="timeline-item">
+		   <h5 class="timeline-header no-border"><b>Sports: </b> &nbsp;<?php echo $job['sport'];?></h5>
+		   </div>
+		   <div class="timeline-item">
+		   <h5 class="timeline-header no-border"><b>Address Line1: </b> &nbsp;<?php echo $job['address1'];?></h5>
+		   </div>
+		   <div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Address Line2: </b> &nbsp;<?php echo $job['address2'];?></h5>
 					</div>
-					
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['city_name'];?></h5>
 					</div>
@@ -71,59 +192,50 @@
 						<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['pin'];?></h5>
 					</div>
 					<!-- STATE IS ID BASED -->
-					
-					
               </div>
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_organiser">
-			   <div class="box-header with-border">
-                <h4>Organisation Details:</h4> 	
-			  </div>
+                <div class="tab-pane" id="tab_organiser1">
+			    <div class="box-header with-border" style="text-align: center;background-color:#6cac29; height:41px;">
+                <h5 style="color: #ffffff;">Organisation Details:</h5> 	
+			    </div>
                 <div class="box-body">
-					
-					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Organisation Name: </b> &nbsp;<?php echo $job['organisation_name'];?></h5>
+				<div class="timeline-item">
+				<h5 class="timeline-header no-border"><b>Organisation Name: </b> &nbsp;<?php echo $job['organisation_name'];?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header"><b href="#">About Organisation: </b></h5>
-
-						<div class="timeline-body">
-						  <?php echo $job['about'];?>
-						</div>
-					   
-					  </div>
-					
-					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Address Line1: </b> &nbsp;<?php echo $job['org_address1'];?></h5>
+					<h5 class="timeline-header"><b href="#">About Organisation: </b></h5>
+					<div class="timeline-body">
+					<?php echo $job['about'];?>
+					</div>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Address Line2: </b> &nbsp;<?php echo $job['org_address2'];?></h5>
-					</div>
-					
-					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['city_org'];?></h5>
+					<h5 class="timeline-header no-border"><b>Address Line1: </b> &nbsp;<?php echo $job['org_address1'];?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $job['state_org'];?></h5>
+					<h5 class="timeline-header no-border"><b>Address Line2: </b> &nbsp;<?php echo $job['org_address2'];?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['org_pin'];?></h5>
+					<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['city_org'];?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Email: </b> &nbsp;<?php echo $job['email'];?></h5>
+					<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $job['state_org'];?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Contact No.: </b> &nbsp;<?php echo $job['contact'];?></h5>
+					<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['org_pin'];?></h5>
 					</div>
-					 
-					
+					<div class="timeline-item">
+					<h5 class="timeline-header no-border"><b>Email: </b> &nbsp;<?php echo $job['email'];?></h5>
+					</div>
+					<div class="timeline-item">
+					<h5 class="timeline-header no-border"><b>Contact No.: </b> &nbsp;<?php echo $job['contact'];?></h5>
+					</div>
 				</div>
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_eligible">
-			  <div class="box-header with-border">
-                <h4>Requirements:</h4> 	
+              <div class="tab-pane" id="tab_eligible1">
+			   <div class="box-header with-border" style="text-align: center;background-color:#6cac29; height:41px;">
+                <h5 style="color: #ffffff;">Requirements:</h5> 	
 			</div>
                 <div class="box-body">
 					<div class="timeline-item">
@@ -148,12 +260,11 @@
 			
 			
           </div>
-	  </div>
-	  
+    </div>
+    </div>
+	</div>
 
-	  <div class="col-md-4">
-       <img style="display:block; border:2px solid SteelBlue"; width="300px" height="220px" src = "<?php  echo base_url()."uploads/job/".$job['image']; ?>">
-	  </div>
+	 
 </div>
 
 </div>
@@ -181,6 +292,31 @@
   </div>
 </div>
 
+<script type="text/javascript">
+	$('.tab').click(function(){
+    var a=$(this).attr('id');
+    
+   if(a=='JobDetails')
+   {
+   	$("#tab_eligible1").removeClass("active");  // this deactivates the home tab
+    $("#tab_organiser1").removeClass("active");  // this deactivates the home tab
+    $("#tab_event1").addClass("active");  // this activates the profile tab
+   }
+   else if(a=='Organisation')
+   {
+    $("#tab_event1").removeClass("active");  // this deactivates the home tab
+    $("#tab_eligible1").removeClass("active");  // this deactivates the home tab
+    $("#tab_organiser1").addClass("active");  // this activates the profile tab
+   }
+   else if(a=='Requirements')
+   {
+    $("#tab_event1").removeClass("active");  // this deactivates the home tab
+    $("#tab_organiser1").removeClass("active");  // this deactivates the home tab
+    $("#tab_eligible1").addClass("active");  // this activates the profile tab
+   }
+});
+
+</script>
 
 
 <script>
@@ -200,3 +336,37 @@
 			   });
 	});
 </script>
+<style type="text/css">
+	
+#corner {
+	background-color: #ffffff;
+    padding:2px;
+    border-radius: 10px;
+	border: 2px solid #9565a2;
+    width: 254px;
+    height: 520px;    
+}
+
+#corner2 {
+    border-radius: 20px;
+    background-color:#272822;
+    border: 4px solid #4e5056 ;
+    padding: 10px; 
+    width: 280px;
+    height: 540px;    
+}
+/*#corner1 {
+
+	
+    border-radius: 20px;
+    border: 4px solid #272822;
+    padding: 10px; 
+    width: 255px;
+    height: 470px;    
+}*/
+
+
+
+	
+	
+</style>

@@ -3,16 +3,13 @@
 $(document).ready(function(){
              
 
-  $('#save').click(function(){
-
-   
-
-    
+$('#save').click(function(){
+ 
 var data1 = {
 
     "userid"                  : "",
     "name"                    : $("#name").val(),
-    "status"                  : 1,
+    "status"                  : 0,
     "password"                : $("#Password").val(),
     "email"                   : $("#email").val(), 
     "prof_id"                 : $("#proftype").val(),
@@ -36,17 +33,39 @@ var data = JSON.stringify(data1);
   $.ajax({
 
     type: "POST",
-    url: '<?php echo site_url('forms/profile'); ?>',
+    url: '<?php echo site_url('forms/varifyemail'); ?>',
     data: "data="+data,
     dataType: "text",
     success: function(result) {
+       
+        if(result== '1')
+      {
         $( "#msgdiv" ).show();
-        $( "#msg" ).html(result);
-        setTimeout(function() {
-            $('#msgdiv').fadeOut('fast');
-        }, 2000);
+         $( "#msg" ).html('User already registered');
+        
+      }
+      else if(result== '2')
+      {
+        
+           $( "#msgdiv" ).show();
+            $( "#msg" ).html('User created');
+           setTimeout(function() {
+           $('#msgdiv1').fadeOut('fast');
+       }, 1000);
       window.location.href = url+"/forms/usermodule";
+
+      }
+      else
+      {
+            $( "#msgdiv" ).show();
+            $( "#msg" ).html('User Not created created');
+           setTimeout(function() {
+           $('#msgdiv1').fadeOut('fast');
+       }, 1000);
+      window.location.href = url+"/forms/usermodule";
+        
     }
+      }
 
 
 });
@@ -79,7 +98,7 @@ var data = JSON.stringify(data1);
        
          
         <div class=" alert alert-success" id="msgdiv" style="display:none">
-            <strong>Info! <span id = "msg"></span></strong> 
+            <strong><span id = "msg"></span></strong> 
         </div>
 
             <div class="nav-tabs-custom">

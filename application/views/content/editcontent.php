@@ -36,7 +36,7 @@ var data = JSON.stringify(data12);
     setTimeout(function() {
      $('#msgdiv').fadeOut('fast');
    }, 2000);
- // window.location.href = url+"/forms/getContent";
+  window.location.href = url+"/forms/getContent";
     }
 
 

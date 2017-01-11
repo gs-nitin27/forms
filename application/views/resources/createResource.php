@@ -148,9 +148,6 @@ var data = eval(data1);//JSON.stringify(data1);
                 </div>
                   <?php
                   }?>
-
-
-
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
                   <input type="text" class="form-control" maxlength="50" name="rtitle" id="rtitle" placeholder="Enter title">

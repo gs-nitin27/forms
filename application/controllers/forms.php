@@ -2,73 +2,209 @@
 
 class Forms extends CI_Controller {
 
-	public function __construct() {
+public function __construct() {
         parent::__construct();
-
 		$this->load->model('register');
-		$this->load->library('session');
-
-		
-    }
- public function index()
-	{   
-        $this->load->view('login');
-
+		$this->load->library('session');	
     }
 
- public function login()
-    {
-      $username = $_POST['username'];
-      $password = md5($_POST['password']);
-      $this->load->model('register');
-      $res = $this->register->login($username, $password); 
-     // print_r($res); die();
-      if($res != 0)
-      {
-      	$this->session->set_userdata('item',$res);
-         $sessdata = $this->session->userdata('item');
-           redirect('forms/home');
-      }
-      else
-      { 
-             //$res = array();
-      	 $this->session->set_flashdata('error','Wrong email, password combination.');
-         redirect('forms/index','refresh');
-      	//echo $res['message'] ='Invalid login credentials';
-       // $res['message'] ='Invalid login credentials';
-       // $this->load->view('login',$res);
-      }
-    }
+public function index()
+{   
+   $this->load->view('login');
+}
 
-
-    public function home()
-    {
+public function home()
+{
           
           $data['middle'] = 'dashboard';
 
            $this->load->view('templates/template',$data);
 
+}
+
+//======================User ======================================
+public function login()
+   {
+      $username = $_POST['username'];
+      $password = md5($_POST['password']);
+      $this->load->model('register');
+      
+      $emailid = $this->register->Emailfind($username);
+      if($emailid)
+      {
+            $pass = $this->register->passwordfind($username);   
+
+            if($pass)
+            {
+               $this->session->set_flashdata('error','Please Activate your account a link is sent to your mail account.');
+               redirect('forms/index','refresh');
+            }
+           else  {
+      $res = $this->register->login($username, $password); 
+     // print_r($res); die();
+      if($res != 0)
+      {
+      	 $this->session->set_userdata('item',$res);
+         $sessdata = $this->session->userdata('item');
+         redirect('forms/home');
+      }
+      else
+      { 
+      	 $this->session->set_flashdata('error','Please give the correct  password.');
+         redirect('forms/index','refresh');
+      	//echo $res['message'] ='Invalid login credentials';
+       // $res['message'] ='Invalid login credentials';
+       // $this->load->view('login',$res);
+      }
+  }
     }
-    public function CreateEvent()
+    else {
+    	  $this->session->set_flashdata('error','Wrong email Address .');
+          redirect('forms/index','refresh');
+    }
+    }
+
+    public function usermodule()
+{
+	   $data['middle'] = 'userModule/usermodule';
+		$this->load->view('templates/template',$data);
+}
+
+public function edituser()
+{
+	   $data=$this->session->userdata('item');
+       $id=$data['userid'];
+	   $data['required'] = array(
+									'id'=>$id	
+								 );
+        $data['middle'] = 'userModule/edituser';
+		$this->load->view('templates/template',$data);
+}
+
+
+public function saveuserModule()
+{
+$data = json_decode($_REQUEST['data']);
+ foreach ($data as  $value) 
+ {
+ 	if($value!=$data->id)
+         $res[]=$value; 
+ }
+$commaList = implode(',',$res);
+$this->load->model('register');
+$res = $this->register->update_userModule($data->id,$commaList);
+if($res == 1)
+{
+echo "Module Created";
+}
+else
+{
+echo "Module Creation Not Saved";
+}
+}
+
+
+public function signout()
+{
+   $newdata = array(
+                'name'  =>'',
+                'email' => '',
+                'logged_in' => FALSE,
+               );
+     $this->session->unset_userdata($newdata);
+     $this->session->sess_destroy();
+     redirect('forms');
+ }
+
+public function profile()
+{
+$data=json_decode($_REQUEST['data']);
+$name=$data->name;
+
+$pass=md5($data->password);
+$item= new stdClass();
+
+$item->userid                     =$data->userid;
+$item->name                       =$name;
+$item->password                   =$pass;
+$item->status                     =$data->status;
+$item->email                      =$data->email;
+$item->prof_id                    =$data->prof_id;
+$item->userType                   =$data->userType;
+$item->contact_no                 =$data->contact_no;
+$item->sport                      =$data->sport;
+$item->Gender                     =$data->Gender;
+$item->dob                        =$data->dob;
+$item->address1                   =$data->address1;
+$item->address2                   =$data->address2;
+$item->address3                   =$data->address3;
+$item->location                   =$data->location;
+$item->user_image                 =@$data->user_image;
+$item->profile_status             =@$data->profile_status;
+$item->prof_language              =@$data->prof_language;
+$item->other_skill_name           =@$data->other_skill_name;
+$item->other_skill_detail         =@$data->other_skill_detail;
+$item->age_catered                =@$data->age_catered;
+$item->device_id                  =@$data->device_id;
+$item->about_me                   =@$data->about_me;
+
+$this->load->model('register');
+$res= $this->register->updateProfile($item);
+if($res)
+{
+	echo "Profile  Updated";
+	//$this->varifyemail();
+}
+else {
+	echo "Profile Not Updated";
+}
+}
+
+public function edituserProfile($id)
+{
+        $data['middle'] = 'userModule/edituserProfile';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+		$this->load->view('templates/template',$data);
+}
+
+public function deleteUser($id)
+{
+   $this->register->deleteUser($id);
+   $data['middle']='userModule/usermodule';
+   $this->load->view('templates/template',$data);
+}
+
+public function createNewUser()
+ {
+ 	 $data['middle']='userModule/createnewUser';
+ 	 $this->load->view('templates/template',$data);
+ }
+
+public function userprofile($id)
+ { 
+ 	    $data['middle'] = 'userModule/Userprofile';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
+		$this->load->view('templates/template',$data);
+}
+
+
+//======================== End User =========================
+
+
+// ============================== Start Event==============================    
+public function CreateEvent()
 	{
 		
 	    $data['middle'] = 'event/CreateEvent';
 
 		$this->load->view('templates/template',$data);
     }
-	public function CreateJob()
-	{
-     $data['middle'] = 'job/CreateJob';
-	 $this->load->view('templates/template',$data);
-	}
-public function CreateTournament()
-	{
-	$data['middle'] = 'tournament/CreateTournament';
-    $this->load->view('templates/template',$data);	
-	}
-
-
-public function event()
+  
+  public function event()
 {
 $data1 = json_decode($_REQUEST[ 'data' ]);
 $item = new stdClass();
@@ -118,89 +254,196 @@ else
 
 }
 
+public function getEvent(){
+		$data['middle'] = 'event/index';
 
+		$this->load->view('templates/template',$data);
+	}
+	
+public function viewEvent($str)
+{
+         $id = $this->stringtonumber($str);
+		$data['middle'] = 'event/view';
+		$data['required'] = array(
+									'id'=>$id	
+								 );
 
- public function imageupload()
- {     
+		$this->load->view('templates/template',$data);
+	}
 
- 	$newpath=$_POST['path'];
+public function Eventmobileview()
+{
+	  $event = $this->register->getEventInfo($_POST['infoid']); 
+	  $data['required'] = array(
+									'event'=>$event	
+								 );
+	  $this->load->view('event/mobile_view', $data);		
+}	
 
-  // print_r($newpath) ;die;
-     switch ($newpath) {
-     	case 'uploads/resources/':
-     		    if ($_POST['oldimageid'])
-                  {
-						if($_POST['oldimage'])
-						{
-			        	$id = $_POST['oldimageid'];
-			            $image = $_POST['oldimage'];
-			        	$temp= $this->register->removeimage($id,$image);
-			            }
-			        }
-     		break;
-     	
-     	case 'uploads/job/':
-     		      if ($_POST['oldimageid'])
-                     {
-						if($_POST['oldimage'])
-						{
-			        	$id = $_POST['oldimageid'];
-			            $image = $_POST['oldimage'];
-			        	$temp= $this->register->removejobimage($id,$image);
-			            }
-			        }
-     		break;
-     	default:
-     		 throw new Exception('Unknown image path.');
-     		break;
-     }
+public function StatusEvent()
+{
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
 
-      
-           $mime=$_FILES['file']['type'];
-           switch ($mime) {
-             case 'image/jpeg':
-                    $ftype = 'imagecreatefromjpeg';
-                    break;
-             case 'image/png':
-                    $ftype = 'imagecreatefrompng';
-                    break;
-             default: 
-                    throw new Exception('Unknown image type.');
-    }
-           
-            
-            $temp = explode(".", $_FILES["file"]["name"]);
-            date_default_timezone_set("Asia/Kolkata");
-            $newfilename1='res_'.time();
-            $newfilename = $newfilename1. '.' . end($temp);
-            move_uploaded_file($_FILES["file"]["tmp_name"], $newpath. $newfilename);
-  //===================image size fix ==============================================================
-            $uploadimage = $newpath.$newfilename;
-            $newname = $newfilename;
-           // Set the resize_image name
-            $resize_image = $newpath.$newname; 
-            $actual_image = $newpath.$newname;
-           // It gets the size of the image
-            list( $width,$height ) = getimagesize( $uploadimage );
-          // It makes the new image width of 350
-            $newwidth =$_POST['width'];
-          // It makes the new image height of 350
-            $newheight =$_POST['height'];
-          // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
-            $thumb = imagecreatetruecolor( $newwidth, $newheight );
-           
-            $source = $ftype( $resize_image );
-          // Resize the $thumb image.
-            imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-          // It then save the new image to the location specified by $resize_image variable
-            imagejpeg( $thumb, $resize_image, 100 ); 
-          // 100 Represents the quality of an image you can set and ant number in place of 100.
-            $out_image=addslashes(file_get_contents($resize_image));      
-//====================================================================================================
+$item->id                    = $data2->id;
+$item->publish               = $data2->publish;
 
-        echo  $newfilename;
-     
+$this->load->model('register');
+//$res1 = $this->register->addStatusData($data2->id);
+$res = $this->register->StatusEvent($item);
+if($data2->publish==1)
+{
+	//$edata=$this->register->getEventInfo($data2->id);
+ 	//$this->register->addEventData($edata);
 }
+else{
+//	$this->register->deletePublishEvent($data2->id);
+}
+}
+// ============================ End Event==================================   
+
+
+// ============================= Start Job=================================
+public function CreateJob()
+	{
+     $data['middle'] = 'job/CreateJob';
+	 $this->load->view('templates/template',$data);
+	}
+
+public function saveJob()
+{
+$data1 = json_decode($_REQUEST['data']);
+
+$item  = new stdClass(); 
+
+$item->id                    = $data1->id;
+$item->userid                = $data1->userid;
+$item->title                 = $data1->title;
+$item->type                  = $data1->type;
+$item->sports                = $data1->sports;
+$item->gender                = $data1->gender;
+$item->work_exp              = $data1->work_experience;
+$item->desc                  = $data1->description;
+$item->desiredskill          = $data1->desired_skills;
+$item->qualification         = $data1->qualification;
+$item->keyreq                = $data1->key_requirement;
+$item->org_address1          = $data1->org_address1;
+$item->org_address2          = $data1->org_address2;
+$item->org_city              = $data1->org_city;
+$item->org_state             = @$data1->org_state;
+$item->org_pin               = $data1->org_pin;
+$item->org_name              = $data1->organisation_name;
+$item->about                 = $data1->about;
+$item->address1              = $data1->address_line1; 
+$item->address2              = $data1->address_line1; 
+$item->state                 = $data1->state;
+$item->city                  = $data1->city;
+$item->pin                   = $data1->pin;  
+$item->contact               = $data1->contact;
+$item->image                 = $data1->image;
+$item->email                 = $data1->email_app_collection;
+//print_r($item);die();
+$this->load->model('register');
+$res = $this->register->create_job($item);
+if($res == 1)
+{
+echo "Job Created";
+}
+else
+{
+echo "Job has not been saved";
+}
+}
+
+public function getJob()
+{
+		$data['middle'] = 'job/index';
+		$this->load->view('templates/template',$data);
+}
+	
+
+public function stringtonumber($str)
+{
+$list=array('0' => 'a','1' => 'b','2' => 'c','3' => 'd','4' => 'e','5' => 'f','6' => 'g','7' => 'h','8' => 'i','9' => 'j');
+ $num=$str; //your value
+ $temp='';
+ $arr_num=str_split ($num);
+foreach($arr_num as $data)
+{
+$temp.=array_search($data,$list);
+}
+$num=$temp;
+$id=$num;
+return $id;
+}
+
+public function viewJob($str)
+{
+	 $id=$this->stringtonumber($str);
+		$data['middle'] = 'job/view';
+		$data['required'] = array(
+									'id'=>$id
+								 );
+          //$data['noheader'] = true;
+		$this->load->view('templates/template',$data);
+}
+
+
+public function mobileview()
+{	
+    $job = $this->register->getJobInfo($_POST['infoid']); 
+	$data['required'] = array(
+									'job'=>$job	
+								 );
+		//$data['noheader'] = false;
+		//$data['middle'] = 'job/mobile_view';
+		
+		 $this->load->view('job/mobile_view', $data);
+		
+		
+	}
+
+
+
+public function StatusJob()
+{
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
+
+$item->id                    = $data2->id;
+$item->publish               = $data2->publish;
+
+$this->load->model('register');
+$res = $this->register->StatusJob($item);
+if($data2->publish==1)
+{    
+	//$jdata=$this->register->getJobInfo($data2->id);
+
+  //  print_r($jdata);
+	//$this->register->addJobData($jdata);
+}
+else{
+	//$this->register->deletePublishJob($data2->id);
+}
+}
+
+public function editjob($str)
+{
+	    $id= $this->stringtonumber($str); 
+		$data['middle']="job/Editjob";
+		$data['required']= array(
+			                     'id' => $id 
+			                     );
+		$this->load->view('templates/template',$data);
+}
+//==================== End Job=================================================
+
+//============================= Start Tournament===============================
+public function CreateTournament()
+	{
+	$data['middle'] = 'tournament/CreateTournament';
+    $this->load->view('templates/template',$data);	
+	}
 
 public function saveTournament()
 {
@@ -255,94 +498,12 @@ else
 }
 
 
-public function saveJob()
-{
-$data1 = json_decode($_REQUEST['data']);
-$item  = new stdClass(); 
-
-$item->id                    = $data1->id;
-$item->userid                = $data1->userid;
-$item->title                 = addslashes($data1->title);
-$item->type                  = addslashes($data1->type);
-$item->sports                = $data1->sports;
-$item->gender                = $data1->gender;
-$item->work_exp              = addslashes($data1->work_experience);
-$item->desc                  = addslashes($data1->description);
-$item->desiredskill          = addslashes($data1->desired_skills);
-$item->qualification         = addslashes($data1->qualification);
-$item->keyreq                = addslashes($data1->key_requirement);
-$item->org_address1          = addslashes($data1->org_address1);
-$item->org_address2          = addslashes($data1->org_address2);
-$item->org_city              = $data1->org_city;
-$item->org_state             = @$data1->org_state;
-$item->org_pin               = $data1->org_pin;
-$item->org_name              = addslashes($data1->organisation_name);
-$item->about                 = addslashes($data1->about);
-$item->address1              = addslashes($data1->address_line1); 
-$item->address2              = addslashes($data1->address_line1); 
-$item->state                 = $data1->state;
-$item->city                  = $data1->city;
-$item->pin                   = $data1->pin;  
-$item->contact               = $data1->contact;
-$item->image                 = $data1->image;
-$item->email                 = addslashes($data1->email_app_collection);
-//print_r($item);die();
-$this->load->model('register');
-$res = $this->register->create_job($item);
-if($res == 1)
-{
-echo "Job Created";
-}
-else
-{
-echo "Job has not been saved";
-}
-}
-	public function getStateByCity()
-	{
-		$key = $_POST['key'];
-		$results = $this->register->getStateByKey($key);
-		echo  json_encode($results);
-	}
-	
-	public function getJob(){
-		$data['middle'] = 'job/index';
-		$this->load->view('templates/template',$data);
-	}
-	
-
-	public function viewJob($id){
-		$data['middle'] = 'job/view';
-		$data['required'] = array(
-									'id'=>$id	
-								 );
-          //$data['noheader'] = true;
-		$this->load->view('templates/template',$data);
-	}
-	
-
-
-	public function getEvent(){
-		$data['middle'] = 'event/index';
-
-		$this->load->view('templates/template',$data);
-	}
-	
-	public function viewEvent($id){
-		$data['middle'] = 'event/view';
-		$data['required'] = array(
-									'id'=>$id	
-								 );
-
-		$this->load->view('templates/template',$data);
-	}
-	
-	public function getTournament(){
+public function getTournament(){
 		$data['middle'] = 'tournament/index';
 
 		$this->load->view('templates/template',$data);
 	}
-	public function viewTournament($id){
+public function viewTournament($id){
 		$data['middle'] = 'tournament/view';
 		$data['required'] = array(
 									'id'=>$id	
@@ -350,81 +511,65 @@ echo "Job has not been saved";
 
 		$this->load->view('templates/template',$data);
 	}
-	
-	public function getResources(){
-		
-		$data['middle'] = 'resources/index';
-		$this->load->view('templates/template',$data);
-	}
-	
-public function createresources(){
-			
-		$data['middle'] = 'resources/createResource';
-		$this->load->view('templates/template',$data);
-	}
 
-public function shareResources(){
-			
-		$data['middle'] = 'resources/shareResources';
-		$this->load->view('templates/template',$data);
-	}
+public function Tournamentmobileview()
+{
+	  $tournament = $this->register->getTournamentInfo($_POST['infoid']); 
+	  $data['required'] = array(
+									'tournament'=>$tournament	
+								 );
+	  $this->load->view('tournament/mobile_view_tournament', $data);		
+}	
 
-
-	public function SavecreateResources(){
-		//if(isset($_POST) && !empty($_POST)){
-		//	ini_set('display_errors',1);
-		   //print_r($_POST);die();
-		//	unset($_POST['_wysihtml5_mode']);
-		//	$rid = $this->register->addResource($_POST);
-			//$this->getResources();
-			//print_r($rid);die();
-			// $img = 'resource_'.$rid.".jpg";
-			// if(!empty($_FILES)){
-			// 	$target_dir = "uploads/resources/";
-			// 	// $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-			// 	$target_file = $target_dir . $img;
-			// 	$uploadOk = 1;
-			// 	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-			// 	// Check if image file is a actual image or fake image
-				
-				
-			// 	// Allow certain file formats
-			// 	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-			// 	&& $imageFileType != "gif" ) {
-			// 		echo $imageFileType;
-			// 		$data['msg'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-			// 		$uploadOk = 0;
-			// 	}
-			// 	// Check if $uploadOk is set to 0 by an error
-			// 	if ($uploadOk == 0) {
-			// 		echo "Sorry, your file was not uploaded.";
-			// 	// if everything is ok, try to upload file
-			// 	} else {
-			// 		if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-			// 			//echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
-			// 			$v= $this->register->updateResourceImage($img);
-			// 			if($v){
-			// 				$data['msg'] = "Resource Added.";
-
-			// 			}
-			// 			$this->getResources();
-						
-			// 		} else {
-			// 			$data['msg'] = "Sorry, there was an error uploading your file.";
-					//}
-				//}
-		//	}		
-	//	 }
-		
-		//$data['middle'] = 'resources/createResource';
-		//$this->load->view('templates/template',$data);
-
-
-//$data2 = json_decode($_REQUEST['data']);
+public function StatusTournament()
+{
+$data2 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
 
+$item->id                    = $data2->id;
+$item->publish               = $data2->publish;
+
+$this->load->model('register');
+$res = $this->register->Statustournament($item);
+if($data2->publish==1)
+{    
+	//$tdata=$this->register->getTournamentInfo($data2->id);
+	//$this->register->addTournamentData($tdata);
+}
+else{
+	//$this->register->deletePublishTournament($data2->id);
+}
+}
+
+//==============================End Tournament==================================
 
 
+
+//================== Start Resources===========================
+
+	
+public function getResources()
+{
+		$data['middle'] = 'resources/index';
+		$this->load->view('templates/template',$data);
+}
+	
+public function createresources()
+{	
+		$data['middle'] = 'resources/createResource';
+		$this->load->view('templates/template',$data);
+}
+
+public function shareResources()
+{	
+		$data['middle'] = 'resources/shareResources';
+		$this->load->view('templates/template',$data);
+}
+
+
+public function SavecreateResources()
+{
+$item  = new stdClass(); 
 
 $item->id                    = $_POST['id'];//$data2->id;
 $item->userid                = $_POST['userid'];//$data2->userid;
@@ -441,19 +586,13 @@ $item->image                 = $_POST['image'];//$data2->image;
 $item->token                 = $_POST['token'];//$data2->token;
 $item->date_created          = $_POST['date_created'];//$data2->date_created;
 
-
 $this->load->model('register');
 $res = $this->register->saveResources($item);
-
 echo json_encode(array('response' => $res));
-
 }
 
-
-
-
-public function SaveshareResources(){
-
+public function SaveshareResources()
+{
 $item  = new stdClass(); 
 
 $item->id                    = $_REQUEST['id'];
@@ -477,30 +616,29 @@ $res = $this->register->saveResources($item);
 echo json_encode(array('response' => $res));
 //die;
 }
-public function viewResources($id)
+public function viewResources($str)
 {
+	    $id = $this->stringtonumber($str);
 		$data['middle'] = 'resources/view';
 		$data['required'] = array(
 									'id'=>$id	
 								 );
-
         $this->load->view('templates/template',$data);
-	}
-
+}
 	//=============harshvardhan==(Edit Resources)==============
 
-      public function editResources($id){
-		
+public function editResources($str)
+{
+	    $id = $this->stringtonumber($str);
 		$data['middle'] = 'resources/editResources';
 		$data['required'] = array(
 									'id'=>$id	
 								 );
 		$this->load->view('templates/template',$data);
-	}
+}
 
 public function saveEditResources()
 {
-
 $item  = new stdClass(); 
 
 $item->id                    = $_POST['id'];//$data2->id;
@@ -518,97 +656,73 @@ $item->keyword               = $_POST['keyword'];//$data2->keyword;
 $item->token                 = $_POST['token'];//$data2->token;
 $item->date_created          = @$_POST['date_created'];//$data2->date_created;
 
-
-
 $this->load->model('register');
 $res = $this->register->saveResources($item);
 echo json_encode(array('response' => $res));
-
 }
 
-public function deleteResources($id)
+public function deleteResources($str)
 {
-
+	    $id = $this->stringtonumber($str);
         $this->register->deleteResources($id);
         $data['middle'] = 'resources/index';
 		$this->load->view('templates/template',$data);
 }
 
-public function mobileviewResources(){
-		// echo"hiiiiiiiiiii";
+public function mobileviewResources()
+{
     $resources = $this->register->getResourceInfo($_POST['infoid']); 
 	$data['required'] = array(
 									'resources'=>$resources	
 								 );	
-		 $this->load->view('resources/mobile_viewResources', $data);
-		
-		
-	}
+	$this->load->view('resources/mobile_viewResources', $data);	
+}
 
-
-//================================================================
-		
-public function Tournamentmobileview()
+public function shareresource()
 {
-	  $tournament = $this->register->getTournamentInfo($_POST['infoid']); 
-	  $data['required'] = array(
-									'tournament'=>$tournament	
-								 );
-		 $this->load->view('tournament/mobile_view_tournament', $data);
-		
-		
-}	
-
-public function Eventmobileview()
-{
-	  $event = $this->register->getEventInfo($_POST['infoid']); 
-	  $data['required'] = array(
-									'event'=>$event	
-								 );
-		
-		 $this->load->view('event/mobile_view', $data);
-		
-		
-}		
-
-
-
-
-	public function mobileview(){
-		
-    $job = $this->register->getJobInfo($_POST['infoid']); 
-	$data['required'] = array(
-									'job'=>$job	
-								 );
-		
-	//echo "sagar"; exit;
-		//$data['noheader'] = false;
-		//$data['middle'] = 'job/mobile_view';
-		
-		 $this->load->view('job/mobile_view', $data);
-		
-		
-	}
-	public function shareresource()
-	{
       $data['middle']='resources/shareResources';
       $this->load->view('templates/template',$data);
 
-	}
+}
 
-//	=======================// harshvardhan
+public function StatusResources()
+{
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
 
-	public function createContent(){
+$item->id                    = $data2->id;
+$item->status                = $data2->status;
+
+$this->load->model('register');
+//$res1 = $this->register->addStatusData($data2->id);
+$res = $this->register->StatusResources($item);
+if($data2->status==1)
+{
+	//$rdata=$this->register->getResourceInfo($data2->id);
+	//$this->register->addResourcesData($rdata);
+	echo "Resources Is Activate";
+}
+else{
+	echo "Resources Is Deactivate";
+	//$this->register->deleteStatusResources($data2->id);
+}
+}
+
+//============================= End Resources ===================================	
+
+//======================= Start Content=======================================
+
+public function createContent(){
 			
 		$data['middle'] = 'content/create_content';
 		$this->load->view('templates/template',$data);
 	}
-	public function getContent(){
+public function getContent(){
 		$data['middle'] = 'content/list';
 		$this->load->view('templates/template',$data);
 	}
 
-      public function viewContent($id){
+public function viewContent($id){
 		$data['middle'] = 'content/view';
 		$data['required'] = array(
 									'id'=>$id	
@@ -616,17 +730,17 @@ public function Eventmobileview()
 		$this->load->view('templates/template',$data);
 	}
 
-	 public function editContent($id){
-		
+public function editContent($str)
+{
+         $id = $this->stringtonumber($str);
+
 		$data['middle'] = 'content/editcontent';
 		$data1=$this->register->editcontent($id);
         //$this->load->view('content/editcontent',$data1);
 		$data['required'] = array(
 									'id'=>$id	
 								 );
-
 		$this->load->view('templates/template',$data);
-		//print_r($data1);
 	}
 
 public function saveContent()
@@ -634,8 +748,6 @@ public function saveContent()
 $data12 = json_decode($_REQUEST['data']);
  
 $item  = new stdClass(); 
-
-
 
 $item->id                    = $data12->id;
 $item->userid                = $data12->userid;
@@ -659,16 +771,13 @@ echo "Content has not been saved";
 }
 }
 
-
 public function saveEditContent()
 {
 
 $data2 = json_decode($_REQUEST['data']);
-//print_r($data2); die;
 
 $item  = new stdClass(); 
 //echo $item->id;die;
-
 $item->id                    = $data2->id;
 $item->userid                = $data2->userid;
 $item->title                 = $data2->title;
@@ -684,102 +793,49 @@ $res = $this->register->create_content($item);
 echo json_encode(array('response' => "Content Updated"));
 }
 
-public function usermodule()
-{
-	   $data['middle'] = 'userModule/usermodule';
-		$this->load->view('templates/template',$data);
-}
-
-public function edituser()
-{
-	   $data=$this->session->userdata('item');
-       $id=$data['userid'];
-	   $data['required'] = array(
-									'id'=>$id	
-								 );
-        $data['middle'] = 'userModule/edituser';
-		$this->load->view('templates/template',$data);
-}
 
 
-public function saveuserModule()
+
+public function StatusContent()
 {
-$data = json_decode($_REQUEST['data']);
- foreach ($data as  $value) 
- {
- 	if($value!=$data->id)
-         $res[]=$value; 
- }
- $commaList = implode(',',$res);
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
+
+$item->id                    = $data2->id;
+$item->publish               = $data2->publish;
 
 $this->load->model('register');
-$res = $this->register->update_userModule($data->id,$commaList);
-if($res == 1)
-{
-echo "Module Created";
+$res = $this->register->StatusContent($item);
+if($data2->publish==1)
+{    
+	//$jdata=$this->register->getContentInfo($data2->id);
+  //  print_r($jdata);
+	//$this->register->addContentData($jdata);
 }
-else
-{
-echo "Module Creation Not Saved";
+else{
+	//$this->register->deletePublishContent($data2->id);
+
 }
 }
+// =============================== End Content==============================
 
+//==================================Start Email=============================
 
-// public function saveuserModule()
-// {
-// $data = json_decode($_REQUEST['data']);
-// //print_r($data);
-// $item  = new stdClass(); 
-
-// $item->id                      = $data->id;
-// $item->event                   = $data->event;
-// $item->tournament              = $data->tournament;
-// $item->job                     = $data->job;
-// $item->resources               = $data->resources;
-// $item->content                 = $data->content;
-
-
-
-// $this->load->model('register');
-// $res = $this->register->create_userModule($item);
-// if($res == 1)
-// {
-// echo "Module Created";
-// }
-// else
-// {
-// echo "Module Creation Not Saved";
-// }
-// }
-
- public function signout()
- {
-   $newdata = array(
-                'name'  =>'',
-                'email' => '',
-                'logged_in' => FALSE,
-               );
-
-     $this->session->unset_userdata($newdata);
-     $this->session->sess_destroy();
-
-      redirect('forms');
-
- }
-
-public function profile()
+public function varifyemail()
 {
 $data=json_decode($_REQUEST['data']);
 $name=$data->name;
-
-//$this->
-//$res=$this->session->userdata('item');
-//$this->session->unset_userdata('name');
-$this->session->set_userdata('name',$name);
-//print_r($this->session->userdata('item'));die;
-
 $pass=md5($data->password);
+$this->load->model('register');
+$result=$this->register->Emailfind($data->email);
 
+if($result)
+{
+	echo '1';
+    //echo json_encode(array('response' => '1'));
+}
+else
+{
 $item= new stdClass();
 
 $item->userid                     =$data->userid;
@@ -806,271 +862,236 @@ $item->age_catered                =@$data->age_catered;
 $item->device_id                  =@$data->device_id;
 $item->about_me                   =@$data->about_me;
 
-//print_r($item); die();
-$this->load->model('register');
+//$this->load->model('register');
 $res= $this->register->updateProfile($item);
-if($res==1)
+if($res)
+{  
+  require('class.phpmailer.php');
+  $mail = new PHPMailer();
+  $to=$item->email;
+  $from="info@getsporty.in";
+  $from_name="GetSporty";
+  $subject="EmailContact from GetSporty ";
+ 
+
+  $body="click here  to Activate your account, http://staging.getsporty.in/index.php/forms/forgotpassword?id=".$res;
+ // global $error;
+  $mail = new PHPMailer();  // create a new object
+  $mail->IsSMTP(); // enable SMTP
+  $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
+  $mail->SMTPAuth = true;  // authentication enabled
+  $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+  $mail->Host = 'dezire.websitewelcome.com';
+  $mail->Port = 465; 
+  $mail->Username = "info@getsporty.in"; 
+  $mail->Password = "%leq?xgq;D?v";            
+  $mail->SetFrom($from, $from_name);
+  $mail->Subject = $subject;
+  $mail->Body = $body;
+  $mail->AddAddress($to);
+  $mail->Send();
+
+}
+    echo '2';
+}
+}
+
+public function emailsearch()
 {
-	echo "Profile  Updated";
-}
-else {
-	echo "Profile Not Updated";
-}
+	$this->load->view('Forgotpasswordemail');
 }
 
+public function Emailfind()
+{
+
+  $item= new stdClass();
+
+  $emailid=$_POST['email'];
+  $item->email =$_POST['email'];
+  $this->load->model('register');
+  $res=$this->register->Emailfind($item->email);
+  if($res)
+  {
+//print_r($emailid);die;
+  $id=$res['userid'];
+  require('class.phpmailer.php');
+  $mail = new PHPMailer();
+  $to=$emailid;
+  $from="info@getsporty.in";
+  $from_name="GetSporty";
+  $subject="EmailContact from GetSporty ";
+  
+
+  $body="Click here  to reset password , http://staging.getsporty.in/index.php/forms/forgotpassword?id=".$id;
+ // global $error;
+  $mail = new PHPMailer();  // create a new object
+  $mail->IsSMTP(); // enable SMTP
+  $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
+  $mail->SMTPAuth = true;  // authentication enabled
+  $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+  $mail->Host = 'dezire.websitewelcome.com';
+  $mail->Port = 465; 
+  $mail->Username = "info@getsporty.in"; 
+  $mail->Password = "%leq?xgq;D?v";            
+  $mail->SetFrom($from, $from_name);
+  $mail->Subject = $subject;
+  $mail->Body = $body;
+  $mail->AddAddress($to);
+  $mail->Send();
+ 
 
 
+     // $mes['message'] ='Email sent to your account please reset your password';
+     // $this->load->view('login',$res);
+    echo "Email sent to your account please reset your password ";
+   //  $mes="Email sent to your account please reset your password";
+    // $this->session->set_flashdata('Welcome To GetSporty ');
+     $this->emailsearch();
+    // $this->load->view('Forgotpasswordemail',$mes);
+ }
+ else
+ {
+    $this->session->set_flashdata('error','Email Id is Not Found');
+    redirect('forms/emailsearch','refresh');
+ }
+
+}
+//==================================End Email================================= 
+
+ public function imageupload()
+ {     
+ 	$newpath=$_POST['path'];
+  // print_r($newpath) ;die;
+     switch ($newpath) {
+     	case 'uploads/resources/':
+     		    if ($_POST['oldimageid'])
+                  {
+						if($_POST['oldimage'])
+						{
+			        	$id = $_POST['oldimageid'];
+			            $image = $_POST['oldimage'];
+			        	$temp= $this->register->removeimage($id,$image);
+			            }
+			        }
+     		break;
+     	case 'uploads/job/':
+     		      if ($_POST['oldimageid'])
+                     {
+						if($_POST['oldimage'])
+						{
+			        	$id = $_POST['oldimageid'];
+			            $image = $_POST['oldimage'];
+			        	$temp= $this->register->removejobimage($id,$image);
+			            }
+			        }
+     		break;
+     	default:
+     		 throw new Exception('Unknown image path.');
+     		break;
+}
+           $mime=$_FILES['file']['type'];
+           switch ($mime) {
+             case 'image/jpeg':
+                    $ftype = 'imagecreatefromjpeg';
+                    break;
+             case 'image/png':
+                    $ftype = 'imagecreatefrompng';
+                    break;
+             default: 
+                    throw new Exception('Unknown image type.');
+}
+            $temp = explode(".", $_FILES["file"]["name"]);
+            date_default_timezone_set("Asia/Kolkata");
+            $newfilename1='res_'.time();
+            $newfilename = $newfilename1. '.' . end($temp);
+            move_uploaded_file($_FILES["file"]["tmp_name"], $newpath. $newfilename);
+  //===================image size fix ==============================================================
+            $uploadimage = $newpath.$newfilename;
+            $newname = $newfilename;
+           // Set the resize_image name
+            $resize_image = $newpath.$newname; 
+            $actual_image = $newpath.$newname;
+           // It gets the size of the image
+            list( $width,$height ) = getimagesize( $uploadimage );
+          // It makes the new image width of 350
+            $newwidth =$_POST['width'];
+          // It makes the new image height of 350
+            $newheight =$_POST['height'];
+          // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
+            $thumb = imagecreatetruecolor( $newwidth, $newheight );
+           
+            $source = $ftype( $resize_image );
+          // Resize the $thumb image.
+            imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+          // It then save the new image to the location specified by $resize_image variable
+            imagejpeg( $thumb, $resize_image, 100 ); 
+          // 100 Represents the quality of an image you can set and ant number in place of 100.
+            $out_image=addslashes(file_get_contents($resize_image));      
+//=================================end image size fix ==================================================
+        echo  $newfilename;  
+}
+
+public function getStateByCity()
+{
+		$key = $_POST['key'];
+		$results = $this->register->getStateByKey($key);
+		echo  json_encode($results);
+}
 
 public function getCityName()
-	{
+{
 		 $keyword = $this->input->post('term');
          $data['response'] = 'false'; //Set default response
          $query = $this->register->getCityName($keyword); //Model DB search
- 
-          if($query->num_rows() > 0){
-          $data['response'] = 'true'; //Set response
-          $data['message'] = array(); //Create array
-          foreach($query->result() as $row){
+         if($query->num_rows() > 0){
+         $data['response'] = 'true'; //Set response
+         $data['message'] = array(); //Create array
+         foreach($query->result() as $row){
 	     $data['message'][] = array('value'=> $row->city); //Add a row to array
    }
 }
-echo json_encode($data);
- 
-	}
-
-
-public function StatusResources()
-{
-$data2 = json_decode($_REQUEST['data']);
-$item  = new stdClass(); 
-
-$item->id                    = $data2->id;
-$item->status                = $data2->status;
-
-$this->load->model('register');
-//$res1 = $this->register->addStatusData($data2->id);
-$res = $this->register->StatusResources($item);
-if($data2->status==1)
-{
-       
-	//$rdata=$this->register->getResourceInfo($data2->id);
-	
-	
-	//$this->register->addResourcesData($rdata);
-	echo "Resources Is Activate";
-}
-else{
-	echo "Resources Is Deactivate";
-
-	//$this->register->deleteStatusResources($data2->id);
-
-}
-
-}
-
-
-public function StatusEvent()
-{
-
-$data2 = json_decode($_REQUEST['data']);
-$item  = new stdClass(); 
-
-$item->id                    = $data2->id;
-$item->publish               = $data2->publish;
-
-$this->load->model('register');
-//$res1 = $this->register->addStatusData($data2->id);
-$res = $this->register->StatusEvent($item);
-if($data2->publish==1)
-{
-       
-	//$edata=$this->register->getEventInfo($data2->id);
-	
- 	//$this->register->addEventData($edata);
-}
-else{
-    
-   
-//	$this->register->deletePublishEvent($data2->id);
-
-}
-
-
-}
-
-
-
-public function StatusTournament()
-{
-
-$data2 = json_decode($_REQUEST['data']);
-$item  = new stdClass(); 
-
-$item->id                    = $data2->id;
-$item->publish               = $data2->publish;
-
-$this->load->model('register');
-$res = $this->register->Statustournament($item);
-if($data2->publish==1)
-{    
-	//$tdata=$this->register->getTournamentInfo($data2->id);
-	//$this->register->addTournamentData($tdata);
-}
-else{
-	//$this->register->deletePublishTournament($data2->id);
-
-}
-
-
-}
-
-public function StatusJob()
-{
-$data2 = json_decode($_REQUEST['data']);
-$item  = new stdClass(); 
-
-$item->id                    = $data2->id;
-$item->publish               = $data2->publish;
-
-$this->load->model('register');
-$res = $this->register->StatusJob($item);
-if($data2->publish==1)
-{    
-	//$jdata=$this->register->getJobInfo($data2->id);
-
-  //  print_r($jdata);
-	//$this->register->addJobData($jdata);
-}
-else{
-	//$this->register->deletePublishJob($data2->id);
-
-}
-
-
-}
-
-
-
-public function StatusContent()
-{
-$data2 = json_decode($_REQUEST['data']);
-$item  = new stdClass(); 
-
-$item->id                    = $data2->id;
-$item->publish               = $data2->publish;
-
-$this->load->model('register');
-$res = $this->register->StatusContent($item);
-if($data2->publish==1)
-{    
-	//$jdata=$this->register->getContentInfo($data2->id);
-  //  print_r($jdata);
-	//$this->register->addContentData($jdata);
-}
-else{
-	//$this->register->deletePublishContent($data2->id);
-
-}
-}
-
-
-public function edituserProfile($id)
-{
-        $data['middle'] = 'userModule/edituserProfile';
-		$data['required'] = array(
-									'id'=>$id	
-								 );
-		$this->load->view('templates/template',$data);
-}
-
-
-public function deleteUser($id)
-{
-   $this->register->deleteUser($id);
-   $data['middle']='userModule/usermodule';
-   $this->load->view('templates/template',$data);
-
-}
-
- public function createNewUser()
- {
- 	$data['middle']='userModule/createnewUser';
- 	 $this->load->view('templates/template',$data);
- }
-
- public function userprofile($id)
-
- { 
-
-
- 	$data['middle'] = 'userModule/Userprofile';
-		$data['required'] = array(
-									'id'=>$id	
-								 );
-
-		$this->load->view('templates/template',$data);
-
-
+         echo json_encode($data);
 }
 
 public function passwordchange()
 {
-
-       
-       $data=json_decode($_REQUEST['data']);
-       $pass1=$data->oldpassword1;
-       $pass2=md5($data->oldpassword);
-       $userid=$data->userid;
-       $newpass=md5($data->newpassword);
-
-
-      if($pass1==$pass2)
-        {
-          
-          $this->load->model('register');
-          $res = $this->register->changepassword($userid,$newpass);
-          if($res)
+    $data=json_decode($_REQUEST['data']);
+    $pass1=$data->oldpassword1;
+    $pass2=md5($data->oldpassword);
+    $userid=$data->userid;
+    $newpass=md5($data->newpassword);
+    if($pass1==$pass2)
+      {
+        $this->load->model('register');
+        $res = $this->register->changepassword($userid,$newpass);
+        if($res)
           { 
-
-           echo json_encode(array('response' =>'1'));
-
-          	//echo "1";
+            echo json_encode(array('response' =>'1'));
           }
-          else
+        else
           {
           	echo json_encode(array('response' => '2'));
-          	//echo "2";
           }
-         }
-      else{
+      }
+    else{
             echo json_encode(array('response' => '3'));
-      //	return 3;
-	       //  echo "3";
         }
-  
 }
 
 
 public function Csvfileupload()
 {
-
-    $temp = explode(".", $_FILES["fileToUpload"]["name"]);
-   // print_r(end($temp));die;
-
+   $temp = explode(".", $_FILES["fileToUpload"]["name"]);
    if($_FILES["fileToUpload"]["name"] && end($temp)=='csv')
-    {
+   {
    $data=$_FILES["fileToUpload"]["name"];
    $temp=$data;
-  // print_r($data);
    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "uploads/".'csv'."/".$data);
    $file =base_url('/uploads/csv/'.$data);
-
    $file = fopen($file,"r");
-
    $data=$this->session->userdata('item');
    $id=$data['userid'];
    $i=0;
-
    while(! feof($file))
    { 
     $data=fgetcsv($file);
@@ -1079,36 +1100,24 @@ public function Csvfileupload()
     if($i!=0){
     $res= $this->register->Csvfileupload($data,$id);
     $csvresourcesid[]=$res;
-    
     }
     $i=$i+1;
 }
-//echo json_encode($row);//die;
 fclose($file);
-
-//print_r($file);
- //print_r($temp);
-
 $path='uploads/csv/'.$temp;
 
 @unlink($path);
-
-
-
     $CI = get_instance();
     $CI->load->library('session');
     $CI->session->set_flashdata('csvresourcesid',$csvresourcesid);
     redirect("forms/upload_photo");
 }
 else{
-
 	$this->session->set_flashdata('error','Please Upload CSV file.');
     redirect('forms/getResources','refresh');
-	//echo "Please Upload CSV file";
-	//$this->getResources();
+}
 }
 
-}
 
 public function upload_photo()
 {
@@ -1121,15 +1130,10 @@ public function upload_photo()
 }
 
 
-
-
 public function uploadimg()
 {  
-
  print_r($_POST);
-
 // $resourceid=$_POST['resid'];
-
  print_r($_FILES['image']['type']);
  die();
 
@@ -1173,112 +1177,38 @@ if(!empty($_FILES['image'])){
 	}else{
 
 		echo "Image Is Empty";
-
 	}
+}
 
-  // echo "harshvardhan" ;
-//	die;
-
-// 	print_r($_POST);
-//     print_r($_FILES);
-// 	die();
-
-// $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'bmp'); // valid extensions
-// $path = 'uploads/resources/'; // upload directory
-
-// if(isset($_FILES['image']))
-// {
-// 	$img = $_FILES['image']['name'];
-// 	$tmp = $_FILES['image']['tmp_name'];
-// 	// get uploaded file's extension
-// 	$ext = strtolower(pathinfo($img, PATHINFO_EXTENSION));
-// 	// can upload same image using rand function
-// 	$final_image = rand(1000,1000000).$img;	
-// 	// check's valid format
-// 	if(in_array($ext, $valid_extensions)) 
-// 	{			
-
-// 		    $path = $path.strtolower($final_image);	
-// 		    move_uploaded_file($tmp,$path);
-// 		    $uploadimage = $path;
-//             $newname = $path;
-//            // Set the resize_image name
-//             $resize_image = $newname; 
-//             $actual_image = $newname;
-//            // It gets the size of the image
-//             list( $width,$height ) = getimagesize( $uploadimage );
-//           // It makes the new image width of 350
-//             $newwidth = 1115;
-//           // It makes the new image height of 350
-//             $newheight = 640;
-//           // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
-//             $thumb = imagecreatetruecolor( $newwidth, $newheight );
-//             $source = imagecreatefromjpeg( $resize_image );
-//           // Resize the $thumb image.
-//             imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-//           // It then save the new image to the location specified by $resize_image variable
-//             imagejpeg( $thumb, $resize_image, 100 ); 
-//           // 100 Represents the quality of an image you can set and ant number in place of 100.
-//             $out_image=addslashes(file_get_contents($resize_image)); 
-//            // echo json_encode(array('response' => 'uploaded'));
-
-//            echo "Uploaded";	
-//          }
-//        }
-     }
-
-public function profileimage()
-{       
-
-	$data=$this->session->userdata('item');
-    $id=$data['userid'];
-
- print_r($id);
-
-// $resourceid=$_POST['resid'];
-
- //print_r($_FILES['userImage']);
- //die;
-
-$valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'bmp'); // valid extensions
-$path = 'uploads/'; // upload directory
-$base=  base_url();
-if(isset($_FILES['image']))
+public function forgotpassword()
 {
-	$img = $_FILES['image']['name'];
-	$tmp = $_FILES['image']['tmp_name'];
-		
-	// get uploaded file's extension
-	$ext = strtolower(pathinfo($img, PATHINFO_EXTENSION));
-	
-	// can upload same image using rand function
-	$final_image = rand(1000,1000000).$img;
-	
-	// check's valid format
-	if(in_array($ext, $valid_extensions)) 
-	{					
-		$path = $path.strtolower($final_image);	
-			
-		if(move_uploaded_file($tmp,$path)) 
-		{
-			echo "<img src='$base/$path' />";
-		}
-	} 
-	else 
-	{
-		echo 'invalid';
-	}
-     }
+	//$this->load->view('login');
+	$this->load->view('Forgotpassword');
+}
 
-   }
 
-   public function editjob($id)
-   {
-		$data['middle']="job/Editjob";
-		$data['required']= array(
-			                     'id' => $id 
-			                     );
-		$this->load->view('templates/template',$data);
-   }
+public function verifyuser()
+{
+$item  = new stdClass(); 
+
+$item->userid              = $_POST['userid'];
+$item->password            = md5($_POST['Newpassword']);
+
+$this->load->model('register');
+$res = $this->register->verifyuserpassword($item->userid,$item->password);
+//echo json_encode(array('response' => $res));
+if($res)
+{
+         $this->session->set_flashdata('error','Welcome To GetSporty ');
+         redirect('forms/index','refresh');
+         //echo "Created";
+}
+else
+{
+	echo "Not Created";
+}
+}
+
+
 
 }

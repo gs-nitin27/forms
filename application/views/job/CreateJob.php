@@ -372,7 +372,7 @@ function clear()
 <script type="text/javascript">
   $(document).ready(function (e) {
   $("#form").on('submit',(function(e) {
-  	alert("hi");
+  
    $('#loader_img').show();
     e.preventDefault();
     $.ajax({
