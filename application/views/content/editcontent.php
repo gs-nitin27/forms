@@ -86,12 +86,10 @@ function clear()
           <div class="form-group">
                   <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
             </div>
-          <?php }?>
-
-      <?php  $contant = $this->register->editcontent($id); 
+          <?php 
+           }  $contant = $this->register->editcontent($id); 
            // print_r($contant); 
             foreach ($contant as $value) 
-              
             {?>
         <form>
           <div class="form-group">

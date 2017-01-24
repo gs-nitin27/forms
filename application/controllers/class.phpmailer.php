@@ -23,6 +23,7 @@
 '---------------------------------------------------------------------------'
 */
 
+
 /**
  * PHPMailer - PHP email transport class
  * NOTE: Requires PHP version 5 or later
@@ -40,6 +41,7 @@ if (version_compare(PHP_VERSION, '5.0.0', '<') ) exit("Sorry, this version of PH
 
 class PHPMailer {
 
+
   /////////////////////////////////////////////////
   // PROPERTIES, PUBLIC
   /////////////////////////////////////////////////
@@ -48,6 +50,7 @@ class PHPMailer {
    * Email priority (1 = High, 3 = Normal, 5 = low).
    * @var int
    */
+
   public $Priority          = 3;
 
   /**
@@ -99,6 +102,7 @@ class PHPMailer {
    * @var string
    */
   public $Subject           = '';
+
 
   /**
    * Sets the Body of the message.  This can be either an HTML or text body.

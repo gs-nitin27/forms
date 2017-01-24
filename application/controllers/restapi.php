@@ -5,16 +5,14 @@
 */
 class Restapi extends CI_Controller
 {
-	
 	function __construct()
 	{
 		 parent :: __construct();
          $this->load->model('api_model');
-      
 	}
+	
 	public function register()
 	{
-	 
 		 $name       =  urldecode($_POST ['name']);
 		 $email      =  urldecode($_POST ['email']);
 		 $password1  =  md5(urldecode($_POST ['password']));
@@ -62,7 +60,7 @@ class Restapi extends CI_Controller
 	 $username = mysql_real_escape_string($email);
 	 $password = mysql_real_escape_string($pass);
 	 $token    = urldecode($_POST ['token']);
-	    
+	   
 	    $where = "WHERE `username` = ".$username." AND `password` = ".$password."";
 		$res = $this->api_model->userVarify($where);
 		print_r($res);

@@ -47,7 +47,6 @@ public function saveTournament($item)
 $insert = "INSERT INTO `gs_tournament_info`(`id`, `userid`, `category`, `name`, `address_1`, `address_2`, `location`,`state`, `pin`, `description`,`sport` ,`level`, `age_group`, `gender`, `eligibility1`,`eligibility2`, `terms_and_cond1`, `terms_and_cond2`, `organiser_name`, `mobile`, `email`, `org_address1`, `org_address2`, `org_city`, `org_pin`, `tournaments_link`, `start_date`, `end_date`, `event_entry_date`, `event_end_date`, `file_name`,`date_created`) VALUES ('$item->id','$item->userid','$item->tournament_category','$item->type','$item->address_line1','$item->address_line2','$item->city','$item->state','$item->pin','$item->description','$item->sport','$item->tournament_level','$item->tournament_ageGroup','$item->tournament_gender','$item->eligibility1','$item->eligibility2','$item->terms_and_conditions1','$item->terms_and_conditions2','$item->organizer_name','$item->mobile','$item->emailid','$item->organizer_address_line1','$item->organizer_address_line2','$item->organizer_city','$item->organizer_pin','$item->tournament_links',FROM_UNIXTIME ('$item->start_date'),FROM_UNIXTIME ('$item->end_date'),FROM_UNIXTIME('$item->entry_start_date') ,FROM_UNIXTIME ('$item->entry_end_date'),'$item->file_name',CURDATE()) ON DUPLICATE KEY UPDATE `name` = '$item->type', `address_1` = '$item->address_line1' , `address_2` = '$item->address_line2' , `location` = '$item->city' ,`state`='$item->state' ,`pin` = '$item->pin' , `description` = '$item->description',`sport`='$item->sport',`level` = '$item->tournament_level',`age_group`='$item->tournament_ageGroup',`gender` = '$item->tournament_gender',`eligibility1` = '$item->eligibility1' ,`eligibility2` = '$item->eligibility2', `terms_and_cond1` = '$item->terms_and_conditions1', `terms_and_cond2` = '$item->terms_and_conditions2' ,`organiser_name` = '$item->organizer_name' , `mobile` = '$item->mobile' , `email` = '$item->emailid' , `org_address1` = '$item->organizer_address_line1' , `org_address2` = '$item->organizer_address_line2' , `org_city` = '$item->organizer_city', `org_pin` = '$item->organizer_pin' , `tournaments_link` = '$item->tournament_links' ,`start_date` = FROM_UNIXTIME ('$item->start_date') , `end_date` = FROM_UNIXTIME ('$item->end_date') , `event_entry_date` = FROM_UNIXTIME ('$item->entry_start_date') , `event_end_date` = FROM_UNIXTIME ('$item->entry_end_date')";
 
 $query = $this->db->query($insert);
-
 if($query)
 {
       return 1;
@@ -55,7 +54,6 @@ if($query)
 else 
       return 0;
 }
-
 
 public function create_job($item)
 {
@@ -71,36 +69,42 @@ else
 }
 }
 	#Function for Get all the event type
-public function getEventType($id = false){
+public function getEventType($id = false)
+{
 		$qry = $this->db->get('gs_eventType');
 		return $qry->result_array();
-	}
+}
 	#Function for Get all the Sport
-public function getSport($id = false){
+public function getSport($id = false)
+{
 		$qry = $this->db->get('gs_sports');
 		return $qry->result_array();
-	}
+}
 	#Function for Get State By Enter City
-public function getStateByKey($key){
+public function getStateByKey($key)
+{
 		$this->db->where('city', $key);
 		$qry = $this->db->get('location');
 		$q =  $qry->row_array();
 		return $q;
-	}
+}
 	#Function for Get all the Level
-public function getLevel(){
+public function getLevel()
+{
 		$qry = $this->db->get('gs_level');
 		$q =  $qry->result_array();
 		return $q;
-	}
+}
 	#Function for Get all the Level
-public function getTournamentCategory(){
+public function getTournamentCategory()
+{
 		$qry = $this->db->get('gs_tournament_category');
 		$q =  $qry->result_array();
 		return $q;
-	}
+}
 	
-public function getJobInfo($id = false){
+public function getJobInfo($id = false)
+{
 	    $this->db->select('*, JI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
 		$this->db->from('gs_jobInfo JI');
 		$this->db->join('gs_sports SP', 'SP.id = JI.sport', "left");
@@ -114,9 +118,10 @@ public function getJobInfo($id = false){
 		$query = $this->db->get();
 		$q =  $query->result_array();
 		return $q;
-	}
+}
 	
-public function getEventInfo($id = false){
+public function getEventInfo($id = false)
+{
 	 $this->db->select('*, EI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
 		$this->db->from('gs_eventinfo EI');
 		$this->db->join('gs_sports SP', 'SP.id = EI.sport', "left");
@@ -132,7 +137,7 @@ public function getEventInfo($id = false){
 		$q =  $query->result_array();
 		
 		return $q;
-	}
+}
 	
 public function getTournamentInfo($id = false){
 		$this->db->select('*, TI.id as infoId, L.city as city_name, L.state as state_name');
@@ -141,7 +146,6 @@ public function getTournamentInfo($id = false){
 		$this->db->join('gs_tournament_category TC', 'TC.id = TI.category', "left");
 		$this->db->join('gs_sports SP', 'SP.id = TI.sport', "left");
 		$this->db->join('location L', 'TI.state = L.id', "left");
-
 		if($id > 0){
 			$this->db->where('TI.id', $id);
 		}else{
@@ -164,7 +168,6 @@ public function getResourceInfo($id = false)
 		}
 		$query = $this->db->get();
 		$q =  $query->result_array();
-		
 		return $q;
         // $other_db= $this->load->database('other', TRUE);
 		// $other_db->select('*');
@@ -178,13 +181,13 @@ public function getResourceInfo($id = false)
 		// $q =  $query->result_array();
 		
 		// return $q;
-	}
+}
 	
 public function addResource($data, $id=false)
-	{
+{
 		$this->db->insert('gs_resources', $data);
 		 return $this->db->insert_id();
-	}
+}
 	
 public function updateResourceImage($img)
 {
@@ -193,7 +196,8 @@ public function updateResourceImage($img)
 		$this->db->where('id', $id);
 		$this->db->update('gs_resources', $data);
 		return true;
-	}
+}
+
    //==================harshvardhan========================
 
 // public function getResourceInfo($id = false){
@@ -669,16 +673,31 @@ public function getUserInfo($id=false)
         $qry = $this->db->get('user');
 		$q =  $qry->result_array();
 		return $q;
-
 }
 
-
-
-public function deleteUser($id)
+public function ActivateUser($item)
 {
-	$this->db->where('userid',$id);
-	$this->db->delete('user');
+	//print_r($item); die;
+ $update = "UPDATE  `user` SET  `activeuser` ='$item->activeuser' WHERE `userid` = '$item->userid' ";
+ $query = $this->db->query($update);
+
+    if($query)
+    {
+	  return 1;
+    }
+    else
+    {
+      return 0;
+    }
+
+
 }
+
+// public function deleteUser($id,$item)
+// {
+// 	$this->db->where('userid',$id);
+// 	$this->db->delete('user');
+// }
 
 public function usermoduleData($id){
 
@@ -688,18 +707,13 @@ public function usermoduleData($id){
       $query = $this->db->get();
 	  $data =  $query->result_array();
 	  return $data;
-
-
-
-
 } 
 
 public function update_userModule($id,$item)
 {
-
-     $update = "UPDATE  `user` SET  `access_module` ='$item' WHERE `userid` = '$id' ";
-     $query = $this->db->query($update);
-     if($query)
+    $update = "UPDATE  `user` SET  `access_module` ='$item' WHERE `userid` = '$id' ";
+    $query = $this->db->query($update);
+    if($query)
        {
 	     return 1;
        }
@@ -712,7 +726,6 @@ public function update_userModule($id,$item)
 
 public function getUserJobInfo($id)
 {
-
        $this->db->select('*, JI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
 		$this->db->from('gs_jobInfo JI');
 		$this->db->join('gs_sports SP', 'SP.id = JI.sport', "left");
@@ -726,8 +739,6 @@ public function getUserJobInfo($id)
 		$query = $this->db->get();
 		$q =  $query->result_array();
 		return $q;
-
-
 }
 
 public function getUserResourceInfo($id)
@@ -860,11 +871,10 @@ public function Csvfileupload($item,$userid)
        }	 
 }
 
-
 public function saveCSVImage($id,$image)
 {
-	   print_r($id);
-	  print_r($image); die;
+	 //print_r($id);
+	 print_r($image); die;
      $update = "UPDATE  `gs_resources` SET  `image` = '$image' WHERE `id` = '$id' ";
      $query = $this->db->query($update);
      if($query)
@@ -882,7 +892,6 @@ public function removejobimage($id,$image)
             $this->db->where('id', $id);
             unlink("uploads/job/".$image);
             $this->db->delete('gs_jobInfo', array('image' => $image)); 
-
 }
 
 public function verifyuserpassword($id,$password)
@@ -897,10 +906,7 @@ public function verifyuserpassword($id,$password)
        {
          return 0;
        }
-	
-
 }
-
 
 public function Emailfind($email)
 {
@@ -913,16 +919,15 @@ public function Emailfind($email)
 	  if($data)
 	  {
 	    return $data[0];
-       }
-       else
-       {
-           return $data;
-       }
+      }
+      else
+      {
+         return $data;
+      }
 }
 
 public function passwordfind($email)
 {   
-	
 	  $this->db->select('password');
       $this->db->from('user u');
       $this->db->where('u.email', $email);
@@ -932,16 +937,12 @@ public function passwordfind($email)
 	  $test1=md5($test);
 	  if($data[0]['password']==$test1)
 	  {
-	   return 1;
-	  
+	    return 1;
 	  }
       else
       {
         return 0;
-      }
-	  
-     
+      }   
 }
-
 }
  ?>

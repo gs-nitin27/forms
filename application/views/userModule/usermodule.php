@@ -3,7 +3,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  
 </head>
 <div class="wrapper">
   <div class="content-wrapper">
@@ -27,7 +26,7 @@
 
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
-                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Activate</th>
                 </tr>
                 </thead>
         <tbody>
@@ -50,7 +49,18 @@
                     </td> -->
                      <td><a href = "<?php echo site_url('forms/userprofile/'.$user['userid']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                     <!-- <td><a href = "<?php// echo site_url('forms/edituserProfile/'.$user['userid']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-edit"></i></a></td> -->
-                    <td><a href = "<?php echo site_url('forms/deleteUser/'.$user['userid']); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
+                    <!-- <td><a href = "<?php //echo site_url('forms/deleteUser/'.$user['userid']); ?>" onclick="return confirm('Are you sure you want to Deactivate this User?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td> -->
+
+
+                  <td>
+                    <?php if($user['activeuser']==0){?>
+                    <button class="badge bg-red" onclick="myfunction(<?php echo $user['userid'];?>,1)"><?php echo "Activate";?></button>
+                    <?php }else{?> 
+                    <button class="badge bg-green" onclick="myfunction(<?php echo $user['userid'];?>,0)"><?php echo "Deactivate";?></button>
+                    <?php } ?>
+                    </td>
+
+
                 </tr>
                 <?php } } ?>
                 </tbody>
@@ -64,7 +74,7 @@
                   <!-- <th style="width: 40px; background: #5262bc; color: #ffffff;">Permission</th> -->
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
                   <!-- <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
-                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Activate</th>
                 </tr>
                 </tfoot>
               </table>
@@ -89,6 +99,27 @@
   });
 </script>
 
+<script type="text/javascript">
+function myfunction(id,activeuser)
+{ 
+    var data1 = {
+    "userid"                  : id, 
+    "activeuser"              : activeuser
+};
+console.log(JSON.stringify(data1));
+var url = '<?php echo site_url();?>'
+var data = JSON.stringify(data1);
+    $.ajax({
+    type: "POST",
+    url: '<?php echo site_url('forms/ActivateUser'); ?>',
+    data: "data="+data,
+    dataType: "text",
+    success: function(result) {
+    window.location.href = url+"/forms/usermodule";
+    }
+});    
+}
+</script>
 
 
 

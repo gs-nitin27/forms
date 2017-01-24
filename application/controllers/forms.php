@@ -15,31 +15,71 @@ public function index()
 
 public function home()
 {
-          
-          $data['middle'] = 'dashboard';
-
+           $data['middle'] = 'dashboard';
            $this->load->view('templates/template',$data);
 
 }
 
+ public function gmaillogin()
+ {
+   $data=json_decode($_REQUEST['data']);
+  // print_r($data->email);
+    $username=$data->email;
+    $password=md5($data->email);
+
+   // echo $username ."  ".$password;
+     $this->load->model('register');
+    $emailid = $this->register->Emailfind($data->email);
+    
+     if($emailid!=" ")
+     {   
+          
+      $res = $this->register->login($username, $password); 
+       //
+        if($res != 0)
+        {
+         
+         $this->session->set_userdata('item',$res);
+          $sessdata = $this->session->userdata('item');
+   //      redirect('forms/home');
+           //$this->home();
+          // $this->load->view('login');
+           //print_r($res);
+           echo  "1";
+
+       }
+
+     }
+    else
+    {
+ 
+      echo "2";
+
+     }
+		
+}
+
+
+
+
 //======================User ======================================
+
 public function login()
-   {
+{
       $username = $_POST['username'];
       $password = md5($_POST['password']);
       $this->load->model('register');
-      
       $emailid = $this->register->Emailfind($username);
       if($emailid)
       {
             $pass = $this->register->passwordfind($username);   
-
             if($pass)
             {
-               $this->session->set_flashdata('error','Please Activate your account a link is sent to your mail account.');
-               redirect('forms/index','refresh');
+             $this->session->set_flashdata('error','Please Activate your account a link is sent to your mail account.');
+             redirect('forms/index','refresh');
             }
-           else  {
+      else
+       {
       $res = $this->register->login($username, $password); 
      // print_r($res); die();
       if($res != 0)
@@ -81,7 +121,6 @@ public function edituser()
 		$this->load->view('templates/template',$data);
 }
 
-
 public function saveuserModule()
 {
 $data = json_decode($_REQUEST['data']);
@@ -113,7 +152,8 @@ public function signout()
                );
      $this->session->unset_userdata($newdata);
      $this->session->sess_destroy();
-     redirect('forms');
+     $this->index();
+     //die;
  }
 
 public function profile()
@@ -169,12 +209,34 @@ public function edituserProfile($id)
 		$this->load->view('templates/template',$data);
 }
 
-public function deleteUser($id)
+public function ActivateUser()
 {
-   $this->register->deleteUser($id);
-   $data['middle']='userModule/usermodule';
-   $this->load->view('templates/template',$data);
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
+
+$item->userid                = $data2->userid;
+$item->activeuser            = $data2->activeuser;
+
+$this->load->model('register');
+$res = $this->register->ActivateUser($item);
+if($res)
+{
+	echo "User Is Activate";
 }
+else{
+	echo "User Is Deactivate";
+}
+}
+
+
+// public function deleteUser($id,$activate)
+// {
+//    $this->register->deleteUser($id,$activate);
+//    $data['middle']='userModule/usermodule';
+//    $this->load->view('templates/template',$data);
+    
+  
+// }
 
 public function createNewUser()
  {
@@ -1209,6 +1271,13 @@ else
 }
 }
 
+function logincall()
+{
+
+            $data['middle'] = 'dashboard';
+           $this->load->view('login-callback',$data);
+
+}
 
 
 }

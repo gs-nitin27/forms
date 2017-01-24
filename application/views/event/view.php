@@ -19,7 +19,9 @@
 					
 					$event = $event[0];
 				}
+				
 			?>
+			
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_event" data-toggle="tab">Event </a></li>
