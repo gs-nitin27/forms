@@ -4,7 +4,25 @@
 class Register extends CI_Model
 {
 
+public function login_google($username,$password)
+{
 
+// $where = " email = '$username'  AND password = '$password'";
+$this->db->where("email", $username);
+$this->db->where("google_password", $password);
+$qry = $this->db->get('user');
+
+if($qry->num_rows() > 0)
+{
+$q = $qry->row_array();
+if(($q['userType']==101 || $q['userType']==102 || $q['userType']==103 ) && $q['activeuser'])
+{
+return $q;
+}
+}
+else
+return 0;
+}
 
 public function login($username,$password)
 {
@@ -105,19 +123,19 @@ public function getTournamentCategory()
 	
 public function getJobInfo($id = false)
 {
-	    $this->db->select('*, JI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
-		$this->db->from('gs_jobInfo JI');
-		$this->db->join('gs_sports SP', 'SP.id = JI.sport', "left");
-		$this->db->join('location L', 'JI.state = L.id', "left");
-		$this->db->join('location LM', 'JI.org_state = LM.id', "left");
-		if($id > 0){
-			$this->db->where('JI.id', $id);
-		}else{
+	$this->db->select('*, JI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
+    $this->db->from('gs_jobInfo JI');
+	$this->db->join('gs_sports SP', 'SP.id = JI.sport', "left");
+	$this->db->join('location L', 'JI.state = L.id', "left");
+	$this->db->join('location LM', 'JI.org_state = LM.id', "left");
+	if($id > 0){
+		$this->db->where('JI.id', $id);
+	}else{
 		 $this->db->order_by("JI.id", "desc"); 
-		}
-		$query = $this->db->get();
-		$q =  $query->result_array();
-		return $q;
+	}
+	$query = $this->db->get();
+	$q =  $query->result_array();
+	return $q;
 }
 	
 public function getEventInfo($id = false)
@@ -315,7 +333,7 @@ public function profile($id)
 
 public function updateProfile($item)
 {
-  $insert ="INSERT INTO `user`(`userid`,`name`,`status`,`password`,`email`,`contact_no`,`sport`,`Gender`, `address1`, `address2`, `address3`, `dob`,`prof_id`,`userType`,`user_image`,`profile_status`, `location`, `prof_language`, `other_skill_name`, `other_skill_detail`, `age_catered`, `device_id`,`about_me`)  VALUES ('$item->userid','$item->name','$item->status','$item->password','$item->email','$item->contact_no','$item->sport','$item->Gender','$item->address1','$item->address2','$item->address3','$item->dob','$item->prof_id','$item->userType','$item->user_image','$item->profile_status','$item->location','$item->prof_language','$item->other_skill_name','$item->other_skill_detail','$item->age_catered','$item->device_id','$item->about_me' )  ON DUPLICATE KEY UPDATE `name` ='$item->name', `contact_no` = '$item->contact_no',`sport` = '$item->sport' ,`Gender` = '$item->Gender' ,`address1` = '$item->address1' ,`address2` = '$item->address2' , `address3` = '$item->address3' , `dob` = '$item->dob' , `prof_id` = '$item->prof_id' , `userType` = '$item->userType', `location` = '$item->location'";
+  $insert ="INSERT INTO `user`(`userid`,`name`,`status`,`password`,`email`,`contact_no`,`sport`,`Gender`, `address1`, `address2`, `address3`, `dob`,`prof_id`,`userType`,`user_image`,`profile_status`, `location`, `prof_language`, `other_skill_name`, `other_skill_detail`, `age_catered`, `device_id`,`about_me`)  VALUES ('$item->userid','$item->name','$item->status','$item->password','$item->email','$item->contact_no','$item->sport','$item->Gender','$item->address1','$item->address2','$item->address3','$item->dob','$item->prof_id','$item->userType','$item->user_image','$item->profile_status','$item->location','$item->prof_language','$item->other_skill_name','$item->other_skill_detail','$item->age_catered','$item->device_id','$item->about_me' )  ON DUPLICATE KEY UPDATE `name` ='$item->name', `status` = '$item->status',`contact_no` = '$item->contact_no',`sport` = '$item->sport' ,`Gender` = '$item->Gender' ,`address1` = '$item->address1' ,`address2` = '$item->address2' , `address3` = '$item->address3' , `dob` = '$item->dob' , `prof_id` = '$item->prof_id' , `userType` = '$item->userType', `location` = '$item->location'";
 
   $query = $this->db->query($insert);
   if($query)
@@ -689,8 +707,6 @@ public function ActivateUser($item)
     {
       return 0;
     }
-
-
 }
 
 // public function deleteUser($id,$item)
@@ -776,7 +792,6 @@ public function getUserTournamentInfo($id)
 		$this->db->join('gs_tournament_category TC', 'TC.id = TI.category', "left");
 		$this->db->join('gs_sports SP', 'SP.id = TI.sport', "left");
 		$this->db->join('location L', 'TI.state = L.id', "left");
-
 		if($id > 0){
 			$this->db->where('TI.userid', $id);
 		}else{
@@ -818,14 +833,11 @@ public function getUserContentInfo($id)
 		}
 		$query = $this->db->get();
 		$q =  $query->result_array();
-		//_pr($q);
 		return $q;
 }
 
 public function changepassword($id,$password)
 {
-  // print_r($id);
-  // print_r($password); die();
    $update="UPDATE `user` SET `password`='$password' WHERE `userid`='$id'";
    $query=$this->db->query($update);
    if($query)
@@ -873,7 +885,7 @@ public function Csvfileupload($item,$userid)
 
 public function saveCSVImage($id,$image)
 {
-	 //print_r($id);
+	
 	 print_r($image); die;
      $update = "UPDATE  `gs_resources` SET  `image` = '$image' WHERE `id` = '$id' ";
      $query = $this->db->query($update);
@@ -889,9 +901,9 @@ public function saveCSVImage($id,$image)
 
 public function removejobimage($id,$image)
 {
-            $this->db->where('id', $id);
-            unlink("uploads/job/".$image);
-            $this->db->delete('gs_jobInfo', array('image' => $image)); 
+        $this->db->where('id', $id);
+        unlink("uploads/job/".$image);
+        $this->db->delete('gs_jobInfo', array('image' => $image)); 
 }
 
 public function verifyuserpassword($id,$password)

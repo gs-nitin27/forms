@@ -31,11 +31,9 @@ $(document).ready(function(){
 		});
 clear();
 
-$('#save').click(function(){
-
+$('#save').click(function()
+{
 var data1 = {
-
-
     "id"                      : "", 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#jtitle").val(),
@@ -193,19 +191,17 @@ function clear()
 						</select>
 					</div >
 					<div class="form-group">
-						<?php  
-						// SPORTS IS ID BASED
-						$sports = $this->register->getSport();
-							
-						?>
+					<?php  
+					$sports = $this->register->getSport();	
+					?>
 					  <label for="sports">Sport</label>
 						<select id="jsports" class="form-control" >
 						<option value="0">- Select -</option> 
-							<?php if(!empty($sports)){
-									foreach($sports as $sport){?>
-								<option value ="<?php echo $sport['id'];?>"><?php echo $sport['sports'];?> </option>
-							<?php 	}
-								  }	
+						<?php if(!empty($sports)){
+					     foreach($sports as $sport){?>
+					     <option value ="<?php echo $sport['id'];?>"><?php echo $sport['sports'];?> </option>
+						<?php 	}
+						      }	
 							?>
 						</select>
 					</div>
@@ -213,7 +209,6 @@ function clear()
 					  <label for="city">Job Location</label>
 					  <input type="text" class="form-control"  id="jcity" placeholder="Enter City">
 					</div>
-					
 					<div class="form-group">
 					  <label for="address1">Address Line1</label>
 					  <input type="text" class="form-control"  id="jadd1" placeholder="Enter Address">
@@ -232,7 +227,6 @@ function clear()
 					  <label for="pin">Pin</label>
 					  <input type="text" class="form-control"  id="jpin" placeholder="Enter Pin">
 					</div >
-					
               </div>
               </div>
               <!-- /.tab-pane -->
@@ -241,7 +235,6 @@ function clear()
                 <h4>Organisation Details:</h4> 	
 			  </div>
                 <div class="box-body">
-					
 					 <div class="form-group">
 					  <label for="eventName">Organisation Name</label>
 					  <input type="text" class="form-control" id="orgName" >
@@ -250,9 +243,6 @@ function clear()
 					  <label>About Organisation</label>
 					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="abOrg" ></textarea>
 					</div>
-					
-					
-					
 					<div class="form-group">
 					  <label for="address1">Address Line1</label>
 					  <input type="text" class="form-control"  id="add1" placeholder="Enter Address">
@@ -265,7 +255,6 @@ function clear()
 					  <label for="city">Location</label>
 					  <input type="text" class="form-control"  id="orgcity" placeholder="Enter City">
 					</div>
-					
 					<!-- STATE IS ID BASED -->
 					<div class="form-group">
 					  <label for="state">State</label>
@@ -280,7 +269,6 @@ function clear()
 					  <label for="eventName">Email</label>
 					  <input type="text" class="form-control" id="email">
 					</div >
-					
 					<div class="form-group">
 					  <label for="eventName">Contact No.</label>
 					  <input type="text" class="form-control" id="cont">
@@ -293,7 +281,6 @@ function clear()
                 <h4>Requirements:</h4> 	
 			</div>
                 <div class="box-body">
-					
 					 <div class="form-group">
 					  <label for="eventName">Work Experience</label>
 					   <select id="jexp" class="form-control">
@@ -306,7 +293,6 @@ function clear()
 					  <label for="eventName">Qualifications</label>
 					  <input type="text" class="form-control" id="jqualification" >
 					</div >
-					
 					<div class="form-group">
 					  <label for="link">Desired skills</label>
 					  <input type="text" class="form-control"  id="skill" >
@@ -315,7 +301,6 @@ function clear()
 					  <label for="link">Key Requirement</label>
 					  <input type="text" class="form-control"  id="jreq">
 					</div >
-					
 					<div class="form-group">
 					  <label for="link">Gender</label>
                   <div class="radio">
@@ -344,27 +329,23 @@ function clear()
             <!-- /.tab-content -->
             </form>
             <form id="form"  method="post" enctype="multipart/form-data">
-              Image : <input type="file" name="file" id="file" />
-              <div class="form-group">
-              <input type="hidden" class="form-control" name="oldimageid" id="pid" value="0">
-              <input type="hidden" class="form-control" name="path"   id="path" value="uploads/job/">
-              <input type="hidden" class="form-control" name="height" id="height" value="512">
-              <input type="hidden" class="form-control" name="width"  id="width" value="512">
-              </div>
-              <input id="button" type="submit" value="Upload">
+	              Image : <input type="file" name="file" id="file" />
+	              <div class="form-group">
+	              <input type="hidden" class="form-control" name="oldimageid" id="pid" value="0">
+	              <input type="hidden" class="form-control" name="path"   id="path" value="uploads/job/">
+	              <input type="hidden" class="form-control" name="height" id="height" value="512">
+	              <input type="hidden" class="form-control" name="width"  id="width" value="512">
+	              </div>
+	              <input id="button" type="submit" value="Upload">
             </form>
               <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img> 
               <input type="hidden" class="form-control" name="photo" id="photo_url"> 
               <div id="mess" hidden>Image Uploded</div>
-
 			<div class="box-footer">
 			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Create Job" name="Create">
 			</div>
-			
-			
           </div>
 	  </div>
-	  
 </div>
 </div>
 </section>

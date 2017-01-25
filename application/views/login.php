@@ -14,9 +14,11 @@
    <script src="<?php echo base_url('assets/jquery-ui.min.js'); ?>"></script>
    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"></head>
+<script src="<?php echo base_url('assets/platform.js'); ?>" async defer></script>
    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="628993010976-sud3tgn8a9ropd0atsjd45558106n7oc.apps.googleusercontent.com">
-     <script src="<?php echo base_url('assets/platform.js'); ?>" async defer></script>
+<meta name="google-signin-client_id" content="628993010976-f2btnt5nhtnue8tmkn5s6hrh3h7ersfb.apps.googleusercontent.com">
+     
+
 <body>
  <div class="pre-loader">
         <div class="load-con" style="text-align: center;">
@@ -85,6 +87,8 @@ var data = JSON.stringify(data1);
 });
   }
   function onSignIn(googleUser) {
+
+   // alert("hii");
         var profile = googleUser.getBasicProfile();
         //console.log("ID: " + profile.getId()); // Don't send this directly to your server!
         //console.log('Full Name: ' + profile.getName());

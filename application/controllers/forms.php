@@ -34,7 +34,7 @@ public function home()
      if($emailid!=" ")
      {   
           
-      $res = $this->register->login($username, $password); 
+      $res = $this->register->login_google($username, $password); 
        //
         if($res != 0)
         {
