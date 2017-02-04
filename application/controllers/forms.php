@@ -1194,10 +1194,10 @@ public function upload_photo()
 
 public function uploadimg()
 {  
- print_r($_POST);
-// $resourceid=$_POST['resid'];
+ $resourceid = $_POST['resid'];
+  //$resourceid=$_POST['resid'];
  print_r($_FILES['image']['type']);
- die();
+ //die();
 
 if(!empty($_FILES['image'])){
 
@@ -1210,31 +1210,31 @@ if(!empty($_FILES['image'])){
  //===================image size fix ==============================================================
             $uploadimage = "uploads/resources/".$image;
             $newname = $image;
-           // Set the resize_image name
-            $resize_image = "uploads/resources/".$newname; 
-            $actual_image = "uploads/resources/".$newname;
+           // // Set the resize_image name
+           //  $resize_image = "uploads/resources/".$newname; 
+           //  $actual_image = "uploads/resources/".$newname;
            // It gets the size of the image
-            list( $width,$height ) = getimagesize( $uploadimage );
-          // It makes the new image width of 350
-            $newwidth = 1115;
-          // It makes the new image height of 350
-            $newheight = 640;
-          // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
-            $thumb = imagecreatetruecolor( $newwidth, $newheight );
-            $source = imagecreatefromjpeg( $resize_image );
-          // Resize the $thumb image.
-            imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-          // It then save the new image to the location specified by $resize_image variable
-            imagejpeg( $thumb, $resize_image, 100 ); 
-          // 100 Represents the quality of an image you can set and ant number in place of 100.
-            $out_image=addslashes(file_get_contents($resize_image));      
+          //   list( $width,$height ) = getimagesize( $uploadimage );
+          // // It makes the new image width of 350
+          //   $newwidth = 1115;
+          // // It makes the new image height of 350
+          //   $newheight = 640;
+          // // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
+          //   $thumb = imagecreatetruecolor( $newwidth, $newheight );
+          // //  $source = imagecreatefromjpeg( $resize_image );
+          // // Resize the $thumb image.
+          //   imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+          // // It then save the new image to the location specified by $resize_image variable
+          //   imagejpeg( $thumb, $resize_image, 100 ); 
+          // // 100 Represents the quality of an image you can set and ant number in place of 100.
+          //   $out_image=addslashes(file_get_contents($resize_image));      
 //====================================================================================================
 
-             // $this->load->model('register');
-            //  $this->register->saveCSVImage($resourceid,$newname);
+             $this->load->model('register');
+             $this->register->saveCSVImage($resourceid,$newname);
 
-		  // echo "Image uploaded successfully as ".$image;
-          echo "Image uploaded successfully";
+		         echo "Image uploaded successfully as ".$image;
+          //echo "Image uploaded successfully";
 
 	}else{
 
