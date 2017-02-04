@@ -98,7 +98,7 @@
                                 }
                                 $num=$temp;
                                 { ?> 
-		  <td><a href = "<?php echo site_url('forms/editContent/'.$num); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+		  <td><a href = "<?php echo site_url('forms/editContent/'.$num.'?Content'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
                 </tr>
 		  <?php } } } ?>
                 </tbody>

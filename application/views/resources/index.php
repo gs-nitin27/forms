@@ -112,8 +112,8 @@
                                 }
                                 $num=$temp;
                                 {  ?>
-                    <td><a href = "<?php echo site_url('forms/viewresources/'.$num); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
-                    <td><a href = "<?php echo site_url('forms/editResources/'.$num); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+                    <td><a href = "<?php echo site_url('forms/viewresources/'.$num.'?resources'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
+                    <td><a href = "<?php echo site_url('forms/editResources/'.$num.'?resources'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
 
                      <?php  if($usertype==101)
                    {

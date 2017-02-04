@@ -805,7 +805,7 @@ public function getUserTournamentInfo($id)
 
 public function getUserEventInfo($id)
 {
-	 $this->db->select('*, EI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
+	    $this->db->select('*, EI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
 		$this->db->from('gs_eventinfo EI');
 		$this->db->join('gs_sports SP', 'SP.id = EI.sport', "left");
 		$this->db->join('location L', 'EI.state = L.id', "left");
@@ -869,7 +869,7 @@ public function Csvfileupload($item,$userid)
     // $token=$item[0];
     // $status=$item[0];
 
-   $insert = "INSERT INTO `gs_resources`(`title`,`userid`, `url`,`summary`, `topic_of_artical`,`location`, `sport`,`date_created`) VALUES ( '$title','$userid', '$url', '$summary', '$topic_of_artical', '$location', '$sport',CURDATE()) ";
+  $insert = "INSERT INTO `gs_resources`(`title`,`userid`, `url`,`summary`, `topic_of_artical`,`location`, `sport`,`       date_created`) VALUES ( '$title','$userid', '$url', '$summary', '$topic_of_artical', '$location', '$sport',CURDATE()) ";
   // echo $insert ;die;
       $query = $this->db->query($insert);
        if($query)
@@ -885,7 +885,6 @@ public function Csvfileupload($item,$userid)
 
 public function saveCSVImage($id,$image)
 {
-	
 	 print_r($image); die;
      $update = "UPDATE  `gs_resources` SET  `image` = '$image' WHERE `id` = '$id' ";
      $query = $this->db->query($update);
@@ -905,6 +904,7 @@ public function removejobimage($id,$image)
         unlink("uploads/job/".$image);
         $this->db->delete('gs_jobInfo', array('image' => $image)); 
 }
+
 
 public function verifyuserpassword($id,$password)
 {
@@ -927,7 +927,6 @@ public function Emailfind($email)
       $this->db->where('u.email', $email);
       $query = $this->db->get();
 	  $data =  $query->result_array();
-	  
 	  if($data)
 	  {
 	    return $data[0];
@@ -955,6 +954,48 @@ public function passwordfind($email)
       {
         return 0;
       }   
+}
+
+public function event($id)
+{
+	$this->db->from('gs_eventinfo');
+	$this->db->where('userid', $id);
+    $query = $this->db->get();
+    $rowcount = $query->num_rows();
+    return $rowcount;
+}
+
+public function resources($id)
+{
+	$this->db->from('gs_resources');
+	$this->db->where('userid', $id);
+    $query = $this->db->get();
+    $rowcount = $query->num_rows();
+    return $rowcount;
+}
+public function tournament($id)
+{
+	$this->db->from('gs_tournament_info');
+	$this->db->where('userid', $id);
+    $query = $this->db->get();
+    $rowcount = $query->num_rows();
+    return $rowcount;
+}
+public function job($id)
+{
+	$this->db->from('gs_jobInfo');
+	$this->db->where('userid', $id);
+    $query = $this->db->get();
+    $rowcount = $query->num_rows();
+    return $rowcount;
+}
+public function content($id)
+{
+	$this->db->from('cms_content');
+	$this->db->where('userid', $id);
+    $query = $this->db->get();
+    $rowcount = $query->num_rows();
+    return $rowcount;
 }
 }
  ?>

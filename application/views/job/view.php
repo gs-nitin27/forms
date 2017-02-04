@@ -28,8 +28,6 @@
                                 }
                                 $num=$temp;
                                 { ?>
-			
-			?>
     <section class="content-header">
     <h1>
        View Job<a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a>

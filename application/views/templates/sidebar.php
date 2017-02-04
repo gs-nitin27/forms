@@ -59,10 +59,13 @@ $array=json_decode($data);
              {
 
           if(isset($value->child)){
+
+          //  $string= explode(" ",$str)
+         
            ?>
       <!-- sidebar menu: : style can be found in sidebar.less -->
-       
-        <li class="treeview">
+                 
+        <li class="treeview" id="<?php echo $value->id;?>">
           <a href="<?php echo $value->url;?>">
             <i class="<?php echo $value->class;?>"></i>
             <span><?php echo $value->name;?></span>
@@ -73,7 +76,7 @@ $array=json_decode($data);
           <ul class="treeview-menu">
         <?php 
         foreach ($value->child as $key => $value1) {?>
-            <li><a href="<?php echo site_url($value1->url);?>"><i class="fa fa-circle-o text-purple"></i><?php echo $value1->name;?></a></li>
+            <li><a href="<?php echo site_url($value1->url);?>"  id="<?php echo $value1->id;?>"><i class="fa fa-circle-o text-purple"></i><?php echo $value1->name;?></a></li>
     <?php  } ?>
           </ul>
         </li>
@@ -126,4 +129,25 @@ $(document).ready(function (e) {
 });
 
 
+</script>
+
+<script>
+$(document).ready(function() {
+
+var url      = window.location.href;
+var fields = url.split('?');
+var temp = '#'+ fields[1];
+$(temp).addClass('active');
+
+//alert(temp);
+
+var pathname = window.location.pathname;
+var fields1 = pathname.split('/');
+//alert(fields1);
+var temp1 = '#' + fields1[4];
+
+
+$(temp1).css('color', '#ffffff');
+
+});
 </script>

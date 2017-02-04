@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style>
-form {
+
+#form {
         border: 3px solid #f1f1f1;
-        margin-left: 400px;
-        margin-right: 590px;
+        margin-left: 470px;
+        margin-right: 541px;
+        position: static;
+
+
 }
 
 input[type=text], input[type=password] {
@@ -63,8 +68,10 @@ span.psw {
 }
 </style>
 <body>
-
-
+<div style=" margin-top: 16%;">
+<div style="color: red;text-align: center; " id="confirm-div" hidden="" ></div>
+</div>
+<div id="form">
 <form action="<?php echo site_url('forms/Emailfind'); ?>" method="post" > 
     <div class="container" style="width:300px;">
    <input type="hidden" name="userid" value=""> 
@@ -77,9 +84,18 @@ span.psw {
 
  
 </form>
-<div id="error_text"><h3 style="text-align: center;color: red"><?php echo $this->session->flashdata('error'); ?></h2></div> 
-  <?php if(isset($mes)) {?>
-<div><h3 style="text-align: center;color: green"><?php print_r($_POST); ?></h2></div>
-<?php }?>
+</div>
+
 </body>
 </html>
+
+<script>
+// assumes you're using jQuery
+$(document).ready(function() {
+$('#confirm-div').hide();
+<?php if($this->session->flashdata('msg')){ ?>
+$('#confirm-div').html('<?php echo $this->session->flashdata('msg'); ?>').show();
+});
+<?php } ?>
+</script>
+  

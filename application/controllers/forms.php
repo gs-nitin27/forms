@@ -15,9 +15,8 @@ public function index()
 
 public function home()
 {
-           $data['middle'] = 'dashboard';
-           $this->load->view('templates/template',$data);
-
+        $data['middle'] = 'dashboard';
+        $this->load->view('templates/template',$data);
 }
 
  public function gmaillogin()
@@ -244,10 +243,11 @@ public function createNewUser()
  	 $this->load->view('templates/template',$data);
  }
 
-public function userprofile($id)
+public function userprofile($str)
  { 
+      $id = $this->stringtonumber($str);
  	    $data['middle'] = 'userModule/Userprofile';
-		$data['required'] = array(
+		  $data['required'] = array(
 									'id'=>$id	
 								 );
 		$this->load->view('templates/template',$data);
@@ -319,18 +319,18 @@ else
 public function getEvent(){
 		$data['middle'] = 'event/index';
 
-		$this->load->view('templates/template',$data);
+	  	$this->load->view('templates/template',$data);
+     // $this->load->view('templates/template');
 	}
 	
 public function viewEvent($str)
 {
-         $id = $this->stringtonumber($str);
-		$data['middle'] = 'event/view';
-		$data['required'] = array(
-									'id'=>$id	
-								 );
-
-		$this->load->view('templates/template',$data);
+          $id = $this->stringtonumber($str);
+	      	$data['middle'] = 'event/view';
+	      	$data['required'] = array(
+									                 'id'=>$id	
+							                    	 );
+	       	$this->load->view('templates/template',$data);
 	}
 
 public function Eventmobileview()
@@ -1005,7 +1005,7 @@ public function Emailfind()
 
      // $mes['message'] ='Email sent to your account please reset your password';
      // $this->load->view('login',$res);
-    echo "Email sent to your account please reset your password ";
+    echo '<h3 style="color: green;text-align: center; "> Email sent to your account please reset your password</h3>';
    //  $mes="Email sent to your account please reset your password";
     // $this->session->set_flashdata('Welcome To GetSporty ');
      $this->emailsearch();
@@ -1013,8 +1013,11 @@ public function Emailfind()
  }
  else
  {
-    $this->session->set_flashdata('error','Email Id is Not Found');
-    redirect('forms/emailsearch','refresh');
+
+       $this->session->set_flashdata('msg', 'Email Id is Not Found');
+       redirect('forms/emailsearch');
+   // $this->session->set_flashdata('error','Email Id is Not Found');
+    //redirect('forms/emailsearch','refresh');
  }
 
 }
