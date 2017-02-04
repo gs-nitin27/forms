@@ -47,11 +47,33 @@
                     <button class="badge bg-green" onclick="myfunction(<?php //echo $user['userid'];?>,0)"><?php //echo "Deactivate";?></button>
                     <?php //} ?>
                     </td> -->
-                     <td><a href = "<?php echo site_url('forms/userprofile/'.$user['userid']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
+                        
+                    <?php  $list=array('a' => 0,
+                                'b' => 1,
+                                'c' => 2,
+                                'd' => 3,
+                                'e' => 4,
+                                'f' => 5,
+                                'g' => 6,
+                                'h' => 7,
+                                'i' => 8,
+                                'j' => 9);
+                                 $num=$user['userid']; //your value
+                                 $temp='';
+                                 $arr_num=str_split ($num);
+                                foreach($arr_num as $data)
+                                {
+                                $temp.=array_search($data,$list);
+                                }
+                                $num=$temp;
+                                {  ?>
+
+
+
+                     <td><a href = "<?php echo site_url('forms/userprofile/'.$num.'?module'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                     <!-- <td><a href = "<?php// echo site_url('forms/edituserProfile/'.$user['userid']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-edit"></i></a></td> -->
                     <!-- <td><a href = "<?php //echo site_url('forms/deleteUser/'.$user['userid']); ?>" onclick="return confirm('Are you sure you want to Deactivate this User?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td> -->
-
-
+                      <?php }?>
                   <td>
                     <?php if($user['activeuser']==0){?>
                     <button class="badge bg-red" onclick="myfunction(<?php echo $user['userid'];?>,1)"><?php echo "Activate";?></button>
@@ -59,8 +81,6 @@
                     <button class="badge bg-green" onclick="myfunction(<?php echo $user['userid'];?>,0)"><?php echo "Deactivate";?></button>
                     <?php } ?>
                     </td>
-
-
                 </tr>
                 <?php } } ?>
                 </tbody>

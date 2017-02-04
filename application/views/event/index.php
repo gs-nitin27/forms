@@ -105,7 +105,7 @@
                                 }
                                 $num=$temp;
                                 {  ?>
-					<td><a href = "<?php echo site_url('forms/viewevent/'.$num); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
+					<td><a href = "<?php echo site_url('forms/viewevent/'.$num.'?event'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                 </tr>
 				<?php } } } ?>
                 </tbody>

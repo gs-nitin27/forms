@@ -63,9 +63,23 @@ var data = JSON.stringify(data);
      foreach ($profile as $value) 
       {
 ?>
-          <!-- Profile Image -->
+            <!-- Profile Image -->
+      <?php
+              $event      = $this->register->event($value['userid']);
+              $tournament = $this->register->tournament($value['userid']);
+              $job        = $this->register->job($value['userid']);
+              $resources  = $this->register->resources($value['userid']);
+              $Content    = $this->register->content($value['userid']); 
+             
+              {
+      ?>
+       <input type="hidden" class="form-control" name="event"  id="event" value="<?php echo $event; ?>">
+       <input type="hidden" class="form-control" name="tournament"  id="tournament" value="<?php echo $tournament; ?>">
+       <input type="hidden" class="form-control" name="job"  id="job" value="<?php echo $job; ?>">
+       <input type="hidden" class="form-control" name="resources"  id="resources" value="<?php echo $resources; ?>">
+       <input type="hidden" class="form-control" name="Content"  id="Content" value="<?php echo $Content; ?>">
+      <?php }?>
           <div class="box box-primary">
-               
             <div class="box-body box-profile">
               <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('assets/dist/img/user4-128x128.jpg');?>" alt="User profile picture">
               <h3 class="profile-username text-center"><?php echo $value['name'];?></h3>
@@ -692,35 +706,36 @@ $('#EVENT').change(function() {
     //- PIE CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
+
     var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
     var pieChart = new Chart(pieChartCanvas);
     var PieData = [
       {
-        value: 100,
+        value: $('#event').val(),
         color: "#00c0ef",
         highlight: "#00c0ef",
         label: "Event"
       },
       {
-        value: 100,
+        value: $('#job').val(),
         color: "#00a65a",
         highlight: "#00a65a",
         label: "Job"
       },
       {
-        value: 300,
+        value: $('#tournament').val(),
         color: "#5262bc",
         highlight: "#5262bc",
         label: "Tournament"
       },
       {
-        value: 300,
+        value: $('#resources').val(),
         color: "#3c8dbc",
         highlight: "#3c8dbc",
         label: "Resources"
       },
       {
-        value: 100,
+        value: $('#Content').val(),
         color: "#e08e0b",
         highlight: "#e08e0b",
         label: "Content"

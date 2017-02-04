@@ -142,7 +142,7 @@ $(document).ready(function(){
                                 }
                                 $num=$temp;
                                 { ?>
-					<td><a href = "<?php echo site_url('forms/viewJob/'.$num); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
+					<td><a href = "<?php echo site_url('forms/viewJob/'.$num.'?job'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                 </tr>
 				<?php } } } ?>
                 </tbody>

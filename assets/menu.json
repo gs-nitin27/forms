@@ -5,14 +5,17 @@
         "url": "#EVENT",
         "class": "fa fa-calendar fa-x",
         "name": "EVENT",
-        "child":{
-                "1":   {
-                          "url": "/forms/createevent",
-                          "name": "create event"
-                      },
+	    	"id":"event",
+         "child":{
+                   "1":   {
+				             "id"  : "createevent" ,
+                             "url": "/forms/createevent?event",
+                             "name": "create event"
+                          },
                  "2": {
-                    "url": "/forms/getevent",
-                    "name": "View event"
+				              "id" : "getevent",
+                              "url": "/forms/getevent?event",
+                              "name": "View event"
                   }
                 }
       },
@@ -22,13 +25,16 @@
           "url": "#TOURNAMENT",
            "class": "fa fa-trophy fa-x",
           "name": "TOURNAMENT",
+		      "id":"tournament",
           "child":{
-                "1" :  {
-                        "url": "/forms/createtournament",
-                        "name": "Create Tournament"
+                    "1" :  {
+				                  "id":"createtournament",
+                          "url": "/forms/createtournament?tournament",
+                         "name": "Create Tournament"
                       },
                 "2" : {
-                        "url": "/forms/gettournament",
+				        "id":"gettournament",
+                        "url": "/forms/gettournament?tournament",
                         "name": "View Tournament"
                       }
       
@@ -37,17 +43,21 @@
 
 
   "3":  {
+      
       "url": "#JOB",
        "class": "fa fa-briefcase fa-x",
       "name": "JOB",
+	  "id":"job",
       "child":  {
        "1": {
-          "url": "/forms/createjob",
-          "name": "create job"
+	             "id":"createjob",
+                 "url": "/forms/createjob?job",
+                 "name": "create job"
         },
        "2": {
-          "url": "/forms/getjob",
-          "name": "view job"
+	             "id":"getjob",
+                 "url": "/forms/getjob?job",
+                 "name": "view job"
         }
       }
       
@@ -60,19 +70,23 @@
            "url": "#RESOURCES",
             "class": "fa fa-book fa-x",
            "name": "RESOURCES",
+		   "id":"resources",
            "child" :{
         "1":{
-          "url": "/forms/createresources",
+		  "id":"createresources",
+          "url": "/forms/createresources?resources",
           "name": "create resources"
         },
         
         "2":{
-          "url": "/forms/shareresource",
+		"id":"shareresource",
+          "url": "/forms/shareresource?resources",
           "name": "Share resources"
         },
         
         "3":{
-          "url": "/forms/getresources",
+		"id":"getresources",
+          "url": "/forms/getresources?resources",
           "name": "view resources"
         }
       }
@@ -85,13 +99,16 @@
          "url": "#CONTENT",
           "class": "fa fa-list-alt fa-x",
           "name": "CONTENT",
+		  "id":"Content",
         "child" :{
        "1" : {
-          "url": "/forms/createContent",
-          "name": "create content"
+	            "id":"createContent",
+                "url": "/forms/createContent?Content",
+                "name": "create content"
         },
         "2" : {
-          "url": "/forms/getContent",
+		"id":"getContent",
+          "url": "/forms/getContent?Content",
           "name": "View content"
         }
       }
@@ -99,18 +116,22 @@
 
     "6" :  {
 
-         "url": "#USERROLE",
-          "class": "fa fa-users fa-x",
-          "name": "USER ROLE",
-        "child" :{
-       "1" : {
-          "url": "/forms/usermodule",
-          "name": "USER ROLE MANAGEMENT"
-        },
-        "2" : {
-          "url": "/forms/createnewUser",
-          "name": "Create New  User"
-        }
+                 "url": "#USERROLE",
+                 "class": "fa fa-users fa-x",
+                 "name": "USER ROLE",
+		         "id":"module",
+                 "child" :
+				 {
+                 "1" :{
+	                    "id":"usermodule",
+                        "url": "/forms/usermodule?module",
+                        "name": "USER ROLE MANAGEMENT"
+                      },
+                "2" : {
+		                "id":"createnewUser",
+                        "url": "/forms/createnewUser?module",
+                        "name": "Create New  User"
+                       }
       }
     }
          
