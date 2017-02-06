@@ -5,10 +5,13 @@
  <script>
 //document.domain = "getsporty.in";
 $(document).ready(function(){
+   
 $('#save').click(function(){
+
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
 var string = summary12.replace(/[\/\\<>~{}]/g, '');
+
 var description1=$("#rdescription").val();
 var description2=description1.toString();
 var description3 = description2.replace(/[\/\\<>~{}]/g, '');
@@ -43,6 +46,7 @@ var data = eval(data1);//JSON.stringify(data1);
     success: function(result) {
      if(result.response == '1')
       {
+         //alert(result.response);
         $( "#msgdiv" ).show();
          $( "#msg" ).html("Resource Updated");
          setTimeout(function() {
@@ -51,27 +55,37 @@ var data = eval(data1);//JSON.stringify(data1);
           window.location.href = url+"/forms/getResources";
       }else
       {
-         $( "#msgdiv" ).show();
+      $( "#msgdiv" ).show();
          $( "#msg" ).html('Resource not Updated');
          setTimeout(function() {
          $('#msgdiv').fadeOut('fast');
-         }, 2000);
+          }, 2000);
       }
+   
+   
     }
-});   
+
+
+});
+
+    
 });});
+
 </script>
+
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       Edit Resources
+     Edit Resources
+        
       </h1>
+     
     </section>
          <section class="content"> 
-       <div class="row">
-       <?php  if(isset($msg) && $msg != ""){?>
-       <div class="col-md-12">
+      <div class="row">
+    <?php  if(isset($msg) && $msg != ""){?>
+    <div class="col-md-12">
     <!-- <div class=" alert alert-success" id="msgdiv" >
       <strong>Info! <span id = "msg"><?php// echo $msg;?></span></strong> 
     </div> -->
@@ -110,6 +124,11 @@ var data = eval(data1);//JSON.stringify(data1);
                   <label for="exampleInputEmail1">Title</label>
                   <input type="text" class="form-control" name="rtitle" maxlength="50" id="rtitle" placeholder="Enter title" value="<?php echo $value['title']; ?>">
                 </div>
+        
+        
+        
+        
+        
         <div class="form-group">
                   <label for="exampleInputEmail1">Link</label>
                   <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link" value="<?php echo $value['url']; ?>">
@@ -247,7 +266,13 @@ var data = eval(data1);//JSON.stringify(data1);
 </div>
 <script type="text/javascript">
   $(document).ready(function (e) {
+
+   
+
   $("#form").on('submit',(function(e) {
+
+   
+
    $('#loader_img').show();
     e.preventDefault();
     $.ajax({
@@ -263,8 +288,10 @@ var data = eval(data1);//JSON.stringify(data1);
       },
       success: function(data)
         {
-               $('#loader_img').hide();
+                alert(data);
+                $('#loader_img').hide();
                 $('#mess').show();
+              //  $("#photo_url").val("");
                 $("#photo_url").val(data);   
         },
         error: function(e) 

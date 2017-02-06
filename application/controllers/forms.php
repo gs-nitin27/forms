@@ -703,6 +703,8 @@ public function saveEditResources()
 {
 $item  = new stdClass(); 
 
+//print_r($_POST);//die;
+
 $item->id                    = $_POST['id'];//$data2->id;
 $item->userid                = $_POST['userid'];//$data2->userid;
 $item->title                 = mysql_real_escape_string($_POST['title']);//mysql_real_escape_string($data2->title);
@@ -1022,37 +1024,38 @@ public function Emailfind()
 
 }
 //==================================End Email================================= 
-
  public function imageupload()
  {     
- 	$newpath=$_POST['path'];
-  // print_r($newpath) ;die;
+  $newpath=$_POST['path'];
+
+ // print_r($_FILES["file"]["name"]) ;//die;
+
      switch ($newpath) {
-     	case 'uploads/resources/':
-     		    if ($_POST['oldimageid'])
+      case 'uploads/resources/':
+            if ($_POST['oldimageid'])
                   {
-						if($_POST['oldimage'])
-						{
-			        	$id = $_POST['oldimageid'];
-			            $image = $_POST['oldimage'];
-			        	$temp= $this->register->removeimage($id,$image);
-			            }
-			        }
-     		break;
-     	case 'uploads/job/':
-     		      if ($_POST['oldimageid'])
+            if($_POST['oldimage'])
+            {
+                $id = $_POST['oldimageid'];
+                  $image = $_POST['oldimage'];
+                $temp= $this->register->removeimage($id,$image);
+                  }
+              }
+        break;
+      case 'uploads/job/':
+              if ($_POST['oldimageid'])
                      {
-						if($_POST['oldimage'])
-						{
-			        	$id = $_POST['oldimageid'];
-			            $image = $_POST['oldimage'];
-			        	$temp= $this->register->removejobimage($id,$image);
-			            }
-			        }
-     		break;
-     	default:
-     		 throw new Exception('Unknown image path.');
-     		break;
+            if($_POST['oldimage'])
+            {
+                $id = $_POST['oldimageid'];
+                  $image = $_POST['oldimage'];
+                $temp= $this->register->removejobimage($id,$image);
+                  }
+              }
+        break;
+      default:
+         throw new Exception('Unknown image path.');
+        break;
 }
            $mime=$_FILES['file']['type'];
            switch ($mime) {
@@ -1069,10 +1072,15 @@ public function Emailfind()
             date_default_timezone_set("Asia/Kolkata");
             $newfilename1='res_'.time();
             $newfilename = $newfilename1. '.' . end($temp);
+
+           
+
             move_uploaded_file($_FILES["file"]["tmp_name"], $newpath. $newfilename);
   //===================image size fix ==============================================================
             $uploadimage = $newpath.$newfilename;
             $newname = $newfilename;
+
+
            // Set the resize_image name
             $resize_image = $newpath.$newname; 
             $actual_image = $newpath.$newname;
@@ -1093,6 +1101,7 @@ public function Emailfind()
           // 100 Represents the quality of an image you can set and ant number in place of 100.
             $out_image=addslashes(file_get_contents($resize_image));      
 //=================================end image size fix ==================================================
+          // print_r($newfilename); //die;
         echo  $newfilename;  
 }
 
@@ -1179,7 +1188,7 @@ $path='uploads/csv/'.$temp;
 }
 else{
 	$this->session->set_flashdata('error','Please Upload CSV file.');
-    redirect('forms/getResources','refresh');
+    redirect('forms/getResources','refresh'); 
 }
 }
 
@@ -1195,24 +1204,86 @@ public function upload_photo()
 }
 
 
+
 public function uploadimg()
 {  
  $resourceid = $_POST['resid'];
-  //$resourceid=$_POST['resid'];
- print_r($_FILES['image']['type']);
+ // $im=$_FILES;
+  //print_r($im);
+
  //die();
+ 
+ //print_r($mime);die;
 
 if(!empty($_FILES['image'])){
+ 
+ $mime=$_FILES['image']['type'] ;
 
-		$ext = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
+ switch ($mime) 
+           {
+             case 'image/jpeg':
+                    $ftype = 'imagecreatefromjpeg';
+                    break;
+             case 'image/png':
+                    $ftype = 'imagecreatefrompng';
+                    break;
+             default: 
+                    throw new Exception('Unknown image type.');
+            }
+            $temp = explode(".", $_FILES["image"]["name"]);
+            date_default_timezone_set("Asia/Kolkata");
+            $newfilename1='res_'.time();
+            $newfilename = $newfilename1. '.' . end($temp);
+            move_uploaded_file($_FILES["image"]["tmp_name"], 'uploads/resources/'.$newfilename);
+  //===================image size fix ==============================================================
+            $uploadimage =  "uploads/resources/".$newfilename;
+            $newname = $newfilename;
+           // Set the resize_image name
+            $resize_image =  "uploads/resources/".$newname; 
+            $actual_image =  "uploads/resources/".$newname;
+           // It gets the size of the image
+            list( $width,$height ) = getimagesize( $uploadimage );
+          // It makes the new image width of 350
+            $newwidth = 1115;
+          // It makes the new image height of 350
+            $newheight =640;
+          // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
+            $thumb = imagecreatetruecolor( $newwidth, $newheight );
+           
+            $source = $ftype( $resize_image );
+          // Resize the $thumb image.
+            imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+          // It then save the new image to the location specified by $resize_image variable
+            imagejpeg( $thumb, $resize_image, 100 ); 
+          // 100 Represents the quality of an image you can set and ant number in place of 100.
+            $out_image=addslashes(file_get_contents($resize_image));      
+//=================================end image size fix ==================================================
+     
+             $this->load->model('register');
+             $this->register->saveCSVImage($resourceid,$newname);
 
-                $image = 'res_'.time().'.'.$ext;
+             echo  $newfilename;  
+       }
+       else
+       {
+         echo "Image Is Empty";
+}
 
-                move_uploaded_file($_FILES["image"]["tmp_name"], 'uploads/resources/'.$image);
+
+
+
+
+
+
+		// $ext = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
+
+  //               $image = 'res_'.time().'.'.$ext;
+
+  //               move_uploaded_file($_FILES["image"]["tmp_name"], 'uploads/resources/'.$image);
 
  //===================image size fix ==============================================================
-            $uploadimage = "uploads/resources/".$image;
-            $newname = $image;
+            // $uploadimage = "uploads/resources/".$image;
+            // $newname = $image;
            // // Set the resize_image name
            //  $resize_image = "uploads/resources/".$newname; 
            //  $actual_image = "uploads/resources/".$newname;
@@ -1233,16 +1304,16 @@ if(!empty($_FILES['image'])){
           //   $out_image=addslashes(file_get_contents($resize_image));      
 //====================================================================================================
 
-             $this->load->model('register');
-             $this->register->saveCSVImage($resourceid,$newname);
+           //   $this->load->model('register');
+           //   $this->register->saveCSVImage($resourceid,$newname);
 
-		         echo "Image uploaded successfully as ".$image;
+		         // echo $image;
           //echo "Image uploaded successfully";
 
-	}else{
+	// }else{
 
-		echo "Image Is Empty";
-	}
+	// 	echo "Image Is Empty";
+	// }
 }
 
 public function forgotpassword()

@@ -19,7 +19,7 @@
                <tr>
                <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
                <th style="background: #5262bc; color:#ffffff;">Title<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-               <th style="background: #5262bc; color: #ffffff;">Summary <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+               <th style="background: #5262bc; color: #ffffff;">Image <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                <th style="background: #5262bc; color: #ffffff;">Image Upload<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                <th style="background: #5262bc; color: #ffffff;">Save Image  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                </tr>
@@ -35,8 +35,9 @@
                     ?>
                     <tr>
                     <td><?php echo $i++; ?></td>
-                    <td style="width:300px"><?php echo $resource[0]['title']; ?></td>
-                    <td style="width:300px"><?php echo substr($resource[0]['summary'],0,170); ?></td>	
+                    <td style="width:400px"><?php echo $resource[0]['title']; ?></td>
+
+                    <td style="width:200px"><img style="width: 75px;height: 50px;" id="<?php echo $resource[0]['id']; ?>" src="first.jpg"/></td>	
 
 
 
@@ -46,12 +47,12 @@
                  <td><input type="button" value="Submit" class="btnSubmit" /></td>
                  </form> -->
 
-   <td><body ng-app="main-App" ng-controller="AdminController">
+                      <td><body ng-app="main-App" ng-controller="AdminController">
                       <form ng-submit="submit()" name="form" role="form">
 
 
 
-              <input name="resid" type="text" id="resid" value="{{<?php echo $resource[0]['id'];?>}}" > 
+             <!--  <input name="resid" type="text" id="resid" value="{{<?php// echo $resource[0]['id'];?>}}" >  -->
         
                   
 
@@ -69,7 +70,7 @@
                  <tr>
                  <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
                   <th style="background: #5262bc; color: #ffffff;">Title</th>
-                  <th style="background: #5262bc; color: #ffffff;">Summary</th>
+                  <th style="background: #5262bc; color: #ffffff;">Image</th>
                   <th style="background: #5262bc; color: #ffffff;">Image Upload</th>
                   <th style="background: #5262bc; color: #ffffff;">Save Image </th>
                 </tr>
@@ -95,28 +96,6 @@
     $("#example1").DataTable();
   });
 </script>
-
-<script type="text/javascript">
-$(document).ready(function (e){
-$("#uploadForm").on('submit',(function(e){
-alert($this);return;
-e.preventDefault();
-$.ajax({
-url: "<?php echo site_url('forms/uploadimg')?>",
-type: "POST",
-data:  new FormData(this),
-contentType: false,
-cache: false,
-processData:false,
-success: function(data){
-  alert(data);
-},
-error: function(){}           
-});
-}));
-});
-</script>
-
 
 <script type="text/javascript">
       var app =  angular.module('main-App',[]);
@@ -154,8 +133,11 @@ error: function(){}
                'Content-Type': undefined
         }
        }).success(function(data){
-     
-            alert(data);
+          alert(data);
+          var textid= "#" + imgid ;
+         $(textid).attr("src","<?php  echo base_url()."uploads/resources/"; ?>" + data );
+
+            
        });
         };
           $scope.uploadedFile = function(element,name) {
