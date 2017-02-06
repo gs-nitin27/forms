@@ -55,7 +55,7 @@
         
                   
 
-              <input ng-model="form.image" type="file" name="<?php echo $resource[0]['id']; ?>" id="<?php echo $resource[0]['id']; ?>" class="form-control input-lg" accept="image/*" onchange="angular.element(this).scope().uploadedFile(this)" style="width:300px;height: 0%;"></td>
+              <input ng-model="form.image" type="file" name="<?php echo $resource[0]['id']; ?>" id="<?php echo $resource[0]['id']; ?>" class="form-control input-lg" accept="image/*" onchange="angular.element(this).scope().uploadedFile(this)" onclick="getid(id);" style="width:300px;height: 0%;"></td>
 
                        <td style="text-align: center;width:98px;" ><input type="submit" id="submit" value="Submit" /></td>
                         </form>
@@ -121,10 +121,19 @@ error: function(){}
 <script type="text/javascript">
       var app =  angular.module('main-App',[]);
       app.controller('AdminController', function($scope, $http) {
+      var imgid='';
       $scope.form = [];
       $scope.files = [];
+      getid = function(id)
+      {
+        
+        imgid = id;
+
+      }
       $scope.submit = function() {
+
       $scope.form.image = $scope.files[0];
+      console.log($scope.files[0]);
       //$scope.form.image= $scope.files[0];
       $http({
         method  : 'POST',
@@ -133,7 +142,7 @@ error: function(){}
         transformRequest: function (data) {
             var formData = new FormData();
             formData.append("image", $scope.form.image);  
-           // formData.append("resid", $scope.form.resid);
+            formData.append("resid", imgid);
              //formData.append("image", $scope.form.name);
               
             return formData;  
