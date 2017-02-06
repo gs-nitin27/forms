@@ -113,7 +113,7 @@ function clear()
           
            
             <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Create Content" name="Create">
+                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Update Content" name="Create">
               </div>
         </form>
           </div>
