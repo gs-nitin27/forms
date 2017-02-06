@@ -676,14 +676,17 @@ public function StatusContent($item)
 
 public function removeimage($id,$image)
 {	 
-                // $image="select image from gs_resources where id='$id'";
-                // $this->db->where('id', $id);
-                // unlink("uploads/resources".$image);
-                // $this->db->delete('gs_resources', array('id' => $id));
-	
-                $this->db->where('id', $id);
-                unlink("uploads/resources/".$image);
-                $this->db->delete('gs_resources', array('image' => $image));  
+         unlink("uploads/resources/".$image);
+         $update = "UPDATE  `gs_resources` SET  `image` =' ' WHERE `userid` = '$id' ";
+         $query = $this->db->query($update);
+         if($query)
+         {
+	       return 1;
+         }
+         else
+         {
+         return 0;
+         }
 }
 
 public function getUserInfo($id=false)
@@ -865,11 +868,10 @@ public function Csvfileupload($item,$userid)
      $topic_of_artical=$item[3];
      $sport=$item[1];
      $location=$item[5] ;
-    // $date_created=$item[0];
+     $date_created='CUR';
     // $token=$item[0];
     // $status=$item[0];
-
-  $insert = "INSERT INTO `gs_resources`(`title`,`userid`, `url`,`summary`, `topic_of_artical`,`location`, `sport`,`       date_created`) VALUES ( '$title','$userid', '$url', '$summary', '$topic_of_artical', '$location', '$sport',CURDATE()) ";
+$insert = "INSERT INTO `gs_resources`(`title`,`userid`, `url`,`summary`, `topic_of_artical`,`location`, `sport`,        `date_created`) VALUES ( '$title','$userid', '$url', '$summary', '$topic_of_artical', '$location', '$sport','$date_created') ";
   // echo $insert ;die;
       $query = $this->db->query($insert);
        if($query)
