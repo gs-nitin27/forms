@@ -44,10 +44,16 @@
       <?php }?>
           <div class="box box-primary">
             <div class="box-body box-profile">
-
+                
+               <?php if($value['user_image']) { ?> 
               <img class="profile-user-img img-responsive img-circle" src="<?php  echo base_url()."uploads/profile/".$value['user_image']; ?>" alt="User profile picture">
-                 
-                 
+                 <?php } else { 
+                    if($value['Gender'] == 'Female') { ?>
+                <img class="profile-user-img img-responsive img-circle" src="<?php  echo base_url('img/female.jpg'); ?>" alt="User profile picture">   
+                 <?php } else { ?>
+                <img class="profile-user-img img-responsive img-circle" src="<?php  echo base_url('img/user.jpg'); ?>" alt="User profile picture">        
+
+                 <?php } }?>
                  <!--Image upload module -->
                  
 

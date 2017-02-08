@@ -81,15 +81,20 @@ var data = JSON.stringify(data);
       <?php }?>
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('assets/dist/img/user4-128x128.jpg');?>" alt="User profile picture">
+             <?php 
+                    if($value['user_image']) {
+             ?>
+           <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url()."uploads/profile/".$value['user_image'];?>" alt="User profile picture">
+             <?php } else { if($value['Gender'] == 'Female') { ?>
+                <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('img/female.jpg');?>" alt="User profile picture">
+           <?php } else { ?>
+           <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('img/user.jpg');?>" alt="User profile picture">
+            <?php } } ?>
+
               <h3 class="profile-username text-center"><?php echo $value['name'];?></h3>
-
               <p class="text-muted text-center"><?php echo $value['prof_id'];?></p>
-
               <input type="hidden" class="form-control" name="UserId"  id="uid" value="<?php echo $value['userid']; ?>">
-              
               <ul class="list-group list-group-unbordered">
-
               <?php 
                $module_list = $value['access_module'];
                $module_no = explode(',', $module_list); 
