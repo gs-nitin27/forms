@@ -870,7 +870,8 @@ public function Csvfileupload($item,$userid)
      $date_created='CUR';
     // $token=$item[0];
     // $status=$item[0];
-$insert = "INSERT INTO `gs_resources`(`title`,`userid`, `url`,`summary`, `topic_of_artical`,`location`, `sport`,        `date_created`) VALUES ( '$title','$userid', '$url', '$summary', '$topic_of_artical', '$location', '$sport','$date_created') ";
+
+$insert = "INSERT INTO `gs_resources`(`title`,`userid`, `url`,`summary`, `topic_of_artical`,`location`, `sport`,`date_created`) VALUES ( '$title','$userid', '$url', '$summary', '$topic_of_artical', '$location', '$sport','$date_created') ";
   // echo $insert ;die;
       $query = $this->db->query($insert);
        if($query)
