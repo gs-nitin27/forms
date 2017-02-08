@@ -698,7 +698,6 @@ public function getUserInfo($id=false)
 
 public function ActivateUser($item)
 {
-	//print_r($item); die;
  $update = "UPDATE  `user` SET  `activeuser` ='$item->activeuser' WHERE `userid` = '$item->userid' ";
  $query = $this->db->query($update);
 
@@ -998,6 +997,21 @@ public function content($id)
     $query = $this->db->get();
     $rowcount = $query->num_rows();
     return $rowcount;
+}
+
+public function profileimage($id,$image)
+{
+	//print_r($id);die;
+     $update = "UPDATE  `user` SET  `user_image` = '$image'   WHERE `userid` = '$id' ";
+     $query = $this->db->query($update);
+     if($query)
+       {
+	     return 1;
+       }
+     else
+       {
+         return 0;
+       }
 }
 }
  ?>

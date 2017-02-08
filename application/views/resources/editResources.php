@@ -221,7 +221,7 @@ var data = eval(data1);//JSON.stringify(data1);
           </td>
           </tr>
           <tr style="margin-top:20px">
-          <td >
+          <td>
             <form id="form" action="" method="post" enctype="multipart/form-data">
                Image : <input type="file" name="file" id="file" />
 

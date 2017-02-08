@@ -4,6 +4,17 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   
+  <style type="text/css">
+    input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+  </style>
   
   
   
@@ -21,11 +32,23 @@
             </div>
             <div>
             <div id="error_text"><h3 style="text-align: center;color: green"><?php echo $this->session->flashdata('error'); ?></h2></div> 
+         <!--   <div  style=" margin-left: 78%;margin-top: -4%;"> -->
             <form action="<?php echo site_url('forms/Csvfileupload'); ?>" method="post" enctype="multipart/form-data">
-            Select CSV file :
-             <input type="file" name="fileToUpload" id="fileToUpload">
-             <input type="submit" value="Upload CSV" name="submit"> 
+          
+              <div style="margin-left: 78%; margin-top: -4%;">    
+              <label  for="fileToUpload" class="custom-file-upload">
+              <i class="fa fa-cloud-upload"></i> Select CSV
+              </label>
+              <input id="fileToUpload" name="fileToUpload" type="file"/>
+              </div>
+              <!-- </div> -->
+             <!--  Select CSV file :
+             <input type="file" name="fileToUpload" id="fileToUpload"> -->
+             <div style="margin-left: 90%; margin-top: -4%;">
+             <input type="submit" class="btn btn-primary" value="Upload CSV" name="submit"> 
+              </div>
              </form>
+           <!--  </div> -->
              </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">

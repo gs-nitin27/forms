@@ -11,13 +11,10 @@ $array=json_decode($data);
       <!-- Sidebar user panel -->
       <div class="user-panel">
 
-
- <div class="pull-left image">
-          <img src="<?php echo base_url('/assets/dist/img/user2-160x160.jpg'); ?>" class="" alt="User Image">
-        </div>
-      <?php
+ <?php
           $data=$this->session->userdata('item');
           $name=$data['name'];
+          
         {  
             $id=$data['userid'];
             $module = $this->register->usermoduleData($id);
@@ -25,6 +22,10 @@ $array=json_decode($data);
            
                } }?>
 
+ <div class="pull-left image">
+          <img src="<?php  echo base_url()."uploads/profile/".$mod['user_image']; ?>" class="" alt="User Image">
+        </div>
+     
      
 
       </div>

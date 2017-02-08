@@ -116,7 +116,7 @@ public function edituser()
 	   $data['required'] = array(
 									'id'=>$id	
 								 );
-        $data['middle'] = 'userModule/edituser';
+        $data['middle'] = 'userModule/public_userProfile';
 		$this->load->view('templates/template',$data);
 }
 
@@ -199,10 +199,11 @@ else {
 }
 }
 
-public function edituserProfile($id)
-{
-        $data['middle'] = 'userModule/edituserProfile';
-		$data['required'] = array(
+public function edituserProfile($str)
+{    
+     $id = $this->stringtonumber($str);
+     $data['middle'] = 'userModule/edituser';
+		 $data['required'] = array(
 									'id'=>$id	
 								 );
 		$this->load->view('templates/template',$data);
@@ -1207,14 +1208,9 @@ public function upload_photo()
 
 public function uploadimg()
 {  
+
  $resourceid = $_POST['resid'];
- // $im=$_FILES;
-  //print_r($im);
-
- //die();
  
- //print_r($mime);die;
-
 if(!empty($_FILES['image'])){
  
  $mime=$_FILES['image']['type'] ;
@@ -1269,51 +1265,6 @@ if(!empty($_FILES['image'])){
          echo "Image Is Empty";
 }
 
-
-
-
-
-
-
-		// $ext = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
-
-  //               $image = 'res_'.time().'.'.$ext;
-
-  //               move_uploaded_file($_FILES["image"]["tmp_name"], 'uploads/resources/'.$image);
-
- //===================image size fix ==============================================================
-            // $uploadimage = "uploads/resources/".$image;
-            // $newname = $image;
-           // // Set the resize_image name
-           //  $resize_image = "uploads/resources/".$newname; 
-           //  $actual_image = "uploads/resources/".$newname;
-           // It gets the size of the image
-          //   list( $width,$height ) = getimagesize( $uploadimage );
-          // // It makes the new image width of 350
-          //   $newwidth = 1115;
-          // // It makes the new image height of 350
-          //   $newheight = 640;
-          // // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
-          //   $thumb = imagecreatetruecolor( $newwidth, $newheight );
-          // //  $source = imagecreatefromjpeg( $resize_image );
-          // // Resize the $thumb image.
-          //   imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-          // // It then save the new image to the location specified by $resize_image variable
-          //   imagejpeg( $thumb, $resize_image, 100 ); 
-          // // 100 Represents the quality of an image you can set and ant number in place of 100.
-          //   $out_image=addslashes(file_get_contents($resize_image));      
-//====================================================================================================
-
-           //   $this->load->model('register');
-           //   $this->register->saveCSVImage($resourceid,$newname);
-
-		         // echo $image;
-          //echo "Image uploaded successfully";
-
-	// }else{
-
-	// 	echo "Image Is Empty";
-	// }
 }
 
 public function forgotpassword()
@@ -1350,6 +1301,65 @@ function logincall()
 
             $data['middle'] = 'dashboard';
            $this->load->view('login-callback',$data);
+
+}
+
+
+public function profileimage()
+{  
+        // print_r($_FILES);
+       //  die;
+         
+
+           $userid=$_POST['id'];
+
+           $mime=$_FILES['file']['type'];
+           switch ($mime) {
+             case 'image/jpeg':
+                    $ftype = 'imagecreatefromjpeg';
+                    break;
+             case 'image/png':
+                    $ftype = 'imagecreatefrompng';
+                    break;
+             default: 
+                    throw new Exception('Unknown image type.');
+}
+            $temp = explode(".", $_FILES["file"]["name"]);
+            date_default_timezone_set("Asia/Kolkata");
+            $newfilename1='profile_'.time();
+            $newfilename = $newfilename1. '.' . end($temp);
+            move_uploaded_file($_FILES["file"]["tmp_name"], 'uploads/profile/'. $newfilename);
+  //===================image size fix ==============================================================
+            $uploadimage =  "uploads/profile/".$newfilename;
+            $newname = $newfilename;
+           // Set the resize_image name
+            $resize_image =  "uploads/profile/".$newname; 
+            $actual_image =  "uploads/profile/".$newname;
+           // It gets the size of the image
+            list( $width,$height ) = getimagesize( $uploadimage );
+          // It makes the new image width of 350
+            $newwidth = 420;
+          // It makes the new image height of 350
+            $newheight =420;
+          // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
+            $thumb = imagecreatetruecolor( $newwidth, $newheight );
+           
+            $source = $ftype( $resize_image );
+          // Resize the $thumb image.
+            imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+          // It then save the new image to the location specified by $resize_image variable
+            imagejpeg( $thumb, $resize_image, 100 ); 
+          // 100 Represents the quality of an image you can set and ant number in place of 100.
+            $out_image=addslashes(file_get_contents($resize_image));   
+//=================================end image size fix ==================================================
+          // print_r($newfilename); //die;
+
+             $this->load->model('register');
+             $this->register->profileimage($userid,$newfilename);
+
+            $this->session->set_userdata('user_image', $newfilename);
+            
+        echo  $newfilename;  
 
 }
 

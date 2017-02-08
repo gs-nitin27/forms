@@ -37,7 +37,13 @@
                     <td><?php echo $i++; ?></td>
                     <td style="width:400px"><?php echo $resource[0]['title']; ?></td>
 
-                    <td style="width:200px"><img style="width: 75px;height: 50px;" id="<?php echo $resource[0]['id']; ?>" src="first.jpg"/></td>	
+                    <td style="width:200px">
+                     <!--  <?php //if($resource[0]['image']) { print_r($resource[0]['image']); ?> -->
+                    <img style="width: 75px;height: 50px;" id="<?php echo $resource[0]['id']; ?>" src="<?php echo base_url('img/no-image.jpg')?>"/>
+                     <!--  <?php// } else { ?> -->
+                      <!-- <img style="width: 75px;height: 50px;" src="<?php// echo base_url('img/no-image.jpg')?>"/>
+                      <?php// } ?> -->
+                    </td>	
 
 
 

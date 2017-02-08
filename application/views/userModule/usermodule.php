@@ -71,8 +71,10 @@
 
 
                      <td><a href = "<?php echo site_url('forms/userprofile/'.$num.'?module'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
-                    <!-- <td><a href = "<?php// echo site_url('forms/edituserProfile/'.$user['userid']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-edit"></i></a></td> -->
-                    <!-- <td><a href = "<?php //echo site_url('forms/deleteUser/'.$user['userid']); ?>" onclick="return confirm('Are you sure you want to Deactivate this User?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td> -->
+
+                    <!-- <td><a href = "<?php// echo site_url('forms/edituserProfile/'.$user['userid']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-edit"></i></a></td>  -->
+
+                    <!-- <td><a href = "<?php// echo site_url('forms/deleteUser/'.$user['userid']); ?>" onclick="return confirm('Are you sure you want to Deactivate this User?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>  -->
                       <?php }?>
                   <td>
                     <?php if($user['activeuser']==0){?>
@@ -93,7 +95,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Usertype  </th>
                   <!-- <th style="width: 40px; background: #5262bc; color: #ffffff;">Permission</th> -->
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
-                  <!-- <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
+                <!--   <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Activate</th>
                 </tr>
                 </tfoot>
