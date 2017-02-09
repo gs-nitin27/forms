@@ -908,9 +908,9 @@ public function removejobimage($id,$image)
 }
 
 
-public function verifyuserpassword($id,$password)
+public function verifyuserpassword($email,$password)
 {
-     $update = "UPDATE  `user` SET  `password` = '$password' ,`status` = '1'  WHERE `userid` = '$id' ";
+     $update = "UPDATE  `user` SET  `password` = '$password' ,`status` = '1'  WHERE `email` = '$email' ";
      $query = $this->db->query($update);
      if($query)
        {
@@ -924,7 +924,7 @@ public function verifyuserpassword($id,$password)
 
 public function Emailfind($email)
 {
-      $this->db->select('userid');
+      $this->db->select('*');
       $this->db->from('user u');
       $this->db->where('u.email', $email);
       $query = $this->db->get();

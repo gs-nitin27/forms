@@ -127,18 +127,44 @@ var data = JSON.stringify(data);
                 <label for="TOURNAMENT" class="btn btn-primary">Tournament &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="TOURNAMENT" class="badgebox"  ><span class="badge">&check;</span></label>
                  <!--  <b>Following</b> <a class="pull-right">543</a> -->
                 </li>
-              </ul>
-                <button type="button" class="btn btn-success btn-block" id="module"><b>Save Module</b></button>
-             <!--  <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
+              <!-- </ul> -->
+               <li class="list-group-item">
+              <button type="button" class="btn btn-success btn-block" id="module"><b>Save Module</b></button></li>
+              <li class="list-group-item">
+              <?php $list=array('a' => 0,
+                                'b' => 1,
+                                'c' => 2,
+                                'd' => 3,
+                                'e' => 4,
+                                'f' => 5,
+                                'g' => 6,
+                                'h' => 7,
+                                'i' => 8,
+                                'j' => 9);
+                                 $num=$value['userid']; //your value
+                                 $temp='';
+                                 $arr_num=str_split ($num);
+                                foreach($arr_num as $data)
+                                {
+                                $temp.=array_search($data,$list);
+                                }
+                                $num=$temp;
+                                {  ?>
+
+                    <input type="hidden" class="form-control" name="string_userid"  id="string_userid" value="<?php echo $num; ?>">
+                    <?php }?>
+           
+                  <?php $email = $value['email'];
+                  { ?>
+
+              <button class="btn btn-success btn-block" onclick="myfunction('<?php echo $email;?>');"><?php echo "Password Reset";?></button>
+               <?php } ?>
+                </li>
+                </ul>
+
             </div>
-            <!-- /.box-body -->
           </div>
           <?php } ?>
-          <!-- /.box -->
-
-          <!-- About Me Box -->
-          
-          <!-- /.box -->
         </div>
         <!-- /.col -->
         <div class="col-md-9">
@@ -204,19 +230,9 @@ var data = JSON.stringify(data);
               <p class="text-muted">
                 <?php echo $value['sport'];?>
               </p>
-
               <hr>
-  
               <strong><i class="fa fa-calendar-check-o margin-r-5"></i>DOB</strong>
-
               <p class="text-muted"><?php echo $value['dob'];?></p>
-
-              <!-- <hr>
-
-              <strong><i class="fa fa-map-marker margin-r-5"></i>Gender</strong>
-
-              <p class="text-muted"><?//php echo $value['Gender'];?></p> -->
-
               <hr>
               <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
 
@@ -237,125 +253,9 @@ var data = JSON.stringify(data);
             <!-- /.box-body -->
           </div>
           </div>
-
-          
-      </div>
-                <!-- Post -->
-               <!--  <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="<?//php echo base_url('assets/dist/img/user1-128x128.jpg');?>" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Shared publicly - 7:30 PM today</span>
-                  </div>
-                 <!-  <!- /.user-block -->
-                  <!-- <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
-                  </p> -->
-                 <!--  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul> -->
-<!-- 
-                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                </div> -->
-                <!-- /.post -->
-
-                <!-- Post -->
-               <!--  <div class="post clearfix">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="<?//php echo base_url('assets/dist/img/user7-128x128.jpg');?>" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Sent you a message - 3 days ago</span>
-                  </div> -->
-                  <!-- /.user-block -->
-                <!--   <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
-                  </p>
-
-                  <form class="form-horizontal">
-                    <div class="form-group margin-bottom-none">
-                      <div class="col-sm-9">
-                        <input class="form-control input-sm" placeholder="Response">
-                      </div>
-                      <div class="col-sm-3">
-                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                      </div>
-                    </div>
-                  </form>
-                </div> -->
-                <!-- /.post -->
-
-                <!-- Post -->
-               <!--  <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="<?//php echo base_url('assets/dist/img/user6-128x128.jpg');?>" alt="User Image">
-                        <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Posted 5 photos - 5 days ago</span>
-                  </div> -->
-                  <!-- /.user-block -->
-                  <!-- <div class="row margin-bottom">
-                    <div class="col-sm-6">
-                      <img class="img-responsive" src="<?//php echo base_url('assets/dist/img/photo1.png');?>" alt="Photo">
-                    </div> -->
-                    <!-- /.col -->
-                    <!-- <div class="col-sm-6">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="<?//php echo base_url('assets/dist/img/photo2.png');?>" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="<?//php echo base_url('assets/dist/img/photo3.jpg');?>" alt="Photo">
-                        </div> -->
-                        <!-- /.col -->
-                        <!-- <div class="col-sm-6">
-                          <img class="img-responsive" src="<?//php echo base_url('assets/dist/img/photo4.jpg');?>" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="<?//php echo base_url('assets/dist/img/photo1.png');?>" alt="Photo">
-                        </div> -->
-                        <!-- /.col -->
-                      <!-- </div> -->
-                      <!-- /.row -->
-                   <!--  </div> -->
-                    <!-- /.col -->
-                <!--   </div> -->
-                  <!-- /.row -->
-
-                 <!--  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul>
-
-                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                </div> -->
-                <!-- /.post -->
-              </div>
-
-
-            <div class="active tab-pane" id="statistics">
+          </div> 
+          </div>
+          <div class="active tab-pane" id="statistics">
 
           <div class="row">
           <div class="col-md-6">
@@ -386,185 +286,8 @@ var data = JSON.stringify(data);
       </div>
 
 
-              <!-- /.tab-pane -->
-              <!-- <div class="tab-pane" id="timeline"> -->
-                <!-- The timeline -->
-               <!--  <ul class="timeline timeline-inverse"> -->
-                  <!-- timeline time label -->
-                 <!--  <li class="time-label">
-                        <span class="bg-red">
-                          10 Feb. 2014
-                        </span>
-                  </li> -->
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <!-- <li>
-                    <i class="fa fa-envelope bg-blue"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                      <div class="timeline-body">
-                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                        quora plaxo ideeli hulu weebly balihoo...
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
-                      </div>
-                    </div>
-                  </li> -->
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <!-- <li>
-                    <i class="fa fa-user bg-aqua"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                      </h3>
-                    </div>
-                  </li> -->
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                 <!--  <li>
-                    <i class="fa fa-comments bg-yellow"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                      <div class="timeline-body">
-                        Take me to your leader!
-                        Switzerland is small and neutral!
-                        We are more like Germany, ambitious and misunderstood!
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                      </div>
-                    </div>
-                  </li> -->
-                  <!-- END timeline item -->
-                  <!-- timeline time label -->
-                 <!--  <li class="time-label">
-                        <span class="bg-green">
-                          3 Jan. 2014
-                        </span>
-                  </li> -->
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <!-- <li>
-                    <i class="fa fa-camera bg-purple"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                      <div class="timeline-body">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                      </div>
-                    </div>
-                  </li> -->
-                  <!-- END timeline item -->
-                 <!--  <li>
-                    <i class="fa fa-clock-o bg-gray"></i>
-                  </li>
-                </ul>
-              </div> -->
-              <!-- /.tab-pane -->
-
-         <div class="" id="settings"> 
-         <!-- <div class="row">
-        <div class="col-md-6">
-          <!- DONUT CHART -->
-         <!-- <div class="chart">
-             <canvas id="areaChart" style="height:250px"></canvas>
-          </div>
-          <div  class="box box-danger" style="margin-top:-59%;">
-      
-            <div class="box-header with-border">
-              <h3 class="box-title">Donut Chart</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <canvas id="pieChart" style="height:250px"></canvas>
-            </div> -->
-            <!-- /.box-body -->
-         <!--  </div> -->
-          <!-- /.box -->
-
-       <!--  </div> -->
-       
-   <!--    </div>  -->
-      
-               <!--  <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
-                    <div class="col-sm-10">
-                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
-                  </div>
-                </form> -->
-              </div>
-              <!-- /.tab-pane -->
+        
+              
             </div>
             <!-- /.tab-content -->
           </div>
@@ -774,6 +497,32 @@ $('#EVENT').change(function() {
     // You can switch between pie and douhnut using the method below.
     pieChart.Doughnut(PieData, pieOptions);
   });
+</script>
+
+<script type="text/javascript">
+function myfunction(email)
+{ 
+    //alert(email); 
+
+    var id = $("#string_userid").val();
+    alert(email); 
+    var data1 = {
+    "email"                  :  email
+
+};
+console.log(JSON.stringify(data1));
+var url = '<?php echo site_url();?>'
+var data = JSON.stringify(data1);
+    $.ajax({
+    type: "POST",
+    url: '<?php echo site_url('forms/Passwordreset'); ?>',
+    data: "data="+data,
+    dataType: "text",
+    success: function(result) {
+   // window.location.href = url+"/forms/userprofile/" + id + "?module";
+    }
+});    
+}
 </script>
 
 

@@ -115,14 +115,14 @@ body {
   
  
    
-
+ 
   
   
   <div class="login-page">
    <div class="form" style="margin-top: 12%;">
 <form class="login-form" action="<?php echo site_url('forms/verifyuser'); ?>" method="post"  onsubmit="return Emailcheak();" > 
     <div class="container" style="width:300px;">
-    <input type="hidden" name="userid" value="<?php echo $_GET['id'];?>">
+    <input type="hidden" name="email" value="<?php echo $_GET['email'];?>">
   
     <input type="hidden" placeholder="Verification Code" name="Verification" required> 
     <label><b>New Password</b></label>

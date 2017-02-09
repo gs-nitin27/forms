@@ -68,7 +68,7 @@
                                 $num=$temp;
                                 {  ?>
 
-
+   
 
                      <td><a href = "<?php echo site_url('forms/userprofile/'.$num.'?module'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
 

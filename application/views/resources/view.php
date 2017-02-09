@@ -63,10 +63,16 @@
 			  </td>
 			  <td style="width: 10px; height: 10px; ">
 						
-
+                          <?php if($resource['image']) { ?>
 						<div>
                         <img style="display:block; border:2px solid SteelBlue"; width="300px" height="220px" src = "<?php  echo base_url()."uploads/resources/".$resource['image']; ?>">
-				     </div>
+				        </div>
+				        <?php } else { ?>
+                        <div>
+                        <img style="display:block; border:2px solid SteelBlue"; width="300px" height="220px" src = "<?php  echo base_url('img/no-image.jpg'); ?>">
+				        </div>
+				         <?php } ?>
+
 			  
 			  </td>
 			  </tr>

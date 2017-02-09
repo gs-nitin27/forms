@@ -931,31 +931,77 @@ $item->about_me                   =@$data->about_me;
 $res= $this->register->updateProfile($item);
 if($res)
 {  
+    $email = $data->email;
   require('class.phpmailer.php');
-  $mail = new PHPMailer();
-  $to=$item->email;
-  $from="info@getsporty.in";
-  $from_name="GetSporty";
-  $subject="EmailContact from GetSporty ";
- 
+              $mail = new PHPMailer();
+              $to=$email;
+              $from="info@darkhorsesports.in";
+              $from_name="Getsporty";
+              $subject="Email varification ";
+              $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
+              //$emailconform  ="testingapp.getsporty.in/getSportyLite/activation.php?email=";
+              //global $error;
+              $mail = new PHPMailer();  // create a new object
+              $mail->IsSMTP(); // enable SMTP
+              $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
+              $mail->SMTPAuth = true;  // authentication enabled
+              $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+              $mail->Host = 'smtp.gmail.com';
+              //$mail->Host = 'smtp.gmail.com';
+              $mail->Port = 465; 
+              $mail->Username ="info@darkhorsesports.in";  
+              $mail->Password = "2016Darkhorse";           
+              $mail->SetFrom($from, $from_name);
+              $mail->Subject = $subject;
+              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
 
-  $body="click here  to Activate your account, http://staging.getsporty.in/index.php/forms/forgotpassword?id=".$res;
- // global $error;
-  $mail = new PHPMailer();  // create a new object
-  $mail->IsSMTP(); // enable SMTP
-  $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
-  $mail->SMTPAuth = true;  // authentication enabled
-  $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
-  $mail->Host = 'dezire.websitewelcome.com';
-  $mail->Port = 465; 
-  $mail->Username = "info@getsporty.in"; 
-  $mail->Password = "%leq?xgq;D?v";            
-  $mail->SetFrom($from, $from_name);
-  $mail->Subject = $subject;
-  $mail->Body = $body;
-  $mail->AddAddress($to);
-  $mail->Send();
+ <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
+<tbody><tr>
+<td align="center" valign="top">
+<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
+<tbody><tr>
 
+<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Welcome To GetSporty.</h1>
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To set Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Activate<br></strong>
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+
+</td>
+</tr>
+<tr>
+<td align="center" style="padding-bottom:60px" valign="top">
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="center" valign="middle">
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</div>'; 
+               $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
+               $mail->AltBody = $txt; 
+               $mail->AddAddress($to);
+               $mail->Send();
+         
 }
     echo '2';
 }
@@ -971,38 +1017,89 @@ public function Emailfind()
 
   $item= new stdClass();
 
-  $emailid=$_POST['email'];
+  $email=$_POST['email'];
   $item->email =$_POST['email'];
   $this->load->model('register');
   $res=$this->register->Emailfind($item->email);
+
+ //print_r($res['userType']);die;
+      
   if($res)
   {
+     if($res['userType'] == 101 || $res['userType'] == 102 || $res['userType'] == 103 )
+     {
 //print_r($emailid);die;
+  //$emailid1 = $res['email'];
   $id=$res['userid'];
-  require('class.phpmailer.php');
-  $mail = new PHPMailer();
-  $to=$emailid;
-  $from="info@getsporty.in";
-  $from_name="GetSporty";
-  $subject="EmailContact from GetSporty ";
-  
+   require('class.phpmailer.php');
+              $mail = new PHPMailer();
+              $to=$email;
+              $from="info@darkhorsesports.in";
+              $from_name="Getsporty";
+              $subject="Email varification ";
+              $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
+              //$emailconform  ="testingapp.getsporty.in/getSportyLite/activation.php?email=";
+              //global $error;
+              $mail = new PHPMailer();  // create a new object
+              $mail->IsSMTP(); // enable SMTP
+              $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
+              $mail->SMTPAuth = true;  // authentication enabled
+              $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+              $mail->Host = 'smtp.gmail.com';
+              //$mail->Host = 'smtp.gmail.com';
+              $mail->Port = 465; 
+              $mail->Username ="info@darkhorsesports.in";  
+              $mail->Password = "2016Darkhorse";           
+              $mail->SetFrom($from, $from_name);
+              $mail->Subject = $subject;
+              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
 
-  $body="Click here  to reset password , http://staging.getsporty.in/index.php/forms/forgotpassword?id=".$id;
- // global $error;
-  $mail = new PHPMailer();  // create a new object
-  $mail->IsSMTP(); // enable SMTP
-  $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
-  $mail->SMTPAuth = true;  // authentication enabled
-  $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
-  $mail->Host = 'dezire.websitewelcome.com';
-  $mail->Port = 465; 
-  $mail->Username = "info@getsporty.in"; 
-  $mail->Password = "%leq?xgq;D?v";            
-  $mail->SetFrom($from, $from_name);
-  $mail->Subject = $subject;
-  $mail->Body = $body;
-  $mail->AddAddress($to);
-  $mail->Send();
+ <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
+<tbody><tr>
+<td align="center" valign="top">
+<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
+<tbody><tr>
+
+<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Please reset your password.</h1>
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To reset Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Reset<br></strong>
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+
+</td>
+</tr>
+<tr>
+<td align="center" style="padding-bottom:60px" valign="top">
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="center" valign="middle">
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</div>'; 
+               $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
+               $mail->AltBody = $txt; 
+               $mail->AddAddress($to);
+               $mail->Send();
  
 
 
@@ -1013,6 +1110,12 @@ public function Emailfind()
     // $this->session->set_flashdata('Welcome To GetSporty ');
      $this->emailsearch();
     // $this->load->view('Forgotpasswordemail',$mes);
+ }else
+ {
+       $this->session->set_flashdata('msg', 'You are not authorize to login');
+       redirect('forms/emailsearch');
+
+ }
  }
  else
  {
@@ -1278,11 +1381,11 @@ public function verifyuser()
 {
 $item  = new stdClass(); 
 
-$item->userid              = $_POST['userid'];
+$item->email              = $_POST['email'];
 $item->password            = md5($_POST['Newpassword']);
 
 $this->load->model('register');
-$res = $this->register->verifyuserpassword($item->userid,$item->password);
+$res = $this->register->verifyuserpassword($item->email,$item->password);
 //echo json_encode(array('response' => $res));
 if($res)
 {
@@ -1363,5 +1466,81 @@ public function profileimage()
 
 }
 
+public function Passwordreset()
+{
+   $data = json_decode($_REQUEST['data']);
+   $email = $data->email;
+   require('class.phpmailer.php');
+              $mail = new PHPMailer();
+              $to=$email;
+              $from="info@darkhorsesports.in";
+              $from_name="Getsporty";
+              $subject="Email varification ";
+              $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
+              //$emailconform  ="testingapp.getsporty.in/getSportyLite/activation.php?email=";
+              //global $error;
+              $mail = new PHPMailer();  // create a new object
+              $mail->IsSMTP(); // enable SMTP
+              $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
+              $mail->SMTPAuth = true;  // authentication enabled
+              $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+              $mail->Host = 'smtp.gmail.com';
+              //$mail->Host = 'smtp.gmail.com';
+              $mail->Port = 465; 
+              $mail->Username ="info@darkhorsesports.in";  
+              $mail->Password = "2016Darkhorse";           
+              $mail->SetFrom($from, $from_name);
+              $mail->Subject = $subject;
+              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
+
+ <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
+<tbody><tr>
+<td align="center" valign="top">
+<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
+<tbody><tr>
+
+<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Please reset your password.</h1>
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To reset Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Reset<br></strong>
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+
+</td>
+</tr>
+<tr>
+<td align="center" style="padding-bottom:60px" valign="top">
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="center" valign="middle">
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</div>'; 
+               $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
+               $mail->AltBody = $txt; 
+               $mail->AddAddress($to);
+               $mail->Send();
+          return 1;
+
+}
 
 }

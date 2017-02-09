@@ -64,7 +64,13 @@
 
               <input ng-model="form.image" type="file" name="<?php echo $resource[0]['id']; ?>" id="<?php echo $resource[0]['id']; ?>" class="form-control input-lg" accept="image/*" onchange="angular.element(this).scope().uploadedFile(this)" onclick="getid(id);" style="width:300px;height: 0%;"></td>
 
-                       <td style="text-align: center;width:98px;" ><input type="submit" id="submit" value="Submit" /></td>
+                       <td style="text-align: center;width:98px;" >
+                       <input type="submit" id="submit" value="Submit" />
+
+                      <!--  <input type="text"  id="<?php// echo $resource[0]['id']; ?>"  value="<?php// echo $resource[0]['id']; ?>" /> -->
+                        <img src="<?php echo base_url("img/loader.gif");?>"   id="<?php echo 'id'.$resource[0]['id']; ?>" hidden></img> 
+                        <label id="<?php echo 'msg'.$resource[0]['id']; ?>" hidden>Uploaded </label>
+                       </td>
                         </form>
                 </tr>
                 <?php  }
@@ -106,6 +112,7 @@
 <script type="text/javascript">
       var app =  angular.module('main-App',[]);
       app.controller('AdminController', function($scope, $http) {
+      
       var imgid='';
       $scope.form = [];
       $scope.files = [];
@@ -116,6 +123,9 @@
 
       }
       $scope.submit = function() {
+         var loader = '#' +'id' + imgid;
+        // alert(loader);
+           $(loader).show();
 
       $scope.form.image = $scope.files[0];
       console.log($scope.files[0]);
@@ -139,7 +149,11 @@
                'Content-Type': undefined
         }
        }).success(function(data){
-          alert(data);
+          //alert(data);
+          var loader = '#' + 'id' + imgid;
+          var msg = '#' + 'msg' + imgid;
+          $(msg).show();
+          $(loader).hide();
           var textid= "#" + imgid ;
          $(textid).attr("src","<?php  echo base_url()."uploads/resources/"; ?>" + data );
 

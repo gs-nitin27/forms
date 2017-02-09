@@ -213,11 +213,13 @@ var data = eval(data1);//JSON.stringify(data1);
         <table>
         <tr>
         <td>
+             <?php if($value['image']) { ?>
              <div>
                 <img style="display:block; border:2px solid SteelBlue";  width="400px" height="300px" margin-left="20px" src = "<?php  echo base_url()."uploads/resources/".$value['image']; ?>">
              </div>
-              
-
+              <?php } else { ?>
+             <img style="display:block; border:2px solid SteelBlue";  width="400px" height="300px" margin-left="20px" src = "<?php  echo base_url('img/no-image.jpg'); ?>">
+             <?php } ?>
           </td>
           </tr>
           <tr style="margin-top:20px">
@@ -288,7 +290,7 @@ var data = eval(data1);//JSON.stringify(data1);
       },
       success: function(data)
         {
-                alert(data);
+              //  alert(data);
                 $('#loader_img').hide();
                 $('#mess').show();
               //  $("#photo_url").val("");

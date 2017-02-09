@@ -15,8 +15,7 @@
    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"></head>
 <script src="<?php echo base_url('assets/platform.js'); ?>" async defer></script>
-<meta name="google-signin-scope" content="profile email">
-
+   <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id" content="628993010976-f2btnt5nhtnue8tmkn5s6hrh3h7ersfb.apps.googleusercontent.com">
      
 
@@ -38,10 +37,10 @@
     <div class="container" style="background-color:#f1f1f1; text-align: center;">
     <span class="psw"><h3>Forgot <a href="<?php echo site_url('forms/emailsearch'); ?>">password?</a></h3></span>
   </div>
-  <!-- <div style="margin-left: 45%;">
-  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"><h3>Click to login</h3></div> -->
+  <div style="margin-left: 45%;">
+  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"><h3>Click to login</h3></div>
   <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"><img src="<?php// echo base_url('img/google-login-button.png');?>"></div> -->
-<!-- </div> -->
+</div>
   <div id="error_text"><h3 style="text-align: center;color: red"><?php echo $this->session->flashdata('error'); ?></h3></div>	
   <div id="test" hidden>
   <h3 style="text-align: center;color: red;">You are not authorize to loging</h3>
