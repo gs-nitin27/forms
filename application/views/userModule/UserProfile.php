@@ -505,7 +505,7 @@ function myfunction(email)
     //alert(email); 
 
     var id = $("#string_userid").val();
-    alert(email); 
+   // alert(email); 
     var data1 = {
     "email"                  :  email
 
@@ -519,6 +519,7 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
+      alert("Mail has been sent");
    // window.location.href = url+"/forms/userprofile/" + id + "?module";
     }
 });    
