@@ -974,7 +974,7 @@ if($res)
 </tr>
 <tr>
 <td style="padding-bottom:20px" valign="top">
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To set Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Activate<br></strong>
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To set Your email password, you MUST click the link below.<br><h2></br> <a href="'.$emailconform.''.$email.'">create password<br>
 <p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
 
 </td>
