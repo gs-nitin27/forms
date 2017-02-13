@@ -691,24 +691,23 @@ public function removeimage($id,$image)
 
 public function getUserInfo($id=false)
 {
-        $qry = $this->db->get('user');
-		$q =  $qry->result_array();
-		return $q;
+    $qry = $this->db->get('user');
+    $q =  $qry->result_array();
+	return $q;
 }
 
 public function ActivateUser($item)
 {
  $update = "UPDATE  `user` SET  `activeuser` ='$item->activeuser' WHERE `userid` = '$item->userid' ";
  $query = $this->db->query($update);
-
-    if($query)
-    {
-	  return 1;
-    }
-    else
-    {
-      return 0;
-    }
+ if($query)
+ {
+	return 1;
+ }
+ else
+ {
+    return 0;
+ }
 }
 
 // public function deleteUser($id,$item)
@@ -867,11 +866,11 @@ public function Csvfileupload($item,$userid)
      $topic_of_artical=$item[3];
      $sport=$item[1];
      $location=$item[5] ;
-     $date_created='CUR';
+    // $date_created='CUR';
     // $token=$item[0];
     // $status=$item[0];
 
-$insert = "INSERT INTO `gs_resources`(`title`,`userid`, `url`,`summary`, `topic_of_artical`,`location`, `sport`,`date_created`) VALUES ( '$title','$userid', '$url', '$summary', '$topic_of_artical', '$location', '$sport','$date_created') ";
+$insert = "INSERT INTO `gs_resources`(`title`,`userid`, `url`,`summary`, `topic_of_artical`,`location`, `sport`,`date_created`) VALUES ( '$title','$userid', '$url', '$summary', '$topic_of_artical', '$location', '$sport',CURDATE()) ";
   // echo $insert ;die;
       $query = $this->db->query($insert);
        if($query)
@@ -887,30 +886,29 @@ $insert = "INSERT INTO `gs_resources`(`title`,`userid`, `url`,`summary`, `topic_
 
 public function saveCSVImage($id,$image)
 {
-
-     $update = "UPDATE  `gs_resources` SET  `image` = '$image' WHERE `id` = '$id' ";
-     $query = $this->db->query($update);
-     if($query)
-       {
-	     return 1;
-       }
-     else
-       {
-         return 0;
-       }
+   $update = "UPDATE  `gs_resources` SET  `image` = '$image' WHERE `id` = '$id' ";
+   $query = $this->db->query($update);
+   if($query)
+    {
+	    return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 public function removejobimage($id,$image)
 {
-        $this->db->where('id', $id);
-        unlink("uploads/job/".$image);
-        $this->db->delete('gs_jobInfo', array('image' => $image)); 
+    $this->db->where('id', $id);
+    unlink("uploads/job/".$image);
+    $this->db->delete('gs_jobInfo', array('image' => $image)); 
 }
 
 
 public function verifyuserpassword($email,$password)
 {
-     $update = "UPDATE  `user` SET  `password` = '$password' ,`status` = '1'  WHERE `email` = '$email' ";
+     $update = "UPDATE  `user` SET  `password` = '$password' ,`status` = '1'  WHERE `email` = '".$email."'";
      $query = $this->db->query($update);
      if($query)
        {
@@ -939,6 +937,7 @@ public function Emailfind($email)
       }
 }
 
+
 public function passwordfind($email)
 {   
 	  $this->db->select('password');
@@ -958,6 +957,7 @@ public function passwordfind($email)
       }   
 }
 
+
 public function event($id)
 {
 	$this->db->from('gs_eventinfo');
@@ -966,6 +966,7 @@ public function event($id)
     $rowcount = $query->num_rows();
     return $rowcount;
 }
+
 
 public function resources($id)
 {
