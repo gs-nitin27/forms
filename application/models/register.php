@@ -883,7 +883,7 @@ $insert = "INSERT INTO `gs_resources`(`title`,`userid`, `url`,`summary`, `topic_
          return 0;
        }	 
 }
-
+  
 public function saveCSVImage($id,$image)
 {
    $update = "UPDATE  `gs_resources` SET  `image` = '$image' WHERE `id` = '$id' ";
