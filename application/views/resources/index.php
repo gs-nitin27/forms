@@ -19,7 +19,7 @@
 <div class="container">
     <div class="row">
        <!--  <label class="col-md-3 text-right" style="line-height: 2.5em;">License Or Certificate</label> -->
-        <div class="col-xs-12 col-md-4 " style=" margin-left: 60%; position: relative; top:-137%;">  
+        <div class="col-xs-12 col-md-4 " style=" margin-left: -1%; position: relative; top:-137%;">  
             <!-- image-preview-filename input [CUT FROM HERE]-->
             <div class="input-group image-preview">
                 <input type="text" class="form-control image-preview-filename" placeholder="Upload CSV File" > <!-- don't give a name === doesn't send on POST/GET -->
