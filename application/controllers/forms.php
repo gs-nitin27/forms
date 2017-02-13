@@ -1259,12 +1259,13 @@ public function passwordchange()
 
 public function Csvfileupload()
 {
-   $temp = explode(".", $_FILES["fileToUpload"]["name"]);
-   if($_FILES["fileToUpload"]["name"] && end($temp)=='csv')
+  
+   $temp = explode(".", $_FILES["input-file-preview"]["name"]);
+   if($_FILES["input-file-preview"]["name"] && end($temp)=='csv')
    {
-   $data=$_FILES["fileToUpload"]["name"];
+   $data=$_FILES["input-file-preview"]["name"];
    $temp=$data;
-   move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "uploads/".'csv'."/".$data);
+   move_uploaded_file($_FILES["input-file-preview"]["tmp_name"], "uploads/".'csv'."/".$data);
    $file =base_url('/uploads/csv/'.$data);
    $file = fopen($file,"r");
    $data=$this->session->userdata('item');
