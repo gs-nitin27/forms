@@ -37,14 +37,15 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
+      alert(result);
        
-        if(result== '1')
+        if(result== 1)
       {
         $( "#msgdiv" ).show();
          $( "#msg" ).html('User already registered');
         
       }
-      else if(result== '2')
+      else if(result == 2)
       {
         
            $( "#msgdiv" ).show();
@@ -125,8 +126,7 @@ var data = JSON.stringify(data1);
                     </div >
 
                    <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="text" class="form-control"  id="Password" placeholder="Enter Password">
+                    <input type="hidden" class="form-control"  id="Password" placeholder="Enter Password">
                     </div >
 
                     

@@ -98,7 +98,7 @@ public function login()
   }
     }
     else {
-    	  $this->session->set_flashdata('error','Wrong email Address .');
+    	  $this->session->set_flashdata('error','Invalid User.');
           redirect('forms/index','refresh');
     }
     }
@@ -454,14 +454,13 @@ public function viewJob($str)
 
 public function mobileview()
 {	
-    $job = $this->register->getJobInfo($_POST['infoid']); 
-	$data['required'] = array(
+      $job = $this->register->getJobInfo($_POST['infoid']); 
+    	$data['required'] = array(
 									'job'=>$job	
 								 );
-		//$data['noheader'] = false;
-		//$data['middle'] = 'job/mobile_view';
-		
-		 $this->load->view('job/mobile_view', $data);
+		  //$data['noheader'] = false;
+	  	//$data['middle'] = 'job/mobile_view';
+		  $this->load->view('job/mobile_view', $data);
 		
 		
 	}
@@ -552,9 +551,7 @@ $this->load->model('register');
 $res = $this->register->saveTournament($item);
 if($res == '1')
  {
-
  echo "Tournament Created";
-
  }
 else
  echo "Tournament Not created";
@@ -571,7 +568,6 @@ public function viewTournament($id){
 		$data['required'] = array(
 									'id'=>$id	
 								 ); 
-
 		$this->load->view('templates/template',$data);
 	}
 
@@ -610,7 +606,6 @@ else{
 
 //================== Start Resources===========================
 
-	
 public function getResources()
 {
 		$data['middle'] = 'resources/index';
@@ -703,9 +698,7 @@ public function editResources($str)
 public function saveEditResources()
 {
 $item  = new stdClass(); 
-
 //print_r($_POST);//die;
-
 $item->id                    = $_POST['id'];//$data2->id;
 $item->userid                = $_POST['userid'];//$data2->userid;
 $item->title                 = mysql_real_escape_string($_POST['title']);//mysql_real_escape_string($data2->title);
@@ -728,19 +721,19 @@ echo json_encode(array('response' => $res));
 
 public function deleteResources($str)
 {
-	    $id = $this->stringtonumber($str);
+	      $id = $this->stringtonumber($str);
         $this->register->deleteResources($id);
         $data['middle'] = 'resources/index';
-		$this->load->view('templates/template',$data);
+	    	$this->load->view('templates/template',$data);
 }
 
 public function mobileviewResources()
 {
     $resources = $this->register->getResourceInfo($_POST['infoid']); 
-	$data['required'] = array(
+	  $data['required'] = array(
 									'resources'=>$resources	
 								 );	
-	$this->load->view('resources/mobile_viewResources', $data);	
+  	$this->load->view('resources/mobile_viewResources', $data);	
 }
 
 public function shareresource()
@@ -777,12 +770,13 @@ else{
 
 //======================= Start Content=======================================
 
-public function createContent(){
-			
+public function createContent()
+{
 		$data['middle'] = 'content/create_content';
 		$this->load->view('templates/template',$data);
 	}
-public function getContent(){
+
+  public function getContent(){
 		$data['middle'] = 'content/list';
 		$this->load->view('templates/template',$data);
 	}
@@ -1001,10 +995,15 @@ if($res)
                $mail->AltBody = $txt; 
                $mail->AddAddress($to);
                $mail->Send();
+			   
+			   echo '2';
          
 }
-    echo '2';
+else{
+     return '3';
 }
+}
+
 }
 
 public function emailsearch()
@@ -1316,18 +1315,16 @@ public function uploadimg()
  $resourceid = $_POST['resid'];
  
 if(!empty($_FILES['image'])){
- 
- $mime=$_FILES['image']['type'] ;
-
- switch ($mime) 
-           {
-             case 'image/jpeg':
+$mime=$_FILES['image']['type'] ;
+switch ($mime) 
+      {
+        case 'image/jpeg':
                     $ftype = 'imagecreatefromjpeg';
                     break;
-             case 'image/png':
+        case 'image/png':
                     $ftype = 'imagecreatefrompng';
                     break;
-             default: 
+        default: 
                     throw new Exception('Unknown image type.');
             }
             $temp = explode(".", $_FILES["image"]["name"]);
@@ -1387,12 +1384,11 @@ $item->password            = md5($_POST['Newpassword']);
 
 $this->load->model('register');
 $res = $this->register->verifyuserpassword($item->email,$item->password);
-//echo json_encode(array('response' => $res));
 if($res)
 {
-         $this->session->set_flashdata('error','Welcome To GetSporty ');
-         redirect('forms/index','refresh');
-         //echo "Created";
+     $this->session->set_flashdata('error','Welcome To GetSporty ');
+      redirect('forms/index','refresh');
+     // echo "Created";
 }
 else
 {
@@ -1477,8 +1473,9 @@ public function Passwordreset()
               $from="info@darkhorsesports.in";
               $from_name="Getsporty";
               $subject="Email varification ";
-              $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
-              //$emailconform  ="testingapp.getsporty.in/getSportyLite/activation.php?email=";
+
+             // $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
+              $emailconform  =  site_url().'/forms/forgotpassword?email=';
               //global $error;
               $mail = new PHPMailer();  // create a new object
               $mail->IsSMTP(); // enable SMTP
@@ -1544,4 +1541,98 @@ public function Passwordreset()
 
 }
 
+public function updateemail()
+{
+   $data=json_decode($_REQUEST['data']);
+   $email = $data->email;
+   $result=$this->register->Emailfind($data->email);
+if($result) 
+{
+   echo "0";
+}else
+{
+
+   require('class.phpmailer.php');
+              $mail = new PHPMailer();
+              $to=$email;
+              $from="info@darkhorsesports.in";
+              $from_name="Getsporty";
+              $subject="Email varification ";
+
+             // $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
+              $emailconform  =  site_url().'/forms/forgotpassword?email=';
+              //global $error;
+              $mail = new PHPMailer();  // create a new object
+              $mail->IsSMTP(); // enable SMTP
+              $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
+              $mail->SMTPAuth = true;  // authentication enabled
+              $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+              $mail->Host = 'smtp.gmail.com';
+              //$mail->Host = 'smtp.gmail.com';
+              $mail->Port = 465; 
+              $mail->Username ="info@darkhorsesports.in";  
+              $mail->Password = "2016Darkhorse";           
+              $mail->SetFrom($from, $from_name);
+              $mail->Subject = $subject;
+              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
+
+ <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
+<tbody><tr>
+<td align="center" valign="top">
+<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
+<tbody><tr>
+
+<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Please reset your password.</h1>
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To reset Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Reset<br></strong>
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+
+</td>
+</tr>
+<tr>
+<td align="center" style="padding-bottom:60px" valign="top">
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="center" valign="middle">
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</div>'; 
+               $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
+               $mail->AltBody = $txt; 
+               $mail->AddAddress($to);
+               $mail->Send();
+
+              $this->load->model('register');
+              $this->register->updateemail($data->userid,$data->email);
+        
+              echo "1";
+
+
+
+
 }
+
+}
+}
+  

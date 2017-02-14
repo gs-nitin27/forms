@@ -281,42 +281,44 @@ var data = eval(data1);//JSON.stringify(data1);
 
             <form id="form" action="" method="post" enctype="multipart/form-data">
 
-<!-- 
+
+
+
     <div class="container">
     <div class="row">    
-        <div class="col-xs-6 col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-2">   -->
+        <div class="col-xs-6 col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-2" style="float: left;margin-left: -1%;">  
             <!-- image-preview-filename input [CUT FROM HERE]-->
-          <!--   <div class="input-group image-preview">
-                <input type="text" class="form-control image-preview-filename" disabled="disabled"> --> <!-- don't give a name === doesn't send on POST/GET -->
-               <!--  <span class="input-group-btn"> -->
+            <div class="input-group image-preview">
+                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                <span class="input-group-btn">
                     <!-- image-preview-clear button -->
-                   <!--  <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
                         <span class="glyphicon glyphicon-remove"></span> Clear
-                    </button> -->
+                    </button>
                     <!-- image-preview-input -->
-                    <!-- <div class="btn btn-default image-preview-input">
+                    <div class="btn btn-default image-preview-input">
                         <span class="glyphicon glyphicon-folder-open"></span>
                         <span class="image-preview-input-title">Browse</span>
-                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/>
-                         -->
+                        <input type="file" accept="image/png, image/jpeg, image/gif" name="file"/>
+                        
                          <!-- rename it -->
-                 <!--    </div>
-                     <input type="submit" class="btn btn-primary" value="Upload CSV" name="submit">
-                </span> -->
-           <!--  </div> --><!-- /input-group image-preview [TO HERE]--> 
-        <!-- </div>
+                    </div>
+                     <input id="button" type="submit" class="btn btn-danger" value="Upload Image" name="submit">
+                </span>
+            </div><!-- /input-group image-preview [TO HERE]--> 
+        </div>
     </div>
-</div> -->
+</div>
                  
 
-              Image : <input type="file" name="file" id="file" />
+             <!--  Image : <input type="file" name="file" id="file" /> -->
               <div class="form-group">
               <input type="hidden" class="form-control" name="oldimageid" id="pid" value="0">
               <input type="hidden" class="form-control" name="path"   id="path" value="uploads/resources/">
               <input type="hidden" class="form-control" name="height" id="height" value="640">
               <input type="hidden" class="form-control" name="width"  id="width" value="1115">
               </div>
-              <input id="button" type="submit" value="Upload">
+             <!--  <input id="button" type="submit" value="Upload"> -->
             </form>
               <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img> 
               <input type="hidden" class="form-control" name="photo" id="photo_url"> 
@@ -326,6 +328,12 @@ var data = eval(data1);//JSON.stringify(data1);
               <div class="box-footer">
               <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
               </div>
+
+
+
+
+
+
  <!-- <script>
                 
               $('#save').click(function(){
@@ -631,7 +639,7 @@ $(function() {
         html:true,
         title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
         content: "There's no image",
-        placement:'bottom'
+        placement:'top'
     });
     // Clear event
     $('.image-preview-clear').click(function(){
@@ -647,7 +655,7 @@ $(function() {
             id: 'dynamic',
             width:250,
             height:200
-        });      
+        });    
         var file = this.files[0];
         var reader = new FileReader();
         // Set preview image into the popover data-content

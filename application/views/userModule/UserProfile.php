@@ -209,10 +209,27 @@ var data = JSON.stringify(data);
                <p><?php echo $value['contact_no'];?></p>
 
               <hr>
-
+               
               <strong><i class="fa fa-envelope margin-r-5"></i>Email</strong>
-
+              <button style="margin-left: 71%;"><i class="fa fa-pencil margin-r-5"></i></button>
               <p><?php echo $value['email'];?></p>
+              
+              <script>
+              $(document).ready(function(){
+                $("#newemail").hide();
+                $("button").click(function(){
+                $("#newemail").toggle();
+                });
+              });
+               </script>
+               <div id="newemail">
+                <div class="form-group">
+                <input type="text" class="form-control" id="updateemail" placeholder="Enter Email">
+                 <input type="hidden" class="form-control" name="UserId"  id="euid" value="<?php echo $value['userid']; ?>">
+                </div><div class="form-group">
+                <input type="button" class="btn btn btn-primary" id="emailsave" onclick="" value="Update" name="Update">
+                </div >
+              </div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -526,6 +543,46 @@ var data = JSON.stringify(data1);
 }
 </script>
 
+
+<script type="text/javascript">
+$("#emailsave").click(function(){
+var id = $("#string_userid").val();
+if($("#updateemail").val())
+{
+var data23 = {
+
+   "userid"  : $("#euid").val(),
+   "email"   : $("#updateemail").val()
+};
+
+
+console.log(JSON.stringify(data23));
+var url = '<?php echo site_url();?>'
+var data = JSON.stringify(data23);
+    $.ajax({
+    type: "POST",
+    url: '<?php echo site_url('forms/updateemail'); ?>',
+    data: "data="+data,
+    dataType: "text",
+    success: function(result) {
+
+    if(result == 1){
+        alert("Email has been Updated");
+       window.location.href = url+"/forms/userprofile/" + id + "?module";
+    }else {
+      alert("Email is already registered");
+    }
+  }
+});   
+}
+else
+{
+
+  alert("please enter the email");
+} 
+
+});
+</script>
 
 
 

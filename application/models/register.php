@@ -1015,5 +1015,23 @@ public function profileimage($id,$image)
          return 0;
        }
 }
+
+public function updateemail($id,$email)
+{
+
+  $update ="UPDATE `user` SET  `email` = '$email' , `password` = '' WHERE `userid` = '$id' ";
+  $query = $this->db->query($update);
+  if($query)
+  {
+  	return 1;
+  }
+  else {
+  	return 0 ;
+  }
+
+
+
+
+}
 }
  ?>

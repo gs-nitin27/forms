@@ -167,8 +167,6 @@
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
 
-
-
 <!-- page script -->
 <script>
   $(function () {
@@ -287,15 +285,10 @@ $(function() {
             $(".image-preview-filename").val(file.name);  
             img.attr('src', e.target.result);
             $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
-          //  alert($(img)[0]);
         }        
         reader.readAsDataURL(file);
     });  
 });
   </script>
 
- <!--  <script type="text/javascript">
-          window.onbeforeunload = function() {
-          return "Dude, are you sure you want to leave? Think of the kittens!";
-    }
-</script> -->
+ 

@@ -209,11 +209,13 @@
 </div>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>">     </script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.min.js'); ?>">  </script>
+
 <script>
   $(function () {
     $("#example1").DataTable();
   });
 </script>
+
 <script type="text/javascript">
 function myfunction(id,uid)
 { 
@@ -274,7 +276,7 @@ var data = JSON.stringify(data1);
 }
   </style>
 
-  <script type="text/javascript">
+<script type="text/javascript">
    $(document).on('click', '#close-preview', function(){ 
     $('.image-preview').popover('hide');
     // Hover befor close the preview    
