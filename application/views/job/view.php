@@ -31,7 +31,7 @@
     <section class="content-header">
     <h1>
        View Job<a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a>
-     <a href = "<?php echo site_url('forms/editjob/'.$num); ?>" class="glyphicon glyphicon-edit fa-x"  name="Edit"  title="Edit"></a>
+     <a href = "<?php echo site_url('forms/editjob/'.$num.'?job'); ?>" class="glyphicon glyphicon-edit fa-x"  name="Edit"  title="Edit"></a>
      </h1>	
      </section>
      <?php } ?>
