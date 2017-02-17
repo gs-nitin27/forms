@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <script src="<?php echo base_url('assets/plugins/chartjs/Chart.min.js')?>"></script>
 <script src="<?php echo base_url('assets/plugins/morris/morris.min.js')?>"></script>
-<script src="<?php echo base_url('assets/jqBootstrapValidation.js');?>" ></script>
  <script src="<?php echo base_url('assets/jquery-ui.min.js'); ?>"></script> 
 
 </head>
