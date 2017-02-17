@@ -4,6 +4,9 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 </head>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
+
 <div class="wrapper">
   <div class="content-wrapper">
     <section class="content">
@@ -100,6 +103,7 @@
   <div class="control-sidebar-bg"></div>
 </div>
 </div>
+
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
 
@@ -125,7 +129,8 @@
       $scope.submit = function() {
          var loader = '#' +'id' + imgid;
         // alert(loader);
-           $(loader).show();
+          // $(loader).show();
+           $('#imagelodar').show();
 
       $scope.form.image = $scope.files[0];
       console.log($scope.files[0]);
@@ -154,6 +159,7 @@
           var msg = '#' + 'msg' + imgid;
           $(msg).show();
           $(loader).hide();
+          $('#imagelodar').hide();
           var textid= "#" + imgid ;
          $(textid).attr("src","<?php  echo base_url()."uploads/resources/"; ?>" + data );
 

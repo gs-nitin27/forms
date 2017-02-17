@@ -626,7 +626,7 @@ public function shareResources()
 
 
 public function SavecreateResources()
-{
+{//die();
 $item  = new stdClass(); 
 
 $item->id                    = $_POST['id'];//$data2->id;

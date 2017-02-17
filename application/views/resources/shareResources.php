@@ -4,10 +4,10 @@
 
  <script>
 //document.domain = "getsporty.in";
-$(document).ready(function(){
-   
-$('#save').click(function(){
-	
+
+function save()
+{	
+$('#imagelodar').show();
 var summary1=$("#rsummary").val();
 //var summary12=summary1.toString();
 //var string = summary12.replace(/[&\/\\#,+$~%.:*?{}]/g, '');
@@ -41,6 +41,7 @@ var jsondata = eval(data1);
     data: jsondata,
     dataType: "json",
     success: function(result) {
+      $('#imagelodar').hide();
       if(result.response == '1')
       {
          $( "#msgdiv" ).show();
@@ -59,7 +60,7 @@ var jsondata = eval(data1);
       }
     }
 }); 
-});});
+}
 
 </script>
  <div class="content-wrapper">
@@ -70,6 +71,7 @@ var jsondata = eval(data1);
       </h1>
     </section>
          <section class="content"> 
+         <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
          <div class="row">
          <?php if(isset($msg) && $msg != ""){?>
          <div class="col-md-12">
@@ -134,14 +136,17 @@ var jsondata = eval(data1);
                 <div class="form-group">
                 <label for="exampleInputEmail1">Title</label>
                 <input type="text" class="form-control" maxlength="50" name="rtitle" id="rtitle" placeholder="Enter title">
+               <label id="title_error" hidden="">A title is required</label>
                 </div>
                 <div class="form-group">
                 <label for="exampleInputEmail1">Link</label>
                 <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link">
+                <label id="url_error" hidden="">A valid url is required</label>
                 </div>
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
                 <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+               <label id="summary_error" hidden="">A summary is required</label>
                 </div>
                 <div id="rem"></div>
                 <script>
@@ -160,6 +165,7 @@ var jsondata = eval(data1);
                  <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location">
+                <label id="location_error" hidden="">A location is required</label>
                 </div>
 <!-- 
               <div class="form-group">
@@ -188,6 +194,7 @@ var jsondata = eval(data1);
                      <option value ="t&k">Training & Knowledge</option>
                      <option value ="other">Other</option>
                      </select>
+                     <label id="article_error" hidden="">Article type is required</label>
                   </div>
                   <div class="form-group">
                         <?php  $sports = $this->register->getSport();?>
@@ -332,7 +339,8 @@ var jsondata = eval(data1);
 <script type="text/javascript">
     $(document).ready(function (e) {
     $("#form").on('submit',(function(e) {
-    $('#loader_img').show();
+    // $('#loader_img').show();
+    $('#imagelodar').show();
     e.preventDefault();
     $.ajax({
       url: "<?php echo site_url('forms/imageupload'); ?>",
@@ -347,7 +355,8 @@ var jsondata = eval(data1);
       },
       success: function(data)
         {
-               $('#loader_img').hide();
+               // $('#loader_img').hide();
+               $('#imagelodar').hide();
                 $('#mess').show();
                 $("#photo_url").val(data);   
         },
@@ -620,4 +629,62 @@ $(function() {
         reader.readAsDataURL(file);
     });  
 });
+  </script>
+
+
+  <script type="text/javascript">
+
+     $('#save').click(function()
+      {
+        var title = $('#rtitle').val();
+        if(title == "")
+        {
+          $("#title_error").show();
+          $("#title_error").css('color', 'red');
+        }
+        else{
+          $("#title_error").hide(); 
+        }
+      
+      
+        var url = $('#rurl').val();
+        if(url == "")
+        {
+          $("#url_error").show();
+          $("#url_error").css('color', 'red');
+        }
+        else{
+          $("#url_error").hide(); 
+        }
+        var summary = $('#rsummary').val();
+        if(summary == "")
+        {
+          $("#summary_error").show();
+          $("#summary_error").css('color', 'red');
+        }
+        else{
+          $("#summary_error").hide(); 
+        }
+        var location = $('#rlocation').val();
+        if(location == "")
+        {
+          $("#location_error").show();
+          $("#location_error").css('color', 'red');
+        }
+        else{
+          $("#location_error").hide(); 
+        }
+        var article = $('#article').val();
+        if(article == "")
+        {
+          $("#article_error").show();
+          $("#article_error").css('color', 'red');
+        }
+        else{
+          $("#article_error").hide(); 
+        }
+       if(title!="" && url!="" && article!="" && location!="" &&summary!=""){
+          save();
+        }
+    });
   </script>
