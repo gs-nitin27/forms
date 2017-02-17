@@ -1,14 +1,9 @@
   <script>
 //document.domain = "getsporty.in";
-$(document).ready(function(){
- 
-clear();
-   
-$('#save').click(function(){
-
+function save()
+{
+  $("#imagelodar").show();
 var data12 = {
-
-
     "id"                      : $("#cid").val(),
    "userid"                   : $("#userid").val(),
     "title"                   : $("#ctitle").val(),
@@ -17,7 +12,6 @@ var data12 = {
     "publish"                 : 0
     //"date_created"             : $("#cdate").val(),
     //"date_updated"             : $("#udate").val()
-
 };
 
 console.log(JSON.stringify(data12));
@@ -31,6 +25,7 @@ var data = JSON.stringify(data12);
     data: "data="+data,
     dataType: "json",
     success: function(result) {
+      $("#imagelodar").hide();
     $( "#msgdiv" ).show();
    $( "#msg" ).html(result.response);
     setTimeout(function() {
@@ -38,21 +33,7 @@ var data = JSON.stringify(data12);
    }, 2000);
   window.location.href = url+"/forms/getContent";
     }
-
-
 });
-
-    
-});});
-
-function clear()
-{
-
-   // $("#ctitle").val('');
-    //$("#curl").val('');
-    //$("#ccontent").val(''); 
-    //$("#cdate").val('');
-   // $("#udate").val(''); 
 }
 
 </script>
@@ -67,6 +48,7 @@ function clear()
      
     </section>
          <section class="content"> 
+         <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
       <div class="row">
 	  <div class="col-md-12">
 		<div class=" alert alert-success" id="msgdiv" style="display:none">
@@ -98,16 +80,19 @@ function clear()
             <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
                   <input type="text" class="form-control" name="title" id="ctitle" value="<?php echo $value['title']; ?>">
+                <label id="title_error" hidden>title is required.</label>
                 </div>
             <div class="form-group">
                   <label for="exampleInputEmail1">Link</label>
                   <input type="text" class="form-control" name="url" id="curl" value="<?php echo $value['url']; ?>">
+                <label id="url_error" hidden>url is required.</label>
                 </div>
                
            
-            <div class="form-group">
-                     <label for="exampleInputEmail1">Content</label>
-                    <textarea class="form-control" name="content" id="ccontent"  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['content']; ?></textarea>
+                  <div class="form-group">
+                  <label for="exampleInputEmail1">Content</label>
+                  <textarea class="form-control" name="content" id="ccontent"  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['content']; ?></textarea>
+                  <label id="content_error" hidden>Content is required .</label> 
                    </div>
                    <?php } ?>
           
@@ -121,3 +106,38 @@ function clear()
 </section>
 </div>
 <script type='text/javascript' src="<?php echo base_url(); ?>assets/dist/js/ckeditor.js"></script>
+<script type="text/javascript">
+  
+  $('#save').click(function(){
+    
+    var title =   $("#ctitle").val();
+    var url  =    $("#curl").val();
+    var content = $("#ccontent").val();
+
+    if(title !="" && url != "" && content != "")
+    {
+      save();
+    }
+    else 
+    {
+        if(title == ""){
+            $("#title_error").show();
+            $("#title_error").css("color","red");
+         }else{
+            $("#title_error").hide();
+         } 
+        if(url == ""){
+            $("#url_error").show();
+            $("#url_error").css("color","red");
+        }else{
+            $("#url_error").hide();
+        } 
+        if(content == ""){
+            $("#content_error").show();
+            $("#content_error").css("color","red");
+        } else{
+            $("#content_error").hide();
+        }
+    }
+  });
+</script>
