@@ -1,7 +1,8 @@
 
    <script>
 //document.domain = "getsporty.in";
-$(document).ready(function(){
+$(document).ready(function()
+{
 	$('input[value=All]').prop("checked",true);
   $('#jcity').focusout(function(){
 			var city_key = $('#jcity').val();
@@ -29,10 +30,11 @@ $(document).ready(function(){
 				
 			  });
 		});
-clear();
+});
 
-$('#save').click(function()
+function save()
 {
+  $("#imagelodar").show();
 var data1 = {
     "id"                      : "", 
     "userid"                  : $("#userid").val(),
@@ -78,54 +80,18 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
+    $("#imagelodar").hide();
 		$( "#msgdiv" ).show();
 		$( "#msg" ).html(result);
 		setTimeout(function() {
 			$('#msgdiv').fadeOut('fast');
 		}, 2000);
 		window.location.href = url+"/forms/getJob";
-clear();
     }
-
-
-});
-
-    
-});});
-
-function clear()
-{
-
-    $("#jtitle").val('');
-    $("#jadd1").val('');
-    $("#jadd2").val(''); 
-    $("#jtype").val('');
-    $("#jcity").val(''); 
-    $("#jpin").val('');
-    $("#jstate").val('');
-    $("#jdesc").val('');
-    $("#jexp").val('');
-    $("#skill").val('');
-    $("#jdesc").val('');
-    $("#jqualification").val('');
-    $("#jreq").val('');
-    $("#abOrg").val('');
-    $("#orgName").val('');
-    $("#contact").val('');
-    $("#add1").val('');
-    $("#add2").val('');
-    $("#orgcity").val(''); 
-    $("#orgpin").val('');
-    $("#email").val('');
-    $("#cont").val('');
-    $("#orgstate").val('');
-    $("#jlink").val('');
-    $("#startD").val('');
-    $("#endD").val('');
-    $("#jsports").val('');
-    $("input[name='gender']:checked").val('All'); 
-
+});   
 }
+
+
 
   </script>
  <div class="content-wrapper">
@@ -138,6 +104,7 @@ function clear()
      
     </section>
          <section class="content"> 
+         <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div> 
       <div class="row">
 	  
 		<div class="col-md-12">
@@ -148,8 +115,8 @@ function clear()
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_event" data-toggle="tab">Job Details </a></li>
-              <li><a href="#tab_organiser" data-toggle="tab">Organisation</a></li>
-              <li><a href="#tab_eligible" data-toggle="tab">Requirements</a></li>
+              <li ><a href="#tab_organiser" data-toggle="tab" >Organisation</a></li>
+              <li ><a href="#tab_eligible" data-toggle="tab" >Requirements</a></li>
              </ul> 	 
              <form role="form" action="" class="register">  
             <div class="tab-content">
@@ -162,6 +129,7 @@ function clear()
 					<div class="form-group">
 					  <label for="eventName">Job Title</label>
 					  <input type="text" class="form-control"  id="jtitle" >
+             <label id="jtitle_error" hidden>Job Title is required .</label> 
 					</div >
 
          <?php
@@ -177,7 +145,8 @@ function clear()
 					<div class="form-group">
 					  <label>Job Description</label>
 					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="jdesc" ></textarea>
-					</div>
+			   	 <label id="jdesc_error" hidden>Job Description is required .</label> 
+        	</div>
 					 
 					<div class="form-group">
 						
@@ -186,9 +155,9 @@ function clear()
 						<option value="0">- Select -</option> 
 							
 						<option value ="Part Time">Part Time </option>
-						<option value ="Full Time">Full Time </option>
-							
-						</select>
+						<option value ="Full Time">Full Time </option>		
+    		</select>
+         <label id="jtype_error" hidden>Job Type is required .</label> 
 					</div >
 					<div class="form-group">
 					<?php  
@@ -204,29 +173,35 @@ function clear()
 						      }	
 							?>
 						</select>
+             <label id="jsports_error" hidden>Sport Name is required .</label> 
 					</div>
 					<div class="form-group">
 					  <label for="city">Job Location</label>
 					  <input type="text" class="form-control"  id="jcity" placeholder="Enter City">
+             <label id="jcity_error" hidden>Job Location is required .</label> 
 					</div>
 					<div class="form-group">
 					  <label for="address1">Address Line1</label>
 					  <input type="text" class="form-control"  id="jadd1" placeholder="Enter Address">
-					</div >
+	          <label id="jadd1_error" hidden>Address Line1 is required .</label> 
+  				</div >
 					<div class="form-group">
 					  <label for="address2">Address Line2</label>
 					  <input type="text" class="form-control"  id="jadd2" placeholder="Enter Address">
-					</div >
+				  <label id="jadd2_error" hidden>Address Line2 is required .</label> 
+        	</div >
 					<!-- STATE IS ID BASED -->
 					<div class="form-group">
 					  <label for="state">State</label>
 					  <input type="hidden" class="form-control"  id="jstate">
 					  <input type="text" class="form-control"  id="jstate_value" placeholder="Enter State" disabled>
-					</div >
+					 <label id="jstate_error" hidden>State Name is required .</label> 
+          </div >
 					<div class="form-group">
 					  <label for="pin">Pin</label>
 					  <input type="text" class="form-control"  id="jpin" placeholder="Enter Pin">
-					</div >
+					<!--  <label id="name_error" hidden>Event Name is required .</label>  -->
+          </div >
               </div>
               </div>
               <!-- /.tab-pane -->
@@ -238,40 +213,49 @@ function clear()
 					 <div class="form-group">
 					  <label for="eventName">Organisation Name</label>
 					  <input type="text" class="form-control" id="orgName" >
+             <label id="orgName_error" hidden>Organisation Name is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label>About Organisation</label>
 					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="abOrg" ></textarea>
-					</div>
+					 <label id="abOrg_error" hidden>About Organisation is required .</label> 
+          </div>
 					<div class="form-group">
 					  <label for="address1">Address Line1</label>
 					  <input type="text" class="form-control"  id="add1" placeholder="Enter Address">
-					</div >
+					 <label id="add1_error" hidden>Address Line1 is required .</label> 
+          </div >
 					<div class="form-group">
 					  <label for="address2">Address Line2</label>
 					  <input type="text" class="form-control"  id="add2" placeholder="Enter Address">
-					</div >
+					 <label id="add2_error" hidden>Address Line2 is required .</label> 
+          </div >
 					<div class="form-group">
 					  <label for="city">Location</label>
 					  <input type="text" class="form-control"  id="orgcity" placeholder="Enter City">
+             <label id="orgcity_error" hidden>Location Name is required .</label> 
 					</div>
 					<!-- STATE IS ID BASED -->
 					<div class="form-group">
 					  <label for="state">State</label>
 					  <input type="hidden" class="form-control"  id="orgstate">
 					  <input type="text" class="form-control"  id="orgstate_value" placeholder="Enter State" disabled>
-					</div >
+					 <label id="orgstate_error" hidden>State Name is required .</label> 
+          </div >
 					<div class="form-group">
 					  <label for="pin">Pin</label>
 					  <input type="text" class="form-control"  id="orgpin" placeholder="Enter Pin">
+            <!--  <label id="name_error" hidden>Event Name is required .</label>  -->
 					</div >
 					<div class="form-group">
 					  <label for="eventName">Email</label>
 					  <input type="text" class="form-control" id="email">
+             <label id="email_error" hidden>Email is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="eventName">Contact No.</label>
 					  <input type="text" class="form-control" id="cont">
+             <label id="cont_error" hidden>Contact No is required .</label> 
 					</div >
 				</div>
               </div>
@@ -288,18 +272,22 @@ function clear()
 							<option value="<?php echo $i;?>"><?php echo str_pad($i, 2, '0', STR_PAD_LEFT)." year";?></option>
 							<?php } ?>
 						</select>
+             <label id="jexp_error" hidden>Work Experience is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="eventName">Qualifications</label>
 					  <input type="text" class="form-control" id="jqualification" >
+             <label id="jqualification_error" hidden>Qualifications is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="link">Desired skills</label>
 					  <input type="text" class="form-control"  id="skill" >
+           <!--   <label id="name_error" hidden>Event Name is required .</label>  -->
 					</div >
 					<div class="form-group">
 					  <label for="link">Key Requirement</label>
 					  <input type="text" class="form-control"  id="jreq">
+           <!--   <label id="name_error" hidden>Event Name is required .</label>  -->
 					</div >
 					<div class="form-group">
 					  <label for="link">Gender</label>
@@ -496,5 +484,165 @@ $(function() {
         reader.readAsDataURL(file);
     });  
 });
+  </script>
+
+  <script type="text/javascript">
+
+   
+    $("#save").click(function(){
+       
+       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 && $("#jcity").val() !="" &&  $("#jstate").val() !="" && $("#jdesc").val() !="" && $("#jexp").val() !=0  &&   $("#jdesc").val() !="" &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" && $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#orgcity").val() !="" &&   $("#email").val() !="" && $("#cont").val() !="" &&  $("#orgstate").val() !="" && $("#jadd1").val() !="" &&  $("#jsports").val() !=0){
+            save();
+       }else{
+               $("#tab_eligible").css("color","red");
+               $("#tab_organiser").css("color","red");
+              
+                if($("#jtitle").val() ==""){
+                  $("#jtitle_error").show();
+                  $("#jtitle_error").css("color","red");
+
+                }else{
+                    $("#jtitle_error").hide();
+                }
+                if($("#jadd2").val() ==""){
+                  $("#jadd2_error").show();
+                  $("#jadd2_error").css("color","red");
+                }else{
+                  $("#jadd2_error").hide();
+                }
+                if($("#jtype").val() == 0){
+                  $("#jtype_error").show();
+                  $("#jtype_error").css("color","red");
+                }else{
+                  $("#jtype_error").hide();
+                }
+                if($("#jcity").val() ==""){
+                  $("#jcity_error").show();
+                  $("#jcity_error").css("color","red");
+                }else{
+                  $("#jcity_error").hide();
+                }
+                // if($("#jpin").val() !=""){
+                //   $("#jpin_error").show();
+                //   $("#jpin_error").css("color","red");
+                // }else{
+                //   $("#jpin_error").hide();
+                // }
+                if($("#jstate").val() ==""){
+                  $("#jstate_error").show();
+                  $("#jstate_error").css("color","red");
+                }else{
+                  $("#jstate_error").hide();
+                }
+                if($("#jdesc").val() ==""){
+                  $("#jdesc_error").show();
+                  $("#jdesc_error").css("color","red");
+                }else{
+                  $("#jdesc_error").hide();
+                }
+                if($("#jexp").val() == 0){
+                  $("#jexp_error").show();
+                  $("#jexp_error").css("color","red");
+                }else{
+                  $("#jexp_error").hide();
+                }
+                // if($("#skill").val() !=""){
+                //   $("#skill_error").show();
+                //   $("#skill_error").css("color","red");
+                // }else{
+                //   $("#skill_error").hide();
+                // }
+                if($("#jdesc").val() ==""){
+                  $("#jdesc_error").show();
+                  $("#jdesc_error").css("color","red");
+                }else{
+                  $("#jdesc_error").hide();
+                }
+                if($("#jqualification").val() ==""){
+                  $("#jqualification_error").show();
+                  $("#jqualification_error").css("color","red");
+                }else{
+                  $("#jqualification_error").hide();
+                }
+                // if($("#jreq").val() !=""){
+                //   $("#jreq_error").show();
+                //   $("#jreq_error").css("color","red");
+                // }else{
+                //   $("#jreq_error").hide();
+                // }
+                if($("#abOrg").val() ==""){
+                  $("#abOrg_error").show();
+                  $("#abOrg_error").css("color","red");
+                }else{
+                  $("#abOrg_error").hide();
+                }
+                if($("#orgName").val() ==""){
+                  $("#orgName_error").show();
+                  $("#orgName_error").css("color","red");
+                }else{
+                  $("#orgName_error").hide();
+                }
+                if($("#contact").val() ==""){
+                  $("#contact_error").show();
+                  $("#contact_error").css("color","red");
+                }else{
+                  $("#contact_error").hide();
+                }
+                if($("#add1").val() ==""){
+                  $("#add1_error").show();
+                  $("#add1_error").css("color","red");
+                }else{
+                  $("#add1_error").hide();
+                }
+                if($("#add2").val() ==""){
+                  $("#add2_error").show();
+                  $("#add2_error").css("color","red");
+                }else{
+                  $("#add2_error").hide();
+                }
+                if($("#orgcity").val() ==""){
+                  $("#orgcity_error").show();
+                  $("#orgcity_error").css("color","red");
+                }else{
+                  $("#orgcity_error").hide();
+                }
+                // if($("#orgpin").val() !=""){
+                //   $("#orgpin_error").show();
+                //   $("#orgpin_error").css("color","red");
+                // }else{
+                //   $("#orgpin_error").hide();
+                // }
+                if($("#email").val() ==""){
+                  $("#email_error").show();
+                  $("#email_error").css("color","red");
+                }else{
+                  $("#email_error").hide();
+                }
+                if($("#cont").val() ==""){
+                  $("#cont_error").show();
+                  $("#cont_error").css("color","red");
+                }else{
+                  $("#cont_error").hide();
+                }
+                if($("#orgstate").val() ==""){
+                  $("#orgstate_error").show();
+                  $("#orgstate_error").css("color","red");
+                }else{
+                  $("#orgstate_error").hide();
+                }
+                if($("#jadd1").val() ==""){
+                  $("#jadd1_error").show();
+                  $("#jadd1_error").css("color","red");
+                }else{
+                  $("#jadd1_error").hide();
+                }
+                if($("#jsports").val() == 0){
+                  $("#jsports_error").show();
+                  $("#jsports_error").css("color","red");
+                }else{
+                  $("#jsports_error").hide();
+                }
+       }
+    });
   </script>
 

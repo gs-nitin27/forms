@@ -1,6 +1,5 @@
 
-  <script>
-//document.domain = "getsporty.in";		
+<script>
 $(document).ready(function(){
 		$('#city').focusout(function(){
 			var city_key = $('#city').val();
@@ -119,8 +118,8 @@ var data = JSON.stringify(data1);
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_event" data-toggle="tab">Event </a></li>
-              <li><a href="#tab_organiser" data-toggle="tab">Organiser</a></li>
-              <li><a href="#tab_eligible" data-toggle="tab">Eligibility</a></li>
+              <li ><a href="#tab_organiser" data-toggle="tab" >Organiser</a></li>
+              <li ><a href="#tab_eligible" data-toggle="tab" >Eligibility</a></li>
              </ul> 	 
              <form role="form" action="" class="register">  
             <div class="tab-content">
@@ -368,7 +367,11 @@ var data = JSON.stringify(data1);
            save();
       }  
       else
-      {
+      { 
+            $("#tab_eligible").css("color","red");
+            $("#tab_organiser").css("color","red");
+
+
            if(name =="")
            {
               $("#name_error").show();
@@ -528,12 +531,6 @@ var data = JSON.stringify(data1);
             }else{
             	$("#email_app_collection_error").hide();	
             }
-            // if(file_name == ""){
-            //  $("#file_name_error").show();
-            //  $("#file_name_error").css("color","red");
-            // }else{
-            //  $("#file_name_error").hide();	
-            // }
       }  
 	});
 </script>
