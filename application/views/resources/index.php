@@ -246,7 +246,7 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-    window.location.href = url+"/forms/getResources";
+    window.location.href = url+"/forms/getResources?resources";
     }
 });    
 }

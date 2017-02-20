@@ -114,9 +114,9 @@ var data = JSON.stringify(data1);
 
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_event" data-toggle="tab">Job Details </a></li>
-              <li ><a href="#tab_organiser" data-toggle="tab" >Organisation</a></li>
-              <li ><a href="#tab_eligible" data-toggle="tab" >Requirements</a></li>
+              <li class="active" ><a href="#tab_event" data-toggle="tab" id="1" >Job Details </a></li>
+              <li ><a href="#tab_organiser" data-toggle="tab"  id="2">Organisation</a></li>
+              <li ><a href="#tab_eligible" data-toggle="tab" id="3" >Requirements</a></li>
              </ul> 	 
              <form role="form" action="" class="register">  
             <div class="tab-content">
@@ -159,22 +159,42 @@ var data = JSON.stringify(data1);
     		</select>
          <label id="jtype_error" hidden>Job Type is required .</label> 
 					</div >
-					<div class="form-group">
+         
+             <div class="form-group">
+                <?php  $sports = $this->register->getSport();?>
+                <label for="sports">Sport</label>
+                <select id="jsports" class="form-control" name="sport">
+                <option ></option> 
+                <?php if(!empty($sports)){
+                        foreach($sports as $sport){?>
+                <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
+                <?php   }
+                           } 
+                         ?>
+                </select>
+                <label id="jsports_error" hidden>Sport Name is required .</label> 
+                </div>
+
+
+
+
+
+					<!-- <div class="form-group">
 					<?php  
-					$sports = $this->register->getSport();	
+				//	$sports = $this->register->getSport();	
 					?>
 					  <label for="sports">Sport</label>
 						<select id="jsports" class="form-control" >
 						<option value="0">- Select -</option> 
-						<?php if(!empty($sports)){
-					     foreach($sports as $sport){?>
-					     <option value ="<?php echo $sport['id'];?>"><?php echo $sport['sports'];?> </option>
-						<?php 	}
-						      }	
-							?>
+						<?php// if(!empty($sports)){
+					    // foreach($sports as $sport){?>
+					     <option value ="<?php// echo $sport['id'];?>"><?php// echo $sport['sports'];?> </option>
+						<?php 	//}
+						   //   }	
+						//	?>
 						</select>
              <label id="jsports_error" hidden>Sport Name is required .</label> 
-					</div>
+					</div> -->
 					<div class="form-group">
 					  <label for="city">Job Location</label>
 					  <input type="text" class="form-control"  id="jcity" placeholder="Enter City">
@@ -491,11 +511,13 @@ $(function() {
    
     $("#save").click(function(){
        
-       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 && $("#jcity").val() !="" &&  $("#jstate").val() !="" && $("#jdesc").val() !="" && $("#jexp").val() !=0  &&   $("#jdesc").val() !="" &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" && $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#orgcity").val() !="" &&   $("#email").val() !="" && $("#cont").val() !="" &&  $("#orgstate").val() !="" && $("#jadd1").val() !="" &&  $("#jsports").val() !=0){
+       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 && $("#jcity").val() !="" &&  $("#jstate").val() !="" && $("#jdesc").val() !="" && $("#jexp").val() !=0  &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" && $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#orgcity").val() !="" &&   $("#email").val() !="" && $("#cont").val() !="" &&  $("#orgstate").val() !="" && $("#jadd1").val() !="" &&  $("#jsports").val() !=0){
             save();
        }else{
-               $("#tab_eligible").css("color","red");
-               $("#tab_organiser").css("color","red");
+                  // alert($("#2").val());
+                  $("#2").css("color","red");
+                  $("#3").css("color","red");
+                  $("html, body").animate({ scrollTop: 0 }, 500);
               
                 if($("#jtitle").val() ==""){
                   $("#jtitle_error").show();
@@ -552,12 +574,12 @@ $(function() {
                 // }else{
                 //   $("#skill_error").hide();
                 // }
-                if($("#jdesc").val() ==""){
-                  $("#jdesc_error").show();
-                  $("#jdesc_error").css("color","red");
-                }else{
-                  $("#jdesc_error").hide();
-                }
+                // if($("#jdesc").val() ==""){
+                //   $("#jdesc_error").show();
+                //   $("#jdesc_error").css("color","red");
+                // }else{
+                //   $("#jdesc_error").hide();
+                // }
                 if($("#jqualification").val() ==""){
                   $("#jqualification_error").show();
                   $("#jqualification_error").css("color","red");

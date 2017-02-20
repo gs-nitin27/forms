@@ -30,12 +30,15 @@ $(document).ready(function(){
 			  });
 		});
 
+});
 
-$('#save').click(function(){
+function save(){
+     
+$("#imagelodar").show();
 
 var data1 = {
 
-
+ 
     "id"                      : $("#jid").val(),
     "userid"                  : $("#userid").val(),
     "title"                   : $("#jtitle").val(),
@@ -80,6 +83,7 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
+    $("#imagelodar").hide();
 		$( "#msgdiv" ).show();
 		$( "#msg" ).html(result);
 		setTimeout(function() {
@@ -88,12 +92,8 @@ var data = JSON.stringify(data1);
 		window.location.href = url+"/forms/getJob";
 
     }
-
-
 });
-
-    
-});});
+}
 </script>
 
  <div class="content-wrapper">
@@ -110,6 +110,7 @@ var data = JSON.stringify(data1);
 			}
 			
 			?>
+       <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div> 
     <div class="row">
 	<div class="col-md-12">
     <div class=" alert alert-success" id="msgdiv" style="display:none">
@@ -132,6 +133,7 @@ var data = JSON.stringify(data1);
 	<div class="form-group">
 	<label for="eventName">Job Title</label>
 	<input type="text" class="form-control"  id="jtitle" value="<?php echo $job['title'];?>" >
+  <label id="jtitle_error" hidden>Job Title is required .</label> 
 	</div >
      <?php
           $data=$this->session->userdata('item');
@@ -144,6 +146,7 @@ var data = JSON.stringify(data1);
 	<div class="form-group">
 	<label>Job Description</label>
 	<textarea class="form-control" rows="3" style="resize:none;" class="desc" id="jdesc" value="<?php echo $job['description'];?>"  ></textarea>
+  <label id="jdesc_error" hidden>Job Description is required .</label>
 	</div>	 
 	<div class="form-group">
 	<label for="eventtype">Job Type</label>
@@ -152,13 +155,14 @@ var data = JSON.stringify(data1);
 	<option value ="Part Time">Part Time </option>
 	<option value ="Full Time">Full Time </option>
 	</select>
+  <label id="jtype_error" hidden>Job Type is required .</label>
 	</div>
 	<div class="form-group">
         <?php  $sports = $this->register->getSport();   
         ?>
     <label for="sports">Sport</label>
     <select id="sport" class="form-control" >
-    <option ><?php echo $job['sport']; ?></option> 
+    <option ><?php echo $job['sport'];?></option> 
         <?php if(!empty($sports)){
               foreach($sports as $sport){?>
     <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
@@ -166,24 +170,29 @@ var data = JSON.stringify(data1);
                 } 
         ?>
     </select>
+    <label id="sport_error" hidden>Sport Name is required .</label>
     </div>
 	<div class="form-group">
 	<label for="city">Job Location</label>
 	<input type="text" class="form-control"  id="jcity" placeholder="Enter City" value="<?php echo $job['city_name'];?>">
+  <label id="jcity_error" hidden>Job Location is required .</label>
 	</div>
 	<div class="form-group">
 	<label for="address1">Address Line1</label>
 	<input type="text" class="form-control"  id="jadd1" placeholder="Enter Address" value="<?php echo $job['address1'];?>">
+  <label id="jadd1_error" hidden>Address Line1 is required .</label>
 	</div >
 	<div class="form-group">
 	<label for="address2">Address Line2</label>
 	<input type="text" class="form-control"  id="jadd2" placeholder="Enter Address" value="<?php echo $job['address2'];?>">
-	</div >
+	<label id="jadd2_error" hidden>Address Line2 is required .</label>
+  </div >
 	<!-- STATE IS ID BASED -->
 	<div class="form-group">
 	<label for="state">State</label>
 	<input type="hidden" class="form-control"  id="jstate">
 	<input type="text" class="form-control"  id="jstate_value" placeholder="Enter State" value="<?php echo $job['state_name'];?>"  disabled>
+  <label id="jstate_error" hidden>State Name is required .</label>
 	</div >
     <div class="form-group">
 	<label for="pin">Pin</label>
@@ -200,28 +209,34 @@ var data = JSON.stringify(data1);
 	<div class="form-group">
 	<label for="eventName">Organisation Name</label>
 	<input type="text" class="form-control" id="orgName" value="<?php echo $job['organisation_name'];?>">
+  <label id="orgName_error" hidden>Organisation Name is required .</label>
 	</div >
 	<div class="form-group">
 	<label>About Organisation</label>
 	<textarea class="form-control" rows="3" style="resize:none;" class="desc" id="abOrg"  ><?php echo $job['about'];?></textarea>
-	</div>
+	<label id="abOrg_error" hidden>About Organisation is required .</label>
+  </div>
 	<div class="form-group">
 	<label for="address1">Address Line1</label>
 	<input type="text" class="form-control"  id="add1" placeholder="Enter Address" value="<?php echo $job['org_address1'];?>">
-	</div >
+	<label id="add1_error" hidden>Address Line1 is required .</label>
+  </div >
 	<div class="form-group">
 	<label for="address2">Address Line2</label>
 	<input type="text" class="form-control"  id="add2" placeholder="Enter Address" value="<?php echo $job['org_address2'];?>">
-	</div >
+	<label id="add2_error" hidden>Address Line2 is required .</label>
+  </div >
 	<div class="form-group">
 	<label for="city">Location</label>
 	<input type="text" class="form-control"  id="orgcity" placeholder="Enter City" value="<?php echo $job['city_org'];?>">
-	</div>	
+	<label id="orgcity_error" hidden>Location Name is required .</label> 
+  </div>	
 	<!-- STATE IS ID BASED -->
 	<div class="form-group">
 	<label for="state">State</label>
 	<input type="hidden" class="form-control"  id="orgstate">
 	<input type="text" class="form-control"  id="orgstate_value" placeholder="Enter State" value="<?php echo $job['state_org'];?>" disabled>
+  <label id="orgstate_error" hidden>State Name is required .</label>
 	</div >
 	<div class="form-group">
 	<label for="pin">Pin</label>
@@ -230,10 +245,12 @@ var data = JSON.stringify(data1);
 	<div class="form-group">
 	<label for="eventName">Email</label>
 	<input type="text" class="form-control" id="email" value="<?php echo $job['email'];?>">
+  <label id="email_error" hidden>Email is required .</label>
 	</div >
 	<div class="form-group">
 	<label for="eventName">Contact No.</label>
 	<input type="text" class="form-control" id="cont" value="<?php echo $job['contact'];?>">
+   <label id="cont_error" hidden>Contact No is required .</label>
 	</div >
 	</div>
     </div>
@@ -250,10 +267,12 @@ var data = JSON.stringify(data1);
 	<option value="<?php echo $i;?>"><?php echo str_pad($i, 2, '0', STR_PAD_LEFT)." year";?></option>
 		<?php } ?>
 	</select>
+  <label id="jexp_error" hidden>Work Experience is required .</label>
 	</div >
 	<div class="form-group">
 	<label for="eventName">Qualifications</label>
 	<input type="text" class="form-control" id="jqualification" value="<?php echo $job['qualification'];?>"  >
+  <label id="jqualification_error" hidden>Qualifications is required .</label>
 	</div >	
 	<div class="form-group">
 	<label for="link">Desired skills</label>
@@ -290,7 +309,11 @@ var data = JSON.stringify(data1);
     </div>
     <!-- /.tab-content -->
     </form>
+    <?php if($job['image']){ ?>
     <img style="display:block; border:2px solid SteelBlue"; width="380px" height="260px" src = "<?php  echo base_url()."uploads/job/".$job['image']; ?>">
+    <?php } else { ?>
+    <img style="display:block; border:2px solid SteelBlue"; width="380px" height="260px" src = "<?php  echo base_url('img/no-image.jpg');?>">
+    <?php }?>
     <form id="form"  method="post" enctype="multipart/form-data">
     <div class="container"> 
     <div class="row">    
@@ -342,7 +365,8 @@ var data = JSON.stringify(data1);
 <script type="text/javascript">
      $(document).ready(function (e) {
      $("#form").on('submit',(function(e) {
-     $('#loader_img').show();
+      $("#imagelodar").show();
+    // $('#loader_img').show();
       e.preventDefault();
       $.ajax({
       url: "<?php echo site_url('forms/imageupload'); ?>",
@@ -358,7 +382,8 @@ var data = JSON.stringify(data1);
       success: function(data)
         {
           //alert(data);
-               $('#loader_img').hide();
+               $("#imagelodar").hide();
+              // $('#loader_img').hide();
                 $('#mess').show();
                 $("#photo_url").val(data);   
         },
@@ -461,6 +486,164 @@ $(function() {
         reader.readAsDataURL(file);
     });  
 });
+  </script>
+
+  <script type="text/javascript">
+
+    $("#save").click(function(){
+       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 && $("#jcity").val() !="" &&  $("#jstate").val() !="" && $("#jdesc").val() !="" && $("#jexp").val() !=0  &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" && $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#orgcity").val() !="" &&   $("#email").val() !="" && $("#cont").val() !="" &&  $("#orgstate").val() !="" && $("#jadd1").val() !="" &&  $("#sport").val() !=0){
+            save();
+       }else{
+               // $("#tab_eligible").css("color","red");
+               // $("#tab_organiser").css("color","red");
+              
+                if($("#jtitle").val() ==""){
+                  $("#jtitle_error").show();
+                  $("#jtitle_error").css("color","red");
+
+                }else{
+                    $("#jtitle_error").hide();
+                }
+                if($("#jadd2").val() ==""){
+                  $("#jadd2_error").show();
+                  $("#jadd2_error").css("color","red");
+                }else{
+                  $("#jadd2_error").hide();
+                }
+                if($("#jtype").val() == 0){
+                  $("#jtype_error").show();
+                  $("#jtype_error").css("color","red");
+                }else{
+                  $("#jtype_error").hide();
+                }
+                if($("#jcity").val() ==""){
+                  $("#jcity_error").show();
+                  $("#jcity_error").css("color","red");
+                }else{
+                  $("#jcity_error").hide();
+                }
+                // if($("#jpin").val() !=""){
+                //   $("#jpin_error").show();
+                //   $("#jpin_error").css("color","red");
+                // }else{
+                //   $("#jpin_error").hide();
+                // }
+                if($("#jstate").val() ==""){
+                  $("#jstate_error").show();
+                  $("#jstate_error").css("color","red");
+                }else{
+                  $("#jstate_error").hide();
+                }
+                if($("#jdesc").val() ==""){
+                  $("#jdesc_error").show();
+                  $("#jdesc_error").css("color","red");
+                }else{
+                  $("#jdesc_error").hide();
+                }
+                if($("#jexp").val() == 0){
+                  $("#jexp_error").show();
+                  $("#jexp_error").css("color","red");
+                }else{
+                  $("#jexp_error").hide();
+                }
+                // if($("#skill").val() !=""){
+                //   $("#skill_error").show();
+                //   $("#skill_error").css("color","red");
+                // }else{
+                //   $("#skill_error").hide();
+                // }
+                // if($("#jdesc").val() ==""){
+                //   $("#jdesc_error").show();
+                //   $("#jdesc_error").css("color","red");
+                // }else{
+                //   $("#jdesc_error").hide();
+                // }
+                if($("#jqualification").val() ==""){
+                  $("#jqualification_error").show();
+                  $("#jqualification_error").css("color","red");
+                }else{
+                  $("#jqualification_error").hide();
+                }
+                // if($("#jreq").val() !=""){
+                //   $("#jreq_error").show();
+                //   $("#jreq_error").css("color","red");
+                // }else{
+                //   $("#jreq_error").hide();
+                // }
+                if($("#abOrg").val() ==""){
+                  $("#abOrg_error").show();
+                  $("#abOrg_error").css("color","red");
+                }else{
+                  $("#abOrg_error").hide();
+                }
+                if($("#orgName").val() ==""){
+                  $("#orgName_error").show();
+                  $("#orgName_error").css("color","red");
+                }else{
+                  $("#orgName_error").hide();
+                }
+                if($("#contact").val() ==""){
+                  $("#contact_error").show();
+                  $("#contact_error").css("color","red");
+                }else{
+                  $("#contact_error").hide();
+                }
+                if($("#add1").val() ==""){
+                  $("#add1_error").show();
+                  $("#add1_error").css("color","red");
+                }else{
+                  $("#add1_error").hide();
+                }
+                if($("#add2").val() ==""){
+                  $("#add2_error").show();
+                  $("#add2_error").css("color","red");
+                }else{
+                  $("#add2_error").hide();
+                }
+                if($("#orgcity").val() ==""){
+                  $("#orgcity_error").show();
+                  $("#orgcity_error").css("color","red");
+                }else{
+                  $("#orgcity_error").hide();
+                }
+                // if($("#orgpin").val() !=""){
+                //   $("#orgpin_error").show();
+                //   $("#orgpin_error").css("color","red");
+                // }else{
+                //   $("#orgpin_error").hide();
+                // }
+                if($("#email").val() ==""){
+                  $("#email_error").show();
+                  $("#email_error").css("color","red");
+                }else{
+                  $("#email_error").hide();
+                }
+                if($("#cont").val() ==""){
+                  $("#cont_error").show();
+                  $("#cont_error").css("color","red");
+                }else{
+                  $("#cont_error").hide();
+                }
+                if($("#orgstate").val() ==""){
+                  $("#orgstate_error").show();
+                  $("#orgstate_error").css("color","red");
+                }else{
+                  $("#orgstate_error").hide();
+                }
+                if($("#jadd1").val() ==""){
+                  $("#jadd1_error").show();
+                  $("#jadd1_error").css("color","red");
+                }else{
+                  $("#jadd1_error").hide();
+                }
+                if($("#sport").val() == 0){
+                  $("#sport_error").show();
+                  $("#sport_error").css("color","red");
+                }else{
+                  $("#sport_error").hide();
+                }
+       }
+    });
   </script>
 
 

@@ -75,7 +75,7 @@ else
 
 public function create_job($item)
 {
-$insert = "INSERT INTO `gs_jobInfo`(`id`, `userid`, `title`, `gender`, `sport`, `type`, `work_experience`, `description`, `desired_skills`, `qualification`, `key_requirement`, `org_address1`, `org_address2`, `org_city`, `org_state`, `org_pin`, `organisation_name`, `about`, `address1`, `address2`, `state`, `city`, `pin`, `contact`, `image`,`email`, `date_created`) VALUES ('$item->id','$item->userid','$item->title','$item->gender','$item->sports','$item->type','$item->work_exp','$item->desc','$item->desiredskill','$item->qualification','$item->keyreq','$item->org_address1','$item->org_address2','$item->org_city','$item->org_state','$item->org_pin','$item->org_name','$item->about','$item->address1','$item->address2','$item->state','$item->city','$item->pin','$item->contact','$item->image','$item->email',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `sport` = '$item->sports',`gender` = '$item->gender' ,`type` = '$item->type' , `work_experience` = '$item->work_exp' , `description` = '$item->desc' , `desired_skills` = '$item->desiredskill' , `qualification` = '$item->qualification' , `key_requirement` = '$item->keyreq' , `organisation_name` = '$item->org_name' , `about` = '$item->about', `image` = '$item->image' , `contact` = '$item->contact' , `email` = '$item->email' , `date_created` = CURDATE(), `org_address1` = '$item->org_address1',`org_address2` = '$item->org_address2',`org_city` = '$item->org_city' , `org_pin` = '$item->org_pin' , `org_state`= '$item->org_state' , `address1`= '$item->address1' , `address2` = '$item->address2' , `city` = '$item->city' , `state` = '$item->state' , `pin` = '$item->pin'";
+$insert = "INSERT INTO `gs_jobInfo`(`id`, `userid`, `title`, `gender`, `sport`, `type`, `work_experience`, `description`, `desired_skills`, `qualification`, `key_requirement`, `org_address1`, `org_address2`, `org_city`, `org_state`, `org_pin`, `organisation_name`, `about`, `address1`, `address2`, `state`, `city`, `pin`, `contact`, `image`,`email`, `date_created`) VALUES ('$item->id','$item->userid','$item->title','$item->gender','$item->sports','$item->type','$item->work_exp','$item->desc','$item->desiredskill','$item->qualification','$item->keyreq','$item->org_address1','$item->org_address2','$item->org_city','$item->org_state','$item->org_pin','$item->org_name','$item->about','$item->address1','$item->address2','$item->state','$item->city','$item->pin','$item->contact','$item->image','$item->email',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `sport` = '$item->sports',`gender` = '$item->gender' ,`type` = '$item->type' , `work_experience` = '$item->work_exp' , `description` = '$item->desc' , `desired_skills` = '$item->desiredskill' , `qualification` = '$item->qualification' , `key_requirement` = '$item->keyreq' , `organisation_name` = '$item->org_name' , `about` = '$item->about', `image` = '$item->image' , `contact` = '$item->contact' , `email` = '$item->email' , `date_created` = CURDATE(), `org_address1` = '$item->org_address1',`org_address2` = '$item->org_address2',`org_city` = '$item->org_city' , `org_pin` = '$item->org_pin' , `org_state`= '$item->org_state' , `address1`= '$item->address1' , `address2` = '$item->address2' , `city` = '$item->city' , `state` = '$item->state' , `publish` = 0, `pin` = '$item->pin'";
 $query = $this->db->query($insert);
 if($query)
 {
@@ -368,7 +368,7 @@ public function getCityName($keyword)
 
 public function StatusResources($item)
 {
-    $update = "UPDATE  `gs_resources` SET  `status` ='$item->status' WHERE `id` = '$item->id' ";
+    $update = "UPDATE  `gs_resources` SET  `status` ='$item->status' , `date_updated` = CURDATE() WHERE `id` = '$item->id' ";
     $query = $this->db->query($update);
     if($query)
     {
@@ -421,7 +421,7 @@ public function StatusResources($item)
 
 public function StatusEvent($item)
 {
-   $update = "UPDATE  `gs_eventinfo` SET  `publish` ='$item->publish' WHERE `id` = '$item->id' ";
+   $update = "UPDATE  `gs_eventinfo` SET  `publish` ='$item->publish' , `date_updated` = CURDATE() WHERE `id` = '$item->id' ";
    $query = $this->db->query($update);
    if($query)
     {
@@ -491,7 +491,8 @@ public function StatusEvent($item)
 
 public function Statustournament($item)
 {
-   $update = "UPDATE  `gs_tournament_info` SET  `publish` ='$item->publish' WHERE `id` = '$item->id' ";
+
+   $update = "UPDATE  `gs_tournament_info` SET  `publish` ='$item->publish' , `date_updated` = CURDATE() WHERE `id` = '$item->id' ";
    $query = $this->db->query($update);
    if($query)
    {
@@ -563,7 +564,7 @@ public function Statustournament($item)
 
 public function StatusJob($item)
 {
-       $update = "UPDATE  `gs_jobInfo` SET  `publish` ='$item->publish' WHERE `id` = '$item->id' ";
+       $update = "UPDATE  `gs_jobInfo` SET  `publish` ='$item->publish' , `date_updated` = CURDATE() WHERE `id` = '$item->id' ";
        $query = $this->db->query($update);
        if($query)
        {
@@ -629,7 +630,7 @@ public function StatusJob($item)
 
 public function StatusContent($item)
 {
-     $update = "UPDATE  `cms_content` SET  `publish` ='$item->publish' WHERE `id` = '$item->id' ";
+     $update = "UPDATE  `cms_content` SET  `publish` ='$item->publish' , `date_updated` = CURDATE() WHERE `id` = '$item->id' ";
      $query = $this->db->query($update);
      if($query)
        {

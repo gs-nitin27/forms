@@ -30,7 +30,7 @@
                                 { ?>
     <section class="content-header">
     <h1>
-       View Job<a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a>
+       View Job<!-- <a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a> -->
      <a href = "<?php echo site_url('forms/editjob/'.$num.'?job'); ?>" class="glyphicon glyphicon-edit fa-x"  name="Edit"  title="Edit"></a>
      </h1>	
      </section>
@@ -151,7 +151,13 @@
            <div id="corner2">
            <!--   <div id="corner1"> -->
 		   <div id="corner">
+
+          <?php if($job['image']) { ?>
 		   <img style="display:block; border:2px"; width="244px" height="150px" src = "<?php  echo base_url()."uploads/job/".$job['image']; ?>">
+            <?php } else { ?>
+		   <img style="display:block; border:2px"; width="244px" height="150px" src = "<?php  echo base_url('img/no-image.jpg');?>">
+          <?php } ?>
+
            <div class="nav-tabs-custom">
            <div class="tab-content">
            <div class="tab-pane active" id="tab_event1">

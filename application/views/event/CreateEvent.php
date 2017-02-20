@@ -117,9 +117,9 @@ var data = JSON.stringify(data1);
 
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_event" data-toggle="tab">Event </a></li>
-              <li ><a href="#tab_organiser" data-toggle="tab" >Organiser</a></li>
-              <li ><a href="#tab_eligible" data-toggle="tab" >Eligibility</a></li>
+              <li class="active"><a href="#tab_event" data-toggle="tab" id="1">Event </a></li>
+              <li ><a href="#tab_organiser" data-toggle="tab" id="2" >Organiser</a></li>
+              <li ><a href="#tab_eligible" data-toggle="tab" id="3" >Eligibility</a></li>
              </ul> 	 
              <form role="form" action="" class="register">  
             <div class="tab-content">
@@ -368,9 +368,9 @@ var data = JSON.stringify(data1);
       }  
       else
       { 
-            $("#tab_eligible").css("color","red");
-            $("#tab_organiser").css("color","red");
-
+             $("#2").css("color","red");
+             $("#3").css("color","red");
+             $("html, body").animate({ scrollTop: 0 }, 500);
 
            if(name =="")
            {

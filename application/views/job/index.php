@@ -204,7 +204,7 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-      window.location.href = url+"/forms/getJob";
+      window.location.href = url+"/forms/getJob?job";
 
     }
 });    

@@ -117,10 +117,10 @@ var data = JSON.stringify(data1);
 
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_event" data-toggle="tab" >Tournament Details </a></li>
-              <li ><a href="#tab_info" data-toggle="tab"  >Tournament Info</a></li>
-              <li ><a href="#tab_organiser" data-toggle="tab" >Organiser Details</a></li>
-              <li ><a href="#tab_eligible" data-toggle="tab" >Eligibility Criteria</a></li>
+              <li class="active"><a href="#tab_event" data-toggle="tab" id="1" >Tournament Details </a></li>
+              <li ><a href="#tab_info" data-toggle="tab" id="2" >Tournament Info</a></li>
+              <li ><a href="#tab_organiser" data-toggle="tab" id="3" >Organiser Details</a></li>
+              <li ><a href="#tab_eligible" data-toggle="tab" id="4" >Eligibility Criteria</a></li>
              </ul> 	 
              <form role="form" action="" class="register">  
              <div class="tab-content">
@@ -408,10 +408,10 @@ var data = JSON.stringify(data1);
       	save();
       }else{
 
-            // $("#tab_info").css("color","red");
-            // $("#tab_organiser").css("color","red");
-            // $("#tab_eligible").css("color","red");
-
+             $("#2").css("color","red");
+             $("#3").css("color","red");
+             $("#4").css("color","red");
+             $("html, body").animate({ scrollTop: 0 }, 500);
 
       	if($("#add1").val() ==""){
       		//alert("hello");

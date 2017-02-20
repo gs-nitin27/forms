@@ -170,7 +170,7 @@ var data = JSON.stringify(data1);
     dataType: "text",
     success: function(result) {
     //  alert(result);
-      window.location.href = url+"/forms/getevent";
+      window.location.href = url+"/forms/getevent?event";
 
     }
 });    
