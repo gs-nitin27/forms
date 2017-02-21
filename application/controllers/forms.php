@@ -21,30 +21,20 @@ public function home()
 
  public function gmaillogin()
  {
-   $data=json_decode($_REQUEST['data']);
-  // print_r($data->email);
+    $data=json_decode($_REQUEST['data']);
     $username=$data->email;
     $password=md5($data->email);
-
    // echo $username ."  ".$password;
-     $this->load->model('register');
+    $this->load->model('register');
     $emailid = $this->register->Emailfind($data->email);
-    
-     if($emailid!=" ")
-     {   
-          
-      $res = $this->register->login_google($username, $password); 
-       //
-        if($res != 0)
-        {
-         
-         $this->session->set_userdata('item',$res);
-          $sessdata = $this->session->userdata('item');
-   //      redirect('forms/home');
-           //$this->home();
-          // $this->load->view('login');
-           //print_r($res);
-           echo  "1";
+    if($emailid!=" ")
+    {   
+    $res = $this->register->login_google($username, $password); 
+    if($res != 0)
+    { 
+      $this->session->set_userdata('item',$res);
+      $sessdata = $this->session->userdata('item');
+       echo  "1";
 
        }
 
@@ -57,10 +47,6 @@ public function home()
      }
 		
 }
-
-
-
-
 //======================User ======================================
 
 public function login()

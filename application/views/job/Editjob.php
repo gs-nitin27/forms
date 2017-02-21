@@ -118,9 +118,9 @@ var data = JSON.stringify(data1);
 	</div>
 	<div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab_event" data-toggle="tab">Job Details </a></li>
-    <li><a href="#tab_organiser" data-toggle="tab">Organisation</a></li>
-    <li><a href="#tab_eligible" data-toggle="tab">Requirements</a></li>
+    <li class="active"><a href="#tab_event" data-toggle="tab" id="1">Job Details </a></li>
+    <li><a href="#tab_organiser" data-toggle="tab" id="2" >Organisation</a></li>
+    <li><a href="#tab_eligible" data-toggle="tab" id="3" >Requirements</a></li>
     </ul> 	 
     <form role="form" action="" class="register">  
     <div class="tab-content">
@@ -494,9 +494,9 @@ $(function() {
        if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 && $("#jcity").val() !="" &&  $("#jstate").val() !="" && $("#jdesc").val() !="" && $("#jexp").val() !=0  &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" && $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#orgcity").val() !="" &&   $("#email").val() !="" && $("#cont").val() !="" &&  $("#orgstate").val() !="" && $("#jadd1").val() !="" &&  $("#sport").val() !=0){
             save();
        }else{
-               // $("#tab_eligible").css("color","red");
-               // $("#tab_organiser").css("color","red");
-              
+                   $("#2").css("color","red");
+                   $("#3").css("color","red");
+                
                 if($("#jtitle").val() ==""){
                   $("#jtitle_error").show();
                   $("#jtitle_error").css("color","red");
