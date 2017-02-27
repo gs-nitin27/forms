@@ -365,6 +365,8 @@ $data1 = json_decode($_REQUEST['data']);
 
 $item  = new stdClass(); 
 
+//print_r($data1);die;
+
 $item->id                    = $data1->id;
 $item->userid                = $data1->userid;
 $item->title                 = $data1->title;
@@ -1537,14 +1539,12 @@ if($result)
    echo "0";
 }else
 {
-
-   require('class.phpmailer.php');
+              require('class.phpmailer.php');
               $mail = new PHPMailer();
               $to=$email;
               $from="info@darkhorsesports.in";
               $from_name="Getsporty";
               $subject="Email varification ";
-
              // $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
               $emailconform  =  site_url().'/forms/forgotpassword?email=';
               //global $error;

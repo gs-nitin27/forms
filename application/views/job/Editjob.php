@@ -83,6 +83,7 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
+     // alert(result);
     $("#imagelodar").hide();
 		$( "#msgdiv" ).show();
 		$( "#msg" ).html(result);
@@ -107,7 +108,10 @@ var data = JSON.stringify(data1);
          <?php $job = $this->register->getJobInfo($id); 
 		    if(!empty($job)){
 			$job = $job[0];
+
 			}
+
+    //  print_r($job['city']);
 			
 			?>
        <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div> 
@@ -145,7 +149,7 @@ var data = JSON.stringify(data1);
           <?php }?>
 	<div class="form-group">
 	<label>Job Description</label>
-	<textarea class="form-control" rows="3" style="resize:none;" class="desc" id="jdesc" value="<?php echo $job['description'];?>"  ></textarea>
+	<textarea class="form-control" rows="3" style="resize:none;" class="desc" id="jdesc" ><?php echo $job['description'];?></textarea>
   <label id="jdesc_error" hidden>Job Description is required .</label>
 	</div>	 
 	<div class="form-group">
@@ -172,9 +176,17 @@ var data = JSON.stringify(data1);
     </select>
     <label id="sport_error" hidden>Sport Name is required .</label>
     </div>
+    <script type="text/javascript">
+      var city = "<?php echo $job['city'];?>";
+      $("#jcity").val(city);
+      
+      var org_city = "<?php echo $job['org_city'];?>";
+      $("#org_city").val(org_city);
+      //alert(city);
+    </script>
 	<div class="form-group">
 	<label for="city">Job Location</label>
-	<input type="text" class="form-control"  id="jcity" placeholder="Enter City" value="<?php echo $job['city_name'];?>">
+	<input type="text" class="form-control"  id="jcity" placeholder="Enter City" value="<?php echo $job['city'];?>">
   <label id="jcity_error" hidden>Job Location is required .</label>
 	</div>
 	<div class="form-group">
@@ -262,11 +274,22 @@ var data = JSON.stringify(data1);
     <div class="box-body">
 	<div class="form-group">
 	<label for="eventName">Work Experience</label>
-	<select id="jexp" class="form-control"><?php echo $job['work_experience']." Years";?>
-		<?php for($i=0; $i<=10; $i++){?>	
-	<option value="<?php echo $i;?>"><?php echo str_pad($i, 2, '0', STR_PAD_LEFT)." year";?></option>
-		<?php } ?>
-	</select>
+	<select id="jexp" class="form-control">
+  <!--  <?php// for($i=0; $i<=10; $i++){?>   -->
+<option value="<?php echo $job['work_experience'];?>"><?php echo $job['work_experience']." Years";?></option>
+<option value="01">01 Years</option>
+<option value="02">02 Years</option>
+<option value="03">03 Years</option>
+<option value="04">04 Years</option>
+<option value="05">05 Years</option>
+<option value="06">06 Years</option>
+<option value="07">07 Years</option>
+<option value="08">08 Years</option>
+<option value="09">09 Years</option>
+<option value="10">10 Years</option>
+    <!-- <?php// } ?> -->
+
+  </select>
   <label id="jexp_error" hidden>Work Experience is required .</label>
 	</div >
 	<div class="form-group">
@@ -491,7 +514,7 @@ $(function() {
   <script type="text/javascript">
 
     $("#save").click(function(){
-       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 && $("#jcity").val() !="" &&  $("#jstate").val() !="" && $("#jdesc").val() !="" && $("#jexp").val() !=0  &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" && $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#orgcity").val() !="" &&   $("#email").val() !="" && $("#cont").val() !="" &&  $("#orgstate").val() !="" && $("#jadd1").val() !="" &&  $("#sport").val() !=0){
+       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 && $("#jcity").val() !="" &&  $("#jdesc").val() !="" && $("#jexp").val() !=0  &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" && $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#orgcity").val() !="" &&   $("#email").val() !="" && $("#cont").val() !="" &&  $("#jadd1").val() !="" &&  $("#sport").val() !=0){
             save();
        }else{
                    $("#2").css("color","red");
@@ -528,12 +551,12 @@ $(function() {
                 // }else{
                 //   $("#jpin_error").hide();
                 // }
-                if($("#jstate").val() ==""){
-                  $("#jstate_error").show();
-                  $("#jstate_error").css("color","red");
-                }else{
-                  $("#jstate_error").hide();
-                }
+                // if($("#jstate").val() ==""){
+                //   $("#jstate_error").show();
+                //   $("#jstate_error").css("color","red");
+                // }else{
+                //   $("#jstate_error").hide();
+                // }
                 if($("#jdesc").val() ==""){
                   $("#jdesc_error").show();
                   $("#jdesc_error").css("color","red");
@@ -624,12 +647,12 @@ $(function() {
                 }else{
                   $("#cont_error").hide();
                 }
-                if($("#orgstate").val() ==""){
-                  $("#orgstate_error").show();
-                  $("#orgstate_error").css("color","red");
-                }else{
-                  $("#orgstate_error").hide();
-                }
+                // if($("#orgstate").val() ==""){
+                //   $("#orgstate_error").show();
+                //   $("#orgstate_error").css("color","red");
+                // }else{
+                //   $("#orgstate_error").hide();
+                // }
                 if($("#jadd1").val() ==""){
                   $("#jadd1_error").show();
                   $("#jadd1_error").css("color","red");
