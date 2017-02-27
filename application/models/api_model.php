@@ -57,7 +57,7 @@ public  function userVarify($where)
 		$location =  $data['location'];
 		$token    =  $data['token'];
 
-		$query = mysql_query("INSERT into `user`(`name`,`email`,`password`,`contact_no`,`Gender`,`prof_id`,`sport`,`location`,`device_id`) values('$name','$email','$password','$phone','$gender','$prof','$sport','$location','$token')");
+		$query = mysql_query("INSERT into `user`(`name`,`email`,`password`,`contact_no`,`gender`,`prof_id`,`sport`,`location`,`device_id`) values('$name','$email','$password','$phone','$gender','$prof','$sport','$location','$token')");
 
 		if($query)
 		{
