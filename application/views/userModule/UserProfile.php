@@ -85,7 +85,7 @@ var data = JSON.stringify(data);
                     if($value['user_image']) {
              ?>
            <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url()."uploads/profile/".$value['user_image'];?>" alt="User profile picture">
-             <?php } else { if($value['Gender'] == 'Female') { ?>
+             <?php } else { if($value['gender'] == 'Female') { ?>
                 <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('img/female.jpg');?>" alt="User profile picture">
            <?php } else { ?>
            <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('img/user.jpg');?>" alt="User profile picture">
@@ -190,7 +190,7 @@ var data = JSON.stringify(data);
               <strong><i class="fa fa-venus-double margin-r-5"></i>Gender</strong>
                 
               <p class="text-muted">
-                <?php echo $value['Gender'];?>
+                <?php echo $value['gender'];?>
               </p>
 
               <hr>

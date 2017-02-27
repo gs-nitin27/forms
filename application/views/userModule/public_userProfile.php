@@ -48,7 +48,7 @@
                <?php if($value['user_image']) { ?> 
               <img class="profile-user-img img-responsive img-circle" src="<?php  echo base_url()."uploads/profile/".$value['user_image']; ?>" alt="User profile picture">
                  <?php } else { 
-                    if($value['Gender'] == 'Female') { ?>
+                    if($value['gender'] == 'Female') { ?>
                 <img class="profile-user-img img-responsive img-circle" src="<?php  echo base_url('img/female.jpg'); ?>" alt="User profile picture">   
                  <?php } else { ?>
                 <img class="profile-user-img img-responsive img-circle" src="<?php  echo base_url('img/user.jpg'); ?>" alt="User profile picture">        
@@ -102,7 +102,7 @@
                 <li class="list-group-item">
                 <strong><i class="fa fa-venus-double margin-r-5"></i>Gender</strong>
                 <p class="text-muted">
-                <?php echo $value['Gender'];?>
+                <?php echo $value['gender'];?>
                 </p>
                 </li>
 

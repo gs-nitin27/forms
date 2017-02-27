@@ -162,8 +162,8 @@ var data = JSON.stringify(data1);
 
                    <div class="form-group">
                     <label for="sports">Gender</label>
-                        <select id="gen" class="form-control" value="<?php echo $value['Gender']; ?>" >
-                            <option><?php echo $value['Gender']; ?></option>
+                        <select id="gen" class="form-control" value="<?php echo $value['gender']; ?>" >
+                            <option><?php echo $value['gender']; ?></option>
                             <option id="Male">Male</option>
                             <option id="Female">Female</option>
                             <option id="Transgender">Transgender</option>

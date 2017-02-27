@@ -27,7 +27,7 @@ $array=json_decode($data);
           <img src="<?php  echo base_url()."uploads/profile/".$mod['user_image']; ?>" class="" alt="User Image">
         </div>
           <?php } else { 
-          if($mod['Gender'] == 'Female') { ?> ?>
+          if($mod['gender'] == 'Female') { ?> ?>
 
         <div class="pull-left image">
           <img src="<?php  echo base_url('img/female.jpg');?>" class="" alt="User Image">

@@ -59,7 +59,7 @@ if($this->session->userdata('item')==''){
                 <?php if($image) { ?>
                <img src="<?php  echo base_url()."uploads/profile/".$image; ?>" class="user-image" alt="User Image">
                <?php } else { 
-                  if($mod['Gender'] == 'Female') { ?>
+                  if($mod['gender'] == 'Female') { ?>
                 <img src="<?php  echo base_url('img/female.jpg');?>" class="user-image" alt="User Image">
                <?php }
                 else
@@ -76,7 +76,7 @@ if($this->session->userdata('item')==''){
                  <?php if($image) { ?>
                 <img src="<?php  echo base_url()."uploads/profile/".$image; ?>" class="img-circle" alt="User Image">
                   <?php } else {
-                  if($mod['Gender'] == 'Female') { ?>
+                  if($mod['gender'] == 'Female') { ?>
                 <img src="<?php  echo base_url('img/female.jpg');?>" class="user-image" alt="User Image">
                <?php }
                 else
