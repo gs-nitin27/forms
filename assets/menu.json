@@ -114,7 +114,27 @@
       }
     },
 
-    "6" :  {
+    "6":  {
+      "url": "#PERFORMANCE",
+       "class": "fa fa-dashboard fa-x",
+      "name": "PERFORMANCE",
+      "id":"performance",
+      "child":  {
+       "1": {
+               "id":"createquestion",
+                 "url": "/forms/createquestion?performance",
+                 "name": "create question"
+        },
+       "2": {
+               "id":"getjob",
+                 "url": "/forms/getquestion?performance",
+                 "name": "view question"
+        }
+      }
+      
+    },
+
+    "7" :  {
 
                  "url": "#USERROLE",
                  "class": "fa fa-users fa-x",

@@ -1,17 +1,15 @@
 <?php
 
-
+		
 class Register extends CI_Model
 {
 
 public function login_google($username,$password)
 {
-
 // $where = " email = '$username'  AND password = '$password'";
 $this->db->where("email", $username);
 $this->db->where("google_password", $password);
 $qry = $this->db->get('user');
-
 if($qry->num_rows() > 0)
 {
 $q = $qry->row_array();
@@ -24,9 +22,9 @@ else
 return 0;
 }
 
+
 public function login($username,$password)
 {
-
 // $where = " email = '$username'  AND password = '$password'";
 $this->db->where("email", $username);
 $this->db->where("password", $password);
@@ -1029,10 +1027,60 @@ public function updateemail($id,$email)
   else {
   	return 0 ;
   }
+}
 
+public function getprofession($id=false)
+{
+		$qry = $this->db->get('gs_profession');
+		return $qry->result_array();
+}
 
+public function savequestion($item)
+{
 
+	//print_r($item);die;
+  $insert = "INSERT INTO `gs_assess_question`(`userid`,`id`,`question`,`age_group`,`gender`,`level`,`publish`,`proffession`,`date_created`) VALUES('$item->userid','$item->id','$item->question','$item->age_group','$item->gender','$item->level','$item->publish','$item->proffession',CURDATE())  ON DUPLICATE KEY UPDATE `question`= '$item->question',`age_group`='$item->age_group',`gender`='$item->gender', `publish`='$item->publish',`level`='$item->level',`proffession`='$item->proffession',`date_updated`=CURDATE()";
+   
+ //  print_r($insert);die;
+   $query = $this->db->query($insert);
+  if($query)
+  {
+     return 1;
+  }else
+  {
+  	return 0;
+  }
 
 }
+
+public function getproffessioninfo($id = false)
+{
+      //  $this->load->database('other', TRUE);
+		$this->db->select('*');
+		$this->db->from('gs_assess_question GR');
+		if($id > 0){
+			$this->db->where('GR.id', $id);
+		}else{
+		 $this->db->order_by("GR.id", "desc"); 
+		}
+		$query = $this->db->get();
+		$q =  $query->result_array();
+		//_pr($q);
+		return $q;
+	}
+
+public function Statusquestion($item)
+{
+    $update = "UPDATE  `gs_assess_question` SET  `publish` ='$item->publish' , `date_updated` = CURDATE() WHERE `id` = '$item->id' ";
+    $query = $this->db->query($update);
+    if($query)
+    {
+	  return 1;
+    }
+    else
+    {
+      return 0;
+    }
+}	
 }
  ?>

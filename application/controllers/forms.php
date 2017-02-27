@@ -7,7 +7,7 @@ public function __construct() {
 		$this->load->model('register');
 		$this->load->library('session');	
     }
-
+  
 public function index()
 {   
    $this->load->view('login');
@@ -782,7 +782,7 @@ public function editContent($str)
          $id = $this->stringtonumber($str);
 
 		$data['middle'] = 'content/editcontent';
-		$data1=$this->register->editcontent($id);
+	//	$data1=$this->register->editcontent($id);
         //$this->load->view('content/editcontent',$data1);
 		$data['required'] = array(
 									'id'=>$id	
@@ -1620,5 +1620,75 @@ if($result)
 }
 
 }
+
+public function createquestion()
+{
+  
+   $data['middle'] = 'performance/createquestion';
+   $this->load->view('templates/template' , $data);
+
+}
+
+public function getquestion()
+{
+     $data['middle'] = 'performance/viewquestion';
+     $this->load->view('templates/template' , $data);
+
+}
+
+public function savequestion()
+{
+  //$data = json_decode($_POST['data']);
+
+ // print_r($_POST); die;
+
+  $item = new stdClass();
+
+  $item->id                = $_POST['id'];
+  $item->userid            = $_POST['userid'];
+  $item->question          = $_POST['question'];
+  $item->age_group         = $_POST['age_group'];
+  $item->gender            = $_POST['gender'];
+  $item->level             = $_POST['level'];
+  $item->proffession       = $_POST['proffession'];   
+  $item->publish           = 0;  
+
+  $this->load->model('register');
+  $res = $this->register->savequestion($item);
+   
+   print_r($res);
+}
+
+public function Statusquestion()
+{
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
+
+$item->id                    = $data2->id;
+$item->publish               = $data2->publish;
+
+$this->load->model('register');
+$res = $this->register->Statusquestion($item);
+if($data2->publish==1)
+{    
+  //$jdata=$this->register->getContentInfo($data2->id);
+  //  print_r($jdata);
+  //$this->register->addContentData($jdata);
+}
+else{
+  //$this->register->deletePublishContent($data2->id);
+
+}
+}
+public function editquestion($str)
+{
+    $id = $this->stringtonumber($str);
+    $data['middle'] = 'Performance/editquestion';
+    $data['required'] = array(
+                  'id'=>$id 
+                 );
+    $this->load->view('templates/template',$data);
+}
+
 }
   

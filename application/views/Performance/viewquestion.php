@@ -5,6 +5,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 </head>
+
 <div class="wrapper">
   <div class="content-wrapper">
     <section class="content">
@@ -12,16 +13,18 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header" style="text-align: center;">
-              <h3 class="box-title"><b>Content List</b></h3>
+              <h3 class="box-title"><b>Question List</b></h3>
             </div>
-            <div class="box-body">
+           <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
-                  <th style="background: #5262bc; color: #ffffff;">Title <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #5262bc; color: #ffffff;">Link <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #5262bc; color: #ffffff;">Content <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Question <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Age Group <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Gender <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                   <th style="background: #5262bc; color: #ffffff;">Level <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                    <th style="background: #5262bc; color: #ffffff;">Proffession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
 
               <?php        
                  $data=$this->session->userdata('item');
@@ -43,7 +46,7 @@
 
       if($usertype==101 || $usertype==102 )
         {
-              $content = $this->register->getContentInfo();
+              $quest = $this->register->getproffessioninfo();
         }
         else
         {
@@ -51,29 +54,31 @@
             $data=$this->session->userdata('item');
             $userid=$data['userid']; 
            // $content = $this->register->getContentInfo();
-            $content = $this->register->getUserContentInfo($userid);
+           // $content = $this->register->getUserContentInfo($userid);
         }
 
 
 
 				 
-				  if(!empty($content)){
-						foreach($content as $contants){ ?>
+				  if(!empty($quest)){
+						foreach($quest as $questions){ ?>
           <tr>
 					<td><?php echo $i++; ?></td>
-					<td><?php echo $contants['title']; ?></td>
-					<td><?php echo $contants['url']; ?></td>
-					<td><?php echo $contants['content']; ?></td>
+					<td><?php echo $questions['question']; ?></td>
+					<td><?php echo $questions['age_group']; ?></td>
+					<td><?php echo $questions['gender']; ?></td>
+          <td><?php echo $questions['level']; ?></td>
+          <td><?php echo $questions['proffession']; ?></td>
 
           <?php
              if($usertype==101 || $usertype==102 )
                    {
                     ?>
           <td>
-          <?php if($contants['publish']==0){?>
-          <button class="badge bg-red" onclick="myfunction(<?php echo $contants['id'];?>,1)"><?php echo "Activate";?></button>
+          <?php if($questions['publish']==0){?>
+          <button class="badge bg-red" onclick="myfunction(<?php echo $questions['id'];?>,1)"><?php echo "Activate";?></button>
           <?php }else{?> 
-          <button class="badge bg-green" onclick="myfunction(<?php echo $contants['id'];?>,0)"><?php echo "Deactivate";?></button>
+          <button class="badge bg-green" onclick="myfunction(<?php echo $questions['id'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
             <?php } 
@@ -87,7 +92,7 @@
                                 'h' => 7,
                                 'i' => 8,
                                 'j' => 9);
-                                 $num=$contants['id']; //your value
+                                 $num=$questions['id']; //your value
                                  $temp='';
                                  $arr_num=str_split ($num);
                                 foreach($arr_num as $data)
@@ -96,16 +101,18 @@
                                 }
                                 $num=$temp;
                                 { ?> 
-		  <td><a href = "<?php echo site_url('forms/editContent/'.$num.'?Content'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+		  <td><a href = "<?php echo site_url('forms/editquestion/'.$num.'?performance'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
                 </tr>
 		  <?php } } } ?>
                 </tbody>
                 <tfoot>
                <tr>
                   <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
-                  <th style="background: #5262bc; color: #ffffff;">Title</th>
-                  <th style="background: #5262bc; color: #ffffff;">Link</th>
-                  <th style="background: #5262bc; color: #ffffff;">Content</th>
+                  <th style="background: #5262bc; color: #ffffff;">Question</th>
+                  <th style="background: #5262bc; color: #ffffff;">Age Group</th>
+                  <th style="background: #5262bc; color: #ffffff;">Gender</th>
+                   <th style="background: #5262bc; color: #ffffff;">Level</th>
+                  <th style="background: #5262bc; color: #ffffff;">Proffession</th>
 
                   <?php
              if($usertype==101 || $usertype==102 )
@@ -157,14 +164,13 @@ var data = JSON.stringify(data1);
   $.ajax({
 
     type: "POST",
-    url: '<?php echo site_url('forms/StatusContent'); ?>',
+    url: '<?php echo site_url('forms/Statusquestion'); ?>',
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-      window.location.href = url+"/forms/getContent?Content";
+      window.location.href = url+"/forms/getquestion?performance";
 
     }
 });    
 }
 </script>
-
