@@ -293,22 +293,22 @@ var data = JSON.stringify(data1);
 							<?php } ?>
 						</select>
              <label id="jexp_error" hidden>Work Experience is required .</label> 
-					</div >
+					</div>
 					<div class="form-group">
 					  <label for="eventName">Qualifications</label>
 					  <input type="text" class="form-control" id="jqualification" >
              <label id="jqualification_error" hidden>Qualifications is required .</label> 
-					</div >
+					</div>
 					<div class="form-group">
 					  <label for="link">Desired skills</label>
 					  <input type="text" class="form-control"  id="skill" >
            <!--   <label id="name_error" hidden>Event Name is required .</label>  -->
-					</div >
+					</div>
 					<div class="form-group">
 					  <label for="link">Key Requirement</label>
 					  <input type="text" class="form-control"  id="jreq">
            <!--   <label id="name_error" hidden>Event Name is required .</label>  -->
-					</div >
+					</div>
 					<div class="form-group">
 					  <label for="link">Gender</label>
                   <div class="radio">
@@ -371,7 +371,7 @@ var data = JSON.stringify(data1);
 	              </div>
 	             <!--  <input id="button" type="submit" value="Upload"> -->
             </form>
-              <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img> 
+             <!--  <img src="<?php// echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img>  -->
               <input type="hidden" class="form-control" name="photo" id="photo_url"> 
               <div id="mess" hidden>Image Uploded</div>
 			<div class="box-footer">
@@ -385,9 +385,9 @@ var data = JSON.stringify(data1);
 
 <script type="text/javascript">
   $(document).ready(function (e) {
-  $("#form").on('submit',(function(e) {
-  
-   $('#loader_img').show();
+  $("#form").on('submit',(function(e) 
+  {
+   $('#imagelodar').show();
     e.preventDefault();
     $.ajax({
       url: "<?php echo site_url('forms/imageupload'); ?>",
@@ -403,7 +403,7 @@ var data = JSON.stringify(data1);
       success: function(data)
         {
           //alert(data);
-               $('#loader_img').hide();
+               $('#imagelodar').hide();
                 $('#mess').show();
                 $("#photo_url").val(data);   
         },
