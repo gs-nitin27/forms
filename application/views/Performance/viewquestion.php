@@ -20,7 +20,7 @@
                 <thead>
                 <tr>
                   <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
-                  <th style="background: #5262bc; color: #ffffff;">Question <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff; width:80px;">Question <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Age Group <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Gender <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                    <th style="background: #5262bc; color: #ffffff;">Level <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
@@ -111,7 +111,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Question</th>
                   <th style="background: #5262bc; color: #ffffff;">Age Group</th>
                   <th style="background: #5262bc; color: #ffffff;">Gender</th>
-                   <th style="background: #5262bc; color: #ffffff;">Level</th>
+                  <th style="background: #5262bc; color: #ffffff;">Level</th>
                   <th style="background: #5262bc; color: #ffffff;">Proffession</th>
 
                   <?php

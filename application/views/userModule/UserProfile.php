@@ -12,6 +12,7 @@ var data = {
     "job"                      : $("#JOB").val(), 
     "resources"                : $("#RESOURCES").val(), 
     "content"                  : $("#CONTENT").val(),
+    "performace"               : $("#PERFORMANCE").val(),
     "usermenu"                 : $("#USER_ROLE_MANAGEMENT").val()
 };
 console.log(JSON.stringify(data));
@@ -106,6 +107,11 @@ var data = JSON.stringify(data);
               <li class="list-group-item">
               <label for="USER_ROLE_MANAGEMENT" class="btn btn-danger">USER ROLE MANAGEMENT<input type="checkbox" id="USER_ROLE_MANAGEMENT" class="badgebox"><span class="badge">&check;</span></label>
               </li>
+               <li class="list-group-item">
+
+                 <label for="PERFORMANCE" class="btn btn-warning">PERFORMANCE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="PERFORMANCE" class="badgebox"><span class="badge">&check;</span></label>
+
+                </li>
            <?php } ?>
               <li class="list-group-item">
                  <label for="JOB" class="btn btn-info">job &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="JOB" class="badgebox"><span class="badge" >&check;</span></label>
@@ -350,6 +356,9 @@ if(mod[1] ==2){
  $('#CONTENT').prop('checked',true);
  }
  if(mod[5]==6 ){
+ $('#PERFORMANCE').prop('checked',true);
+ }
+ if(mod[6]==7 ){
  $('#USER_ROLE_MANAGEMENT').prop('checked',true);
  }
 }
@@ -359,7 +368,8 @@ if(mod[1] ==2){
     $('#JOB').val(mod[2]);
     $('#RESOURCES').val(mod[3]);
     $('#CONTENT').val(mod[4]);
-    $('#USER_ROLE_MANAGEMENT').val(mod[5]);
+    $('#PERFORMANCE').val(mod[5]);
+    $('#USER_ROLE_MANAGEMENT').val(mod[6]);
 
  });
 
@@ -426,11 +436,23 @@ $('#EVENT').change(function() {
            
         }
     });
-
+     $('#PERFORMANCE').change(function() {
+        if ($(this).prop('checked')) {
+            var val=$("#PERFORMANCE").val(6);
+               val=6;
+           // alert(val);
+        }
+        else {
+          var val=$("#PERFORMANCE").val(0);
+               val=0;
+            
+        }
+    });
+     
         $('#USER_ROLE_MANAGEMENT').change(function() {
         if ($(this).prop('checked')) {
-            var val=$("#USER_ROLE_MANAGEMENT").val(6);
-               val=6;
+            var val=$("#USER_ROLE_MANAGEMENT").val(7);
+               val=7;
                    }
         else {
           var val=$("#USER_ROLE_MANAGEMENT").val(0);

@@ -1624,18 +1624,18 @@ if($result)
 public function createquestion()
 {
   
-   $data['middle'] = 'performance/createquestion';
+   $data['middle'] = 'Performance/createquestion';
    $this->load->view('templates/template' , $data);
 
 }
 
 public function getquestion()
 {
-     $data['middle'] = 'performance/viewquestion';
+     $data['middle'] = 'Performance/viewquestion';
      $this->load->view('templates/template' , $data);
 
 }
-
+   
 public function savequestion()
 {
   //$data = json_decode($_POST['data']);
