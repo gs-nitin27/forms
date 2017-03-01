@@ -14,7 +14,7 @@ var summary1=$("#rsummary").val();
 summary1 = summary1.toString();
 var data1 = {
 
-    "id"                      : "", 
+    "id"                      : 0, 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#rurl").val(),

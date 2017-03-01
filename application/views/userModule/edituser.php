@@ -16,7 +16,7 @@ var data1 = {
     "userType"                : $("#utype").val(),
     "contact_no"              : $("#contact").val(),
     "sport"                   : $("#sport").val(),
-    "Gender"                  : $("#gen").val(), 
+    "gender"                  : $("#gen").val(), 
     "dob"                     : $("#dob").val(),
     "address1"                : $("#add1").val(),
     "address2"                : $("#add2").val(),    

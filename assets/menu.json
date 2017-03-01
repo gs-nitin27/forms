@@ -139,16 +139,16 @@
                  "url": "#USERROLE",
                  "class": "fa fa-users fa-x",
                  "name": "USER ROLE",
-		         "id":"module",
+		             "id":"module",
                  "child" :
-				 {
-                 "1" :{
-	                    "id":"usermodule",
+		        		 {
+                   "1" :{
+	                      "id":"usermodule",
                         "url": "/forms/usermodule?module",
                         "name": "USER ROLE MANAGEMENT"
-                      },
-                "2" : {
-		                "id":"createnewUser",
+                        },
+                  "2" : {
+		                    "id":"createnewUser",
                         "url": "/forms/createnewUser?module",
                         "name": "Create New  User"
                        }

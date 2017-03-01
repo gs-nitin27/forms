@@ -15,7 +15,7 @@ var description2=description1.toString();
 var description3 = description2.replace(/[\/\\<>~\{}]/g, '');
 	
 var data1 = {
-    "id"                      : "", 
+    "id"                      : 0, 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#rurl").val(),

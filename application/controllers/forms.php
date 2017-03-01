@@ -97,13 +97,13 @@ public function login()
 
 public function edituser()
 {
-	   $data=$this->session->userdata('item');
-       $id=$data['userid'];
-	   $data['required'] = array(
+	      $data=$this->session->userdata('item');
+        $id=$data['userid'];
+	      $data['required'] = array(
 									'id'=>$id	
 								 );
         $data['middle'] = 'userModule/public_userProfile';
-		$this->load->view('templates/template',$data);
+		    $this->load->view('templates/template',$data);
 }
 
 public function saveuserModule()
@@ -130,7 +130,7 @@ echo "Module Creation Not Saved";
 
 public function signout()
 {
-   $newdata = array(
+     $newdata = array(
                 'name'  =>'',
                 'email' => '',
                 'logged_in' => FALSE,
@@ -158,7 +158,7 @@ $item->prof_id                    =$data->prof_id;
 $item->userType                   =$data->userType;
 $item->contact_no                 =$data->contact_no;
 $item->sport                      =$data->sport;
-$item->Gender                     =$data->Gender;
+$item->gender                     =$data->gender;
 $item->dob                        =$data->dob;
 $item->address1                   =$data->address1;
 $item->address2                   =$data->address2;
@@ -233,7 +233,7 @@ public function createNewUser()
 public function userprofile($str)
  { 
       $id = $this->stringtonumber($str);
- 	    $data['middle'] = 'userModule/Userprofile';
+ 	    $data['middle'] = 'userModule/UserProfile';
 		  $data['required'] = array(
 									'id'=>$id	
 								 );
@@ -894,7 +894,7 @@ $item->prof_id                    =$data->prof_id;
 $item->userType                   =$data->userType;
 $item->contact_no                 =$data->contact_no;
 $item->sport                      =$data->sport;
-$item->Gender                     =$data->Gender;
+$item->gender                     =$data->gender;
 $item->dob                        =$data->dob;
 $item->address1                   =$data->address1;
 $item->address2                   =$data->address2;

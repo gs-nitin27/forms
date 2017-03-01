@@ -35,7 +35,7 @@ function save(){
 var data1 = {
  
 
-    "id"                      : "", 
+    "id"                      : 0, 
     "userid"                  : $("#userid").val(),
     "catagory"                : $("#tcatagory").val(),
     "address_line1"           : $("#add1").val(), 

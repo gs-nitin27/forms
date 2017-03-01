@@ -5,7 +5,7 @@ function save()
 $('#imagelodar').show();
 
 var data1 = {
-    "id"                      : "", 
+    "id"                      : 0, 
     "userid"                  : $("#userid").val(),
     "question"                : $("#question").val(),
     "age_group"               : $("#age_group").val(),

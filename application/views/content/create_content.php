@@ -6,7 +6,7 @@ function save()
 var data12 = {
 
     
-    "id"                      : "", 
+    "id"                      : 0, 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#ctitle").val(),
     "url"                     : $("#curl").val(), 

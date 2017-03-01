@@ -36,7 +36,7 @@ function save()
 {
   $("#imagelodar").show();
 var data1 = {
-    "id"                      : "", 
+    "id"                      : 0, 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#jtitle").val(),
     "address_line1"           : $("#jadd1").val(), 

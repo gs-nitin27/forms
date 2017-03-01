@@ -7,7 +7,7 @@ $('#save').click(function(){
  
 var data1 = {
 
-    "userid"                  : "",
+    "userid"                  : 0,
     "name"                    : $("#name").val(),
     "status"                  : 0,
     "password"                : $("#Password").val(),
@@ -16,7 +16,7 @@ var data1 = {
     "userType"                : $("#utype").val(),
     "contact_no"              : $("#contact").val(),
     "sport"                   : $("#sport").val(),
-    "Gender"                  : $("#gen").val(), 
+    "gender"                  : $("#gen").val(), 
     "dob"                     : $("#dob").val(),
     "address1"                : $("#add1").val(),
     "address2"                : $("#add2").val(),    
@@ -37,7 +37,7 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-      alert(result);
+     // alert(result);
        
         if(result== 1)
       {
