@@ -209,7 +209,7 @@ var data = JSON.stringify(data1);
 					</div >
 					<div class="form-group">
 					  <label for="link">Event Link</label>
-					  <input type="text" class="form-control"   id="evlink" placeholder="Enter Pin">
+					  <input type="text" class="form-control"   id="evlink" placeholder="Enter Link">
 					  <label id="event_links_error" hidden>Event Link is required .</label> 
 					</div >
 					<div class="form-group">

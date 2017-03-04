@@ -47,7 +47,7 @@ if($this->session->userdata('item')==''){
                }
            //print_r($mod['name']);die;
           $name=$mod['name'];
-          $prof=$mod['prof_id'];
+          $prof=$mod['prof_name'];
           $image=$mod['user_image'];
         { 
        ?>

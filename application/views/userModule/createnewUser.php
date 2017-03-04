@@ -4,6 +4,15 @@ $(document).ready(function(){
              
 
 $('#save').click(function(){
+
+
+//alert($("#proftype").val());
+
+var prof_data = $("#proftype").val();
+
+ var mod = prof_data.split(',');
+ //alert(mod[1]);
+
  
 var data1 = {
 
@@ -12,7 +21,8 @@ var data1 = {
     "status"                  : 0,
     "password"                : $("#Password").val(),
     "email"                   : $("#email").val(), 
-    "prof_id"                 : $("#proftype").val(),
+    "prof_id"                 : mod[1],
+    "prof_name"               : mod[0], 
     "userType"                : $("#utype").val(),
     "contact_no"              : $("#contact").val(),
     "sport"                   : $("#sport").val(),
@@ -133,9 +143,28 @@ var data = JSON.stringify(data1);
                      
                     <input type="hidden" class="form-control"  id="utype" value="102">
                   
+                      <div class="form-group">
+                        <?php  $proffession = $this->register->getproffession(); 
+                             // print_r($proffession);
 
+                        ?>
+                      <label for="Proffession">Proffession</label>
+                        <select id="proftype" class="form-control" >
+                        <option ></option> 
+                            <?php if(!empty($proffession)){
+                                    foreach($proffession as $prof){?>
+                                <option value ="<?php echo $prof['profession'];?>,<?php echo $prof['id'];?>"><?php echo $prof['profession'];?> </option>
+                            <?php   }
+                                  } 
+                            ?>
+                        </select>
+                    </div >
+                      
+                      
 
-                    <div class="form-group">
+                     <input type="hidden" name="proftypeid" value=""> 
+
+                    <!-- <div class="form-group">
                     <label for="usertype">Proffession</label>
                         <select id="proftype" class="form-control" >
                             <option></option>
@@ -153,7 +182,7 @@ var data = JSON.stringify(data1);
                             <option id="player">Tournament Organiser</option>
                             <option id="player">Referee</option>
                         </select>
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                         <?php  $sports = $this->register->getSport();
@@ -230,7 +259,7 @@ var data = JSON.stringify(data1);
             </div>
             <!-- /.tab-content -->
             <div class="box-footer">
-            <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Save" name="Save">
+            <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Save" name="Save">
             </div>
              </form>
             

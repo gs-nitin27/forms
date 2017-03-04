@@ -870,6 +870,8 @@ else{
 
 public function varifyemail()
 {
+
+//  die;
 $data=json_decode($_REQUEST['data']);
 $name=$data->name;
 $pass=md5($data->password);
@@ -891,6 +893,7 @@ $item->password                   =$pass;
 $item->status                     =$data->status;
 $item->email                      =$data->email;
 $item->prof_id                    =$data->prof_id;
+$item->prof_name                  =$data->prof_name;
 $item->userType                   =$data->userType;
 $item->contact_no                 =$data->contact_no;
 $item->sport                      =$data->sport;

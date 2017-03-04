@@ -207,7 +207,7 @@ var data = JSON.stringify(data1);
 					<div class="form-group">
 					<label for="sports">Age Group</label>
 						<select id="tage" class="form-control" >
-							<option></option>
+							<option>-Select-</option>
 							<option id="15-18">15-18</option>
 							<option id="18-22">18-22</option>
 							<option id="20-25">20-25</option>
@@ -217,7 +217,7 @@ var data = JSON.stringify(data1);
 					<div class="form-group">
 					<label for="sports">Gender</label>
 						<select id="tgen" class="form-control" >
-							<option></option>
+							<option>-Select-</option>
 							<option id="Male">Male</option>
 							<option id="Female">Female</option>
 							<option id="Transgender">Transgender</option>

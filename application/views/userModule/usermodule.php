@@ -20,6 +20,9 @@
                  <th style="width: 10px;background: #5262bc; color: #ffffff;"><img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px>#</img></th>
                   <th style="background: #5262bc; color: #ffffff;">Userid <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img> </th>
                   <th style="background: #5262bc; color: #ffffff;">Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
+
+                  <th style="background: #5262bc; color: #ffffff;">Email  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
+
                   <th style="background: #5262bc; color: #ffffff;">Proffession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
                   <th style="background: #5262bc; color: #ffffff;">Usertype <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
@@ -38,7 +41,8 @@
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $user['userid']; ?></td>
                     <td><?php echo $user['name']; ?></td>
-                    <td><?php echo $user['prof_id']; ?></td>
+                     <td><?php echo $user['email']; ?></td>
+                    <td><?php echo $user['prof_name']; ?></td>
                     <td><?php echo $user['userType']; ?></td>
                 <!--  <td>
                     <?php //if($user['status']==0){?>
@@ -91,6 +95,7 @@
                  <th style="width: 10px;background: #5262bc; color: #ffffff;">#</th>
                   <th style="background: #5262bc; color: #ffffff;">Userid  </th>
                   <th style="background: #5262bc; color: #ffffff;">Name  </th>
+                   <th style="background: #5262bc; color: #ffffff;">Email  </th>
                   <th style="background: #5262bc; color: #ffffff;">Proffession  </th>
                   <th style="background: #5262bc; color: #ffffff;">Usertype  </th>
                   <!-- <th style="width: 40px; background: #5262bc; color: #ffffff;">Permission</th> -->

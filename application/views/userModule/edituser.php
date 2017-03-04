@@ -113,12 +113,14 @@ var data = JSON.stringify(data1);
                      
                     <input type="hidden" class="form-control"  id="utype" value="<?php echo $value['userType']; ?>" disabled >
                    <input type="hidden" class="form-control"  id="status" value="<?php echo $value['status']; ?>" disabled >
-
-
-                    <div class="form-group">
+                   <div class="form-group">
+                    <label for="usertype">Proffession</label>
+                    <input type="input" class="form-control"  id="utype" value="<?php echo $value['prof_name']; ?>" disabled >
+                    </div>
+                   <!--  <div class="form-group">
                     <label for="usertype">Proffession</label>
                         <select id="proftype" class="form-control" disabled="">
-                            <option><? echo $value['prof_id'];?></option>
+                            <option><?// echo $value['prof_id'];?></option>
                             <option id="Coach">Athletes</option>
                             <option id="player">Coach</option>
                             <option id="Coach">Dietician</option>
@@ -134,7 +136,7 @@ var data = JSON.stringify(data1);
                             <option id="player">Referee</option>
                         </select>
                     </div>
-
+ -->
                     <div class="form-group">
                         <?php  $sports = $this->register->getSport();
                             

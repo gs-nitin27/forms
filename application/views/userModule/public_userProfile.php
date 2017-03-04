@@ -86,7 +86,7 @@
 
               <h3 class="profile-username text-center"><?php echo $value['name'];?></h3>
 
-              <p class="text-muted text-center"><?php echo $value['prof_id'];?></p>
+              <p class="text-muted text-center"><?php echo $value['prof_name'];?></p>
 
               <input type="hidden" class="form-control" name="UserId"  id="uid" value="<?php echo $value['userid']; ?>">
               

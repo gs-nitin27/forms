@@ -148,7 +148,7 @@ var data = eval(data1);//JSON.stringify(data1);
 
                 //print_r($profession);
              ?>
-                <label for="proffession" >Proffession</label>
+                <label for="proffession" >Profession</label>
                 <select id="proffession" class="form-control" name="proffession">
                 <option></option>
                 <?php if(!empty($profession)){
