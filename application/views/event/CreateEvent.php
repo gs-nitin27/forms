@@ -361,6 +361,35 @@ var data = JSON.stringify(data1);
      var entry_end_date            = $("#eendD").val();
      var email_app_collection      = $("#email_app_collection").val();
      // var file_name                 = $("#filename").val();
+
+        var startDay = new Date(start_date);
+        var endDay = new Date(end_date);
+        var millisecondsPerDay = 1000 * 60 * 60 * 24;
+        var millisBetween = endDay.getTime() - startDay.getTime();
+        var days = millisBetween / millisecondsPerDay;
+        var datediff =  Math.floor(days);
+        
+        if(datediff<0)
+        {
+        	alert("Event end date is worng ");
+        	return false ;
+        }
+
+        var entry_startDay = new Date(entry_start_date);
+        var entry_endDay = new Date(entry_end_date);
+        var entry_millisecondsPerDay = 1000 * 60 * 60 * 24;
+        var entry_millisBetween = entry_endDay.getTime() - entry_startDay.getTime();
+        var entry_days = entry_millisBetween / entry_millisecondsPerDay;
+        var entry_datediff =  Math.floor(entry_days);
+         if(entry_datediff<0)
+        {
+        	alert("Event entry date is worng ");
+        	return false ;
+        }
+            
+        
+
+
       
     if(name != "" && type != 0 &&  address_line1 != "" &&  address_line2 != "" &&  city != "" &&  pin != "" &&  description != "" && eligibility1 != "" && eligibility2 != "" && state != "" && terms_and_conditions1 != "" && terms_and_conditions2 != "" &&  organizer_name != "" &&  mobile != "" &&  organizer_address_line1 != "" &&   organizer_address_line2 != "" &&  organizer_city != "" &&  organizer_pin != "" &&  organizer_state != "" && event_links != "" && start_date != "" &&  end_date != "" &&  sport != 0 &&  entry_start_date != "" &&    entry_end_date != "" && email_app_collection != "")
       {

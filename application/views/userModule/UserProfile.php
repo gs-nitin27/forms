@@ -217,13 +217,13 @@ var data = JSON.stringify(data);
               <hr>
                
               <strong><i class="fa fa-envelope margin-r-5"></i>Email</strong>
-              <button style="margin-left: 71%;"><i class="fa fa-pencil margin-r-5"></i></button>
+              <button style="margin-left: 71%;" id="ebutton"><i class="fa fa-pencil margin-r-5"></i></button>
               <p><?php echo $value['email'];?></p>
               
               <script>
               $(document).ready(function(){
                 $("#newemail").hide();
-                $("button").click(function(){
+                $("#ebutton").click(function(){
                 $("#newemail").toggle();
                 });
               });
@@ -568,6 +568,7 @@ var data = JSON.stringify(data1);
 
 <script type="text/javascript">
 $("#emailsave").click(function(){
+
 var id = $("#string_userid").val();
 if($("#updateemail").val())
 {

@@ -58,45 +58,31 @@ var data = eval(data1);//JSON.stringify(data1);
          $('#msgdiv').fadeOut('fast');
           }, 2000);
       }      
-
-  
- 
     }
-});  
-
+}); 
 }
 </script>
-
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
     Create  Resources  
       </h1>
-     
     </section>
          <section class="content"> 
-
          <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
       <div class="row">
     <?php if(isset($msg) && $msg != ""){?>
     <div class="col-md-12">
-    
     <?php }?>
 <div class="col-md-12">
 <div class=" alert alert-success" id="msgdiv" style="display:none" >
       <strong>Info! <span id = "msg"></span></strong> 
     </div>
       <div class="box box-primary">
-       
             <!-- /.box-header -->
-    
-
-
-        
             <form id="myform">
               <div class="box-body">
-
             <?php
           $data=$this->session->userdata('item');
           $name=$data['userid'];
@@ -105,11 +91,9 @@ var data = eval(data1);//JSON.stringify(data1);
                   <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $name;?>">
             </div>
         <?php }?>
-
                 <div class="form-group">
                   <input type="hidden" class="form-control" name="token" id="token" value="1">
                 </div>
-
             <script>
             $(document).ready(function() {
             $('#types').change(function(){
@@ -124,8 +108,7 @@ var data = eval(data1);//JSON.stringify(data1);
             });
             });
             </script>
-             <div class="form-group">
-            
+             <div class="form-group"> 
                       <label for="exampleInputEmail1">Resource Type</label>
                      <select  id="types" class="form-control" >
                      <option >-Select-</option> 
@@ -133,13 +116,10 @@ var data = eval(data1);//JSON.stringify(data1);
                      <option value="video">Video</option>
                      </select>
               </div >
-
-               <?php
-              
+               <?php     
                 date_default_timezone_set("Asia/Kolkata");
              {
               ?>
-
               <div class="form-group">
                   <input type="hidden" class="form-control" name="date_created" id="date_created" value= "<?php  echo date("Y-m-d h:i:sa");?>">
                 </div>
@@ -161,21 +141,15 @@ var data = eval(data1);//JSON.stringify(data1);
                  <label id="summary_error" hidden="">A summary is required</label>
                 </div>
                 <div id="rem"></div>
-
             <script>
             document.getElementById('rsummary').onkeyup = function () {
             document.getElementById('rem').innerHTML = "Characters left: " + (360 - this.value.length);
                 };
-            </script>
-                
-                
-
+            </script>       
            <div class="form-group" id="abc">
            <label for="exampleInputEmail1">Description</label>
                    <textarea class="form-control" name="description" id="rdescription" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
-
-
                  <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location">
@@ -224,7 +198,7 @@ var data = eval(data1);//JSON.stringify(data1);
             <div class="btn btn-default image-preview-input">
             <span class="glyphicon glyphicon-folder-open"></span>
             <span class="image-preview-input-title">Browse</span>
-            <input type="file" accept="image/png, image/jpeg, image/gif" name="file"/>
+            <input type="file" accept="image/png, image/jpeg, image/gif" id="Nimage" name="file"/>
             <!-- rename it -->
             </div>
             <input id="button" type="submit" class="btn btn-danger" value="Upload Image" name="submit">
@@ -245,6 +219,7 @@ var data = eval(data1);//JSON.stringify(data1);
            <!--  <img src="<?php// echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img>  -->
             <input type="hidden" class="form-control" name="photo" id="photo_url"> 
             <div id="mess" hidden>Image Uploded</div>
+            <div id="mess1" style="color:red;" hidden>Please Select the Image.</div>
             <div class="box-footer">
             <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
             </div>
@@ -253,11 +228,11 @@ var data = eval(data1);//JSON.stringify(data1);
             </div>
             </div>
             </section>
-
 </div>
 <script type="text/javascript">
   $(document).ready(function (e) {
   $("#form").on('submit',(function(e) {
+  if($("#Nimage").val()){
   $('#imagelodar').show();
     e.preventDefault();
     $.ajax({
@@ -276,16 +251,24 @@ var data = eval(data1);//JSON.stringify(data1);
           //alert(data);
                $('#imagelodar').hide();
                 $('#mess').show();
+                $('#mess1').hide();
                 $("#photo_url").val(data);   
         },
         error: function(e) 
         {
-      
         }           
-     });
+     }); 
+    }
+       else{
+                $('#mess').hide();
+                $('#mess1').show();
+                return false;
+        
+       }
+   
+
   }));
 });
-
 </script>
  <style>
             /* Autocomplete

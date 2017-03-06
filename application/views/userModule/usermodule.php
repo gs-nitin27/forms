@@ -23,7 +23,7 @@
 
                   <th style="background: #5262bc; color: #ffffff;">Email  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
 
-                  <th style="background: #5262bc; color: #ffffff;">Proffession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
+                  <th style="background: #5262bc; color: #ffffff;">Profession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
                   <th style="background: #5262bc; color: #ffffff;">Usertype <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
 
@@ -96,7 +96,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Userid  </th>
                   <th style="background: #5262bc; color: #ffffff;">Name  </th>
                    <th style="background: #5262bc; color: #ffffff;">Email  </th>
-                  <th style="background: #5262bc; color: #ffffff;">Proffession  </th>
+                  <th style="background: #5262bc; color: #ffffff;">Profession  </th>
                   <th style="background: #5262bc; color: #ffffff;">Usertype  </th>
                   <!-- <th style="width: 40px; background: #5262bc; color: #ffffff;">Permission</th> -->
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>

@@ -144,25 +144,21 @@ var data = JSON.stringify(data1);
                     <input type="hidden" class="form-control"  id="utype" value="102">
                   
                       <div class="form-group">
-                        <?php  $proffession = $this->register->getproffession(); 
+                        <?php  $profession = $this->register->getproffession(); 
                              // print_r($proffession);
-
                         ?>
-                      <label for="Proffession">Proffession</label>
+                      <label for="Proffession">Profession</label>
                         <select id="proftype" class="form-control" >
                         <option ></option> 
-                            <?php if(!empty($proffession)){
-                                    foreach($proffession as $prof){?>
+                            <?php if(!empty($profession)){
+                                    foreach($profession as $prof){?>
                                 <option value ="<?php echo $prof['profession'];?>,<?php echo $prof['id'];?>"><?php echo $prof['profession'];?> </option>
                             <?php   }
                                   } 
                             ?>
                         </select>
-                    </div >
-                      
-                      
-
-                     <input type="hidden" name="proftypeid" value=""> 
+                    </div >                
+                     <!-- <input type="hidden" name="proftypeid" value="">  -->
 
                     <!-- <div class="form-group">
                     <label for="usertype">Proffession</label>
@@ -183,10 +179,8 @@ var data = JSON.stringify(data1);
                             <option id="player">Referee</option>
                         </select>
                     </div> -->
-
                     <div class="form-group">
-                        <?php  $sports = $this->register->getSport();
-                            
+                        <?php  $sports = $this->register->getSport(); 
                         ?>
                       <label for="sports">Sport</label>
                         <select id="sport" class="form-control" >
@@ -198,8 +192,7 @@ var data = JSON.stringify(data1);
                                   } 
                             ?>
                         </select>
-                    </div >
-
+                    </div>
                     <div class="form-group">
                       <label for="Email">Email Id</label>
                       <input type="text" class="form-control"  id="email" placeholder="Enter Email Id"  >
@@ -208,7 +201,6 @@ var data = JSON.stringify(data1);
                       <label for="contact">Contact No</label>
                       <input type="text" class="form-control"  id="contact" placeholder="Enter Contact No" >
                     </div >
-
                    <div class="form-group">
                     <label for="sports">Gender</label>
                         <select id="gen" class="form-control"  >
@@ -218,13 +210,10 @@ var data = JSON.stringify(data1);
                             <option id="Transgender">Transgender</option>
                         </select>
                     </div>
-
                     <div class="form-group">
                       <label for="link">Date of Birth</label>
                       <input type="text" class="form-control"  id="dob"  placeholder="Date Of Birth">
-                    </div >
-
-                   
+                    </div>
               </div>
               </div>
               <!-- /.tab-pane -->
@@ -242,19 +231,17 @@ var data = JSON.stringify(data1);
                     <div class="form-group">
                       <label for="address2">Address Line2</label>
                       <input type="text" class="form-control"  id="add2" placeholder="Enter Address">
-                    </div >
+                    </div>
                     <div class="form-group">
                       <label for="city">City</label>
                       <input type="text" class="form-control"  id="city"  placeholder="Enter City">
-                    </div >
+                    </div>
                     <div class="form-group">
                       <label for="state">State</label>
                       <input type="text" class="form-control"  id="state"  placeholder="Enter State">
-                    </div >
-                    
+                    </div>
                 </div>
               </div>
-            
               <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
@@ -262,10 +249,7 @@ var data = JSON.stringify(data1);
             <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Save" name="Save">
             </div>
              </form>
-            
           </div>
-        
       </div>
-
 </section>
 </div>

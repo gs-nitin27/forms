@@ -275,7 +275,7 @@ var jsondata = eval(data1);
                     <div class="btn btn-default image-preview-input">
                         <span class="glyphicon glyphicon-folder-open"></span>
                         <span class="image-preview-input-title">Browse</span>
-                        <input type="file" accept="image/png, image/jpeg, image/gif" name="file"/>
+                        <input type="file" accept="image/png, image/jpeg, image/gif" id="Nimage" name="file"/>
                         
                          <!-- rename it -->
                     </div>
@@ -297,6 +297,7 @@ var jsondata = eval(data1);
         <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img>
         <input type="hidden" class="form-control" name="photo" id="photo_url"> 
         <div id="mess" hidden>Image Uploded</div>
+        <div id="mess1" style="color:red;" hidden>Please Select the Image.</div>
         <div class="box-footer">
         <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
         </div>
@@ -339,7 +340,7 @@ var jsondata = eval(data1);
 <script type="text/javascript">
     $(document).ready(function (e) {
     $("#form").on('submit',(function(e) {
-    // $('#loader_img').show();
+   if($("#Nimage").val()){
     $('#imagelodar').show();
     e.preventDefault();
     $.ajax({
@@ -358,6 +359,7 @@ var jsondata = eval(data1);
                // $('#loader_img').hide();
                $('#imagelodar').hide();
                 $('#mess').show();
+                $('#mess1').hide();
                 $("#photo_url").val(data);   
         },
         error: function(e) 
@@ -365,6 +367,14 @@ var jsondata = eval(data1);
       
         }           
      });
+    }
+       else{
+                $('#mess').hide();
+                $('#mess1').show();
+                return false;
+        
+       }
+
   }));
 });
 

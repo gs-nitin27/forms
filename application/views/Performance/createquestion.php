@@ -10,7 +10,7 @@ var data1 = {
     "question"                : $("#question").val(),
     "age_group"               : $("#age_group").val(),
     "gender"                  : $("#gender").val(),
-	"level"                   : $("#level").val(),
+   	"level"                   : $("#level").val(),
     "proffession"             : $("#proffession").val()
 };
 
