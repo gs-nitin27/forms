@@ -156,18 +156,14 @@ var data = JSON.stringify(data);
                                 }
                                 $num=$temp;
                                 {  ?>
-
                     <input type="hidden" class="form-control" name="string_userid"  id="string_userid" value="<?php echo $num; ?>">
                     <?php }?>
-           
                   <?php $email = $value['email'];
                   { ?>
-
               <button class="btn btn-success btn-block" onclick="myfunction('<?php echo $email;?>');"><?php echo "Password Reset";?></button>
                <?php } ?>
                 </li>
                 </ul>
-
             </div>
           </div>
           <?php } ?>
@@ -183,39 +179,27 @@ var data = JSON.stringify(data);
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
-
             <div class="row">
-           
           <div class="col-md-6">
             <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">About Me</h3>
             </div>
-            <!-- /.box-header -->
             <div class="box-body">
               <strong><i class="fa fa-venus-double margin-r-5"></i>Gender</strong>
-                
               <p class="text-muted">
                 <?php echo $value['gender'];?>
               </p>
-
               <hr>
-
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
               <p class="text-muted"><?php echo $value['address1'];?></p>
               <p class="text-muted"><?php echo $value['address2'];?></p>
                <p class="text-muted"><?php echo $value['location'];?></p>
               <p class="text-muted"><?php echo $value['address3'];?></p>
-
               <hr>
-
               <strong><i class="fa fa-mobile margin-r-5"></i>Contact No</strong>
-
                <p><?php echo $value['contact_no'];?></p>
-
               <hr>
-               
               <strong><i class="fa fa-envelope margin-r-5"></i>Email</strong>
               <button style="margin-left: 71%;" id="ebutton"><i class="fa fa-pencil margin-r-5"></i></button>
               <p><?php echo $value['email'];?></p>
@@ -237,49 +221,40 @@ var data = JSON.stringify(data);
                 </div >
               </div>
             </div>
-            <!-- /.box-body -->
           </div>
           <?php }?>
           </div>
-         <div class="col-md-6">
+            <div class="col-md-6">
             <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">About Proffession</h3>
+            <h3 class="box-title">About Proffession</h3>
             </div>
-            <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-futbol-o margin-r-5"></i>Sport</strong>
-                
-              <p class="text-muted">
+            <strong><i class="fa fa-futbol-o margin-r-5"></i>Sport</strong>
+            <p class="text-muted">
                 <?php echo $value['sport'];?>
-              </p>
-              <hr>
-              <strong><i class="fa fa-calendar-check-o margin-r-5"></i>DOB</strong>
-              <p class="text-muted"><?php echo $value['dob'];?></p>
-              <hr>
-              <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-
-              <p>
-                <span class="label label-danger"><?php echo $value['prof_language'];?></span>
-                <span class="label label-success"><?php echo $value['other_skill_name'];?></span>
-                <span class="label label-info"><?php echo $value['other_skill_detail'];?></span>
+            </p>
+            <hr>
+            <strong><i class="fa fa-calendar-check-o margin-r-5"></i>DOB</strong>
+            <p class="text-muted"><?php echo $value['dob'];?></p>
+            <hr>
+            <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+            <p>
+            <span class="label label-danger"><?php echo $value['prof_language'];?></span>
+            <span class="label label-success"><?php echo $value['other_skill_name'];?></span>
+            <span class="label label-info"><?php echo $value['other_skill_detail'];?></span>
                <!--  <span class="label label-warning">PHP</span>
                 <span class="label label-primary">Node.js</span> -->
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-file-text-o margin-r-5"></i>About Me</strong>
-
-              <p><?php echo $value['about_me'];?></p>
+            </p>
+            <hr>
+            <strong><i class="fa fa-file-text-o margin-r-5"></i>About Me</strong>
+            <p><?php echo $value['about_me'];?></p>
             </div>
-            <!-- /.box-body -->
-          </div>
-          </div>
-          </div> 
-          </div>
+            </div>
+            </div>
+            </div> 
+            </div>
           <div class="active tab-pane" id="statistics">
-
           <div class="row">
           <div class="col-md-6">
           <!-- DONUT CHART -->
@@ -287,10 +262,8 @@ var data = JSON.stringify(data);
              <canvas id="areaChart" style="height:250px"></canvas>
           </div>
           <div  class="box box-primary" style="margin-top:-67%;">
-      
             <div class="box-header with-border">
               <h3 class="box-title">Donut Chart</h3>
-
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -298,37 +271,18 @@ var data = JSON.stringify(data);
               </div>
             </div>
             <div class="box-body">
-              <canvas id="pieChart" style="height:250px"></canvas>
+            <canvas id="pieChart" style="height:250px"></canvas>
             </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-        </div>
-      </div>
-      </div>
-
-
-        
-              
             </div>
-            <!-- /.tab-content -->
-          </div>
-          <!-- /.nav-tabs-custom -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
- 
-  
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </section>
+            </div>
   <div class="control-sidebar-bg"></div>
 </div>
 

@@ -353,7 +353,7 @@ var data = JSON.stringify(data1);
                     <div class="btn btn-default image-preview-input">
                         <span class="glyphicon glyphicon-folder-open"></span>
                         <span class="image-preview-input-title">Browse</span>
-                        <input type="file" accept="image/png, image/jpeg, image/gif" name="file"/>
+                        <input type="file" accept="image/png, image/jpeg, image/gif" id="Jimage" name="file"/>
                         
                          <!-- rename it -->
                     </div>
@@ -387,7 +387,9 @@ var data = JSON.stringify(data1);
   $(document).ready(function (e) {
   $("#form").on('submit',(function(e) 
   {
-   $('#imagelodar').show();
+    if($('#Jimage').val())
+    {
+    $('#imagelodar').show();
     e.preventDefault();
     $.ajax({
       url: "<?php echo site_url('forms/imageupload'); ?>",
@@ -412,6 +414,10 @@ var data = JSON.stringify(data1);
       
         }           
      });
+  } else{
+          alert("please upload image");
+          return false ;
+  }
   }));
 });
 

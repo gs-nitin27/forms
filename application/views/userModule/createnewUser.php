@@ -149,7 +149,7 @@ var data = JSON.stringify(data1);
                         ?>
                       <label for="Proffession">Profession</label>
                         <select id="proftype" class="form-control" >
-                        <option ></option> 
+                        <option >-select-</option> 
                             <?php if(!empty($profession)){
                                     foreach($profession as $prof){?>
                                 <option value ="<?php echo $prof['profession'];?>,<?php echo $prof['id'];?>"><?php echo $prof['profession'];?> </option>
@@ -184,7 +184,7 @@ var data = JSON.stringify(data1);
                         ?>
                       <label for="sports">Sport</label>
                         <select id="sport" class="form-control" >
-                        <option ></option> 
+                        <option >-select-</option> 
                             <?php if(!empty($sports)){
                                     foreach($sports as $sport){?>
                                 <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
@@ -204,18 +204,18 @@ var data = JSON.stringify(data1);
                    <div class="form-group">
                     <label for="sports">Gender</label>
                         <select id="gen" class="form-control"  >
-                            <option></option>
+                            <option>-select-</option>
                             <option id="Male">Male</option>
                             <option id="Female">Female</option>
                             <option id="Transgender">Transgender</option>
                         </select>
                     </div>
                     <div class="form-group">
-                      <label for="link">Date of Birth</label>
-                      <input type="text" class="form-control"  id="dob"  placeholder="Date Of Birth">
+                    <label for="link">Date of Birth</label>
+                    <input type="text" class="form-control"  id="dob"  placeholder="Date Of Birth">
                     </div>
-              </div>
-              </div>
+                    </div>
+                    </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_organiser">
               <div class="box-header with-border">

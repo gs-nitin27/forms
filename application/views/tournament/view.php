@@ -59,10 +59,10 @@
 						<h5 class="timeline-header no-border"><b>Age Group: </b> &nbsp;<?php echo $event['age_group']. " Years ";?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Start Date: </b> &nbsp;<?php echo @date('d-m-Y', strtotime($event['start_date']));?></h5>
+						<h5 class="timeline-header no-border"><b>Start Date: </b> &nbsp;<?php echo $event['start_date'];?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>End Date: </b> &nbsp;<?php echo @date('d-m-Y', strtotime($event['end_date']));?></h5>
+						<h5 class="timeline-header no-border"><b>End Date: </b> &nbsp;<?php echo $event['end_date'];?></h5>
 					</div>
 					
 					
@@ -96,10 +96,10 @@
 						<h5 class="timeline-header no-border"><b>Tournament Link: </b> &nbsp;<?php echo $event['tournaments_link'];?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Entry Start Date: </b> &nbsp;<?php echo @date('d-m-Y', strtotime($event['event_start_date']));?></h5>
+						<h5 class="timeline-header no-border"><b>Entry Start Date: </b> &nbsp;<?php echo $event['event_entry_date'];?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Entry End Date: </b> &nbsp;<?php echo @date('d-m-Y', strtotime($event['event_end_date']));?></h5>
+						<h5 class="timeline-header no-border"><b>Entry End Date: </b> &nbsp;<?php echo $event['event_end_date'];?></h5>
 					</div>
 					 
 					

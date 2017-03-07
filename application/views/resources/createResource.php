@@ -172,7 +172,7 @@ var data = eval(data1);//JSON.stringify(data1);
                 <?php  $sports = $this->register->getSport();?>
                 <label for="sports">Sport</label>
                 <select id="sport" class="form-control" name="sport">
-                <option ></option> 
+                <option >-select-</option> 
                 <?php if(!empty($sports)){
                         foreach($sports as $sport){?>
                 <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>

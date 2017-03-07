@@ -261,31 +261,31 @@ $item = new stdClass();
 
 $item->id                 = $data1->id;
 $item->userid             = $data1->userid;
-$item->type               = addslashes($data1->type);
-$item->name               = addslashes($data1->name);
-$item->address1           = addslashes($data1->address_line1);
-$item->address2           = addslashes($data1->address_line2);
-$item->city               = addslashes($data1->city);
-$item->pin                = addslashes($data1->pin);
-$item->description        = addslashes($data1->description);
-$item->eligibility1       = addslashes($data1->eligibility1);
-$item->eligibility2       = addslashes($data1->eligibility2);
-$item->state              = addslashes($data1->state);
-$item->tandc1             = addslashes($data1->terms_and_conditions1);
-$item->tandc2             = addslashes($data1->terms_and_conditions2);
-$item->organizer_name     = addslashes($data1->organizer_name);
-$item->mobile             = addslashes($data1->mobile);
-$item->org_address1       = addslashes($data1->organizer_address_line1);
-$item->org_address2       = addslashes($data1->organizer_address_line2);
-$item->organizer_city     = addslashes($data1->organizer_city);
-$item->organizer_pin      = addslashes($data1->organizer_pin);
-$item->organizer_state    = addslashes($data1->organizer_state);
-$item->event_links        = addslashes($data1->event_links);
-$item->start_date         = @strtotime($data1->start_date);//strtotime();
-$item->end_date           = @strtotime($data1->end_date);//strtotime($data1['end_date']);
+$item->type               = $data1->type;
+$item->name               = $data1->name;
+$item->address1           = $data1->address_line1;
+$item->address2           = $data1->address_line2;
+$item->city               = $data1->city;
+$item->pin                = $data1->pin;
+$item->description        = $data1->description;
+$item->eligibility1       = $data1->eligibility1;
+$item->eligibility2       = $data1->eligibility2;
+$item->state              = $data1->state;
+$item->tandc1             = $data1->terms_and_conditions1;
+$item->tandc2             = $data1->terms_and_conditions2;
+$item->organizer_name     = $data1->organizer_name;
+$item->mobile             = $data1->mobile;
+$item->org_address1       = $data1->organizer_address_line1;
+$item->org_address2       = $data1->organizer_address_line2;
+$item->organizer_city     = $data1->organizer_city;
+$item->organizer_pin      = $data1->organizer_pin;
+$item->organizer_state    = $data1->organizer_state;
+$item->event_links        = $data1->event_links;
+$item->start_date         = $data1->start_date;//strtotime();
+$item->end_date           = $data1->end_date;//strtotime($data1['end_date']);
 $item->sport              = $data1->sport;
-$item->entry_start_date   = @strtotime($data1->entry_start_date);//strtotime($data1['entry_start_date']);
-$item->entry_end_date     = @strtotime($data1->entry_end_date);//strtotime($data1['entry_end_date']);
+$item->entry_start_date   = $data1->entry_start_date;//strtotime($data1['entry_start_date']);
+$item->entry_end_date     = $data1->entry_end_date;//strtotime($data1['entry_end_date']);
 $item->file_name          = $data1->file_name;
 $item->email_app_collection     = $data1->email_app_collection;
 
@@ -502,36 +502,36 @@ $data1 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
 
 $item->id                      = $data1->id;
-$item->organizer_name          = addslashes($data1->organizer_name);
-$item->tournament_level        = addslashes($data1->tournament_level);
-$item->tournament_category     = addslashes($data1->catagory);
-$item->tournament_ageGroup     = addslashes($data1->tournament_ageGroup);
+$item->organizer_name          = $data1->organizer_name;
+$item->tournament_level        = $data1->tournament_level;
+$item->tournament_category     = $data1->catagory;
+$item->tournament_ageGroup     = $data1->tournament_ageGroup;
 $item->tournament_gender       = $data1->tournament_gender;
 $item->userid                  = $data1->userid;
-$item->type                    = addslashes($data1->tournament_name);
-$item->address_line1           = addslashes($data1->address_line1);
-$item->address_line2           = addslashes($data1->address_line2);
-$item->city                    = addslashes($data1->city);
-$item->state                   = addslashes($data1->state);
+$item->type                    = $data1->tournament_name;
+$item->address_line1           = $data1->address_line1;
+$item->address_line2           = $data1->address_line2;
+$item->city                    = $data1->city;
+$item->state                   = $data1->state;
 $item->pin                     = $data1->pin;
-$item->description             = addslashes($data1->description);
-$item->eligibility1            = addslashes($data1->eligibility1);
-$item->eligibility2            = addslashes($data1->eligibility2);
-$item->terms_and_conditions1   = addslashes($data1->terms_and_conditions1);
-$item->terms_and_conditions2   = addslashes($data1->terms_and_conditions2);
-$item->organizer_name          = addslashes($data1->organizer_name);
+$item->description             = $data1->description;
+$item->eligibility1            = $data1->eligibility1;
+$item->eligibility2            = $data1->eligibility2;
+$item->terms_and_conditions1   = $data1->terms_and_conditions1;
+$item->terms_and_conditions2   = $data1->terms_and_conditions2;
+$item->organizer_name          = $data1->organizer_name;
 $item->mobile                  = $data1->mobile;
-$item->emailid                 = addslashes($data1->emailid);
-$item->organizer_address_line1 = addslashes( $data1->organizer_address_line1);
-$item->organizer_address_line2 = addslashes($data1->organizer_address_line2);
-$item->organizer_city          = addslashes($data1->organizer_city);
-$item->organizer_state         = addslashes($data1->organizer_state);
+$item->emailid                 = $data1->emailid;
+$item->organizer_address_line1 = $data1->organizer_address_line1;
+$item->organizer_address_line2 = $data1->organizer_address_line2;
+$item->organizer_city          = $data1->organizer_city;
+$item->organizer_state         = $data1->organizer_state;
 $item->organizer_pin           = $data1->organizer_pin;
-$item->tournament_links        = addslashes($data1->tournament_links);
-$item->start_date              = @strtotime($data1->start_date);//$data1['start_date'];
-$item->end_date                = @strtotime($data1->end_date);//$data1['end_date'];
-$item->entry_start_date        = @strtotime($data1->entry_start_date);//$data1['entry_start_date'];
-$item->entry_end_date          = @strtotime($data1->entry_end_date);//$data1['entry_end_date'];
+$item->tournament_links        = $data1->tournament_links;
+$item->start_date              = $data1->start_date;//$data1['start_date'];
+$item->end_date                = $data1->end_date;//$data1['end_date'];
+$item->entry_start_date        = $data1->entry_start_date;//$data1['entry_start_date'];
+$item->entry_end_date          = $data1->entry_end_date;//$data1['entry_end_date'];
 $item->file_name               = $data1->file_name;
 $item->sport                   = $data1->sport;
 
@@ -923,8 +923,9 @@ if($res)
               $from="info@darkhorsesports.in";
               $from_name="Getsporty";
               $subject="Email varification ";
-              $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
+             // $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
               //$emailconform  ="testingapp.getsporty.in/getSportyLite/activation.php?email=";
+              $emailconform  =  site_url().'/forms/forgotpassword?email=';
               //global $error;
               $mail = new PHPMailer();  // create a new object
               $mail->IsSMTP(); // enable SMTP
@@ -1027,8 +1028,9 @@ public function Emailfind()
               $from="info@darkhorsesports.in";
               $from_name="Getsporty";
               $subject="Email varification ";
-              $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
+             // $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
               //$emailconform  ="testingapp.getsporty.in/getSportyLite/activation.php?email=";
+              $emailconform  =  site_url().'/forms/forgotpassword?email=';
               //global $error;
               $mail = new PHPMailer();  // create a new object
               $mail->IsSMTP(); // enable SMTP
@@ -1193,7 +1195,7 @@ public function Emailfind()
           // It then save the new image to the location specified by $resize_image variable
             imagejpeg( $thumb, $resize_image, 100 ); 
           // 100 Represents the quality of an image you can set and ant number in place of 100.
-            $out_image=addslashes(file_get_contents($resize_image));      
+            $out_image=file_get_contents($resize_image);      
 //=================================end image size fix ==================================================
           // print_r($newfilename); //die;
         echo  $newfilename;  
@@ -1344,7 +1346,7 @@ switch ($mime)
           // It then save the new image to the location specified by $resize_image variable
             imagejpeg( $thumb, $resize_image, 100 ); 
           // 100 Represents the quality of an image you can set and ant number in place of 100.
-            $out_image=addslashes(file_get_contents($resize_image));      
+            $out_image=file_get_contents($resize_image);      
 //=================================end image size fix ==================================================
      
              $this->load->model('register');
@@ -1441,7 +1443,7 @@ public function profileimage()
           // It then save the new image to the location specified by $resize_image variable
             imagejpeg( $thumb, $resize_image, 100 ); 
           // 100 Represents the quality of an image you can set and ant number in place of 100.
-            $out_image=addslashes(file_get_contents($resize_image));   
+            $out_image=file_get_contents($resize_image);   
 //=================================end image size fix ==================================================
           // print_r($newfilename); //die;
 

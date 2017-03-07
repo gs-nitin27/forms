@@ -13,7 +13,7 @@
             <div class="box-header" style="text-align: center;">
             <h2 class="box-title"><b>Resource List</b></h2>
             </div>
-            <div>
+            <div> 
             <div id="error_text"><h3 style="text-align: center;color: green"><?php echo $this->session->flashdata('error'); ?></h2></div> 
 <form action="<?php echo site_url('forms/Csvfileupload'); ?>" method="post" enctype="multipart/form-data">    
 <div class="container">

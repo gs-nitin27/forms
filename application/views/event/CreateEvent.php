@@ -362,32 +362,52 @@ var data = JSON.stringify(data1);
      var email_app_collection      = $("#email_app_collection").val();
      // var file_name                 = $("#filename").val();
 
-        var startDay = new Date(start_date);
-        var endDay = new Date(end_date);
-        var millisecondsPerDay = 1000 * 60 * 60 * 24;
-        var millisBetween = endDay.getTime() - startDay.getTime();
-        var days = millisBetween / millisecondsPerDay;
-        var datediff =  Math.floor(days);
-        
-        if(datediff<0)
-        {
-        	alert("Event end date is worng ");
-        	return false ;
-        }
 
-        var entry_startDay = new Date(entry_start_date);
-        var entry_endDay = new Date(entry_end_date);
-        var entry_millisecondsPerDay = 1000 * 60 * 60 * 24;
-        var entry_millisBetween = entry_endDay.getTime() - entry_startDay.getTime();
-        var entry_days = entry_millisBetween / entry_millisecondsPerDay;
-        var entry_datediff =  Math.floor(entry_days);
-         if(entry_datediff<0)
-        {
-        	alert("Event entry date is worng ");
-        	return false ;
-        }
-            
+
         
+       //  var millisecondsPerDay = 1000 * 60 * 60 * 24;
+
+
+       //  var startDay = new Date(start_date);
+       //  var endDay = new Date(end_date);
+       //  var millisBetween = endDay.getTime() - startDay.getTime();
+       //  var days = millisBetween / millisecondsPerDay;
+       //  var datediff =  Math.floor(days);
+        
+       //  if(datediff<0)
+       //  {
+       //  	alert("Event end date is worng ");
+       //  	//$('#startD').val('');
+       //  	$('#endD').val('');
+       //  	// return false ;
+       //  }
+
+       //  var entry_startDay = new Date(entry_start_date);
+       //  var entry_endDay = new Date(entry_end_date);
+       //  var entry_millisBetween = entry_endDay.getTime() - entry_startDay.getTime();
+       //  var entry_days = entry_millisBetween / millisecondsPerDay;
+       //  var entry_datediff =  Math.floor(entry_days);
+       //   if(entry_datediff<0)
+       //  {
+       //  	$('#estartD').val('');
+       //  	$('#eendD').val('');
+       //  	alert("Event entry date is worng ");
+       //  	// return false ;
+       //  }
+            
+       //  var today = new Date();
+       //  var today_millisBetween = startDay.getTime() - today.getTime();
+       //  var today_days = today_millisBetween / millisecondsPerDay;
+       //  var today_datediff =  Math.floor(today_days);
+       // // alert(today_datediff);
+       //   if(today_datediff<0)
+       //  {
+       //  	alert("worng entry date is worng ");
+       //  	$('#startD').val('');
+        
+       //  }
+       
+      
 
 
       

@@ -302,9 +302,10 @@ var data = eval(data1);//JSON.stringify(data1);
 <script type="text/javascript">
   $(document).ready(function (e) {
 
-   
-
   $("#form").on('submit',(function(e) {
+
+   if($('#file').val())
+   {
   $('#imagelodar').show();
    // $('#loader_img').show();
     e.preventDefault();
@@ -333,6 +334,13 @@ var data = eval(data1);//JSON.stringify(data1);
       
         }           
      });
+       }
+       else
+       {
+           alert("please upload the image file");
+           return false ;
+       }
+
   }));
 });
 

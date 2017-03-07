@@ -388,6 +388,8 @@ var data = JSON.stringify(data1);
 <script type="text/javascript">
      $(document).ready(function (e) {
      $("#form").on('submit',(function(e) {
+    if($('#file').val())
+    {
       $("#imagelodar").show();
     // $('#loader_img').show();
       e.preventDefault();
@@ -404,17 +406,22 @@ var data = JSON.stringify(data1);
       },
       success: function(data)
         {
-          //alert(data);
-               $("#imagelodar").hide();
-              // $('#loader_img').hide();
-                $('#mess').show();
-                $("#photo_url").val(data);   
+          $("#imagelodar").hide();
+          // $('#loader_img').hide();
+          $('#mess').show();
+          $("#photo_url").val(data);   
         },
         error: function(e) 
         {
       
         }           
      });
+    }
+    else
+    {
+      alert("Please upload image");
+      return false;
+    }
   }));
 });
 
