@@ -28,7 +28,7 @@ var data = eval(data1);//JSON.stringify(data1);
      if(result == '1')
       {
          $( "#msgdiv" ).show();
-         $( "#msg" ).html("Question is created");
+         $( "#msg" ).html("Question is Updated");
          setTimeout(function() {
          $('#msgdiv').fadeOut('fast');
           }, 2000);
@@ -55,7 +55,7 @@ var data = eval(data1);//JSON.stringify(data1);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-         Create Question
+         Edit Question
       </h1>
      
     </section>

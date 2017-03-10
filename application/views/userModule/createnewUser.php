@@ -207,7 +207,7 @@ var data = JSON.stringify(data1);
                             <option>-select-</option>
                             <option id="Male">Male</option>
                             <option id="Female">Female</option>
-                            <option id="Transgender">Transgender</option>
+                            <option id="Transgender">All</option>
                         </select>
                     </div>
                     <div class="form-group">

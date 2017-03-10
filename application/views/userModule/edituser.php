@@ -114,7 +114,7 @@ var data = JSON.stringify(data1);
                     <input type="hidden" class="form-control"  id="utype" value="<?php echo $value['userType']; ?>" disabled >
                    <input type="hidden" class="form-control"  id="status" value="<?php echo $value['status']; ?>" disabled >
                    <div class="form-group">
-                    <label for="usertype">Proffession</label>
+                    <label for="usertype">Profession</label>
                     <input type="input" class="form-control"  id="utype" value="<?php echo $value['prof_name']; ?>" disabled >
                     </div>
                    <!--  <div class="form-group">

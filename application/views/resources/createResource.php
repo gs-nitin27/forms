@@ -18,7 +18,7 @@ var data1 = {
     "id"                      : 0, 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
-    "url"                     : $("#rurl").val(),
+    "url"                     : "",
     "description"             : description3, 
     "summary"                 : string,
     "keyword"                 : "",
@@ -130,11 +130,11 @@ var data = eval(data1);//JSON.stringify(data1);
                   <input type="text" class="form-control" maxlength="50" name="rtitle" id="rtitle" placeholder="Enter title">
                   <label id="title_error" hidden="">A title is required</label>
                 </div>
-        <div class="form-group">
-                  <label for="exampleInputEmail1">Link</label>
-                  <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link">
+               <!--  <div class="form-group">
+                <label for="exampleInputEmail1">Link</label>
+                <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link">
                 <label id="url_error" hidden="">A valid url is required</label>
-                 </div>
+                </div> -->
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
                    <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
@@ -447,15 +447,15 @@ $(function() {
         }
       
       
-        var url = $('#rurl').val();
-        if(url == "")
-        {
-          $("#url_error").show();
-          $("#url_error").css('color', 'red');
-        }
-        else{
-          $("#url_error").hide(); 
-        }
+        // var url = $('#rurl').val();
+        // if(url == "")
+        // {
+        //   $("#url_error").show();
+        //   $("#url_error").css('color', 'red');
+        // }
+        // else{
+        //   $("#url_error").hide(); 
+        // }
         var summary = $('#rsummary').val();
         if(summary == "")
         {

@@ -517,7 +517,7 @@ $(function() {
    
     $("#save").click(function(){
        
-       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 && $("#jcity").val() !="" &&  $("#jstate").val() !="" && $("#jdesc").val() !="" && $("#jexp").val() !=0  &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" && $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#orgcity").val() !="" &&   $("#email").val() !="" && $("#cont").val() !="" &&  $("#orgstate").val() !="" && $("#jadd1").val() !="" &&  $("#jsports").val() !=0){
+       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 && $("#jcity").val() !="" && $("#jdesc").val() !="" &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" && $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#orgcity").val() !="" &&   $("#email").val() !="" && $("#cont").val() !="" &&  $("#jadd1").val() !="" &&  $("#jsports").val() !=0){
             save();
        }else{
                   // alert($("#2").val());
@@ -556,24 +556,24 @@ $(function() {
                 // }else{
                 //   $("#jpin_error").hide();
                 // }
-                if($("#jstate").val() ==""){
-                  $("#jstate_error").show();
-                  $("#jstate_error").css("color","red");
-                }else{
-                  $("#jstate_error").hide();
-                }
+                // if($("#jstate").val() ==""){
+                //   $("#jstate_error").show();
+                //   $("#jstate_error").css("color","red");
+                // }else{
+                //   $("#jstate_error").hide();
+                // }
                 if($("#jdesc").val() ==""){
                   $("#jdesc_error").show();
                   $("#jdesc_error").css("color","red");
                 }else{
                   $("#jdesc_error").hide();
                 }
-                if($("#jexp").val() == 0){
-                  $("#jexp_error").show();
-                  $("#jexp_error").css("color","red");
-                }else{
-                  $("#jexp_error").hide();
-                }
+                // if($("#jexp").val() == 0){
+                //   $("#jexp_error").show();
+                //   $("#jexp_error").css("color","red");
+                // }else{
+                //   $("#jexp_error").hide();
+                // }
                 // if($("#skill").val() !=""){
                 //   $("#skill_error").show();
                 //   $("#skill_error").css("color","red");
@@ -652,22 +652,24 @@ $(function() {
                 }else{
                   $("#cont_error").hide();
                 }
-                if($("#orgstate").val() ==""){
-                  $("#orgstate_error").show();
-                  $("#orgstate_error").css("color","red");
-                }else{
-                  $("#orgstate_error").hide();
-                }
+                // if($("#orgstate").val() ==""){
+                //   $("#orgstate_error").show();
+                //   $("#orgstate_error").css("color","red");
+                // }else{
+                //   $("#orgstate_error").hide();
+                // }
                 if($("#jadd1").val() ==""){
                   $("#jadd1_error").show();
                   $("#jadd1_error").css("color","red");
                 }else{
                   $("#jadd1_error").hide();
                 }
-                if($("#jsports").val() == 0){
+                if($("#jsports").val() == '-select-'){
+                  // alert($("#jsports").val());
                   $("#jsports_error").show();
                   $("#jsports_error").css("color","red");
                 }else{
+                  // alert($("#jsports").val());
                   $("#jsports_error").hide();
                 }
        }

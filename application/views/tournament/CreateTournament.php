@@ -220,7 +220,7 @@ var data = JSON.stringify(data1);
 							<option>-Select-</option>
 							<option id="Male">Male</option>
 							<option id="Female">Female</option>
-							<option id="Transgender">Transgender</option>
+							<option id="Transgender">All</option>
 						</select>
 					</div>
 
@@ -403,7 +403,7 @@ var data = JSON.stringify(data1);
    $("#save").click(function()
    {
       //alert("hi");
-    if($("#add1").val() !="" &&   $("#add2").val() !="" &&   $("#tname").val() !="" &&  $("#city").val() !="" &&  $("#tdesc").val() !="" &&  $("#criteria1").val()!="" &&  $("#criteria2").val() !="" && $("#tlevel").val() !=0 &&     $("#terms1").val() !="" &&  $("#terms2").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" &&   $("#orgadd1").val() !="" &&   $("#orgadd2").val() !="" &&   $("#orgcity").val() !="" &&  $("#orgemail").val() !="" &&  $("#evlink").val() !="" &&  $("#startD").val() !="" && $("#endD").val() !="" &&  $("#tsport").val() !=0 && $("#estartD").val() !="" && $("#eendD").val() !="" && $("#email").val() !="")
+    if($("#add1").val() !="" &&   $("#add2").val() !="" &&   $("#tname").val() !="" &&  $("#city").val() !="" &&  $("#tdesc").val() !="" &&  $("#criteria1").val()!="" &&  $("#criteria2").val() !="" && $("#tlevel").val() !=0 &&  $("#orgName").val() !="" &&  $("#contact").val() !="" &&   $("#orgadd1").val() !="" &&   $("#orgadd2").val() !="" &&   $("#orgcity").val() !="" &&  $("#orgemail").val() !="" &&  $("#evlink").val() !="" &&  $("#startD").val() !="" && $("#endD").val() !="" &&  $("#tsport").val() !=0 && $("#estartD").val() !="" && $("#eendD").val() !="" && $("#email").val() !="")
        {
       	save();
       }else{
@@ -463,18 +463,18 @@ var data = JSON.stringify(data1);
       	}else{
           $("#tlevel_error").hide();
       	}
-      	if($("#terms1").val() ==""){
-            $("#terms1_error").show();
-      		$("#terms1_error").css("color","red");
-      	}else{
-          $("#terms1_error").hide();
-      	}
-      	if($("#terms2").val() ==""){
-            $("#terms2_error").show();
-      		$("#terms2_error").css("color","red");
-      	}else{
-          $("#terms2_error").hide();
-      	}
+      	// if($("#terms1").val() ==""){
+       //      $("#terms1_error").show();
+      	// 	$("#terms1_error").css("color","red");
+      	// }else{
+       //    $("#terms1_error").hide();
+      	// }
+      	// if($("#terms2").val() ==""){
+       //      $("#terms2_error").show();
+      	// 	$("#terms2_error").css("color","red");
+      	// }else{
+       //    $("#terms2_error").hide();
+      	// }
       	if($("#orgName").val() ==""){
            $("#orgName_error").show();
       		$("#orgName_error").css("color","red");
@@ -554,12 +554,6 @@ var data = JSON.stringify(data1);
           $("#email_error").hide();
       	}          
       }
-       
-
-
-
-
-
    });
 </script>
 

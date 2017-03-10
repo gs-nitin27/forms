@@ -1661,7 +1661,15 @@ public function savequestion()
   $this->load->model('register');
   $res = $this->register->savequestion($item);
    
-   print_r($res);
+   if($res)
+   {
+      echo 1;
+   }
+   else
+   {
+     echo 0;
+   }
+   //print_r($res);
 }
 
 public function Statusquestion()

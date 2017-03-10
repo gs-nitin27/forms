@@ -411,7 +411,7 @@ var data = JSON.stringify(data1);
 
 
       
-    if(name != "" && type != 0 &&  address_line1 != "" &&  address_line2 != "" &&  city != "" &&  pin != "" &&  description != "" && eligibility1 != "" && eligibility2 != "" && state != "" && terms_and_conditions1 != "" && terms_and_conditions2 != "" &&  organizer_name != "" &&  mobile != "" &&  organizer_address_line1 != "" &&   organizer_address_line2 != "" &&  organizer_city != "" &&  organizer_pin != "" &&  organizer_state != "" && event_links != "" && start_date != "" &&  end_date != "" &&  sport != 0 &&  entry_start_date != "" &&    entry_end_date != "" && email_app_collection != "")
+    if(name != "" && type != 0 &&  address_line1 != "" &&  address_line2 != "" &&  city != "" &&  description != "" && eligibility1 != "" && eligibility2 != "" &&  organizer_name != "" &&  mobile != "" &&  organizer_address_line1 != "" &&   organizer_address_line2 != "" &&  organizer_city != "" &&  start_date != "" &&  end_date != "" &&  sport != 0 &&  entry_start_date != "" &&    entry_end_date != "" && email_app_collection != "")
       {
            save();
       }  
@@ -453,12 +453,12 @@ var data = JSON.stringify(data1);
             }else{
             	$("#city_error").hide();	
             }
-            if(pin == ""){
-            $("#pin_error").show();
-            $("#pin_error").css("color","red");
-            }else{
-            	$("#pin_error").hide();	
-            }
+            // if(pin == ""){
+            // $("#pin_error").show();
+            // $("#pin_error").css("color","red");
+            // }else{
+            // 	$("#pin_error").hide();	
+            // }
             if(description == ""){
             $("#description_error").show();
             $("#description_error").css("color","red");
@@ -477,24 +477,24 @@ var data = JSON.stringify(data1);
             }else{
             	$("#eligibility2_error").hide();	
             }
-            if(state == ""){
-            $("#state_error").show();
-            $("#state_error").css("color","red");
-            }else{
-            	$("#state_error").hide();	
-            }
-            if(terms_and_conditions1 == ""){
-            $("#terms_and_conditions1_error").show();
-            $("#terms_and_conditions1_error").css("color","red");
-            }else{
-            	$("#terms_and_conditions1_error").hide();	
-            }
-            if(terms_and_conditions2 == ""){
-            $("#terms_and_conditions2_error").show();
-            $("#terms_and_conditions2_error").css("color","red");
-            }else{
-            	$("#terms_and_conditions2_error").hide();	
-            }
+            // if(state == ""){
+            // $("#state_error").show();
+            // $("#state_error").css("color","red");
+            // }else{
+            // 	$("#state_error").hide();	
+            // }
+            // if(terms_and_conditions1 == ""){
+            // $("#terms_and_conditions1_error").show();
+            // $("#terms_and_conditions1_error").css("color","red");
+            // }else{
+            // 	$("#terms_and_conditions1_error").hide();	
+            // }
+            // if(terms_and_conditions2 == ""){
+            // $("#terms_and_conditions2_error").show();
+            // $("#terms_and_conditions2_error").css("color","red");
+            // }else{
+            // 	$("#terms_and_conditions2_error").hide();	
+            // }
             if(organizer_name == ""){
             $("#organizer_name_error").show();
             $("#organizer_name_error").css("color","red");
@@ -525,24 +525,24 @@ var data = JSON.stringify(data1);
             }else{
             	$("#organizer_city_error").hide();	
             }
-            if(organizer_pin == ""){
-            $("#organizer_pin_error").show();
-            $("#organizer_pin_error").css("color","red");
-            }else{
-            	$("#organizer_pin_error").hide();	
-            }
-            if(organizer_state  == ""){
-            $("#organizer_state_error").show();
-            $("#organizer_state_error").css("color","red");
-            }else{
-            	$("#organizer_state_error").hide();	
-            }
-            if(event_links == ""){
-            $("#event_links_error").show();
-            $("#event_links_error").css("color","red");
-            }else{
-            	$("#event_links_error").hide();	
-            }
+            // if(organizer_pin == ""){
+            // $("#organizer_pin_error").show();
+            // $("#organizer_pin_error").css("color","red");
+            // }else{
+            // 	$("#organizer_pin_error").hide();	
+            // }
+            // if(organizer_state  == ""){
+            // $("#organizer_state_error").show();
+            // $("#organizer_state_error").css("color","red");
+            // }else{
+            // 	$("#organizer_state_error").hide();	
+            // }
+            // if(event_links == ""){
+            // $("#event_links_error").show();
+            // $("#event_links_error").css("color","red");
+            // }else{
+            // 	$("#event_links_error").hide();	
+            // }
             if(start_date == ""){
             $("#start_date_error").show();
             $("#start_date_error").css("color","red");

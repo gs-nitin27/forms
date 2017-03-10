@@ -150,7 +150,7 @@ var data = eval(data1);//JSON.stringify(data1);
              ?>
                 <label for="proffession" >Profession</label>
                 <select id="proffession" class="form-control" name="proffession">
-                <option></option>
+                <option>-select-</option>
                 <?php if(!empty($profession)){
                       foreach($profession as $prof){
                 	?>
@@ -218,7 +218,7 @@ var data = eval(data1);//JSON.stringify(data1);
           $("#gender_error").hide(); 
         }
         var proffession = $('#proffession').val();
-        if(proffession == "")
+        if(proffession == "-select-")
         {
           $("#proffession_error").show();
           $("#proffession_error").css('color', 'red');
@@ -226,7 +226,7 @@ var data = eval(data1);//JSON.stringify(data1);
         else{
           $("#proffession_error").hide(); 
         }
-       if(question!="" && age_group!="" && level!="" && gender!="" &&proffession!=""){
+       if(question!="" && age_group!="" && level!="" && gender!="" &&proffession!="-select-"){
           save();
         }
     });
