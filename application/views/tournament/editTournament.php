@@ -33,7 +33,7 @@ $(document).ready(function(){
 function save(){
    $("#imagelodar").show();
 var data1 = {
- 
+  
 
     "id"                      : $("#id").val(), 
     "userid"                  : $("#userid").val(),

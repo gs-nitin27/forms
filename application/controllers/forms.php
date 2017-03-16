@@ -537,7 +537,7 @@ $item->sport                   = $data1->sport;
 $item->publish                 = 0;
 
 //print_r($item);//die;
-
+ 
 $this->load->model('register');
 $res = $this->register->saveTournament($item);
 if($res == '1')

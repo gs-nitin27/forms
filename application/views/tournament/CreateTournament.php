@@ -69,7 +69,7 @@ var data1 = {
     "tournament_ageGroup"     : $("#tage").val(),
     "file_name"               : $("#filename").val()
 };
-
+ 
 console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>';
 var data = JSON.stringify(data1);
