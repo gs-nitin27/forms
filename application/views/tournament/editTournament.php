@@ -80,7 +80,7 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-    	alert(result);
+    	//alert(result);
     	$("#imagelodar").hide();
 		$( "#msgdiv" ).show();
 		$( "#msg" ).html(result);

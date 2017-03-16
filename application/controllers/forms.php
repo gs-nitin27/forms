@@ -534,8 +534,9 @@ $item->entry_start_date        = $data1->entry_start_date;//$data1['entry_start_
 $item->entry_end_date          = $data1->entry_end_date;//$data1['entry_end_date'];
 $item->file_name               = $data1->file_name;
 $item->sport                   = $data1->sport;
+$item->publish                 = 0;
 
-print_r($item);//die;
+//print_r($item);//die;
 
 $this->load->model('register');
 $res = $this->register->saveTournament($item);
