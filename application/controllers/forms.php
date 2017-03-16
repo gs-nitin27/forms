@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+ 
 class Forms extends CI_Controller {
 
 public function __construct() {
@@ -535,6 +535,8 @@ $item->entry_end_date          = $data1->entry_end_date;//$data1['entry_end_date
 $item->file_name               = $data1->file_name;
 $item->sport                   = $data1->sport;
 
+print_r($item);//die;
+
 $this->load->model('register');
 $res = $this->register->saveTournament($item);
 if($res == '1')
@@ -587,7 +589,15 @@ else{
 	//$this->register->deletePublishTournament($data2->id);
 }
 }
-
+public function edittournament($str)
+{
+	    $id= $this->stringtonumber($str); 
+		$data['middle']="tournament/editTournament";
+		$data['required']= array(
+			                     'id' => $id 
+			                     );
+		$this->load->view('templates/template',$data);
+}
 //==============================End Tournament==================================
 
 

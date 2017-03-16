@@ -35,7 +35,7 @@ function save(){
 var data1 = {
  
 
-    "id"                      : 0, 
+    "id"                      : $("#id").val(), 
     "userid"                  : $("#userid").val(),
     "catagory"                : $("#tcatagory").val(),
     "address_line1"           : $("#add1").val(), 
@@ -87,7 +87,7 @@ var data = JSON.stringify(data1);
 		setTimeout(function() {
 			$('#msgdiv').fadeOut('fast');
 		}, 2000);
-		//window.location.href = url+"/forms/gettournament";
+		window.location.href = url+"/forms/gettournament";
     }
 });   
 }
@@ -103,7 +103,7 @@ var data = JSON.stringify(data1);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Create Tournament
+        Update Tournament
         
       </h1>
      
@@ -115,6 +115,18 @@ var data = JSON.stringify(data1);
 		<div class=" alert alert-success" id="msgdiv" style="display:none">
 			<strong>Info! <span id = "msg"></span></strong> 
 		</div>
+
+		<?php 
+        // print_r($id);//die;
+
+		$tournament = $this->register->getTournament($id); 
+			// _pr($event);
+				if(!empty($tournament)){
+					
+					$tournament = $tournament[0];
+				}
+				
+		?>
 
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -132,13 +144,14 @@ var data = JSON.stringify(data1);
                 <div class="box-body">
 					<div class="form-group">
 					  <label>Tournament Description</label>
-					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="tdesc" ></textarea>
+					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="tdesc" ><?php echo $tournament['description'] ;?></textarea>
 					  <label id="tdesc_error" hidden>Tournament Description is required .</label>
 					</div>
 					<div class="form-group">
 					  <label for="eventName">Tournament Name</label>
-					  <input type="text" class="form-control"  id="tname" >
+					  <input type="text" class="form-control"  id="tname" value="<?php echo $tournament['name'] ;?>" >
                      <label id="tname_error" hidden>Tournament Name is required .</label>
+                     <input type="hidden" class="form-control"  id="id" value="<?php echo $tournament['id'] ;?>" >
 					</div >
 					
          <?php
@@ -159,7 +172,7 @@ var data = JSON.stringify(data1);
 						?>
 					  <label for="sports">Sport</label>
 						<select id="tsport" class="form-control" >
-						<option value="0">- Select -</option> 
+						<option value="<?php echo $tournament['sport'] ;?>"><?php echo $tournament['sport'] ;?></option> 
 							<?php if(!empty($sports)){
 									foreach($sports as $sport){?>
 								<option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
@@ -177,7 +190,7 @@ var data = JSON.stringify(data1);
 							
 						?><label for="level">Level</label>
 						<select id="tlevel" class="form-control" >
-						<option value="0">- Select -</option>
+						<option value="<?php echo $tournament['level'] ;?>"><?php echo $tournament['level'] ;?></option>
 							<?php if(!empty($levels)){
 									foreach($levels as $level){?>
 								<option value ="<?php echo $level['level'];?>"><?php echo $level['level'];?> </option>
@@ -192,10 +205,10 @@ var data = JSON.stringify(data1);
 						<?php  
 						// LEVEL IS ID BASED
 						$Categories = $this->register->getTournamentCategory();
-							//print_r($Categories);
+							
 						?><label for="sports">Category</label>
 						<select id="tcatagory" class="form-control" >
-						<option value="0">- Select -</option>
+						<option value="<?php echo $tournament['category'] ;?>"><?php echo $tournament['category'] ;?></option>
 							<?php if(!empty($Categories)){
 									foreach($Categories as $Category){?>
 								<option value ="<?php echo $Category['category'];?>"><?php echo $Category['category'];?> </option>
@@ -208,7 +221,7 @@ var data = JSON.stringify(data1);
 					<div class="form-group">
 					<label for="sports">Age Group</label>
 						<select id="tage" class="form-control" >
-							<option>-Select-</option>
+							<option ><?php echo $tournament['age_group'] ;?></option>
 							<option id="15-18">15-18</option>
 							<option id="18-22">18-22</option>
 							<option id="20-25">20-25</option>
@@ -218,24 +231,31 @@ var data = JSON.stringify(data1);
 					<div class="form-group">
 					<label for="sports">Gender</label>
 						<select id="tgen" class="form-control" >
-							<option>-Select-</option>
+							<option ><?php echo $tournament['gender'] ;?></option>
 							<option id="Male">Male</option>
 							<option id="Female">Female</option>
 							<option id="Transgender">All</option>
 						</select>
 					</div>
 
+					<?php 
+                      $start_date =new  DateTime($tournament['start_date']);
+                      //
+                      $end_date = new DateTime($tournament['end_date']);
+                     {
+					?>
+
 					<div class="form-group">
 					  <label for="link">Start Date</label>
-					  <input type="text" class="form-control"  id="startD" placeholder="Enter Start Date">
+					  <input type="text" class="form-control"  id="startD" placeholder="Enter Start Date" value="<?php echo $start_date->format('m/d/Y');?>">
 					  <label id="startD_error" hidden>Start Date is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="link">End Date</label>
-					  <input type="text" class="form-control"  id="endD" placeholder="Enter End Date">
+					  <input type="text" class="form-control"  id="endD" placeholder="Enter End Date" value="<?php echo $end_date->format('m/d/Y');?>">
 					  <label id="endD_error" hidden>End Date is required .</label> 
 					</div >
-					
+					<?php }?>
 				</div>
               </div>
 			  
@@ -249,17 +269,17 @@ var data = JSON.stringify(data1);
 					
 					<div class="form-group">
 					  <label for="address1">Address Line1</label>
-					  <input type="text" class="form-control"  id="add1" placeholder="Enter Address">
+					  <input type="text" class="form-control"  id="add1" placeholder="Enter Address" value="<?php echo $tournament['address_1'] ;?>">
 					  <label id="add1_error" hidden>Address Line1 is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="address2">Address Line2</label>
-					  <input type="text" class="form-control"  id="add2" placeholder="Enter Address">
+					  <input type="text" class="form-control"  id="add2" placeholder="Enter Address" value="<?php echo $tournament['address_2'] ;?>">
 					  <label id="add2_error" hidden>Address Line2 is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="city">City</label>
-					  <input type="text" class="form-control"  id="city" placeholder="Enter City">
+					  <input type="text" class="form-control"  id="city" placeholder="Enter City" value="<?php echo $tournament['location'] ;?>">
 					  <label id="city_error" hidden>City is required .</label> 
 					</div>
 					
@@ -267,28 +287,35 @@ var data = JSON.stringify(data1);
 					<div class="form-group">
 					  <label for="state">State</label>
 					  <input type="hidden" class="form-control"  id="state">
-					  <input type="text" class="form-control"  id="state_value" placeholder="Enter State" disabled>
+					  <input type="text" class="form-control"  id="state_value" placeholder="Enter State" value="<?php echo $tournament['state'] ;?>" disabled>
 					</div >
 					<div class="form-group">
 					  <label for="pin">Pin</label>
-					  <input type="text" class="form-control"  id="pin" placeholder="Enter Pin">
+					  <input type="text" class="form-control"  id="pin" placeholder="Enter Pin" value="<?php echo $tournament['pin'] ;?>">
 					</div >
 					<div class="form-group">
 					  <label for="pin">Tournament Link</label>
-					  <input type="text" class="form-control"  id="evlink" value="http://" />
+					  <input type="text" class="form-control"  id="evlink" value="<?php echo $tournament['tournaments_link'] ;?>" />
 					  <label id="evlink_error" hidden>Tournament Link is required .</label> 
 					</div >
+					<?php 
+                      $event_entry_date =new  DateTime($tournament['event_entry_date']);
+                      
+                      $event_end_date = new DateTime($tournament['event_end_date']);
+                     {
+					?>
 					<div class="form-group">
 					  <label for="link">Entry Start Date</label>
-					  <input type="text" class="form-control"  id="estartD" placeholder="Enter Start Date">
+					  <input type="text" class="form-control"  id="estartD" placeholder="Enter Start Date" value="<?php echo $event_entry_date->format('m/d/Y');?>">
 					   <label id="estartD_error" hidden>Entry Start Date is required .</label> 
 
 					</div >
 					<div class="form-group">
 					  <label for="link">Entry End Date</label>
-					  <input type="text" class="form-control"  id="eendD" placeholder="Enter End Date">
+					  <input type="text" class="form-control"  id="eendD" placeholder="Enter End Date" value="<?php echo $event_end_date->format('m/d/Y');?>">
 					   <label id="eendD_error" hidden>Entry End Date is required .</label> 
 					</div >
+					<?php }?>
 				</div>
               </div>
 			  
@@ -300,32 +327,32 @@ var data = JSON.stringify(data1);
 					
 					 <div class="form-group">
 					  <label for="eventName">Organiser Name</label>
-					  <input type="text" class="form-control" id="orgName" >
+					  <input type="text" class="form-control" id="orgName" value="<?php echo $tournament['organiser_name'] ;?>">
 					   <label id="orgName_error" hidden>Organiser Name is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="eventName">Email</label>
-					  <input type="text" class="form-control" id="email">
+					  <input type="text" class="form-control" id="email" value="<?php echo $tournament['email'] ;?>">
 					   <label id="email_error" hidden>Email is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="eventName">Contact No.</label>
-					  <input type="text" class="form-control" id="contact">
+					  <input type="text" class="form-control" id="contact" value="<?php echo $tournament['mobile'] ;?>">
 					   <label id="contact_error" hidden>Contact No. is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="address1">Address Line1</label>
-					  <input type="text" class="form-control"  id="orgadd1" placeholder="Enter Address">
+					  <input type="text" class="form-control"  id="orgadd1" placeholder="Enter Address" value="<?php echo $tournament['org_address1'] ;?>">
 					   <label id="orgadd1_error" hidden>Address Line1 is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="address2">Address Line2</label>
-					  <input type="text" class="form-control"  id="orgadd2" placeholder="Enter Address">
+					  <input type="text" class="form-control"  id="orgadd2" placeholder="Enter Address" value="<?php echo $tournament['org_address2'] ;?>">
 					   <label id="orgadd2_error" hidden>Address Line2 is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="city">City</label>
-					  <input type="text" class="form-control"  id="orgcity" placeholder="Enter City">
+					  <input type="text" class="form-control"  id="orgcity" placeholder="Enter City" value="<?php echo $tournament['org_city'] ;?>">
 					   <label id="orgcity_error" hidden>City is required .</label> 
 					</div>
 					
@@ -333,11 +360,11 @@ var data = JSON.stringify(data1);
 					<div class="form-group">
 					  <label for="state">State</label>
 					  <input type="hidden" class="form-control"  id="orgstate">
-					  <input type="text" class="form-control"  id="orgstate_value" placeholder="Enter State" disabled>
+					  <input type="text" class="form-control"  id="orgstate_value" placeholder="Enter State"      value="<?php echo $tournament['state'] ;?>" disabled>
 					</div >
 					<div class="form-group">
 					  <label for="pin">Pin</label>
-					  <input type="text" class="form-control"  id="orgpin" placeholder="Enter Pin">
+					  <input type="text" class="form-control"  id="orgpin" placeholder="Enter Pin" value="<?php echo $tournament['org_pin'] ;?>">
 					</div >
 					
 					
@@ -356,12 +383,12 @@ var data = JSON.stringify(data1);
 					
 					 <div class="form-group">
 					  <label for="eventName">Criteria 1</label>
-					  <input type="text" class="form-control" id="criteria1" placeholder="Enter Eligibility">
+					  <input type="text" class="form-control" id="criteria1" value="<?php echo $tournament['eligibility1'] ;?>" placeholder="Enter Eligibility">
 					   <label id="criteria1_error" hidden>Criteria 1 is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="eventName">Criteria 2</label>
-					  <input type="text" class="form-control" id="criteria2" placeholder="Enter Eligibility">
+					  <input type="text" class="form-control" id="criteria2" value="<?php echo $tournament['eligibility2'] ;?>" placeholder="Enter Eligibility">
 					   <label id="criteria2_error" hidden>Criteria 2 is required .</label> 
 					</div >
 					
@@ -372,12 +399,12 @@ var data = JSON.stringify(data1);
 					 	
 					  <div class="form-group">
 					  <label for="eventName">T & C 1</label>
-					  <input type="text" class="form-control" id="terms1" placeholder="">
+					  <input type="text" class="form-control" id="terms1" value="<?php echo $tournament['terms_and_cond1'] ;?>" placeholder="">
 					   <label id="terms1_error" hidden>Terms & Conditions is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="eventName">T & C 2</label>
-					  <input type="text" class="form-control" id="terms2" placeholder="">
+					  <input type="text" class="form-control" id="terms2" value="<?php echo $tournament['terms_and_cond2'] ;?>" placeholder="">
 					  <input type="hidden" class="form-control" id="filename" placeholder="">
 					   <label id="terms2_error" hidden>Terms & Conditions is required .</label> 
 					  
@@ -388,7 +415,7 @@ var data = JSON.stringify(data1);
             </div>
             <!-- /.tab-content -->
 			<div class="box-footer">
-			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Create Tournament" name="Create">
+			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Update Tournament" name="Create">
 			</div>
 			 </form>
 			
@@ -404,7 +431,7 @@ var data = JSON.stringify(data1);
    $("#save").click(function()
    {
       //alert("hi");
-    if($("#add1").val() !="" &&   $("#add2").val() !="" &&   $("#tname").val() !="" &&  $("#city").val() !="" &&  $("#tdesc").val() !="" &&  $("#criteria1").val()!="" &&  $("#criteria2").val() !="" && $("#tlevel").val() !=0 &&  $("#orgName").val() !="" &&  $("#contact").val() !="" &&   $("#orgadd1").val() !="" &&   $("#orgadd2").val() !="" &&   $("#orgcity").val() !="" &&  $("#orgemail").val() !="" &&  $("#evlink").val() !="" &&  $("#startD").val() !="" && $("#endD").val() !="" &&  $("#tsport").val() !=0 && $("#estartD").val() !="" && $("#eendD").val() !="" && $("#email").val() !="")
+    if($("#add1").val() !="" &&   $("#add2").val() !="" &&   $("#tname").val() !="" &&  $("#city").val() !="" &&  $("#tdesc").val() !="" &&  $("#criteria1").val()!="" &&  $("#criteria2").val() !="" && $("#tlevel").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" &&   $("#orgadd1").val() !="" &&   $("#orgadd2").val() !="" &&   $("#orgcity").val() !="" &&  $("#orgemail").val() !="" &&  $("#evlink").val() !="" &&  $("#startD").val() !="" && $("#endD").val() !="" &&  $("#tsport").val() !="" && $("#estartD").val() !="" && $("#eendD").val() !="" && $("#email").val() !="")
        {
       	save();
       }else{
@@ -458,7 +485,7 @@ var data = JSON.stringify(data1);
       	}else{
           $("#criteria2_error").hide();
       	}
-      	if($("#tlevel").val() == 0){
+      	if($("#tlevel").val() == ""){
             $("#tlevel_error").show();
       		$("#tlevel_error").css("color","red");
       	}else{
@@ -530,7 +557,7 @@ var data = JSON.stringify(data1);
       	}else{
           $("#endD_error").hide();
       	}
-      	if($("#tsport").val() == 0){
+      	if($("#tsport").val() == ""){
             $("#tsport_error").show();
       		$("#tsport_error").css("color","red");
       	}else{

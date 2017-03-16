@@ -67,10 +67,10 @@
           <tr>
 					<td><?php echo $i++; ?></td>
 					<td><?php echo $tournament['name']; ?></td>
-					<td><?php echo $tournament['sports']; ?></td>
+					<td><?php echo $tournament['sport']; ?></td>
 					<td><?php echo $tournament['level']; ?></td>
 					<td><?php echo $tournament['category']; ?></td>
-					<td><?php echo $tournament['city_name']; ?></td>
+					<td><?php echo $tournament['location']; ?></td>
 					<td><?php echo $tournament['organiser_name']; ?></td>										
 					<td>
 					<?php if(@strtotime($tournament['end_date']) < time()){?>
@@ -86,9 +86,9 @@
                     ?>
           <td>
           <?php if($tournament['publish']==0){?>
-          <button class="badge bg-red" onclick="myfunction(<?php echo $tournament['infoId'];?>,1)"><?php echo "Activate";?></button>
+          <button class="badge bg-red" onclick="myfunction(<?php echo $tournament['id'];?>,1)"><?php echo "Activate";?></button>
           <?php }else{?> 
-          <button class="badge bg-green" onclick="myfunction(<?php echo $tournament['infoId'];?>,0)"><?php echo "Deactivate";?></button>
+          <button class="badge bg-green" onclick="myfunction(<?php echo $tournament['id'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
 
@@ -102,7 +102,7 @@
                                 'h' => 7,
                                 'i' => 8,
                                 'j' => 9);
-                                 $num=$tournament['infoId']; //your value
+                                 $num=$tournament['id']; //your value
                                  $temp='';
                                  $arr_num=str_split ($num);
                                 foreach($arr_num as $data)

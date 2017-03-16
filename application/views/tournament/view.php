@@ -2,24 +2,50 @@
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        View Tournament<!-- <a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a> -->
-        
-      </h1>
+    <?php
      
-    </section>
-         <section class="content"> 
-      <div class="row">
-	  
-		<div class="col-md-12">
-				
-			<?php $event = $this->register->getTournamentInfo($id); 
+
+     $event = $this->register->getTournamentInfo($id); 
 			// _pr($event);
 				if(!empty($event)){
 					
 					$event = $event[0];
 				}
-			?>
+
+				//print_r($event);die;
+			
+    $list=array('a' => 0,
+                                'b' => 1,
+                                'c' => 2,
+                                'd' => 3,
+                                'e' => 4,
+                                'f' => 5,
+                                'g' => 6,
+                                'h' => 7,
+                                'i' => 8,
+                                'j' => 9);
+                                 $num=$event['id']; //your value
+                                 $temp='';
+                                 $arr_num=str_split ($num);
+                                foreach($arr_num as $data)
+                                {
+                                $temp.=array_search($data,$list);
+                                }
+                                $num=$temp;
+                                { ?>
+      <h1>
+        View Tournament<!-- <a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a> -->
+        <a href = "<?php echo site_url('forms/edittournament/'.$num.'?tournament'); ?>" class="glyphicon glyphicon-edit fa-x"  name="Edit"  title="Edit"></a>
+      </h1>
+     
+    </section>
+    <?php } ?>
+         <section class="content"> 
+      <div class="row">
+	  
+		<div class="col-md-12">
+				
+			
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                <li class="active"><a href="#tab_event" data-toggle="tab">Tournament Details </a></li>
@@ -47,7 +73,7 @@
 					  </div>
 					
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Sports: </b> &nbsp;<?php echo $event['sports'];?></h5>
+						<h5 class="timeline-header no-border"><b>Sports: </b> &nbsp;<?php echo $event['sport'];?></h5>
 					</div>
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Level: </b> &nbsp;<?php echo $event['level'];?></h5>
@@ -84,10 +110,10 @@
 					</div>
 					
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $event['city_name'];?></h5>
+						<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $event['location'];?></h5>
 					</div>
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $event['state_name'];?></h5>
+						<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $event['state'];?></h5>
 					</div>
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $event['pin'];?></h5>
