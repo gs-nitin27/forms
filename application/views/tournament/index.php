@@ -57,7 +57,7 @@
               {
                 $data=$this->session->userdata('item');
                 $userid=$data['userid']; 
-               $tournaments = $this->register->getUserTournamentInfo($userid);
+                $tournaments = $this->register->getUserTournamentInfo($userid);
                }
 
 				       

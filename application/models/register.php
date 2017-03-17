@@ -159,7 +159,9 @@ public function getEventInfo($id = false)
 		return $q;
 }
 	
-public function getTournamentInfo($id = false){
+public function getTournamentInfo($id = false)
+{
+	//print_r($id);die;
 		$this->db->select('*');
 		$this->db->from('gs_tournament_info');
 		if($id > 0){

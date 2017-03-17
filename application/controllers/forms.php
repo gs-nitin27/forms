@@ -554,7 +554,10 @@ public function getTournament(){
 
 		$this->load->view('templates/template',$data);
 	}
-public function viewTournament($id){
+public function viewTournament($str)
+{    
+	//print_r($id);die;
+        $id= $this->stringtonumber($str);
 		$data['middle'] = 'tournament/view';
 		$data['required'] = array(
 									'id'=>$id	

@@ -12,7 +12,9 @@
 					$event = $event[0];
 				}
 
-				//print_r($event);die;
+				//print_r($id);
+				//print_r($event['id']);
+				//die;
 			
     $list=array('a' => 0,
                                 'b' => 1,
