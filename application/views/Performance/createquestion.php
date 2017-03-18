@@ -216,12 +216,12 @@ $("#sport").change(function()
                 data:"data="+data,                        
                 dataType: 'json',                      
                 success: function(data){ 
-                     alert(JSON.stringify(data));
+                     //alert(JSON.stringify(data));
                     $('#section').find('option').remove(); 
-                    $("#section").append('<option selected>Analytics</option>');
+                    $("#section").append('<option selected>-Select-</option>');
                     for(i in data) 
                         
-                        $("#section").append("<option value=\""+data[i]['section']+"\">"+data[i]['section']+"</option>");
+                        $("#section").append("<option value=\""+data[i]+"\">"+data[i]+"</option>");
                 } 
 
             });

@@ -1755,10 +1755,13 @@ public function editquestion($str)
 
 public function searchsection()
 {
-	    $data = json_decode($_REQUEST['data']);
-        $this->load->model('register');
-        $res =  $this->register->searchsection($data->id);
-        echo json_encode($res);
+	$data = json_decode($_REQUEST['data']);
+    $this->load->model('register');
+    $res =  $this->register->searchsection($data->id);
+    
+    $section = explode(',', $res[0]['section']);
+    //print_r($section);
+    echo json_encode($section);
 }
 
 public function searchagegroup()

@@ -23,6 +23,16 @@ if($("#physical").val() == 'physical')
 if($("#psychological").val() == 'psychological')
 {
   array[i] = $("#psychological").val();
+   i=i+1;
+}
+if($("#parent").val() == 'parent')
+{
+  array[i] = $("#parent").val();
+   i=i+1;
+}
+if($("#athlete").val() == 'athlete')
+{
+  array[i] = $("#athlete").val();
 }
 
   
@@ -161,6 +171,12 @@ var data = eval(data1);//JSON.stringify(data1);
                  <label for="psychological" class="btn btn-success">Psychological &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="psychological" class="badgebox"><span class="badge">&check;</span></label>
                  <!--  <b>Friends</b> <a class="pull-right">13,287</a> -->
                 </li>
+                <li class="list-group-item">
+                 <label for="parent" class="btn btn-warning">Parent &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="parent" class="badgebox"><span class="badge">&check;</span></label>
+                </li>
+                <li class="list-group-item">
+                 <label for="athlete" class="btn btn-warning">Athlete &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="athlete" class="badgebox"><span class="badge">&check;</span></label>
+                </li>
               </div>
             </form>
             <div class="box-footer">
@@ -179,7 +195,7 @@ var data = eval(data1);//JSON.stringify(data1);
 $("#gender").change(function()
  {   
 
-               
+
 
               var data = {
                           "gender"     :$("#gender").val()
@@ -285,6 +301,31 @@ $('#tactical').change(function() {
              //alert(val);
         }
     });
+       $('#parent').change(function() {
+        if ($(this).prop('checked')) {
+            var val=$("#parent").val('parent');
+               val='parent';
+          alert(val);
+        }
+        else {
+          var val=$("#parent").val(0);
+               val=0;
+             //alert(val);
+        }
+    });
+       $('#athlete').change(function() {
+        if ($(this).prop('checked')) {
+            var val=$("#athlete").val('athlete');
+               val='athlete';
+          alert(val);
+        }
+        else {
+          var val=$("#athlete").val(0);
+               val=0;
+             //alert(val);
+        }
+    });
+
 
 </script>
 

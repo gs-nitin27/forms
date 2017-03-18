@@ -1136,7 +1136,7 @@ else
 
 public function searchsection($id)
 {
-   $sql="SELECT * FROM `gs_perf_analytics` WHERE `id` = '$id'";
+    $sql="SELECT `section` FROM `gs_perf_analytics` WHERE `id` = '$id'";
     $query=$this->db->query($sql);
     $result=$query->result_array();
     return $result;
