@@ -21,6 +21,7 @@
 <!-- Morris.js charts -->
 <script type="text/javascript" src="<?php echo base_url('assets/raphael-min.js'); ?>"></script>
 <!-- <script type="text/javascript" src="<?//php echo base_url('assets/plugins/morris/morris.min.js'); ?>"></script> -->
+
 <!-- Sparkline -->
 <script  type="text/javascript" src="<?php echo base_url('assets/plugins/sparkline/jquery.sparkline.min.js'); ?>"></script>
 <!-- jvectormap -->

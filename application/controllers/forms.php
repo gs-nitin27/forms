@@ -2,11 +2,12 @@
  
 class Forms extends CI_Controller {
 
-public function __construct() {
+public function __construct() 
+{
         parent::__construct();
 		$this->load->model('register');
 		$this->load->library('session');	
-    }
+} 
   
 public function index()
 {   
@@ -1654,6 +1655,12 @@ public function getquestion()
      $this->load->view('templates/template' , $data);
 
 }
+
+public function createanalytics()
+{
+	$data['middle'] = 'Performance/createanalytics';
+	$this->load->view('templates/template',$data);
+}
    
 public function savequestion()
 {
@@ -1686,6 +1693,34 @@ public function savequestion()
    //print_r($res);
 }
 
+public function saveanalytics()
+{
+    $analytics = implode(",",$_POST['section']);
+
+    //print_r($_POST);die;
+
+     $item = new stdClass(); 
+    
+     $item->id         = $_POST['id'];
+     $item->sport      = $_POST['sport'];
+     $item->section    = $analytics;
+     $item->gender     = $_POST['gender'];
+     $item->agegroup   = $_POST['agegroup'];
+
+     $this->load->model('register');
+     $res = $this->register->saveanalytics($item);
+
+	//print_r($_POST);
+     if($res)
+     {
+     	echo "created";
+     }
+     else
+     {
+     	echo "not created";
+     }
+}
+
 public function Statusquestion()
 {
 $data2 = json_decode($_REQUEST['data']);
@@ -1715,6 +1750,24 @@ public function editquestion($str)
                   'id'=>$id 
                  );
     $this->load->view('templates/template',$data);
+}
+
+
+public function searchsection()
+{
+	    $data = json_decode($_REQUEST['data']);
+        $this->load->model('register');
+        $res =  $this->register->searchsection($data->id);
+        echo json_encode($res);
+}
+
+public function searchagegroup()
+{
+
+	    $data = json_decode($_REQUEST['data']);
+        $this->load->model('register');
+        $res =  $this->register->getstate($data->gender);
+        echo json_encode($res);
 }
 
 }

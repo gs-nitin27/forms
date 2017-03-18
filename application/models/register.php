@@ -1117,5 +1117,39 @@ public function getproffession($id = false)
 		return $qry->result_array();
 }
 
+public function saveanalytics($item)
+{
+	print_r($item);//die;
+  
+  $insert = "INSERT `gs_perf_analytics`(`id`,`sport`,`section`,`age_group`,`gender`,`date_created`) VALUES('$item->id','$item->sport','$item->section','$item->agegroup','$item->gender',CURDATE()) ON DUPLICATE KEY UPDATE `sport` ='$item->sport', `section` = '$item->section',`age_group` = '$item->agegroup',`gender` = '$item->gender' ";
+
+$query = $this->db->query($insert);
+if($query)
+{
+	return 1;
+} 
+else
+{
+	return 0;
+}
+}
+
+public function searchsection($id)
+{
+   $sql="SELECT * FROM `gs_perf_analytics` WHERE `id` = '$id'";
+    $query=$this->db->query($sql);
+    $result=$query->result_array();
+    return $result;
+}
+
+public function getstate($gender)
+{
+
+    $sql="SELECT * FROM `gs_age_group` WHERE `gender` = '$gender'";
+    $query=$this->db->query($sql);
+    $result=$query->result_array();
+    return $result;
+}
+
 }
  ?>

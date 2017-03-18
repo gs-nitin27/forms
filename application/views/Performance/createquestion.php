@@ -91,47 +91,71 @@ var data = eval(data1);//JSON.stringify(data1);
             </div>
         <?php }?>
 
-                <div class="form-group">
-                  <input type="hidden" class="form-control" name="token" id="token" value="1">
-                </div>
+               
 
             
 
                
+              
+
+       
+                 <div class="form-group">
+                  <label for="gender">Gender</label>
+                  <select id="gender" class="form-control" name="gender">
+                  <option>-Select-</option>
+                  <option id="male" value="m">Male</option>
+                  <option id="female" value="f">Female</option>
+                  <option id="all" value="u">All</option>
+                  </select>
+                  </div>
+
+
+               
+
+                  <div class="form-group">
+                  <label for="agegroup">Age Group</label>
+                  <select id="agegroup" class="form-control" name="agegroup">
+                  </select>
+                  </div>
+
+              
                 <div class="form-group">
+                <?php  $sports = $this->register->getSport();?>
+                <label for="sports">Sport</label>
+                <select id="sport" class="form-control" name="sport">
+                <option >-select-</option> 
+                <?php if(!empty($sports)){
+                        foreach($sports as $sport){?>
+                <option value ="<?php echo $sport['sports'];?>,<?php echo $sport['id'];?>"><?php echo $sport['sports'];?> </option>
+                <?php   }
+                           } 
+                         ?>
+                </select>
+               
+                </div>
+
+                  <div class="form-group">
+                  <label for="section">section</label>
+                  <select id="section" class="form-control" name="section">
+                  </select>
+                  </div>
+               
+                   <div class="form-group">
+                   <label for="Subsection">Sub Section</label>
+                   <input type="text" class="form-control" name="Subsection" id="Subsection" placeholder="Enter Question">
+                   <label id="Subsection_error" hidden>question is required.</label>
+                </div>
+
+
+                 <div class="form-group">
                    <label for="exampleInputEmail1">Question</label>
                    <input type="text" class="form-control" name="question" id="question" placeholder="Enter Question">
                    <label id="question_error" hidden>question is required.</label>
                 </div>
 
 
-       
-                <div class="form-group">
-                <label for="agegroup">Age Group</label>
-                <select id="age_group" class="form-control" name="Age Group">
-                <option value="">- Select -</option> 
-                <option value ="4 - 8">4 - 8</option>
-                <option value ="8 - 12">8 - 12</option>
-                <option value="12 - 16">12 - 16</option> 
-                <option value ="16 - 20">16 - 20</option>
-                <option value ="20 - 25">20 - 25</option>
-                <option value ="25 and above">25 and above</option>
-                </select>
-                <label id="age_group_error" hidden>Age Group is required</label>
-                </div>
 
 
-                
-                <div class="form-group">
-                <label for="gender">Gender</label>
-                <select id="gender" class="form-control" name="Gender">
-                <option value="">-Select-</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="All">All</option> 	
-                </select>         	
-                <label id="gender_error" hidden>Gender is required</label>
-                </div>
                 <div class="form-group">
                 <label for="level">Level</label>
                 <select id="level" class="form-control" name="Level">
@@ -172,6 +196,65 @@ var data = eval(data1);//JSON.stringify(data1);
 
 </div>
 
+<script>
+$("#sport").change(function()
+ {          
+
+              var myArray = $("#sport").val().split(","); 
+              var age = $("#agegroup").val().split(","); 
+              var code = myArray[1] + age[1];
+
+              var data = {
+                          "id"       : code
+                         };
+               console.log(JSON.stringify(data));
+               var data = JSON.stringify(data);
+
+            $.ajax({           
+                type: "POST",
+                url: "<?php echo site_url('forms/searchsection'); ?>",                  
+                data:"data="+data,                        
+                dataType: 'json',                      
+                success: function(data){ 
+                     alert(JSON.stringify(data));
+                    $('#section').find('option').remove(); 
+                    $("#section").append('<option selected>Analytics</option>');
+                    for(i in data) 
+                        
+                        $("#section").append("<option value=\""+data[i]['section']+"\">"+data[i]['section']+"</option>");
+                } 
+
+            });
+        });
+    </script>
+
+<script>
+$("#gender").change(function()
+ {
+
+              var data = {
+                          "gender"     :$("#gender").val()
+                         };
+               console.log(JSON.stringify(data));
+               var data = JSON.stringify(data);
+
+            $.ajax({           
+                type: "POST",
+                url: "<?php echo site_url('forms/searchagegroup'); ?>",                  
+                data:"data="+data,                        
+                dataType: 'json',                      
+                success: function(data){ 
+                     //alert(JSON.stringify(data));
+                    $('#agegroup').find('option').remove(); 
+                    $("#agegroup").append('<option selected>Age Group</option>');
+                    for(i in data) 
+                        
+                        $("#agegroup").append("<option value=\""+data[i]['age_group']+","+data[i]['id']+"\">"+data[i]['age_group']+"</option>");
+                } 
+
+            });
+        });
+    </script>
 
 <script type="text/javascript">
      $('#save').click(function()

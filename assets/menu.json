@@ -5,15 +5,15 @@
         "url": "#EVENT",
         "class": "fa fa-calendar fa-x",
         "name": "EVENT",
-	    	"id":"event",
+        "id":"event",
          "child":{
                    "1":   {
-				             "id"  : "createevent" ,
+                     "id"  : "createevent" ,
                              "url": "/forms/createevent?event",
                              "name": "create event"
                           },
                  "2": {
-				              "id" : "getevent",
+                      "id" : "getevent",
                               "url": "/forms/getevent?event",
                               "name": "View event"
                   }
@@ -25,15 +25,15 @@
           "url": "#TOURNAMENT",
            "class": "fa fa-trophy fa-x",
           "name": "TOURNAMENT",
-		      "id":"tournament",
+          "id":"tournament",
           "child":{
                     "1" :  {
-				                  "id":"createtournament",
+                          "id":"createtournament",
                           "url": "/forms/createtournament?tournament",
                          "name": "Create Tournament"
                       },
                 "2" : {
-				        "id":"gettournament",
+                "id":"gettournament",
                         "url": "/forms/gettournament?tournament",
                         "name": "View Tournament"
                       }
@@ -47,15 +47,15 @@
       "url": "#JOB",
        "class": "fa fa-briefcase fa-x",
       "name": "JOB",
-	  "id":"job",
+    "id":"job",
       "child":  {
        "1": {
-	             "id":"createjob",
+               "id":"createjob",
                  "url": "/forms/createjob?job",
                  "name": "create job"
         },
        "2": {
-	             "id":"getjob",
+               "id":"getjob",
                  "url": "/forms/getjob?job",
                  "name": "view job"
         }
@@ -70,22 +70,22 @@
            "url": "#RESOURCES",
             "class": "fa fa-book fa-x",
            "name": "RESOURCES",
-		   "id":"resources",
+       "id":"resources",
            "child" :{
         "1":{
-		  "id":"createresources",
+      "id":"createresources",
           "url": "/forms/createresources?resources",
           "name": "create resources"
         },
         
         "2":{
-		"id":"shareresource",
+    "id":"shareresource",
           "url": "/forms/shareresource?resources",
           "name": "Share resources"
         },
         
         "3":{
-		"id":"getresources",
+    "id":"getresources",
           "url": "/forms/getresources?resources",
           "name": "view resources"
         }
@@ -99,15 +99,15 @@
          "url": "#CONTENT",
           "class": "fa fa-list-alt fa-x",
           "name": "CONTENT",
-		  "id":"Content",
+      "id":"Content",
         "child" :{
        "1" : {
-	            "id":"createContent",
+              "id":"createContent",
                 "url": "/forms/createContent?Content",
                 "name": "create content"
         },
         "2" : {
-		"id":"getContent",
+    "id":"getContent",
           "url": "/forms/getContent?Content",
           "name": "View content"
         }
@@ -126,9 +126,15 @@
                  "name": "create question"
         },
        "2": {
-               "id":"getjob",
+               "id":"getquestion",
                  "url": "/forms/getquestion?performance",
                  "name": "view question"
+        },
+        
+       "3": {
+               "id":"createanalytics",
+                 "url": "/forms/createanalytics?performance",
+                 "name": "create analytics"
         }
       }
       
@@ -139,16 +145,16 @@
                  "url": "#USERROLE",
                  "class": "fa fa-users fa-x",
                  "name": "USER ROLE",
-		             "id":"module",
+                 "id":"module",
                  "child" :
-		        		 {
+                 {
                    "1" :{
-	                      "id":"usermodule",
+                        "id":"usermodule",
                         "url": "/forms/usermodule?module",
                         "name": "USER ROLE MANAGEMENT"
                         },
                   "2" : {
-		                    "id":"createnewUser",
+                        "id":"createnewUser",
                         "url": "/forms/createnewUser?module",
                         "name": "Create New  User"
                        }
