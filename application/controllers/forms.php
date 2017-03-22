@@ -458,8 +458,12 @@ public function mobileview()
 
 public function StatusJob()
 {
+  // print_r("expression");
+//	die;
 $data2 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
+
+//print_r($data2);die;
 
 $item->id                    = $data2->id;
 $item->publish               = $data2->publish;
@@ -469,11 +473,17 @@ $res = $this->register->StatusJob($item);
 if($data2->publish==1)
 {    
 	//$jdata=$this->register->getJobInfo($data2->id);
+    
+    $data = array('status' => 1, "msg" =>"Activated");
+    echo json_encode($data);
+
 
   //  print_r($jdata);
 	//$this->register->addJobData($jdata);
 }
 else{
+	 $data = array('status' => 0, "msg" =>"Deactivated");
+    echo json_encode($data);
 	//$this->register->deletePublishJob($data2->id);
 }
 }
@@ -1238,6 +1248,21 @@ public function getCityName()
          echo json_encode($data);
 }
 
+public function subsection()
+{
+	$keyword = $this->input->post('term');
+         $data['response'] = 'false'; //Set default response
+         $query = $this->register->getsubsection($keyword); //Model DB search
+         if($query->num_rows() > 0){
+         $data['response'] = 'true'; //Set response
+         $data['message'] = array(); //Create array
+         foreach($query->result() as $row){
+	     $data['message'][] = array('value'=> $row->subsection); //Add a row to array
+   }
+}
+         echo json_encode($data);
+}
+
 public function passwordchange()
 {
     $data=json_decode($_REQUEST['data']);
@@ -1684,11 +1709,11 @@ public function savequestion()
    
    if($res)
    {
-      echo 1;
+      echo "1";
    }
    else
    {
-     echo 0;
+     echo "0";
    }
    //print_r($res);
 }

@@ -126,19 +126,14 @@ var data = eval(data1);//JSON.stringify(data1);
                   <?php
                   }?>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" maxlength="50" name="rtitle" id="rtitle" placeholder="Enter title">
-                  <label id="title_error" hidden="">A title is required</label>
+                <label for="exampleInputEmail1">Title</label>
+                <input type="text" class="form-control" maxlength="50" name="rtitle" id="rtitle" placeholder="Enter title">
+                <label id="title_error" hidden="">A title is required</label>
                 </div>
-               <!--  <div class="form-group">
-                <label for="exampleInputEmail1">Link</label>
-                <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link">
-                <label id="url_error" hidden="">A valid url is required</label>
-                </div> -->
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
-                   <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                 <label id="summary_error" hidden="">A summary is required</label>
+                <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                <label id="summary_error" hidden="">A summary is required</label>
                 </div>
                 <div id="rem"></div>
             <script>
@@ -148,8 +143,8 @@ var data = eval(data1);//JSON.stringify(data1);
             </script>       
            <div class="form-group" id="abc">
            <label for="exampleInputEmail1">Description</label>
-                   <textarea class="form-control" name="description" id="rdescription" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                </div>
+           <textarea class="form-control" name="description" id="rdescription" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+            </div>
                  <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location">

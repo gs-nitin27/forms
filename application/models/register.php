@@ -379,6 +379,23 @@ public function getCityName($keyword)
         return $query;
 	}
 
+public function getsubsection($keyword)
+{
+	    $this->db->distinct();
+		$this->db->select('subsection');
+        $this->db->from('gs_assess_question');
+        $this->db->where('subsection', 0);
+        $this->db->like('subsection', $keyword);
+         //$this->db->order_by("city", "asc");
+        $this->db->limit('10');      
+      //  $this->db->limit(0, 6);
+        $query = $this->db->get();
+        foreach($query->result_array() as $row){
+            $data[] = $row;
+        }   
+        return $query;
+}
+
 
 public function StatusResources($item)
 {
