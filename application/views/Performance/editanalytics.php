@@ -35,17 +35,6 @@ if($("#athlete").val() == 'athlete')
   array[i] = $("#athlete").val();
 }
 
-var gender_v = $("#gender").val();
-var gender_value ;
-if(gender_v == 'M')
-{
-  gender_value = "Male";
-}
-else if(gender_v == 'F')
-{
-  gender_value = 'Female';
-} 
-
   
 var myArray = $("#sport").val().split(","); 
 var age = $("#agegroup").val().split(","); 
@@ -55,11 +44,8 @@ var code = myArray[1] + age[1];
 //alert(code);
 
 var data1 = {
-    "id"                      : code,
-    "sport"                   : myArray[0],
-    "section"                 : array,
-    "gender"                  : gender_value,
-    "agegroup"                : age[0]
+    "id"                      : $("#code").val(),
+    "section"                 : array
 };
 
 console.log(JSON.stringify(data1));
@@ -83,22 +69,15 @@ var data = eval(data1);//JSON.stringify(data1);
           }, 2000);
           window.location.href = url+"/forms/viewanalytics?performance";
        
-      }else if(result == '2')
+      }else
       {
        $( "#msgdiv" ).show();
-         $( "#msg" ).html('Analytics Already created');
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
-      }
-      else{
-         $( "#msgdiv" ).show();
          $( "#msg" ).html('Analytics not created');
          setTimeout(function() {
          $('#msgdiv').fadeOut('fast');
           }, 2000);
       }      
-       
+
   
  
     }
@@ -111,7 +90,7 @@ var data = eval(data1);//JSON.stringify(data1);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-         Create Analytics <a href="<?php echo site_url('/forms/viewanalytics');?>">Analytics List</a>
+         Update Analytics 
       </h1>
      
     </section>
@@ -140,31 +119,41 @@ var data = eval(data1);//JSON.stringify(data1);
             </div>
         <?php }?>
                 
-                 
+<?php
+
+              $quest = $this->register->getanalytics($id); 
+                    if(!empty($quest)){
+                         $questions = $quest[0];
+                         }
+
+                         print_r($questions);
+                          ?>
+                  
                   <div class="form-group">
                   <label for="gender">Gender</label>
-                  <select id="gender" class="form-control" name="gender">
-                  <option>-Select-</option>
-                  <option id="male" value="M">Male</option>
-                  <option id="female" value="F">Female</option>
+                  <select id="gender" class="form-control" name="gender" disabled="">
+                  <option><?php echo $questions['gender'];?></option>
+                 <!--  <option id="male" value="M">Male</option>
+                  <option id="female" value="F">Female</option> -->
                  <!--  <option id="all" value="u">All</option> -->
                   </select>
                   </div>
 
 
                
-
+                 <input type="hidden" name="id" id="code" value="<?php echo $questions['id']?>">
                <div class="form-group">
                <label for="sports">Age Group</label>
-               <select id="agegroup" class="form-control" name="agegroup">
+               <select id="agegroup" class="form-control" name="agegroup" disabled="">
+               <option><?php echo $questions['age_group'];?></option>
               </select>
               </div>
 
                 <div class="form-group">
                 <?php  $sports = $this->register->getSport();?>
                 <label for="sports">Sport</label>
-                <select id="sport" class="form-control" name="sport">
-                <option >-select-</option> 
+                <select id="sport" class="form-control" name="sport" disabled="">
+                <option ><?php echo $questions['sport']?></option> 
                 <?php if(!empty($sports)){
                         foreach($sports as $sport){?>
                 <option value ="<?php echo $sport['sports'];?>,<?php echo $sport['id'];?>"><?php echo $sport['sports'];?> </option>
@@ -209,12 +198,9 @@ var data = eval(data1);//JSON.stringify(data1);
 </div>
 
 
-<script>
+<!-- <script>
 $("#gender").change(function()
  {   
-
-
-
               var data = {
                           "gender"     :$("#gender").val()
                          };
@@ -223,7 +209,7 @@ $("#gender").change(function()
 
             $.ajax({           
                 type: "POST",
-                url: "<?php echo site_url('forms/searchagegroup'); ?>",                  
+                url: "<?php// echo site_url('forms/searchagegroup'); ?>",                  
                 data:"data="+data,                        
                 dataType: 'json',                      
                 success: function(data){ 
@@ -237,7 +223,7 @@ $("#gender").change(function()
 
             });
         });
-    </script>
+    </script> -->
 
 
 <!-- <script type="text/javascript">
@@ -264,13 +250,45 @@ $("#gender").change(function()
 
 </script> -->
 <script type="text/javascript">
-     $('#save').click(function()
-     {
-       save();
-    });
-  </script>
-  <script type="text/javascript">
-$('#tactical').change(function() {
+$(document).ready(function(){
+
+var module = '<?php echo $questions['section']; ?>';
+var mod = module.split(',');
+window.onload = loadData();
+function loadData(){
+
+if(mod[0]=='tactical' ){
+ $('#tactical').prop('checked',true);
+ }
+if(mod[1] =='technical'){
+ $('#technical').prop('checked',true);
+ }
+ if(mod[2] =='physical'){
+ $('#physical').prop('checked',true);
+ }
+ if(mod[3] =='psychological'){
+ $('#psychological').prop('checked',true);
+ }
+ if(mod[4] =='parent'){
+ $('#parent').prop('checked',true);
+ }
+ if(mod[5]=='athlete' ){
+ $('#athlete').prop('checked',true);
+ }
+}
+
+    $('#tactical').val(mod[0]);
+    $('#technical').val(mod[1]);
+    $('#physical').val(mod[2]);
+    $('#psychological').val(mod[3]);
+    $('#parent').val(mod[4]);
+    $('#athlete').val(mod[5]);
+   
+
+ });
+
+
+ $('#tactical').change(function() {
         if ($(this).prop('checked')) {
             var val=$("#tactical").val('tactical');
                val='tactical';
@@ -343,8 +361,12 @@ $('#tactical').change(function() {
              //alert(val);
         }
     });
-
-
 </script>
 
-
+<script type="text/javascript">
+     $('#save').click(function()
+     {
+       save();
+    });
+</script>
+ 

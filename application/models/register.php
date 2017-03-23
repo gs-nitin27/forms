@@ -87,7 +87,7 @@ else
 {
    return 0;
 }
-}
+}  
 	#Function for Get all the event type
 public function getEventType($id = false)
 {
@@ -183,10 +183,7 @@ public function getTournament($id)
 		   $this->db->where('id',$id);
 		   $query = $this->db->get();
 		   $q = $query->result_array();
-
-		  // print_r($q);die;
 		   return $q;
-
 }
 
 public function getResourceInfo($id = false)
@@ -201,6 +198,7 @@ public function getResourceInfo($id = false)
 		$query = $this->db->get();
 		$q =  $query->result_array();
 		return $q;
+
         // $other_db= $this->load->database('other', TRUE);
 		// $other_db->select('*');
 		// $other_db->from('gs_resources GR');
@@ -211,7 +209,6 @@ public function getResourceInfo($id = false)
 		// }
 		// $query = $other_db->get();
 		// $q =  $query->result_array();
-		
 		// return $q;
 }
 	
@@ -1073,35 +1070,26 @@ public function getprofession()
 		$q =  $query->result_array();
 		
 		return $q;
-
-   
-		//$qry = $this->db->get('gs_profession');
-		//return $qry->result_array();
-
 }
 
 public function savequestion($item)
-{
-
-	//print_r($item);die;
+{	
   $insert = "INSERT INTO `gs_assess_question`(`userid`,`id`,`question`,`age_group`,`gender`,`sport`,`publish`,`proffession`,`date_created`) VALUES('$item->userid','$item->id','$item->question','$item->age_group','$item->gender','$item->sport','$item->publish','$item->proffession',CURDATE())  ON DUPLICATE KEY UPDATE `question`= '$item->question',`age_group`='$item->age_group',`gender`='$item->gender', `publish`='$item->publish',`sport`='$item->sport',`proffession`='$item->proffession',`date_updated`=CURDATE()";
-   
- //  print_r($insert);die;
-   $query = $this->db->query($insert);
-  if($query)
-  {
-     return 1;
-  }else
-  {
-  	return 0;
-  }
+
+      $query = $this->db->query($insert);
+
+	  if($query)
+	  {
+	     return 1;
+	  }else
+	  {
+	  	return 0;
+	  }
 
 }
 
 public function getproffessioninfo($id = false)
 {
-      //  $this->load->database('other', TRUE);
-
 		$this->db->select('id,sport,question,age_group,gender,proffession,publish');
 		// $this->db->group_by('sport');
 		$this->db->from('gs_assess_question GR');
@@ -1136,11 +1124,33 @@ public function getproffession($id = false)
 		return $qry->result_array();
 }
 
+public function getanalytics($id = false)
+{   
+	   $this->db->select('*');
+		// $this->db->group_by('sport');
+		$this->db->from('gs_perf_analytics GR');
+		if($id > 0){
+			$this->db->where('GR.id', $id);
+		}else{
+		 $this->db->order_by("GR.id", "desc"); 
+		}
+		$query = $this->db->get();
+		$q =  $query->result_array();
+		//_pr($q);
+		return $q;
+}
+
+public function searchanalytics($id)
+{ 
+    $query = "SELECT * FROM `gs_perf_analytics` WHERE `id`='$id'";
+    $sql = $this->db->query($query);
+    $result = $sql->result_array();
+    return $result;
+}
 public function saveanalytics($item)
 {
-	print_r($item);//die;
-  
-  $insert = "INSERT `gs_perf_analytics`(`id`,`sport`,`section`,`age_group`,`gender`,`date_created`) VALUES('$item->id','$item->sport','$item->section','$item->agegroup','$item->gender',CURDATE()) ON DUPLICATE KEY UPDATE `sport` ='$item->sport', `section` = '$item->section',`age_group` = '$item->agegroup',`gender` = '$item->gender' ";
+
+  $insert = "INSERT `gs_perf_analytics`(`id`,`sport`,`section`,`age_group`,`gender`,`date_created`) VALUES('$item->id','$item->sport','$item->section','$item->agegroup','$item->gender',CURDATE()) ";
 
 $query = $this->db->query($insert);
 if($query)
@@ -1163,7 +1173,6 @@ public function searchsection($id)
 
 public function getstate($gender)
 {
-
     $sql="SELECT * FROM `gs_age_group` WHERE `gender` = '$gender'";
     $query=$this->db->query($sql);
     $result=$query->result_array();

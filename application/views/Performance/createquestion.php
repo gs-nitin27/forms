@@ -59,9 +59,8 @@ else if(gender_v == 'f')
   gender_value = 'Female';
 } 
 
-
 var data1 = {
-    "id"                      : 0, 
+    "id"                      : $("#idcode").val(), 
     "userid"                  : $("#userid").val(),
     "question"                : $("#nsectonv").val(),
     "age_group"               : $("#agegroup_value").val(),
@@ -149,6 +148,7 @@ var data = eval(data1);//JSON.stringify(data1);
                   </div>
 
                   <input type="hidden" name="Age Group" id="agegroup_value">
+                  <input type="hidden" name="question_id" id="idcode">
 
               
                 <div class="form-group">
@@ -472,6 +472,8 @@ function savedata()
 
 }
 
+//$("#section").focus
+
 </script>
 
 
@@ -538,7 +540,6 @@ $(document).ready(function(){
 <script>
 $("#sport").change(function()
  {          
-
               var myArray = $("#sport").val().split(","); 
               var age = $("#agegroup").val().split(","); 
 
@@ -546,6 +547,8 @@ $("#sport").change(function()
               $("#sports_name").val(myArray[0]);
 
               var code = myArray[1] + age[1];
+
+              $("#idcode").val(code);
 
               var data = {
                           "id"       : code
@@ -559,6 +562,10 @@ $("#sport").change(function()
                 data:"data="+data,                        
                 dataType: 'json',                      
                 success: function(data){ 
+
+                     $("#gender").prop('disabled',true);
+                     $("#agegroup").prop('disabled',true);
+                     $("#sport").prop('disabled',true);
                      //alert(JSON.stringify(data));
                     $('#section').find('option').remove(); 
                     $("#section").append('<option selected>-Select-</option>');

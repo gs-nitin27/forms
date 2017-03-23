@@ -129,6 +129,28 @@ echo "Module Creation Not Saved";
 }
 
 
+public function update_analytics()
+{
+$data = json_decode($_REQUEST['data']);
+ foreach ($data as  $value) 
+ {
+ 	if($value!=$data->id)
+         $res[]=$value; 
+ }
+$commaList = implode(',',$res);
+$this->load->model('register');
+$res = $this->register->update_userModule($data->id,$commaList);
+if($res == 1)
+{
+echo "Module Created";
+}
+else
+{
+echo "Module Creation Not Saved";
+}
+}
+
+
 public function signout()
 {
      $newdata = array(
@@ -1681,6 +1703,12 @@ public function getquestion()
 
 }
 
+public function viewanalytics()
+{
+  $data['middle'] = 'Performance/viewanalytics';
+  $this->load->view('templates/template',$data);
+}
+
 public function createanalytics()
 {
 	$data['middle'] = 'Performance/createanalytics';
@@ -1689,9 +1717,6 @@ public function createanalytics()
    
 public function savequestion()
 {
-  //$data = json_decode($_POST['data']);
-
- // print_r($_POST); die;
 
   $item = new stdClass();
 
@@ -1705,15 +1730,14 @@ public function savequestion()
   $item->publish           = 0;  
 
   $this->load->model('register');
-  $res = $this->register->savequestion($item);
-   
+  $res = $this->register->savequestion($item);   
    if($res)
    {
       echo "1";
    }
    else
    {
-     echo "0";
+      echo "0";
    }
    //print_r($res);
 }
@@ -1728,22 +1752,30 @@ public function saveanalytics()
     
      $item->id         = $_POST['id'];
      $item->sport      = $_POST['sport'];
-     $item->section    = $analytics;
+     $item->section    = mysql_real_escape_string($analytics);
      $item->gender     = $_POST['gender'];
      $item->agegroup   = $_POST['agegroup'];
 
      $this->load->model('register');
-     $res = $this->register->saveanalytics($item);
 
-	//print_r($_POST);
+    $temp = $this->register->searchanalytics($item->id);
+    if($temp)
+    {
+       //print_r($temp);
+        echo  "2";
+    }
+    else
+    {
+     $res = $this->register->saveanalytics($item);
      if($res)
      {
-     	echo "created";
+     	echo "1";
      }
      else
      {
-     	echo "not created";
+     	echo "0";
      }
+ }
 }
 
 public function Statusquestion()
@@ -1777,6 +1809,14 @@ public function editquestion($str)
     $this->load->view('templates/template',$data);
 }
 
+public function editanalytics($str)
+{
+   $id = $this->stringtonumber($str);
+   $data['middle'] = 'Performance/editanalytics';
+   $data['required'] =  array('id' => $id);
+   $this->load->view('templates/template',$data);
+   
+}
 
 public function searchsection()
 {

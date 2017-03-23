@@ -35,10 +35,10 @@
                   if($usertype==101 || $usertype==102 )
                    {
                     ?>
-                  <th style="background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <!-- <th style="background: #5262bc; color: #ffffff;">Publish <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th> -->
                    <?php }?>
 
-				          <!-- <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th> -->
+				          <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,7 +48,7 @@
 
       if($usertype==101 || $usertype==102 )
         {
-              $quest = $this->register->getproffessioninfo();
+              $quest = $this->register->getanalytics();
         }
         else
         {
@@ -77,13 +77,13 @@
              if($usertype==101 || $usertype==102 )
                    {
                     ?>
-          <td>
-          <?php if($questions['publish']==0){?>
-          <button class="badge bg-red" onclick="myfunction(<?php echo $questions['id'];?>,1)"><?php echo "Activate";?></button>
-          <?php }else{?> 
-          <button class="badge bg-green" onclick="myfunction(<?php echo $questions['id'];?>,0)"><?php echo "Deactivate";?></button>
-          <?php } ?>
-          </td>
+          <!-- <td>
+          <?php// if($questions['publish']==0){?>
+          <button class="badge bg-red" onclick="myfunction(<?php// echo $questions['id'];?>,1)"><?php// echo "Activate";?></button>
+          <?php// }else{?> 
+          <button class="badge bg-green" onclick="myfunction(<?php// echo $questions['id'];?>,0)"><?php// echo "Deactivate";?></button>
+          <?php// } ?>
+          </td> -->
             <?php } 
             $list=array('a' => 0,
                                 'b' => 1,
@@ -104,8 +104,8 @@
                                 }
                                 $num=$temp;
                                 { ?> 
-		<!--   <td><a href = "<?php// echo site_url('forms/editquestion/'.$num.'?performance'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
-                </tr> -->
+		  <td><a href = "<?php echo site_url('forms/editanalytics/'.$num.'?performance'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+                </tr>
 		  <?php } } } ?>
                 </tbody>
                 <tfoot>
@@ -121,10 +121,10 @@
              if($usertype==101 || $usertype==102 )
                    {
                     ?>
-                  <th style="background: #5262bc; color: #ffffff;">Publish</th>
+                 <!--  <th style="background: #5262bc; color: #ffffff;">Publish</th> -->
 
                     <?php } }?>
-                 <!--  <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th> -->
+                  <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th>
                 </tr>
                 </tfoot>
               </table>
