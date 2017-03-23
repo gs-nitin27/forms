@@ -20,11 +20,12 @@
                 <thead>
                 <tr>
                   <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
-                  <th style="background: #5262bc; color: #ffffff; width:80px;">Question <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                 <!--  <th style="background: #5262bc; color: #ffffff; width:80px;">Question <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th> -->
                   <th style="background: #5262bc; color: #ffffff;">Age Group <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Gender <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                   <th style="background: #5262bc; color: #ffffff;">Level <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                    <th style="background: #5262bc; color: #ffffff;">Profession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                   
+                    <!-- <th style="background: #5262bc; color: #ffffff;">Profession <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th> -->
 
               <?php        
                  $data=$this->session->userdata('item');
@@ -36,12 +37,12 @@
                   <th style="background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                    <?php }?>
 
-				          <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th>
+				          <!-- <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th> -->
                 </tr>
                 </thead>
                 <tbody>
           <?php 
-          $i =1;
+          $i =1; 
 
 
       if($usertype==101 || $usertype==102 )
@@ -64,11 +65,12 @@
 						foreach($quest as $questions){ ?>
           <tr>
 					<td><?php echo $i++; ?></td>
-					<td><?php echo $questions['question']; ?></td>
+           <td><?php echo $questions['sport']; ?></td>
+					<!-- <td><?php// echo $questions['question']; ?></td> -->
 					<td><?php echo $questions['age_group']; ?></td>
 					<td><?php echo $questions['gender']; ?></td>
-          <td><?php echo $questions['level']; ?></td>
-          <td><?php echo $questions['proffession']; ?></td>
+         
+          <!-- <td><?php// echo $questions['proffession']; ?></td> -->
 
           <?php
              if($usertype==101 || $usertype==102 )
@@ -101,18 +103,18 @@
                                 }
                                 $num=$temp;
                                 { ?> 
-		  <td><a href = "<?php echo site_url('forms/editquestion/'.$num.'?performance'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
-                </tr>
+		<!--   <td><a href = "<?php// echo site_url('forms/editquestion/'.$num.'?performance'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+                </tr> -->
 		  <?php } } } ?>
                 </tbody>
                 <tfoot>
                <tr>
                   <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
-                  <th style="background: #5262bc; color: #ffffff;">Question</th>
+                  <th style="background: #5262bc; color: #ffffff;">Sport</th>
                   <th style="background: #5262bc; color: #ffffff;">Age Group</th>
                   <th style="background: #5262bc; color: #ffffff;">Gender</th>
-                  <th style="background: #5262bc; color: #ffffff;">Level</th>
-                  <th style="background: #5262bc; color: #ffffff;">Profession</th>
+                  <!-- <th style="background: #5262bc; color: #ffffff;">Level</th>
+                  <th style="background: #5262bc; color: #ffffff;">Profession</th> -->
 
                   <?php
              if($usertype==101 || $usertype==102 )
@@ -121,7 +123,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Publish</th>
 
                     <?php } }?>
-                  <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th>
+                 <!--  <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th> -->
                 </tr>
                 </tfoot>
               </table>

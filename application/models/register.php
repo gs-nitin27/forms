@@ -1084,7 +1084,7 @@ public function savequestion($item)
 {
 
 	//print_r($item);die;
-  $insert = "INSERT INTO `gs_assess_question`(`userid`,`id`,`question`,`age_group`,`gender`,`level`,`publish`,`proffession`,`date_created`) VALUES('$item->userid','$item->id','$item->question','$item->age_group','$item->gender','$item->level','$item->publish','$item->proffession',CURDATE())  ON DUPLICATE KEY UPDATE `question`= '$item->question',`age_group`='$item->age_group',`gender`='$item->gender', `publish`='$item->publish',`level`='$item->level',`proffession`='$item->proffession',`date_updated`=CURDATE()";
+  $insert = "INSERT INTO `gs_assess_question`(`userid`,`id`,`question`,`age_group`,`gender`,`sport`,`publish`,`proffession`,`date_created`) VALUES('$item->userid','$item->id','$item->question','$item->age_group','$item->gender','$item->sport','$item->publish','$item->proffession',CURDATE())  ON DUPLICATE KEY UPDATE `question`= '$item->question',`age_group`='$item->age_group',`gender`='$item->gender', `publish`='$item->publish',`sport`='$item->sport',`proffession`='$item->proffession',`date_updated`=CURDATE()";
    
  //  print_r($insert);die;
    $query = $this->db->query($insert);
@@ -1101,7 +1101,9 @@ public function savequestion($item)
 public function getproffessioninfo($id = false)
 {
       //  $this->load->database('other', TRUE);
-		$this->db->select('*');
+
+		$this->db->select('id,sport,question,age_group,gender,proffession,publish');
+		// $this->db->group_by('sport');
 		$this->db->from('gs_assess_question GR');
 		if($id > 0){
 			$this->db->where('GR.id', $id);

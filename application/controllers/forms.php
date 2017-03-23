@@ -1700,7 +1700,7 @@ public function savequestion()
   $item->question          = $_POST['question'];
   $item->age_group         = $_POST['age_group'];
   $item->gender            = $_POST['gender'];
-  $item->level             = $_POST['level'];
+  $item->sport             = $_POST['sport'];
   $item->proffession       = $_POST['proffession'];   
   $item->publish           = 0;  
 

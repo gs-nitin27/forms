@@ -66,7 +66,7 @@ var data1 = {
     "question"                : $("#nsectonv").val(),
     "age_group"               : $("#agegroup_value").val(),
     "gender"                  : gender_value,
-   	"level"                   : 2,
+   	"sport"                   : $("#sports_name").val(),
     "proffession"             : 3
 };
 
@@ -163,6 +163,7 @@ var data = eval(data1);//JSON.stringify(data1);
                            } 
                          ?>
                 </select>
+                <input type="hidden" name="sports_name" id="sports_name" class="form-control">
                
                 </div>
 
@@ -440,7 +441,8 @@ function addNewsection()
 
      var nsectionvalue = JSON.stringify(nsection);
      $("#nsectonv").val(nsectionvalue);
-     //alert(nsectionvalue);
+     $("#addsubsection1").prop('disabled', true);
+     $("#Sub_Section1").prop('disabled', true);
      $("#saveAlldata1").prop('disabled', true);
 }
 
@@ -541,6 +543,7 @@ $("#sport").change(function()
               var age = $("#agegroup").val().split(","); 
 
               $("#agegroup_value").val(age[0]);
+              $("#sports_name").val(myArray[0]);
 
               var code = myArray[1] + age[1];
 
