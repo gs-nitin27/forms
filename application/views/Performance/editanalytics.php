@@ -2,6 +2,7 @@
 <script>
 function save()
 { 
+  
 $('#imagelodar').show();
 var array = [];
 var i=0;
@@ -35,11 +36,12 @@ if($("#athlete").val() == 'athlete')
   array[i] = $("#athlete").val();
 }
 
-  
-var myArray = $("#sport").val().split(","); 
-var age = $("#agegroup").val().split(","); 
 
-var code = myArray[1] + age[1];
+  
+// var myArray = $("#sport").val().split(","); 
+// var age = $("#agegroup").val().split(","); 
+
+// var code = myArray[1] + age[1];
 
 //alert(code);
 
@@ -53,29 +55,51 @@ var url = '<?php echo site_url();?>'
 var data = eval(data1);//JSON.stringify(data1);
   $.ajax({
     type: "POST",
-    url: '<?php echo site_url('forms/saveanalytics'); ?>',
+    url: '<?php echo site_url('forms/update_analytics'); ?>',
     data: data,
     dataType: "text",
     success: function(result) {
-
-      alert(result);
-      $('#imagelodar').hide();
+    $('#imagelodar').hide();
     if(result == '1')
       {
-         $( "#msgdiv" ).show();
-         $( "#msg" ).html("Analytics is created");
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
-          window.location.href = url+"/forms/viewanalytics?performance";
+        $.confirm({
+        title: 'Congratulations!',
+        content: 'Analytics is Updated.',
+        type: 'green',
+        typeAnimated: true,
+        buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                 window.location.href = url+"/forms/viewanalytics?performance"; 
+                }
+            },
+            close: function () {
+              window.location.href = url+"/forms/viewanalytics?performance";
+            }
+        }
+    });
        
       }else
       {
-       $( "#msgdiv" ).show();
-         $( "#msg" ).html('Analytics not created');
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
+
+        $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                      }
+                  },
+                  close: function () {
+                  }
+              }
+          });
       }      
 
   
@@ -126,7 +150,7 @@ var data = eval(data1);//JSON.stringify(data1);
                          $questions = $quest[0];
                          }
 
-                         print_r($questions);
+                        // print_r($questions);
                           ?>
                   
                   <div class="form-group">
@@ -141,7 +165,7 @@ var data = eval(data1);//JSON.stringify(data1);
 
 
                
-                 <input type="hidden" name="id" id="code" value="<?php echo $questions['id']?>">
+                <input type="hidden" name="id" id="code" value="<?php echo $questions['id']?>">
                <div class="form-group">
                <label for="sports">Age Group</label>
                <select id="agegroup" class="form-control" name="agegroup" disabled="">
@@ -257,33 +281,43 @@ var mod = module.split(',');
 window.onload = loadData();
 function loadData(){
 
-if(mod[0]=='tactical' ){
+  
+
+for(var i=0 ; i<mod.length ; i++)
+{
+
+if(mod[i]=='tactical' )
+{
+ $('#tactical').val(mod[i]);
  $('#tactical').prop('checked',true);
  }
-if(mod[1] =='technical'){
+if(mod[i] =='technical')
+{
+ $('#technical').val(mod[i]);
  $('#technical').prop('checked',true);
  }
- if(mod[2] =='physical'){
+ if(mod[i] =='physical')
+ {
+ $('#physical').val(mod[i]);
  $('#physical').prop('checked',true);
  }
- if(mod[3] =='psychological'){
+ if(mod[i] =='psychological')
+ {
+ $('#psychological').val(mod[i]);
  $('#psychological').prop('checked',true);
  }
- if(mod[4] =='parent'){
+ if(mod[i] =='parent')
+ {
+ $('#parent').val(mod[i]);
  $('#parent').prop('checked',true);
  }
- if(mod[5]=='athlete' ){
- $('#athlete').prop('checked',true);
+ if(mod[i]=='athlete' )
+ {
+  $('#athlete').val(mod[i]);
+  $('#athlete').prop('checked',true);
  }
 }
-
-    $('#tactical').val(mod[0]);
-    $('#technical').val(mod[1]);
-    $('#physical').val(mod[2]);
-    $('#psychological').val(mod[3]);
-    $('#parent').val(mod[4]);
-    $('#athlete').val(mod[5]);
-   
+}
 
  });
 
@@ -366,6 +400,7 @@ if(mod[1] =='technical'){
 <script type="text/javascript">
      $('#save').click(function()
      {
+
        save();
     });
 </script>

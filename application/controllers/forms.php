@@ -129,26 +129,7 @@ echo "Module Creation Not Saved";
 }
 
 
-public function update_analytics()
-{
-$data = json_decode($_REQUEST['data']);
- foreach ($data as  $value) 
- {
- 	if($value!=$data->id)
-         $res[]=$value; 
- }
-$commaList = implode(',',$res);
-$this->load->model('register');
-$res = $this->register->update_userModule($data->id,$commaList);
-if($res == 1)
-{
-echo "Module Created";
-}
-else
-{
-echo "Module Creation Not Saved";
-}
-}
+
 
 
 public function signout()
@@ -178,6 +159,7 @@ $item->password                   =$pass;
 $item->status                     =$data->status;
 $item->email                      =$data->email;
 $item->prof_id                    =$data->prof_id;
+$item->prof_name                  =$data->prof_name;
 $item->userType                   =$data->userType;
 $item->contact_no                 =$data->contact_no;
 $item->sport                      =$data->sport;
@@ -200,11 +182,11 @@ $this->load->model('register');
 $res= $this->register->updateProfile($item);
 if($res)
 {
-	echo "Profile  Updated";
+	echo "1";
 	//$this->varifyemail();
 }
 else {
-	echo "Profile Not Updated";
+	echo "0";
 }
 }
 
@@ -317,12 +299,11 @@ $res = $this->register->saveEvent($item);
 
 if($res == '1')
  {
-
- echo "Event Created";
+ echo "1";
 
  }
 else
- echo "Event Not created";
+ echo "0";
 
 }
 
@@ -421,11 +402,11 @@ $this->load->model('register');
 $res = $this->register->create_job($item);
 if($res == 1)
 {
-echo "Job Created";
+echo "1";
 }
 else
 {
-echo "Job has not been saved";
+echo "0";
 }
 }
 
@@ -575,10 +556,10 @@ $this->load->model('register');
 $res = $this->register->saveTournament($item);
 if($res == '1')
  {
- echo "Tournament Created";
+ echo "1";
  }
 else
- echo "Tournament Not created";
+ echo "0";
 }
 
 
@@ -857,11 +838,11 @@ $this->load->model('register');
 $res = $this->register->create_content($item);
 if($res == 1)
 {
-echo "Content Created";
+echo "1";
 }
 else
 {
-echo "Content has not been saved";
+echo "0";
 }
 }
 
@@ -927,8 +908,8 @@ $result=$this->register->Emailfind($data->email);
 
 if($result)
 {
-	echo '1';
-    //echo json_encode(array('response' => '1'));
+	//echo json_encode(array('result' => 1));
+    echo json_encode(array('response' => '1'));
 }
 else
 {
@@ -1035,11 +1016,14 @@ if($res)
                $mail->AddAddress($to);
                $mail->Send();
 			   
-			   echo '2';
+			   //echo '2';
+			   echo json_encode(array('response' => '2'));
          
 }
-else{
-     return '3';
+else
+{
+
+    echo json_encode(array('response' => '3'));
 }
 }
 
@@ -1742,11 +1726,25 @@ public function savequestion()
    //print_r($res);
 }
 
+
+public function analyticsdata()
+{
+
+   $this->load->model('register');
+   $result = $this->register->searchanalytics($_POST['id']); 
+
+   $data = array('gender' => $result[0]['gender'] , 'age_group' => $result[0]['age_group'] , 'sport' =>$result[0]['sport'],'section'=> $result[0]['section']);
+
+    echo json_encode($data);
+}
+
 public function saveanalytics()
 {
+	 //die;
     $analytics = implode(",",$_POST['section']);
 
-    //print_r($_POST);die;
+    //print_r($_POST);
+
 
      $item = new stdClass(); 
     
@@ -1809,6 +1807,7 @@ public function editquestion($str)
     $this->load->view('templates/template',$data);
 }
 
+
 public function editanalytics($str)
 {
    $id = $this->stringtonumber($str);
@@ -1836,6 +1835,26 @@ public function searchagegroup()
         $this->load->model('register');
         $res =  $this->register->getstate($data->gender);
         echo json_encode($res);
+}
+
+public function update_analytics()
+{
+$analytics = implode(",",$_POST['section']);
+$item = new stdClass();
+
+$item->id        = $_POST['id'];
+$item->section   = $analytics;
+
+$this->load->model('register');
+$res = $this->register->update_analytics($item->id, $item->section);
+if($res == 1)
+{
+echo "1";
+}
+else
+{
+echo "0";
+}
 }
 
 }

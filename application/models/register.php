@@ -1178,6 +1178,21 @@ public function getstate($gender)
     $result=$query->result_array();
     return $result;
 }
+public function update_analytics($id,$section)
+{
 
+$update = "UPDATE `gs_perf_analytics` SET `section` = '$section' WHERE `id` = '$id'";
+
+$query = $this->db->query($update);
+if($query)
+{
+	return 1 ;
+}
+else {
+	return 0;
+}
+
+
+}
 }
  ?>

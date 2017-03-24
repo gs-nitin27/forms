@@ -2,6 +2,9 @@
 <script>
 function save()
 { 
+
+
+
 $('#imagelodar').show();
 var array = [];
 var i=0;
@@ -70,37 +73,111 @@ var data = eval(data1);//JSON.stringify(data1);
     url: '<?php echo site_url('forms/saveanalytics'); ?>',
     data: data,
     dataType: "text",
-    success: function(result) {
-
-      alert(result);
-      $('#imagelodar').hide();
+    success: function(result) 
+    {
+    $('#imagelodar').hide();
     if(result == '1')
       {
-         $( "#msgdiv" ).show();
-         $( "#msg" ).html("Analytics is created");
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
-          window.location.href = url+"/forms/viewanalytics?performance";
+        $.confirm({
+        title: 'Congratulations!',
+        content: 'Analytics is created.',
+        type: 'green',
+        typeAnimated: true,
+        animationSpeed: 1500,
+        animationBounce: 3,
        
-      }else if(result == '2')
+        buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                 window.location.href = url+"/forms/viewanalytics?performance"; 
+                }
+            },
+            close: function () {
+              window.location.href = url+"/forms/viewanalytics?performance";
+            }
+        }
+    });
+      }
+
+      else if(result == '2')
       {
-       $( "#msgdiv" ).show();
-         $( "#msg" ).html('Analytics Already created');
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
+        $.confirm({
+        title: 'Analytics Already created!',
+        content: 'This Combination of Analytics is already created Please Update Analytics.',
+        type: 'red',
+        animationSpeed: 1500,
+        animationBounce: 3,
+        typeAnimated: true,
+        buttons: {
+            tryAgain: {
+                text: 'View',
+                btnClass: 'btn-red',
+                action: function(){
+                  $.confirm({
+                   content: function () {
+            var self = this;
+            return $.ajax({
+                url: '<?php echo site_url('forms/analyticsdata'); ?>',
+                dataType: 'JSON',
+                data: data,
+                method: 'POST'
+            }).done(function (response) {
+                self.setContent('<b>Gender:</b>' + response.gender);
+                self.setContentAppend('<br><b>Age Group:</b> ' + response.age_group);
+                self.setContentAppend('<br><b>Sport:</b>' + response.sport);
+                self.setContentAppend('<br><b>Section:</b>' + response.section);
+                self.setTitle("<b>Analytics</b>");
+            }).fail(function(){
+                self.setContent('Something went wrong.');
+            });
+          }
+        });
+                }
+               },
+             Update : function () 
+             {  
+                var list = {0: "a",  1: "b", 2 :"c" , 3 : "d", 4:"e", 5:"f", 6:"g", 7:"h", 8:"i" ,9 : "j"};
+                var temp='';
+                var number = code, output = [], sNumber = number.toString();
+
+                for (var i = 0, len = sNumber.length; i < len; i += 1)
+                 {
+                    output.push(+sNumber.charAt(i)); 
+                    for (x in list) 
+                       {     
+                        if(x == output[i])
+                         {
+                          temp += list[x];
+                           }
+                          }
+                          }
+              location.href = '<?php echo site_url('forms/editanalytics/' )?>'+'/' + temp + '?performance';
+
+             }
+        }
+    });
       }
       else{
-         $( "#msgdiv" ).show();
-         $( "#msg" ).html('Analytics not created');
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
-      }      
-       
-  
- 
+
+              $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                      }
+                  },
+                  close: function () {
+                  }
+              }
+          });
+      }  
     }
 });  
 

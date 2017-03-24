@@ -47,19 +47,47 @@ var data = eval(data1);//JSON.stringify(data1);
      if(result.response == '1')
       {
          //alert(result.response);
-        $( "#msgdiv" ).show();
-         $( "#msg" ).html("Resource Updated");
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
-          window.location.href = url+"/forms/getresources?resources";
+         $.confirm({
+        animationSpeed: 1000,
+        animationBounce: 3,
+        title: 'Congratulations!',
+        content: 'Resource is Updated.',
+        type: 'green',
+        typeAnimated: true,
+        buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                  window.location.href = url+"/forms/getresources?resources";
+                }
+            },
+            close: function () {
+              window.location.href = url+"/forms/getresources?resources";
+            }
+        }
+    });
       }else
       {
-      $( "#msgdiv" ).show();
-         $( "#msg" ).html('Resource not Updated');
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
+      $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              animationSpeed: 1500,
+              animationBounce: 3,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                      }
+                  },
+                  close: function () {
+                  }
+              }
+          });
+
       }
    
    
@@ -131,11 +159,13 @@ var data = eval(data1);//JSON.stringify(data1);
         
         
         
-        <div class="form-group">
+                <div class="form-group">
                   <label for="exampleInputEmail1">Link</label>
                   <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link" value="<?php echo $value['url']; ?>">
                 <label id="url_error" hidden="">A valid url is required</label>
                 </div>
+
+
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
                    <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['summary']; ?></textarea>
@@ -522,15 +552,15 @@ $(function() {
         }
       
       
-        var url = $('#rurl').val();
-        if(url == "")
-        {
-          $("#url_error").show();
-          $("#url_error").css('color', 'red');
-        }
-        else{
-          $("#url_error").hide(); 
-        }
+        // var url = $('#rurl').val();
+        // if(url == "")
+        // {
+        //   $("#url_error").show();
+        //   $("#url_error").css('color', 'red');
+        // }
+        // else{
+        //   $("#url_error").hide(); 
+        // }
         var summary = $('#rsummary').val();
         if(summary == "")
         {
@@ -558,7 +588,7 @@ $(function() {
         else{
           $("#article_error").hide(); 
         }
-       if(title!="" && url!="" && article!="" && location!="" &&summary!=""){
+       if(title!="" &&  article!="" && location!="" &&summary!=""){
           save();
         }
     });

@@ -45,35 +45,76 @@ var data = JSON.stringify(data1);
     type: "POST",
     url: '<?php echo site_url('forms/varifyemail'); ?>',
     data: "data="+data,
-    dataType: "text",
-    success: function(result) {
-     // alert(result);
+    dataType: "JSON",
+    success: function(result) 
+    {
+      alert(result.response);
        
-        if(result== 1)
+        if(result.response== 1)
       {
-        $( "#msgdiv" ).show();
-         $( "#msg" ).html('User already registered');
+         $.confirm({
+         title: 'Exits',
+         content: 'User already registered!',
+         type: 'red',
+         typeAnimated: true,
+         buttons: {
+            tryAgain: {
+                text: 'OK',
+                btnClass: 'btn-red',
+                action: function(){
+               // window.location.href = url+"/forms/usermodule";
+                }
+            },
+            close: function () {
+          // window.location.href = url+"/forms/usermodule";
+            }
+        }
+    });
+        // $( "#msgdiv" ).show();
+        //  $( "#msg" ).html('');
         
       }
-      else if(result == 2)
+      else if(result.response == 2)
       {
         
-           $( "#msgdiv" ).show();
-            $( "#msg" ).html('User created');
-           setTimeout(function() {
-           $('#msgdiv1').fadeOut('fast');
-       }, 1000);
-      window.location.href = url+"/forms/usermodule";
-
+        $.confirm({
+         title: 'Congratulations!',
+         content: 'User is created.',
+         type: 'green',
+         typeAnimated: true,
+         buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                window.location.href = url+"/forms/usermodule?module";
+                }
+            },
+            close: function () {
+           window.location.href = url+"/forms/usermodule?module";
+            }
+        }
+    });
+      
       }
-      else
+      else 
       {
-            $( "#msgdiv" ).show();
-            $( "#msg" ).html('User Not created created');
-           setTimeout(function() {
-           $('#msgdiv1').fadeOut('fast');
-       }, 1000);
-      window.location.href = url+"/forms/usermodule";
+           $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                      }
+                  },
+                  close: function () {
+                  }
+              }
+          });
         
     }
       }

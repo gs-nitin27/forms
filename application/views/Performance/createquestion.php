@@ -78,24 +78,52 @@ var data = eval(data1);//JSON.stringify(data1);
     data: data,
     dataType: "text",
     success: function(result) {
-    	alert(result);
+    	//alert(result);
     $('#imagelodar').hide();
     if(result == '1')
       {
-         $( "#msgdiv" ).show();
-         $( "#msg" ).html("Question is created");
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
-          window.location.href = url+"/forms/getquestion?performance";
+         $.confirm({
+        title: 'Congratulations!',
+        content: 'Question is created.',
+        type: 'green',
+        typeAnimated: true,
+        animationSpeed: 1500,
+        animationBounce: 3,
+        buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                 window.location.href = url+"/forms/getquestion?performance";
+                }
+            },
+            close: function () {
+             window.location.href = url+"/forms/getquestion?performance";
+            }
+        }
+    });
+          
       }
       else 
       {
-       $( "#msgdiv" ).show();
-         $( "#msg" ).html('Question not created');
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
+         $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              animationSpeed: 1500,
+              animationBounce: 3,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                      }
+                  },
+                  close: function () {
+                  }
+              }
+          });
       }      
     }
 });  

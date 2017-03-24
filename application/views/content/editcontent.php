@@ -26,12 +26,48 @@ var data = JSON.stringify(data12);
     dataType: "json",
     success: function(result) {
       $("#imagelodar").hide();
-    $( "#msgdiv" ).show();
-   $( "#msg" ).html(result.response);
-    setTimeout(function() {
-     $('#msgdiv').fadeOut('fast');
-   }, 2000);
-  window.location.href = url+"/forms/getContent";
+     if(result == '1')
+       {
+         
+         $.confirm({
+        title: 'Congratulations!',
+        content: 'Content is Created.',
+        type: 'green',
+        typeAnimated: true,
+        buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                 window.location.href = url+"/forms/getContent?Content";
+                }
+            },
+            close: function () {
+             window.location.href = url+"/forms/getContent?Content";
+            }
+        }
+    });
+      }
+      else
+      {
+             
+             $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                      }
+                  },
+                  close: function () {
+                  }
+              }
+          });
+      }
     }
 });
 }

@@ -7,6 +7,7 @@
 
 function save()
 {	
+
 $('#imagelodar').show();
 var summary1=$("#rsummary").val();
 //var summary12=summary1.toString();
@@ -44,19 +45,46 @@ var jsondata = eval(data1);
       $('#imagelodar').hide();
       if(result.response == '1')
       {
-         $( "#msgdiv" ).show();
-         $( "#msg" ).html('Resource created');
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
-         window.location.href = url+"/forms/getResources";
+        $.confirm({
+        animationSpeed: 1500,
+        animationBounce: 3,
+        title: 'Congratulations!',
+        content: 'Resource is created.',
+        type: 'green',
+        typeAnimated: true,
+        buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                  window.location.href = url+"/forms/getresources?resources";
+                }
+            },
+            close: function () {
+              window.location.href = url+"/forms/getresources?resources";
+            }
+        }
+    });
       }else
       {
-         $( "#msgdiv" ).show();
-         $( "#msg" ).html('Resource not created');
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
+          $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              animationSpeed: 1500,
+              animationBounce: 3,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                      }
+                  },
+                  close: function () {
+                  }
+              }
+          });
       }
     }
 }); 

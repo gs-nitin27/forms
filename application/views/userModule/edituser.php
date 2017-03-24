@@ -12,7 +12,8 @@ var data1 = {
     "password"                : $("#Password").val(),
     "status"                  : $("#status").val(),
     "email"                   : $("#email").val(), 
-    "prof_id"                 : $("#proftype").val(),
+    "prof_id"                 : $("#prof_id").val(),
+    "prof_name"               : $("#prof_name").val(),
     "userType"                : $("#utype").val(),
     "contact_no"              : $("#contact").val(),
     "sport"                   : $("#sport").val(),
@@ -29,20 +30,57 @@ var data1 = {
 console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>';
 var data = JSON.stringify(data1);
-
   $.ajax({
-
     type: "POST",
     url: '<?php echo site_url('forms/profile'); ?>',
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-        $( "#msgdiv" ).show();
-        $( "#msg" ).html(result);
-        setTimeout(function() {
-            $('#msgdiv').fadeOut('fast');
-        }, 2000);
-      window.location.href = url+"/forms/edituser";
+
+     // alert(result);
+      $("#imagelodar").hide();
+       if(result == '1')
+         {
+
+         $.confirm({
+         title: 'Congratulations!',
+         content: 'Profile is Update.',
+         type: 'green',
+         typeAnimated: true,
+         buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                 window.location.href = url+"/forms/edituser";
+                }
+            },
+            close: function () {
+           window.location.href = url+"/forms/edituser";
+            }
+        }
+    });
+      }
+      else
+      { 
+             $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                      }
+                  },
+                  close: function () {
+                  }
+              }
+          });
+      }
+      
     }
 
 
@@ -115,8 +153,12 @@ var data = JSON.stringify(data1);
                    <input type="hidden" class="form-control"  id="status" value="<?php echo $value['status']; ?>" disabled >
                    <div class="form-group">
                     <label for="usertype">Profession</label>
-                    <input type="input" class="form-control"  id="utype" value="<?php echo $value['prof_name']; ?>" disabled >
+                    <input type="input" class="form-control"  id="prof_name" value="<?php echo $value['prof_name']; ?>" disabled >
+
+                    <input type="hidden" class="form-control"  id="prof_id" value="<?php echo $value['prof_id']; ?>" disabled >
                     </div>
+
+                    
                    <!--  <div class="form-group">
                     <label for="usertype">Proffession</label>
                         <select id="proftype" class="form-control" disabled="">
@@ -212,7 +254,7 @@ var data = JSON.stringify(data1);
             </div>
             <!-- /.tab-content -->
             <div class="box-footer">
-            <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Save" name="Save">
+            <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Save" name="Save">
             </div>
              </form>
             

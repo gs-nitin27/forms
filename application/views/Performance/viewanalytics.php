@@ -13,7 +13,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header" style="text-align: center;">
-              <h3 class="box-title"><b>Question List</b></h3>
+              <h3 class="box-title"><b>Analytics List</b></h3>
               
             </div>
            <div class="box-body">

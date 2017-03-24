@@ -97,7 +97,7 @@
                                 'j' => 9);
                                  $num=$questions['id']; //your value
                                  $temp='';
-                                 $arr_num=str_split ($num);
+                                 $arr_num=str_split($num);
                                 foreach($arr_num as $data)
                                 {
                                 $temp.=array_search($data,$list);

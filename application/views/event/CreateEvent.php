@@ -79,14 +79,51 @@ var data = JSON.stringify(data1);
     url: '<?php echo site_url('forms/event'); ?>',
     data: "data="+data,
     dataType: "text",
-    success: function(result) {
-    	$("#imagelodar").hide();
-		$( "#msgdiv" ).show();
-		$( "#msg" ).html(result);
-		setTimeout(function() {
-			$('#msgdiv').fadeOut('fast');
-		}, 2000);
-		window.location.href = url+"/forms/getevent";
+    success: function(result) 
+    {
+         $("#imagelodar").hide();
+    	 if(result == '1')
+         {
+         $("#imagelodar").hide();
+         $.confirm({
+         title: 'Congratulations!',
+         content: 'Event is Created.',
+         type: 'green',
+         typeAnimated: true,
+         buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                 window.location.href = url+"/forms/getevent?event";
+                }
+            },
+            close: function () {
+            window.location.href = url+"/forms/getevent?event";
+            }
+        }
+    });
+      }
+      else
+      { 
+             $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                      }
+                  },
+                  close: function () {
+                  }
+              }
+          });
+      }
+		
     }
 });
 } 
