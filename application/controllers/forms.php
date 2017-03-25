@@ -898,8 +898,6 @@ else{
 
 public function varifyemail()
 {
-
-//  die;
 $data=json_decode($_REQUEST['data']);
 $name=$data->name;
 $pass=md5($data->password);
@@ -1855,6 +1853,14 @@ else
 {
 echo "0";
 }
+}
+
+public function viewquestions($str)
+{
+    $id = $this->stringtonumber($str);
+    $data['middle'] = 'Performance/displayquestions';
+    $data['required'] =  array('id' => $id);
+    $this->load->view('templates/template' , $data);
 }
 
 }

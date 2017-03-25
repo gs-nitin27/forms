@@ -1129,7 +1129,24 @@ public function getanalytics($id = false)
 	   $this->db->select('*');
 		// $this->db->group_by('sport');
 		$this->db->from('gs_perf_analytics GR');
-		if($id > 0){
+		if($id > 0)
+		{
+			$this->db->where('GR.id', $id);
+		}else{
+		 $this->db->order_by("GR.id", "desc"); 
+		}
+		$query = $this->db->get();
+		$q =  $query->result_array();
+		//_pr($q);
+		return $q;
+}
+
+public function getQuestions($id=false)
+{
+        $this->db->select('*');
+		$this->db->from('gs_assess_question GR');
+		if($id > 0)
+		{
 			$this->db->where('GR.id', $id);
 		}else{
 		 $this->db->order_by("GR.id", "desc"); 
@@ -1180,7 +1197,6 @@ public function getstate($gender)
 }
 public function update_analytics($id,$section)
 {
-
 $update = "UPDATE `gs_perf_analytics` SET `section` = '$section' WHERE `id` = '$id'";
 
 $query = $this->db->query($update);
@@ -1191,8 +1207,6 @@ if($query)
 else {
 	return 0;
 }
-
-
 }
 }
  ?>
