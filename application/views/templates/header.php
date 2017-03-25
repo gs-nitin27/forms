@@ -6,7 +6,12 @@
 <script src="<?php echo base_url('assets/plugins/chartjs/Chart.min.js')?>"></script>
 <script src="<?php echo base_url('assets/plugins/morris/morris.min.js')?>"></script>
  <script src="<?php echo base_url('assets/jquery-ui.min.js'); ?>"></script> 
-
+<style type="text/css">
+  #example1_filter label{
+  float:right!important;
+  padding-right:2px;
+}
+</style>
 </head>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>

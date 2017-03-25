@@ -38,7 +38,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                    <?php }?>
 
-				          <!-- <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th> -->
+				          <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -104,8 +104,8 @@
                                 }
                                 $num=$temp;
                                 { ?> 
-		<!--   <td><a href = "<?php// echo site_url('forms/editquestion/'.$num.'?performance'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
-                </tr> -->
+		  <td><a href = "<?php echo site_url('forms/viewquestions/'.$num.'?performance'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+                </tr>
 		  <?php } } } ?>
                 </tbody>
                 <tfoot>
@@ -124,7 +124,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Publish</th>
 
                     <?php } }?>
-                 <!--  <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th> -->
+                  <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th>
                 </tr>
                 </tfoot>
               </table>

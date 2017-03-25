@@ -52,7 +52,7 @@ $array=json_decode($data);
        $module_no = explode(',', $module_list);
       
      //  $module_no =  explode(',', $mod['access_module'])
-      // print_r($module_no);
+     // print_r($module_list);die;
         foreach ($module_no as $module_id) {
          // echo $module_id."nitin";        
        
