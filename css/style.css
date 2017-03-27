@@ -67,3 +67,16 @@ font-size: 1.4em;
 .table {
     margin-bottom: 0!important;
 }
+.nav-tabs-custom .container {
+   padding: 0!important;
+}
+.nav-tabs-custom .container .header{
+padding: 8px 15px;
+   background-color: #5262bc;
+   color: #fff;
+   font-size: 18px;
+}
+.nav-tabs-custom .container .content{
+padding-top:15px;
+min-height: auto;
+}
