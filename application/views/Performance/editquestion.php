@@ -1,237 +1,206 @@
-
-<script>
-function save()
-{
-$('#imagelodar').show();
-	
-var data1 = {
-    "id"                      : $('#id').val(), 
-    "userid"                  : $("#userid").val(),
-    "question"                : $("#question").val(),
-    "age_group"               : $("#age_group").val(),
-    "gender"                  : $("#gender").val(),
-	  "level"                     : $("#level").val(),
-    "proffession"             : $("#proffession").val()
-};
-
-console.log(JSON.stringify(data1));
-var url = '<?php echo site_url();?>'
-var data = eval(data1);//JSON.stringify(data1);
-  $.ajax({
-    type: "POST",
-    url: '<?php echo site_url('forms/savequestion'); ?>',
-    data: data,
-    dataType: "text",
-    success: function(result) {
-
-    	//alert(result);
-     if(result == '1')
-      {
-         $( "#msgdiv" ).show();
-         $( "#msg" ).html("Question is Updated");
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
-          window.location.href = url+"/forms/getquestion?performance";
-       
-      }else
-      {
-       $( "#msgdiv" ).show();
-         $( "#msg" ).html('Question not created');
-         setTimeout(function() {
-         $('#msgdiv').fadeOut('fast');
-          }, 2000);
-      }      
-
-  
- 
-    }
-});  
-
-}
-</script>
-
- <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+<div class="content-wrapper">
+ <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-         Edit Question
+        View Question
+        
       </h1>
      
     </section>
          <section class="content"> 
-
-         <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
+          <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div> 
       <div class="row">
-    <?php if(isset($msg) && $msg != ""){?>
-    <div class="col-md-12">
-    
-    <?php }?>
-<div class="col-md-12">
-<div class=" alert alert-success" id="msgdiv" style="display:none" >
-      <strong>Info! <span id = "msg"></span></strong> 
-    </div>
-      <div class="box box-primary">
-       
-            <!-- /.box-header -->
-    
+      <div class="col-md-12">
+       <?php
 
+       $quest = $this->register->getQuestions($id); 
+      // print_r($quest);
+        if(!empty($quest))
+        {
+          $questions = $quest[0];
+        } 
+      ?>
 
-        
-            <form id="myform">
-              <div class="box-body">
-
-            <?php
-          $data=$this->session->userdata('item');
-          $userid=$data['userid'];
-        {  ?>
-          <div class="form-group">
-                  <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
+         <div class="col-md-12">
+            <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">About Questions</h3>
             </div>
-          <?php }?>
-              <?php  
-            //  print_r($id);
+          
+          <div class="box-body">
+          <div class="timeline-item">
+          <h5 class="timeline-header" style="color:rgb(0,0,255);opacity:0.6;"><b href="#"> Gender: </b></h5>
+          <div class="timeline-body">
+          <input type="text" class="form-control" name="gender" value="<?php echo $questions['gender'];?>" disabled>
+          </div>
+          </div>
+          <hr>
+          <div class="timeline-item">
+          <h5 class="timeline-header" style="color:rgb(0,0,255);opacity:0.6;"><b href="#"> Age Group: </b></h5>
 
+          <div class="timeline-body">
+            <input type="text" name="agegroup" class="form-control" value="<?php echo $questions['age_group'];?>" disabled>
+          </div> 
+          </div> 
+          <hr>
+          <div class="timeline-item">
+          <h5 class="timeline-header" style="color:rgb(0,0,255);opacity:0.6;"><b href="#"> Sport : </b></h5>
+          <div class="timeline-body">
+          <input type="text" name="sport" class="form-control" value="<?php echo $questions['sport'];?>" disabled >
+          </div>
+          </div>
+            </div>
+          </div>
+          </div>
+    
+       <div class="nav-tabs-custom">
+       <ul class="nav nav-tabs">
 
-              $quest = $this->register->getproffessioninfo($id); 
-                    if(!empty($quest)){
-                         $questions = $quest[0];
+        <?php 
+              $section = [];
+              $questarray = $questions['question'];
+              $array=json_decode($questarray);
+              $i=1;
+               foreach ($array as $key => $value) 
+               {  $section[] = $key;
+                    if($i == 1){
+               ?>
+              <li class="active"><a href="#<?php echo $key;?>" data-toggle="tab" id="<?php echo $i; ?>" ><?php echo $key;?></a></li>
+              <!-- <li ><a href="#tab_info" data-toggle="tab" id="2" >Tournament Info</a></li>
+              <li ><a href="#tab_organiser" data-toggle="tab" id="3" >Organiser Details</a></li>
+              <li ><a href="#tab_eligible" data-toggle="tab" id="4" >Eligibility Criteria</a></li> -->
+
+             <?php $i++; } else { ?>
+              <li><a href="#<?php echo $key;?>" data-toggle="tab" id="<?php echo $i; ?>"><?php echo $key;?></a></li>
+             <?php $i++;} }?>
+             </ul> 
+                  <div class="tab-content">
+                <?php
+              foreach ($array as $key => $value) 
+               {
+                ?>  
+                <div class="tab-pane" id="<?php echo $key;?>">
+                <div class="box-header with-border">
+                <h4><?php// echo $key;?></h4 >   
+                </div>
+                <div class="box-body">
+          
+          
+         
+             <!--  <div class="timeline-item">
+              <h5 class="timeline-header no-border"><b>End Date: </b> &nbsp;<?php// echo $key;?></h5>
+               </div> -->
+          
+          
+          
+          
+             
+
+                <?php 
+                  foreach ($value as $key1 => $sdata) 
+                    {    
+                        //subsection
+
+                      ?>
+                      <div class="container">
+                      <div class="header"><span><?php echo $key1;?></span>
+                      </div>
+                      <div class="content">
+                      <ul>
+            <!--  <li>This is just some random content.</li>
+                  <li>This is just some random content.</li>
+                  <li>This is just some random content.</li>
+                  <li>This is just some random content.</li> -->
+                <!--  <div class="timeline-item">
+                    <h5 class="timeline-header no-border"><b>Sub-Section: </b> &nbsp;<?php// echo $key1;?></h5>
+                   </div> -->
+
+                <?php
+
+                      foreach ($sdata as $key2 => $qdata) 
+                        {
+                            //questions
+                        ?>
+                          <li><?php echo $qdata;?></li>
+                    <!-- <div class="timeline-item">
+                    <h5 class="timeline-header no-border"><b>Questions : </b> &nbsp;<?php// echo $qdata;?></h5>
+                   </div> -->
+                          <?php
+                          // print_r($qdata);
                          }
-                          ?>
-               
-                <div class="form-group">
-                   <label for="exampleInputEmail1">Question</label>
-                   <input type="text" class="form-control" name="question" id="question" value="<?php echo $questions['question'] ?>" placeholder="Enter Question">
-                   <label id="question_error" hidden>question is required.</label>
-                </div>
+                         ?>
+                         </ul>
+                        </div>
+                        </div>
+                        
+                         <?php
 
-                 <input type="hidden" class="form-control" name="question" id="id" value="<?php echo $questions['id'] ?>" >
-
-
-       
-                <div class="form-group">
-                <label for="agegroup">Age Group</label>
-                <select id="age_group" class="form-control" name="Age Group">
-                <option value="<?php echo $questions['age_group'];?>"><?php echo $questions['age_group'];?></option> 
-                <option value ="4 - 8">4 - 8</option>
-                <option value ="8 - 12">8 - 12</option>
-                <option value="12 - 16">12 - 16</option> 
-                <option value ="16 - 20">16 - 20</option>
-                <option value ="20 - 25">20 - 25</option>
-                <option value ="25 and above">25 and above</option>
-                </select>
-                <label id="age_group_error" hidden>Age Group is required</label>
-                </div>
-
-
-                
-                <div class="form-group">
-                <label for="gender">Gender</label>
-                <select id="gender" class="form-control" name="Gender">
-                <option value="<?php echo $questions['gender'];?>"><?php echo $questions['gender'];?></option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="All">All</option> 	
-                </select>         	
-                <label id="gender_error" hidden>Gender is required</label>
-                </div>
-                <div class="form-group">
-                <label for="level">Level</label>
-                <select id="level" class="form-control" name="Level">
-                <option value="<?php echo $questions['level'];?>" ><?php echo $questions['level'];?></option>
-                <option value="Level-1">Level-1</option>
-                <option value="Level-2">Level-2</option>
-                </select> 	
-                <label id="level_error" hidden>Level is required</label>
-                </div>
-
-
-                  <div class="form-group">
-                  <?php $profession = $this->register->getprofession();
-
-                //print_r($profession);
-             ?>
-                <label for="proffession" >Profession</label>
-                <select id="proffession" class="form-control" name="proffession">
-                <option><?php echo $questions['proffession'];?></option>
-                <?php if(!empty($profession)){
-                      foreach($profession as $prof){
-                	?>
-                 <option value="<?php echo $prof['profession'];?>"><?php echo $prof['profession']?></option>
-
-                 <?php } } ?>    
-                </select>
-                <label id="proffession_error" hidden>Profession is required</label>	
-                </div>
-                </form>
-            <div class="box-footer">
-            <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </section>
+                        }
+                        ?>
+                        
+                        </div>
+                        </div>
+                        <?php
+               }
+           
+           $ques = implode(',', $section)
+          ?>
+              
+      
+          </div>
+    </div>
+    
+    
+</div>
+</div>
+</section>
+<style type="text/css">
+  .container {
+    width:100%;
+    border:1px solid #d3d3d3;
+}
+.container div {
+    width:100%;
+}
+.container .header {
+    background-color:#d3d3d3;
+    padding: 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.container .content {
+    display: none;
+    padding : 5px;
+}
+</style>
 
 </div>
-
-
 <script type="text/javascript">
-     $('#save').click(function()
-     {
 
-     //	alert("hii");
-        var question = $('#question').val();
-        if(question == "")
-        {
-          $("#question_error").show();
-          $("#question_error").css('color', 'red');
-        }
-        else{
-          $("#question_error").hide(); 
-        }
-      
-      
-        var age_group = $('#age_group').val();
-        if(age_group == "")
-        {
-          $("#age_group_error").show();
-          $("#age_group_error").css('color', 'red');
-        }
-        else{
-          $("#age_group_error").hide(); 
-        }
-        var level = $('#level').val();
-        if(level == "")
-        {
-          $("#level_error").show();
-          $("#level_error").css('color', 'red');
-        }
-        else{
+$(".header").click(function () {
 
-          $("#level_error").hide(); 
-        }
-        var gender = $('#gender').val();
-        if(gender == "")
-        {
-          $("#gender_error").show();
-          $("#gender_error").css('color', 'red');
-        }
-        else{
-          $("#gender_error").hide(); 
-        }
-        var proffession = $('#proffession').val();
-        if(proffession == "")
-        {
-          $("#proffession_error").show();
-          $("#proffession_error").css('color', 'red');
-        }
-        else{
-          $("#proffession_error").hide(); 
-        }
-       if(question!="" && age_group!="" && level!="" && gender!="" &&proffession!=""){
-          save();
-        }
+    $header = $(this);
+    //getting the next element
+    $content = $header.next();
+    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+    $content.slideToggle(500, function () {
+        //execute this after slideToggle is done
+        //change text of header based on visibility of content div
+        // $header.text(function () {
+        //     //change text based on condition
+        //     return $content.is(":visible") ? "Collapse" : "Expand";
+        // });
     });
-  </script>
 
+});
+
+
+ $(document).ready(function(){
+  var section = '<?php echo $ques; ?>';
+
+   var sec = section.split(',');
+   //alert(sec[0]);
+   $("#"+sec[0]).addClass('active');
+      
+ }); 
+</script>

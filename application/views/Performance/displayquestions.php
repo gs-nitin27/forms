@@ -121,10 +121,10 @@
                       </div>
                       <div class="content">
                       <ul>
-            <!-- <li>This is just some random content.</li>
-            <li>This is just some random content.</li>
-            <li>This is just some random content.</li>
-            <li>This is just some random content.</li> -->
+            <!--  <li>This is just some random content.</li>
+                  <li>This is just some random content.</li>
+                  <li>This is just some random content.</li>
+                  <li>This is just some random content.</li> -->
                 <!--  <div class="timeline-item">
                     <h5 class="timeline-header no-border"><b>Sub-Section: </b> &nbsp;<?php// echo $key1;?></h5>
                    </div> -->
