@@ -38,16 +38,16 @@ if($("#athlete").val() == 'athlete')
   array[i] = $("#athlete").val();
 }
 
-var gender_v = $("#gender").val();
-var gender_value ;
-if(gender_v == 'M')
-{
-  gender_value = "Male";
-}
-else if(gender_v == 'F')
-{
-  gender_value = 'Female';
-} 
+// var gender_v = $("#gender").val();
+// var gender_value ;
+// if(gender_v == 'M')
+// {
+//   gender_value = "Male";
+// }
+// else if(gender_v == 'F')
+// {
+//   gender_value = 'Female';
+// } 
 
   
 var myArray = $("#sport").val().split(","); 
@@ -61,7 +61,7 @@ var data1 = {
     "id"                      : code,
     "sport"                   : myArray[0],
     "section"                 : array,
-    "gender"                  : gender_value,
+    "gender"                  : $("#gender").val(),
     "agegroup"                : age[0]
 };
 
@@ -222,8 +222,8 @@ var data = eval(data1);//JSON.stringify(data1);
                   <label for="gender">Gender</label>
                   <select id="gender" class="form-control" name="gender">
                   <option>-Select-</option>
-                  <option id="male" value="M">Male</option>
-                  <option id="female" value="F">Female</option>
+                  <option id="male" value="Male">Male</option>
+                  <option id="female" value="Female">Female</option>
                  <!--  <option id="all" value="u">All</option> -->
                   </select>
                   </div>

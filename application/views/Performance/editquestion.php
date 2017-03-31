@@ -66,9 +66,6 @@ padding: 8px 15px;
 padding-top:15px;
 min-height: auto;
 }
-
-
-
   .container {
     width:100%;
     border:1px solid #d3d3d3;
@@ -164,7 +161,7 @@ var data = eval(data1);
            var div1 = document.createElement('div');
            div1.className = 'container';
           
-           div1.innerHTML = '<div class="header" "><span>'+x+'</span><button class="btn btn-success btn-xs" data-title="Delete" id="'+x+"_d"+'" onclick="divto(this);" ><span class="glyphicon glyphicon-edit"></span></button><div class="content" id="'+x+"_div"+'"><ul id='+ x +'>';
+           div1.innerHTML = '<div class="header"><span>'+x+'</span><button class="btn btn-success btn-xs" data-title="Delete" id="'+i+x+"_d"+'" onclick="divto(this);" ><span class="glyphicon glyphicon-edit"></span></button><div class="content" id="'+i+x+"_div"+'"><ul id='+ x +'>';
            document.getElementById(i).appendChild(div1);
          }
 

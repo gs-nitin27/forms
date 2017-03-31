@@ -66,9 +66,6 @@ padding: 8px 15px;
 padding-top:15px;
 min-height: auto;
 }
-
-
-
   .container {
     width:100%;
     border:1px solid #d3d3d3;
@@ -85,12 +82,12 @@ min-height: auto;
 .container .content {
     display: none;
     padding : 5px;
-   background-color: #ffffff;
+    background-color: #ffffff;
     color: #272822; 
 }
 </style>
-
 </div>
+
 <script type="text/javascript">
 
 var sec_increment = 0;
@@ -99,16 +96,13 @@ var Nsection = "";
 var question_data ="";
 var section_data = "";
 
-
 function displaydata()
 {
-
   sec_increment = sec_increment+1;
   var data1 = {
     "id"           : $("#database_id").val()
    };
 
-// console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>'
 var data = eval(data1);
   $.ajax({
@@ -152,29 +146,23 @@ var data = eval(data1);
 
     document.getElementById('tab-content').appendChild(div);
      }
-
-
           var subsec =JSON.stringify(l);
           var subsect = JSON.parse(subsec);
           $.each(subsect , function(x,y)
           {
-         //alert(x);
          if(sec_increment ==1) 
          {
            var div1 = document.createElement('div');
            div1.className = 'container';
-          
            div1.innerHTML = '<div class="header" "><span>'+x+'</span><button class="btn btn-success btn-xs" data-title="Delete" id="'+x+"_d"+'" onclick="divto(this);" ><span class="glyphicon glyphicon-edit"></span></button><div class="content" id="'+x+"_div"+'"><ul id='+ x +'>';
            document.getElementById(i).appendChild(div1);
          }
-
            var ques = JSON.stringify(y);
            var quest = JSON.parse(ques);
            var did =  i+"_"+x;
            var arr =  i+"_"+x+"in";
            $('#'+x).empty();
            var del = 0;
-
            $.each(quest , function(a,b)
            {
               var div2 = document.createElement('div');
@@ -183,13 +171,10 @@ var data = eval(data1);
               document.getElementById(x).appendChild(div2);
               del++;
            });
-
-            
               var div3 = document.createElement('div');
                //div3.className = 'row';
               div3.innerHTML = '</ul></div><div class="box-footer"><input type="text" name="arr" class="form-control" id="'+arr+'" ><br><input type="button" class="btn btn-lg btn-primary" name="Add" id="'+did+'" onclick="addN(this);" value="Add"  ></div>';
               document.getElementById(x).appendChild(div3);
-       
            
             //alert(sec_increment);  
           // var temp = document.createElement('div');
@@ -198,13 +183,12 @@ var data = eval(data1);
           //  document.getElementById(i).appendChild(temp);
           if(sec_increment ==1)
           {  
-
-           var div5 = document.createElement('div');
+              var div5 = document.createElement('div');
                //div3.className = 'row';
-               div5.innerHTML = '</div></div>';
+              div5.innerHTML = '</div></div>';
               document.getElementById(x).appendChild(div5);
              }         
-              });
+          });
           if(sec_increment ==1)
           {
             var div4 = document.createElement('div');
@@ -229,7 +213,6 @@ function divto($this)
        // $("#"+id+"iv").toggle();
         $("#"+id+"iv").slideToggle(500, function () {
          });
-    
 }
 
 // $(".header").click(function () {
@@ -246,34 +229,21 @@ function divto($this)
 // });
 
 
-
 function Ndel($this)
 {
-
   var did = $this.id;
- // var delit_id = did +"in";
-
-  //alert(did);
-
   var testing = [];
   var index = did.split("_");
   var test = index[0];
   var test1 = index[1];
   var del_id = index[2];
-
-  //alert(del_id);
-
-  //var nttr = section_data;
-var nttr   = $.parseJSON(section_data);
-$.each(nttr, function(i,l)
-{
-   //alert(i);
+  var nttr   = $.parseJSON(section_data);
+  $.each(nttr, function(i,l)
+  {
  var nt =JSON.stringify(l);
  var ntr = JSON.parse(nt);
-
  if( i == test)
  {
-
    $.each(ntr, function(x,y)
    {
    var tem1 = JSON.stringify(y);
@@ -284,25 +254,16 @@ $.each(nttr, function(i,l)
       $.each(temp1, function(m,n)
       { 
          if(array_count == del_id){
-              
-            //  alert(array_count);
-             // alert(del_id);
          }else{
-
-          //alert("hi");
          var newt = JSON.stringify(n);
          var newtt = JSON.parse(newt);
          testing.push(newtt);
        }
        array_count++;
-
      });
-      // testing.push($("#"+input_id).val());
-      // $("#"+input_id).val('');
           nttr[i][x]= testing;
           var  finalarray = JSON.stringify(nttr);
           save(finalarray);
-   
     }else{
     }
     });
@@ -312,7 +273,6 @@ $.each(nttr, function(i,l)
  }
 });
 }
-
 
 function addN($this)
 {
@@ -322,19 +282,13 @@ function addN($this)
   var index = sid.split("_");
   var test = index[0];
   var test1 = index[1];
-
-  //var nttr = section_data;
   var nttr   = $.parseJSON(section_data);
-
 $.each(nttr, function(i,l)
 {
-   //alert(i);
  var nt =JSON.stringify(l);
  var ntr = JSON.parse(nt);
-
  if( i == test)
  {
-
    $.each(ntr, function(x,y)
    {
    var tem1 = JSON.stringify(y);
@@ -343,7 +297,6 @@ $.each(nttr, function(i,l)
     { 
       $.each(temp1, function(m,n)
      { 
-         
          var newt = JSON.stringify(n);
          var newtt = JSON.parse(newt);
          testing.push(newtt);
@@ -353,7 +306,6 @@ $.each(nttr, function(i,l)
           nttr[i][x]= testing;
           var  finalarray = JSON.stringify(nttr);
           save(finalarray);
-   
     }else{
     }
     });
@@ -362,18 +314,14 @@ $.each(nttr, function(i,l)
  {
  }
 });
- 
 }
-
 function save(at)
 {   
    var data1 = {
     "id"           : $("#questions_id").val(),
     "question"     : at
    };
-
 var string_userid = $("#string_userid").val();
-
 console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>'
 var data = eval(data1);//JSON.stringify(data1);
