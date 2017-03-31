@@ -2,7 +2,7 @@
  <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Edit Question
+        View Question
       </h1>
     </section>
          <section class="content"> 

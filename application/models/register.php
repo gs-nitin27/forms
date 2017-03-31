@@ -1088,6 +1088,24 @@ public function savequestion($item)
 
 }
 
+public function updatequestion($item)
+{	
+
+	//print_r($item);
+  
+    $update = "UPDATE  `gs_assess_question` SET  `question` ='$item->question' , `date_updated` = CURDATE() WHERE `id` = '$item->id' ";
+    $query = $this->db->query($update);
+    if($query)
+    {
+	  return 1;
+    }
+    else
+    {
+      return 0;
+    }
+
+}
+
 public function getproffessioninfo($id = false)
 {
 		$this->db->select('id,sport,question,age_group,gender,proffession,publish');

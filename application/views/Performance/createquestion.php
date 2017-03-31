@@ -215,10 +215,7 @@ var data = eval(data1);//JSON.stringify(data1);
                </div>
                </div>
                </div>
-             <!--  <input type='button' class="btn btn-lg btn-info" value='Add Question' id='addButton'>
-              <input type='button' class="btn btn-lg btn-danger" value='Remove Question' id='removeButton'>
-              <input type='button' class="btn btn-lg btn-success" value='Save Question' id='getButtonValue'> -->
-              <div id="container"></div>
+               <div id="container"></div>
               <!-- <input type="button" onclick="add();" value="add" /> -->
 
               <input type='button' id="question1" class="btn btn-lg btn-info" onclick="add();" value='Add Question'>

@@ -1863,5 +1863,38 @@ public function viewquestions($str)
     $this->load->view('templates/template' , $data);
 }
 
+public function updatequestion()
+{
+  // print_r($_POST);die;
+
+  $item = new stdClass();
+
+  $item->id                = $_POST['id'];
+  $item->question          = $_POST['question'];
+ 
+
+  $this->load->model('register');
+  $res = $this->register->updatequestion($item);   
+   if($res)
+   {
+      echo "1";
+   }
+   else
+   {
+      echo "0";
+   }
+   //print_r($res);
+}
+
+
+public function getQuestions_data()
+{
+    // print_r($_POST['id']);
+	  $this->load->model('register');
+	  $quest = $this->register->getQuestions($_POST['id']); 
+	  echo json_encode($quest[0]);
+}
+
+
 }
   

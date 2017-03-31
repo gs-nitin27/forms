@@ -94,7 +94,7 @@
                 ?>  
                 <div class="tab-pane" id="<?php echo $key;?>">
                 <div class="box-header with-border">
-                <h4><?php// echo $key;?></h4 >   
+              <!--   <h4><?php// echo $key;?></h4 >    -->
                 </div>
                 <div class="box-body">
           
@@ -169,6 +169,22 @@
 </div>
 </section>
 <style type="text/css">
+   .nav-tabs-custom .container {
+   padding: 0!important;
+}
+.nav-tabs-custom .container .header{
+padding: 8px 15px;
+   background-color: #5262bc;
+   color: #fff;
+   font-size: 18px;
+}
+.nav-tabs-custom .container .content{
+padding-top:15px;
+min-height: auto;
+}
+
+
+
   .container {
     width:100%;
     border:1px solid #d3d3d3;
@@ -198,12 +214,7 @@ $(".header").click(function () {
     $content = $header.next();
     //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
     $content.slideToggle(500, function () {
-        //execute this after slideToggle is done
-        //change text of header based on visibility of content div
-        // $header.text(function () {
-        //     //change text based on condition
-        //     return $content.is(":visible") ? "Collapse" : "Expand";
-        // });
+        
     });
 
 });

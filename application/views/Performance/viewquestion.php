@@ -105,9 +105,9 @@
                                 }
                                 $num=$temp;
                                 { ?> 
-      <td><a href = "<?php echo site_url('forms/editquestion/'.$num.'?performance'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-edit"></i></a></td>
+      <td><a href = "<?php echo site_url('forms/editquestion/'.$num.'?performance'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
 
-		  <td><a href = "<?php echo site_url('forms/viewquestions/'.$num.'?performance'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+		  <td><a href = "<?php echo site_url('forms/viewquestions/'.$num.'?performance'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
                 </tr>
 		  <?php } } } ?>
                 </tbody>
