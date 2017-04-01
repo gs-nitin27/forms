@@ -161,23 +161,25 @@ var data = eval(data1);
            var div1 = document.createElement('div');
            div1.className = 'container';
           
-           div1.innerHTML = '<div class="header"><span>'+x+'</span><button class="btn btn-success btn-xs" data-title="Delete" id="'+i+x+"_d"+'" onclick="divto(this);" ><span class="glyphicon glyphicon-edit"></span></button><div class="content" id="'+i+x+"_div"+'"><ul id='+ x +'>';
+           div1.innerHTML = '<div class="header"><span>'+x+'</span>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-success btn-xs" data-title="Delete" id="'+i+x+"_d"+'" onclick="divto(this);" ><span class="glyphicon glyphicon-edit"></span></button><div class="content" id="'+i+x+"_div"+'"><ul id='+x+i+'>';
            document.getElementById(i).appendChild(div1);
          }
 
            var ques = JSON.stringify(y);
            var quest = JSON.parse(ques);
            var did =  i+"_"+x;
-           var arr =  i+"_"+x+"in";
+           var arr =  i+"_"+x+"_in";
            $('#'+x).empty();
            var del = 0;
 
            $.each(quest , function(a,b)
            {
+             // alert(x+"_"+b);
+            //  alert(b);
               var div2 = document.createElement('div');
               div2.className = 'form-group';
               div2.innerHTML = ' <li><button class="btn btn-danger btn-xs" data-title="Delete" id="'+did+"_"+del+'" onclick="Ndel(this);" ><span class="glyphicon glyphicon-trash"></span></button>'+b+'</li>';
-              document.getElementById(x).appendChild(div2);
+              document.getElementById(x+i).appendChild(div2);
               del++;
            });
 
@@ -185,7 +187,7 @@ var data = eval(data1);
               var div3 = document.createElement('div');
                //div3.className = 'row';
               div3.innerHTML = '</ul></div><div class="box-footer"><input type="text" name="arr" class="form-control" id="'+arr+'" ><br><input type="button" class="btn btn-lg btn-primary" name="Add" id="'+did+'" onclick="addN(this);" value="Add"  ></div>';
-              document.getElementById(x).appendChild(div3);
+              document.getElementById(x+i).appendChild(div3);
        
            
             //alert(sec_increment);  
@@ -199,7 +201,7 @@ var data = eval(data1);
            var div5 = document.createElement('div');
                //div3.className = 'row';
                div5.innerHTML = '</div></div>';
-              document.getElementById(x).appendChild(div5);
+              document.getElementById(x+i).appendChild(div5);
              }         
               });
           if(sec_increment ==1)
@@ -253,7 +255,7 @@ function Ndel($this)
   //alert(did);
 
   var testing = [];
-  var index = did.split("_");
+  var index =   did.split("_");
   var test = index[0];
   var test1 = index[1];
   var del_id = index[2];
@@ -314,7 +316,7 @@ $.each(nttr, function(i,l)
 function addN($this)
 {
   var sid = $this.id;
-  var input_id = sid +"in";
+  var input_id = sid +"_in";
   var testing = [];
   var index = sid.split("_");
   var test = index[0];
