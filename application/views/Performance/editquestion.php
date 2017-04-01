@@ -114,6 +114,7 @@ var data = eval(data1);
     data: data,
     dataType: "JSON",
     success: function(result) {
+      $('#imagelodar').hide();
       question_data=result;
       $("#questions_id").val(question_data['id']);
       $("#gender").val(question_data['gender']);
@@ -249,6 +250,7 @@ function divto($this)
 
 function Ndel($this)
 {
+  $('#imagelodar').show();
 
   var did = $this.id;
  // var delit_id = did +"in";
@@ -316,6 +318,7 @@ $.each(nttr, function(i,l)
 
 function addN($this)
 {
+  $('#imagelodar').show();
   var sid = $this.id;
   var input_id = sid +"_in";
   var testing = [];
@@ -367,6 +370,7 @@ $.each(nttr, function(i,l)
 
 function save(at)
 {   
+
    var data1 = {
     "id"           : $("#questions_id").val(),
     "question"     : at
