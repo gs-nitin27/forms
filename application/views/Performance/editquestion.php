@@ -155,6 +155,7 @@ var data = eval(data1);
           var subsect = JSON.parse(subsec);
           $.each(subsect , function(x,y)
           {
+            //var inc = 0;
          //alert(x);
          if(sec_increment ==1) 
          {
@@ -169,7 +170,7 @@ var data = eval(data1);
            var quest = JSON.parse(ques);
            var did =  i+"_"+x;
            var arr =  i+"_"+x+"_in";
-           $('#'+x).empty();
+           $('#'+x+i).empty();
            var del = 0;
 
            $.each(quest , function(a,b)
