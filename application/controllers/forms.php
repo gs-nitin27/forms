@@ -1821,9 +1821,17 @@ public function searchsection()
     $this->load->model('register');
     $res =  $this->register->searchsection($data->id);
     
-    $section = explode(',', $res[0]['section']);
-    //print_r($section);
-    echo json_encode($section);
+    //print_r();
+
+    if($res)
+    {
+        $section = explode(',', $res[0]['section']);	
+        echo json_encode($section);
+    }else
+     {    
+     	$section = 0;
+	    echo json_encode($section);
+     }
 }
 
 public function searchagegroup()

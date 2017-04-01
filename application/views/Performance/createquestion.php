@@ -220,10 +220,10 @@ var data = eval(data1);//JSON.stringify(data1);
 
               <input type='button' id="question1" class="btn btn-lg btn-info" onclick="add();" value='Add Question'>
 
-              <input type='button' id="Sub_Section1" class="btn btn-lg btn-success" onclick="addsection();" value='Add Sub-Section' disabled="">
-              <input type='button' id="addsubsection1" class="btn btn-lg btn-success" onclick="addNewsection();" value='Add Section' disabled="">
+              <input type='button' id="Sub_Section1" class="btn btn-lg btn-success" onclick="addsection();" value='Add Sub-Section' >
+              <input type='button' id="addsubsection1" class="btn btn-lg btn-success" onclick="addNewsection();" value='Add Section'>
 
-               <input type='button' id="saveAlldata1" class="btn btn-lg btn-danger" onclick="savedata();" value='Save Data' disabled="">
+               <input type='button' id="saveAlldata1" class="btn btn-lg btn-danger" onclick="savedata();" value='Save Data'>
 
 
               <!-- <input type="button" id="saveAlldata1" name="saveAlldata" class="=btn btn-lg btn-danger" onclick="savedata();" value="Save Data" disabled=""> -->
@@ -372,7 +372,7 @@ $(function ()
                 </div> -->
                 </form>
             <div class="box-footer">
-            <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create" disabled="">
+            <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
             </div>
             </div>
             </div>
@@ -381,27 +381,9 @@ $(function ()
             </section>
 
 </div>
-<!-- <script type="text/javascript">
-  $(document).ready(function() {
-    var max_fields      = 10; //maximum input boxes allowed
-    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-    var add_button      = $(".add_field_button"); //Add button ID
-   
-    var x = 1; //initlal text box count
-    $(add_button).click(function(e){ //on add input button click
-        e.preventDefault();
-        if(x < max_fields){ //max input box allowed
-            x++; //text box increment
-            $(wrapper).append('<div><input type="text" class="form-control" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
-        }
-    });
-   
-    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-        e.preventDefault(); $(this).parent('div').remove(); x--;
-    })
-});
-</script> -->
+
 <script type="text/javascript">
+ 
   var arr = [];
   var section = {};
   var nsection = {};
@@ -413,12 +395,12 @@ $(function ()
    show();
 
 
-      $("#saveAlldata1").prop('hidden', true);
-      $("#addsubsection1").prop('disabled', true);
+      $("#saveAlldata1").hide();
+      $("#addsubsection1").hide();
 
 
-      $("#addsubsection1").prop('disabled', true);
-      $("#Sub_Section1").prop('disabled', false);
+      $("#addsubsection1").hide();
+      $("#Sub_Section1").show();
 }
 
 function show() {
@@ -446,12 +428,12 @@ function addsection()
        //alert(JSON.stringify(section));
        $("#Subsection1").val("");
 
-       $("#addsubsection1").prop('disabled', false);
+       $("#addsubsection1").show();
 
-       $("#saveAlldata1").prop('disabled', false);
+       $("#saveAlldata1").show();
 
 
-       $("#Sub_Section1").prop('disabled', false);
+       $("#Sub_Section1").show();
 }
 
 function addNewsection()
@@ -466,9 +448,9 @@ function addNewsection()
 
      var nsectionvalue = JSON.stringify(nsection);
      $("#nsectonv").val(nsectionvalue);
-     $("#addsubsection1").prop('disabled', true);
-     $("#Sub_Section1").prop('disabled', true);
-     $("#saveAlldata1").prop('disabled', true);
+     $("#addsubsection1").hide();
+     $("#Sub_Section1").hide();
+     $("#saveAlldata1").hide();
 }
 
 function savedata()
@@ -489,11 +471,11 @@ function savedata()
       // $("#question1").prop('hide', true);
       // $("#Sub_Section1").prop('hidden', true);
       // 
-      $("#saveAlldata1").prop('disabled', true);
-      $("#addsubsection1").prop('disabled', true);
-      $("#question1").prop('disabled', true);
-      $("#Sub_Section1").prop('disabled', true);
-      $("#save").prop('disabled', false);
+      $("#saveAlldata1").hide();
+      $("#addsubsection1").hide();
+      $("#question1").hide();
+      $("#Sub_Section1").hide();
+      $("#save").show();
 
 }
 
@@ -502,7 +484,7 @@ function savedata()
 </script>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function(){
   var counter = 2;
    // var i=1;
@@ -560,7 +542,7 @@ $(document).ready(function(){
               
      });
   });
-</script>
+</script> -->
 
 <script>
 $("#sport").change(function()
@@ -587,23 +569,79 @@ $("#sport").change(function()
                 data:"data="+data,                        
                 dataType: 'json',                      
                 success: function(data){ 
-
-                     $("#gender").prop('disabled',true);
-                     $("#agegroup").prop('disabled',true);
-                     $("#sport").prop('disabled',true);
-                     //alert(JSON.stringify(data));
-                    $('#section').find('option').remove(); 
-                    $("#section").append('<option selected>-Select-</option>');
-                    for(i in data) 
-                        
-                        $("#section").append("<option value=\""+data[i]+"\">"+data[i]+"</option>");
+                     //alert(data);
+                     if(!data)
+                     {
+                      $.confirm({
+                              title: 'Sorry!',
+                              content: 'Analytics is not created.',
+                              type: 'red',
+                              icon: 'fa fa-warning',
+                              typeAnimated: true,
+                              animationSpeed: 1500,
+                              animationBounce: 3,
+                             
+                              buttons: {
+                                  tryAgain: {
+                                      text: 'Thank You !',
+                                      btnClass: 'btn-red',
+                                      action: function(){
+                                      }
+                                  },
+                                  close: function () {
+                                  }
+                              }
+                          });
+                      }
+                      else 
+                      {
+                        var sec = [];
+                        sec.push("<ul>");
+                        for(i in data)
+                         {
+                          sec.push("<li>"+data[i]+"</li><br>");
+                         }
+                        sec.push("</ul>");
+                        $.confirm({
+                                title: 'Analytics is created. ',
+                                content: sec,
+                                type: 'green',
+                                typeAnimated: true,
+                                animationSpeed: 1500,
+                                animationBounce: 3,
+                               
+                                buttons: {
+                                    tryAgain: {
+                                        text: 'Choose Section For Create Question  !',
+                                        btnClass: 'btn-green',
+                                        action: function(){
+                                         $("#gender").prop('disabled',true);
+                                         $("#agegroup").prop('disabled',true);
+                                         $("#sport").prop('disabled',true);
+                                         //alert(JSON.stringify(data));
+                                         $('#section').find('option').remove(); 
+                                         $("#section").append('<option selected>-Select-</option>');
+                                         for(i in data)   
+                                         $("#section").append("<option value=\""+data[i]+"\">"+data[i]+"</option>");
+                                        }
+                                    },
+                                    close: function () {
+                                     $("#gender").prop('disabled',true);
+                                     $("#agegroup").prop('disabled',true);
+                                     $("#sport").prop('disabled',true);
+                                     //alert(JSON.stringify(data));
+                                     $('#section').find('option').remove(); 
+                                     $("#section").append('<option selected>-Select-</option>');
+                                     for(i in data)   
+                                     $("#section").append("<option value=\""+data[i]+"\">"+data[i]+"</option>");
+                                    }
+                                }
+                            });
+                      } 
                 } 
-
             });
         });
-    </script>
-
-<script>
+  
 $("#gender").change(function()
  {
 
@@ -629,10 +667,7 @@ $("#gender").change(function()
 
             });
         });
-    </script>
 
-
-    <script type="text/javascript">
         $(this).ready( function() {
             $("#Subsection").autocomplete({
                 minLength: 1,
@@ -660,9 +695,7 @@ $("#gender").change(function()
                 
             });
         });
-        </script>
 
-<script type="text/javascript">
      $('#save').click(function()
      {
 
@@ -709,6 +742,18 @@ $("#gender").change(function()
           save();
        // }
     });
+
+   $(document).ready(function() 
+  {
+      $("#saveAlldata1").hide();
+      $("#addsubsection1").hide();
+      $("#question1").show();
+      $("#Sub_Section1").hide();
+      $("#save").hide();
+
+   
+  });
+
   </script>
 
 
