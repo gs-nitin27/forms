@@ -1921,6 +1921,7 @@ public function user_register()
   $item->name            = $data->name;
   $item->email           = $data->email;
   $item->phone_no        = $data->phone_no;
+  $item->forget_code     = mt_rand(1000,10000);
   $item->dob             = $data->dob;
   $item->sport           = $data->sport;
   $item->prof_name       = $data->prof_name;

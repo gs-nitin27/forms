@@ -147,9 +147,10 @@ $("#save").click(function()
      type: "POST",
      url: "<?php echo site_url('forms/user_register');?>",                  
      data:"data="+data,                        
-     dataType: 'JSON',        
+     dataType: 'text',        
      success:function(result)
      {
+      alert(result);
        if(result.data == 1)
        {
         $.confirm({
