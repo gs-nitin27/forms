@@ -188,7 +188,7 @@ var data = eval(data1);//JSON.stringify(data1);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-         Create Analytics <a href="<?php echo site_url('/forms/viewanalytics');?>">Analytics List</a>
+         Create Analytics  <a href = "<?php echo site_url('/forms/viewanalytics');?>" class="btn btn-lg btn-primary bs-tooltip"  title="List" ><i class="glyphicon glyphicon-th-list"></i></a>
       </h1>
      
     </section>

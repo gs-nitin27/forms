@@ -384,6 +384,7 @@ $(function ()
 
 <script type="text/javascript">
  
+  var cheak_section = [];
   var arr = [];
   var section = {};
   var nsection = {};
@@ -438,10 +439,32 @@ function addsection()
 
 function addNewsection()
 {
-   var section_v = $("#section").val();
-   for(var i= 0; i<nsection.length;i++)
-   {
 
+
+       var section_v = $("#section").val();
+
+       if(cheak_section == "")
+       {
+        cheak_section.push(section_v);
+        }
+        else
+        {
+         for(var k= 0; k<cheak_section.length; k++)
+          {  
+            if(cheak_section[k] == section_v)
+            {
+                  alert("Please Change Section created");
+                  return 0;
+
+            }
+          }
+          cheak_section.push(section_v);
+    }
+
+   
+
+   for(var i= 0; i<nsection.length;i++)
+   {       
    }
     nsection[section_v] = section;
     section = {};
@@ -455,8 +478,20 @@ function addNewsection()
 
 function savedata()
 {
-  //alert("sdfsg");
+
+
    var section_v = $("#section").val();
+
+       for(var k= 0; k<cheak_section.length; k++)
+          {  
+            if(cheak_section[k] == section_v)
+            {
+                  alert("Please Change Section(This section is already selected!)");
+                  return 0;
+
+            }
+          }
+
    for(var i= 0; i<nsection.length;i++)
    {
 
