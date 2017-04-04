@@ -389,22 +389,28 @@ $(function ()
   var section = {};
   var nsection = {};
 
-  function add() {
+  function add() 
+  {
+   if(!$("#textbox1").val())
+   {
+      alert("please insert question !");
+      return ;
+   }
+
    var inp = document.getElementById('textbox1');
    arr.push(inp.value);
    inp.value = '';
    show();
 
-
       $("#saveAlldata1").hide();
       $("#addsubsection1").hide();
-
 
       $("#addsubsection1").hide();
       $("#Sub_Section1").show();
 }
 
-function show() {
+function show() 
+{
    var html = '';
    for (var i=0; i<arr.length; i++) {
       html += '<div>' + arr[i] + '</div>';
@@ -439,10 +445,7 @@ function addsection()
 
 function addNewsection()
 {
-
-
        var section_v = $("#section").val();
-
        if(cheak_section == "")
        {
         cheak_section.push(section_v);
