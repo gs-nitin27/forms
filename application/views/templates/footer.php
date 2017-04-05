@@ -1,15 +1,10 @@
 <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b></b>
-    </div>
-  </footer>
- 
-
-
-  <div class="control-sidebar-bg"></div>
+  <div class="pull-right hidden-xs">
+  <b></b>
+  </div>
+ </footer>
+<div class="control-sidebar-bg"></div>
 </div>
-
-
 <!-- jQuery UI 1.11.4 >
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script -->
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -21,8 +16,10 @@
 <!-- Morris.js charts -->
 <script type="text/javascript" src="<?php echo base_url('assets/raphael-min.js'); ?>"></script>
 <!-- <script type="text/javascript" src="<?//php echo base_url('assets/plugins/morris/morris.min.js'); ?>"></script> -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url('assets/jquery-confirm.min.css'); ?>">
+
+
+<script src="<?php echo base_url('assets/jquery-confirm.min.js'); ?>"></script>
 <!-- Sparkline -->
 <script  type="text/javascript" src="<?php echo base_url('assets/plugins/sparkline/jquery.sparkline.min.js'); ?>"></script>
 <!-- jvectormap -->
@@ -48,7 +45,4 @@
 <!-- AdminLTE for demo purposes -->
 <script type="text/javascript" src="<?php echo base_url('assets/dist/js/demo.js'); ?>"></script>
 </body>
-
-
-
 </html>

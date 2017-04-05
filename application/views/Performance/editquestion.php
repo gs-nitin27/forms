@@ -198,7 +198,7 @@ var section_data = "";
 
 function displaydata()
 {
-
+  $('#imagelodar').show();
   sec_increment = sec_increment+1;
   var data1 = {
     "id"           : $("#database_id").val()

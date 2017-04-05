@@ -37,18 +37,18 @@
 <div class="wrapper">
 
 <?php
-             //     $profile = $this->register->profile($id); 
-            //       print_r("hars"); die();
-           //        print_r($id); 
-          //         foreach ($profile as $value) 
+             //$profile = $this->register->profile($id); 
+            //print_r("hars"); die();
+           //print_r($id); 
+          //foreach ($profile as $value) 
               
           
 if(empty($required)){
   $required = array();
-
 }
 // echo $noheader;
-if(!isset($noheader)){
+if(!isset($noheader))
+{
 $this->load->view('templates/header');
 }
 $this->load->view($middle, $required);
@@ -58,5 +58,4 @@ $this->load->view($middle, $required);
 $this->load->view('templates/sidebar');
 //}
 $this->load->view('templates/footer');
-
 ?>

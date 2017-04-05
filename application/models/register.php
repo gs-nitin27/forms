@@ -6,7 +6,7 @@ class Register extends CI_Model
 
 public function login_google($username,$password)
 {
-// $where = " email = '$username'  AND password = '$password'";
+// $where = " email = '$username'  AND password = '$password'"; 
 $this->db->where("email", $username);
 $this->db->where("google_password", $password);
 $qry = $this->db->get('user');

@@ -126,11 +126,8 @@ var data = JSON.stringify(data1);
 });});
 
  
-  $(function() {
-    $( "#dob" ).datepicker();
-   
-    
-    
+$(function(){
+    $("#dob").datepicker(); 
   });
 
   </script>
@@ -157,33 +154,25 @@ var data = JSON.stringify(data1);
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_event" data-toggle="tab">Name </a></li>
               <li><a href="#tab_organiser" data-toggle="tab">Address</a></li>
-            <!--   <li><a href="#tab_eligible" data-toggle="tab">Eligibility</a></li> -->
              </ul>   
              <form role="form" action="" class="register">  
             <div class="tab-content">
               <div class="tab-pane active" id="tab_event">
-                
                 <div class="box-header with-border">
                     <h4>Name And Details:</h4 >        
                 </div>
                 <div class="box-body">
                 <div class="form-group">
-                  
                   <input type="hidden" class="form-control" name="UserId"  id="uid" >
                 </div>
                      <div class="form-group">
                       <label for="name">Name</label>
                     <input type="text" class="form-control"  id="name" placeholder="Enter Name" >
                     </div >
-
                    <div class="form-group">
                     <input type="hidden" class="form-control"  id="Password" placeholder="Enter Password">
-                    </div >
-
-                    
-                     
+                    </div>  
                     <input type="hidden" class="form-control"  id="utype" value="102">
-                  
                       <div class="form-group">
                         <?php  $profession = $this->register->getproffession(); 
                              // print_r($proffession);
@@ -200,7 +189,6 @@ var data = JSON.stringify(data1);
                         </select>
                     </div >                
                      <!-- <input type="hidden" name="proftypeid" value="">  -->
-
                     <!-- <div class="form-group">
                     <label for="usertype">Proffession</label>
                         <select id="proftype" class="form-control" >
@@ -237,11 +225,11 @@ var data = JSON.stringify(data1);
                     <div class="form-group">
                       <label for="Email">Email Id</label>
                       <input type="text" class="form-control"  id="email" placeholder="Enter Email Id"  >
-                    </div >
+                    </div>
                     <div class="form-group">
                       <label for="contact">Contact No</label>
                       <input type="text" class="form-control"  id="contact" placeholder="Enter Contact No" >
-                    </div >
+                    </div>
                    <div class="form-group">
                     <label for="sports">Gender</label>
                         <select id="gen" class="form-control"  >
@@ -263,8 +251,6 @@ var data = JSON.stringify(data1);
                 <h4>Address Details:</h4 >    
             </div>
                 <div class="box-body">
-                    
-                     
                     <div class="form-group">
                       <label for="address1">Address Line1</label>
                       <input type="text" class="form-control"  id="add1" placeholder="Enter Address">

@@ -8,7 +8,7 @@ public function __construct()
 		$this->load->model('register');
 		$this->load->library('session');	
 } 
-  
+   
 public function index()
 {   
    $this->load->view('login');
@@ -2042,6 +2042,15 @@ public function sendmail($email)
                $mail->Send();
           return 1;
 }
+
+
+public function test()
+{
+     $data['middle'] = 'Performance/test';
+     $this->load->view('templates/template' , $data);
+
+}
+
 
 }
   

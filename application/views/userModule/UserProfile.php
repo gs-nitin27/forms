@@ -178,7 +178,7 @@ var data = JSON.stringify(data);
              <!--  <li><a href="#settings" data-toggle="tab">Settings</a></li> -->
             </ul>
             <div class="tab-content">
-              <div class="active tab-pane" id="activity">
+              <div class="tab-pane" id="activity">
             <div class="row">
           <div class="col-md-6">
             <div class="box box-primary">
@@ -206,6 +206,8 @@ var data = JSON.stringify(data);
               
               <script>
               $(document).ready(function(){
+                  // alert("sdg");
+                 $("#activity").addClass('active');
                 $("#newemail").hide();
                 $("#ebutton").click(function(){
                 $("#newemail").toggle();
