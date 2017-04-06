@@ -1230,8 +1230,6 @@ else {
 
 public function user_register($item)
 {
-     // echo "INSERT `user`(`name`,`userType`,`email`,`sport`,`gender`,`dob`,`prof_id`,`prof_name`,`contact_no`,`access_module`,`forget_code`) VALUES ('$item->name','$item->userType','$item->email','$item->sport','$item->gender','$item->dob','$item->prof_id','$item->prof_name','$item->phone_no','$item->access_module','$item->forget_code')";
-     //                              die;
 	$insert = "INSERT `user`(`name`,`userType`,`email`,`sport`,`gender`,`dob`,`prof_id`,`prof_name`,`contact_no`,`access_module`,`forget_code`) VALUES ('$item->name','$item->userType','$item->email','$item->sport','$item->gender','$item->dob','$item->prof_id','$item->prof_name','$item->phone_no','$item->access_module','$item->forget_code')";
 
 	$query = $this->db->query($insert);
@@ -1244,5 +1242,39 @@ public function user_register($item)
       return 0;
 	}
 }
+
+public function performanceguide($item)
+ {
+  $insert = "INSERT `gs_performance_guide`(`id`,`userid`,`guidelines`,`age_group`,`sport`,`gender`,`date_created`) VALUES('$item->id','$item->userid','$item->guidelines','$item->age_group','$item->sport','$item->gender',CURDATE()) ON DUPLICATE KEY UPDATE `guidelines` = '$item->guidelines' , `date_updated` = CURDATE()";
+
+  $query = $this->db->query($insert);
+  if($query)
+  {
+  	return 1;
+  }
+  else
+  {
+  	return 0 ;
+  }
+
+}
+
+public function getperformanceguideline($id = false)
+{
+    $this->db->select('*');
+    $this->db->from('gs_performance_guide GR');
+    if($id>0)
+    {
+        $this->db->where('GR.id',$id);
+    }
+    else
+    {
+        $this->db->order_by("GR.id","desc");
+    }
+    $query = $this->db->get();
+    $q = $query->result_array();
+    return $q;
+}
+
 }
  ?>

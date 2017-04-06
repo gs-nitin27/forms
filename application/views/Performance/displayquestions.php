@@ -120,7 +120,7 @@
                       <div class="header"><span><?php echo $key1;?></span>
                       </div>
                       <div class="content">
-                      <ul>
+                      <ul class="list-group">
             <!--  <li>This is just some random content.</li>
                   <li>This is just some random content.</li>
                   <li>This is just some random content.</li>
@@ -135,7 +135,7 @@
                         {
                             //questions
                         ?>
-                          <li><?php echo $qdata;?></li>
+                          <li class="list-group-item list-group-item-info"><?php echo $qdata;?></li>
                     <!-- <div class="timeline-item">
                     <h5 class="timeline-header no-border"><b>Questions : </b> &nbsp;<?php// echo $qdata;?></h5>
                    </div> -->

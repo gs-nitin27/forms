@@ -267,7 +267,7 @@ var data = eval(data1);
            {
            var div1 = document.createElement('div');
            div1.className = 'container';
-           div1.innerHTML = '<div class="header"><span>'+x+'</span><button style="float:right!important;" class="btn btn-default btn-xs" data-title="Delete" id="'+i+"_"+x+"_del"+'" onclick="subsecdelete(this);" ><span class="glyphicon glyphicon-remove"></span></button><button style="float:right!important;margin-right: 5px;" class="btn btn-default btn-xs" data-title="Edit" id="'+i+x+"_d"+'" onclick="divto(this);" ><span class="glyphicon glyphicon-edit"></span></button><div class="content" id="'+i+x+"_div"+'"><ul id='+x+i+'>';
+           div1.innerHTML = '<div class="header"><span>'+x+'</span><button style="float:right!important;" class="btn btn-default btn-xs" data-title="Delete" id="'+i+"_"+x+"_del"+'" onclick="subsecdelete(this);" ><span class="glyphicon glyphicon-remove"></span></button><button style="float:right!important;margin-right: 5px;" class="btn btn-default btn-xs" data-title="Edit" id="'+i+x+"_d"+'" onclick="divto(this);" ><span class="glyphicon glyphicon-edit"></span></button><div class="content" id="'+i+x+"_div"+'"><ul class="list-group" id='+x+i+'>';
            document.getElementById(i).appendChild(div1);
          }
            var ques = JSON.stringify(y);
@@ -283,7 +283,7 @@ var data = eval(data1);
             //  alert(b);
               var div2 = document.createElement('div');
               div2.className = 'form-group';
-              div2.innerHTML = ' <li>'+b+'<button style="float:right!important;"  class="btn btn-danger btn-xs" data-title="Delete" id="'+did+"_"+del+'" onclick="Ndel(this);" ><span class="glyphicon glyphicon-trash"></span></button></li>';
+              div2.innerHTML = ' <li class="list-group-item list-group-item-info" >'+b+'<button style="float:right!important;"  class="btn btn-danger btn-xs" data-title="Delete" id="'+did+"_"+del+'" onclick="Ndel(this);" ><span class="glyphicon glyphicon-trash"></span></button></li>';
               document.getElementById(x+i).appendChild(div2);
               del++;
            });

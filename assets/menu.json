@@ -135,6 +135,16 @@
                "id":"createanalytics",
                  "url": "/forms/createanalytics?performance",
                  "name": "create analytics"
+        },
+       "4": {
+                 "id":"createguidelines",
+                 "url": "/forms/createguidelines?performance",
+                 "name": "create guidelines"
+        },
+       "5": {
+                 "id":"listguidelines",
+                 "url": "/forms/listguidelines?performance",
+                 "name": "View Guidelines"
         }
       }
       

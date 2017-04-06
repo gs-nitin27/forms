@@ -2051,6 +2051,53 @@ public function test()
 
 }
 
+public function createguidelines()
+{
+     $data['middle'] = 'Performance/createguidelines';
+     $this->load->view('templates/template',$data);
+
+}
+public function performanceguide()
+{
+     $item = new stdClass();
+ 
+     //print_r($_POST);die;
+
+     $item->id          = $_POST['id'];
+     $item->userid      = $_POST['userid'];
+     $item->guidelines  = $_POST['guidelines'];
+     $item->age_group   = $_POST['age_group'];
+     $item->sport       = $_POST['sport'];
+     $item->gender      = $_POST['gender'];
+
+     $this->load->model('register');
+     $res =  $this->register->performanceguide($item);
+     if($res)
+     {
+      echo "1";
+     }
+     else {
+       echo "0";
+          }
+
+}
+
+public function listguidelines()
+{
+   $data['middle'] = 'Performance/listguidelines';
+   $this->load->view('templates/template',$data);
+
+}
+
+public function editguidelines($str)
+{
+  $id = $this->stringtonumber($str);
+  $data['middle'] = 'Performance/editguidelines';
+  $data['required'] =  array('id' => $id);
+  $this->load->view('templates/template',$data);
+ 
+
+}
 
 }
   
