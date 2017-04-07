@@ -410,9 +410,10 @@ $("#sport").change(function()
                               animationBounce: 3,
                               buttons: {
                                   tryAgain: {
-                                      text: 'Thank You !',
+                                      text: 'Create Analytics !',
                                       btnClass: 'btn-red',
                                       action: function(){
+                                        window.location.href = '<?php echo site_url();?>'+"/forms/createanalytics?performance";
                                       }
                                   },
                                   close: function () {

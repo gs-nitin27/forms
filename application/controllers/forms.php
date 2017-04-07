@@ -2099,5 +2099,27 @@ public function editguidelines($str)
 
 }
 
+public function Statusperformanceguidelines()
+{
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
+
+$item->id                    = $data2->id;
+$item->publish               = $data2->publish;
+
+$this->load->model('register');
+$res = $this->register->Statusperformanceguidelines($item);
+if($data2->publish==1)
+{    
+  //$jdata=$this->register->getContentInfo($data2->id);
+  //  print_r($jdata);
+  //$this->register->addContentData($jdata);
+}
+else{
+  //$this->register->deletePublishContent($data2->id);
+
+}
+}
+
 }
   

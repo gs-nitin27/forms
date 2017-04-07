@@ -13,7 +13,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header" style="text-align: center;">
-              <h3 class="box-title"><b>Analytics List</b></h3>
+              <h3 class="box-title"><b>GuideLines List</b></h3>
               
             </div>
            <div class="box-body">
@@ -35,7 +35,7 @@
                   if($usertype==101 || $usertype==102 )
                    {
                     ?>
-                  <!-- <th style="background: #5262bc; color: #ffffff;">Publish <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th> -->
+             <th style="background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th> 
                    <?php }?>
 
 				          <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th>
@@ -78,13 +78,13 @@
              if($usertype==101 || $usertype==102 )
                    {
                     ?>
-          <!-- <td>
-          <?php// if($questions['publish']==0){?>
-          <button class="badge bg-red" onclick="myfunction(<?php// echo $questions['id'];?>,1)"><?php// echo "Activate";?></button>
-          <?php// }else{?> 
-          <button class="badge bg-green" onclick="myfunction(<?php// echo $questions['id'];?>,0)"><?php// echo "Deactivate";?></button>
-          <?php// } ?>
-          </td> -->
+          <td>
+          <?php if($guideline['publish']==0){?>
+          <button class="badge bg-red" onclick="myfunction(<?php echo $guideline['id'];?>,1)"><?php echo "Activate";?></button>
+          <?php }else{?> 
+          <button class="badge bg-green" onclick="myfunction(<?php echo $guideline['id'];?>,0)"><?php echo "Deactivate";?></button>
+          <?php } ?>
+          </td>
             <?php } 
             $list=array('a' => 0,
                                 'b' => 1,
@@ -122,7 +122,7 @@
              if($usertype==101 || $usertype==102 )
                    {
                     ?>
-                 <!--  <th style="background: #5262bc; color: #ffffff;">Publish</th> -->
+                    <th style="background: #5262bc; color: #ffffff;">Publish</th> 
 
                     <?php } }?>
                   <th style="width: 10px; background: #5262bc; color: #ffffff;">Edit</th>
@@ -168,11 +168,11 @@ var data = JSON.stringify(data1);
   $.ajax({
 
     type: "POST",
-    url: '<?php echo site_url('forms/Statusquestion'); ?>',
+    url: '<?php echo site_url('forms/Statusperformanceguidelines'); ?>',
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-      window.location.href = url+"/forms/getquestion?performance";
+      window.location.href = url+"/forms/listguidelines?performance";
 
     }
 });    

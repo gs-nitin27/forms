@@ -1243,9 +1243,10 @@ public function user_register($item)
 	}
 }
 
+
 public function performanceguide($item)
  {
-  $insert = "INSERT `gs_performance_guide`(`id`,`userid`,`guidelines`,`age_group`,`sport`,`gender`,`date_created`) VALUES('$item->id','$item->userid','$item->guidelines','$item->age_group','$item->sport','$item->gender',CURDATE()) ON DUPLICATE KEY UPDATE `guidelines` = '$item->guidelines' , `date_updated` = CURDATE()";
+  $insert = "INSERT `gs_performance_guide`(`id`,`userid`,`guidelines`,`age_group`,`sport`,`gender`,`date_created`) VALUES('$item->id','$item->userid','$item->guidelines','$item->age_group','$item->sport','$item->gender',CURDATE()) ON DUPLICATE KEY UPDATE `guidelines` = '$item->guidelines' , `publish`='0',`date_updated` = CURDATE()";
 
   $query = $this->db->query($insert);
   if($query)
@@ -1256,8 +1257,8 @@ public function performanceguide($item)
   {
   	return 0 ;
   }
-
 }
+
 
 public function getperformanceguideline($id = false)
 {
@@ -1265,15 +1266,30 @@ public function getperformanceguideline($id = false)
     $this->db->from('gs_performance_guide GR');
     if($id>0)
     {
-        $this->db->where('GR.id',$id);
+       $this->db->where('GR.id',$id);
     }
     else
     {
-        $this->db->order_by("GR.id","desc");
+       $this->db->order_by("GR.id","desc");
     }
     $query = $this->db->get();
     $q = $query->result_array();
     return $q;
+}
+
+public function Statusperformanceguidelines($item)
+{
+
+	$update = "UPDATE `gs_performance_guide` SET `publish` = '$item->publish' WHERE `id` = '$item->id'";
+
+	$query = $this->db->query($update);
+	if($query)
+	{
+          return 1;
+	}
+	else {
+		  return 0;
+	}
 }
 
 }

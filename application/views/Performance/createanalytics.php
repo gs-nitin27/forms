@@ -103,6 +103,7 @@ var data = eval(data1);//JSON.stringify(data1);
 
       else if(result == '2')
       {
+
         $.confirm({
         title: 'Analytics Already created!',
         content: 'This Combination of Analytics is already created Please Update Analytics.',
@@ -118,6 +119,7 @@ var data = eval(data1);//JSON.stringify(data1);
                   $.confirm({
                    content: function () {
             var self = this;
+            $('#imagelodar').hide();
             return $.ajax({
                 url: '<?php echo site_url('forms/analyticsdata'); ?>',
                 dataType: 'JSON',
