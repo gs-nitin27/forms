@@ -8,7 +8,7 @@ public function __construct()
 		$this->load->model('register');
 		$this->load->library('session');	
 } 
-   
+      
 public function index()
 {   
    $this->load->view('login');
