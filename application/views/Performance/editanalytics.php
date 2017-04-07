@@ -59,7 +59,7 @@ var data = eval(data1);//JSON.stringify(data1);
     data: data,
     dataType: "text",
     success: function(result) {
-    $('#imagelodar').hide();
+   // $('#imagelodar').hide();
     if(result == '1')
       {
         $.confirm({

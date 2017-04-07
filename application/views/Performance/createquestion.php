@@ -75,7 +75,7 @@ var data = eval(data1);//JSON.stringify(data1);
     dataType: "text",
     success: function(result) {
       //alert(result);
-    $('#imagelodar').hide();
+   // $('#imagelodar').hide();
     if(result == '1')
       {
         $.confirm({

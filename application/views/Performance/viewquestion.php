@@ -46,14 +46,12 @@
           <?php 
           $i =1; 
 
-
       if($usertype==101 || $usertype==102 )
         {
               $quest = $this->register->getproffessioninfo();
         }
         else
-        {
-                
+        {                
             $data=$this->session->userdata('item');
             $userid=$data['userid']; 
            // $content = $this->register->getContentInfo();

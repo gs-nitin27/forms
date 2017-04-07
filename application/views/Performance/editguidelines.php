@@ -1,5 +1,19 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+<!-- <style type="text/css">
+	.glyphicon glyphicon-remove-circle {
+    position: absolute;
+    right: 30px;
+    top: 0;
+    bottom: 0;
+    height: 14px;
+    margin: auto;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ccc;
+}
+</style> -->
+
     <section class="content-header">
       <h1>
          Create Guidelines
@@ -55,7 +69,7 @@
                 {
               
                 ?>
-                 <li class="list-group-item list-group-item-info"><input class="form-control" type='text' placeholder="Guideline" name="items[]" value="<?php echo $guid1[$i]; ?>" ></li>
+                 <li id="<?php echo $i."_li";?>" class="list-group-item list-group-item-info"><input class="form-control" id="<?php echo $i;?>" type='text' placeholder="Guideline" name="items[]" value="<?php echo $guid1[$i]; ?>" ><span style="position: absolute;right: 30px;top: 21px;cursor: pointer;" id="<?php echo $i."_delete";?>"  onclick="dele(this);" class="glyphicon glyphicon-remove-circle"></span></li>
                 <?php 
                 }
               }?>
@@ -129,13 +143,14 @@ function show()
 
 $('#save').click(function()
 {
-
+$('#imagelodar').show();
 var values = [];
 $("input[name='items[]']").each(function() {
     values.push($(this).val());
-    //alert(values);
 
 });
+
+
  var data1 = {
     "id"                      : $("#id").val(), 
     "userid"                  : $("#userid").val(),
@@ -155,7 +170,7 @@ var data = eval(data1);
     dataType: "text",
     success: function(result) {
       //alert(result);
-    $('#imagelodar').hide();
+    
     if(result == '1')
       {
         $.confirm({
@@ -170,10 +185,12 @@ var data = eval(data1);
                 text: 'Thank You !',
                 btnClass: 'btn-green',
                 action: function(){
+                	//$('#imagelodar').hide();
                  window.location.href = url+"/forms/listguidelines?performance";
                 }
             },
             close: function () {
+            //	$('#imagelodar').hide();
              window.location.href = url+"/forms/listguidelines?performance";
             }
         }
@@ -204,5 +221,22 @@ var data = eval(data1);
 });
 
 });
+
+function dele($this){
+    //alert($this.id);
+    var id = $this.id;
+    var text_id = id.split("_");
+    //alert(id[0]);
+    $('#'+id[0]).attr('name', 'other_amount');
+    $('#'+id[0]+"_li").hide();
+}
+
+
+
+// $('#resetPrompt').click(function(){
+//     $('#input1').attr('name', 'other_amount');
+// });
+
+
 
 </script>
