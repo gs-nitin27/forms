@@ -144,12 +144,9 @@
             formData.append("image", $scope.form.image);  
             formData.append("resid", imgid);
              //formData.append("image", $scope.form.name);
-              
             return formData;  
         },  
-      
         data : $scope.form,
-
         headers: {
                'Content-Type': undefined
         }
@@ -162,7 +159,6 @@
           $('#imagelodar').hide();
           var textid= "#" + imgid ;
          $(textid).attr("src","<?php  echo base_url()."uploads/resources/"; ?>" + data );
-
             
        });
         };

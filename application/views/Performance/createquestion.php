@@ -245,11 +245,11 @@ var data = eval(data1);//JSON.stringify(data1);
           </div>
           </div>
           <div id="container"></div>
-          <input type='button' id="question1" class="btn btn-lg btn-info" onclick="add();" value='Add Question'>
+          <input type='button' id="question1" class="btn btn-lg btn-info" onclick="add();" value='Save Question'>
           </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-default" id="newsection" data-dismiss="modal" onclick="addNewsection();" >New Section</button>
-        <button type="button" onclick="addsection();" class="btn btn-primary">New Sub-Section </button>
+        <button type="button" class="btn btn-default" id="newsection" data-dismiss="modal" onclick="addNewsection();" >Save Section</button>
+        <button type="button" onclick="addsection();" class="btn btn-primary">Save Sub-Section </button>
         </div>
        </div> 
     </div>

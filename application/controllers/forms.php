@@ -1226,8 +1226,30 @@ public function Emailfind()
           // 100 Represents the quality of an image you can set and ant number in place of 100.
             $out_image=file_get_contents($resize_image);      
 //=================================end image size fix ==================================================
-          // print_r($newfilename); //die;
-        echo  $newfilename;  
+            $filename = $this->compress_image($uploadimage, $uploadimage, 80);
+
+       //  print_r($uploadimage); die;
+        echo  $filename;  
+
+}
+
+function compress_image($source_url, $destination_url, $quality) 
+{
+       //print_r($source_url);die;
+
+      $info = getimagesize($source_url);
+
+          if ($info['mime'] == 'image/jpeg')
+          $image = imagecreatefromjpeg($source_url);
+
+          elseif ($info['mime'] == 'image/gif')
+          $image = imagecreatefromgif($source_url);
+
+          elseif ($info['mime'] == 'image/png')
+          $image = imagecreatefrompng($source_url);
+
+          imagejpeg($image, $destination_url, $quality);
+          return $destination_url;
 }
 
 public function getStateByCity()
@@ -1516,6 +1538,8 @@ public function Passwordreset()
               //global $error;
                // create a new object
               $mail->IsSMTP(); // enable SMTP
+             // $mail->addReplyTo("reply@yourdomain.com", "Reply");
+
               $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
               $mail->SMTPAuth = true;  // authentication enabled
               $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail

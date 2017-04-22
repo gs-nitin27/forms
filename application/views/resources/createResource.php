@@ -269,7 +269,7 @@ var data = eval(data1);//JSON.stringify(data1);
       },
       success: function(data)
         {
-          //alert(data);
+          alert(data);
                $('#imagelodar').hide();
                 $('#mess').show();
                 $('#mess1').hide();
@@ -508,4 +508,4 @@ $(function() {
           save();
         }
     });
-  </script>
+  </script> 
