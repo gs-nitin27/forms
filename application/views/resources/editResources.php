@@ -6,7 +6,7 @@
 
 function save()
 { 
-  $('#imagelodar').show();
+$('#imagelodar').show();
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
 var string = summary12.replace(/[\/\\<>~{}]/g, '');
@@ -43,7 +43,7 @@ var data = eval(data1);//JSON.stringify(data1);
     data: data,
     dataType: "json",
     success: function(result) {
-      $('#imagelodar').hide();
+      // $('#imagelodar').hide();
      if(result.response == '1')
       {
          //alert(result.response);
@@ -69,6 +69,8 @@ var data = eval(data1);//JSON.stringify(data1);
     });
       }else
       {
+
+      $('#imagelodar').hide();  
       $.confirm({
               title: 'Encountered an error!',
               content: 'Something went Worng, this may be server issue.',

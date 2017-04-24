@@ -38,7 +38,7 @@ var data = JSON.stringify(data1);
     success: function(result) {
 
      // alert(result);
-      $("#imagelodar").hide();
+      // $("#imagelodar").hide();
        if(result == '1')
          {
 
@@ -63,6 +63,7 @@ var data = JSON.stringify(data1);
       }
       else
       { 
+             $('#imagelodar').hide();
              $.confirm({
               title: 'Encountered an error!',
               content: 'Something went Worng, this may be server issue.',

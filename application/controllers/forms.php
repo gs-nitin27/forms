@@ -1229,13 +1229,13 @@ public function Emailfind()
             $filename = $this->compress_image($uploadimage, $uploadimage, 80);
 
        //  print_r($uploadimage); die;
-        echo  $filename;  
+        echo  $newfilename;  
 
 }
 
 function compress_image($source_url, $destination_url, $quality) 
 {
-       //print_r($source_url);die;
+      // print_r($source_url);die;
 
       $info = getimagesize($source_url);
 

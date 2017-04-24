@@ -144,13 +144,8 @@
                                 }
                                 $num=$temp;
                                 { ?> 
-
-
                 <a href = "<?php echo site_url('forms/edituserProfile/'.$num); ?>" class="btn btn-success btn-block"  title="Edit Profile" ><i class="glyphicon glyphicon-edit"></i></a>
-
-                  <?php    } ?>
-           
-
+                  <?php   } ?>
              <!--  <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
             </div>
             <!-- /.box-body -->
@@ -158,9 +153,7 @@
         
         </div>
         <!-- /.col -->
-
         <div class="row">
-           
           <div class="col-md-3">
             <div class="box box-primary">
             <div class="box-header with-border">
@@ -168,15 +161,10 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-
-           
-
              <strong><i class="fa fa-calendar-check-o margin-r-5"></i>DOB</strong>
                  <p class="text-muted"><?php echo $value['dob'];?></p>
                   <hr>
-
               <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-
               <p>
                 <span class="label label-danger"><?php echo $value['prof_language'];?></span>
                 <span class="label label-success"><?php echo $value['other_skill_name'];?></span>
@@ -184,34 +172,24 @@
                <!--  <span class="label label-warning">PHP</span>
                 <span class="label label-primary">Node.js</span> -->
               </p>
-
               <hr>
-
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
               <p class="text-muted"><?php echo $value['address1'];?></p>
               <p class="text-muted"><?php echo $value['address2'];?></p>
                <p class="text-muted"><?php echo $value['location'];?></p>
               <p class="text-muted"><?php echo $value['address3'];?></p>
-
-              
-
               <hr>
-
              <strong><i class="fa fa-file-text-o margin-r-5"></i>About Me</strong>
-
               <p><?php echo $value['about_me'];?></p>
             </div>
             <!-- /.box-body -->
           </div>
           <?php }?>
           </div>
-         
           <div class="col-md-5">
          <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Activity</h3>
-
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>

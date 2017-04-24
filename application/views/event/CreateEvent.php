@@ -81,10 +81,10 @@ var data = JSON.stringify(data1);
     dataType: "text",
     success: function(result) 
     {
-         $("#imagelodar").hide();
+         // $("#imagelodar").hide();
     	 if(result == '1')
          {
-         $("#imagelodar").hide();
+         // $("#imagelodar").hide();
          $.confirm({
          title: 'Congratulations!',
          content: 'Event is Created.',
@@ -106,6 +106,7 @@ var data = JSON.stringify(data1);
       }
       else
       { 
+      	    $("#imagelodar").hide();
              $.confirm({
               title: 'Encountered an error!',
               content: 'Something went Worng, this may be server issue.',

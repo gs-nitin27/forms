@@ -25,11 +25,10 @@ var data = JSON.stringify(data12);
     data: "data="+data,
     dataType: "json",
     success: function(result) {
-      $("#imagelodar").hide();
+      // $("#imagelodar").hide();
      if(result == '1')
        {
-         
-         $.confirm({
+        $.confirm({
         title: 'Congratulations!',
         content: 'Content is Created.',
         type: 'green',
@@ -50,7 +49,7 @@ var data = JSON.stringify(data12);
       }
       else
       {
-             
+             $("#imagelodar").hide();
              $.confirm({
               title: 'Encountered an error!',
               content: 'Something went Worng, this may be server issue.',

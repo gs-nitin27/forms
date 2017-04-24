@@ -48,7 +48,7 @@ var data = JSON.stringify(data1);
     dataType: "JSON",
     success: function(result) 
     {
-      alert(result.response);
+     // alert(result.response);
        
         if(result.response== 1)
       {

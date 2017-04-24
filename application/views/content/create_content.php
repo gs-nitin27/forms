@@ -20,9 +20,7 @@ console.log(JSON.stringify(data12));
 var url = '<?php echo site_url();?>'
 var data = JSON.stringify(data12);
   $.ajax({
-
     type: "POST",
-
     url: '<?php echo site_url('forms/saveContent'); ?>',
     data: "data="+data,
     dataType: "text",
@@ -30,7 +28,7 @@ var data = JSON.stringify(data12);
 
       if(result == '1')
       {
-         $("#imagelodar").hide();
+         // $("#imagelodar").hide();
          $.confirm({
         title: 'Congratulations!',
         content: 'Content is Created.',

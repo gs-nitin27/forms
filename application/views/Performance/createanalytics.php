@@ -103,7 +103,7 @@ var data = eval(data1);//JSON.stringify(data1);
 
       else if(result == '2')
       {
-
+        
         $.confirm({
         title: 'Analytics Already created!',
         content: 'This Combination of Analytics is already created Please Update Analytics.',
@@ -162,7 +162,7 @@ var data = eval(data1);//JSON.stringify(data1);
     });
       }
       else{
-
+              $('#imagelodar').hide();
               $.confirm({
               title: 'Encountered an error!',
               content: 'Something went Worng, this may be server issue.',

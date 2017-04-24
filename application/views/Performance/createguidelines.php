@@ -50,6 +50,7 @@ var data = eval(data1);
       }
       else 
       {
+         $('#imagelodar').hide();
          $.confirm({
               title: 'Encountered an error!',
               content: 'Something went Worng, this may be server issue.',

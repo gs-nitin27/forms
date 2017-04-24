@@ -40,7 +40,7 @@ var data = eval(data1);//JSON.stringify(data1);
     data: data,
     dataType: "json",
     success: function(result) {
-      $('#imagelodar').hide();
+     // $('#imagelodar').hide();
     if(result.response == '1')
       {
         $.confirm({
@@ -65,6 +65,7 @@ var data = eval(data1);//JSON.stringify(data1);
     });
       }else
       {
+      $('#imagelodar').hide();
       $.confirm({
               title: 'Encountered an error!',
               content: 'Something went Worng, this may be server issue.',
@@ -269,7 +270,7 @@ var data = eval(data1);//JSON.stringify(data1);
       },
       success: function(data)
         {
-          alert(data);
+          //alert(data);
                $('#imagelodar').hide();
                 $('#mess').show();
                 $('#mess1').hide();
