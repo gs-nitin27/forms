@@ -21,7 +21,7 @@ return $q;
 else
 return 0;
 }
-
+ 
 
 public function login($username,$password)
 {
@@ -1289,6 +1289,17 @@ public function Statusperformanceguidelines($item)
 	else {
 		  return 0;
 	}
+}
+
+public function getrating($userid)
+{
+    $query = "SELECT `q1`,`q2`,`q3`,`q4`,`q5`,`total_rating` FROM `gs_rating` WHERE `entity_id`='$userid'";
+    $sql = $this->db->query($query);
+    $result = $sql->result_array();
+    return $result;
+
+    
+
 }
 }
  ?>

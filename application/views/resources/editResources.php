@@ -253,12 +253,14 @@ var data = eval(data1);//JSON.stringify(data1);
         <tr>
         <td>
              <?php if($value['image']) { ?>
-             <div>
+             <div class="form-group">
                 <img style="display:block; border:2px solid SteelBlue";  width="400px" height="300px" margin-left="20px" src = "<?php  echo base_url()."uploads/resources/".$value['image']; ?>">
              </div>
               <?php } else { ?>
+               <div class="form-group">
              <img style="display:block; border:2px solid SteelBlue";  width="400px" height="300px" margin-left="20px" src = "<?php  echo base_url('img/no-image.jpg'); ?>">
              <?php } ?>
+             </div>
           </td>
           </tr>
           <tr style="margin-top:20px">

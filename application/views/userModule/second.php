@@ -166,7 +166,9 @@ var data = JSON.stringify(data);
       $profile = $this->register->profile($id); 
      foreach ($profile as $value) 
       {
-
+?>
+            <!-- Profile Image -->
+      <?php
               $event      = $this->register->event($value['userid']);
               $tournament = $this->register->tournament($value['userid']);
               $job        = $this->register->job($value['userid']);
@@ -208,11 +210,11 @@ var data = JSON.stringify(data);
            <?php } else { ?>
           <img class="card-bkimg" alt="" src="<?php echo base_url('img/user.jpg');?>" alt="User profile picture">
             <?php } } ?>
-
-
+<!-- 
+            <img alt="" src="http://lorempixel.com/100/100/people/9/"> -->
         </div>
          
-   
+            <!--   <p class="text-muted text-center"><?php// echo $value['prof_name'];?></p> -->
 
         <div class="card-info"><span class="card-title"><?php echo $value['name'];?></span></div>
       <?php if($value['prof_name']) {?>
@@ -279,7 +281,7 @@ var data = JSON.stringify(data);
               <ul class="list-group list-group-unbordered">
               <?php 
                $module_list = $value['access_module'];
-
+           //  print_r($module_list);
 
                $module_no = explode(',', $module_list); 
               {     
@@ -638,7 +640,7 @@ var data = JSON.stringify(data);
 <script type="text/javascript">
 $(document).ready(function(){
 
-
+// var module = '<?php// echo $value['access_module']; ?>';access_module_id
 
 var module = $("#access_module_id").val();
 //alert(module);
@@ -902,6 +904,15 @@ var data = JSON.stringify(data23);
               }
           });
       }
+
+
+     //alert(result);
+    // if(result == "1"){
+    //     alert("Email has been Updated");
+    //    window.location.href = url+"/forms/userprofile/" + id + "?module";
+    // }else {
+    //   alert("Email is already registered");
+    // }
   }
 });   
 }

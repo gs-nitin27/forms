@@ -8,7 +8,7 @@ public function __construct()
 		$this->load->model('register');
 		$this->load->library('session');	
 } 
-      
+       
 public function index()
 {   
    $this->load->view('login');
@@ -109,7 +109,8 @@ public function edituser()
 
 public function saveuserModule()
 {
-$data = json_decode($_REQUEST['data']);
+   $data = json_decode($_REQUEST['data']);
+  //print_r($data);die;
  foreach ($data as  $value) 
  {
  	if($value!=$data->id)
@@ -120,11 +121,11 @@ $this->load->model('register');
 $res = $this->register->update_userModule($data->id,$commaList);
 if($res == 1)
 {
-echo "Module Created";
+echo "1";
 }
 else
 {
-echo "Module Creation Not Saved";
+echo "0";
 }
 }
 
