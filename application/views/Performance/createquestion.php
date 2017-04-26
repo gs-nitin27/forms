@@ -190,13 +190,11 @@ var data = eval(data1);//JSON.stringify(data1);
                   <select id="section" class="form-control" name="section">
                   </select>
                   </div>
-
                <!--  <div class="form-group">
                 <label for="Subsection1">Sub Section</label>
                 <input type="text" class="form-control" name="Subsection1" id="Subsection1" placeholder="Enter Sub Section" >
                 <label id="location_error" hidden="">A location is required</label>
                 </div> -->
-
                <!--  <div id='TextBoxesGroup'>
                 <div id="TextBoxDiv1">
                 <div class="form-group">
@@ -208,7 +206,6 @@ var data = eval(data1);//JSON.stringify(data1);
               <!-- <input type='button' id="question1" class="btn btn-lg btn-info" onclick="add();" value='Add Question'>
               <input type='button' id="Sub_Section1" class="btn btn-lg btn-success" onclick="addsection();" value='Add Sub-Section' >
               <input type='button' id="addsubsection1" class="btn btn-lg btn-success" onclick="addNewsection();" value='Add Section'> -->
-
               <!--  <input type='button' id="saveAlldata1" class="btn btn-lg btn-danger" onclick="savedata();" value='Save Data'> -->
               <input type="hidden" class="form-control" name="test" value="" id="ntest">
               <input type="hidden" class="form-control" name="ntext" value="" id="ntest1">
@@ -230,7 +227,30 @@ var data = eval(data1);//JSON.stringify(data1);
         <h4 class="modal-title" id="myModalLabel">Add New Sub-Section</h4>
         </div>
         <div class="modal-body">
-          <div class="form-group">
+        <script type="text/javascript">
+          $("#section").change(function(){
+
+            if($("#section").val() == 'parent')
+            {
+                $("#hidesec").hide();
+                $("#sub_sec").val('Question');
+                $("#hidesecbutton").hide();
+            }
+          else if($("#section").val() =='psychological')
+            {
+               $("#hidesec").hide();
+               $("#sub_sec").val('Question');
+               $("#hidesecbutton").hide();
+            }
+            else
+            {
+              $("#hidesec").show();
+              $("#hidesecbutton").show();
+            }
+
+          });
+        </script>
+          <div class="form-group" id="hidesec">
           <label for="sub_sec" class="control-label">Sub-Section</label>
           <input type="text" placeholder="Sub-Section" class="form-control" id="sub_sec">
           <input type="hidden"  class="form-control" id="newsub_section">
@@ -250,7 +270,7 @@ var data = eval(data1);//JSON.stringify(data1);
           </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-default" id="newsection" data-dismiss="modal" onclick="addNewsection();" >Save Section</button>
-        <button type="button" onclick="addsection();" class="btn btn-primary">Save Sub-Section </button>
+        <button type="button" onclick="addsection();" id="hidesecbutton" class="btn btn-primary">Save Sub-Section </button>
         </div>
        </div> 
     </div>

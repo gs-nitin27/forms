@@ -2,7 +2,7 @@
   <div class="pull-right hidden-xs">
   <b></b>
   </div>
- </footer>
+ </footer> 
 <div class="control-sidebar-bg"></div>
 </div>
 <!-- jQuery UI 1.11.4 >

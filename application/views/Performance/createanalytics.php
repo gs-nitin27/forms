@@ -2,9 +2,6 @@
 <script>
 function save()
 { 
-
-
-
 $('#imagelodar').show();
 var array = [];
 var i=0;
@@ -52,9 +49,7 @@ if($("#athlete").val() == 'athlete')
   
 var myArray = $("#sport").val().split(","); 
 var age = $("#agegroup").val().split(","); 
-
 var code = myArray[1] + age[1];
-
 //alert(code);
 
 var data1 = {
@@ -85,7 +80,6 @@ var data = eval(data1);//JSON.stringify(data1);
         typeAnimated: true,
         animationSpeed: 1500,
         animationBounce: 3,
-       
         buttons: {
             tryAgain: {
                 text: 'Thank You !',
@@ -100,10 +94,8 @@ var data = eval(data1);//JSON.stringify(data1);
         }
     });
   }
-
       else if(result == '2')
-      {
-        
+      {     
         $.confirm({
         title: 'Analytics Already created!',
         content: 'This Combination of Analytics is already created Please Update Analytics.',
@@ -136,14 +128,13 @@ var data = eval(data1);//JSON.stringify(data1);
             });
           }
         });
-                }
-               },
+              }
+           },
              Update : function () 
              {  
                 var list = {0: "a",  1: "b", 2 :"c" , 3 : "d", 4:"e", 5:"f", 6:"g", 7:"h", 8:"i" ,9 : "j"};
                 var temp='';
                 var number = code, output = [], sNumber = number.toString();
-
                 for (var i = 0, len = sNumber.length; i < len; i += 1)
                  {
                     output.push(+sNumber.charAt(i)); 
@@ -156,7 +147,6 @@ var data = eval(data1);//JSON.stringify(data1);
                           }
                           }
               location.href = '<?php echo site_url('forms/editanalytics/' )?>'+'/' + temp + '?performance';
-
              }
         }
     });
@@ -182,32 +172,26 @@ var data = eval(data1);//JSON.stringify(data1);
       }  
     }
 });  
-
 }
 </script>
-
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
          Create Analytics  <a href = "<?php echo site_url('/forms/viewanalytics?performance');?>" class="btn btn-lg btn-primary bs-tooltip"  title="List" ><i class="glyphicon glyphicon-th-list"></i></a>
       </h1>
-     
     </section>
          <section class="content"> 
-
          <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
       <div class="row">
     <?php if(isset($msg) && $msg != ""){?>
     <div class="col-md-12">
-    
     <?php }?>
 <div class="col-md-12">
 <div class=" alert alert-success" id="msgdiv" style="display:none" >
       <strong>Info! <span id = "msg"></span></strong> 
     </div>
       <div class="box box-primary">
-       
         <form id="myform">
         <div class="box-body">
         <?php
@@ -218,8 +202,6 @@ var data = eval(data1);//JSON.stringify(data1);
                   <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
             </div>
         <?php }?>
-                
-                 
                   <div class="form-group">
                   <label for="gender">Gender</label>
                   <select id="gender" class="form-control" name="gender">
@@ -229,16 +211,11 @@ var data = eval(data1);//JSON.stringify(data1);
                  <!--  <option id="all" value="u">All</option> -->
                   </select>
                   </div>
-
-
-               
-
                <div class="form-group">
                <label for="sports">Age Group</label>
                <select id="agegroup" class="form-control" name="agegroup">
               </select>
               </div>
-
                 <div class="form-group">
                 <?php  $sports = $this->register->getSport();?>
                 <label for="sports">Sport</label>
@@ -251,12 +228,10 @@ var data = eval(data1);//JSON.stringify(data1);
                            } 
                          ?>
                 </select>
-               
                 </div>
-
               <div class="form-group">
               <li class="list-group-item">
-              <label for="tactical" class="btn btn-danger">Tactical &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="tactical" class="badgebox"><span class="badge">&check;</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <label for="tactical" class="btn btn-danger">Tactical &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="tactical" class="badgebox"><span class="badge">&check;</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              <!--  </li> -->
              <!--  <li class="list-group-item"> -->
                  <label for="technical" class="btn btn-info">Technical &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="technical" class="badgebox"><span class="badge" >&check;</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

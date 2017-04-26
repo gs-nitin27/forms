@@ -12,7 +12,7 @@
   #example1_filter label{
   float:right!important;
   padding-right:2px;
-}
+} 
 </style>
 </head>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>

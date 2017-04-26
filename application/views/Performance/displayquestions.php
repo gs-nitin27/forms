@@ -114,10 +114,15 @@
                     {    
                         //subsection
 
-                       // print_r($key1); 
+                        //print_r($key1); 
                       ?>
                       <div class="container">
+                      <?php if($key1 =="" || $key1 == '_empty_'){?>
+                      <div class="header" style="height: 40px;"><span>Questions</span>
+                      <?php } else {?>
                       <div class="header"><span><?php echo $key1;?></span>
+                      
+                     <?php }?>
                       </div>
                       <div class="content">
                       <ul class="list-group">

@@ -58,6 +58,13 @@
     left: 0;
     right: 0;
 }
+.card.hovercard .card-name {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    top :140px;
+}
 .card.hovercard .card-info .card-title {
     padding:0 5px;
     font-size: 20px;
@@ -193,7 +200,7 @@ var data = JSON.stringify(data);
              
           <!--   <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/"> -->
             <!-- http://lorempixel.com/850/280/people/9/ -->
-             <img class="card-bkimg" alt="" src="<?php echo base_url('img/user.jpg');?>" alt="User profile picture">
+             <img class="card-bkimg" alt="" src="<?php echo base_url('img/background.jpg');?>" alt="User profile picture">
 
 
         </div>
@@ -216,7 +223,8 @@ var data = JSON.stringify(data);
 
         <div class="card-info"><span class="card-title"><?php echo $value['name'];?></span></div>
       <?php if($value['prof_name']) {?>
-         <div class="card-info" style="margin-left:180px;"><span class="card-title"><?php echo $value['prof_name'];?></span></div>
+      
+         <div class="card-name" ><span ><b><?php echo $value['prof_name'];?></b></span></div>
          <?php }?>
     </div>
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
@@ -247,8 +255,8 @@ var data = JSON.stringify(data);
        <div class="tab-pane fade in active" id="tab1">
            
            <div class="row">
-           <div class="col-md-6">
-          <!-- DONUT CHART -->
+          <!--  <div class="col-md-6">
+         
            <div class="chart">
              <canvas id="areaChart" style="height:250px"></canvas>
           </div>
@@ -265,7 +273,59 @@ var data = JSON.stringify(data);
             <canvas id="pieChart" style="height:250px"></canvas>
             </div>
             </div>
+
+            </div> -->
+             <div class="col-md-6">
+         <div class="box box-primary " style="margin-top:5%;">
+            <div class="box-header with-border">
+              <h3 class="box-title">Activity</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div> 
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="chart-responsive">
+                    <canvas id="pieChart" height="150"></canvas>
+                  </div>
+                  <!-- ./chart-responsive -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-4">
+                  <ul class="chart-legend clearfix">
+                    <li><i class="fa fa-circle-o text-red"></i> Tournament</li>
+                    <li><i class="fa fa-circle-o text-green"></i> JOB</li>
+                    <li><i class="fa fa-circle-o text-yellow"></i> Content</li>
+                    <li><i class="fa fa-circle-o text-aqua"></i> Event</li>
+                    <li><i class="fa fa-circle-o text-light-blue"></i> Resources</li>
+                   <!--  <li><i class="fa fa-circle-o text-gray"></i> Navigator</li> -->
+                  </ul>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
             </div>
+            <!-- /.box-body -->
+            <!-- <div class="box-footer no-padding">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="#">Cricket
+                  <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
+                <li><a href="#">Football <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
+                </li>
+                <li><a href="#">running
+                  <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
+              </ul>
+            </div> -->
+            <!-- /.footer -->
+          </div>
+          </div>
+
+
+
             <div class="col-md-6">
             <div class="box box-primary" style="margin-top:5%;">
             <div class="box-body box-profile">
@@ -588,14 +648,14 @@ var data = JSON.stringify(data);
       },
       {
         value: $('#tournament_graph').val(),
-        color: "#5262bc",
-        highlight: "#5262bc",
+        color: "#dd4b39",
+        highlight: "#dd4b39",
         label: "Tournament"
       },
       {
         value: $('#resources_graph').val(),
-        color: "#3c8dbc",
-        highlight: "#3c8dbc",
+        color: "#5262ca",
+        highlight: "#5262ca",
         label: "Resources"
       },
       {
