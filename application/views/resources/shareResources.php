@@ -240,50 +240,7 @@ var jsondata = eval(data1);
                       </div>
 
 
-
-         <!--  <div class="container">
-        <div class="content">
-        
-            
-
-         
-         
-            <span class="upload_btn" onclick="show_popup('popup_upload')">Click to upload photo</span>
-            <div id="photo_container">
-            </div>
-             
-        </div>   
-    </div> -->
-
-       <!--  <div id="popup_crop">
-        <div class="form_crop">
-            <span class="close" onclick="close_popup('popup_crop')">x</span>
-            <h2>Crop photo</h2>
-            This is the image we're attaching the crop to -->
-           <!--  <img id="cropbox" />   -->
-            <!-- This is the form that our event handler fills -->
-           
-              <!--   <input type="hidden" id="x" />
-                <input type="hidden" id="y"/>
-                <input type="hidden" id="w"/>
-                <input type="hidden" id="h"/>
-                <input type="hidden" id="photo_url"  name="image"/>
-                <input type="button" value="Crop Image" id="crop_btn" onclick="crop_photo()"/>
-            
-        </div>
-    </div> --> 
-             <!--    <div id="message"></div> -->
-          <!-- <script>
-            document.getElementById('crop_btn').onfocus = function () {
-              var d=$('#crop_btn').val();
-              if(d!="")
-              {
-            document.getElementById('message').innerHTML = "Image Successfully Uploaded";
-               }
-                };
-            </script> -->
               </div>
-              <!-- /.box-body -->
            
              
         </form>

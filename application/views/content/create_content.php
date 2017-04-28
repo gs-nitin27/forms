@@ -128,25 +128,10 @@ var data = JSON.stringify(data12);
                     <textarea class="form-control" name="content" id="ccontent" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                     <label id="content_error" hidden> content is required.</label>
                    </div>
-          <!--  <div class="form-group">
-            <label for="link">Create Date</label>
-            <input type="text" class="form-control"  id="cdate" placeholder="Enter Create Date">
-          </div >
-          <div class="form-group">
-            <label for="link">Update Date</label>
-            <input type="text" class="form-control"  id="udate" placeholder="Enter Update Date">
-          </div > -->
-
-
-         
-
             <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Create Content" name="Create">
+                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Create Content" name="Create">
               </div>
         </form>
-
-
-			
           </div>
 	  </div>
 </section>

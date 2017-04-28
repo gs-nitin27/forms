@@ -411,7 +411,7 @@ var data = JSON.stringify(data1);
     <input type="hidden" class="form-control" name="photo" id="photo_url" value="<?php echo $job['image'];?>"> 
     <div id="mess" hidden>Image Uploded</div>
 	<div class="box-footer">
-	<input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Update Job" name="Create">
+	<input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Update Job" name="Create">
 	</div>
     </div>
 	</div>  

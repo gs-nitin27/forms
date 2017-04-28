@@ -188,26 +188,7 @@ $(function(){
                             ?>
                         </select>
                     </div >                
-                     <!-- <input type="hidden" name="proftypeid" value="">  -->
-                    <!-- <div class="form-group">
-                    <label for="usertype">Proffession</label>
-                        <select id="proftype" class="form-control" >
-                            <option></option>
-                            <option id="Coach">Athletes</option>
-                            <option id="player">Coach</option>
-                            <option id="Coach">Dietician</option>
-                            <option id="player">Event Organiser</option>
-                            <option id="Coach">Job Creator</option>
-                            <option id="player">Player</option>
-                            <option id="Coach">Parent</option>
-                            <option id="player">Physio</option>
-                            <option id="Coach">Refree</option>
-                            <option id="player">Scouts</option>
-                            <option id="Coach">Trainer</option>
-                            <option id="player">Tournament Organiser</option>
-                            <option id="player">Referee</option>
-                        </select>
-                    </div> -->
+                  
                     <div class="form-group">
                         <?php  $sports = $this->register->getSport(); 
                         ?>

@@ -71,7 +71,6 @@ var data1 = {
 };
 var url = '<?php echo site_url();?>';
 console.log(JSON.stringify(data1));
-//console.log($("input[name='gender']:checked").val()+'nitin');return; 
 var data = JSON.stringify(data1);
   $.ajax({
 
@@ -80,10 +79,8 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-     // $("#imagelodar").hide();
        if(result == '1')
          {
-         // $("#imagelodar").hide();
          $.confirm({
          title: 'Congratulations!',
          content: 'Job is Created.',
@@ -211,27 +208,6 @@ var data = JSON.stringify(data1);
                 </select>
                 <label id="jsports_error" hidden>Sport Name is required .</label> 
                 </div>
-
-
-
-
-
-					<!-- <div class="form-group">
-					<?php  
-				//	$sports = $this->register->getSport();	
-					?>
-					  <label for="sports">Sport</label>
-						<select id="jsports" class="form-control" >
-						<option value="0">- Select -</option> 
-						<?php// if(!empty($sports)){
-					    // foreach($sports as $sport){?>
-					     <option value ="<?php// echo $sport['id'];?>"><?php// echo $sport['sports'];?> </option>
-						<?php 	//}
-						   //   }	
-						//	?>
-						</select>
-             <label id="jsports_error" hidden>Sport Name is required .</label> 
-					</div> -->
 					<div class="form-group">
 					  <label for="city">Job Location</label>
 					  <input type="text" class="form-control"  id="jcity" placeholder="Enter City">
@@ -408,11 +384,11 @@ var data = JSON.stringify(data1);
 	              </div>
 	             <!--  <input id="button" type="submit" value="Upload"> -->
             </form>
-             <!--  <img src="<?php// echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img>  -->
+
               <input type="hidden" class="form-control" name="photo" id="photo_url"> 
               <div id="mess" hidden>Image Uploded</div>
 			<div class="box-footer">
-			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="#" value="Create Job" name="Create">
+			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Create Job" name="Create">
 			</div>
           </div>
 	  </div>
