@@ -136,6 +136,7 @@ var data = JSON.stringify(data12);
 	  </div>
 </section>
 </div>
+
 <script type="text/javascript">
 $("#save").click(function(){
     var title  = $("#ctitle").val(); 
@@ -168,7 +169,6 @@ $("#save").click(function(){
            $("#content_error").hide();
        }
    }
-
   });
 
 </script>

@@ -36,19 +36,60 @@ public function home()
       $this->session->set_userdata('item',$res);
       $sessdata = $this->session->userdata('item');
        echo  "1";
-
        }
-
      }
     else
     {
- 
       echo "2";
-
      }
-		
 }
+
+public function newadmin()
+{
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
+    $this->load->model('register');
+    $emailid = $this->register->Emailfind($username);
+    if($emailid)
+    {
+      $pass = $this->register->passwordfind($username);   
+      if($pass)
+      {
+        $this->session->set_flashdata('error','Please Activate your account a link is sent to your mail account.');
+         redirect('forms/index','refresh');
+      }
+      else
+       {
+      $res = $this->register->adminlogin($username, $password); 
+     // print_r($res); die();
+      if($res != 0)
+      {
+         $this->session->set_userdata('item',$res);
+         $sessdata = $this->session->userdata('item');
+         redirect('forms/home');
+      }
+      else
+      { 
+         $this->session->set_flashdata('error','Please give the correct  password.');
+         redirect('forms/index','refresh');
+        //echo $res['message'] ='Invalid login credentials';
+       // $res['message'] ='Invalid login credentials';
+       // $this->load->view('login',$res);
+      }
+  }
+    }
+    else {
+        $this->session->set_flashdata('error','Invalid User.');
+          redirect('forms/index','refresh');
+    }
+
+}
+
 //======================User ======================================
+public function adminlogin()
+{
+  $this->load->view('adminlogin');
+}
 
 public function login()
 {
@@ -294,7 +335,8 @@ $item->entry_start_date   = $data1->entry_start_date;//strtotime($data1['entry_s
 $item->entry_end_date     = $data1->entry_end_date;//strtotime($data1['entry_end_date']);
 $item->file_name          = $data1->file_name;
 $item->email_app_collection     = $data1->email_app_collection;
-
+$item->image                    = $data1->image;
+ 
 $this->load->model('register');
 $res = $this->register->saveEvent($item);
 
@@ -516,6 +558,8 @@ public function saveTournament()
 $data1 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
 
+//print_r($data1);die;
+
 $item->id                      = $data1->id;
 $item->organizer_name          = $data1->organizer_name;
 $item->tournament_level        = $data1->tournament_level;
@@ -550,6 +594,7 @@ $item->entry_end_date          = $data1->entry_end_date;//$data1['entry_end_date
 $item->file_name               = $data1->file_name;
 $item->sport                   = $data1->sport;
 $item->publish                 = 0;
+$item->image                   = $data1->image;  
 
 //print_r($item);//die;
  
@@ -1025,8 +1070,8 @@ else
     echo json_encode(array('response' => '3'));
 }
 }
-
 }
+
 
 public function emailsearch()
 {
@@ -1141,9 +1186,8 @@ public function Emailfind()
  }
  else
  {
-
-       $this->session->set_flashdata('msg', 'Email Id is Not Found');
-       redirect('forms/emailsearch');
+      $this->session->set_flashdata('msg', 'Email Id is Not Found');
+      redirect('forms/emailsearch');
    // $this->session->set_flashdata('error','Email Id is Not Found');
     //redirect('forms/emailsearch','refresh');
  }
@@ -1154,7 +1198,7 @@ public function Emailfind()
  {     
   $newpath=$_POST['path'];
 
- // print_r($_FILES["file"]["name"]) ;//die;
+ // print_r($newpath) ;//die;
 
      switch ($newpath) {
       case 'uploads/resources/':
@@ -1168,7 +1212,18 @@ public function Emailfind()
                   }
               }
         break;
-      case 'uploads/job/':
+      case 'uploads/tournament/':
+              if ($_POST['oldimageid'])
+                     {
+            if($_POST['oldimage'])
+            {
+                $id = $_POST['oldimageid'];
+                  $image = $_POST['oldimage'];
+                $temp= $this->register->removetournamentimage($id,$image);
+                  }
+              }
+        break;
+          case 'uploads/job/':
               if ($_POST['oldimageid'])
                      {
             if($_POST['oldimage'])
@@ -1176,6 +1231,17 @@ public function Emailfind()
                 $id = $_POST['oldimageid'];
                   $image = $_POST['oldimage'];
                 $temp= $this->register->removejobimage($id,$image);
+                  }
+              }
+        break;
+         case 'uploads/event/':
+              if ($_POST['oldimageid'])
+                     {
+            if($_POST['oldimage'])
+            {
+                $id = $_POST['oldimageid'];
+                  $image = $_POST['oldimage'];
+                $temp= $this->register->removeeventimage($id,$image);
                   }
               }
         break;

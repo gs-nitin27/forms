@@ -67,7 +67,8 @@ var data1 = {
     "entry_end_date"          : $("#eendD").val(),
     "emailid"                 : $("#email").val(),
     "tournament_ageGroup"     : $("#tage").val(),
-    "file_name"               : $("#filename").val()
+    "file_name"               : $("#filename").val(),
+    "image"                   : $("#photo_url").val()
 };
  
 console.log(JSON.stringify(data1));
@@ -422,11 +423,49 @@ var data = JSON.stringify(data1);
               </div>
               <!-- /.tab-pane -->
             </div>
-            <!-- /.tab-content -->
+            </form>
+          <form id="form1"  method="post" enctype="multipart/form-data">
+	             <!--  Image : <input type="file" name="file" id="file" /> -->
+	 <div class="container">
+    <div class="row">    
+        <div class="col-xs-6 col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-2" style="float: left;margin-left: 0%;">  
+            <!-- image-preview-filename input [CUT FROM HERE]-->
+            <div class="input-group image-preview">
+                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                <span class="input-group-btn">
+                    <!-- image-preview-clear button -->
+                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                        <span class="glyphicon glyphicon-remove"></span> Clear
+                    </button>
+                    <!-- image-preview-input -->
+                    <div class="btn btn-default image-preview-input">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">Browse</span>
+                        <input type="file" accept="image/png, image/jpeg, image/gif" id="timage" name="file"/>
+                        
+                         <!-- rename it -->
+                    </div>
+                     <input id="button" type="submit" class="btn btn-danger" value="Upload Image" name="submit">
+                </span>
+            </div><!-- /input-group image-preview [TO HERE]--> 
+        </div>
+    </div>
+</div>
+	              <div class="form-group">
+	              <input type="hidden" class="form-control" name="oldimageid" id="pid" value="0">
+	              <input type="hidden" class="form-control" name="path"   id="path" value="uploads/tournament/">
+	              <input type="hidden" class="form-control" name="height" id="height" value="640">
+	              <input type="hidden" class="form-control" name="width"  id="width" value="1115">
+	              </div>
+	             <!--  <input id="button" type="submit" value="Upload"> -->
+            </form>
+
+              <input type="hidden" class="form-control" name="photo" id="photo_url"> 
+              <div id="mess" hidden>Image Uploded</div>
 			<div class="box-footer">
 			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Create Tournament" name="Create">
 			</div>
-			 </form>
+			 
 			
           </div>
 	  </div>
@@ -435,6 +474,108 @@ var data = JSON.stringify(data1);
 </div>
 </div>
 </section>
+<script type="text/javascript">
+  $(document).ready(function (e) {
+
+  $("#form1").on('submit',(function(e) 
+  {
+    if($('#timage').val())
+    {
+    $('#imagelodar').show();
+    e.preventDefault();
+    $.ajax({
+      url: "<?php echo site_url('forms/imageupload'); ?>",
+      type: "POST",
+      data:  new FormData(this),
+      contentType: false,
+          cache: false,
+      processData:false,
+      beforeSend : function()
+      {
+        $("#err").fadeOut();
+      },
+      success: function(data)
+        {
+                $('#imagelodar').hide();
+                $('#mess').show();
+                $("#photo_url").val(data);   
+        },
+        error: function(e) 
+        {
+      
+        }           
+     });
+  } else{
+          alert("please upload image");
+          return false ;
+  }
+  }));
+});
+
+</script>
+
+
+  <script type="text/javascript">
+    
+    $(document).on('click', '#close-preview', function(){ 
+    $('.image-preview').popover('hide');
+    // Hover befor close the preview
+    $('.image-preview').hover(
+        function () {
+           $('.image-preview').popover('show');
+        }, 
+         function () {
+           $('.image-preview').popover('hide');
+        }
+    );    
+});
+
+$(function() {
+    // Create the close button
+    var closebtn = $('<button/>', {
+        type:"button",
+        text: 'x',
+        id: 'close-preview',
+        style: 'font-size: initial;',
+    });
+    closebtn.attr("class","close pull-right");
+    // Set the popover default content
+    $('.image-preview').popover({
+        trigger:'manual',
+        html:true,
+        title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+        content: "There's no image",
+        placement:'top'
+    });
+    // Clear event
+    $('.image-preview-clear').click(function(){
+        $('.image-preview').attr("data-content","").popover('hide');
+        $('.image-preview-filename').val("");
+        $('.image-preview-clear').hide();
+        $('.image-preview-input input:file').val("");
+        $(".image-preview-input-title").text("Browse"); 
+    }); 
+    // Create the preview image
+    $(".image-preview-input input:file").change(function (){     
+        var img = $('<img/>', {
+            id: 'dynamic',
+            width:250,
+            height:200
+        });    
+        var file = this.files[0];
+        var reader = new FileReader();
+        // Set preview image into the popover data-content
+        reader.onload = function (e) {
+            $(".image-preview-input-title").text("Change");
+            $(".image-preview-clear").show();
+            $(".image-preview-filename").val(file.name);            
+            img.attr('src', e.target.result);
+            $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+        }        
+        reader.readAsDataURL(file);
+    });  
+});
+  </script>
 <script type="text/javascript">
 
    $("#save").click(function()

@@ -35,7 +35,7 @@ var data1 = {
 
     
 };
-
+ 
 console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>';
 var data = JSON.stringify(data1);

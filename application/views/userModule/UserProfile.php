@@ -531,12 +531,8 @@ var data = JSON.stringify(data);
             
             $ttotal_rating = $total_rating/$i; 
             $ftotal_rating = $total_rating/$i*20;
-
-            
              }     
           ?>
-
-
          <div class="col-md-6">
             <div class="box box-primary" style="margin-top:5%;">
             <div class="box-header with-border">
@@ -546,7 +542,6 @@ var data = JSON.stringify(data);
             <div class="progress-group">
                     <span class="progress-text">Q1</span>
                     <span class="progress-number"><b><?php echo $tq1 ;?></b>/5</span>
-
                     <div class="progress sm">
                       <div class="progress-bar progress-bar-aqua" style="width:<?php echo $fq1."%";?>"></div>
                     </div>
@@ -564,7 +559,6 @@ var data = JSON.stringify(data);
                   <div class="progress-group">
                     <span class="progress-text">Q3</span>
                     <span class="progress-number"><b><?php echo $tq3 ;?></b>/5</span>
-
                     <div class="progress sm">
                       <div class="progress-bar progress-bar-aqua" style="width:<?php echo $fq3.'%';?>"></div>
                     </div>
@@ -572,7 +566,6 @@ var data = JSON.stringify(data);
                    <div class="progress-group">
                     <span class="progress-text">Q4</span>
                     <span class="progress-number"><b><?php echo $tq4 ;?></b>/5</span>
-
                     <div class="progress sm">
                       <div class="progress-bar progress-bar-blue" style="width: <?php echo $fq4.'%';?>"></div>
                     </div>
@@ -580,16 +573,13 @@ var data = JSON.stringify(data);
                    <div class="progress-group">
                     <span class="progress-text">Q5</span>
                     <span class="progress-number"><b><?php echo $tq5 ;?></b>/5</span>
-
                     <div class="progress sm">
                       <div class="progress-bar progress-bar-green" style="width: <?php echo $fq5.'%';?>"></div>
                     </div>
                   </div>
-                  <!-- /.progress-group -->
                   <div class="progress-group">
                     <span class="progress-text">Total Rating</span>
                     <span class="progress-number"><b> <?php echo $ttotal_rating ;?></b>/5</span>
-
                     <div class="progress sm">
                       <div class="progress-bar progress-bar-red" style="width:<?php echo $ftotal_rating.'%';?>"></div>
                     </div>
@@ -599,13 +589,8 @@ var data = JSON.stringify(data);
             </div>
             <?php }?>
         </div>
-        <!--  <div class="tab-pane fade in" id="tab4">
-          <h3>This is tab 3</h3>
-        </div> -->
       </div>
     </div>
-    
-
      </div>
       </div>
     </div>
@@ -622,6 +607,7 @@ var data = JSON.stringify(data);
     </script>
 <script>
   $(function () {
+    
     /* ChartJS
      * -------
      * Here we will create a few charts using ChartJS

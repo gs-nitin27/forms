@@ -25,6 +25,7 @@
 
               <?php        
                  $data=$this->session->userdata('item');
+              //   print_r($data);//die;
                  $usertype=$data['userType']; 
                  {
                   if($usertype==101 || $usertype==102 )
@@ -46,17 +47,13 @@
               $content = $this->register->getContentInfo();
         }
         else
-        {
-                
+        {     
             $data=$this->session->userdata('item');
             $userid=$data['userid']; 
            // $content = $this->register->getContentInfo();
             $content = $this->register->getUserContentInfo($userid);
         }
 
-
-
-				 
 				  if(!empty($content)){
 						foreach($content as $contants){ ?>
           <tr>

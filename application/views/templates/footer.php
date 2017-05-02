@@ -44,5 +44,6 @@
 <script type="text/javascript" src="<?php echo base_url('assets/dist/js/pages/dashboard.js'); ?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script type="text/javascript" src="<?php echo base_url('assets/dist/js/demo.js'); ?>"></script>
+ <script type="text/javascript" src="<?php echo base_url('assets/imageupload/image_script.js'); ?>"></script> 
 </body>
 </html>

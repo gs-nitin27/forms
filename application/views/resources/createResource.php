@@ -221,24 +221,20 @@ var data = eval(data1);//JSON.stringify(data1);
             <span class="glyphicon glyphicon-folder-open"></span>
             <span class="image-preview-input-title">Browse</span>
             <input type="file" accept="image/png, image/jpeg, image/gif" id="Nimage" name="file"/>
-            <!-- rename it -->
             </div>
             <input id="button" type="submit" class="btn btn-danger" value="Upload Image" name="submit">
             </span>
-            </div><!-- /input-group image-preview [TO HERE]--> 
             </div>
             </div>
             </div>
-             <!--  Image : <input type="file" name="file" id="file" /> -->
+            </div>
             <div class="form-group">
             <input type="hidden" class="form-control" name="oldimageid" id="pid" value="0">
             <input type="hidden" class="form-control" name="path"   id="path" value="uploads/resources/">
             <input type="hidden" class="form-control" name="height" id="height" value="640">
             <input type="hidden" class="form-control" name="width"  id="width" value="1115">
             </div>
-            <!--  <input id="button" type="submit" value="Upload"> -->
             </form>
-           <!--  <img src="<?php// echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img>  -->
             <input type="hidden" class="form-control" name="photo" id="photo_url"> 
             <div id="mess" hidden>Image Uploded</div>
             <div id="mess1" style="color:red;" hidden>Please Select the Image.</div>
@@ -251,6 +247,8 @@ var data = eval(data1);//JSON.stringify(data1);
             </div>
             </section>
 </div>
+
+
 <script type="text/javascript">
   $(document).ready(function (e) {
   $("#form").on('submit',(function(e) {
@@ -285,10 +283,7 @@ var data = eval(data1);//JSON.stringify(data1);
                 $('#mess').hide();
                 $('#mess1').show();
                 return false;
-        
        }
-   
-
   }));
 });
 </script>
@@ -334,12 +329,10 @@ var data = eval(data1);//JSON.stringify(data1);
                 margin: -1px;
             }
         </style>
-          
         <script type="text/javascript">
         $(this).ready( function() {
             $("#rlocation").autocomplete({
                 minLength: 1,
-
                 source: 
                 function(req, add){
                     $.ajax({
@@ -360,12 +353,9 @@ var data = eval(data1);//JSON.stringify(data1);
                         },
                     });
                 }
-                
             });
         });
         </script>
-
-
 <style>
   .container{
     margin-top:20px;

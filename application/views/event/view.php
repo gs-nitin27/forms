@@ -11,7 +11,7 @@
          <section class="content"> 
       <div class="row">
 	  
-		<div class="col-md-12">
+		<div class="col-md-8">
 				
 			<?php $event = $this->register->getEventInfo($id); 
 			// _pr($event);
@@ -153,7 +153,20 @@
 			
           </div>
 	  </div>
-	  
+	  <div class="col-md-4">
+            <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title"></h3>
+            </div>
+            <div class="box-body">
+               <?php if($event['image']) { ?>
+		   <img style="display:block; border:2px"; width="325px" height="225px" src = "<?php  echo base_url()."uploads/event/".$event['image']; ?>">
+            <?php } else { ?>
+		   <img style="display:block; border:2px"; width="325px" height="225px" src = "<?php  echo base_url('img/no-image.jpg');?>">
+          <?php } ?>	
+            </div>
+          </div>
+          </div>
 </div>
 </div>
 </section>
