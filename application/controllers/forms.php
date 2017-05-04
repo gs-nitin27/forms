@@ -49,10 +49,10 @@ public function newadmin()
     $username = $_POST['username'];
     $password = md5($_POST['password']);
     $this->load->model('register');
-    $emailid = $this->register->Emailfind($username);
+    $emailid = $this->register->admin_Emailfind($username);
     if($emailid)
     {
-      $pass = $this->register->passwordfind($username);   
+      $pass = $this->register->adminpasswordfind($username);   
       if($pass)
       {
         $this->session->set_flashdata('error','Please Activate your account a link is sent to your mail account.');
@@ -148,6 +148,17 @@ public function edituser()
 		    $this->load->view('templates/template',$data);
 }
 
+public function adminedituser()
+{
+  $data = $this->session->userdata('item');
+  $id = $data['adminid'];
+
+   $data['required'] = array('id'=>$id);
+   $data['middle'] = 'userModule/admin_profile_edit';
+   $this->load->view('templates/template',$data);
+
+}
+
 public function saveuserModule()
 {
    $data = json_decode($_REQUEST['data']);
@@ -170,7 +181,26 @@ echo "0";
 }
 }
 
+public function saveadminmodule()
+{
+  $data = json_decode($_REQUEST['data']);
 
+  foreach ($data as  $value) {
+    if($value != $data->id)
+          $res[] = $value;
+  }
+  $commaList = implode(",", $res);
+  $this->load->model('register');
+  $res = $this->register->update_admin_module($data->id,$commaList);
+  if($res)
+  {
+    echo "1";
+  }
+  else
+  {
+    echo "0";
+  }
+}
 
 
 
@@ -185,6 +215,11 @@ public function signout()
      $this->session->sess_destroy();
      $this->index();
      //die;
+ }
+
+ public function admin_profile()
+ {
+
  }
 
 public function profile()
@@ -262,6 +297,26 @@ else{
 }
 
 
+public function Activateadmin()
+{
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
+
+$item->userid                = $data2->userid;
+$item->activeuser            = $data2->activeuser;
+
+$this->load->model('register');
+$res = $this->register->Activateadmin($item);
+if($res)
+{
+  echo "User Is Activate";
+}
+else{
+  echo "User Is Deactivate";
+}
+}
+
+
 // public function deleteUser($id,$activate)
 // {
 //    $this->register->deleteUser($id,$activate);
@@ -287,6 +342,14 @@ public function userprofile($str)
 		$this->load->view('templates/template',$data);
 }
 
+public function admin_module_assign($str)
+{
+   $id = $this->stringtonumber($str);
+   $data['middle'] = 'userModule/admin_module_assign';
+   $data['required'] = array('id' => $id);
+   $this->load->view('templates/template',$data);
+
+}
 
 //======================== End User =========================
 
@@ -942,23 +1005,53 @@ else{
 
 //==================================Start Email=============================
 
-public function varifyemail()
+public function edit_admin()
+{
+$data=json_decode($_REQUEST['data']);
+$item= new stdClass();
+
+print_r($data);die;
+$item->userid                     =$data->userid;
+$item->name                       =$data->name;
+$item->contact_no                 =$data->contact_no;
+$item->gender                     =$data->gender;
+$item->dob                        =$data->dob;
+$item->email                      =$data->email;
+$item->address1                   =$data->address1;
+$item->address2                   =$data->address2;
+$item->address3                   =$data->address3;
+$item->location                   =$data->location;
+$item->status                     =@$data->status;
+$item->userType                   =@$data->userType;
+$item->password                   = $data->password;
+$item->access_module              = $data->access_module;
+
+$res= $this->register->admin_registration($item);
+if($res)
+{
+  echo  "1";
+}
+else
+{
+echo"0";
+}
+}
+
+
+public function admin_registration()
 {
 $data=json_decode($_REQUEST['data']);
 $name=$data->name;
 $pass=md5($data->password);
 $this->load->model('register');
-$result=$this->register->Emailfind($data->email);
-
+$result=$this->register->admin_Emailfind($data->email);
 if($result)
 {
-	//echo json_encode(array('result' => 1));
     echo json_encode(array('response' => '1'));
 }
 else
 {
 $item= new stdClass();
-
 $item->userid                     =$data->userid;
 $item->name                       =$name;
 $item->password                   =$pass;
@@ -976,18 +1069,15 @@ $item->address2                   =$data->address2;
 $item->address3                   =$data->address3;
 $item->location                   =$data->location;
 $item->user_image                 =@$data->user_image;
-$item->profile_status             =@$data->profile_status;
-$item->prof_language              =@$data->prof_language;
-$item->other_skill_name           =@$data->other_skill_name;
-$item->other_skill_detail         =@$data->other_skill_detail;
-$item->age_catered                =@$data->age_catered;
+$item->access_module              = $data->access_module;
 $item->device_id                  =@$data->device_id;
 $item->about_me                   =@$data->about_me;
 
-//$this->load->model('register');
-$res= $this->register->updateProfile($item);
+$res= $this->register->admin_registration($item);
+
 if($res)
 {  
+    echo json_encode(array('response' => '2'));
     $email = $data->email;
   require('class.phpmailer.php');
               $mail = new PHPMailer();
@@ -997,7 +1087,7 @@ if($res)
               $subject="Email varification ";
              // $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
               //$emailconform  ="testingapp.getsporty.in/getSportyLite/activation.php?email=";
-              $emailconform  =  site_url().'/forms/forgotpassword?email=';
+              $emailconform  =  site_url().'/forms/adminforgotpassword?email=';
               //global $error;
               $mail = new PHPMailer();  // create a new object
               $mail->IsSMTP(); // enable SMTP
@@ -1061,7 +1151,7 @@ if($res)
                $mail->Send();
 			   
 			   //echo '2';
-			   echo json_encode(array('response' => '2'));
+			  // echo json_encode(array('response' => '2'));
          
 }
 else
@@ -1381,6 +1471,37 @@ public function passwordchange()
         }
 }
 
+public function adminchange_password()
+{
+   $data = json_decode($_REQUEST['data']);
+   $pass1 = $data->oldpassword1;
+   $pass2 = md5($data->oldpassword);
+   $adminid = $data->userid;
+   $newpass = md5($data->newpassword);
+  
+ //  print_r($pass2);
+  // echo json_encode(array('response' =>$pass2));
+  // echo json_encode(array('response' =>$pass1));
+   //print_r($pass1);
+ //  die;
+
+   if($pass1 == $pass2)
+   {
+    $this->load->model('register');
+    $res = $this->register->adminchange_password($adminid,$newpass);
+    if($res)
+    {
+     echo json_encode(array('response' =>'1'));
+    }else{
+      echo json_encode(array('response' => '2'));
+    }
+   }else
+   {
+    echo json_encode(array('response' => '3'));
+   }
+
+
+}
 
 public function Csvfileupload()
 {
@@ -1500,6 +1621,12 @@ public function forgotpassword()
 	$this->load->view('Forgotpassword');
 }
 
+public function adminforgotpassword()
+{
+   $this->load->view('adminforgotpassword');
+
+}
+
 
 public function verifyuser()
 {
@@ -1520,6 +1647,27 @@ else
 {
 	echo "Not Created";
 }
+}
+
+
+public function verifyadmin()
+{
+   
+
+   $email      = $_POST['email'];
+   $password   = md5($_POST['Newpassword']);
+   
+   $this->load->model('register');
+   $res = $this->register->verifyadminpassword($email,$password);
+   if($res)
+   {
+      $this->session->set_flashdata('error','Welcome To Getsporty Admin');
+      redirect('forms/index','refresh');
+   }
+   else
+   {
+      echo " Not Created";
+   } 
 }
 
 function logincall()
@@ -1666,6 +1814,182 @@ public function Passwordreset()
                $mail->AddAddress($to);
                $mail->Send();
           return 1;
+
+}
+
+
+public function adminPasswordreset()
+{
+   $data = json_decode($_REQUEST['data']);
+   $email = $data->email;
+              require('class.phpmailer.php');
+              $mail = new PHPMailer(true);
+              $to=$email;
+              $from="info@darkhorsesports.in";
+              $from_name="Getsporty";
+              $subject="Email varification ";
+
+             // $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
+              $emailconform  =  site_url().'/forms/adminforgotpassword?email=';
+              //global $error;
+               // create a new object
+              $mail->IsSMTP(); // enable SMTP
+             // $mail->addReplyTo("reply@yourdomain.com", "Reply");
+
+              $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
+              $mail->SMTPAuth = true;  // authentication enabled
+              $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+              $mail->Host = 'smtp.gmail.com';
+              //$mail->Host = 'smtp.gmail.com';
+              $mail->Port = 465; 
+              $mail->Username ="info@darkhorsesports.in";  
+              $mail->Password = "2016Darkhorse";           
+              $mail->SetFrom($from, $from_name);
+              $mail->Subject = $subject;
+              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
+
+ <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
+<tbody><tr>
+<td align="center" valign="top">
+<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
+<tbody><tr>
+
+<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Please reset your password.</h1>
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To reset Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Reset<br></strong>
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+
+</td>
+</tr>
+<tr>
+<td align="center" style="padding-bottom:60px" valign="top">
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="center" valign="middle">
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</div>'; 
+               $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
+               $mail->AltBody = $txt; 
+               $mail->AddAddress($to);
+               $mail->Send();
+          return 1;
+
+}
+
+public function updateadminemail()
+{
+   $data=json_decode($_REQUEST['data']);
+   $email = $data->email;
+   $result=$this->register->admin_Emailfind($data->email);
+if($result) 
+{
+   echo "0";
+}else
+{
+
+             $this->load->model('register');
+             $this->register->updateadminemail($data->userid,$data->email);
+        
+              echo "1";
+
+              require('class.phpmailer.php');
+              $mail = new PHPMailer(true);
+              $to=$email;
+              $from="info@darkhorsesports.in";
+              $from_name="Getsporty";
+              $subject="Email varification ";
+             // $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
+              $emailconform  =  site_url().'/forms/adminforgotpassword?email=';
+              //global $error;
+              $mail = new PHPMailer();  // create a new object
+              $mail->IsSMTP(); // enable SMTP
+              $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
+              $mail->SMTPAuth = true;  // authentication enabled
+              $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+              $mail->Host = 'smtp.gmail.com';
+              //$mail->Host = 'smtp.gmail.com';
+              $mail->Port = 465; 
+              $mail->Username ="info@darkhorsesports.in";  
+              $mail->Password = "2016Darkhorse";           
+              $mail->SetFrom($from, $from_name);
+              $mail->Subject = $subject;
+              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
+
+ <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
+<tbody><tr>
+<td align="center" valign="top">
+<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
+<tbody><tr>
+
+<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Please reset your password.</h1>
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To reset Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Reset<br></strong>
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+
+</td>
+</tr>
+<tr>
+<td align="center" style="padding-bottom:60px" valign="top">
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="center" valign="middle">
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</div>'; 
+               $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
+               $mail->AltBody = $txt; 
+               $mail->AddAddress($to);
+               $mail->Send();
+
+              
+
+
+
+
+}
 
 }
 

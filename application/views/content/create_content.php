@@ -12,8 +12,6 @@ var data12 = {
     "url"                     : $("#curl").val(), 
     "content"                 : $("#ccontent").val(), 
     "publish"                 : 0 
-    //"date_created"             : $("#cdate").val(),
-    //"date_updated"             : $("#udate").val()
 };
 
 console.log(JSON.stringify(data12));
@@ -91,16 +89,11 @@ var data = JSON.stringify(data12);
          <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
       <div class="row">
 	  <div  class="col-md-12">
-		<div class=" alert alert-success" id="msgdiv" style="display:none">
-			<strong>Info! <span id = "msg"></span></strong> 
-		</div>
-
 			<div class="nav-tabs-custom">
 
     <head>
-        <script type='text/javascript' src="<?php echo base_url(); ?>assets/dist/js/ckeditor.js"></script>
     </head>
-        <form>
+         <form role="form" action="" class="register">  
          <?php
           $data=$this->session->userdata('item');
           $userid=$data['userid'];

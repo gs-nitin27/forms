@@ -14,10 +14,24 @@ $array=json_decode($data);
  <?php
           $data=$this->session->userdata('item');
           $name=$data['name'];
+          $usertype = $data['userType'];
+
+          //print_r($data);die;
+         
           
-        {  
+        { 
+             
+            if($usertype == 102  || $usertype == 101)
+            {
+             $id=$data['adminid'];
+                 $module = $this->register->admin_user_module($id);
+            }
+            else
+            {
             $id=$data['userid'];
-            $module = $this->register->usermoduleData($id);
+                $module = $this->register->usermoduleData($id);
+            }
+
             foreach ($module as $mod) {
            
                } }?>
@@ -62,6 +76,7 @@ $array=json_decode($data);
 
           if(isset($value->child)){
 
+           
           //  $string= explode(" ",$str)
            
            ?>
@@ -77,9 +92,22 @@ $array=json_decode($data);
           </a>
           <ul class="treeview-menu">
         <?php 
-        foreach ($value->child as $key => $value1) {?>
+        foreach ($value->child as $key => $value1) { 
+               
+               if($usertype == 101 || $usertype == 102) 
+               { 
+                  if($value1->admin == 1) {
+               ?>
             <li><a href="<?php echo site_url($value1->url);?>"  id="<?php echo $value1->id;?>"><i class="fa fa-circle-o text-purple"></i><?php echo $value1->name;?></a></li>
-    <?php  } ?>
+           <?php } }   else if($usertype == 103)
+            {
+           ?>
+           <li><a href="<?php echo site_url($value1->url);?>"  id="<?php echo $value1->id;?>"><i class="fa fa-circle-o text-purple"></i><?php echo $value1->name;?></a></li>
+            
+
+
+<?php
+      } } ?>
           </ul>
         </li>
         

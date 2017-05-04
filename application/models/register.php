@@ -24,27 +24,33 @@ return 0;
  
 
 public function adminlogin($username,$password)
-{
+{  
+  // print_r($username);die;	
   $this->db->where("email",$username);
   $this->db->where("password",$password);
-  $query = $this->db->get('user');
-
+  $query = $this->db->get('gs_admin_user');
   if($query->num_rows()>0)
   {
-  	$q = $query->row_array();
-  	return $q;
+  	 $q = $query->row_array();
+  	// print_r($q);die;
+
+  	 if($q['userType'] == 101 || $q['userType'] ==102)
+  	 {
+       return $q;
+  	 }
+  	 else
+  	 {
+  	 	return 0;
+  	 }
   }
   else
   {
   	return 0;
   }
- 
-
 } 
 
 public function login($username,$password)
 {
-// $where = " email = '$username'  AND password = '$password'";
 $this->db->where("email", $username);
 $this->db->where("password", $password);
 $qry = $this->db->get('user');
@@ -52,7 +58,7 @@ $qry = $this->db->get('user');
 if($qry->num_rows() > 0)
 {
 $q = $qry->row_array();
-if($q['userType']==101 || $q['userType']==102 || $q['userType']==103 )
+if($q['userType']==103 )
 {
 return $q;
 }
@@ -64,7 +70,6 @@ return 0;
 
 public function saveEvent($item)
 {
-
 //STR_TO_DATE('$date', '%m/%d/%Y')
 
 $insert = "INSERT INTO `gs_eventinfo`(`id`, `userid`,`name`, `type`, `address_1`, `address_2`, `location`, `PIN`,`state` ,`description`, `sport`,`eligibility1`,`eligibility2`, `terms_cond1`, `terms_cond2`, `organizer_name`, `mobile`,`organizer_address_line1`, `organizer_address_line2`, `organizer_city`, `organizer_pin`,`organizer_state` ,`event_links`, `start_date`, `end_date`, `entry_start_date`, `entry_end_date`, `file_name`, `email_app_collection`, `dateCreated`,`image`) VALUES ('$item->id','$item->userid','$item->name', '$item->type','$item->address1','$item->address2','$item->city','$item->pin','$item->state','$item->description','$item->sport','$item->eligibility1','$item->eligibility2','$item->tandc1','$item->tandc2','$item->organizer_name','$item->mobile','$item->org_address1','$item->org_address2','$item->organizer_city','$item->organizer_pin','$item->organizer_state','$item->event_links',STR_TO_DATE('$item->start_date', '%m/%d/%Y'),STR_TO_DATE('$item->end_date','%m/%d/%Y'),STR_TO_DATE('$item->entry_start_date','%m/%d/%Y'),STR_TO_DATE('$item->entry_end_date','%m/%d/%Y'),'$item->file_name','$item->email_app_collection',CURDATE(),'$item->image') ON DUPLICATE KEY UPDATE `name` = '$item->name',`address_1` = '$item->address1' ,`address_2` = '$item->address2' ,`location` = '$item->city' ,`state` = '$item->state', `PIN` = '$item->pin' , `description` = '$item->description',`sport` = '$item->sport',`eligibility1` = '$item->eligibility1',`eligibility2` = '$item->eligibility2'  , `terms_cond1` = '$item->tandc1', `terms_cond2` = '$item->tandc2' , `organizer_name` = '$item->organizer_name' ,  `mobile` ='$item->mobile' ,`organizer_address_line1` = '$item->org_address1' , `organizer_address_line2` = '$item->org_address2' , `organizer_city` = '$item->organizer_city' , `organizer_pin` = '$item->organizer_pin', `organizer_state` = '$item->organizer_state' ,  `event_links` = '$item->event_links' , `start_date` = STR_TO_DATE('$item->start_date','%m/%d/%Y') ,`end_date` = STR_TO_DATE('$item->end_date','%m/%d/%Y') ,  `entry_start_date` =STR_TO_DATE('$item->entry_start_date','%m/%d/%Y') , `entry_end_date` = STR_TO_DATE('$item->entry_end_date','%m/%d/%Y') , `file_name` = '$item->file_name',`email_app_collection` = '$item->email_app_collection',`image`='$item->image'";
@@ -359,6 +364,31 @@ public function profile($id)
       $query = $this->db->get();
 	  $data =  $query->result_array();
 	  return $data;
+}
+
+
+public function admin_registration($item)
+{
+	if($item->dob)
+	{
+		$date =  date('Y-m-d', strtotime($item->dob));
+	}
+	else
+	{
+		$date =$item->dob;
+	}
+   $insert = "INSERT INTO `gs_admin_user`(`adminid`,`name`,`userType`,`status`,`password`,`email`,`contact_no`,`gender`,`address1`,`address2`,`address3`,`dob`,`location`,`access_module`,`date_created`) VALUES('$item->userid','$item->name','$item->userType','$item->status','$item->password','$item->email','$item->contact_no','$item->gender','$item->address1','$item->address2','$item->address3','$date','$item->location','$item->access_module',CURDATE()) ON DUPLICATE KEY UPDATE `name`='$item->name' ,`status`='$item->status',`contact_no` ='$item->contact_no',`gender`='$item->gender',`address1`='$item->address1',`address2`='$item->address2',`address3`='$item->address3',`dob`='$date',`userType` = '$item->userType',`location`='$item->location',`date_updated`=CURDATE() ,`password`='$item->password'";
+
+   $query = $this->db->query($insert);
+   if($query)
+   {
+   
+   	return 1;
+   }
+   else
+   {
+   	return 0;
+   }
 }
 
 public function updateProfile($item)
@@ -744,6 +774,14 @@ public function getUserInfo($id=false)
 	return $q;
 }
 
+public function getadminUserInfo($id=false)
+{
+   $query = $this->db->get('gs_admin_user');
+   $q = $query->result_array();
+   return $q;
+
+}
+
 public function ActivateUser($item)
 {
  $update = "UPDATE  `user` SET  `activeuser` ='$item->activeuser' WHERE `userid` = '$item->userid' ";
@@ -758,6 +796,19 @@ public function ActivateUser($item)
  }
 }
 
+public function Activateadmin($item)
+{
+ $update = "UPDATE  `gs_admin_user` SET  `activeuser` ='$item->activeuser' WHERE `adminid` = '$item->userid' ";
+ $query = $this->db->query($update);
+ if($query)
+ {
+	return 1;
+ }
+ else
+ {
+    return 0;
+ }
+}
 // public function deleteUser($id,$item)
 // {
 // 	$this->db->where('userid',$id);
@@ -774,6 +825,16 @@ public function usermoduleData($id){
 	  return $data;
 } 
 
+public function admin_user_module($id)
+{
+	  $this->db->select('*');
+	  $this->db->from('gs_admin_user ad');
+	  $this->db->where('ad.adminid',$id);
+	  $query =$this->db->get();
+	  $data = $query->result_array();
+	  return $data;
+}
+
 public function update_userModule($id,$item)
 {
     $update = "UPDATE  `user` SET  `access_module` ='$item' WHERE `userid` = '$id' ";
@@ -788,6 +849,19 @@ public function update_userModule($id,$item)
        }
 }
 
+public function update_admin_module($id,$item)
+{
+	$update = "UPDATE `gs_admin_user` SET `access_module` = '$item' WHERE `adminid` = '$id'";
+	$query = $this->db->query($update);
+	if($query)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
 
 public function getUserJobInfo($id)
 {
@@ -885,6 +959,18 @@ public function getUserContentInfo($id)
 		return $q;
 }
 
+public function adminchange_password($id,$pass)
+{
+  $update = "UPDATE `gs_admin_user` SET `password` = '$pass' WHERE `adminid` = '$id'";
+  $query = $this->db->query($update);
+  if($query)
+  {
+   return 1;
+  }	else
+  {
+  	return 0;
+  }
+}
 public function changepassword($id,$password)
 {
    $update="UPDATE `user` SET `password`='$password' WHERE `userid`='$id'";
@@ -981,6 +1067,23 @@ public function verifyuserpassword($email,$password)
        }
 }
 
+public function verifyadminpassword($email,$password)
+{
+  $query = "UPDATE `gs_admin_user` SET `password` = '$password' WHERE `email` = '$email'";
+  $qry = $this->db->query($query);
+  if($qry)
+  {
+   return 1;
+  }
+  else
+  {
+   return 0;
+  }
+
+
+
+}
+
 public function Emailfind($email)
 {
       $this->db->select('*');
@@ -998,6 +1101,23 @@ public function Emailfind($email)
       }
 }
 
+public function admin_Emailfind($email)
+{
+   $this->db->select('adminid');
+   $this->db->from('gs_admin_user ad');
+   $this->db->where('ad.email',$email);
+   $query = $this->db->get();
+   $data = $query->result_array();
+   if($data)
+   {
+      return $data[0];
+   }else
+   {
+     return 0;
+   }
+
+
+}
 
 public function passwordfind($email)
 {   
@@ -1018,6 +1138,24 @@ public function passwordfind($email)
       }   
 }
 
+public function adminpasswordfind($email)
+{
+	$this->db->select('password');
+	$this->db->from('gs_admin_user ad');
+	$this->db->where('ad.email', $email);
+	$query = $this->db->get();
+	$data = $query->result_array();
+	$test = "";
+	$test1 = md5($test);
+	if($data[0]['password'] == $test1)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
 
 public function event($id)
 {
@@ -1089,6 +1227,20 @@ public function updateemail($id,$email)
   else {
   	return 0 ;
   }
+}
+
+public function updateadminemail($id,$email)
+{
+    $update = "UPDATE `gs_admin_user` SET `email` = '$email' WHERE `adminid` = '$id'";
+    $query = $this->db->query($update);
+    if($query)
+    {
+    	return 1;
+    }
+    else
+    {
+    	return 0;
+    }
 }
 
 public function getprofession()

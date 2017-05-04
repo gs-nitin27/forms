@@ -31,6 +31,7 @@ var data1 = {
     "address1"                : $("#add1").val(),
     "address2"                : $("#add2").val(),    
     "address3"                : $("#state").val(),
+    "access_module"           : '1,2,3,4,5,6',
     "location"                : $("#city").val()
 
     
@@ -43,7 +44,7 @@ var data = JSON.stringify(data1);
   $.ajax({
 
     type: "POST",
-    url: '<?php echo site_url('forms/varifyemail'); ?>',
+    url: '<?php echo site_url('forms/admin_registration'); ?>',
     data: "data="+data,
     dataType: "JSON",
     success: function(result) 

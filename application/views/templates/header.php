@@ -45,20 +45,32 @@ if($this->session->userdata('item')==''){
 
          <?php
           $data=$this->session->userdata('item');
-          $id=$data['userid'];
 
-          $module = $this->register->usermoduleData($id);
+         // print_r($data);
 
-          foreach ($module as $mod) {
-           
+          if($data['userType'] == 101 || $data['userType'] ==102 )
+          {
+          $id=$data['adminid'];
+          $module = $this->register->admin_user_module($id);
+
+           foreach ($module as $mod) {
                }
-           //print_r($mod['name']);die;
+          $name=$mod['name'];
+          $prof="Admin";
+          $image=$mod['user_image'];
+          }
+          else
+          {
+          $id=$data['userid'];
+          $module = $this->register->usermoduleData($id);
+           foreach ($module as $mod) {
+               }
           $name=$mod['name'];
           $prof=$mod['prof_name'];
           $image=$mod['user_image'];
+          }
         { 
        ?>
-
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -103,7 +115,17 @@ if($this->session->userdata('item')==''){
                  
               <li class="user-footer">
                 <div class="pull-left">
-                 <a href="<?php echo site_url('forms/edituser')?>" class="btn btn-default btn-flat">Profile</a>                 <!--  <a href="<?php //echo site_url('forms/editContent/'.$contants['id']); ?>" class="btn btn-default btn-flat">Profile</a> -->
+           <?php  if($data['userType'] == 101 || $data['userType'] ==102 )
+                {
+                   ?>
+                 <a href="<?php echo site_url('forms/adminedituser')?>" class="btn btn-default btn-flat">Profile</a>
+                <?php } else {?>
+                 <a href="<?php echo site_url('forms/edituser')?>" class="btn btn-default btn-flat">Profile</a>  
+                
+                <?php }?>
+
+
+                                  <!--  <a href="<?php //echo site_url('forms/editContent/'.$contants['id']); ?>" class="btn btn-default btn-flat">Profile</a> -->
                 </div>
                 <div class="pull-right">
                   <a href="<?php echo site_url('forms/signout');?>" class="btn btn-default btn-flat">Sign out</a>

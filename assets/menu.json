@@ -8,15 +8,19 @@
         "id":"event",
          "child":{
                    "1":   {
-                     "id"  : "createevent" ,
-                             "url": "/forms/createevent?event",
-                             "name": "create event"
-                          },
-                 "2": {
-                      "id" : "getevent",
+                              "admin" :"1",
+                              "id" : "getevent",
                               "url": "/forms/getevent?event",
                               "name": "View event"
-                  }
+
+                            
+                          },
+                 "2": {
+                              "admin" :"2",
+                              "id"  : "createevent" ,
+                             "url": "/forms/createevent?event",
+                             "name": "create event" 
+                  } 
                 }
       },
 
@@ -27,15 +31,18 @@
           "name": "TOURNAMENT",
           "id":"tournament",
           "child":{
-                    "1" :  {
-                          "id":"createtournament",
-                          "url": "/forms/createtournament?tournament",
-                         "name": "Create Tournament"
+                    "1" :  {  
+                             "admin" :"1",
+                             "id":"gettournament",
+                             "url": "/forms/gettournament?tournament",
+                             "name": "View Tournament"
+                             
                       },
                 "2" : {
-                "id":"gettournament",
-                        "url": "/forms/gettournament?tournament",
-                        "name": "View Tournament"
+                             "admin" :"2",
+                             "id":"createtournament",
+                             "url": "/forms/createtournament?tournament",
+                             "name": "Create Tournament"
                       }
       
         }
@@ -50,14 +57,16 @@
     "id":"job",
       "child":  {
        "1": {
-               "id":"createjob",
-                 "url": "/forms/createjob?job",
-                 "name": "create job"
+                  "admin" :"1",
+                  "id":"getjob",
+                  "url": "/forms/getjob?job",
+                  "name": "view job" 
         },
        "2": {
-               "id":"getjob",
-                 "url": "/forms/getjob?job",
-                 "name": "view job"
+                 "admin" :"2",
+                  "id":"createjob",
+                 "url": "/forms/createjob?job",
+                 "name": "create job"
         }
       }
       
@@ -67,28 +76,31 @@
     
   "4":{
       
-           "url": "#RESOURCES",
+            "url": "#RESOURCES",
             "class": "fa fa-book fa-x",
-           "name": "RESOURCES",
-       "id":"resources",
-           "child" :{
-        "1":{
-      "id":"createresources",
-          "url": "/forms/createresources?resources",
-          "name": "create resources"
+            "name": "RESOURCES",
+            "id":"resources",
+            "child" :{
+                      "1":{
+                              "admin" :"1", 
+                              "id":"getresources",
+                             "url": "/forms/getresources?resources",
+                             "name": "view resources"
+                          },
+        
+                       "2":{
+                             "admin" :"1",
+                             "id":"shareresource",
+                             "url": "/forms/shareresource?resources",
+                             "name": "Share resources"
         },
         
-        "2":{
-    "id":"shareresource",
-          "url": "/forms/shareresource?resources",
-          "name": "Share resources"
-        },
-        
-        "3":{
-    "id":"getresources",
-          "url": "/forms/getresources?resources",
-          "name": "view resources"
-        }
+                        "3":{
+                             "admin" :"1",
+                             "id":"createresources",
+                             "url": "/forms/createresources?resources",
+                             "name": "create resources"
+                           }
       }
       
     },
@@ -96,20 +108,25 @@
 
  "5" :  {
 
-         "url": "#CONTENT",
+          "url": "#CONTENT",
           "class": "fa fa-list-alt fa-x",
           "name": "CONTENT",
-      "id":"Content",
-        "child" :{
-       "1" : {
-              "id":"createContent",
-                "url": "/forms/createContent?Content",
-                "name": "create content"
-        },
-        "2" : {
-    "id":"getContent",
-          "url": "/forms/getContent?Content",
-          "name": "View content"
+          "id":"Content",
+              "child" :{
+                     "1" : {
+                            "admin" :"1",
+                            "id":"getContent",
+                            "url": "/forms/getContent?Content",
+                            "name": "View content"
+                           
+
+                           },
+                    "2" : {
+                              "admin" :"2",
+                              "id":"createContent",
+                            "url": "/forms/createContent?Content",
+                            "name": "create content"
+                          
         }
       }
     },
@@ -120,28 +137,33 @@
       "name": "PERFORMANCE",
       "id":"performance",
       "child":  {
-       "1": {
+       "1": {  
+               "admin" :"1",
                "id":"createquestion",
                  "url": "/forms/createquestion?performance",
                  "name": "create question"
         },
        "2": {
+               "admin" :"1",
                "id":"getquestion",
                  "url": "/forms/getquestion?performance",
                  "name": "view question"
         },
         
        "3": {
+                "admin" :"1",
                "id":"createanalytics",
                  "url": "/forms/createanalytics?performance",
                  "name": "create analytics"
         },
        "4": {
+                "admin" :"1",
                  "id":"createguidelines",
                  "url": "/forms/createguidelines?performance",
                  "name": "create guidelines"
         },
        "5": {
+                 "admin" :"1",
                  "id":"listguidelines",
                  "url": "/forms/listguidelines?performance",
                  "name": "View Guidelines"
@@ -159,11 +181,13 @@
                  "child" :
                  {
                    "1" :{
+                        "admin" :"1",
                         "id":"usermodule",
                         "url": "/forms/usermodule?module",
                         "name": "USER ROLE MANAGEMENT"
                         },
                   "2" : {
+                         "admin" :"1",
                         "id":"createnewUser",
                         "url": "/forms/createnewUser?module",
                         "name": "Create New  User"
