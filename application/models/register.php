@@ -58,7 +58,7 @@ $qry = $this->db->get('user');
 if($qry->num_rows() > 0)
 {
 $q = $qry->row_array();
-if($q['userType']==103 )
+if($q['userType']== 103)
 {
 return $q;
 }
@@ -872,6 +872,7 @@ public function getUserJobInfo($id)
 		$this->db->join('location LM', 'JI.org_state = LM.id', "left");
 		if($id > 0){
 			$this->db->where('JI.userid', $id);
+			$this->db->order_by("JI.id", "desc");
 		}else{
 		 $this->db->order_by("JI.id", "desc"); 
 		}
@@ -886,6 +887,7 @@ public function getUserResourceInfo($id)
 		$this->db->from('gs_resources GR');
 		if($id > 0){
 			$this->db->where('GR.userid',$id);
+			$this->db->order_by("GR.id", "desc"); 
 		}else{
 		 $this->db->order_by("GR.id", "desc"); 
 		}
@@ -917,6 +919,7 @@ public function getUserTournamentInfo($id)
 		$this->db->join('location L', 'TI.state = L.id', "left");
 		if($id > 0){
 			$this->db->where('TI.userid', $id);
+			$this->db->order_by("TI.id", "desc");
 		}else{
 		 $this->db->order_by("TI.id", "desc"); 
 		}
@@ -935,7 +938,9 @@ public function getUserEventInfo($id)
 		$this->db->join('location LM', 'EI.organizer_state = LM.id', "left");
 		$this->db->join('gs_eventType ET', 'ET.id = EI.type', "left");
 		if($id > 0){
+
 			$this->db->where('EI.userid', $id);
+			$this->db->order_by("EI.id", "desc");
 		}else{
 		 $this->db->order_by("EI.id", "desc"); 
 		}
@@ -951,8 +956,9 @@ public function getUserContentInfo($id)
 		$this->db->from('cms_content GR');
 		if($id > 0){
 			$this->db->where('GR.userid', $id);
+			$this->db->order_by("GR.id", "desc"); 
 		}else{
-		 $this->db->order_by("GR.userid", "desc"); 
+		 $this->db->order_by("GR.id", "desc"); 
 		}
 		$query = $this->db->get();
 		$q =  $query->result_array();

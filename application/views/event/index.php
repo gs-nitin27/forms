@@ -56,6 +56,9 @@
             $data=$this->session->userdata('item');
             $userid=$data['userid']; 
             $events = $this->register->getUserEventInfo($userid);
+            
+          //  print_r($events);
+
          }
 				if(!empty($events)){
 						foreach($events as $event)

@@ -161,15 +161,27 @@ public function adminedituser()
 
 public function saveuserModule()
 {
-   $data = json_decode($_REQUEST['data']);
-  //print_r($data);die;
+  $data = json_decode($_REQUEST['data']);
+ // $res=[];
+  $i =0;
  foreach ($data as  $value) 
  {
- 	if($value!=$data->id)
-         $res[]=$value; 
+   if($i==0)
+   {
+    $i = $i+1; 
+   }
+   else
+   {
+    $res[]=$value; 
+   }
+  //  print_r($data);
+  //if($value->id)
+  //{}else{
+  //$res[]=$value; }
  }
 $commaList = implode(',',$res);
 $this->load->model('register');
+//print_r($commaList);die;
 $res = $this->register->update_userModule($data->id,$commaList);
 if($res == 1)
 {
@@ -184,11 +196,18 @@ echo "0";
 public function saveadminmodule()
 {
   $data = json_decode($_REQUEST['data']);
-
-  foreach ($data as  $value) {
-    if($value != $data->id)
-          $res[] = $value;
-  }
+   $i =0;
+ foreach ($data as  $value) 
+ {
+   if($i==0)
+   {
+    $i = $i+1; 
+   }
+   else
+   {
+    $res[]=$value; 
+   }
+ }
   $commaList = implode(",", $res);
   $this->load->model('register');
   $res = $this->register->update_admin_module($data->id,$commaList);
