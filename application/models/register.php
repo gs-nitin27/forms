@@ -166,7 +166,7 @@ public function getJobInfo($id = false)
 	
 public function getEventInfo($id = false)
 {
-	 $this->db->select('*, EI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
+	    $this->db->select('*, EI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
 		$this->db->from('gs_eventinfo EI');
 		$this->db->join('gs_sports SP', 'SP.id = EI.sport', "left");
 		$this->db->join('location L', 'EI.state = L.id', "left");
@@ -175,7 +175,8 @@ public function getEventInfo($id = false)
 		if($id > 0){
 			$this->db->where('EI.id', $id);
 		}else{
-		 $this->db->order_by("EI.id", "desc"); 
+			 $this->db->where("publish =1 OR publish=2");
+		     $this->db->order_by("EI.id", "desc"); 
 		}
 		$query = $this->db->get();
 		$q =  $query->result_array();

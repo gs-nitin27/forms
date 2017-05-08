@@ -1,14 +1,9 @@
-
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  
- 
 </head>
-
 <div class="wrapper">
   <div class="content-wrapper">
     <section class="content">
@@ -29,9 +24,7 @@
                   <th style="background: #5262bc; color: #ffffff; min-width: 8%;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Organiser <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Status <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                 
                   <?php
-        
                  $data=$this->session->userdata('item');
                  $usertype=$data['userType']; 
                  {
@@ -39,8 +32,9 @@
                    {
                     ?>
                    <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                    <?php }?>
-
+                    <?php } else {?>
+                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Activate <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                   <?php } ?>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
                 </tr>
                 </thead>
@@ -50,15 +44,14 @@
         if($usertype==101 || $usertype==102 )
          {
             $events = $this->register->getEventInfo();
+           // print_r($events);
          }
         else
          {      
             $data=$this->session->userdata('item');
             $userid=$data['userid']; 
             $events = $this->register->getUserEventInfo($userid);
-            
           //  print_r($events);
-
          }
 				if(!empty($events)){
 						foreach($events as $event)
@@ -83,13 +76,26 @@
             {
             ?>
           <td>
-          <?php if($event['publish']==0){?>
-          <button class="badge bg-red" onclick="myfunction(<?php echo $event['infoId'];?>,1)"><?php echo "Activate";?></button>
+          <?php if($event['publish'] ==1){?>
+          <button class="badge bg-red" onclick="myfunction(<?php echo $event['infoId'];?>,2)"><?php echo "Activate";?>
+          </button>
+          <?php }else{?> 
+          <button class="badge bg-green" onclick="myfunction(<?php echo $event['infoId'];?>,1)"><?php echo "Deactivate";?></button>
+          <?php } ?>
+          </td>
+  <?php } else
+  {
+  ?>
+   <td>
+     <?php if($event['publish'] == 0){?>
+          <button class="badge bg-red" onclick="myfunction(<?php echo $event['infoId'];?>,1)"><?php echo "Activate";?>
+          </button>
           <?php }else{?> 
           <button class="badge bg-green" onclick="myfunction(<?php echo $event['infoId'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
-  <?php }  $list=array('a' => 0,
+<?php  }
+                    $list=array('a' => 0,
                                 'b' => 1,
                                 'c' => 2,
                                 'd' => 3,
@@ -127,7 +133,12 @@
                    {
                     ?>
                    <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish</th>
-  <?php } }?>
+                 <?php } else{ ?>
+                    
+                    <th style="width: 40px; background: #5262bc; color: #ffffff;">Acivate</th>
+              
+                  <?php
+                  } }?>
 
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
                 </tr>
@@ -166,7 +177,6 @@ console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>'
 var data = JSON.stringify(data1);
   $.ajax({
-
     type: "POST",
     url: '<?php echo site_url('forms/StatusEvent'); ?>',
     data: "data="+data,

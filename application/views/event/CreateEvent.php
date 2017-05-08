@@ -35,7 +35,7 @@ $(document).ready(function(){
       }).submit();
     });
  });
-
+ 
 
 function save()
 {
@@ -82,10 +82,8 @@ var data = JSON.stringify(data1);
     dataType: "text",
     success: function(result) 
     {
-         // $("#imagelodar").hide();
     	 if(result == '1')
          {
-         // $("#imagelodar").hide();
          $.confirm({
          title: 'Congratulations!',
          content: 'Event is Created.',

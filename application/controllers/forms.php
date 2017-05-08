@@ -8,7 +8,7 @@ public function __construct()
 		$this->load->model('register');
 		$this->load->library('session');	
 } 
-       
+        
 public function index()
 {   
    $this->load->view('login');
@@ -388,36 +388,36 @@ $data1 = json_decode($_REQUEST[ 'data' ]);
 $item = new stdClass();
 // echo ($data1->start_date); exit;
 
-$item->id                 = $data1->id;
-$item->userid             = $data1->userid;
-$item->type               = $data1->type;
-$item->name               = $data1->name;
-$item->address1           = $data1->address_line1;
-$item->address2           = $data1->address_line2;
-$item->city               = $data1->city;
-$item->pin                = $data1->pin;
-$item->description        = $data1->description;
-$item->eligibility1       = $data1->eligibility1;
-$item->eligibility2       = $data1->eligibility2;
-$item->state              = $data1->state;
-$item->tandc1             = $data1->terms_and_conditions1;
-$item->tandc2             = $data1->terms_and_conditions2;
-$item->organizer_name     = $data1->organizer_name;
-$item->mobile             = $data1->mobile;
-$item->org_address1       = $data1->organizer_address_line1;
-$item->org_address2       = $data1->organizer_address_line2;
-$item->organizer_city     = $data1->organizer_city;
-$item->organizer_pin      = $data1->organizer_pin;
-$item->organizer_state    = $data1->organizer_state;
-$item->event_links        = $data1->event_links;
-$item->start_date         = $data1->start_date;//strtotime();
-$item->end_date           = $data1->end_date;//strtotime($data1['end_date']);
-$item->sport              = $data1->sport;
-$item->entry_start_date   = $data1->entry_start_date;//strtotime($data1['entry_start_date']);
-$item->entry_end_date     = $data1->entry_end_date;//strtotime($data1['entry_end_date']);
-$item->file_name          = $data1->file_name;
-$item->email_app_collection     = $data1->email_app_collection;
-$item->image                    = $data1->image;
+$item->id                        = $data1->id;
+$item->userid                    = $data1->userid;
+$item->type                      = $data1->type;
+$item->name                      = $data1->name;
+$item->address1                  = $data1->address_line1;
+$item->address2                  = $data1->address_line2;
+$item->city                      = $data1->city;
+$item->pin                       = $data1->pin;
+$item->description               = $data1->description;
+$item->eligibility1              = $data1->eligibility1;
+$item->eligibility2              = $data1->eligibility2;
+$item->state                     = $data1->state;
+$item->tandc1                    = $data1->terms_and_conditions1;
+$item->tandc2                    = $data1->terms_and_conditions2;
+$item->organizer_name            = $data1->organizer_name;
+$item->mobile                    = $data1->mobile;
+$item->org_address1              = $data1->organizer_address_line1;
+$item->org_address2              = $data1->organizer_address_line2;
+$item->organizer_city            = $data1->organizer_city;
+$item->organizer_pin             = $data1->organizer_pin;
+$item->organizer_state           = $data1->organizer_state;
+$item->event_links               = $data1->event_links;
+$item->start_date                = $data1->start_date;//strtotime();
+$item->end_date                  = $data1->end_date;//strtotime($data1['end_date']);
+$item->sport                     = $data1->sport;
+$item->entry_start_date          = $data1->entry_start_date;//strtotime($data1['entry_start_date']);
+$item->entry_end_date            = $data1->entry_end_date;//strtotime($data1['entry_end_date']);
+$item->file_name                 = $data1->file_name;
+$item->email_app_collection      = $data1->email_app_collection;
+$item->image                     = $data1->image;
  
 $this->load->model('register');
 $res = $this->register->saveEvent($item);
