@@ -8,7 +8,7 @@ public function __construct()
 		$this->load->model('register');
 		$this->load->library('session');	
 } 
-        
+         
 public function index()
 {   
    $this->load->view('login');
@@ -381,8 +381,7 @@ public function CreateEvent()
 
 		$this->load->view('templates/template',$data);
     }
-  
-  public function event()
+public function event()
 {
 $data1 = json_decode($_REQUEST[ 'data' ]);
 $item = new stdClass();
@@ -413,6 +412,7 @@ $item->event_links               = $data1->event_links;
 $item->start_date                = $data1->start_date;//strtotime();
 $item->end_date                  = $data1->end_date;//strtotime($data1['end_date']);
 $item->sport                     = $data1->sport;
+$item->sport_name                = $data1->sport_name;
 $item->entry_start_date          = $data1->entry_start_date;//strtotime($data1['entry_start_date']);
 $item->entry_end_date            = $data1->entry_end_date;//strtotime($data1['entry_end_date']);
 $item->file_name                 = $data1->file_name;

@@ -40,6 +40,14 @@ $(document).ready(function(){
 function save()
 {
 $("#imagelodar").show();
+
+var sport = $("#sport").val();
+var sportdata= sport.split(',');
+
+alert(sportdata[0]);
+
+//alert($("#sport").val());
+
 var data1 = {
     "id"                      : 0, 
     "userid"                  : $("#userid").val(),
@@ -65,7 +73,8 @@ var data1 = {
     "event_links"             : $("#evlink").val(),
     "start_date"              : $("#startD").val(),
     "end_date"                : $("#endD").val(),
-    "sport"                   : $("#sport").val(),
+    "sport"                   : sportdata[0],
+    "sport_name"              : sportdata[1],
     "entry_start_date"        : $("#estartD").val(),
     "entry_end_date"          : $("#eendD").val(),
     "email_app_collection"    : $("#email_app_collection").val(),
@@ -211,7 +220,7 @@ var data = JSON.stringify(data1);
 						<option value="0">- Select -</option> 
 							<?php if(!empty($sports)){
 									foreach($sports as $sport){?>
-								<option value ="<?php echo $sport['id'];?>"><?php echo $sport['sports'];?> </option>
+								<option value ="<?php echo $sport['id'];?>,<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
 							<?php 	}
 								  }	
 							?>
