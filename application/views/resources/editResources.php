@@ -136,7 +136,13 @@ var data = eval(data1);//JSON.stringify(data1);
               <div class="box-body">
             <?php
           $data=$this->session->userdata('item');
+          if($data['userType'] == 101 || $data['userType'] == 102)
+          {
+               $name=$data['adminid'];
+          }else
+          {
           $name=$data['userid'];
+          }
         {  ?>
           <div class="form-group">
                   <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $name;?>">
@@ -548,15 +554,15 @@ $(function() {
         else{
           $("#summary_error").hide(); 
         }
-        var location = $('#rlocation').val();
-        if(location == "")
-        {
-          $("#location_error").show();
-          $("#location_error").css('color', 'red');
-        }
-        else{
-          $("#location_error").hide(); 
-        }
+        // var location = $('#rlocation').val();
+        // if(location == "")
+        // {
+        //   $("#location_error").show();
+        //   $("#location_error").css('color', 'red');
+        // }
+        // else{
+        //   $("#location_error").hide(); 
+        // }
         var article = $('#rartical').val();
         if(article == "")
         {

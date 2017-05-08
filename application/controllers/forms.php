@@ -1534,7 +1534,16 @@ public function Csvfileupload()
    $file =base_url('/uploads/csv/'.$data);
    $file = fopen($file,"r");
    $data=$this->session->userdata('item');
-   $id=$data['userid'];
+
+   // $id=$data['userid'];
+
+    if($data['userType'] == 101 || $data['userType'] == 102)
+    {
+        $id=$data['adminid'];
+    }else
+    {
+        $id=$data['userid'];
+    }
    $i=0;
    while(! feof($file))
    { 

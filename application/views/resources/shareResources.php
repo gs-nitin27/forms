@@ -640,15 +640,15 @@ $(function() {
         else{
           $("#summary_error").hide(); 
         }
-        var location = $('#rlocation').val();
-        if(location == "")
-        {
-          $("#location_error").show();
-          $("#location_error").css('color', 'red');
-        }
-        else{
-          $("#location_error").hide(); 
-        }
+        // var location = $('#rlocation').val();
+        // if(location == "")
+        // {
+        //   $("#location_error").show();
+        //   $("#location_error").css('color', 'red');
+        // }
+        // else{
+        //   $("#location_error").hide(); 
+        // }
         var article = $('#article').val();
         if(article == "")
         {
