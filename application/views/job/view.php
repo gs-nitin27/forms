@@ -19,7 +19,7 @@
                                 'h' => 7,
                                 'i' => 8,
                                 'j' => 9);
-                                 $num=$job['infoId']; //your value
+                                 $num=$job['id']; //your value
                                  $temp='';
                                  $arr_num=str_split ($num);
                                 foreach($arr_num as $data)
@@ -73,10 +73,10 @@
 				<h5 class="timeline-header no-border"><b>Address Line2: </b> &nbsp;<?php echo $job['address2'];?></h5>
 				</div>
 				<div class="timeline-item">
-				<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['city_name'];?></h5>
+				<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['city'];?></h5>
 				</div>
 				<div class="timeline-item">
-				<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $job['state_name'];?></h5>
+				<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $job['state'];?></h5>
 				</div>
 				<div class="timeline-item">
 				<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['pin'];?></h5>
@@ -106,10 +106,10 @@
 					<h5 class="timeline-header no-border"><b>Address Line2: </b> &nbsp;<?php echo $job['org_address2'];?></h5>
 					</div>
 					<div class="timeline-item">
-					<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['city_org'];?></h5>
+					<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['org_city'];?></h5>
 					</div>
 					<div class="timeline-item">
-					<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $job['state_org'];?></h5>
+					<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $job['org_state'];?></h5>
 					</div>
 					<div class="timeline-item">
 					<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['org_pin'];?></h5>

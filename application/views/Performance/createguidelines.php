@@ -94,7 +94,15 @@ var data = eval(data1);
         <div class="box-body">
         <?php
           $data=$this->session->userdata('item');
-          $userid=$data['userid'];
+        //  $userid=$data['userid'];
+           if($data['userType'] == 101 || $data['userType'] == 102)
+          {
+               $userid=$data['adminid'];
+          }else
+          {
+             $userid=$data['userid'];
+          }
+
         {  ?>
         <div class="form-group">
         <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
@@ -130,9 +138,8 @@ var data = eval(data1);
                          ?>
               </select>
 
-              <input type="hidden" name="sports_name" id="sports_name" class="form-control">
+            <input type="hidden" name="sports_name" id="sports_name" class="form-control">
               </div>
-               
             <div id="container">
             <ul class="list-group">
             </ul>
@@ -145,19 +152,14 @@ var data = eval(data1);
           </div>
           </div>
           </div>
-          
           <input type='button' id="question1" class="btn btn-lg btn-info" onclick="add();" value='Add Guidelines'>
           </div>
-
-
-
-
-              <input type="hidden" class="form-control" name="test" value="" id="ntest">
-              <input type="hidden" name="nsectonv" class="form-control" id="nsectonv" value=""> 
-            </form>
-            <div class="box-footer">
-            <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
-            </div>
+          <input type="hidden" class="form-control" name="test" value="" id="ntest">
+          <input type="hidden" name="nsectonv" class="form-control" id="nsectonv" value=""> 
+          </form>
+          <div class="box-footer">
+          <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
+          </div>
 </div>
 </div>
 </div>

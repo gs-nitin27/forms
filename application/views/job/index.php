@@ -1,37 +1,6 @@
 
-   <script>
-//document.domain = "getsporty.in";
-$(document).ready(function(){
-	//$("#example1").DataTable();
-  $('#jcity').focusout(function(){
-			var city_key = $('#jcity').val();
-			$.ajax({
-			    method: "POST",
-			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
-				data: { key: city_key }
-			}).done(function( html ) {
-				var res = jQuery.parseJSON(html)
-				$( "#jstate_value" ).val( res.state );
-				$( "#jstate" ).val( res.id );
-				
-			  });
-		});
-		$('#orgcity').focusout(function(){
-			var city_key = $('#orgcity').val();
-			$.ajax({
-			    method: "POST",
-			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
-				data: { key: city_key }
-			}).done(function( html ) {
-				var res = jQuery.parseJSON(html)
-				$( "#orgstate_value" ).val( res.state );
-				$( "#orgstate" ).val( res.id );
-				
-			  });
-		});
-  });
 
-  </script>
+
  
 
 
@@ -110,7 +79,7 @@ $(document).ready(function(){
 					<td><?php echo $job['title']; ?></td>
 					<td><?php echo $job['type']; ?></td>
 					<td><?php echo $job['sport']; ?></td>
-					<td><?php echo $job['city_name']; ?></td>
+					<td><?php echo $job['org_city']; ?></td>
 					<td><?php echo $job['organisation_name']; ?></td>
           <?php
              if($usertype==101 || $usertype==102 )

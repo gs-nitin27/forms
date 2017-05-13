@@ -1,39 +1,50 @@
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+        rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+        rel="stylesheet" type="text/css" />
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+        type="text/javascript"></script>
+
+
 
    <script>
 //document.domain = "getsporty.in";
-$(document).ready(function()
-{
-	$('input[value=All]').prop("checked",true);
-  $('#jcity').focusout(function(){
-			var city_key = $('#jcity').val();
-			$.ajax({
-			    method: "POST",
-			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
-				data: { key: city_key }
-			}).done(function( html ) {
-				var res = jQuery.parseJSON(html)
-				$( "#jstate_value" ).val( res.state );
-				$( "#jstate" ).val( res.id );
+// $(document).ready(function()
+// {
+// 	$('input[value=All]').prop("checked",true);
+//   $('#jcity').focusout(function(){
+// 			var city_key = $('#jcity').val();
+// 			$.ajax({
+// 			    method: "POST",
+// 			    url: '<?php// echo site_url('forms/getStateByCity'); ?>',
+// 				data: { key: city_key }
+// 			}).done(function( html ) {
+// 				var res = jQuery.parseJSON(html)
+// 				$( "#jstate_value" ).val( res.state );
+// 				$( "#jstate" ).val( res.id );
 				
-			  });
-		});
-		$('#orgcity').focusout(function(){
-			var city_key = $('#orgcity').val();
-			$.ajax({
-			    method: "POST",
-			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
-				data: { key: city_key }
-			}).done(function( html ) {
-				var res = jQuery.parseJSON(html)
-				$( "#orgstate_value" ).val( res.state );
-				$( "#orgstate" ).val( res.id );
+// 			  });
+// 		});
+// 		$('#orgcity').focusout(function(){
+// 			var city_key = $('#orgcity').val();
+// 			$.ajax({
+// 			    method: "POST",
+// 			    url: '<?php// echo site_url('forms/getStateByCity'); ?>',
+// 				data: { key: city_key }
+// 			}).done(function( html ) {
+// 				var res = jQuery.parseJSON(html)
+// 				$( "#orgstate_value" ).val( res.state );
+// 				$( "#orgstate" ).val( res.id );
 				
-			  });
-		});
-});
+// 			  });
+// 		});
+// });
 
 function save()
 {
+  alert($("#jsports").val());
   $("#imagelodar").show();
 var data1 = {
     "id"                      : 0, 
@@ -64,21 +75,22 @@ var data1 = {
     "tournament_links"        : $("#evlink").val(),
     "start_date"              : $("#startD").val(),
     "end_date"                : $("#endD").val(),
-    "sports"                  : $("#jsports").val(),
+    "sports"                  : $("#jsports").val().toString(),
     "image"                   : $("#photo_url").val(),
-    "gender"                  : $('input[name=gender]:checked').val()
+    "gender"                  : $("#gender").val()
 
 };
 var url = '<?php echo site_url();?>';
 console.log(JSON.stringify(data1));
-var data = JSON.stringify(data1);
+var data = eval(data1);//JSON.stringify(data1);
   $.ajax({
 
     type: "POST",
     url: '<?php echo site_url('forms/saveJob'); ?>',
-    data: "data="+data,
+    data: data,
     dataType: "text",
     success: function(result) {
+    //  alert(result);
        if(result == '1')
          {
          $.confirm({
@@ -194,20 +206,67 @@ var data = JSON.stringify(data1);
          <label id="jtype_error" hidden>Job Type is required .</label> 
 					</div >
          
+
+       <script type="text/javascript">
+        $(function () {
+            $('#lstFruits').multiselect({
+                includeSelectAllOption: true
+            });
+            $('#btnSelected').click(function () {
+                var selected = $("#lstFruits option:selected");
+                var message = "";
+                var i =0;
+                selected.each(function () {
+                  if(i==0)
+                  {
+                    message +=$(this).val();
+                    i = i+1;
+                  }
+                  else
+                  {
+                    i = i+1;
+                    message += " , " + $(this).val() ;
+                  }
+                });
+                
+                $("#jsports").val(message);
+            });
+        });
+    </script>
+    <div class="form-group">
+    <?php  $sports = $this->register->getSport();?>
+    <select id="lstFruits" class="form-control"  multiple="multiple">
+       <?php if(!empty($sports)){
+                        foreach($sports as $sport){?>
+        <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
+         <?php   }
+                           } 
+                         ?>
+    </select>
+    <input type="button" id="btnSelected" value="Get Selected" />
+     </div>
+    <div class="form-group">
+    <input type="text" id="jsports" class="form-control" name="sport" disabled="">
+   </div>
+
+
+
+
+<!-- 
              <div class="form-group">
-                <?php  $sports = $this->register->getSport();?>
+                <?php//  $sports = $this->register->getSport();?>
                 <label for="sports">Sport</label>
                 <select id="jsports" class="form-control" name="sport">
                 <option >-select-</option> 
-                <?php if(!empty($sports)){
-                        foreach($sports as $sport){?>
-                <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
-                <?php   }
-                           } 
+                <?php// if(!empty($sports)){
+                      //  foreach($sports as $sport){?>
+                <option value ="<?php// echo $sport['sports'];?>"><?php// echo $sport['sports'];?> </option>
+                <?php //  }
+                        //   } 
                          ?>
                 </select>
                 <label id="jsports_error" hidden>Sport Name is required .</label> 
-                </div>
+                </div> -->
 					<div class="form-group">
 					  <label for="city">Job Location</label>
 					  <input type="text" class="form-control"  id="jcity" placeholder="Enter City">
@@ -300,11 +359,12 @@ var data = JSON.stringify(data1);
                 <div class="box-body">
 					 <div class="form-group">
 					  <label for="eventName">Work Experience</label>
-					   <select id="jexp" class="form-control">
-							<?php for($i=0; $i<=10; $i++){?>	
-							<option value="<?php echo $i;?>"><?php echo str_pad($i, 2, '0', STR_PAD_LEFT)." year";?></option>
-							<?php } ?>
-						</select>
+            <input type="text" class="form-control" id="jexp">
+					   <!-- <select id="jexp" class="form-control">
+							<?php// for($i=0; $i<=10; $i++){?>	
+							<option value="<?php// echo $i;?>"><?php// echo str_pad($i, 2, '0', STR_PAD_LEFT)." year";?></option>
+							<?php// } ?>
+						</select> -->
              <label id="jexp_error" hidden>Work Experience is required .</label> 
 					</div>
 					<div class="form-group">
@@ -322,7 +382,18 @@ var data = JSON.stringify(data1);
 					  <input type="text" class="form-control"  id="jreq">
            <!--   <label id="name_error" hidden>Event Name is required .</label>  -->
 					</div>
-					<div class="form-group">
+
+          <div class="form-group">
+          <label for="sports">Gender</label>
+            <select id="gender" class="form-control" >
+              <option>-Select-</option>
+              <option id="Male">Male</option>
+              <option id="Female">Female</option>
+              <option id="Transgender">All</option>
+            </select>
+          </div>
+
+				<!-- 	<div class="form-group">
 					  <label for="link">Gender</label>
                   <div class="radio">
                     <label>
@@ -342,7 +413,7 @@ var data = JSON.stringify(data1);
                      All 
                     </label>
                   </div>
-                </div>
+                </div> -->
 				</div>
               </div>
               <!-- /.tab-pane -->
@@ -395,6 +466,20 @@ var data = JSON.stringify(data1);
 </div>
 </div>
 </section>
+
+<script type="text/javascript">
+var expanded = false;
+function showCheckboxes() {
+  var checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
+</script>
 
 <script type="text/javascript">
   $(document).ready(function (e) {
@@ -504,7 +589,7 @@ $(function() {
    
     $("#save").click(function(){
        
-       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 && $("#jcity").val() !="" && $("#jdesc").val() !="" &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" && $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#orgcity").val() !="" &&   $("#email").val() !="" && $("#cont").val() !="" &&  $("#jadd1").val() !="" &&  $("#jsports").val() !=0){
+       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 &&  $("#jdesc").val() !="" &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&   $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#email").val() !=""  &&  $("#jadd1").val() !="" &&  $("#jsports").val() !=0){
             save();
        }else{
                   // alert($("#2").val());
@@ -531,12 +616,12 @@ $(function() {
                 }else{
                   $("#jtype_error").hide();
                 }
-                if($("#jcity").val() ==""){
-                  $("#jcity_error").show();
-                  $("#jcity_error").css("color","red");
-                }else{
-                  $("#jcity_error").hide();
-                }
+                // if($("#jcity").val() ==""){
+                //   $("#jcity_error").show();
+                //   $("#jcity_error").css("color","red");
+                // }else{
+                //   $("#jcity_error").hide();
+                // }
                 // if($("#jpin").val() !=""){
                 //   $("#jpin_error").show();
                 //   $("#jpin_error").css("color","red");
@@ -597,12 +682,12 @@ $(function() {
                 }else{
                   $("#orgName_error").hide();
                 }
-                if($("#contact").val() ==""){
-                  $("#contact_error").show();
-                  $("#contact_error").css("color","red");
-                }else{
-                  $("#contact_error").hide();
-                }
+                // if($("#contact").val() ==""){
+                //   $("#contact_error").show();
+                //   $("#contact_error").css("color","red");
+                // }else{
+                //   $("#contact_error").hide();
+                // }
                 if($("#add1").val() ==""){
                   $("#add1_error").show();
                   $("#add1_error").css("color","red");
@@ -615,12 +700,12 @@ $(function() {
                 }else{
                   $("#add2_error").hide();
                 }
-                if($("#orgcity").val() ==""){
-                  $("#orgcity_error").show();
-                  $("#orgcity_error").css("color","red");
-                }else{
-                  $("#orgcity_error").hide();
-                }
+                // if($("#orgcity").val() ==""){
+                //   $("#orgcity_error").show();
+                //   $("#orgcity_error").css("color","red");
+                // }else{
+                //   $("#orgcity_error").hide();
+                // }
                 // if($("#orgpin").val() !=""){
                 //   $("#orgpin_error").show();
                 //   $("#orgpin_error").css("color","red");
@@ -633,12 +718,12 @@ $(function() {
                 }else{
                   $("#email_error").hide();
                 }
-                if($("#cont").val() ==""){
-                  $("#cont_error").show();
-                  $("#cont_error").css("color","red");
-                }else{
-                  $("#cont_error").hide();
-                }
+                // if($("#cont").val() ==""){
+                //   $("#cont_error").show();
+                //   $("#cont_error").css("color","red");
+                // }else{
+                //   $("#cont_error").hide();
+                // }
                 // if($("#orgstate").val() ==""){
                 //   $("#orgstate_error").show();
                 //   $("#orgstate_error").css("color","red");

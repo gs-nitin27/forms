@@ -1,9 +1,13 @@
 
 <link rel="stylesheet" href="<?php echo base_url('assets/jquery-ui.css'); ?>" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo base_url('assets/ui.theme.css'); ?>" type="text/ css" media="all" />
+ 
+
 <script>
+
 function save()
 {
+  //alert($("#dates-field2").val());
 $('#imagelodar').show();
 var summary1=$("#rsummary").val();
 
@@ -18,7 +22,7 @@ var data1 = {
     "id"                      : 0, 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
-    "url"                     : "",
+    "url"                     : $("#myId").text(),
     "description"             : description3, 
     "summary"                 : string,
     "keyword"                 : "",
@@ -28,7 +32,7 @@ var data1 = {
     "image"                   : $("#photo_url").val(),
     "date_created"            : $("#date_created").val(),
 	  "token"                   : $("#token").val(),
-    "sport"                   : $("#sport").val()
+    "sport"                   : $("#dates-field2").val().toString()
 };
 
 console.log(JSON.stringify(data1));
@@ -117,7 +121,7 @@ var data = eval(data1);//JSON.stringify(data1);
                $name=$data['adminid'];
           }else
           {
-          $name=$data['userid'];
+             $name=$data['userid'];
           }
           
 
@@ -132,14 +136,18 @@ var data = eval(data1);//JSON.stringify(data1);
                 </div>
             <script>
             $(document).ready(function() {
+             $('#abc').hide();  
+             $('#videobutton').hide();
             $('#types').change(function(){
             if($('#types').val() == 'video')
            {
-            $('#abc').hide();     
+            $('#abc').hide();   
+            $('#videobutton').show();  
             }
             if($('#types').val() == 'text')
             {
              $('#abc').show();
+             $('#videobutton').hide();
             }
             });
             });
@@ -166,6 +174,27 @@ var data = eval(data1);//JSON.stringify(data1);
                 <input type="text" class="form-control" maxlength="50" name="rtitle" id="rtitle" placeholder="Enter title">
                 <label id="title_error" hidden="">A title is required</label>
                 </div>
+
+               
+               <div class="form-group">
+               <div class="col-md-4">
+               <div class="form-group">
+               <label class="exampleInputEmail1" for="rolename">Sports</label>
+              <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple">
+             <?php  $sports = $this->register->getSport();?>
+             <?php if(!empty($sports)){
+                        foreach($sports as $sport){?>
+             <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
+         <?php   }
+                           } 
+                         ?>
+        </select>
+        </div>
+     </div>
+     <input type="text" name="sports" class="form-control">
+    </div>
+
+  
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
                 <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
@@ -181,11 +210,78 @@ var data = eval(data1);//JSON.stringify(data1);
            <label for="exampleInputEmail1">Description</label>
            <textarea class="form-control" name="description" id="rdescription" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
             </div>
+
+
+  <button type="button" id="videobutton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Youtube Video Url</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+
+
+         <div class="form-group">Enter a YouTube URL:
+         <input id="myUrl" class="form-control" type="text"/>
+         </div>
+         <div class="form-group">
+         <button type="button" class="btn btn-default" id="myBtn" onclick='mybtn()';>Upload</button>
+         </div>
+
+       
+          <div> YouTube ID: <span id="myId"></span>
+          </div>
+          <div> YouTube ID: <input type="text" name=""  id="myId1" value=""></div>
+
+         <div>Embed code: <pre id="myCode"></pre></div>
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+
+
+
+
+
+<script type="text/javascript">
+$(function() {
+  //alert("fssa");
+    $('.multiselect-ui').multiselect({
+
+        includeSelectAllOption: true
+    });
+});
+</script>
+
+
+
                  <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location">
                 <label id="location_error" hidden="">A location is required</label>
                 </div>
+
+
+               
+
+
+
                 <div class="form-group">
                 <label for="eventtype">Topic Of The Article</label>
                 <select id="article" class="form-control" name="topic_of_artical">
@@ -199,20 +295,46 @@ var data = eval(data1);//JSON.stringify(data1);
                 </select>
                 <label id="article_error" hidden="">Article type is required</label>
                 </div>
-                <div class="form-group">
-                <?php  $sports = $this->register->getSport();?>
+
+
+      
+
+    <!-- <div class="form-group">
+    <label for="sports">Sport</label>
+    <?php//  $sports = $this->register->getSport();?>
+    <select id="lstFruits" class="form-control"  multiple="multiple">
+       <?php// if(!empty($sports)){
+                       // foreach($sports as $sport){?>
+        <option value ="<?php// echo $sport['sports'];?>"><?php //echo $sport['sports'];?> </option>
+         <?php //  }
+                      //     } 
+                         ?>
+    </select>
+    <input type="button" id="btnSelected" value="Get Selected" />
+     </div>
+    <div class="form-group">
+    <input type="text" id="sport" class="form-control" name="sport" disabled="">
+     <label id="sport_error" hidden>Sport Name is required .</label>
+   </div>
+ -->
+   
+
+                <!-- <div class="form-group">
+                <?php//  $sports = $this->register->getSport();?>
                 <label for="sports">Sport</label>
                 <select id="sport" class="form-control" name="sport">
                 <option >-select-</option> 
-                <?php if(!empty($sports)){
-                        foreach($sports as $sport){?>
-                <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
-                <?php   }
-                           } 
+                <?php// if(!empty($sports)){
+                      //  foreach($sports as $sport){?>
+                <option value ="<?php// echo $sport['sports'];?>"><?php// echo $sport['sports'];?> </option>
+                <?php //  }
+                         //  } 
                          ?>
                 </select>
-                </div>
-                </form>
+                </div> -->
+
+
+            </form>
             <form id="form" action="" method="post" enctype="multipart/form-data">
             <div class="container">
             <div class="row">    
@@ -250,6 +372,7 @@ var data = eval(data1);//JSON.stringify(data1);
             <div class="box-footer">
             <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
             </div>
+         
             </div>
             </div>
             </div>
@@ -257,7 +380,40 @@ var data = eval(data1);//JSON.stringify(data1);
             </section>
 </div>
 
+<script type="text/javascript">
+  function getId(url) {
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
 
+    if (match && match[2].length == 11) {
+        return match[2];
+    } else {
+        return 'error';
+    }
+}
+
+var myId;
+
+// $('#myBtn').click(function () {
+  function mybtn(){
+    var myUrl = $('#myUrl').val();
+    if(myUrl)
+    {
+    myId = getId(myUrl);
+    
+    $('#myId').html(myId);
+    
+    $('#myCode').html('<iframe width="560" height="315" src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>');
+// });
+}
+else
+{
+  alert("Please Give YouTube URL");
+}
+}
+
+
+</script>
 <script type="text/javascript">
   $(document).ready(function (e) {
   $("#form").on('submit',(function(e) {
@@ -466,17 +622,6 @@ $(function() {
         else{
           $("#title_error").hide(); 
         }
-      
-      
-        // var url = $('#rurl').val();
-        // if(url == "")
-        // {
-        //   $("#url_error").show();
-        //   $("#url_error").css('color', 'red');
-        // }
-        // else{
-        //   $("#url_error").hide(); 
-        // }
         var summary = $('#rsummary').val();
         if(summary == "")
         {
@@ -486,15 +631,6 @@ $(function() {
         else{
           $("#summary_error").hide(); 
         }
-        // var location = $('#rlocation').val();
-        // if(location == "")
-        // {
-        //   $("#location_error").show();
-        //   $("#location_error").css('color', 'red');
-        // }
-        // else{
-        //   $("#location_error").hide(); 
-        // }
         var article = $('#article').val();
         if(article == "")
         {
@@ -505,7 +641,35 @@ $(function() {
           $("#article_error").hide(); 
         }
        if(title!="" &&  article!="" && location!="" &&summary!=""){
-          save();
+         save();
+       // alert($("#dates-field2").val());
         }
     });
   </script> 
+
+ <!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+ </script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+        rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+        rel="stylesheet" type="text/css" />
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+        type="text/javascript"></script>
+  <script type="text/javascript">
+        var tt =  $.noConflict();
+        tt(function () {
+            tt('#lstFruits').multiselect({
+                includeSelectAllOption: true
+            });
+            tt('#btnSelected').click(function () {
+                var selected = tt("#lstFruits option:selected");
+                var message = "";
+                selected.each(function () {
+                    message +=tt(this).val() + " , ";
+                });
+                
+                tt("#sport").val(message);
+            });
+        });
+    </script> -->

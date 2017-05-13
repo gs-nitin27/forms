@@ -44,14 +44,12 @@
         if($usertype==101 || $usertype==102 )
          {
             $events = $this->register->getEventInfo();
-           // print_r($events);
          }
         else
          {      
             $data=$this->session->userdata('item');
             $userid=$data['userid']; 
             $events = $this->register->getUserEventInfo($userid);
-          //  print_r($events);
          }
 				if(!empty($events)){
 						foreach($events as $event)
@@ -61,8 +59,8 @@
 				  <td><?php echo $i++; ?></td> 
 					<td><?php echo $event['name']; ?></td>
 					<td><?php echo $event['type']; ?></td>
-					<td><?php echo $event['sports']; ?></td>
-					<td><?php echo $event['city']; ?></td>
+					<td><?php echo $event['sport_name']; ?></td>
+					<td><?php echo $event['location']; ?></td>
 					<td><?php echo $event['organizer_name']; ?></td>
 				<td>
 					<?php if(@strtotime($event['end_date']) < time()){?>
@@ -77,10 +75,10 @@
             ?>
           <td>
           <?php if($event['publish'] ==1){?>
-          <button class="badge bg-red" onclick="myfunction(<?php echo $event['infoId'];?>,2)"><?php echo "Activate";?>
+          <button class="badge bg-red" onclick="myfunction(<?php echo $event['id'];?>,2)"><?php echo "Activate";?>
           </button>
           <?php }else{?> 
-          <button class="badge bg-green" onclick="myfunction(<?php echo $event['infoId'];?>,1)"><?php echo "Deactivate";?></button>
+          <button class="badge bg-green" onclick="myfunction(<?php echo $event['id'];?>,1)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
   <?php } else
@@ -88,10 +86,10 @@
   ?>
    <td>
      <?php if($event['publish'] == 0){?>
-          <button class="badge bg-red" onclick="myfunction(<?php echo $event['infoId'];?>,1)"><?php echo "Activate";?>
+          <button class="badge bg-red" onclick="myfunction(<?php echo $event['id'];?>,1)"><?php echo "Activate";?>
           </button>
           <?php }else{?> 
-          <button class="badge bg-green" onclick="myfunction(<?php echo $event['infoId'];?>,0)"><?php echo "Deactivate";?></button>
+          <button class="badge bg-green" onclick="myfunction(<?php echo $event['id'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
 <?php  }
@@ -105,7 +103,7 @@
                                 'h' => 7,
                                 'i' => 8,
                                 'j' => 9);
-                                 $num=$event['infoId']; //your value
+                                 $num=$event['id']; //your value
                                  $temp='';
                                  $arr_num=str_split ($num);
                                 foreach($arr_num as $data)

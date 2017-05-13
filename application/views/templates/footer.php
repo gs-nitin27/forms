@@ -15,6 +15,7 @@
 <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
 <!-- Morris.js charts -->
 <script type="text/javascript" src="<?php echo base_url('assets/raphael-min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/multipleselect.js'); ?>"></script>
 <!-- <script type="text/javascript" src="<?//php echo base_url('assets/plugins/morris/morris.min.js'); ?>"></script> -->
 <link rel="stylesheet" href="<?php echo base_url('assets/jquery-confirm.min.css'); ?>">
 

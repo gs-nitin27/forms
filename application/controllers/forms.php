@@ -383,48 +383,57 @@ public function CreateEvent()
     }
 public function event()
 {
-$data1 = json_decode($_REQUEST[ 'data' ]);
+//$data1 = json_decode($_REQUEST[ 'data' ]);
 $item = new stdClass();
 // echo ($data1->start_date); exit;
 
-$item->id                        = $data1->id;
-$item->userid                    = $data1->userid;
-$item->type                      = $data1->type;
-$item->name                      = $data1->name;
-$item->address1                  = $data1->address_line1;
-$item->address2                  = $data1->address_line2;
-$item->city                      = $data1->city;
-$item->pin                       = $data1->pin;
-$item->description               = $data1->description;
-$item->eligibility1              = $data1->eligibility1;
-$item->eligibility2              = $data1->eligibility2;
-$item->state                     = $data1->state;
-$item->tandc1                    = $data1->terms_and_conditions1;
-$item->tandc2                    = $data1->terms_and_conditions2;
-$item->organizer_name            = $data1->organizer_name;
-$item->mobile                    = $data1->mobile;
-$item->org_address1              = $data1->organizer_address_line1;
-$item->org_address2              = $data1->organizer_address_line2;
-$item->organizer_city            = $data1->organizer_city;
-$item->organizer_pin             = $data1->organizer_pin;
-$item->organizer_state           = $data1->organizer_state;
-$item->event_links               = $data1->event_links;
-$item->start_date                = $data1->start_date;//strtotime();
-$item->end_date                  = $data1->end_date;//strtotime($data1['end_date']);
-$item->sport                     = $data1->sport;
-$item->sport_name                = $data1->sport_name;
-$item->entry_start_date          = $data1->entry_start_date;//strtotime($data1['entry_start_date']);
-$item->entry_end_date            = $data1->entry_end_date;//strtotime($data1['entry_end_date']);
-$item->file_name                 = $data1->file_name;
-$item->email_app_collection      = $data1->email_app_collection;
-$item->image                     = $data1->image;
+//print_r($_POST);
+
+$item->id                        = $_POST['id'];
+$item->userid                    = $_POST['userid'];
+$item->type                      = $_POST['type'];
+$item->name                      = $_POST['name'];
+$item->address1                  = $_POST['address_line1'];
+$item->address2                  = $_POST['address_line2'];
+$item->city                      = $_POST['city'];
+$item->pin                       = $_POST['pin'];
+$item->description               = $_POST['description'];
+$item->eligibility1              = $_POST['eligibility1'];
+$item->eligibility2              = $_POST['eligibility2'];
+$item->state                     = $_POST['state'];
+$item->tandc1                    = $_POST['terms_and_conditions1'];
+$item->tandc2                    = $_POST['terms_and_conditions2'];
+$item->organizer_name            = $_POST['organizer_name'];
+$item->mobile                    = $_POST['mobile'];
+$item->org_address1              = $_POST['organizer_address_line1'];
+$item->org_address2              = $_POST['organizer_address_line2'];
+$item->organizer_city            = $_POST['organizer_city'];
+$item->organizer_pin             = $_POST['organizer_pin'];
+$item->organizer_state           = $_POST['organizer_state'];
+$item->event_links               = $_POST['event_links'];
+$item->start_date                = $_POST['start_date'];//strtotime();
+$item->end_date                  = $_POST['end_date'];//strtotime($data1['end_date']);
+$item->sport                     = $_POST['sport'];
+$item->sport_name                = $_POST['sport_name'];
+$item->entry_start_date          = $_POST['entry_start_date'];//strtotime($data1['entry_start_date']);
+$item->entry_end_date            = $_POST['entry_end_date'];//strtotime($data1['entry_end_date']);
+$item->file_name                 = $_POST['file_name'];
+$item->email_app_collection      = $_POST['email_app_collection'];
+$item->image                     = $_POST['image'];
  
 $this->load->model('register');
 $res = $this->register->saveEvent($item);
 
 if($res == '1')
  {
- echo "1";
+    $event_type = $this->register->cheakeventtype($item->type);
+  //  print_r($event_type);
+    if(!$event_type)
+    {
+          $new_type = $this->register->CreateEventType($item->type);  
+    } 
+
+echo "1";
 
  }
 else
@@ -433,9 +442,9 @@ else
 }
 
 public function getEvent(){
-		$data['middle'] = 'event/index';
 
-	  	$this->load->view('templates/template',$data);
+	    	$data['middle'] = 'event/index'; 
+	    	$this->load->view('templates/template',$data);
      // $this->load->view('templates/template');
 	}
 	
@@ -490,38 +499,38 @@ public function CreateJob()
 
 public function saveJob()
 {
-$data1 = json_decode($_REQUEST['data']);
+//$data1 = json_decode($_REQUEST['data']);
 
 $item  = new stdClass(); 
 
-//print_r($data1);die;
+//print_r($_POST);die;
 
-$item->id                    = $data1->id;
-$item->userid                = $data1->userid;
-$item->title                 = $data1->title;
-$item->type                  = $data1->type;
-$item->sports                = $data1->sports;
-$item->gender                = $data1->gender;
-$item->work_exp              = $data1->work_experience;
-$item->desc                  = $data1->description;
-$item->desiredskill          = $data1->desired_skills;
-$item->qualification         = $data1->qualification;
-$item->keyreq                = $data1->key_requirement;
-$item->org_address1          = $data1->org_address1;
-$item->org_address2          = $data1->org_address2;
-$item->org_city              = $data1->org_city;
-$item->org_state             = @$data1->org_state;
-$item->org_pin               = $data1->org_pin;
-$item->org_name              = $data1->organisation_name;
-$item->about                 = $data1->about;
-$item->address1              = $data1->address_line1; 
-$item->address2              = $data1->address_line1; 
-$item->state                 = $data1->state;
-$item->city                  = $data1->city;
-$item->pin                   = $data1->pin;  
-$item->contact               = $data1->contact;
-$item->image                 = $data1->image;
-$item->email                 = $data1->email_app_collection;
+$item->id                    = $_POST['id'];
+$item->userid                = $_POST['userid'];
+$item->title                 = $_POST['title'];
+$item->type                  = $_POST['type'];
+$item->sports                = $_POST['sports'];
+$item->gender                = $_POST['gender'];
+$item->work_exp              = $_POST['work_experience'];
+$item->desc                  = $_POST['description'];
+$item->desiredskill          = $_POST['desired_skills'];
+$item->qualification         = $_POST['qualification'];
+$item->keyreq                = $_POST['key_requirement'];
+$item->org_address1          = $_POST['org_address1'];
+$item->org_address2          = $_POST['org_address2'];
+$item->org_city              = $_POST['org_city'];
+$item->org_state             = $_POST['org_state'];
+$item->org_pin               = $_POST['org_pin'];
+$item->org_name              = $_POST['organisation_name'];
+$item->about                 = $_POST['about'];
+$item->address1              = $_POST['address_line1']; 
+$item->address2              = $_POST['address_line1'];
+$item->state                 = $_POST['state'];
+$item->city                  = $_POST['city'];
+$item->pin                   = $_POST['pin'];
+$item->contact               = $_POST['contact'];
+$item->image                 = $_POST['image'];
+$item->email                 = $_POST['email_app_collection'];
 //print_r($item);die();
 $this->load->model('register');
 $res = $this->register->create_job($item);
@@ -773,6 +782,8 @@ public function SavecreateResources()
 {//die();
 $item  = new stdClass(); 
 
+//print_r($_POST['sport']);die;
+
 $item->id                    = $_POST['id'];//$data2->id;
 $item->userid                = $_POST['userid'];//$data2->userid;
 $item->title                 = mysql_real_escape_string($_POST['title']);//mysql_real_escape_string($data2->title);
@@ -800,13 +811,13 @@ $item  = new stdClass();
 $item->id                    = $_REQUEST['id'];
 $item->userid                = $_REQUEST['userid'];//$data2->userid;
 $item->title                 = mysql_real_escape_string($_REQUEST['title']);//mysql_real_escape_string($data2->title);
-$item->url                   = $_REQUEST['url'];//$data2->url;
+$item->url                   = mysql_real_escape_string($_REQUEST['url']);//$data2->url;
 $item->status                = $_REQUEST['status'];//$data2->status;
-$item->summary               = $_REQUEST['summary'];//mysql_real_escape_string($data2->summary);
+$item->summary               = mysql_real_escape_string($_REQUEST['summary']);//mysql_real_escape_string($data2->summary);
 $item->keyword               = $_REQUEST['keyword'];//$data2->keyword;
 $item->description           = mysql_real_escape_string($_REQUEST['description']);//mysql_real_escape_string($data2->description);
 $item->topic_of_artical      = $_REQUEST['topic_of_artical'];//$data2->topic_of_artical;
-$item->sport                 = $_REQUEST['sport'];//$data2->sport;
+$item->sport                 = mysql_real_escape_string($_REQUEST['sport']);//$data2->sport;
 $item->location              = $_REQUEST['location'];//$data2->location;
 $item->image                 = $_REQUEST['image'];//$data2->image;
 $item->token                 = $_REQUEST['token'];//$data2->token;
@@ -2413,7 +2424,7 @@ public function user_register()
 
 public function sendmail($email)
 {
-	          require('class.phpmailer.php');
+	            require('class.phpmailer.php');
               $mail = new PHPMailer(true);
               $to=$email;
               $from="info@darkhorsesports.in";
@@ -2489,7 +2500,7 @@ public function sendmail($email)
 
 public function test()
 {
-     $data['middle'] = 'Performance/test';
+     $data['middle'] = 'Performance/index';
      $this->load->view('templates/template' , $data);
 
 }
@@ -2562,6 +2573,62 @@ else{
   //$this->register->deletePublishContent($data2->id);
 
 }
+}
+
+public function eventbugmail()
+{
+     
+     $this->load->model('register');
+     $useremail =  $this->register->getuseremail($_POST['userid']);
+     if(!$useremail)
+     {
+       print_r("expression");
+      
+     }
+     else
+     {
+      $email = $useremail[0]['email'];
+    
+      $subject="Event Bug List";
+      $this->bugemail($email,$_POST['buglist'],$subject);
+     }
+}
+
+public function bugemail($email , $buglist,$subject)
+{              
+              $html ="";
+              $buglist = json_decode($buglist);
+              $i =1;
+              foreach ($buglist as $key => $value) {
+
+               $html .=  '<p class="setting"><span><b>'.$i.' :  </b>'.$value.'</span></p>';
+               $i = $i+1;
+              }
+
+             require('class.phpmailer.php');
+              $mail = new PHPMailer(true);
+              $to=$email;
+              $from="info@darkhorsesports.in";
+              $from_name="Getsporty";
+              $subject=$subject;
+              $mail->IsSMTP(); // enable SMTP
+              $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
+              $mail->SMTPAuth = true;  // authentication enabled
+              $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+              $mail->Host = 'smtp.gmail.com';
+              //$mail->Host = 'smtp.gmail.com';
+              $mail->Port = 465; 
+              $mail->Username ="info@darkhorsesports.in";  
+              $mail->Password = "2016Darkhorse";           
+              $mail->SetFrom($from, $from_name);
+              $mail->Subject = $subject;
+              $mail->Body = $html; 
+               $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
+               $mail->AltBody = $txt; 
+               $mail->AddAddress($to);
+               $mail->Send();
+             
+              echo "1";
 }
 
 }

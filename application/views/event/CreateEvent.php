@@ -1,42 +1,5 @@
 
 <script>
-$(document).ready(function(){
-		$('#city').focusout(function(){
-			var city_key = $('#city').val();
-			$.ajax({
-			    method: "POST",
-			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
-				data: { key: city_key }
-			}).done(function( html ) {
-				var res = jQuery.parseJSON(html)
-				$( "#state_value" ).val( res.state );
-				$( "#state" ).val( res.id );
-			  });
-		});
-		$('#orgcity').focusout(function(){
-			var city_key = $('#orgcity').val();
-			$.ajax({
-			    method: "POST",
-			    url: '<?php echo site_url('forms/getStateByCity'); ?>',
-				data: { key: city_key }
-			}).done(function( html ) {
-				var res = jQuery.parseJSON(html)
-				$( "#orgstate_value" ).val( res.state );
-				$( "#orgstate" ).val( res.id );
-			  });
-		});
-  $('#filename').on('change', function()
-    {
-      $("#preview").html('');
-      $("#preview").html('<img src="loader.gif" alt="Uploading...."/>');
-      $("#con").ajaxForm(
-      {
-        target: '#preview'
-      }).submit();
-    });
- });
- 
-
 function save()
 {
 $("#imagelodar").show();
@@ -44,9 +7,7 @@ $("#imagelodar").show();
 var sport = $("#sport").val();
 var sportdata= sport.split(',');
 
-alert(sportdata[0]);
 
-//alert($("#sport").val());
 
 var data1 = {
     "id"                      : 0, 
@@ -83,11 +44,11 @@ var data1 = {
 };
 var url = '<?php echo site_url();?>';
 console.log(JSON.stringify(data1));
-var data = JSON.stringify(data1);
+var data =  eval(data1);//JSON.stringify(data1);
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/event'); ?>',
-    data: "data="+data,
+    data: data,
     dataType: "text",
     success: function(result) 
     {
@@ -194,23 +155,51 @@ var data = JSON.stringify(data1);
 					  <input type="text" class="form-control"  id="evname" placeholder="Enter Event">
 					  <label id="name_error" hidden>Event Name is required .</label> 
 					</div >
-					<div class="form-group">
+
+                    
+				 <div class="form-group">
 						<?php  $types = $this->register->getEventType();
-							
 						?>
 					  <label for="eventtype">Event Type</label>
-						<select id="evtype" class="form-control" >
+						<select id="evtype2" class="form-control" >
 						<option value="0">- Select -</option> 
 							<?php if(!empty($types)){
 								
 									foreach($types as $type){?>
-								<option value ="<?php echo $type['id'];?>"><?php echo $type['type'];?> </option>
+								<option value ="<?php echo $type['type'];?>"><?php echo $type['type'];?> </option>
 							<?php 	}
 								  }	
 							?>
 						</select>
-						<label id="type_error" hidden>Event Type is required .</label> 
-					</div >
+					  </div>
+    
+
+				        <script type="text/javascript">
+				        $("select#evtype2").change(function(){
+				        var selectedCountry = $("#evtype2 option:selected").val();
+				         if(selectedCountry == 'Other')
+				         {
+                                $("#otherevent").show();
+                                $("#evtype").val("");
+				         }
+				         else
+				         {      
+
+				         	    $("#otherevent").hide();
+				         	    $("#evtype").val(selectedCountry);
+				         	   // alert(selectedCountry);
+				         }
+				       });
+				        </script>
+
+				     <div class="form-group" id="otherevent" hidden="">
+                     <label for="eventtype">Event Type</label>
+                     <input type="text" class="form-control"  name="eventtype" id="evtype">
+                     <label id="type_error" hidden>Event Type is required .</label>
+                     </div>
+
+
+
 					<div class="form-group">
 						<?php  $sports = $this->register->getSport();
 							
@@ -544,6 +533,11 @@ $(function() {
      var entry_start_date          = $("#estartD").val();
      var entry_end_date            = $("#eendD").val();
      var email_app_collection      = $("#email_app_collection").val();
+
+
+   // alert($("#evtype").val());
+
+    // alert(type);
      // var file_name                 = $("#filename").val();
 
 
@@ -595,7 +589,7 @@ $(function() {
 
 
       
-    if(name != "" && type != 0 &&  address_line1 != "" &&  address_line2 != "" &&  city != "" &&  description != "" && eligibility1 != "" && eligibility2 != "" &&  organizer_name != "" &&  mobile != "" &&  organizer_address_line1 != "" &&   organizer_address_line2 != "" &&  organizer_city != "" &&  start_date != "" &&  end_date != "" &&  sport != 0 &&  entry_start_date != "" &&    entry_end_date != "" && email_app_collection != "")
+    if(name != "" && type != "" &&  address_line1 != "" &&  address_line2 != "" &&  city != "" &&  description != "" && eligibility1 != "" && eligibility2 != "" &&  organizer_name != "" &&  mobile != "" &&  organizer_address_line1 != "" &&   organizer_address_line2 != "" &&  organizer_city != "" &&  start_date != "" &&  end_date != "" &&  sport != 0 &&  entry_start_date != "" &&    entry_end_date != "" && email_app_collection != "")
       {
            save();
       }  
@@ -613,7 +607,7 @@ $(function() {
             		//alert(name);
             $("#name_error").hide();
             }
-            if(type == 0){
+            if(type == ""){
             $("#type_error").show();
             $("#type_error").css("color","red");
             }else{

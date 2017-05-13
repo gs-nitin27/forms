@@ -148,7 +148,15 @@ var data = eval(data1);//JSON.stringify(data1);
         <div class="box-body">
         <?php
           $data=$this->session->userdata('item');
-          $userid=$data['userid'];
+         // $userid=$data['userid'];
+
+           if($data['userType'] == 101 || $data['userType'] == 102)
+          {
+               $userid=$data['adminid'];
+          }else
+          {
+             $userid=$data['userid'];
+          }
         {  ?>
         <div class="form-group">
         <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">

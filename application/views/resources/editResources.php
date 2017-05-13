@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/jquery-ui.css'); ?>" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo base_url('assets/ui.theme.css'); ?>" type="text/ css" media="all" />
 
+
  <script>
 
 function save()
@@ -10,14 +11,10 @@ $('#imagelodar').show();
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
 var string = summary12.replace(/[\/\\<>~{}]/g, '');
-
 var description1=$("#rdescription").val();
 var description2=description1.toString();
 var description3 = description2.replace(/[\/\\<>~{}]/g, '');
-
 var data1 = {
-
-
     "id"                      : $("#rid").val(), 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
@@ -30,7 +27,7 @@ var data1 = {
     "image"                   : $("#photo_url").val(),
     "status"                  : $("#status").val(),
      "token"                  : $("#token").val(),
-    "sport"                   : $("#sport").val()
+    "sport"                   : $("#dates-field2").val().toString()
 };
 //alert(data1);
 console.log(JSON.stringify(data1));
@@ -47,7 +44,7 @@ var data = eval(data1);//JSON.stringify(data1);
      if(result.response == '1')
       {
          //alert(result.response);
-         $.confirm({
+        $.confirm({
         animationSpeed: 1000,
         animationBounce: 3,
         title: 'Congratulations!',
@@ -59,7 +56,7 @@ var data = eval(data1);//JSON.stringify(data1);
                 text: 'Thank You !',
                 btnClass: 'btn-green',
                 action: function(){
-                  window.location.href = url+"/forms/getresources?resources";
+                        window.location.href = url+"/forms/getresources?resources";
                 }
             },
             close: function () {
@@ -69,7 +66,6 @@ var data = eval(data1);//JSON.stringify(data1);
     });
       }else
       {
-
       $('#imagelodar').hide();  
       $.confirm({
               title: 'Encountered an error!',
@@ -89,18 +85,10 @@ var data = eval(data1);//JSON.stringify(data1);
                   }
               }
           });
-
       }
-   
-   
     }
-
-
 });
 }
-    
-
-
 </script>
 
  <div class="content-wrapper">
@@ -148,65 +136,87 @@ var data = eval(data1);//JSON.stringify(data1);
                   <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $name;?>">
             </div>
         <?php }?>
-
               <div class="form-group">
                   <input type="hidden" class="form-control" name="id" id="rid" value="<?php echo $value['id']; ?>">
                 </div>
-
                   <div class="form-group">
                   <input type="hidden" class="form-control" name="status" id="status" value="0">
                    </div>
-
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
                   <input type="text" class="form-control" name="rtitle" maxlength="50" id="rtitle" placeholder="Enter title" value="<?php echo $value['title']; ?>">
                   <label id="title_error" hidden="">A title is required</label>
                 </div>
-        
-        
-        
-        
-        
                 <div class="form-group">
                   <label for="exampleInputEmail1">Link</label>
                   <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link" value="<?php echo $value['url']; ?>">
                 <label id="url_error" hidden="">A valid url is required</label>
                 </div>
-
-
-                <div class="form-group">
-                <label for="exampleInputEmail1">Summary</label>
-                   <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['summary']; ?></textarea>
-               <label id="summary_error" hidden="">A summary is required</label>
-                </div>
-                <div id="rem"></div>
-
-            <script>
+                <script type="text/javascript">
+               
+               function loadData(){ 
+                  var sport_value =  $("#sport").val();
+                  var splt_sport =   sport_value.split(",");  
+                  for(var i = 0; i<splt_sport.length ; i++)
+                  {
+                    $("input[value='"+splt_sport[i]+"']").prop('checked', true);  
+                  } 
+                }
+                
+                $(function() {
+               $('.multiselect-ui').multiselect({
+                      includeSelectAllOption: true
+                    });
+                  });
+                  </script>
+              <div class="form-group">
+              <div class="col-md-4">
+              <div class="form-group">
+              <label class="exampleInputEmail1" for="rolename">Sports</label>
+              <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" >
+               <?php  $sports = $this->register->getSport();?>
+               <?php if(!empty($sports)){
+                        foreach($sports as $sport){?>
+              <option id="<?php echo $sport['sports'];?>" name="<?php echo $sport['sports'];?>" value ="<?php echo $sport['sports'];?>" ><?php echo $sport['sports'];?></option>
+                  <?php   }
+                           } 
+                         ?>
+        </select>
+        </div>
+     </div>
+   <input type="text" id="sport" class="form-control" name="sport" value="<?php echo $value['sport']; ?>" disabled="">
+    </div>
+          <div class="form-group">
+          <label for="exampleInputEmail1">Summary</label>
+          <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['summary']; ?></textarea>
+          <label id="summary_error" hidden="">A summary is required</label>
+          </div>
+          <div id="rem"></div>
+          <script>
             document.getElementById('rsummary').onkeyup = function () {
             document.getElementById('rem').innerHTML = "Characters left: " + (360 - this.value.length);
                 };
-            </script>
-        
-
+          </script>
              <div class="form-group">
                   <input type="hidden" class="form-control" id="token" value="<?php echo $value['token']; ?>">
                 </div>
                    <script>
-                 $(document).ready(function() {
-                 
-                  if($('#token').val() == '1')
-                {
-                     $('#abc').show();
-      
-                }
-                   if($('#token').val() == '0')
+                 $(document).ready(function() 
                  {
-                  $('#abc').hide();
-                 }
-                    });
-                    
-                       </script>
 
+                   window.onload = loadData();
+
+
+                  if($('#token').val() == '1')
+                  {
+                     $('#abc').show();
+                  }
+                   if($('#token').val() == '0')
+                  {
+                   $('#abc').hide();
+                  }
+                  });
+                  </script>
                    <div class="form-group" id="abc">
                    <label for="exampleInputEmail1">Description</label>
                    <textarea class="form-control" name="description" id="rdescription" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['description']; ?></textarea>
@@ -231,27 +241,23 @@ var data = eval(data1);//JSON.stringify(data1);
                       <option value ="other">Other</option>
                      </select>
                   <label id="article_error" hidden="">Article type is required</label>
-
                   </div >
 
-
-
-
-                <div class="form-group">
-                        <?php  $sports = $this->register->getSport();
+               <!--  <div class="form-group">
+                        <?php // $sports = $this->register->getSport();
                             
                         ?>
                       <label for="sports">Sport</label>
                         <select id="sport" class="form-control" >
-                        <option ><?php echo $value['sport']; ?></option> 
-                            <?php if(!empty($sports)){
-                                    foreach($sports as $sport){?>
-                                <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
-                            <?php   }
-                                  } 
+                        <option ><?php// echo $value['sport']; ?></option> 
+                            <?php// if(!empty($sports)){
+                                  //  foreach($sports as $sport){?>
+                                <option value ="<?php// echo $sport['sports'];?>"><?php// echo $sport['sports'];?> </option>
+                            <?php  // }
+                               //   } 
                             ?>
                         </select>
-                    </div>
+                    </div> -->
               </div>
               <!-- /.box-body -->
             </form>
@@ -459,7 +465,13 @@ var data = eval(data1);//JSON.stringify(data1);
         });
         </script>
 
-
+<script type="text/javascript">
+$(function() {
+    $('.multiselect-ui').multiselect({
+        includeSelectAllOption: true
+    });
+});
+</script>
 
   <script type="text/javascript">
     

@@ -149,39 +149,60 @@ public function getTournamentCategory()
 	
 public function getJobInfo($id = false)
 {
-	$this->db->select('*, JI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
-    $this->db->from('gs_jobInfo JI');
-	$this->db->join('gs_sports SP', 'SP.id = JI.sport', "left");
-	$this->db->join('location L', 'JI.state = L.id', "left");
-	$this->db->join('location LM', 'JI.org_state = LM.id', "left");
-	if($id > 0){
-		$this->db->where('JI.id', $id);
-	}else{
-		 $this->db->order_by("JI.id", "desc"); 
-	}
-	$query = $this->db->get();
-	$q =  $query->result_array();
-	return $q;
+	    $this->db->select('*');
+		$this->db->from('gs_jobInfo GR');
+		if($id > 0){
+			$this->db->where('GR.id', $id);
+		}else{
+		 $this->db->order_by("GR.id", "desc"); 
+		}
+		$query = $this->db->get();
+		$q =  $query->result_array();
+		return $q;
+	// $this->db->select('*, JI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
+ //    $this->db->from('gs_jobInfo JI');
+	// $this->db->join('gs_sports SP', 'SP.id = JI.sport', "left");
+	// $this->db->join('location L', 'JI.state = L.id', "left");
+	// $this->db->join('location LM', 'JI.org_state = LM.id', "left");
+	// if($id > 0){
+	// 	$this->db->where('JI.id', $id);
+	// }else{
+	// 	 $this->db->order_by("JI.id", "desc"); 
+	// }
+	// $query = $this->db->get();
+	// $q =  $query->result_array();
+	// return $q;
 }
 	
 public function getEventInfo($id = false)
 {
-	    $this->db->select('*, EI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
-		$this->db->from('gs_eventinfo EI');
-		$this->db->join('gs_sports SP', 'SP.id = EI.sport', "left");
-		$this->db->join('location L', 'EI.state = L.id', "left");
-		$this->db->join('location LM', 'EI.organizer_state = LM.id', "left");
-		$this->db->join('gs_eventType ET', 'ET.id = EI.type', "left");
+     $this->db->select('*');
+		$this->db->from('gs_eventinfo GR');
 		if($id > 0){
-			$this->db->where('EI.id', $id);
+			$this->db->where('GR.id', $id);
 		}else{
-			 $this->db->where("publish =1 OR publish=2");
-		     $this->db->order_by("EI.id", "desc"); 
+		 $this->db->order_by("GR.id", "desc"); 
 		}
 		$query = $this->db->get();
 		$q =  $query->result_array();
-		
 		return $q;
+
+	 //    $this->db->select('*, EI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
+		// $this->db->from('gs_eventinfo EI');
+		// $this->db->join('gs_sports SP', 'SP.id = EI.sport', "left");
+		// $this->db->join('location L', 'EI.state = L.id', "left");
+		// $this->db->join('location LM', 'EI.organizer_state = LM.id', "left");
+		// $this->db->join('gs_eventType ET', 'ET.id = EI.type', "left");
+		// if($id > 0){
+		// 	$this->db->where('EI.id', $id);
+		// }else{
+		// 	 $this->db->where("publish =1 OR publish=2");
+		//      $this->db->order_by("EI.id", "desc"); 
+		// }
+		// $query = $this->db->get();
+		// $q =  $query->result_array();
+		
+		// return $q;
 }
 	
 public function getTournamentInfo($id = false)
@@ -755,7 +776,11 @@ public function StatusContent($item)
 
 public function removeimage($id,$image)
 {	 
-         unlink("uploads/resources/".$image);
+        
+		    if(file_exists("uploads/resources/".$image))
+		    {
+		    	 unlink("uploads/resources/".$image);
+		    }
          $update = "UPDATE  `gs_resources` SET  `image` =' ' WHERE `userid` = '$id' ";
          $query = $this->db->query($update);
          if($query)
@@ -932,12 +957,8 @@ public function getUserTournamentInfo($id)
 
 public function getUserEventInfo($id)
 {
-	    $this->db->select('*, EI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
+	    $this->db->select('*');
 		$this->db->from('gs_eventinfo EI');
-		$this->db->join('gs_sports SP', 'SP.id = EI.sport', "left");
-		$this->db->join('location L', 'EI.state = L.id', "left");
-		$this->db->join('location LM', 'EI.organizer_state = LM.id', "left");
-		$this->db->join('gs_eventType ET', 'ET.id = EI.type', "left");
 		if($id > 0){
 
 			$this->db->where('EI.userid', $id);
@@ -1041,22 +1062,36 @@ public function saveCSVImage($id,$image)
 
 public function removejobimage($id,$image)
 {
+	if(file_exists("uploads/job/".$image))
+     {
+		  unlink("uploads/job/".$image);
+     }
     $this->db->where('id', $id);
-    unlink("uploads/job/".$image);
+   
     $this->db->delete('gs_jobInfo', array('image' => $image)); 
 }
 
 public function removeeventimage($id,$image)
 {
+
+	if(file_exists("uploads/event/".$image))
+     {
+		 unlink("uploads/event/".$image);
+     }
     $this->db->where('id', $id);
-    unlink("uploads/event/".$image);
+   
     $this->db->delete('gs_jobInfo', array('image' => $image)); 
 }
 
 public function removetournamentimage($id,$image)
 {
+    
+
+    if(file_exists("uploads/tournament/".$image))
+     {
+		  unlink("uploads/tournament/".$image);
+     }
     $this->db->where('id', $id);
-    unlink("uploads/tournament/".$image);
     $this->db->delete('gs_tournament_info', array('image' => $image)); 
 }
 
@@ -1492,5 +1527,38 @@ public function getrating($userid)
     
 
 }
+
+public function cheakeventtype($type)
+{
+    $query = "SELECT `id`  FROM `gs_eventType` WHERE `type` = '$type'";
+    $sql = $this->db->query($query);
+    $result = $sql->result_array();
+    return $result ;
+
+}
+public function CreateEventType($type)
+{
+   $insert = "INSERT `gs_eventType`(`type`) VALUES('$type')";
+   $data = $this->db->query($insert);
+   if($data)
+   {
+   	return 1;
+   }
+   else
+   {
+   	return 0;
+   }
+
+}
+
+public function getuseremail($id)
+{
+   
+   $query = "SELECT `email` FROM `user` WHERE `userid` = '$id'";
+   $sql = $this->db->query($query);
+   $result = $sql->result_array();
+   return $result;
+}
+
 }
  ?>

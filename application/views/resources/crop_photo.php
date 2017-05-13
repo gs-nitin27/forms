@@ -1,21 +1,66 @@
-<?php
+<html lang="en">
+
+<head>
 
 
-// Target siz
-$targ_w = $_POST['targ_w'];
-$targ_h = $_POST['targ_h'];
-// quality
-$jpeg_quality = 90;
-// photo path
-$src = $_POST['photo_url'];
-// create new jpeg image based on the target sizes
-$img_r = imagecreatefromjpeg($src);
-$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
-// crop photo
-imagecopyresampled($dst_r,$img_r,0,0,$_POST['x'],$_POST['y'], $targ_w,$targ_h,$_POST['w'],$_POST['h']);
-// create the physical photo
-imagejpeg($dst_r,$src,$jpeg_quality);
-// display the  photo - "?time()" to force refresh by the browser
-//echo '<img src="'.$src.'?'.time().'">';
-exit;
-?>
+  <title>Jquery select2 ajax autocomplete example code with demo</title>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+
+</head>
+
+<body>
+
+
+<div style="width:520px;margin:0px auto;margin-top:30px;height:500px;">
+
+  <h2>Select Box with Search Option Jquery Select2.js</h2>
+
+  <select class="itemName form-control" style="width:500px" name="itemName"></select>
+
+</div>
+
+
+<script type="text/javascript">
+
+
+      $('.itemName').select2({
+
+        placeholder: '--- Select Item ---',
+
+        ajax: {
+
+          url: '/search',
+
+          dataType: 'json',
+
+          delay: 250,
+
+          processResults: function (data) {
+
+            return {
+
+              results: data
+
+            };
+
+          },
+
+          cache: true
+
+        }
+
+      });
+
+
+</script>
+
+
+</body>
+
+</html>
