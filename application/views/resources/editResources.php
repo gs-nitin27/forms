@@ -7,6 +7,7 @@
 
 function save()
 { 
+  alert($("#dates-field2").val());
 $('#imagelodar').show();
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
@@ -34,7 +35,6 @@ console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>'
 var data = eval(data1);//JSON.stringify(data1);
   $.ajax({
-
     type: "POST",
     url: '<?php echo site_url('forms/saveEditResources'); ?>',
     data: data,

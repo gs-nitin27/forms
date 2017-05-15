@@ -3,8 +3,14 @@
     <!-- Content Header (Page header) -->
  <section class="content-header">
       <h1>
-        View Event<a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Mobile View</a>
-        
+        View Event
+       <?php $user = $this->session->userdata('item'); 
+           if($user['userType'] == 101 || $user['userType'] == 102)
+           {
+       ?>
+
+        <a id="btnbbb" href="#" class="btn bg-navy btn-flat margin" data-toggle="modal" data-target="#myModal">Error Log</a>
+        <?php } ?>
       </h1>
      
     </section>
@@ -244,12 +250,10 @@ function sendmail()
    	  "buglist"   : JSON.stringify(arr)
 
    };
-
   console.log(JSON.stringify(data));
   var url = '<?php echo site_url();?>'
   var data1 = eval(data);
   $.ajax({
-
   	type  : "POST",
   	url   : '<?php echo site_url('forms/eventbugmail')?>',
   	data  : data1,

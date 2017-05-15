@@ -18,10 +18,7 @@
 					
 					$resource = $resource[0];
 				}
-				
 			?>
-			
-
 			<div class="box box-primary">
        
             <!-- /.box-header -->

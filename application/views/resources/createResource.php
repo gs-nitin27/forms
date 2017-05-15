@@ -123,17 +123,14 @@ var data = eval(data1);//JSON.stringify(data1);
           {
              $name=$data['userid'];
           }
-          
-
-
         {  ?>
           <div class="form-group">
-                  <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $name;?>">
-            </div>
+          <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $name;?>">
+          </div>
         <?php }?>
-                <div class="form-group">
-                  <input type="hidden" class="form-control" name="token" id="token" value="1">
-                </div>
+          <div class="form-group">
+          <input type="hidden" class="form-control" name="token" id="token" value="1">
+          </div>
             <script>
             $(document).ready(function() {
              $('#abc').hide();  
@@ -143,11 +140,13 @@ var data = eval(data1);//JSON.stringify(data1);
            {
             $('#abc').hide();   
             $('#videobutton').show();  
+            $("#token").val("2");
             }
             if($('#types').val() == 'text')
             {
              $('#abc').show();
              $('#videobutton').hide();
+             $("#token").val("1");
             }
             });
             });
@@ -191,7 +190,7 @@ var data = eval(data1);//JSON.stringify(data1);
         </select>
         </div>
      </div>
-     <input type="text" name="sports" class="form-control">
+     <input type="text" name="sports" class="form-control" disabled="">
     </div>
 
   
@@ -237,13 +236,9 @@ var data = eval(data1);//JSON.stringify(data1);
        
           <div> YouTube ID: <span id="myId"></span>
           </div>
-          <div> YouTube ID: <input type="text" name=""  id="myId1" value=""></div>
+          <div><input type="hidden" name=""  id="myId1" value=""></div>
 
          <div>Embed code: <pre id="myCode"></pre></div>
-
-
-
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -252,13 +247,6 @@ var data = eval(data1);//JSON.stringify(data1);
       
     </div>
   </div>
-  
-
-
-
-
-
-
 <script type="text/javascript">
 $(function() {
   //alert("fssa");
@@ -268,9 +256,6 @@ $(function() {
     });
 });
 </script>
-
-
-
                  <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location">

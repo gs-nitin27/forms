@@ -11,6 +11,8 @@ var sportdata= sport.split(',');
 
 var data1 = {
     "id"                      : 0, 
+    "price"                   : $("#price").val(),
+    "etypes"                  : $("#etypes").val(),
     "userid"                  : $("#userid").val(),
     "name"                    : $("#evname").val(),
     "type"                    : $("#evtype").val(),
@@ -40,7 +42,10 @@ var data1 = {
     "entry_end_date"          : $("#eendD").val(),
     "email_app_collection"    : $("#email_app_collection").val(),
     "file_name"               : $("#filename").val(),
-    "image"                   : $("#photo_url").val()
+    "image"                   : $("#photo_url").val(),
+    "ticketdetails"           : $("#ticketdetails").val(),
+    "noofticket"              : $("#noofticket").val()
+
 };
 var url = '<?php echo site_url();?>';
 console.log(JSON.stringify(data1));
@@ -52,6 +57,7 @@ var data =  eval(data1);//JSON.stringify(data1);
     dataType: "text",
     success: function(result) 
     {
+    	//alert(result);
     	 if(result == '1')
          {
          $.confirm({
@@ -125,8 +131,9 @@ var data =  eval(data1);//JSON.stringify(data1);
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_event" data-toggle="tab" id="1">Event </a></li>
-              <li ><a href="#tab_organiser" data-toggle="tab" id="2" >Organiser</a></li>
-              <li ><a href="#tab_eligible" data-toggle="tab" id="3" >Eligibility</a></li>
+              <li><a href="#tab_organiser" data-toggle="tab" id="2" >Organiser</a></li>
+              <li><a href="#tab_eligible" data-toggle="tab" id="3" >Eligibility</a></li>
+               <li><a href="#ticket" data-toggle="tab" id="4" >Ticket</a></li>
              </ul> 	 
              <form role="form" action="" class="register">  
             <div class="tab-content">
@@ -136,12 +143,30 @@ var data =  eval(data1);//JSON.stringify(data1);
 					<h4>Event Details:</h4 > 		
 				</div>
                 <div class="box-body">
+
+                    <div class="form-group"> 
+                    <label for="exampleInputEmail1">Event Type</label>
+                    <select  id="etypes" class="form-control" >
+                    <option >-Select-</option> 
+                    <option value="free" id="free">Free</option>
+                    <option value="paid" id="paid">Paid</option>
+                    </select>
+                    </div>
+
+                   
+
+                    <div class="form-group" id="paid_unpaid">
+					<label for="eventName">Ticket Price</label>
+					<input type="text" class="form-control" id="price" placeholder="Enter Amount" value="0">
+				    <label id="price_error" hidden>Ticket price is required .</label> 
+					</div>
+
 					<div class="form-group">
 					  <label>Event Description</label>
 					  <textarea class="form-control" rows="3" style="resize:none;" placeholder="Enter ..." class="desc" id="edesc" ></textarea>
                     <label id="description_error" hidden>Description is required .</label> 
-					  
 					</div>
+
           <?php
           $data=$this->session->userdata('item');
           $userid=$data['userid'];
@@ -184,78 +209,72 @@ var data =  eval(data1);//JSON.stringify(data1);
 				         }
 				         else
 				         {      
-
 				         	    $("#otherevent").hide();
 				         	    $("#evtype").val(selectedCountry);
 				         	   // alert(selectedCountry);
 				         }
 				       });
-				        </script>
-
-				     <div class="form-group" id="otherevent" hidden="">
-                     <label for="eventtype">Event Type</label>
-                     <input type="text" class="form-control"  name="eventtype" id="evtype">
-                     <label id="type_error" hidden>Event Type is required .</label>
-                     </div>
-
-
-
+				    </script>
+				    <div class="form-group" id="otherevent" hidden="">
+                    <label for="eventtype">Event Type</label>
+                    <input type="text" class="form-control"  name="eventtype" id="evtype">
+                    <label id="type_error" hidden>Event Type is required .</label>
+                    </div>
 					<div class="form-group">
 						<?php  $sports = $this->register->getSport();
-							
 						?>
-					  <label for="sports">Sport</label>
-						<select id="sport" class="form-control" >
-						<option value="0">- Select -</option> 
-							<?php if(!empty($sports)){
+					<label for="sports">Sport</label>
+				    <select id="sport" class="form-control" >
+					<option value="0">- Select -</option> 
+					<?php if(!empty($sports)){
 									foreach($sports as $sport){?>
-								<option value ="<?php echo $sport['id'];?>,<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
+					<option value ="<?php echo $sport['id'];?>,<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
 							<?php 	}
 								  }	
 							?>
-						</select>
-						<label id="sport_error" hidden>Sport is required .</label> 
+					</select>
+					<label id="sport_error" hidden>Sport is required .</label> 
 					</div >
 					<div class="form-group">
-					  <label for="address1">Address Line1</label>
-					  <input type="text" class="form-control"  id="add1" placeholder="Enter Address">
+					<label for="address1">Address Line1</label>
+					<input type="text" class="form-control"  id="add1" placeholder="Enter Address">
 					<label id="address_line1_error" hidden>Address Line1 is required .</label> 
 					</div >
 					<div class="form-group">
-					  <label for="address2">Address Line2</label>
-					  <input type="text" class="form-control"  id="add2" placeholder="Enter Address">
+					<label for="address2">Address Line2</label>
+					<input type="text" class="form-control"  id="add2" placeholder="Enter Address">
 				    <label id="address_line2_error" hidden>Address Line2 is required .</label> 
 					</div >
 					<div class="form-group">
-					  <label for="city">City</label>
-					  <input type="text" class="form-control"  id="city" placeholder="Enter City">
+					<label for="city">City</label>
+					<input type="text" class="form-control"  id="city" placeholder="Enter City">
 					<label id="city_error" hidden>City is required .</label> 
 					</div >
 					<div class="form-group">
-					  <label for="state">State</label>
-					  <input type="hidden" class="form-control"  id="state">
-					  <input type="text" class="form-control"  id="state_value" placeholder="Enter State" disabled>
-					  <label id="state_error" hidden>State is required .</label> 
+					<label for="state">State</label>
+					<input type="hidden" class="form-control"  id="state">
+					<input type="text" class="form-control"  id="state_value" placeholder="Enter State" disabled>
+					<label id="state_error" hidden>State is required .</label> 
 					</div >
 					<div class="form-group">
-					  <label for="pin">Pin</label>
-					  <input type="text" class="form-control"  id="pin" placeholder="Enter Pin">
-					  <label id="pin_error" hidden>Pin is required .</label> 
+					<label for="pin">Pin</label>
+					<input type="text" class="form-control"  id="pin" placeholder="Enter Pin">
+					<label id="pin_error" hidden>Pin is required .</label> 
 					</div >
 					<div class="form-group">
-					  <label for="link">Event Link</label>
-					  <input type="text" class="form-control"   id="evlink" placeholder="Enter Link">
-					  <label id="event_links_error" hidden>Event Link is required .</label> 
+					<label for="link">Event Link</label>
+					<input type="text" class="form-control"   id="evlink" placeholder="Enter Link">
+					<label id="event_links_error" hidden>Event Link is required .</label> 
 					</div >
 					<div class="form-group">
-					  <label for="link">Start Date</label>
-					  <input type="text" class="form-control"  id="startD" placeholder="Enter Start Date">
-					  <label id="start_date_error" hidden>Start Date is required .</label> 
+					<label for="link">Start Date</label>
+					<input type="text" class="form-control"  id="startD" placeholder="Enter Start Date">
+					<label id="start_date_error" hidden>Start Date is required .</label> 
 					</div >
 					<div class="form-group">
-					  <label for="link">End Date</label>
-					  <input type="text" class="form-control"  id="endD" placeholder="Enter End Date">
-					   <label id="end_date_error" hidden>End Date is required .</label> 
+					<label for="link">End Date</label>
+					<input type="text" class="form-control"  id="endD" placeholder="Enter End Date">
+					<label id="end_date_error" hidden>End Date is required .</label> 
 					</div >
 				</div>
               </div>
@@ -352,6 +371,24 @@ var data =  eval(data1);//JSON.stringify(data1);
 					</div >
 				</div>
               </div>
+
+               <div class="tab-pane" id="ticket">
+                 <div class="box-header with-border">
+					<h4>Ticket Details:</h4 > 		
+				</div>
+                <div class="box-body">
+				    <div class="form-group">
+					<label for="eventName">Ticket Detail</label>
+					<input type="text" class="form-control" id="ticketdetails" placeholder="Enter Ticket Details">
+				    <label id="ticketdetails_error" hidden>Ticket Details is required .</label> 
+					</div>
+					<div class="form-group">
+					  <label for="eventName">No Of Ticket</label>
+					  <input type="text" class="form-control" id="noofticket" placeholder="Enter No Of ticket">
+				   	<label id="noofticket_error" hidden>No Of Ticket   is required .</label> 
+					</div>
+				</div>
+              </div>
               <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
@@ -403,6 +440,18 @@ var data =  eval(data1);//JSON.stringify(data1);
 	  </div>
 </section>
 </div>
+ <script type="text/javascript">
+    $("#etypes").change(function(){
+	if($("#etypes").val() == 'free')
+    {
+       $("#paid_unpaid").hide();
+    }
+   	else if($("#etypes").val() == 'paid')
+    {
+    $("#paid_unpaid").show();
+  	}
+    });	
+  </script>
 <script type="text/javascript">
   $(document).ready(function (e) {
 
@@ -535,55 +584,6 @@ $(function() {
      var email_app_collection      = $("#email_app_collection").val();
 
 
-   // alert($("#evtype").val());
-
-    // alert(type);
-     // var file_name                 = $("#filename").val();
-
-
-
-        
-       //  var millisecondsPerDay = 1000 * 60 * 60 * 24;
-
-
-       //  var startDay = new Date(start_date);
-       //  var endDay = new Date(end_date);
-       //  var millisBetween = endDay.getTime() - startDay.getTime();
-       //  var days = millisBetween / millisecondsPerDay;
-       //  var datediff =  Math.floor(days);
-        
-       //  if(datediff<0)
-       //  {
-       //  	alert("Event end date is worng ");
-       //  	//$('#startD').val('');
-       //  	$('#endD').val('');
-       //  	// return false ;
-       //  }
-
-       //  var entry_startDay = new Date(entry_start_date);
-       //  var entry_endDay = new Date(entry_end_date);
-       //  var entry_millisBetween = entry_endDay.getTime() - entry_startDay.getTime();
-       //  var entry_days = entry_millisBetween / millisecondsPerDay;
-       //  var entry_datediff =  Math.floor(entry_days);
-       //   if(entry_datediff<0)
-       //  {
-       //  	$('#estartD').val('');
-       //  	$('#eendD').val('');
-       //  	alert("Event entry date is worng ");
-       //  	// return false ;
-       //  }
-            
-       //  var today = new Date();
-       //  var today_millisBetween = startDay.getTime() - today.getTime();
-       //  var today_days = today_millisBetween / millisecondsPerDay;
-       //  var today_datediff =  Math.floor(today_days);
-       // // alert(today_datediff);
-       //   if(today_datediff<0)
-       //  {
-       //  	alert("worng entry date is worng ");
-       //  	$('#startD').val('');
-        
-       //  }
        
       
 
@@ -655,24 +655,7 @@ $(function() {
             }else{
             	$("#eligibility2_error").hide();	
             }
-            // if(state == ""){
-            // $("#state_error").show();
-            // $("#state_error").css("color","red");
-            // }else{
-            // 	$("#state_error").hide();	
-            // }
-            // if(terms_and_conditions1 == ""){
-            // $("#terms_and_conditions1_error").show();
-            // $("#terms_and_conditions1_error").css("color","red");
-            // }else{
-            // 	$("#terms_and_conditions1_error").hide();	
-            // }
-            // if(terms_and_conditions2 == ""){
-            // $("#terms_and_conditions2_error").show();
-            // $("#terms_and_conditions2_error").css("color","red");
-            // }else{
-            // 	$("#terms_and_conditions2_error").hide();	
-            // }
+            
             if(organizer_name == ""){
             $("#organizer_name_error").show();
             $("#organizer_name_error").css("color","red");
@@ -703,24 +686,7 @@ $(function() {
             }else{
             	$("#organizer_city_error").hide();	
             }
-            // if(organizer_pin == ""){
-            // $("#organizer_pin_error").show();
-            // $("#organizer_pin_error").css("color","red");
-            // }else{
-            // 	$("#organizer_pin_error").hide();	
-            // }
-            // if(organizer_state  == ""){
-            // $("#organizer_state_error").show();
-            // $("#organizer_state_error").css("color","red");
-            // }else{
-            // 	$("#organizer_state_error").hide();	
-            // }
-            // if(event_links == ""){
-            // $("#event_links_error").show();
-            // $("#event_links_error").css("color","red");
-            // }else{
-            // 	$("#event_links_error").hide();	
-            // }
+            
             if(start_date == ""){
             $("#start_date_error").show();
             $("#start_date_error").css("color","red");

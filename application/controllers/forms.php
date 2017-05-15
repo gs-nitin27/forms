@@ -383,14 +383,15 @@ public function CreateEvent()
     }
 public function event()
 {
-//$data1 = json_decode($_REQUEST[ 'data' ]);
-$item = new stdClass();
-// echo ($data1->start_date); exit;
 
-//print_r($_POST);
+$item = new stdClass();
 
 $item->id                        = $_POST['id'];
 $item->userid                    = $_POST['userid'];
+$item->feetype                   = $_POST['etypes'];
+$item->fee                       = $_POST['price'];
+$item->ticket_detail             = $_POST['ticketdetails'];
+$item->no_of_ticket              = $_POST['noofticket']; 
 $item->type                      = $_POST['type'];
 $item->name                      = $_POST['name'];
 $item->address1                  = $_POST['address_line1'];
