@@ -1,8 +1,10 @@
 
 <link rel="stylesheet" href="<?php echo base_url('assets/jquery-ui.css'); ?>" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo base_url('assets/ui.theme.css'); ?>" type="text/ css" media="all" />
- 
 
+<script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" >
+ 
+</script>
 <script>
 
 function save()
@@ -10,15 +12,13 @@ function save()
   //alert($("#dates-field2").val());
 $('#imagelodar').show();
 var summary1=$("#rsummary").val();
-
 var summary12=summary1.toString();
 var string = summary12.replace(/[\/\\'\.\"<>~{}]/g, '');
-
 var description1=$("#rdescription").val();
 var description2=description1.toString();
 var description3 = description2.replace(/[\/\\<>~\{}]/g, '');
-	
-var data1 = {
+var data1 = 
+{
     "id"                      : 0, 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
@@ -43,8 +43,11 @@ var data = eval(data1);//JSON.stringify(data1);
     url: '<?php echo site_url('forms/SavecreateResources'); ?>',
     data: data,
     dataType: "json",
-    success: function(result) {
+    success: function(result) 
+    {
+
      // $('#imagelodar').hide();
+
     if(result.response == '1')
       {
         $.confirm({
@@ -93,21 +96,21 @@ var data = eval(data1);//JSON.stringify(data1);
 }); 
 }
 </script>
+
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-    Create  Resources  
-      </h1>
+         <h1>   Create  Resources    </h1>
     </section>
-         <section class="content"> 
+    <section class="content"> 
          <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
-      <div class="row">
-    <?php if(isset($msg) && $msg != ""){?>
-    <div class="col-md-12">
+         <div class="row">
+    <?php if(isset($msg) && $msg != "")
+    {?>
+       <div class="col-md-12">
     <?php }?>
 <div class="col-md-12">
-<div class=" alert alert-success" id="msgdiv" style="display:none" >
+<div class="alert alert-success" id="msgdiv" style="display:none" >
       <strong>Info! <span id = "msg"></span></strong> 
     </div>
       <div class="box box-primary">
@@ -148,6 +151,15 @@ var data = eval(data1);//JSON.stringify(data1);
              $('#videobutton').hide();
              $("#token").val("1");
             }
+
+
+            if($('#types').val() == 'blog')
+            {
+             $('#abc').show();
+             $('#videobutton').hide();
+             $("#token").val("3");
+            }
+
             });
             });
             </script>
@@ -157,6 +169,7 @@ var data = eval(data1);//JSON.stringify(data1);
                      <option >-Select-</option> 
                      <option value="text">Text</option>
                      <option value="video">Video</option>
+                     <option value="blog">Blog</option>
                      </select>
               </div >
                <?php     
@@ -196,7 +209,21 @@ var data = eval(data1);//JSON.stringify(data1);
   
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
+
+
                 <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                
+
+
+ 
+
+
+
+
+
+            
+
+
                 <label id="summary_error" hidden="">A summary is required</label>
                 </div>
                 <div id="rem"></div>
@@ -207,8 +234,7 @@ var data = eval(data1);//JSON.stringify(data1);
             </script>       
            <div class="form-group" id="abc">
            <label for="exampleInputEmail1">Description</label>
-           <textarea class="form-control" name="description" id="rdescription" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-            </div>
+           <textarea class="ckeditor" maxlength="36" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> </div>
 
 
   <button type="button" id="videobutton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Youtube Video Url</button>
