@@ -71,7 +71,7 @@ return 0;
 public function saveEvent($item)
 {
 //STR_TO_DATE('$date', '%m/%d/%Y')
-
+ 
 $insert = "INSERT INTO `gs_eventinfo`(`id`, `userid`,`name`, `type`, `address_1`, `address_2`, `location`, `PIN`,`state` ,`description`, `sport`,`sport_name`,`eligibility1`,`eligibility2`, `terms_cond1`, `terms_cond2`, `organizer_name`, `mobile`,`organizer_address_line1`, `organizer_address_line2`, `organizer_city`, `organizer_pin`,`organizer_state` ,`event_links`, `start_date`, `end_date`, `entry_start_date`, `entry_end_date`, `file_name`, `email_app_collection`, `dateCreated`,`image`,`feetype`,`fee`,`ticket_detail`,`no_of_ticket`) VALUES ('$item->id','$item->userid','$item->name', '$item->type','$item->address1','$item->address2','$item->city','$item->pin','$item->state','$item->description','$item->sport','$item->sport_name','$item->eligibility1','$item->eligibility2','$item->tandc1','$item->tandc2','$item->organizer_name','$item->mobile','$item->org_address1','$item->org_address2','$item->organizer_city','$item->organizer_pin','$item->organizer_state','$item->event_links',STR_TO_DATE('$item->start_date', '%m/%d/%Y'),STR_TO_DATE('$item->end_date','%m/%d/%Y'),STR_TO_DATE('$item->entry_start_date','%m/%d/%Y'),STR_TO_DATE('$item->entry_end_date','%m/%d/%Y'),'$item->file_name','$item->email_app_collection',CURDATE(),'$item->image','$item->feetype','$item->fee','$item->ticket_detail','$item->no_of_ticket') ON DUPLICATE KEY UPDATE `name` = '$item->name',`address_1` = '$item->address1' ,`address_2` = '$item->address2' ,`location` = '$item->city' ,`state` = '$item->state', `PIN` = '$item->pin' , `description` = '$item->description',`sport` = '$item->sport',`sport_name`='$item->sport_name',`eligibility1` = '$item->eligibility1',`eligibility2` = '$item->eligibility2'  , `terms_cond1` = '$item->tandc1', `terms_cond2` = '$item->tandc2' , `organizer_name` = '$item->organizer_name' ,  `mobile` ='$item->mobile' ,`organizer_address_line1` = '$item->org_address1' , `organizer_address_line2` = '$item->org_address2' , `organizer_city` = '$item->organizer_city' , `organizer_pin` = '$item->organizer_pin', `organizer_state` = '$item->organizer_state' ,  `event_links` = '$item->event_links' , `start_date` = STR_TO_DATE('$item->start_date','%m/%d/%Y') ,`end_date` = STR_TO_DATE('$item->end_date','%m/%d/%Y') ,  `entry_start_date` =STR_TO_DATE('$item->entry_start_date','%m/%d/%Y') , `entry_end_date` = STR_TO_DATE('$item->entry_end_date','%m/%d/%Y') , `file_name` = '$item->file_name',`email_app_collection` = '$item->email_app_collection',`image`='$item->image'";
 
 
@@ -87,7 +87,7 @@ else
 
 public function saveTournament($item)
 {
-	//print_r($item);die;
+	//print_r($item);die; 
 $insert = "INSERT INTO `gs_tournament_info`(`id`, `userid`, `category`, `name`, `address_1`, `address_2`, `location`,`state`, `pin`, `description`,`sport` ,`level`, `age_group`, `gender`, `eligibility1`,`eligibility2`, `terms_and_cond1`, `terms_and_cond2`, `organiser_name`, `mobile`, `email`, `org_address1`, `org_address2`, `org_city`, `org_pin`, `tournaments_link`, `start_date`, `end_date`, `event_entry_date`, `event_end_date`, `file_name`,`date_created`,`publish`,`image`) VALUES ('$item->id','$item->userid','$item->tournament_category','$item->type','$item->address_line1','$item->address_line2','$item->city','$item->state','$item->pin','$item->description','$item->sport','$item->tournament_level','$item->tournament_ageGroup','$item->tournament_gender','$item->eligibility1','$item->eligibility2','$item->terms_and_conditions1','$item->terms_and_conditions2','$item->organizer_name','$item->mobile','$item->emailid','$item->organizer_address_line1','$item->organizer_address_line2','$item->organizer_city','$item->organizer_pin','$item->tournament_links',STR_TO_DATE('$item->start_date','%m/%d/%Y'),STR_TO_DATE('$item->end_date','%m/%d/%Y'),STR_TO_DATE('$item->entry_end_date','%m/%d/%Y') ,STR_TO_DATE('$item->entry_end_date','%m/%d/%Y'),'$item->file_name',CURDATE(),'$item->publish','$item->image') ON DUPLICATE KEY UPDATE `name` = '$item->type', `address_1` = '$item->address_line1' , `address_2` = '$item->address_line2' , `location` = '$item->city' ,`state`='$item->state' ,`pin` = '$item->pin' , `description` = '$item->description',`sport`='$item->sport',`level` = '$item->tournament_level',`age_group`='$item->tournament_ageGroup',`gender` = '$item->tournament_gender',`eligibility1` = '$item->eligibility1' ,`eligibility2` = '$item->eligibility2', `terms_and_cond1` = '$item->terms_and_conditions1', `terms_and_cond2` = '$item->terms_and_conditions2',`category` = '$item->tournament_category' ,`organiser_name` = '$item->organizer_name' , `mobile` = '$item->mobile' , `email` = '$item->emailid' , `org_address1` = '$item->organizer_address_line1' , `org_address2` = '$item->organizer_address_line2' , `org_city` = '$item->organizer_city', `org_pin` = '$item->organizer_pin' , `tournaments_link` = '$item->tournament_links' ,`start_date` = STR_TO_DATE('$item->start_date','%m/%d/%Y') , `end_date` = STR_TO_DATE('$item->end_date','%m/%d/%Y') , `event_entry_date` = STR_TO_DATE('$item->entry_start_date','%m/%d/%Y') , `event_end_date` = STR_TO_DATE('$item->entry_end_date','%m/%d/%Y'),`publish`= '$item->publish',`image`='$item->image'";
  
 $query = $this->db->query($insert);
@@ -309,6 +309,24 @@ public function deleteResources($id)
 
 public function saveResources($item)
 {
+
+ $insert = "INSERT INTO `gs_resources`(`userid`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$item->userid','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->status',CURDATE())";
+
+$query = $this->db->query($insert);
+if($query)
+{
+	return 1;
+}
+else
+{
+   return 0;
+}
+}
+
+public function saveEditResources($item)
+{
+ // $insert = "INSERT INTO `gs_resources`(`id`, `userid`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$item->id','$item->userid','$item->title','$item->url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->status',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$item->url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image',`keyword` ='$item->keyword' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`status` ='$item->status',`location` ='$item->location'";
+
 	if($item->token == 2)
 	{
         $video_url = $item->url; 
@@ -489,58 +507,58 @@ public function StatusResources($item)
     }
 }	
 
-// public function addResourcesData($item)
-// {
-//      $id=$item[0]['id'];
-//      $user_id=$item[0]['userid'];
-//      $title= mysql_real_escape_string($item[0]['title']);
-//      $description= mysql_real_escape_string($item[0]['description']);
-//      $summary= mysql_real_escape_string($item[0]['summary']);
-//      $url=$item[0]['url'];
-//      $image=$item[0]['image'];
-//      $keyword=$item[0]['keyword'];
-//      $topic_of_artical=$item[0]['topic_of_artical'];
-//      $sport=$item[0]['sport'];
-//      $location=$item[0]['location'] ;
-//      $date_created=$item[0]['date_created'];
-//      $token=$item[0]['token'];
-//      $status=$item[0]['status'];
-
-//      $other_db= $this->load->database('default', TRUE);
-
-//      $insert = "INSERT INTO `gs_resources`(`id`, `userid`,`title`, `url`, `description`,`summary`, `image`,`keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$id','$user_id', '$title', '$url', '$description', '$summary', '$image', '$keyword', '$topic_of_artical', '$sport', '$location', '$token', '$status' , '$date_created') ON DUPLICATE KEY UPDATE `title` ='$title' , `url` = '$url',`description` = '$description', `summary` = '$summary',`image` ='$image',`topic_of_artical` ='$topic_of_artical',`sport` = '$sport',`location` ='$location'";
-
-//     $query = $other_db->query($insert);
-//        if($query)
-//        {
-// 	      return 1;
-//        }
-//        else
-//        {
-//          return 0;
-//        }	 
-// }
-
-// public function deleteStatusResources($id)
-// {
-//        $other=$this->load->database('default',TRUE);
-//        $other->where('id', $id);
-//        $other->delete('gs_resources');
-// }
-
-public function StatusEvent($item)
+public function addResourcesData($item)
 {
-   $update = "UPDATE  `gs_eventinfo` SET  `publish` ='$item->publish' , `date_updated` = CURDATE() WHERE `id` = '$item->id' ";
-   $query = $this->db->query($update);
-   if($query)
-    {
-	  return 1;
-    }
-   else
-    {
-      return 0;
-    }
+     $id=$item[0]['id'];
+     $user_id=$item[0]['userid'];
+     $title= mysql_real_escape_string($item[0]['title']);
+     $description= mysql_real_escape_string($item[0]['description']);
+     $summary= mysql_real_escape_string($item[0]['summary']);
+     $url=$item[0]['url'];
+     $image=$item[0]['image'];
+     $keyword=$item[0]['keyword'];
+     $topic_of_artical=$item[0]['topic_of_artical'];
+     $sport=$item[0]['sport'];
+     $location=$item[0]['location'] ;
+     $date_created=$item[0]['date_created'];
+     $token=$item[0]['token'];
+     $status= 0;//$item[0]['status'];
+
+     $other_db= $this->load->database('default', TRUE);
+
+     $insert = "INSERT INTO `gs_resources`(`id`, `userid`,`title`, `url`, `description`,`summary`, `image`,`keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$id','$user_id', '$title', '$url', '$description', '$summary', '$image', '$keyword', '$topic_of_artical', '$sport', '$location', '$token', '$status' , '$date_created') ON DUPLICATE KEY UPDATE `title` ='$title' , `url` = '$url',`description` = '$description', `summary` = '$summary',`image` ='$image',`topic_of_artical` ='$topic_of_artical',`sport` = '$sport',`location` ='$location'";
+
+    $query = $other_db->query($insert);
+       if($query)
+       {
+	      return 1;
+       }
+       else
+       {
+         return 0;
+       }	 
 }
+
+public function deleteStatusResources($id)
+{
+       $other=$this->load->database('default',TRUE);
+       $other->where('id', $id);
+       $other->delete('gs_resources');
+}
+
+// public function StatusEvent($item)
+// {
+//    $update = "UPDATE  `gs_eventinfo` SET  `publish` ='$item->publish' , `date_updated` = CURDATE() WHERE `id` = '$item->id' ";
+//    $query = $this->db->query($update);
+//    if($query)
+//     {
+// 	  return 1;
+//     }
+//    else
+//     {
+//       return 0;
+//     }
+// }
 
 // public function addEventData($item)
 // {
@@ -1563,12 +1581,74 @@ public function CreateEventType($type)
 
 public function getuseremail($id)
 {
-   
-   $query = "SELECT `email` FROM `user` WHERE `userid` = '$id'";
+   $query = "SELECT `email`,`name` FROM `user` WHERE `userid` = '$id'";
    $sql = $this->db->query($query);
    $result = $sql->result_array();
    return $result;
 }
+public function user_dashboard_event($userid)
+{
+    $query = "SELECT * FROM `gs_eventinfo` WHERE `userid` = '$userid' ORDER BY `id` desc  limit 3";
+    $sql = $this->db->query($query);
+    $result = $sql->result_array();
+    return $result;
+}
+
+public function user_dashboard_tournamnet($userid)
+{
+   $query = "SELECT * FROM `gs_tournament_info` WHERE `userid` = '$userid' ORDER BY `id` desc limit 3";
+   $sql = $this->db->query($query);
+   $result = $sql->result_array();
+   return $result;
+}
+ 
+ public function user_dashboard_job($userid)
+ {
+    $query = "SELECT * FROM `gs_jobInfo` WHERE `userid` = '$userid' ORDER BY `id` desc limit 3";
+    $sql = $this->db->query($query);
+    $result = $sql->result_array();
+    return $result;
+ }
+
+ public function angulartest($username,$password)
+{
+$this->db->where("email", $username);
+$this->db->where("password", $password);
+$qry = $this->db->get('user');
+if($qry->num_rows() > 0)
+{
+$q = $qry->row_array();	
+ 
+$data['customer'] = $q['name'];
+$data['customerId'] = $q['userType'];
+$data['lxDrivePath'] =  $q['name'];
+$data['name']     =  $q['name'];
+$data['password'] =$q['password'];
+$data['userId'] = $q['userid'];
+$data['userName'] =$q['email'];
+$data['imageUrl'] =$q['name'];
+
+return $data;
+}
+else
+{
+return 0;
+}
+
+    //$query = "SELECT `id`,`city` FROM `location`  ORDER BY `id` desc limit 20";
+    //$sql = $this->db->query($query);
+    //$result = $sql->result_array();
+   // return $result;
+}
+ 
+ 
+ // public function user_dashboard_data($userid)
+ // {
+ //    $query = "SELECT * FROM `gs_jobInfo` WHERE `userid` = '$userid' ORDER BY `id` desc limit 3 UNION SELECT * FROM `gs_tournament_info` WHERE `userid` = '$userid' ORDER BY `id` desc limit 3 UNION SELECT * FROM `gs_eventinfo` WHERE `userid` = '$userid' ORDER BY `id` desc  limit 3";
+ //    $sql = $this->db->query($query);
+ //    $result = $sql->result_array();
+ //    return $result;
+ // }
 
 }
  ?>
