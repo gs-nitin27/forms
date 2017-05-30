@@ -57,7 +57,8 @@ var jsondata = eval(data1);
                   window.location.href = url+"/forms/getresources?resources";
                 }
             },
-            close: function () {
+            close: function () 
+            {
               window.location.href = url+"/forms/getresources?resources";
             }
         }

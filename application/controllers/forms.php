@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Forms extends CI_Controller {
-
+class Forms extends CI_Controller
+{
 public function __construct() 
 {
-        parent::__construct();
+    parent::__construct();
 		$this->load->model('register');
 		$this->load->library('session');	
     include('assets/emailtemplate/simple_html_dom.php');
@@ -149,9 +149,7 @@ public function edituser()
 {
 	      $data=$this->session->userdata('item');
         $id=$data['userid'];
-	      $data['required'] = array(
-									'id'=>$id	
-								 );
+	      $data['required'] = array('id'=>$id	);
         $data['middle'] = 'userModule/public_userProfile';
 		    $this->load->view('templates/template',$data);
 }
@@ -160,12 +158,11 @@ public function adminedituser()
 {
   $data = $this->session->userdata('item');
   $id = $data['adminid'];
-
-   $data['required'] = array('id'=>$id);
-   $data['middle'] = 'userModule/admin_profile_edit';
-   $this->load->view('templates/template',$data);
-
+  $data['required'] = array('id'=>$id);
+  $data['middle'] = 'userModule/admin_profile_edit';
+  $this->load->view('templates/template',$data);
 }
+
 
 public function saveuserModule()
 {
@@ -308,17 +305,16 @@ public function ActivateUser()
 {
 $data2 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
-
 $item->userid                = $data2->userid;
 $item->activeuser            = $data2->activeuser;
-
 $this->load->model('register');
 $res = $this->register->ActivateUser($item);
 if($res)
 {
 	echo "User Is Activate";
 }
-else{
+else
+{
 	echo "User Is Deactivate";
 }
 }
@@ -328,17 +324,16 @@ public function Activateadmin()
 {
 $data2 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
-
 $item->userid                = $data2->userid;
 $item->activeuser            = $data2->activeuser;
-
 $this->load->model('register');
 $res = $this->register->Activateadmin($item);
 if($res)
 {
   echo "User Is Activate";
 }
-else{
+else
+{
   echo "User Is Deactivate";
 }
 }
@@ -354,19 +349,17 @@ else{
 // }
 
 public function createNewUser()
- {
+{
  	 $data['middle']='userModule/createnewUser';
  	 $this->load->view('templates/template',$data);
- }
+}
 
 public function userprofile($str)
- { 
+{ 
       $id = $this->stringtonumber($str);
  	    $data['middle'] = 'userModule/UserProfile';
-		  $data['required'] = array(
-									'id'=>$id	
-								 );
-		$this->load->view('templates/template',$data);
+		  $data['required'] = array('id'=>$id	);
+	  	$this->load->view('templates/template',$data);
 }
 
 public function admin_module_assign($str)
@@ -661,6 +654,7 @@ public function editjob($str)
 			                     );
 		$this->load->view('templates/template',$data);
 }
+
 //==================== End Job=================================================
 
 //============================= Start Tournament===============================
@@ -808,11 +802,8 @@ public function shareResources()
 
 
 public function SavecreateResources()
-{//die();
+{
 $item  = new stdClass(); 
-
-//print_r($_POST['sport']);die;
-
 $item->id                    = $_POST['id'];//$data2->id;
 $item->userid                = $_POST['userid'];//$data2->userid;
 $item->title                 = mysql_real_escape_string($_POST['title']);//mysql_real_escape_string($data2->title);
@@ -836,7 +827,6 @@ echo json_encode(array('response' => $res));
 public function SaveshareResources()
 {
 $item  = new stdClass(); 
-
 $item->id                    = $_REQUEST['id'];
 $item->userid                = $_REQUEST['userid'];//$data2->userid;
 $item->title                 = mysql_real_escape_string($_REQUEST['title']);//mysql_real_escape_string($data2->title);
@@ -1069,8 +1059,6 @@ public function edit_admin()
 {
 $data=json_decode($_REQUEST['data']);
 $item= new stdClass();
-
-print_r($data);die;
 $item->userid                     =$data->userid;
 $item->name                       =$data->name;
 $item->contact_no                 =$data->contact_no;

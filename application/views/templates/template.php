@@ -53,7 +53,8 @@
           //foreach ($profile as $value) 
               
           
-if(empty($required)){
+if(empty($required))
+{
   $required = array();
 }
 // echo $noheader;
