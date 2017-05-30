@@ -7,7 +7,8 @@ public function __construct()
         parent::__construct();
 		$this->load->model('register');
 		$this->load->library('session');	
-} 
+    include('assets/emailtemplate/simple_html_dom.php');
+}  
          
 public function index()
 {   
@@ -18,6 +19,13 @@ public function home()
 {
         $data['middle'] = 'dashboard';
         $this->load->view('templates/template',$data);
+}
+
+public function userhome()
+{
+
+  $data['middle'] = 'userdashboard';
+  $this->load->view('templates/template',$data);
 }
 
  public function gmaillogin()
@@ -56,7 +64,7 @@ public function newadmin()
       if($pass)
       {
         $this->session->set_flashdata('error','Please Activate your account a link is sent to your mail account.');
-         redirect('forms/index','refresh');
+         redirect('forms/adminlogin','refresh');
       }
       else
        {
@@ -71,7 +79,7 @@ public function newadmin()
       else
       { 
          $this->session->set_flashdata('error','Please give the correct  password.');
-         redirect('forms/index','refresh');
+         redirect('forms/adminlogin','refresh');
         //echo $res['message'] ='Invalid login credentials';
        // $res['message'] ='Invalid login credentials';
        // $this->load->view('login',$res);
@@ -80,7 +88,7 @@ public function newadmin()
     }
     else {
         $this->session->set_flashdata('error','Invalid User.');
-          redirect('forms/index','refresh');
+          redirect('forms/adminlogin','refresh');
     }
 
 }
@@ -113,7 +121,7 @@ public function login()
       {
       	 $this->session->set_userdata('item',$res);
          $sessdata = $this->session->userdata('item');
-         redirect('forms/home');
+         redirect('forms/userhome');
       }
       else
       { 
@@ -376,14 +384,19 @@ public function admin_module_assign($str)
 // ============================== Start Event==============================    
 public function CreateEvent()
 	{
-		
-	    $data['middle'] = 'event/CreateEvent';
-
+	  $data['middle'] = 'event/CreateEvent';
 		$this->load->view('templates/template',$data);
-    }
+  
+  }
+
+public function userCreateEvent()
+  {
+    $this->load->view('event/CreateEvent');
+  
+  }  
+  
 public function event()
 {
-
 $item = new stdClass();
 
 $item->id                        = $_POST['id'];
@@ -441,6 +454,13 @@ else
  echo "0";
 
 }
+
+public function usergetEvent(){
+
+       // $data['middle'] = 'event/index'; 
+        $this->load->view('event/index');
+     // $this->load->view('templates/template');
+  }
 
 public function getEvent(){
 
@@ -549,6 +569,12 @@ public function getJob()
 {
 		$data['middle'] = 'job/index';
 		$this->load->view('templates/template',$data);
+}
+
+public function usercreatejob()
+{
+   // $data['middle'] = 'job/index';
+    $this->load->view('job/CreateJob');
 }
 	
 
@@ -700,6 +726,9 @@ else
  echo "0";
 }
 
+public function usercreateTournament(){
+    $this->load->view('tournament/CreateTournament');
+  }
 
 public function getTournament(){
 		$data['middle'] = 'tournament/index';
@@ -707,9 +736,8 @@ public function getTournament(){
 		$this->load->view('templates/template',$data);
 	}
 public function viewTournament($str)
-{    
-	//print_r($id);die;
-        $id= $this->stringtonumber($str);
+{
+    $id= $this->stringtonumber($str);
 		$data['middle'] = 'tournament/view';
 		$data['required'] = array(
 									'id'=>$id	
@@ -871,7 +899,7 @@ $item->token                 = $_POST['token'];//$data2->token;
 $item->date_created          = @$_POST['date_created'];//$data2->date_created;
 
 $this->load->model('register');
-$res = $this->register->saveResources($item);
+$res = $this->register->saveEditResources($item);
 echo json_encode(array('response' => $res));
 }
 
@@ -912,13 +940,14 @@ $this->load->model('register');
 $res = $this->register->StatusResources($item);
 if($data2->status==1)
 {
-	//$rdata=$this->register->getResourceInfo($data2->id);
-	//$this->register->addResourcesData($rdata);
-	echo "Resources Is Activate";
+	$rdata=$this->register->getResourceInfo($data2->id);
+  $this->register->addResourcesData($rdata);	
+  echo "Resources Is Activate";
+
 }
 else{
 	echo "Resources Is Deactivate";
-	//$this->register->deleteStatusResources($data2->id);
+	$this->register->deleteStatusResources($data2->id);
 }
 }
 
@@ -1132,50 +1161,212 @@ if($res)
               $mail->Password = "2016Darkhorse";           
               $mail->SetFrom($from, $from_name);
               $mail->Subject = $subject;
-              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
+              $mail->Body = '<html lang="en">
+<head>
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="x-apple-disable-message-reformatting">  
+  <title></title> 
+    <style>
+        html,
+        body {
+          margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+        
+        }
+        table table table {
+            table-layout: auto;
+        }
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+        .a6S {
+          display: none !important;
+          opacity: 0.01 !important;
+        }
+        img.g-img + div {
+          display:none !important;
+      }
+        .button-link {
+            text-decoration: none !important;
+        }
 
- <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
-<tbody><tr>
-<td align="center" valign="top">
-<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
-<tbody><tr>
+       
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { 
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
 
-<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Welcome To GetSporty.</h1>
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To set Your email password, you MUST click the link below.<br><h2></br> <a href="'.$emailconform.''.$email.'">create password<br>
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+    </style>
 
-</td>
-</tr>
-<tr>
-<td align="center" style="padding-bottom:60px" valign="top">
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="center" valign="middle">
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</div>'; 
+    <style>
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+        @media screen and (max-width: 600px) {
+
+            .email-container {
+                width: 100% !important;
+                margin: auto !important;
+            }
+            .fluid {
+                max-width: 100% !important;
+                height: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .stack-column,
+            .stack-column-center {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+            .stack-column-center {
+                text-align: center !important;
+            }
+            .center-on-narrow {
+                text-align: center !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                float: none !important;
+            }
+            table.center-on-narrow {
+                display: inline-block !important;
+            }
+      .email-container p {
+        font-size: 17px !important;
+        line-height: 22px !important;
+      }
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#fff" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; text-align: left;">
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+          <tr>
+        <td bgcolor="#5766BE">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 40px 40px 20px;">
+                    <h1 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;">Hello</h1>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 10px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to reset your password.
+                    </p>
+                </td>
+            </tr>
+      <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">You will need to enter this new password whenever you sign in to your Get Sporty account in future.</p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#000000" align="center" valign="top" style="padding: 10px;">
+                    <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0">
+                                   
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="120" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0"  style="float: right;padding-right: 10px;display: inline-block;">
+                                    
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <ul>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/f.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/go.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/ln.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/t.png"></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                        </tr>
+
+                    </table><hr style="width: 90%;margin-top:0">
+                </td>
+            </tr>
+            <!-- 2 Even Columns : END -->
+            
+
+
+        <!-- Email Footer : BEGIN -->
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+            <tr>
+                <td style="background:#000000;padding: 10px 10px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:18px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                    <webversion style="color:#cccccc; text-decoration:underline; font-weight: bold;">Lorem ipsum dolor sit amet</webversion>
+                    <br><br>
+                    Company Name<br>consectetur adipiscing elit. In quis fermentum<br>(123) 456-7890
+                    <br><br>
+                    <unsubscribe style="color:#888888; text-decoration:underline;">unsubscribe</unsubscribe>
+                </td>
+            </tr>
+        </table>
+        <!-- Email Footer : END -->
+
+    </center>
+</body>
+</html>'; 
                $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
                $mail->AltBody = $txt; 
                $mail->AddAddress($to);
@@ -1201,22 +1392,15 @@ public function emailsearch()
 
 public function Emailfind()
 {
-
   $item= new stdClass();
-
   $email=$_POST['email'];
   $item->email =$_POST['email'];
   $this->load->model('register');
   $res=$this->register->Emailfind($item->email);
-
- //print_r($res['userType']);die;
-      
   if($res)
   {
-     if($res['userType'] == 101 || $res['userType'] == 102 || $res['userType'] == 103 )
-     {
-//print_r($emailid);die;
-  //$emailid1 = $res['email'];
+    if($res['userType'] == 101 || $res['userType'] == 102 || $res['userType'] == 103 )
+    {
   $id=$res['userid'];
    require('class.phpmailer.php');
               $mail = new PHPMailer();
@@ -1240,50 +1424,212 @@ public function Emailfind()
               $mail->Password = "2016Darkhorse";           
               $mail->SetFrom($from, $from_name);
               $mail->Subject = $subject;
-              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
+              $mail->Body = '<html lang="en">
+   <head>
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="x-apple-disable-message-reformatting">  
+  <title></title> 
+    <style>
+        html,
+        body {
+          margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+        
+        }
+        table table table {
+            table-layout: auto;
+        }
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+        .a6S {
+          display: none !important;
+          opacity: 0.01 !important;
+        }
+        img.g-img + div {
+          display:none !important;
+      }
+        .button-link {
+            text-decoration: none !important;
+        }
 
- <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
-<tbody><tr>
-<td align="center" valign="top">
-<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
-<tbody><tr>
+       
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { 
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
 
-<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Please reset your password.</h1>
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To reset Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Reset<br></strong>
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+    </style>
 
-</td>
-</tr>
-<tr>
-<td align="center" style="padding-bottom:60px" valign="top">
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="center" valign="middle">
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</div>'; 
+    <style>
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+        @media screen and (max-width: 600px) {
+
+            .email-container {
+                width: 100% !important;
+                margin: auto !important;
+            }
+            .fluid {
+                max-width: 100% !important;
+                height: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .stack-column,
+            .stack-column-center {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+            .stack-column-center {
+                text-align: center !important;
+            }
+            .center-on-narrow {
+                text-align: center !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                float: none !important;
+            }
+            table.center-on-narrow {
+                display: inline-block !important;
+            }
+      .email-container p {
+        font-size: 17px !important;
+        line-height: 22px !important;
+      }
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#fff" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; text-align: left;">
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+          <tr>
+        <td bgcolor="#5766BE">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 40px 40px 20px;">
+                    <h1 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;">Hello</h1>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 10px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to reset your password.
+                    </p>
+                </td>
+            </tr>
+      <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">You will need to enter this new password whenever you sign in to your Get Sporty account in future.</p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#000000" align="center" valign="top" style="padding: 10px;">
+                    <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0">
+                                   
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="120" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0"  style="float: right;padding-right: 10px;display: inline-block;">
+                                    
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <ul>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/f.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/go.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/ln.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/t.png"></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                        </tr>
+
+                    </table><hr style="width: 90%;margin-top:0">
+                </td>
+            </tr>
+            <!-- 2 Even Columns : END -->
+            
+
+
+        <!-- Email Footer : BEGIN -->
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+            <tr>
+                <td style="background:#000000;padding: 10px 10px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:18px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                    <webversion style="color:#cccccc; text-decoration:underline; font-weight: bold;">Lorem ipsum dolor sit amet</webversion>
+                    <br><br>
+                    Company Name<br>consectetur adipiscing elit. In quis fermentum<br>(123) 456-7890
+                    <br><br>
+                    <unsubscribe style="color:#888888; text-decoration:underline;">unsubscribe</unsubscribe>
+                </td>
+            </tr>
+        </table>
+        <!-- Email Footer : END -->
+
+    </center>
+</body>
+</html>'; 
                $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
                $mail->AltBody = $txt; 
                $mail->AddAddress($to);
@@ -1805,50 +2151,212 @@ public function Passwordreset()
               $mail->Password = "2016Darkhorse";           
               $mail->SetFrom($from, $from_name);
               $mail->Subject = $subject;
-              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
+              $mail->Body = '<html lang="en">
+<head>
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="x-apple-disable-message-reformatting">  
+  <title></title> 
+    <style>
+        html,
+        body {
+          margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+        
+        }
+        table table table {
+            table-layout: auto;
+        }
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+        .a6S {
+          display: none !important;
+          opacity: 0.01 !important;
+        }
+        img.g-img + div {
+          display:none !important;
+      }
+        .button-link {
+            text-decoration: none !important;
+        }
 
- <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
-<tbody><tr>
-<td align="center" valign="top">
-<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
-<tbody><tr>
+       
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { 
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
 
-<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Please reset your password.</h1>
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To reset Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Reset<br></strong>
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+    </style>
 
-</td>
-</tr>
-<tr>
-<td align="center" style="padding-bottom:60px" valign="top">
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="center" valign="middle">
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</div>'; 
+    <style>
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+        @media screen and (max-width: 600px) {
+
+            .email-container {
+                width: 100% !important;
+                margin: auto !important;
+            }
+            .fluid {
+                max-width: 100% !important;
+                height: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .stack-column,
+            .stack-column-center {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+            .stack-column-center {
+                text-align: center !important;
+            }
+            .center-on-narrow {
+                text-align: center !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                float: none !important;
+            }
+            table.center-on-narrow {
+                display: inline-block !important;
+            }
+      .email-container p {
+        font-size: 17px !important;
+        line-height: 22px !important;
+      }
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#fff" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; text-align: left;">
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+          <tr>
+        <td bgcolor="#5766BE">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 40px 40px 20px;">
+                    <h1 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;">Hello</h1>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 10px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to reset your password.
+                    </p>
+                </td>
+            </tr>
+      <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">You will need to enter this new password whenever you sign in to your Get Sporty account in future.</p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#000000" align="center" valign="top" style="padding: 10px;">
+                    <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0">
+                                   
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="120" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0"  style="float: right;padding-right: 10px;display: inline-block;">
+                                    
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <ul>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/f.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/go.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/ln.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/t.png"></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                        </tr>
+
+                    </table><hr style="width: 90%;margin-top:0">
+                </td>
+            </tr>
+            <!-- 2 Even Columns : END -->
+            
+
+
+        <!-- Email Footer : BEGIN -->
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+            <tr>
+                <td style="background:#000000;padding: 10px 10px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:18px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                    <webversion style="color:#cccccc; text-decoration:underline; font-weight: bold;">Lorem ipsum dolor sit amet</webversion>
+                    <br><br>
+                    Company Name<br>consectetur adipiscing elit. In quis fermentum<br>(123) 456-7890
+                    <br><br>
+                    <unsubscribe style="color:#888888; text-decoration:underline;">unsubscribe</unsubscribe>
+                </td>
+            </tr>
+        </table>
+        <!-- Email Footer : END -->
+
+    </center>
+</body>
+</html>'; 
                $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
                $mail->AltBody = $txt; 
                $mail->AddAddress($to);
@@ -1886,50 +2394,212 @@ public function adminPasswordreset()
               $mail->Password = "2016Darkhorse";           
               $mail->SetFrom($from, $from_name);
               $mail->Subject = $subject;
-              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
+              $mail->Body = '<html lang="en">
+<head>
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="x-apple-disable-message-reformatting">  
+  <title></title> 
+    <style>
+        html,
+        body {
+          margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+        
+        }
+        table table table {
+            table-layout: auto;
+        }
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+        .a6S {
+          display: none !important;
+          opacity: 0.01 !important;
+        }
+        img.g-img + div {
+          display:none !important;
+      }
+        .button-link {
+            text-decoration: none !important;
+        }
 
- <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
-<tbody><tr>
-<td align="center" valign="top">
-<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
-<tbody><tr>
+       
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { 
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
 
-<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Please reset your password.</h1>
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To reset Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Reset<br></strong>
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+    </style>
 
-</td>
-</tr>
-<tr>
-<td align="center" style="padding-bottom:60px" valign="top">
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="center" valign="middle">
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</div>'; 
+    <style>
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+        @media screen and (max-width: 600px) {
+
+            .email-container {
+                width: 100% !important;
+                margin: auto !important;
+            }
+            .fluid {
+                max-width: 100% !important;
+                height: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .stack-column,
+            .stack-column-center {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+            .stack-column-center {
+                text-align: center !important;
+            }
+            .center-on-narrow {
+                text-align: center !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                float: none !important;
+            }
+            table.center-on-narrow {
+                display: inline-block !important;
+            }
+      .email-container p {
+        font-size: 17px !important;
+        line-height: 22px !important;
+      }
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#fff" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; text-align: left;">
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+          <tr>
+        <td bgcolor="#5766BE">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 40px 40px 20px;">
+                    <h1 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;">Hello</h1>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 10px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to reset your password.
+                    </p>
+                </td>
+            </tr>
+      <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">You will need to enter this new password whenever you sign in to your Get Sporty account in future.</p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#000000" align="center" valign="top" style="padding: 10px;">
+                    <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0">
+                                   
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="120" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0"  style="float: right;padding-right: 10px;display: inline-block;">
+                                    
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <ul>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/f.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/go.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/ln.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/t.png"></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                        </tr>
+
+                    </table><hr style="width: 90%;margin-top:0">
+                </td>
+            </tr>
+            <!-- 2 Even Columns : END -->
+            
+
+
+        <!-- Email Footer : BEGIN -->
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+            <tr>
+                <td style="background:#000000;padding: 10px 10px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:18px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                    <webversion style="color:#cccccc; text-decoration:underline; font-weight: bold;">Lorem ipsum dolor sit amet</webversion>
+                    <br><br>
+                    Company Name<br>consectetur adipiscing elit. In quis fermentum<br>(123) 456-7890
+                    <br><br>
+                    <unsubscribe style="color:#888888; text-decoration:underline;">unsubscribe</unsubscribe>
+                </td>
+            </tr>
+        </table>
+        <!-- Email Footer : END -->
+
+    </center>
+</body>
+</html>'; 
                $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
                $mail->AltBody = $txt; 
                $mail->AddAddress($to);
@@ -1975,50 +2645,209 @@ if($result)
               $mail->Password = "2016Darkhorse";           
               $mail->SetFrom($from, $from_name);
               $mail->Subject = $subject;
-              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
+              $mail->Body = '<html lang="en">
+<head>
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="x-apple-disable-message-reformatting">  
+  <title></title> 
+    <style>
+        html,
+        body {
+          margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+        
+        }
+        table table table {
+            table-layout: auto;
+        }
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+        .a6S {
+          display: none !important;
+          opacity: 0.01 !important;
+        }
+        img.g-img + div {
+          display:none !important;
+      }
+        .button-link {
+            text-decoration: none !important;
+        }
 
- <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
-<tbody><tr>
-<td align="center" valign="top">
-<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
-<tbody><tr>
+       
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { 
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
 
-<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Please reset your password.</h1>
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To reset Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Reset<br></strong>
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+    </style>
 
-</td>
-</tr>
-<tr>
-<td align="center" style="padding-bottom:60px" valign="top">
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="center" valign="middle">
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</div>'; 
+    <style>
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+        @media screen and (max-width: 600px) {
+
+            .email-container {
+                width: 100% !important;
+                margin: auto !important;
+            }
+            .fluid {
+                max-width: 100% !important;
+                height: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .stack-column,
+            .stack-column-center {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+            .stack-column-center {
+                text-align: center !important;
+            }
+            .center-on-narrow {
+                text-align: center !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                float: none !important;
+            }
+            table.center-on-narrow {
+                display: inline-block !important;
+            }
+      .email-container p {
+        font-size: 17px !important;
+        line-height: 22px !important;
+      }
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#fff" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; text-align: left;">
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+          <tr>
+        <td bgcolor="#5766BE">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 40px 40px 20px;">
+                    <h1 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;">Hello</h1>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 10px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to reset your password.
+                    </p>
+                </td>
+            </tr>
+      <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">You will need to enter this new password whenever you sign in to your Get Sporty account in future.</p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#000000" align="center" valign="top" style="padding: 10px;">
+                    <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0">
+                                   
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="120" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0"  style="float: right;padding-right: 10px;display: inline-block;">
+                                    
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <ul>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/f.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/go.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/ln.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/t.png"></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                        </tr>
+
+                    </table><hr style="width: 90%;margin-top:0">
+                </td>
+            </tr>
+            <!-- 2 Even Columns : END -->
+        <!-- Email Footer : BEGIN -->
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+            <tr>
+                <td style="background:#000000;padding: 10px 10px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:18px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                    <webversion style="color:#cccccc; text-decoration:underline; font-weight: bold;">Lorem ipsum dolor sit amet</webversion>
+                    <br><br>
+                    Company Name<br>consectetur adipiscing elit. In quis fermentum<br>(123) 456-7890
+                    <br><br>
+                    <unsubscribe style="color:#888888; text-decoration:underline;">unsubscribe</unsubscribe>
+                </td>
+            </tr>
+        </table>
+        <!-- Email Footer : END -->
+
+    </center>
+</body>
+</html>'; 
                $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
                $mail->AltBody = $txt; 
                $mail->AddAddress($to);
@@ -2064,50 +2893,212 @@ if($result)
               $mail->Password = "2016Darkhorse";           
               $mail->SetFrom($from, $from_name);
               $mail->Subject = $subject;
-              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
+              $mail->Body = '<html lang="en">
+<head>
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="x-apple-disable-message-reformatting">  
+  <title></title> 
+    <style>
+        html,
+        body {
+          margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+        
+        }
+        table table table {
+            table-layout: auto;
+        }
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+        .a6S {
+          display: none !important;
+          opacity: 0.01 !important;
+        }
+        img.g-img + div {
+          display:none !important;
+      }
+        .button-link {
+            text-decoration: none !important;
+        }
 
- <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
-<tbody><tr>
-<td align="center" valign="top">
-<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
-<tbody><tr>
+       
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { 
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
 
-<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Please reset your password.</h1>
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To reset Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Reset<br></strong>
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+    </style>
 
-</td>
-</tr>
-<tr>
-<td align="center" style="padding-bottom:60px" valign="top">
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="center" valign="middle">
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</div>'; 
+    <style>
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+        @media screen and (max-width: 600px) {
+
+            .email-container {
+                width: 100% !important;
+                margin: auto !important;
+            }
+            .fluid {
+                max-width: 100% !important;
+                height: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .stack-column,
+            .stack-column-center {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+            .stack-column-center {
+                text-align: center !important;
+            }
+            .center-on-narrow {
+                text-align: center !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                float: none !important;
+            }
+            table.center-on-narrow {
+                display: inline-block !important;
+            }
+      .email-container p {
+        font-size: 17px !important;
+        line-height: 22px !important;
+      }
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#fff" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; text-align: left;">
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+          <tr>
+        <td bgcolor="#5766BE">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 40px 40px 20px;">
+                    <h1 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;">Hello</h1>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 10px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to reset your password.
+                    </p>
+                </td>
+            </tr>
+      <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">You will need to enter this new password whenever you sign in to your Get Sporty account in future.</p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#000000" align="center" valign="top" style="padding: 10px;">
+                    <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0">
+                                   
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="120" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0"  style="float: right;padding-right: 10px;display: inline-block;">
+                                    
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <ul>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/f.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/go.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/ln.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/t.png"></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                        </tr>
+
+                    </table><hr style="width: 90%;margin-top:0">
+                </td>
+            </tr>
+            <!-- 2 Even Columns : END -->
+            
+
+
+        <!-- Email Footer : BEGIN -->
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+            <tr>
+                <td style="background:#000000;padding: 10px 10px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:18px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                    <webversion style="color:#cccccc; text-decoration:underline; font-weight: bold;">Lorem ipsum dolor sit amet</webversion>
+                    <br><br>
+                    Company Name<br>consectetur adipiscing elit. In quis fermentum<br>(123) 456-7890
+                    <br><br>
+                    <unsubscribe style="color:#888888; text-decoration:underline;">unsubscribe</unsubscribe>
+                </td>
+            </tr>
+        </table>
+        <!-- Email Footer : END -->
+
+    </center>
+</body>
+</html>'; 
                $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
                $mail->AltBody = $txt; 
                $mail->AddAddress($to);
@@ -2447,50 +3438,210 @@ public function sendmail($email)
               $mail->Password = "2016Darkhorse";           
               $mail->SetFrom($from, $from_name);
               $mail->Subject = $subject;
-              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
+              $mail->Body = '<html lang="en">
+<head>
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="x-apple-disable-message-reformatting">  
+  <title></title> 
+    <style>
+        html,
+        body {
+          margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+        
+        }
+        table table table {
+            table-layout: auto;
+        }
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+        .a6S {
+          display: none !important;
+          opacity: 0.01 !important;
+        }
+        img.g-img + div {
+          display:none !important;
+      }
+        .button-link {
+            text-decoration: none !important;
+        }
 
- <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
-<tbody><tr>
-<td align="center" valign="top">
-<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
-<tbody><tr>
+       
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { 
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+    </style>
+    <style>
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+        @media screen and (max-width: 600px) {
 
-<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Please reset your password.</h1>
-</td>
-</tr>
-<tr>
-<td style="padding-bottom:20px" valign="top">
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">Create Your email password, you MUST click the link below.<strong><br><h1> Click here </br> <a href="'.$emailconform.''.$email.'">Reset<br></strong>
-<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+            .email-container {
+                width: 100% !important;
+                margin: auto !important;
+            }
+            .fluid {
+                max-width: 100% !important;
+                height: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .stack-column,
+            .stack-column-center {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+            .stack-column-center {
+                text-align: center !important;
+            }
+            .center-on-narrow {
+                text-align: center !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                float: none !important;
+            }
+            table.center-on-narrow {
+                display: inline-block !important;
+            }
+      .email-container p {
+        font-size: 17px !important;
+        line-height: 22px !important;
+      }
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#fff" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; text-align: left;">
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+          <tr>
+        <td bgcolor="#5766BE">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 40px 40px 20px;">
+                    <h1 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;">Hello</h1>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 10px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to reset your password.
+                    </p>
+                </td>
+            </tr>
+      <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <p style="margin: 0;">You will need to enter this new password whenever you sign in to your Get Sporty account in future.</p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#000000" align="center" valign="top" style="padding: 10px;">
+                    <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0">
+                                   
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="120" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                            <!-- Column : BEGIN -->
+                            <td class="stack-column-center">
+                                <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0"  style="float: right;padding-right: 10px;display: inline-block;">
+                                    
+                                    <tr>
+                                        <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
+                                            <ul>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/f.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/go.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/ln.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/t.png"></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <!-- Column : END -->
+                        </tr>
 
-</td>
-</tr>
-<tr>
-<td align="center" style="padding-bottom:60px" valign="top">
-<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-<tbody><tr>
-<td align="center" valign="middle">
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody></table>
-</div>'; 
+                    </table><hr style="width: 90%;margin-top:0">
+                </td>
+            </tr>
+            <!-- 2 Even Columns : END -->
+            
+
+
+        <!-- Email Footer : BEGIN -->
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+            <tr>
+                <td style="background:#000000;padding: 10px 10px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:18px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                    <webversion style="color:#cccccc; text-decoration:underline; font-weight: bold;">Lorem ipsum dolor sit amet</webversion>
+                    <br><br>
+                    Company Name<br>consectetur adipiscing elit. In quis fermentum<br>(123) 456-7890
+                    <br><br>
+                    <unsubscribe style="color:#888888; text-decoration:underline;">unsubscribe</unsubscribe>
+                </td>
+            </tr>
+        </table>
+        <!-- Email Footer : END -->
+
+    </center>
+</body>
+</html>'; 
                $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
                $mail->AltBody = $txt; 
                $mail->AddAddress($to);
@@ -2503,21 +3654,16 @@ public function test()
 {
      $data['middle'] = 'Performance/index';
      $this->load->view('templates/template' , $data);
-
 }
 
 public function createguidelines()
 {
      $data['middle'] = 'Performance/createguidelines';
      $this->load->view('templates/template',$data);
-
 }
 public function performanceguide()
 {
      $item = new stdClass();
- 
-     //print_r($_POST);die;
-
      $item->id          = $_POST['id'];
      $item->userid      = $_POST['userid'];
      $item->guidelines  = $_POST['guidelines'];
@@ -2534,24 +3680,18 @@ public function performanceguide()
      else {
        echo "0";
           }
-
 }
-
 public function listguidelines()
 {
    $data['middle'] = 'Performance/listguidelines';
    $this->load->view('templates/template',$data);
-
 }
-
 public function editguidelines($str)
 {
   $id = $this->stringtonumber($str);
   $data['middle'] = 'Performance/editguidelines';
   $data['required'] =  array('id' => $id);
   $this->load->view('templates/template',$data);
- 
-
 }
 
 public function Statusperformanceguidelines()
@@ -2572,31 +3712,27 @@ if($data2->publish==1)
 }
 else{
   //$this->register->deletePublishContent($data2->id);
-
 }
 }
 
 public function eventbugmail()
 {
-     
      $this->load->model('register');
      $useremail =  $this->register->getuseremail($_POST['userid']);
      if(!$useremail)
      {
-       print_r("expression");
-      
      }
      else
      {
       $email = $useremail[0]['email'];
-    
+      $name  = $useremail[0]['name'];
       $subject="Event Bug List";
-      $this->bugemail($email,$_POST['buglist'],$subject);
+      $this->bugemail($email,$_POST['buglist'],$subject ,$name);
      }
 }
+public function bugemail($email,$buglist,$subject,$name)
+{          
 
-public function bugemail($email , $buglist,$subject)
-{              
               $html ="";
               $buglist = json_decode($buglist);
               $i =1;
@@ -2605,7 +3741,7 @@ public function bugemail($email , $buglist,$subject)
                $html .=  '<p class="setting"><span><b>'.$i.' :  </b>'.$value.'</span></p>';
                $i = $i+1;
               }
-
+               $data =  file_get_contents("assets/emailtemplate/forgotpassword.php"); 
              require('class.phpmailer.php');
               $mail = new PHPMailer(true);
               $to=$email;
@@ -2617,20 +3753,56 @@ public function bugemail($email , $buglist,$subject)
               $mail->SMTPAuth = true;  // authentication enabled
               $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
               $mail->Host = 'smtp.gmail.com';
-              //$mail->Host = 'smtp.gmail.com';
               $mail->Port = 465; 
               $mail->Username ="info@darkhorsesports.in";  
               $mail->Password = "2016Darkhorse";           
               $mail->SetFrom($from, $from_name);
               $mail->Subject = $subject;
-              $mail->Body = $html; 
+              $mail->Body =  $data;
                $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
                $mail->AltBody = $txt; 
                $mail->AddAddress($to);
                $mail->Send();
              
+             print_r($data);
               echo "1";
 }
+
+public function job()
+{
+  $this->load->model('register');
+  $job = $this->register->user_dashboard_job(58);
+  $event = $this->register->user_dashboard_tournamnet(58);
+  $tournament = $this->register->user_dashboard_tournamnet(58);
+  
+  $res = array("job" =>$job , "event" => $event , "tournament" => $tournament);
+
+  echo  json_encode($res);
+
+}
+
+public function angulartest()
+{            
+
+         // print_r($_REQUEST);die;
+	      $username       =  $_REQUEST['email'];
+		  $password       =  md5($_REQUEST['password']); 
+		  
+         $this->load->model('register');
+         $res = $this->register->angulartest($username, $password);
+         
+          $data = array("data" =>$res);		 
+		 
+         echo json_encode($res);
+}
+
+public function contentangular()
+{
+	$this->load->model('register');
+	$res= $this->register->getContentInfo();
+    echo json_encode($res); 
+}
+
 
 }
   
