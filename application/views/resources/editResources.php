@@ -1,7 +1,8 @@
 
 <link rel="stylesheet" href="<?php echo base_url('assets/jquery-ui.css'); ?>" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo base_url('assets/ui.theme.css'); ?>" type="text/ css" media="all" />
-
+<script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" >
+</script>
 
  <script>
 
@@ -219,7 +220,9 @@ var data = eval(data1);//JSON.stringify(data1);
                   </script>
                    <div class="form-group" id="abc">
                    <label for="exampleInputEmail1">Description</label>
-                   <textarea class="form-control" name="description" id="rdescription" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['description']; ?></textarea>
+
+                   <textarea class="ckeditor" maxlength="36" name="summary" id="rdescription" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> </div>
+
                 </div>
 
 
@@ -233,12 +236,14 @@ var data = eval(data1);//JSON.stringify(data1);
                      <label for="eventtype">Topic Of The Article</label>
                      <select id="rartical" class="form-control" >
                      <option value="<?php echo $value['topic_of_artical']; ?>"><?php echo $value['topic_of_artical']; ?></option> 
+
                      <option value ="Jobs">Jobs </option>
                      <option value ="Tournaments">Tournaments</option>
-                      <option value="Event">Event</option> 
-                     <option value ="News Aticle">News & article</option>
-                     <option value ="Training And Knowledge">Training And Knowledge</option>
-                      <option value ="other">Other</option>
+                     <option value="Event">Events</option> 
+                     <option value ="news_aticle">News & Articles</option>
+                     <option value ="t&k">Training & Knowledge</option>
+                     <option value ="other">Others</option>
+
                      </select>
                   <label id="article_error" hidden="">Article type is required</label>
                   </div >

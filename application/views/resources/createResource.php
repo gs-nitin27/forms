@@ -234,7 +234,9 @@ var data = eval(data1);//JSON.stringify(data1);
             </script>       
            <div class="form-group" id="abc">
            <label for="exampleInputEmail1">Description</label>
+
            <textarea class="ckeditor" maxlength="36" name="summary" id="rdescription" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> </div>
+           
 
 
   <button type="button" id="videobutton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Youtube Video Url</button>
@@ -298,11 +300,11 @@ $(function() {
                 <select id="article" class="form-control" name="topic_of_artical">
                 <option value="">- Select -</option> 
                 <option value ="Jobs">Jobs </option>
-                <option value ="Tournaments">Tournaments</option>
-                <option value="Event">Event</option> 
-                <option value ="news_aticle">News & article</option>
-                <option value ="t&k">Training & Knowledge</option>
-                <option value ="other">Other</option>
+                     <option value ="Tournaments">Tournaments</option>
+                     <option value="Events">Events</option> 
+                     <option value ="News & Articles">News & Articles</option>
+                     <option value ="Training & Knowledge">Training & Knowledge</option>
+                     <option value ="Others">Others</option>
                 </select>
                 <label id="article_error" hidden="">Article type is required</label>
                 </div>

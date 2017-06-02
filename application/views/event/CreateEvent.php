@@ -3,12 +3,8 @@
 function save()
 {
 $("#imagelodar").show();
-
 var sport = $("#sport").val();
 var sportdata= sport.split(',');
-
-
-
 var data1 = {
     "id"                      : 0, 
     "price"                   : $("#price").val(),
@@ -36,6 +32,7 @@ var data1 = {
     "event_links"             : $("#evlink").val(),
     "start_date"              : $("#startD").val(),
     "end_date"                : $("#endD").val(),
+    "total_applicant" 		  :	$("#total_applicant").val(),
     "sport"                   : sportdata[0],
     "sport_name"              : sportdata[1],
     "entry_start_date"        : $("#estartD").val(),
@@ -48,6 +45,7 @@ var data1 = {
 
 };
 var url = '<?php echo site_url();?>';
+
 console.log(JSON.stringify(data1));
 var data =  eval(data1);//JSON.stringify(data1);
   $.ajax({
@@ -276,6 +274,12 @@ var data =  eval(data1);//JSON.stringify(data1);
 					<input type="text" class="form-control"  id="endD" placeholder="Enter End Date">
 					<label id="end_date_error" hidden>End Date is required .</label> 
 					</div >
+					<div class="form-group">
+					<label for="link">Total No of Applicant</label>
+					<input type="text" class="form-control"  id="total_applicant" placeholder="Total No of Applicant">
+					<label id="end_date_error" hidden>Total No of Applicant is required .</label> 
+					</div >
+
 				</div>
               </div>
               <!-- /.tab-pane -->

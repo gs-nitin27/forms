@@ -249,10 +249,10 @@ var jsondata = eval(data1);
                      <option value="">- Select -</option> 
                      <option value ="Jobs">Jobs </option>
                      <option value ="Tournaments">Tournaments</option>
-                     <option value="Event">Event</option> 
-                     <option value ="news_aticle">News & article</option>
-                     <option value ="t&k">Training & Knowledge</option>
-                     <option value ="other">Other</option>
+                     <option value="Events">Events</option> 
+                     <option value ="News & Articles">News & Articles</option>
+                     <option value ="Training & Knowledge">Training & Knowledge</option>
+                     <option value ="Others">Others</option>
                      </select>
                      <label id="article_error" hidden="">Article type is required</label>
                   </div>
