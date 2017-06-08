@@ -100,7 +100,15 @@ $insert = "INSERT INTO `gs_tournament_info`(`id`, `userid`, `category`, `name`, 
 $query = $this->db->query($insert);
 if($query)
 {
-      return 1;
+	$data =  "INSERT INTO `gs_activity_log`(`userid`, `module`, `activity`, `date_created`) VALUES ('$item->userid','tournament','create','".date("Y-m-d")."')"; 
+	$log  = $this->create_log($data);
+     if($log == 1)
+     {
+     return 1;
+     }else
+     {
+     return 0;
+     }
 }
 else 
       return 0;
@@ -112,7 +120,16 @@ $insert = "INSERT INTO `gs_jobInfo`(`id`, `userid`, `title`, `gender`, `sport`, 
 $query = $this->db->query($insert);
 if($query)
 {
-	return 1;
+	
+	$data =  "INSERT INTO `gs_activity_log`(`userid`, `module`, `activity`, `date_created`) VALUES ('$item->userid','job','create','".date("Y-m-d")."')"; 
+	$log  = $this->create_log($data);
+     if($log == 1)
+     {
+     return 1;
+     }else
+     {
+     return 0;
+     }
 }
 else
 {
