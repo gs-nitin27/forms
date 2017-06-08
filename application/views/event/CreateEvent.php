@@ -593,7 +593,7 @@ $(function() {
 
 
       
-    if(name != "" && type != "" &&  address_line1 != "" &&  address_line2 != "" &&  city != "" &&  description != "" && eligibility1 != "" && eligibility2 != "" &&  organizer_name != "" &&  mobile != "" &&  organizer_address_line1 != "" &&   organizer_address_line2 != "" &&  organizer_city != "" &&  start_date != "" &&  end_date != "" &&  sport != 0 &&  entry_start_date != "" &&    entry_end_date != "" && email_app_collection != "")
+    if(name != "" && type != "" && entry_end_date != "" && email_app_collection != "")
       {
            save();
       }  

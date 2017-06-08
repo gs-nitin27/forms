@@ -78,8 +78,15 @@ $insert = "INSERT INTO `gs_eventinfo`(`id`, `userid`,`name`, `type`, `address_1`
 $query = $this->db->query($insert);
 
 if($query)
-{
+{   $data =  "INSERT INTO `gs_activity_log`(`userid`, `module`, `activity`, `date_created`) VALUES ('$item->userid','event','create','".date("Y-m-d")."')"; 
+	$log  = $this->create_log($data);
+     if($log == 1)
+     {
      return 1;
+     }else
+     {
+     return 0;
+     }
 }
 else 
      return 0;
@@ -1641,14 +1648,18 @@ return 0;
    // return $result;
 }
  
- 
- // public function user_dashboard_data($userid)
- // {
- //    $query = "SELECT * FROM `gs_jobInfo` WHERE `userid` = '$userid' ORDER BY `id` desc limit 3 UNION SELECT * FROM `gs_tournament_info` WHERE `userid` = '$userid' ORDER BY `id` desc limit 3 UNION SELECT * FROM `gs_eventinfo` WHERE `userid` = '$userid' ORDER BY `id` desc  limit 3";
- //    $sql = $this->db->query($query);
- //    $result = $sql->result_array();
- //    return $result;
- // }
+public function create_log($data)
+ {   
+	$query = $this->db->query($data);
+		if($query)
+			{
+				return 1;
+			}
+		else
+			{
+				return 0;
+			}
 
+ } 
 }
  ?>
