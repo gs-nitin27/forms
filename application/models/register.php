@@ -80,7 +80,7 @@ $query = $this->db->query($insert);
 if($query)
 {   $id = mysql_insert_id();
 	$data =  "INSERT INTO `gs_activity_log`(`userid`, `module`,`creation_id`,`activity`, `date_created`) VALUES ('$item->userid','job','$id','create','".date("Y-m-d")."')";
-	$log  = $this->create_log($data);
+	$log  = $this->create_log($data,$item->userid);
      if($log == 1)
      {
      return 1;
@@ -103,7 +103,7 @@ if($query)
 {
 	$id = mysql_insert_id();
 	$data =  "INSERT INTO `gs_activity_log`(`userid`, `module`,`creation_id`,`activity`, `date_created`) VALUES ('$item->userid','job','$id','create','".date("Y-m-d")."')";
-	$log  = $this->create_log($data);
+	$log  = $this->create_log($data,$item->userid);
      if($log == 1)
      {
      return 1;
@@ -124,7 +124,7 @@ if($query)
 {
 	$id = mysql_insert_id();
 	$data =  "INSERT INTO `gs_activity_log`(`userid`, `module`,`creation_id`,`activity`, `date_created`) VALUES ('$item->userid','job','$id','create','".date("Y-m-d")."')"; 
-	$log  = $this->create_log($data);
+	$log  = $this->create_log($data,$item->userid);
      if($log == 1)
      {
      return 1;
@@ -1668,18 +1668,88 @@ return 0;
    // return $result;
 }
  
-public function create_log($data)
- {   
+public function create_log($data,$userid)
+ {  
 	$query = $this->db->query($data);
 		if($query)
-			{
+			{   $res = mysql_query("SELECT COUNT(al.`activity`) AS creation, us.`device_id`  FROM `gs_activity_log` AS al LEFT JOIN `user` AS us ON us.`userid` = al.`userid` WHERE us.`userid` = '$userid' AND `activity` = 'create'");
+				if(mysql_num_rows($res)>0)
+				{
+
+				$row  = mysql_fetch_assoc($res);
+				{ $data = array('creation' => 1,'indicator'=>9,'message'=>'user creations' );
+				  $registatoin_ids = $row['device_id'];
+				  $message =  $data;
+				  $send = $this->sendPushNotificationToGCM($registatoin_ids, $message);
+				  //echo $send."nitin";
+				}
+
+
+				}   
 				return 1;
+
 			}
 		else
 			{
 				return 0;
 			}
 
- } 
+}
+
+public function sendPushNotificationToGCM($registatoin_ids, $message) 
+{
+
+  $device=(explode("|",$registatoin_ids));
+
+  foreach ($device as $key => $value) {
+    $registration_ids = $value;
+    $google_api = "AIzaSyAF1SYN40Gf_JD2J6496-cLnfT_eX4gRt8";
+   $this->sendNotification($registration_ids, $message,$google_api);
+  //  return $Notification;
+  }
+ 
+    
+} //End function
+
+
+public function sendNotification($registration_ids, $message,$google_api)
+{
+   //Google cloud messaging GCM-API url
+        $url = 'https://gcm-http.googleapis.com/gcm/send';
+        $fields = array(
+            'registration_ids' => $registration_ids,
+            'data' => $message,
+        );
+          $message = array('data1'=>$message);
+          $data = array('data'=>$message,'to'=>$registration_ids);
+          json_encode($data);
+
+        //print_r($fields);
+    // Google Cloud Messaging GCM API Key
+        //define("GOOGLE_API", $google_api);    
+        $headers = array(
+            'Authorization: key=' .$google_api,
+            'Content-Type: application/json'
+        );
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); 
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        $result = curl_exec($ch);       
+        if ($result === FALSE) {
+            //die('Curl failed: ' . curl_error($ch));
+        return 0;
+        }
+        curl_close($ch);
+       // return $result;
+       return 1;
+}
+
+
 }
  ?>
