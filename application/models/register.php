@@ -78,7 +78,8 @@ $insert = "INSERT INTO `gs_eventinfo`(`id`, `userid`,`name`, `type`, `address_1`
 $query = $this->db->query($insert);
 
 if($query)
-{   $data =  "INSERT INTO `gs_activity_log`(`userid`, `module`, `activity`, `date_created`) VALUES ('$item->userid','event','create','".date("Y-m-d")."')"; 
+{   $id = mysql_insert_id();
+	$data =  "INSERT INTO `gs_activity_log`(`userid`, `module`,`creation_id`,`activity`, `date_created`) VALUES ('$item->userid','job','$id','create','".date("Y-m-d")."')";
 	$log  = $this->create_log($data);
      if($log == 1)
      {
@@ -100,7 +101,8 @@ $insert = "INSERT INTO `gs_tournament_info`(`id`, `userid`, `category`, `name`, 
 $query = $this->db->query($insert);
 if($query)
 {
-	$data =  "INSERT INTO `gs_activity_log`(`userid`, `module`, `activity`, `date_created`) VALUES ('$item->userid','tournament','create','".date("Y-m-d")."')"; 
+	$id = mysql_insert_id();
+	$data =  "INSERT INTO `gs_activity_log`(`userid`, `module`,`creation_id`,`activity`, `date_created`) VALUES ('$item->userid','job','$id','create','".date("Y-m-d")."')";
 	$log  = $this->create_log($data);
      if($log == 1)
      {
@@ -120,8 +122,8 @@ $insert = "INSERT INTO `gs_jobInfo`(`id`, `userid`, `title`, `gender`, `sport`, 
 $query = $this->db->query($insert);
 if($query)
 {
-	
-	$data =  "INSERT INTO `gs_activity_log`(`userid`, `module`, `activity`, `date_created`) VALUES ('$item->userid','job','create','".date("Y-m-d")."')"; 
+	$id = mysql_insert_id();
+	$data =  "INSERT INTO `gs_activity_log`(`userid`, `module`,`creation_id`,`activity`, `date_created`) VALUES ('$item->userid','job','$id','create','".date("Y-m-d")."')"; 
 	$log  = $this->create_log($data);
      if($log == 1)
      {
@@ -172,8 +174,7 @@ public function getTournamentCategory()
 }
 	
 public function getJobInfo($id = false)
-{
-	    $this->db->select('*');
+{       $this->db->select('*');
 		$this->db->from('gs_jobInfo GR');
 		if($id > 0){
 			$this->db->where('GR.id', $id);
@@ -942,7 +943,7 @@ public function update_admin_module($id,$item)
 }
 
 public function getUserJobInfo($id)
-{
+{      
        $this->db->select('*, JI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');
 		$this->db->from('gs_jobInfo JI');
 		$this->db->join('gs_sports SP', 'SP.id = JI.sport', "left");
@@ -956,6 +957,8 @@ public function getUserJobInfo($id)
 		}
 		$query = $this->db->get();
 		$q =  $query->result_array();
+		//echo $query;
+		
 		return $q;
 }
 

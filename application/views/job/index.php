@@ -87,9 +87,9 @@
             ?>
           <td>
           <?php if($job['publish']==0){?>
-          <button class="badge bg-red" onclick="myfunction(<?php echo $job['infoId'];?>,1)"><?php echo "Activate";?></button>
+          <button class="badge bg-red" onclick="myfunction(<?php echo $job['id'];?>,1)"><?php echo "Activate";?></button>
           <?php }else{?> 
-          <button class="badge bg-green" onclick="myfunction(<?php echo $job['infoId'];?>,0)"><?php echo "Deactivate";?></button>
+          <button class="badge bg-green" onclick="myfunction(<?php echo $job['id'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
            <?php }  $list=array('a' => 0,
@@ -102,7 +102,13 @@
                                 'h' => 7,
                                 'i' => 8,
                                 'j' => 9);
-                                 $num=$job['infoId']; //your value
+                                if($usertype==101 || $usertype==102 )
+                                 {
+                                 $num=$job['id']; //your value
+                                 }else
+                                 {
+                                  $num=$job['infoId']; //your value
+                                 }
                                  $temp='';
                                  $arr_num=str_split ($num);
                                 foreach($arr_num as $data)

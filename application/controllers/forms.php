@@ -538,7 +538,7 @@ $item->org_pin               = $_POST['org_pin'];
 $item->org_name              = $_POST['organisation_name'];
 $item->about                 = mysql_real_escape_string($_POST['about']);
 $item->address1              = mysql_real_escape_string($_POST['address_line1']); 
-$item->address2              = mysql_real_escape_string($_POST['address_line1']);
+$item->address2              = $_POST['address_line1'];
 $item->state                 = $_POST['state'];
 $item->city                  = $_POST['city'];
 $item->pin                   = $_POST['pin'];
@@ -587,7 +587,7 @@ return $id;
 }
 
 public function viewJob($str)
-{
+{  
 	 $id=$this->stringtonumber($str);
 		$data['middle'] = 'job/view';
 		$data['required'] = array(
