@@ -589,7 +589,9 @@ $(function() {
    
     $("#save").click(function(){
        
-       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 &&  $("#jdesc").val() !="" &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&   $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#email").val() !=""  &&  $("#jadd1").val() !="" &&  $("#jsports").val() !=0){
+   
+
+       if($("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 &&  $("#jdesc").val() !="" &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&   $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#email").val() !=""  &&  $("#jadd1").val() !="" &&  $("#jsports").val() !=0){
             save();
        }else{
                   // alert($("#2").val());

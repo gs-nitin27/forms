@@ -1,11 +1,16 @@
 
 <script>
-function save()
+window.flagTicket = 0;
+function save(totalTicket)
 {
+
+//alert(totalTicket);return ;
+
 $("#imagelodar").show();
-var sport = $("#sport").val();
-var sportdata= sport.split(',');
-var data1 = {
+var sport  		= $("#sport").val();
+var sportdata	= sport.split(',');
+var data1 = 
+{
     "id"                      : 0, 
     "price"                   : $("#price").val(),
     "etypes"                  : $("#etypes").val(),
@@ -40,8 +45,10 @@ var data1 = {
     "email_app_collection"    : $("#email_app_collection").val(),
     "file_name"               : $("#filename").val(),
     "image"                   : $("#photo_url").val(),
-    "ticketdetails"           : $("#ticketdetails").val(),
-    "noofticket"              : $("#noofticket").val()
+    "image"                   : $("#photo_url").val(),
+    "ticketdetails"           : totalTicket;
+   // "ticketArray" 			  :	ticketArray;
+
 
 };
 var url = '<?php echo site_url();?>';
@@ -376,21 +383,56 @@ var data =  eval(data1);//JSON.stringify(data1);
 				</div>
               </div>
 
-               <div class="tab-pane" id="ticket">
+				 <div class="tab-pane" id="ticket">
                  <div class="box-header with-border">
-					<h4>Ticket Details:</h4 > 		
-				</div>
+               
+               <input type="button" id="addTicket" value="Add Ticket" />
+               </div>
+               
+                 
+
+                 	<DIV id="EventTicket" ></div>
+
+                 	
+				<!--	<h4>Ticket Details:</h4 > 		-->
+					
+
+					
+					
+		<script >
+	//var flag=0;
+document.getElementById("addTicket").onclick = function() 
+{
+    var form 		 = document.getElementById("EventTicket");
+	var newDiv  	 = document.createElement("div");
+	newDiv.innerHTML = "<div class='box-body'  style='background-color: #AEB6BF; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group'><label for='ticketName'>Ticket Name :</label><input type='text' class='form-control' id='ticketname"+ window.flagTicket +"' placeholder='Enter Ticket Name'><label id='ticketname_error' hidden>Ticket Name is required .</label></div><div class='form-group'><label for='ticketPrice'>Ticket Price :</label><input type='text' class='form-control' id='ticketPrice"+ window.flagTicket +"' placeholder='Enter ticket price'><label id='ticketprice_error' hidden> Ticket price is required .</label></div>  <label for='NoofTicket'>Number of Ticket:</label><input type='text' class='form-control' id='noofticket"+ window.flagTicket +"' placeholder='Enter Number of Ticket'><label id='numberofticket_error' hidden>Number of Ticket is required .</label></div>	"; 
+		form.appendChild(newDiv);
+		window.flagTicket++;
+
+	//var br  	 = document.createElement("br");
+	//form.appendChild(br);
+
+}
+
+</script>
+					
+
+                
+                <!-- Old Code*********
                 <div class="box-body">
 				    <div class="form-group">
 					<label for="eventName">Ticket Detail</label>
 					<input type="text" class="form-control" id="ticketdetails" placeholder="Enter Ticket Details">
 				    <label id="ticketdetails_error" hidden>Ticket Details is required .</label> 
 					</div>
+
 					<div class="form-group">
 					  <label for="eventName">No Of Ticket</label>
 					  <input type="text" class="form-control" id="noofticket" placeholder="Enter No Of ticket">
 				   	<label id="noofticket_error" hidden>No Of Ticket   is required .</label> 
 					</div>
+					-->
+
 				</div>
               </div>
               <!-- /.tab-pane -->
@@ -444,6 +486,19 @@ var data =  eval(data1);//JSON.stringify(data1);
 	  </div>
 </section>
 </div>
+<!--
+<script>
+function addTextBox(btn) {
+    var element = document.createElement("input");
+    element.setAttribute("type", "text");
+    element.setAttribute("value", "OK");
+    element.setAttribute("name", "Test Name");
+    btn.parentNode.insertBefore(element, btn)
+}
+</script>
+
+-->
+
  <script type="text/javascript">
     $("#etypes").change(function(){
 	if($("#etypes").val() == 'free')
@@ -560,6 +615,7 @@ $(function() {
   
 	$("#save").click(function()
 	{
+		
      var name                      = $("#evname").val();
      var type                      = $("#evtype").val();
      var address_line1             = $("#add1").val();
@@ -586,29 +642,39 @@ $(function() {
      var entry_start_date          = $("#estartD").val();
      var entry_end_date            = $("#eendD").val();
      var email_app_collection      = $("#email_app_collection").val();
+     var ticketArray = [];
+	for(var i =0; i <window.flagTicket; i++)
+	{
+		var temp = [];
+		temp.push('{'+'"ticketname":'+'"'+$("#ticketname"+i).val()+'"'+','+'"ticketPrice":'+'"'+$("#ticketPrice"+i).val()+'"'+','+'"noofticket":'+'"'+$("#noofticket"+i).val()+'"'+'}');
+		ticketArray.push(temp);
 
+	}
+		var totalTicket = JSON.stringify(ticketArray);
 
-       
+		alert(totalTicket); return;
+		
+
+	if(name != "") 
       
-
-
-      
-    if(name != "" && type != "" &&  address_line1 != "" &&  address_line2 != "" &&  city != "" &&  description != "" && eligibility1 != "" && eligibility2 != "" &&  organizer_name != "" &&  mobile != "" &&  organizer_address_line1 != "" &&   organizer_address_line2 != "" &&  organizer_city != "" &&  start_date != "" &&  end_date != "" &&  sport != 0 &&  entry_start_date != "" &&    entry_end_date != "" && email_app_collection != "")
+   // if(name != "" && type != "" &&  address_line1 != "" &&  address_line2 != "" &&  city != "" &&  description != "" && eligibility1 != "" && eligibility2 != "" &&  organizer_name != "" &&  mobile != "" &&  organizer_address_line1 != "" &&   organizer_address_line2 != "" &&  organizer_city != "" &&  start_date != "" &&  end_date != "" &&  sport != 0 &&  entry_start_date != "" &&    entry_end_date != "" && email_app_collection != "")
       {
-           save();
+           save(totalTicket);
       }  
       else
       { 
-             $("#2").css("color","red");
-             $("#3").css("color","red");
-             $("html, body").animate({ scrollTop: 0 }, 500);
-
-           if(name =="")
-           {
+          $("#2").css("color","red");
+          $("#3").css("color","red");
+          $("#4").css("color","red");
+          $("html, body").animate({ scrollTop: 0 }, 500);
+          if(name =="")
+          {
               $("#name_error").show();
               $("#name_error").css("color","red");
-            }else{
-            		//alert(name);
+           }
+            else
+            {
+            //alert(name);
             $("#name_error").hide();
             }
             if(type == ""){
@@ -710,22 +776,31 @@ $(function() {
             	//alert(sport);
             	$("#sport_error").hide();	
             }
-            if(entry_start_date == ""){
+            if(entry_start_date == "")
+            {
             $("#entry_start_date_error").show();
             $("#entry_start_date_error").css("color","red");
-            }else{
+            }
+            else
+            {
             	$("#entry_start_date_error").hide();	
             }
-             if(entry_end_date == ""){
+            if(entry_end_date == "")
+            {
             $("#entry_end_date_error").show();
             $("#entry_end_date_error").css("color","red");
-            }else{
+            }
+            else
+            {
             	$("#entry_end_date_error").hide();	
             }
-            if(email_app_collection  == ""){
+            if(email_app_collection  == "")
+            {
             $("#email_app_collection_error").show();
             $("#email_app_collection_error").css("color","red");
-            }else{
+            }
+            else
+            {
             	$("#email_app_collection_error").hide();	
             }
       }  

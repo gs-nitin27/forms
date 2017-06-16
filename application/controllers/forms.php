@@ -427,6 +427,7 @@ $item->entry_end_date            = $_POST['entry_end_date'];//strtotime($data1['
 $item->file_name                 = $_POST['file_name'];
 $item->email_app_collection      = $_POST['email_app_collection'];
 $item->image                     = $_POST['image'];
+$item->ticketdetails             = $_POST['ticketdetails']; 
  
 $this->load->model('register');
 $res = $this->register->saveEvent($item);
