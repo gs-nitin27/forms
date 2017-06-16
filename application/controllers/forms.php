@@ -394,30 +394,30 @@ $item = new stdClass();
 
 $item->id                        = $_POST['id'];
 $item->userid                    = $_POST['userid'];
-$item->feetype                   = $_POST['etypes'];
+$item->feetype                   = mysql_real_escape_string($_POST['etypes']);
 $item->fee                       = $_POST['price'];
-$item->ticket_detail             = $_POST['ticketdetails'];
+$item->ticket_detail             = mysql_real_escape_string($_POST['ticketdetails']);
 $item->no_of_ticket              = $_POST['noofticket']; 
 $item->type                      = $_POST['type'];
-$item->name                      = $_POST['name'];
-$item->address1                  = $_POST['address_line1'];
-$item->address2                  = $_POST['address_line2'];
+$item->name                      = mysql_real_escape_string($_POST['name']);
+$item->address1                  = mysql_real_escape_string($_POST['address_line1']);
+$item->address2                  = mysql_real_escape_string($_POST['address_line2']);
 $item->city                      = $_POST['city'];
 $item->pin                       = $_POST['pin'];
-$item->description               = $_POST['description'];
-$item->eligibility1              = $_POST['eligibility1'];
-$item->eligibility2              = $_POST['eligibility2'];
+$item->description               = mysql_real_escape_string($_POST['description']);
+$item->eligibility1              = mysql_real_escape_string($_POST['eligibility1']);
+$item->eligibility2              = mysql_real_escape_string($_POST['eligibility2']);
 $item->state                     = $_POST['state'];
-$item->tandc1                    = $_POST['terms_and_conditions1'];
-$item->tandc2                    = $_POST['terms_and_conditions2'];
-$item->organizer_name            = $_POST['organizer_name'];
+$item->tandc1                    = mysql_real_escape_string($_POST['terms_and_conditions1']);
+$item->tandc2                    = mysql_real_escape_string($_POST['terms_and_conditions2']);
+$item->organizer_name            = mysql_real_escape_string($_POST['organizer_name']);
 $item->mobile                    = $_POST['mobile'];
-$item->org_address1              = $_POST['organizer_address_line1'];
-$item->org_address2              = $_POST['organizer_address_line2'];
+$item->org_address1              = mysql_real_escape_string($_POST['organizer_address_line1']);
+$item->org_address2              = mysql_real_escape_string($_POST['organizer_address_line2']);
 $item->organizer_city            = $_POST['organizer_city'];
 $item->organizer_pin             = $_POST['organizer_pin'];
 $item->organizer_state           = $_POST['organizer_state'];
-$item->event_links               = $_POST['event_links'];
+$item->event_links               = mysql_real_escape_string($_POST['event_links']);
 $item->start_date                = $_POST['start_date'];//strtotime();
 $item->end_date                  = $_POST['end_date'];//strtotime($data1['end_date']);
 $item->sport                     = $_POST['sport'];
@@ -426,8 +426,7 @@ $item->entry_start_date          = $_POST['entry_start_date'];//strtotime($data1
 $item->entry_end_date            = $_POST['entry_end_date'];//strtotime($data1['entry_end_date']);
 $item->file_name                 = $_POST['file_name'];
 $item->email_app_collection      = $_POST['email_app_collection'];
-$item->image                     = $_POST['image'];
-$item->ticketdetails             = $_POST['ticketdetails']; 
+$item->image                     = $_POST['image']; 
  
 $this->load->model('register');
 $res = $this->register->saveEvent($item);
@@ -522,23 +521,23 @@ $item  = new stdClass();
 
 $item->id                    = $_POST['id'];
 $item->userid                = $_POST['userid'];
-$item->title                 = $_POST['title'];
+$item->title                 = mysql_real_escape_string($_POST['title']);
 $item->type                  = $_POST['type'];
 $item->sports                = $_POST['sports'];
 $item->gender                = $_POST['gender'];
-$item->work_exp              = $_POST['work_experience'];
-$item->desc                  = $_POST['description'];
-$item->desiredskill          = $_POST['desired_skills'];
-$item->qualification         = $_POST['qualification'];
-$item->keyreq                = $_POST['key_requirement'];
-$item->org_address1          = $_POST['org_address1'];
-$item->org_address2          = $_POST['org_address2'];
-$item->org_city              = $_POST['org_city'];
-$item->org_state             = $_POST['org_state'];
+$item->work_exp              = mysql_real_escape_string($_POST['work_experience']);
+$item->desc                  = mysql_real_escape_string($_POST['description']);
+$item->desiredskill          = mysql_real_escape_string($_POST['desired_skills']);
+$item->qualification         = mysql_real_escape_string($_POST['qualification']);
+$item->keyreq                = mysql_real_escape_string($_POST['key_requirement']);
+$item->org_address1          = mysql_real_escape_string($_POST['org_address1']);
+$item->org_address2          = mysql_real_escape_string($_POST['org_address2']);
+$item->org_city              = mysql_real_escape_string($_POST['org_city']);
+$item->org_state             = mysql_real_escape_string($_POST['org_state']);
 $item->org_pin               = $_POST['org_pin'];
 $item->org_name              = $_POST['organisation_name'];
-$item->about                 = $_POST['about'];
-$item->address1              = $_POST['address_line1']; 
+$item->about                 = mysql_real_escape_string($_POST['about']);
+$item->address1              = mysql_real_escape_string($_POST['address_line1']); 
 $item->address2              = $_POST['address_line1'];
 $item->state                 = $_POST['state'];
 $item->city                  = $_POST['city'];
@@ -588,7 +587,7 @@ return $id;
 }
 
 public function viewJob($str)
-{
+{  
 	 $id=$this->stringtonumber($str);
 		$data['middle'] = 'job/view';
 		$data['required'] = array(
