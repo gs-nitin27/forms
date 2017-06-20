@@ -1664,7 +1664,7 @@ public function Emailfind()
                 $id = $_POST['oldimageid'];
                   $image = $_POST['oldimage'];
                 $temp= $this->register->removeimage($id,$image);
-                  }
+            }
               }
         break;
       case 'uploads/tournament/':

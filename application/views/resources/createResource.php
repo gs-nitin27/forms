@@ -7,23 +7,21 @@
 </script>
 <script>
 
+
 function save()
 {
-  //alert($("#dates-field2").val());
 $('#imagelodar').show();
-var summary1=$("#rsummary").val();
-var summary12=summary1.toString();
-var string = summary12.replace(/[\/\\'\.\"<>~{}]/g, '');
-var description1=$("#rdescription").val();
-var description2=description1.toString();
-var description3 = description2.replace(/[\/\\<>~\{}]/g, '');
+var summary1        = $("#rsummary").val();
+var summary12       = summary1.toString();
+var string          = summary12.replace(/[\/\\'\.\"<>~{}]/g, '');
+var description      = editor.getData();
 var data1 = 
 {
     "id"                      : 0, 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#myId").text(),
-    "description"             : description3, 
+    "description"             : description, 
     "summary"                 : string,
     "keyword"                 : "",
     "status"                  : 0,
@@ -35,7 +33,8 @@ var data1 =
     "sport"                   : $("#dates-field2").val().toString()
 };
 
-console.log(JSON.stringify(data1));
+
+
 var url = '<?php echo site_url();?>'
 var data = eval(data1);//JSON.stringify(data1);
   $.ajax({
@@ -164,7 +163,7 @@ var data = eval(data1);//JSON.stringify(data1);
             });
             </script>
              <div class="form-group"> 
-                      <label for="exampleInputEmail1">Resource Type</label>
+                     <label for="exampleInputEmail1">Resource Type</label>
                      <select  id="types" class="form-control" >
                      <option >-Select-</option> 
                      <option value="text">Text</option>
@@ -172,8 +171,8 @@ var data = eval(data1);//JSON.stringify(data1);
                      <option value="blog">Blog</option>
                      </select>
               </div >
-               <?php     
-                date_default_timezone_set("Asia/Kolkata");
+             <?php     
+             date_default_timezone_set("Asia/Kolkata");
              {
               ?>
               <div class="form-group">
@@ -212,19 +211,9 @@ var data = eval(data1);//JSON.stringify(data1);
 
 
                 <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                
-
-
- 
-
-
-
-
-
-            
-
 
                 <label id="summary_error" hidden="">A summary is required</label>
+
                 </div>
                 <div id="rem"></div>
             <script>
@@ -233,15 +222,21 @@ var data = eval(data1);//JSON.stringify(data1);
                 };
             </script>       
            <div class="form-group" id="abc">
+
            <label for="exampleInputEmail1">Description</label>
+           <textarea class="ckeditor" maxlength="360" name="description" id="rdescription" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> 
+          
+          <script>
+          var editor=CKEDITOR.replace('rdescription');
+          </script>
 
-           <textarea class="ckeditor" maxlength="36" name="summary" id="rdescription" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> </div>
-           
-
-
+                <label id="description_error" hidden="">A Description is required</label>
+                </div>
+     
   <button type="button" id="videobutton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Youtube Video Url</button>
 
   <!-- Modal -->
+
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -635,15 +630,33 @@ $(function() {
         else{
           $("#title_error").hide(); 
         }
+
         var summary = $('#rsummary').val();
         if(summary == "")
         {
           $("#summary_error").show();
           $("#summary_error").css('color', 'red');
         }
-        else{
+        else
+        {
           $("#summary_error").hide(); 
         }
+
+      var editorData      =  editor.getData();
+      var description     =  editorData.replace(/[\/\\<>~\{}]/g, '');
+       
+        if(description == "")
+        {
+          $("#description_error").show();
+          $("#description_error").css('color', 'red');
+        }
+        else
+        {
+          $("#description_error").hide(); 
+        }
+
+
+
         var article = $('#article').val();
         if(article == "")
         {
@@ -653,10 +666,9 @@ $(function() {
         else{
           $("#article_error").hide(); 
         }
-       if(title!="" &&  article!="" && location!="" &&summary!=""){
+       if(title!="" &&  article!="" && location!="" &&summary!="" &&description!=""){
          save();
-       // alert($("#dates-field2").val());
-        }
+       }
     });
   </script> 
 

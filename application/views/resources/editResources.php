@@ -13,15 +13,13 @@ $('#imagelodar').show();
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
 var string = summary12.replace(/[\/\\<>~{}]/g, '');
-var description1=$("#rdescription").val();
-var description2=description1.toString();
-var description3 = description2.replace(/[\/\\<>~{}]/g, '');
+var description      = editor.getData();
 var data1 = {
     "id"                      : $("#rid").val(), 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#rurl").val(),
-    "description"             : description3, 
+    "description"             : description, 
     "summary"                 : string,
     "location"                : $("#rlocation").val(), 
     "keyword"                 : "",
@@ -155,7 +153,8 @@ var data = eval(data1);//JSON.stringify(data1);
                 </div>
                 <script type="text/javascript">
                
-               function loadData(){ 
+               function loadData()
+               { 
                   var sport_value =  $("#sport").val();
                   var splt_sport =   sport_value.split(",");  
                   for(var i = 0; i<splt_sport.length ; i++)
@@ -221,7 +220,16 @@ var data = eval(data1);//JSON.stringify(data1);
                    <div class="form-group" id="abc">
                    <label for="exampleInputEmail1">Description</label>
 
-                   <textarea class="ckeditor" maxlength="36" name="summary" id="rdescription" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> </div>
+                   <textarea class="ckeditor" maxlength="36" name="summary" id="rdescription" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['description']; ?></textarea>
+             <script>
+                var editor=CKEDITOR.replace('rdescription');
+              </script>
+                <label id="description_error" hidden="">A Description is required</label>
+              </div>
+
+
+
+                    </div>
 
                 </div>
 
@@ -551,35 +559,28 @@ $(function() {
         else{
           $("#title_error").hide(); 
         }
-      
-      
-        // var url = $('#rurl').val();
-        // if(url == "")
-        // {
-        //   $("#url_error").show();
-        //   $("#url_error").css('color', 'red');
-        // }
-        // else{
-        //   $("#url_error").hide(); 
-        // }
+            
+       var description      =  editor.getData();
+       if(description == "")
+        {
+          $("#description_error").show();
+          $("#description_error").css('color', 'red');
+        }
+        else
+        {
+          $("#description_error").hide(); 
+        }
         var summary = $('#rsummary').val();
         if(summary == "")
         {
           $("#summary_error").show();
           $("#summary_error").css('color', 'red');
         }
-        else{
+        else
+        {
           $("#summary_error").hide(); 
         }
-        // var location = $('#rlocation').val();
-        // if(location == "")
-        // {
-        //   $("#location_error").show();
-        //   $("#location_error").css('color', 'red');
-        // }
-        // else{
-        //   $("#location_error").hide(); 
-        // }
+
         var article = $('#rartical').val();
         if(article == "")
         {
@@ -589,7 +590,7 @@ $(function() {
         else{
           $("#article_error").hide(); 
         }
-       if(title!="" &&  article!="" && location!="" &&summary!=""){
+       if(title!="" &&  article!="" && location!="" &&summary!="" &&description!=""){
           save();
         }
     });
