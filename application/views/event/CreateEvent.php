@@ -677,10 +677,13 @@ $(function() {
             }else{
             $("#type_error").hide();	
             }
-            if(address_line1 ==""){
+            if(address_line1 =="")
+            {
                 $("#address_line1_error").show();
                 $("#address_line1_error").css("color","red");
-            }else{
+            }
+            else
+            {
             	$("#address_line1_error").hide();	
             }
             if(address_line2 == ""){
