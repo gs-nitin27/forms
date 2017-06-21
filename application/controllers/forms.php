@@ -17,8 +17,8 @@ public function index()
 
 public function home()
 {
-        $data['middle'] = 'dashboard';
-        $this->load->view('templates/template',$data);
+   $data['middle'] = 'dashboard';
+   $this->load->view('templates/template',$data);
 }
 
 public function userhome()
@@ -33,7 +33,6 @@ public function userhome()
     $data=json_decode($_REQUEST['data']);
     $username=$data->email;
     $password=md5($data->email);
-   // echo $username ."  ".$password;
     $this->load->model('register');
     $emailid = $this->register->Emailfind($data->email);
     if($emailid!=" ")
