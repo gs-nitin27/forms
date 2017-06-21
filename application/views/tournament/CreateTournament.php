@@ -272,6 +272,12 @@ var data = JSON.stringify(data1);
 					  <input type="text" class="form-control"  id="endD" placeholder="Enter End Date">
 					  <label id="endD_error" hidden>End Date is required .</label> 
 					</div >
+
+					<div class="form-group">
+					  <label for="pin">Tournament Link</label>
+					  <input type="text" class="form-control"  id="evlink" placeholder ="http://" />
+					  <label id="evlink_error" hidden>Tournament Link is required .</label> 
+					</div >
 					
 				</div>
               </div>
@@ -310,11 +316,11 @@ var data = JSON.stringify(data1);
 					  <label for="pin">Pin</label>
 					  <input type="text" class="form-control"  id="pin" placeholder="Enter Pin">
 					</div >
-					<div class="form-group">
+					<!-- <div class="form-group">
 					  <label for="pin">Tournament Link</label>
 					  <input type="text" class="form-control"  id="evlink" value="http://" />
 					  <label id="evlink_error" hidden>Tournament Link is required .</label> 
-					</div >
+					</div > -->
 					<div class="form-group">
 					  <label for="link">Entry Start Date</label>
 					  <input type="text" class="form-control"  id="estartD" placeholder="Enter Start Date">
@@ -581,7 +587,7 @@ $(function() {
    $("#save").click(function()
    {
       //alert("hi");
-    if(  $("#tname").val() !="" && $("#tdesc").val() != "" &&  $("#startD").val() !="" && $("#endD").val() !="")
+    if(  $("#tname").val() !="" && $("#tdesc").val() != "" &&  $("#startD").val() !="" && $("#endD").val() !="" && $("#evlink").val() != "")
        {
       	save();
       }else{
@@ -689,12 +695,12 @@ $(function() {
       	// }else{
        //    $("#orgemail_error").hide();
       	// }
-      	// if($("#evlink").val() ==""){
-       //      $("#evlink_error").show();
-      	// 	$("#evlink_error").css("color","red");
-      	// }else{
-       //    $("#evlink_error").hide();
-      	// }
+      	if($("#evlink").val() ==""){
+            $("#evlink_error").show();
+      		$("#evlink_error").css("color","red");
+      	}else{
+          $("#evlink_error").hide();
+      	}
       	if($("#startD").val() ==""){
             $("#startD_error").show();
       		$("#startD_error").css("color","red");
