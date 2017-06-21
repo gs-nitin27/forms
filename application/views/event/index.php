@@ -74,11 +74,11 @@
             {
             ?>
           <td>
-          <?php if($event['publish'] ==1){?>
-          <button class="badge bg-red" onclick="myfunction(<?php echo $event['id'];?>,2)"><?php echo "Activate";?>
+          <?php if($event['publish'] ==0){?>
+          <button class="badge bg-red" onclick="myfunction(<?php echo $event['id'];?>,1)"><?php echo "Activate";?>
           </button>
           <?php }else{?> 
-          <button class="badge bg-green" onclick="myfunction(<?php echo $event['id'];?>,1)"><?php echo "Deactivate";?></button>
+          <button class="badge bg-green" onclick="myfunction(<?php echo $event['id'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
   <?php } else

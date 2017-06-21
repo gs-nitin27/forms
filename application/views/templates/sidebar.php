@@ -94,20 +94,20 @@ $array=json_decode($data);
         <?php 
         foreach ($value->child as $key => $value1) { 
                
-               if($usertype == 101 || $usertype == 102) 
-               { 
-                  if($value1->admin == 1) {
+               // if($usertype == 101 || $usertype == 102) 
+               // { 
+               //    if($value1->admin == 1) {
                ?>
             <li><a href="<?php echo site_url($value1->url);?>"  id="<?php echo $value1->id;?>"><i class="fa fa-circle-o text-purple"></i><?php echo $value1->name;?></a></li>
-           <?php } }   else if($usertype == 103)
-            {
+           <?php //} }   else if($usertype == 103)
+           // {
            ?>
-           <li><a href="<?php echo site_url($value1->url);?>"  id="<?php echo $value1->id;?>"><i class="fa fa-circle-o text-purple"></i><?php echo $value1->name;?></a></li>
-            
+          <!--  <li><a href="<?php //echo site_url($value1->url);?>"  id="<?php //echo $value1->id;?>"><i class="fa fa-circle-o text-purple"></i><?php //echo $value1->name;?></a></li>
+           -->  
 
 
 <?php
-      } } ?>
+      } //} ?>
           </ul>
         </li>
         

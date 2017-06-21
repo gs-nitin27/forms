@@ -12,7 +12,8 @@ public function __construct()
          
 public function index()
 {   
-   $this->load->view('login');
+   //$this->load->view('login');
+  $this->adminlogin();
 }
 
 public function home()
@@ -390,13 +391,12 @@ public function userCreateEvent()
 public function event()
 {
 $item = new stdClass();
-
 $item->id                        = $_POST['id'];
 $item->userid                    = $_POST['userid'];
 $item->feetype                   = mysql_real_escape_string($_POST['etypes']);
-$item->fee                       = $_POST['price'];
+//$item->fee                       = $_POST['price'];
 $item->ticket_detail             = mysql_real_escape_string($_POST['ticketdetails']);
-$item->no_of_ticket              = $_POST['noofticket']; 
+//$item->no_of_ticket              = $_POST['noofticket']; 
 $item->type                      = $_POST['type'];
 $item->name                      = mysql_real_escape_string($_POST['name']);
 $item->address1                  = mysql_real_escape_string($_POST['address_line1']);
@@ -493,11 +493,11 @@ $this->load->model('register');
 $res = $this->register->StatusEvent($item);
 if($data2->publish==1)
 {
-	//$edata=$this->register->getEventInfo($data2->id);
- 	//$this->register->addEventData($edata);
+	$edata=$this->register->getEventInfo($data2->id);
+ 	$this->register->addEventData($edata);
 }
 else{
-//	$this->register->deletePublishEvent($data2->id);
+	$this->register->deletePublishEvent($data2->id);
 }
 }
 // ============================ End Event==================================   

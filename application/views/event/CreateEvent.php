@@ -12,11 +12,11 @@ var sportdata	= sport.split(',');
 var data1 = 
 {
     "id"                      : 0, 
-    "price"                   : $("#price").val(),
+  //  "price"                   : $("#price").val(),
     "etypes"                  : $("#etypes").val(),
     "userid"                  : $("#userid").val(),
     "name"                    : $("#evname").val(),
-    "type"                    : $("#evtype").val(),
+    "type"                    : $("#evtype2").val(),
     "address_line1"           : $("#add1").val(), 
     "address_line2"           : $("#add2").val(), 
     "city"                    : $("#city").val(), 
@@ -37,7 +37,7 @@ var data1 =
     "event_links"             : $("#evlink").val(),
     "start_date"              : $("#startD").val(),
     "end_date"                : $("#endD").val(),
-    "total_applicant" 		  :	$("#total_applicant").val(),
+   // "total_applicant" 		  :	$("#total_applicant").val(),
     "sport"                   : sportdata[0],
     "sport_name"              : sportdata[1],
     "entry_start_date"        : $("#estartD").val(),
@@ -46,7 +46,7 @@ var data1 =
     "file_name"               : $("#filename").val(),
     "image"                   : $("#photo_url").val(),
     "image"                   : $("#photo_url").val(),
-    "ticketdetails"           : totalTicket;
+    "ticketdetails"           : totalTicket
    // "ticketArray" 			  :	ticketArray;
 
 
@@ -150,7 +150,7 @@ var data =  eval(data1);//JSON.stringify(data1);
                 <div class="box-body">
 
                     <div class="form-group"> 
-                    <label for="exampleInputEmail1">Event Type</label>
+                    <label for="exampleInputEmail1">Event entry</label>
                     <select  id="etypes" class="form-control" >
                     <option >-Select-</option> 
                     <option value="free" id="free">Free</option>
@@ -159,12 +159,12 @@ var data =  eval(data1);//JSON.stringify(data1);
                     </div>
 
                    
-
+<!-- 
                     <div class="form-group" id="paid_unpaid">
 					<label for="eventName">Ticket Price</label>
 					<input type="text" class="form-control" id="price" placeholder="Enter Amount" value="0">
 				    <label id="price_error" hidden>Ticket price is required .</label> 
-					</div>
+					</div> -->
 
 					<div class="form-group">
 					  <label>Event Description</label>
@@ -174,7 +174,7 @@ var data =  eval(data1);//JSON.stringify(data1);
 
           <?php
           $data=$this->session->userdata('item');
-          $userid=$data['userid'];
+          $userid=$data['adminid'];
            {  ?>
            <div class="form-group">
                   <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
@@ -220,11 +220,11 @@ var data =  eval(data1);//JSON.stringify(data1);
 				         }
 				       });
 				    </script>
-				    <div class="form-group" id="otherevent" hidden="">
+				   <!--  <div class="form-group" id="otherevent" hidden="">
                     <label for="eventtype">Event Type</label>
                     <input type="text" class="form-control"  name="eventtype" id="evtype">
                     <label id="type_error" hidden>Event Type is required .</label>
-                    </div>
+                    </div> -->
 					<div class="form-group">
 						<?php  $sports = $this->register->getSport();
 						?>
@@ -281,11 +281,11 @@ var data =  eval(data1);//JSON.stringify(data1);
 					<input type="text" class="form-control"  id="endD" placeholder="Enter End Date">
 					<label id="end_date_error" hidden>End Date is required .</label> 
 					</div >
-					<div class="form-group">
+					<!-- <div class="form-group">
 					<label for="link">Total No of Applicant</label>
 					<input type="text" class="form-control"  id="total_applicant" placeholder="Total No of Applicant">
 					<label id="end_date_error" hidden>Total No of Applicant is required .</label> 
-					</div >
+					</div > -->
 
 				</div>
               </div>
@@ -651,16 +651,16 @@ $(function() {
 
 	}
 		var totalTicket = JSON.stringify(ticketArray);
-       if(name != "" && type != "" && entry_end_date != "" && email_app_collection != "")
+       if(name != "" && sport != '')
       {
            save(totalTicket);
       }  
       else
-      { 
-          $("#2").css("color","red");
-          $("#3").css("color","red");
-          $("#4").css("color","red");
-          $("html, body").animate({ scrollTop: 0 }, 500);
+      {   // save(totalTicket);
+          // $("#2").css("color","red");
+          // $("#3").css("color","red");
+          // $("#4").css("color","red");
+          // $("html, body").animate({ scrollTop: 0 }, 500);
           if(name =="")
           {
               $("#name_error").show();
@@ -671,101 +671,101 @@ $(function() {
             //alert(name);
             $("#name_error").hide();
             }
-            if(type == ""){
-            $("#type_error").show();
-            $("#type_error").css("color","red");
-            }else{
-            $("#type_error").hide();	
-            }
-            if(address_line1 =="")
-            {
-                $("#address_line1_error").show();
-                $("#address_line1_error").css("color","red");
-            }
-            else
-            {
-            	$("#address_line1_error").hide();	
-            }
-            if(address_line2 == ""){
-            $("#address_line2_error").show();
-            $("#address_line2_error").css("color","red");
-            }else{
-            	$("#address_line2_error").hide();	
-            }
-            if(city == ""){
-            $("#city_error").show();
-            $("#city_error").css("color","red");
-            }else{
-            	$("#city_error").hide();	
-            }
-            // if(pin == ""){
-            // $("#pin_error").show();
-            // $("#pin_error").css("color","red");
-            // }else{
-            // 	$("#pin_error").hide();	
-            // }
-            if(description == ""){
-            $("#description_error").show();
-            $("#description_error").css("color","red");
-            }else{
-            	$("#description_error").hide();	
-            }
-            if(eligibility1 == ""){
-            $("#eligibility1_error").show();
-            $("#eligibility1_error").css("color","red");
-            }else{
-            	$("#eligibility1_error").hide();	
-            }
-            if(eligibility2 == ""){
-            $("#eligibility2_error").show();
-            $("#eligibility2_error").css("color","red");
-            }else{
-            	$("#eligibility2_error").hide();	
-            }
+          //   if(type == ""){
+          //   $("#type_error").show();
+          //   $("#type_error").css("color","red");
+          //   }else{
+          //   $("#type_error").hide();	
+          //   }
+          //   if(address_line1 =="")
+          //   {
+          //       $("#address_line1_error").show();
+          //       $("#address_line1_error").css("color","red");
+          //   }
+          //   else
+          //   {
+          //   	$("#address_line1_error").hide();	
+          //   }
+          //   if(address_line2 == ""){
+          //   $("#address_line2_error").show();
+          //   $("#address_line2_error").css("color","red");
+          //   }else{
+          //   	$("#address_line2_error").hide();	
+          //   }
+          //   if(city == ""){
+          //   $("#city_error").show();
+          //   $("#city_error").css("color","red");
+          //   }else{
+          //   	$("#city_error").hide();	
+          //   }
+          //   // if(pin == ""){
+          //   // $("#pin_error").show();
+          //   // $("#pin_error").css("color","red");
+          //   // }else{
+          //   // 	$("#pin_error").hide();	
+          //   // }
+          //   if(description == ""){
+          //   $("#description_error").show();
+          //   $("#description_error").css("color","red");
+          //   }else{
+          //   	$("#description_error").hide();	
+          //   }
+          //   if(eligibility1 == ""){
+          //   $("#eligibility1_error").show();
+          //   $("#eligibility1_error").css("color","red");
+          //   }else{
+          //   	$("#eligibility1_error").hide();	
+          //   }
+          //   if(eligibility2 == ""){
+          //   $("#eligibility2_error").show();
+          //   $("#eligibility2_error").css("color","red");
+          //   }else{
+          //   	$("#eligibility2_error").hide();	
+          //   }
             
-            if(organizer_name == ""){
-            $("#organizer_name_error").show();
-            $("#organizer_name_error").css("color","red");
-            }else{
-            	$("#organizer_name_error").hide();	
-            }
-            if(mobile == ""){
-            $("#mobile_error").show();
-            $("#mobile_error").css("color","red");
-            }else{
-            	$("#mobile_error").hide();	
-            }
-            if(organizer_address_line1 == ""){
-            $("#organizer_address_line1_error").show();
-            $("#organizer_address_line1_error").css("color","red");
-            }else{
-            	$("#organizer_address_line1_error").hide();	
-            }
-            if(organizer_address_line2 == ""){
-            $("#organizer_address_line2_error").show();
-            $("#organizer_address_line2_error").css("color","red");
-            }else{
-            	$("#organizer_address_line2_error").hide();	
-            }
-            if(organizer_city == ""){
-            $("#organizer_city_error").show();
-            $("#organizer_city_error").css("color","red");
-            }else{
-            	$("#organizer_city_error").hide();	
-            }
+          //   if(organizer_name == ""){
+          //   $("#organizer_name_error").show();
+          //   $("#organizer_name_error").css("color","red");
+          //   }else{
+          //   	$("#organizer_name_error").hide();	
+          //   }
+          //   if(mobile == ""){
+          //   $("#mobile_error").show();
+          //   $("#mobile_error").css("color","red");
+          //   }else{
+          //   	$("#mobile_error").hide();	
+          //   }
+          //   if(organizer_address_line1 == ""){
+          //   $("#organizer_address_line1_error").show();
+          //   $("#organizer_address_line1_error").css("color","red");
+          //   }else{
+          //   	$("#organizer_address_line1_error").hide();	
+          //   }
+          //   if(organizer_address_line2 == ""){
+          //   $("#organizer_address_line2_error").show();
+          //   $("#organizer_address_line2_error").css("color","red");
+          //   }else{
+          //   	$("#organizer_address_line2_error").hide();	
+          //   }
+          //   if(organizer_city == ""){
+          //   $("#organizer_city_error").show();
+          //   $("#organizer_city_error").css("color","red");
+          //   }else{
+          //   	$("#organizer_city_error").hide();	
+          //   }
             
-            if(start_date == ""){
-            $("#start_date_error").show();
-            $("#start_date_error").css("color","red");
-            }else{
-            	$("#start_date_error").hide();	
-            }
-            if(end_date == ""){
-            $("#end_date_error").show();
-            $("#end_date_error").css("color","red");
-            }else{
-            	$("#end_date_error").hide();	
-            }
+          //   if(start_date == ""){
+          //   $("#start_date_error").show();
+          //   $("#start_date_error").css("color","red");
+          //   }else{
+          //   	$("#start_date_error").hide();	
+          //   }
+          //   if(end_date == ""){
+          //   $("#end_date_error").show();
+          //   $("#end_date_error").css("color","red");
+          //   }else{
+          //   	$("#end_date_error").hide();	
+          //   }
             if(sport == 0){
             $("#sport_error").show();
             $("#sport_error").css("color","red");
@@ -773,33 +773,33 @@ $(function() {
             	//alert(sport);
             	$("#sport_error").hide();	
             }
-            if(entry_start_date == "")
-            {
-            $("#entry_start_date_error").show();
-            $("#entry_start_date_error").css("color","red");
-            }
-            else
-            {
-            	$("#entry_start_date_error").hide();	
-            }
-            if(entry_end_date == "")
-            {
-            $("#entry_end_date_error").show();
-            $("#entry_end_date_error").css("color","red");
-            }
-            else
-            {
-            	$("#entry_end_date_error").hide();	
-            }
-            if(email_app_collection  == "")
-            {
-            $("#email_app_collection_error").show();
-            $("#email_app_collection_error").css("color","red");
-            }
-            else
-            {
-            	$("#email_app_collection_error").hide();	
-            }
+          //   if(entry_start_date == "")
+          //   {
+          //   $("#entry_start_date_error").show();
+          //   $("#entry_start_date_error").css("color","red");
+          //   }
+          //   else
+          //   {
+          //   	$("#entry_start_date_error").hide();	
+          //   }
+          //   if(entry_end_date == "")
+          //   {
+          //   $("#entry_end_date_error").show();
+          //   $("#entry_end_date_error").css("color","red");
+          //   }
+          //   else
+          //   {
+          //   	$("#entry_end_date_error").hide();	
+          //   }
+          //   if(email_app_collection  == "")
+          //   {
+          //   $("#email_app_collection_error").show();
+          //   $("#email_app_collection_error").css("color","red");
+          //   }
+          //   else
+          //   {
+          //   	$("#email_app_collection_error").hide();	
+          //   }
       }  
 	});
 </script>

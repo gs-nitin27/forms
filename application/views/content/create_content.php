@@ -96,7 +96,7 @@ var data = JSON.stringify(data12);
          <form role="form" action="" class="register">  
          <?php
           $data=$this->session->userdata('item');
-          $userid=$data['userid'];
+          $userid=$data['adminid'];
           {  ?>
           <div class="form-group">
                   <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
