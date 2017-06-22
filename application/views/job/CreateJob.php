@@ -150,6 +150,12 @@
             <input type="text" class="form-control"  id="jpin" placeholder="Enter Pin">
           <!--  <label id="name_error" hidden>Event Name is required .</label>  -->
           </div >
+
+          <div class="form-group">
+          <label for="link">Job Link</label>
+          <input type="text" class="form-control"   id="job_link" placeholder="http://">
+          <label id="job_links_error" hidden>Job Link is required .</label> 
+          </div >
               </div>
               </div>
               <!-- /.tab-pane -->
@@ -423,12 +429,13 @@ $(function() {
        
    
 
-       if($("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 &&  $("#jdesc").val() !="" &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&   $("#add1").val() !="" &&  $("#add2").val() !="" &&   $("#email").val() !=""  &&  $("#jadd1").val() !="" &&  $("#jsports").val() !=0){
+       if($("#jtitle").val() !="" && $("#jdesc").val() !="" && $("#orgName").val() !="" && $("#job_link").val() !="" ){
+
             save();
-       }else{
+       }else{ //alert($("#jtitle").val()+$("#jdesc").val()+$("#orgName").val() !="");
                   // alert($("#2").val());
                   $("#2").css("color","red");
-                  $("#3").css("color","red");
+                  //$("#3").css("color","red");
                   $("html, body").animate({ scrollTop: 0 }, 500);
               
                 if($("#jtitle").val() ==""){
@@ -438,18 +445,18 @@ $(function() {
                 }else{
                     $("#jtitle_error").hide();
                 }
-                if($("#jadd2").val() ==""){
-                  $("#jadd2_error").show();
-                  $("#jadd2_error").css("color","red");
-                }else{
-                  $("#jadd2_error").hide();
-                }
-                if($("#jtype").val() == 0){
-                  $("#jtype_error").show();
-                  $("#jtype_error").css("color","red");
-                }else{
-                  $("#jtype_error").hide();
-                }
+                // if($("#jadd2").val() ==""){
+                //   $("#jadd2_error").show();
+                //   $("#jadd2_error").css("color","red");
+                // }else{
+                //   $("#jadd2_error").hide();
+                // }
+                // if($("#jtype").val() == 0){
+                //   $("#jtype_error").show();
+                //   $("#jtype_error").css("color","red");
+                // }else{
+                //   $("#jtype_error").hide();
+                // }
                
                 if($("#jdesc").val() ==""){
                   $("#jdesc_error").show();
@@ -458,19 +465,19 @@ $(function() {
                   $("#jdesc_error").hide();
                 }
                
-                if($("#jqualification").val() ==""){
-                  $("#jqualification_error").show();
-                  $("#jqualification_error").css("color","red");
+                if($("#job_link").val() ==""){
+                  $("#job_link_error").show();
+                  $("#job_link_error").css("color","red");
                 }else{
-                  $("#jqualification_error").hide();
+                  $("#job_link_error").hide();
                 }
                
-                if($("#abOrg").val() ==""){
-                  $("#abOrg_error").show();
-                  $("#abOrg_error").css("color","red");
-                }else{
-                  $("#abOrg_error").hide();
-                }
+                // if($("#abOrg").val() ==""){
+                //   $("#abOrg_error").show();
+                //   $("#abOrg_error").css("color","red");
+                // }else{
+                //   $("#abOrg_error").hide();
+                // }
                 if($("#orgName").val() ==""){
                   $("#orgName_error").show();
                   $("#orgName_error").css("color","red");
@@ -478,40 +485,40 @@ $(function() {
                   $("#orgName_error").hide();
                 }
               
-                if($("#add1").val() ==""){
-                  $("#add1_error").show();
-                  $("#add1_error").css("color","red");
-                }else{
-                  $("#add1_error").hide();
-                }
-                if($("#add2").val() ==""){
-                  $("#add2_error").show();
-                  $("#add2_error").css("color","red");
-                }else{
-                  $("#add2_error").hide();
-                }
+                // if($("#add1").val() ==""){
+                //   $("#add1_error").show();
+                //   $("#add1_error").css("color","red");
+                // }else{
+                //   $("#add1_error").hide();
+                // }
+                // if($("#add2").val() ==""){
+                //   $("#add2_error").show();
+                //   $("#add2_error").css("color","red");
+                // }else{
+                //   $("#add2_error").hide();
+                // }
                
-                if($("#email").val() ==""){
-                  $("#email_error").show();
-                  $("#email_error").css("color","red");
-                }else{
-                  $("#email_error").hide();
-                }
+                // if($("#email").val() ==""){
+                //   $("#email_error").show();
+                //   $("#email_error").css("color","red");
+                // }else{
+                //   $("#email_error").hide();
+                // }
                
-                if($("#jadd1").val() ==""){
-                  $("#jadd1_error").show();
-                  $("#jadd1_error").css("color","red");
-                }else{
-                  $("#jadd1_error").hide();
-                }
-                if($("#jsports").val() == '-select-'){
+                // if($("#jadd1").val() ==""){
+                //   $("#jadd1_error").show();
+                //   $("#jadd1_error").css("color","red");
+                // }else{
+                //   $("#jadd1_error").hide();
+                // }
+                // if($("#jsports").val() == '-select-'){
                
-                  $("#jsports_error").show();
-                  $("#jsports_error").css("color","red");
-                }else{
-                  // alert($("#jsports").val());
-                  $("#jsports_error").hide();
-                }
+                //   $("#jsports_error").show();
+                //   $("#jsports_error").css("color","red");
+                // }else{
+                //   // alert($("#jsports").val());
+                //   $("#jsports_error").hide();
+                // }
        }
     });
   </script>
@@ -548,7 +555,7 @@ var data1 = {
     "email_app_collection"    : $("#email").val(),
     "contact"                 : $("#cont").val(),
     "org_state"               : $("#orgstate").val(),
-    "tournament_links"        : $("#evlink").val(),
+    "job_links"               : $("#job_link").val(),
     "start_date"              : $("#startD").val(),
     "end_date"                : $("#endD").val(),
     "sports"                  : $("#jsports").val().toString(),

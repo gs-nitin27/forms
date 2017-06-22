@@ -544,6 +544,7 @@ $item->pin                   = $_POST['pin'];
 $item->contact               = $_POST['contact'];
 $item->image                 = $_POST['image'];
 $item->email                 = $_POST['email_app_collection'];
+$item->job_link              = $_POST['job_links'];
 //print_r($item);die();
 $this->load->model('register');
 $res = $this->register->create_job($item);
