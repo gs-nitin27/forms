@@ -332,6 +332,8 @@ public function deleteResources($id)
   $this ->db-> delete('gs_resources');
 }
 
+
+
 public function saveResources($item)
 {
 
@@ -1263,6 +1265,11 @@ public function event($id)
     return $rowcount;
 }
 
+public function deleteEvent($id)
+{
+  $this->db->where('id',$id);
+  $this->db->delete('gs_eventinfo');
+} 
 
 public function resources($id)
 {

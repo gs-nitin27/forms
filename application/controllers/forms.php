@@ -382,6 +382,24 @@ public function CreateEvent()
   
   }
 
+  public function editEvent($str)
+  {
+      $id = $this->stringtonumber($str);
+      $data['middle'] = 'event/editEvent';
+      $data['required'] = array( 'id' => $id ); 
+      $this->load->view('templates/template',$data);
+  }
+
+  public function deleteEvent($str)
+  {
+     $id = $this->stringtonumber($str);
+     $this->load->model('register');
+     $this->register->deleteEvent($id);
+     $data['middle'] = 'event/index';
+     $this->load->view('templates/template',$data);
+
+  }
+
 public function userCreateEvent()
   {
     $this->load->view('event/CreateEvent');

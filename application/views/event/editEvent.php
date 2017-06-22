@@ -11,7 +11,7 @@ var sport  		= $("#sport").val();
 var sportdata	= sport.split(',');
 var data1 = 
 {
-    "id"                      : 0, 
+    "id"                      : $("#eventid").val(),
   //  "price"                   : $("#price").val(),
     "etypes"                  : $("#etypes").val(),
     "userid"                  : $("#userid").val(),
@@ -121,6 +121,8 @@ var data =  eval(data1);//JSON.stringify(data1);
     <section class="content-header">
       <h1>
         Create Event
+
+
         
       </h1>
      
@@ -132,6 +134,14 @@ var data =  eval(data1);//JSON.stringify(data1);
 		<div class=" alert alert-success" id="msgdiv" style="display:none">
 			<strong>Info! <span id = "msg"></span></strong> 
 		</div>
+
+		  <?php $event = $this->register->getEventInfo($id); 
+				if(!empty($event)){
+					$event = $event[0];
+				}
+
+			//print_r($event) ; 
+			?>
 
 			<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -152,7 +162,7 @@ var data =  eval(data1);//JSON.stringify(data1);
                     <div class="form-group"> 
                     <label for="exampleInputEmail1">Event entry</label>
                     <select  id="etypes" class="form-control" >
-                    <option >-Select-</option> 
+                    <option value="<?php echo $event['feetype'] ; ?>" ><?php echo $event['feetype'] ; ?></option> 
                     <option value="free" id="free">Free</option>
                     <option value="paid" id="paid">Paid</option>
                     </select>
@@ -168,9 +178,12 @@ var data =  eval(data1);//JSON.stringify(data1);
 
 					<div class="form-group">
 					  <label>Event Description</label>
-					  <textarea class="form-control" rows="3" style="resize:none;" placeholder="Enter ..." class="desc" id="edesc" ></textarea>
+					  <textarea class="form-control" rows="3" style="resize:none;" placeholder="Enter ..." class="desc" id="edesc" ><?php echo $event['description'] ; ?></textarea>
                     <label id="description_error" hidden>Description is required .</label> 
 					</div>
+					 <input type="hidden" class="form-control" name="eventid" id="eventid" value="<?php echo $event['id'] ; ?>">
+
+
 
           <?php
           $data=$this->session->userdata('item');
@@ -178,11 +191,12 @@ var data =  eval(data1);//JSON.stringify(data1);
            {  ?>
            <div class="form-group">
                   <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
+
             </div>
           <?php }?>
             <div class="form-group">
 					  <label for="eventName">Event Name</label>
-					  <input type="text" class="form-control"  id="evname" placeholder="Enter Event">
+					  <input type="text" class="form-control"  id="evname" value="<?php echo $event['name'] ; ?>" placeholder="Enter Event">
 					  <label id="name_error" hidden>Event Name is required .</label> 
 					</div >
 
@@ -192,7 +206,7 @@ var data =  eval(data1);//JSON.stringify(data1);
 						?>
 					  <label for="eventtype">Event Type</label>
 						<select id="evtype2" class="form-control" >
-						<option value="0">- Select -</option> 
+						<option value="<?php echo $event['type'] ; ?>"><?php echo $event['type'] ; ?></option> 
 							<?php if(!empty($types)){
 								
 									foreach($types as $type){?>
@@ -223,7 +237,7 @@ var data =  eval(data1);//JSON.stringify(data1);
 
 				    <div class="form-group" id="otherevent" hidden="">
                     <label for="eventtype">Event Type</label>
-                    <input type="text" class="form-control"  name="eventtype" id="evtype">
+                    <input type="text" class="form-control"  name="eventtype"  id="evtype">
                     <label id="type_error" hidden>Event Type is required .</label>
                     </div>
 
@@ -232,7 +246,7 @@ var data =  eval(data1);//JSON.stringify(data1);
 						?>
 					<label for="sports">Sport</label>
 				    <select id="sport" class="form-control" >
-					<option value="0">- Select -</option> 
+					<option value="<?php echo $event['sport_name'];?>,<?php echo $event['sport'];?>"><?php echo $event['sport_name'] ; ?></option> 
 					<?php if(!empty($sports)){
 									foreach($sports as $sport){?>
 					<option value ="<?php echo $sport['id'];?>,<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
@@ -244,17 +258,17 @@ var data =  eval(data1);//JSON.stringify(data1);
 					</div >
 					<div class="form-group">
 					<label for="address1">Address Line1</label>
-					<input type="text" class="form-control"  id="add1" placeholder="Enter Address">
+					<input type="text" class="form-control"  value="<?php echo $event['address_1'] ; ?>" id="add1" placeholder="Enter Address">
 					<label id="address_line1_error" hidden>Address Line1 is required .</label> 
 					</div >
 					<div class="form-group">
 					<label for="address2">Address Line2</label>
-					<input type="text" class="form-control"  id="add2" placeholder="Enter Address">
+					<input type="text" class="form-control" value="<?php echo $event['address_2'] ; ?>" id="add2" placeholder="Enter Address">
 				    <label id="address_line2_error" hidden>Address Line2 is required .</label> 
 					</div >
 					<div class="form-group">
 					<label for="city">City</label>
-					<input type="text" class="form-control"  id="city" placeholder="Enter City">
+					<input type="text" class="form-control"  value="<?php echo $event['location'] ; ?>" id="city" placeholder="Enter City">
 					<label id="city_error" hidden>City is required .</label> 
 					</div >
 					<div class="form-group">
@@ -265,22 +279,22 @@ var data =  eval(data1);//JSON.stringify(data1);
 					</div >
 					<div class="form-group">
 					<label for="pin">Pin</label>
-					<input type="text" class="form-control"  id="pin" placeholder="Enter Pin">
+					<input type="text" class="form-control"  id="pin" value="<?php echo $event['PIN'] ; ?>" placeholder="Enter Pin">
 					<label id="pin_error" hidden>Pin is required .</label> 
 					</div >
 					<div class="form-group">
 					<label for="link">Event Link</label>
-					<input type="text" class="form-control"   id="evlink" placeholder="Enter Link">
+					<input type="text" class="form-control"   value="<?php echo $event['event_links'] ; ?>" id="evlink" placeholder="Enter Link">
 					<label id="event_links_error" hidden>Event Link is required .</label> 
 					</div >
 					<div class="form-group">
 					<label for="link">Start Date</label>
-					<input type="text" class="form-control"  id="startD" placeholder="Enter Start Date">
+					<input type="text" class="form-control" value="<?php echo $event['start_date'] ; ?>"  id="startD" placeholder="Enter Start Date">
 					<label id="start_date_error" hidden>Start Date is required .</label> 
 					</div >
 					<div class="form-group">
 					<label for="link">End Date</label>
-					<input type="text" class="form-control"  id="endD" placeholder="Enter End Date">
+					<input type="text" class="form-control"  value="<?php echo $event['end_date'] ; ?>" id="endD" placeholder="Enter End Date">
 					<label id="end_date_error" hidden>End Date is required .</label> 
 					</div >
 					<!-- <div class="form-group">
@@ -300,43 +314,43 @@ var data =  eval(data1);//JSON.stringify(data1);
 					
 					 <div class="form-group">
 					  <label for="eventName">Organiser Name</label>
-					  <input type="text" class="form-control" id="orgName" >
+					  <input type="text" class="form-control" value="<?php echo $event['organizer_name'] ; ?>" id="orgName" >
 					 <label id="organizer_name_error" hidden>Organiser Name is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="eventName">Email</label>
-					  <input type="text" class="form-control" id="email_app_collection" >
+					  <input type="text" class="form-control" id="email_app_collection" value="<?php echo $event['email_app_collection'] ; ?>" >
 				    	<label id="email_app_collection_error" hidden>Email is required .</label> 
 					</div>
 					<div class="form-group">
 					  <label for="eventName">Phone No.</label>
-					  <input type="text" class="form-control" id="contact" >
+					  <input type="text" value="<?php echo $event['mobile'] ; ?>" class="form-control" id="contact" >
 					  <label id="mobile_error" hidden>Phone No. is required .</label> 
 					</div>
 					<div class="form-group">
 					  <label for="address1">Address Line1</label>
-					  <input type="text" class="form-control"  id="orgadd1" placeholder="Enter Address">
+					  <input type="text" class="form-control"  value="<?php echo $event['organizer_address_line1'] ; ?>" id="orgadd1" placeholder="Enter Address">
 				   	<label id="organizer_address_line1_error" hidden>Address Line1 is required .</label> 
 					</div>
 					<div class="form-group">
 					  <label for="address2">Address Line2</label>
-					  <input type="text" class="form-control"  id="orgadd2" placeholder="Enter Address">
+					  <input type="text" class="form-control"  id="orgadd2" value="<?php echo $event['organizer_address_line2'] ; ?>" placeholder="Enter Address">
 					  <label id="organizer_address_line2_error" hidden>Address Line2 is required .</label> 
 					</div>
 					<div class="form-group">
 					  <label for="city">City</label>
-					  <input type="text" class="form-control"  id="orgcity" placeholder="Enter City">
+					  <input type="text" value="<?php echo $event['organizer_city'] ; ?>" class="form-control"  id="orgcity" placeholder="Enter City">
 					<label id="organizer_city_error" hidden>City is required .</label> 
 					</div>
 					<div class="form-group">
 					  <label for="state">State</label>
-					  <input type="hidden" class="form-control"  id="orgstate">
+					  <input type="hidden" class="form-control"   id="orgstate">
 					  <input type="text" class="form-control"  id="orgstate_value" placeholder="Enter State" disabled>
 					  <label id="organizer_state_error" hidden>State is required .</label> 
 					</div>
 					<div class="form-group">
 					  <label for="pin">Pin</label>
-					  <input type="text" class="form-control"  id="orgpin" placeholder="Enter Pin">
+					  <input type="text" class="form-control" value="<?php echo $event['organizer_pin'] ; ?>" id="orgpin" placeholder="Enter Pin">
 				   	<label id="organizer_pin_error" hidden>Pin is required .</label> 
 					</div>
 				</div>
@@ -349,22 +363,22 @@ var data =  eval(data1);//JSON.stringify(data1);
                 <div class="box-body">
 					 <div class="form-group">
 					  <label for="eventName">Criteria 1</label>
-					  <input type="text" class="form-control" id="criteria1" placeholder="Enter Eligibility">
+					  <input type="text" class="form-control" id="criteria1" value="<?php echo $event['eligibility1'] ; ?>" placeholder="Enter Eligibility">
 				      <label id="eligibility1_error" hidden>Criteria 1 is required .</label> 
 					</div>
 					<div class="form-group">
 					  <label for="eventName">Criteria 2</label>
-					  <input type="text" class="form-control" id="criteria2" placeholder="Enter Eligibility">
+					  <input type="text" value="<?php echo $event['eligibility2'] ; ?>" class="form-control" id="criteria2" placeholder="Enter Eligibility">
 				   	<label id="eligibility2_error" hidden>Criteria 2 is required .</label> 
 					</div>
 					<div class="form-group">
 					  <label for="link">Entry Start Date</label>
-					  <input type="text" class="form-control"  id="estartD" placeholder="Enter Start Date">
+					  <input type="text" class="form-control"  id="estartD" value="<?php echo $event['entry_start_date'] ; ?>" placeholder="Enter Start Date">
 					<label id="entry_start_date_error" hidden>Entry Start Date is required .</label> 
 					</div>
 					<div class="form-group">
 					  <label for="link">Entry End Date</label>
-					  <input type="text" class="form-control"  id="eendD" placeholder="Enter End Date">
+					  <input type="text" value="<?php echo $event['entry_end_date'] ; ?>" class="form-control"  id="eendD" placeholder="Enter End Date">
 					<label id="entry_end_date_error" hidden>Entry End Date is required .</label> 
 					</div>
 					<div class="box-header with-border">
@@ -372,12 +386,12 @@ var data =  eval(data1);//JSON.stringify(data1);
 					</div>	
 					  <div class="form-group">
 					  <label for="eventName">T & C 1</label>
-					  <input type="text" class="form-control" id="terms1" placeholder="">
+					  <input type="text" class="form-control" id="terms1" value="<?php echo $event['terms_cond1'] ; ?>" placeholder="">
 					<label id="terms_and_conditions1_error" hidden>Terms & Conditions is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="eventName">T & C 2</label>
-					  <input type="text" class="form-control" id="terms2" placeholder="">
+					  <input type="text" value="<?php echo $event['terms_cond2'] ; ?>" class="form-control" id="terms2" placeholder="">
 					  <label id="terms_and_conditions2_error" hidden>Terms & Conditions is required .</label> 
 					  <input type="hidden" class="form-control" id="filename" placeholder="">
 					<!--   <label id="file_name_error" hidden>Terms & Conditions is required .</label>  -->
