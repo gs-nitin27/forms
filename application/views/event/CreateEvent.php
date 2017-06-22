@@ -220,13 +220,11 @@ var data =  eval(data1);//JSON.stringify(data1);
 				         }
 				       });
 				    </script>
-
-				    <div class="form-group" id="otherevent" hidden="">
+				   <!--  <div class="form-group" id="otherevent" hidden="">
                     <label for="eventtype">Event Type</label>
                     <input type="text" class="form-control"  name="eventtype" id="evtype">
                     <label id="type_error" hidden>Event Type is required .</label>
-                    </div>
-
+                    </div> -->
 					<div class="form-group">
 						<?php  $sports = $this->register->getSport();
 						?>
@@ -647,18 +645,19 @@ $(function() {
      var ticketArray = [];
 	for(var i =0; i <window.flagTicket; i++)
 	{
-		var temp = [];
-		temp.push('{'+'"ticketname":'+'"'+$("#ticketname"+i).val()+'"'+','+'"ticketPrice":'+'"'+$("#ticketPrice"+i).val()+'"'+','+'"noofticket":'+'"'+$("#noofticket"+i).val()+'"'+'}');
+		var temp = {"ticketname":$("#ticketname"+i).val(),"ticketPrice":$("#ticketPrice"+i).val(),"noofticket":$("#noofticket"+i).val()};
+
+		// temp.push('{'+'"ticketname":'+'"'+$("#ticketname"+i).val()+'"'+','+'"ticketPrice":'+'"'+$("#ticketPrice"+i).val()+'"'+','+'"noofticket":'+'"'+$("#noofticket"+i).val()+'"'+'}');
 		ticketArray.push(temp);
 
 	}
 		var totalTicket = JSON.stringify(ticketArray);
        if(name != "" && sport != '')
-      {
+      {    
            save(totalTicket);
       }  
       else
-      {   // save(totalTicket);
+      {    
           // $("#2").css("color","red");
           // $("#3").css("color","red");
           // $("#4").css("color","red");
