@@ -646,9 +646,7 @@ $(function() {
 	for(var i =0; i <window.flagTicket; i++)
 	{
 		var temp = {"ticketname":$("#ticketname"+i).val(),"ticketPrice":$("#ticketPrice"+i).val(),"noofticket":$("#noofticket"+i).val()};
-
-		// temp.push('{'+'"ticketname":'+'"'+$("#ticketname"+i).val()+'"'+','+'"ticketPrice":'+'"'+$("#ticketPrice"+i).val()+'"'+','+'"noofticket":'+'"'+$("#noofticket"+i).val()+'"'+'}');
-		ticketArray.push(temp);
+	    ticketArray.push(temp);
 
 	}
 		var totalTicket = JSON.stringify(ticketArray);
