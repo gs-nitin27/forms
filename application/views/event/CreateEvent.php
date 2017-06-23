@@ -220,11 +220,11 @@ var data =  eval(data1);//JSON.stringify(data1);
 				         }
 				       });
 				    </script>
-				   <!--  <div class="form-group" id="otherevent" hidden="">
+				    <div class="form-group" id="otherevent" hidden="">
                     <label for="eventtype">Event Type</label>
                     <input type="text" class="form-control"  name="eventtype" id="evtype">
                     <label id="type_error" hidden>Event Type is required .</label>
-                    </div> -->
+                    </div>
 					<div class="form-group">
 						<?php  $sports = $this->register->getSport();
 						?>
@@ -385,13 +385,13 @@ var data =  eval(data1);//JSON.stringify(data1);
 
 				 <div class="tab-pane" id="ticket">
                  <div class="box-header with-border">
-               
+               <div id="EventTicket" ></div>
                <input type="button" id="addTicket" value="Add Ticket" />
                </div>
                
                  
 
-                 	<DIV id="EventTicket" ></div>
+                 	
 
                  	
 				<!--	<h4>Ticket Details:</h4 > 		-->
@@ -409,8 +409,6 @@ document.getElementById("addTicket").onclick = function()
 		form.appendChild(newDiv);
 		window.flagTicket++;
 
-	//var br  	 = document.createElement("br");
-	//form.appendChild(br);
 
 }
 
