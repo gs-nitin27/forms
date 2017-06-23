@@ -1,6 +1,7 @@
 
 <script>
 window.flagTicket = 0;
+var deletearray = [];
 function save(totalTicket)
 {
 
@@ -139,9 +140,8 @@ var data =  eval(data1);//JSON.stringify(data1);
 				if(!empty($event)){
 					$event = $event[0];
 				}
-				print_r($event);
 
-			//print_r($event) ; 
+			
 			?>
 
 			<div class="nav-tabs-custom">
@@ -400,15 +400,52 @@ var data =  eval(data1);//JSON.stringify(data1);
 				</div>
               </div>
 
-				 <div class="tab-pane" id="ticket">
-                 <div class="box-header with-border">
-               
-               <input type="button" id="addTicket" value="Add Ticket" />
-               </div>
+		    <div class="tab-pane" id="ticket">
+            <div class="box-header with-border">
+
+             <?php
+
+             $ticketdata = json_decode($event['ticket_detail']);
+             // print_r($ticketdata);
+             $i=0;
+             foreach ($ticketdata as $key1 => $test) 
+              {
+                ?>
+            <div class='box-body'  id="<?php echo "div_".$i;?>" style='background-color: #d9edf7; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'>
+
+            
+
+            <div class='form-group' ><span style="right:2px; top: 0px;" id="<?php echo $i;?>" onclick="deleteticket(this);"  class="glyphicon glyphicon-remove-circle"></span>
+
+            <label for='ticketName'>Ticket Name :</label>
+
+            <input type='text' class='form-control' id='ticketname<?php echo $i;?>' value="<?php echo $test->ticketname;?>" placeholder='Enter Ticket Name'>
+            <label id='ticketname_error' hidden>Ticket Name is required .</label></div>
+
+            <div class='form-group'><label for='ticketPrice'>Ticket Price :</label>
+
+            <input type='text' value="<?php echo $test->ticketPrice;?>" class='form-control' id='ticketPrice<?php echo $i;?>' placeholder='Enter ticket price'><label id='ticketprice_error' hidden> Ticket price is required .</label></div>  
+
+            <label for='NoofTicket'>Number of Ticket:</label>
+            <input type='text' value="<?php echo $test->noofticket;?>" class='form-control' id='noofticket<?php echo $i;?>' placeholder='Enter Number of Ticket'><label id='numberofticket_error' hidden>Number of Ticket is required .</label>
+
+            </div>
+            <?php
+                    $i++;
+                	echo "<script> window.flagTicket++; </script>";
+                }  
+             ?>	
+
+
+
+
+             <div id="EventTicket" ></div>
+            <input type="button" id="addTicket" class="btn btn-danger" value="Add Ticket" />
+            </div>
                
                  
 
-                 	<DIV id="EventTicket" ></div>
+            
 
                  	
 				<!--	<h4>Ticket Details:</h4 > 		-->
@@ -422,7 +459,7 @@ document.getElementById("addTicket").onclick = function()
 {
     var form 		 = document.getElementById("EventTicket");
 	var newDiv  	 = document.createElement("div");
-	newDiv.innerHTML = "<div class='box-body'  style='background-color: #AEB6BF; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group'><label for='ticketName'>Ticket Name :</label><input type='text' class='form-control' id='ticketname"+ window.flagTicket +"' placeholder='Enter Ticket Name'><label id='ticketname_error' hidden>Ticket Name is required .</label></div><div class='form-group'><label for='ticketPrice'>Ticket Price :</label><input type='text' class='form-control' id='ticketPrice"+ window.flagTicket +"' placeholder='Enter ticket price'><label id='ticketprice_error' hidden> Ticket price is required .</label></div>  <label for='NoofTicket'>Number of Ticket:</label><input type='text' class='form-control' id='noofticket"+ window.flagTicket +"' placeholder='Enter Number of Ticket'><label id='numberofticket_error' hidden>Number of Ticket is required .</label></div>	"; 
+	newDiv.innerHTML = "<div class='box-body' id='div_"+ window.flagTicket +"' style='background-color: #dff0d8; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group' ><span style='right:2px; top: 0px;' id='"+ window.flagTicket +"' onclick='deleteticket(this);'  class='glyphicon glyphicon-remove-circle'></span><label for='ticketName'>Ticket Name :</label><input type='text' class='form-control' id='ticketname"+ window.flagTicket +"' placeholder='Enter Ticket Name'><label id='ticketname_error' hidden>Ticket Name is required .</label></div><div class='form-group'><label for='ticketPrice'>Ticket Price :</label><input type='text' class='form-control' id='ticketPrice"+ window.flagTicket +"' placeholder='Enter ticket price'><label id='ticketprice_error' hidden> Ticket price is required .</label></div>  <label for='NoofTicket'>Number of Ticket:</label><input type='text' class='form-control' id='noofticket"+ window.flagTicket +"' placeholder='Enter Number of Ticket'><label id='numberofticket_error' hidden>Number of Ticket is required .</label></div>	"; 
 		form.appendChild(newDiv);
 		window.flagTicket++;
 
@@ -640,14 +677,21 @@ $(function() {
      var ticketArray = [];
 	for(var i =0; i <window.flagTicket; i++)
 	{
-		var temp = [];
-		temp.push('{'+'"ticketname":'+'"'+$("#ticketname"+i).val()+'"'+','+'"ticketPrice":'+'"'+$("#ticketPrice"+i).val()+'"'+','+'"noofticket":'+'"'+$("#noofticket"+i).val()+'"'+'}');
-		ticketArray.push(temp);
+ 
+        if($("#ticketname"+i).val())
+        {
+          var temp = {"ticketname":$("#ticketname"+i).val(),"ticketPrice":$("#ticketPrice"+i).val(),"noofticket":$("#noofticket"+i).val()};
+          ticketArray.push(temp);
+              }
+
+           
+		
 
 	}
 		var totalTicket = JSON.stringify(ticketArray);
        if(name != "" && sport != '')
-      {
+      {    
+      	   // alert(window.flagTicket);
            save(totalTicket);
       }  
       else
@@ -670,4 +714,22 @@ $(function() {
             }
       }  
 	});
+
+
+
+function deleteticket($this)
+{
+   var id = $this.id;
+   //alert(id);
+   $('#ticketname'+id).attr('id', 'other_1');
+   $('#ticketPrice'+id).attr('id', 'other_2');
+   $('#noofticket'+id).attr('id', 'other_3');
+
+   deletearray.push(id);
+    
+    $('#div_'+id).hide();
+    
+
+  
+}	
 </script>
