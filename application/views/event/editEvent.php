@@ -425,34 +425,12 @@ document.getElementById("addTicket").onclick = function()
 		form.appendChild(newDiv);
 		window.flagTicket++;
 
-	//var br  	 = document.createElement("br");
-	//form.appendChild(br);
-
 }
 
 </script>
-					
-
-                
-                <!-- Old Code*********
-                <div class="box-body">
-				    <div class="form-group">
-					<label for="eventName">Ticket Detail</label>
-					<input type="text" class="form-control" id="ticketdetails" placeholder="Enter Ticket Details">
-				    <label id="ticketdetails_error" hidden>Ticket Details is required .</label> 
-					</div>
-
-					<div class="form-group">
-					  <label for="eventName">No Of Ticket</label>
-					  <input type="text" class="form-control" id="noofticket" placeholder="Enter No Of ticket">
-				   	<label id="noofticket_error" hidden>No Of Ticket   is required .</label> 
-					</div>
-					-->
-
-				</div>
-              </div>
-              <!-- /.tab-pane -->
-            </div>
+		</div>
+       </div>     
+       </div>
             <!-- /.tab-content -->
              </form>
             <form id="form1"  method="post" enctype="multipart/form-data">
@@ -672,11 +650,7 @@ $(function() {
            save(totalTicket);
       }  
       else
-      {   // save(totalTicket);
-          // $("#2").css("color","red");
-          // $("#3").css("color","red");
-          // $("#4").css("color","red");
-          // $("html, body").animate({ scrollTop: 0 }, 500);
+      {  
           if(name =="")
           {
               $("#name_error").show();
@@ -687,135 +661,12 @@ $(function() {
             //alert(name);
             $("#name_error").hide();
             }
-          //   if(type == ""){
-          //   $("#type_error").show();
-          //   $("#type_error").css("color","red");
-          //   }else{
-          //   $("#type_error").hide();	
-          //   }
-          //   if(address_line1 =="")
-          //   {
-          //       $("#address_line1_error").show();
-          //       $("#address_line1_error").css("color","red");
-          //   }
-          //   else
-          //   {
-          //   	$("#address_line1_error").hide();	
-          //   }
-          //   if(address_line2 == ""){
-          //   $("#address_line2_error").show();
-          //   $("#address_line2_error").css("color","red");
-          //   }else{
-          //   	$("#address_line2_error").hide();	
-          //   }
-          //   if(city == ""){
-          //   $("#city_error").show();
-          //   $("#city_error").css("color","red");
-          //   }else{
-          //   	$("#city_error").hide();	
-          //   }
-          //   // if(pin == ""){
-          //   // $("#pin_error").show();
-          //   // $("#pin_error").css("color","red");
-          //   // }else{
-          //   // 	$("#pin_error").hide();	
-          //   // }
-          //   if(description == ""){
-          //   $("#description_error").show();
-          //   $("#description_error").css("color","red");
-          //   }else{
-          //   	$("#description_error").hide();	
-          //   }
-          //   if(eligibility1 == ""){
-          //   $("#eligibility1_error").show();
-          //   $("#eligibility1_error").css("color","red");
-          //   }else{
-          //   	$("#eligibility1_error").hide();	
-          //   }
-          //   if(eligibility2 == ""){
-          //   $("#eligibility2_error").show();
-          //   $("#eligibility2_error").css("color","red");
-          //   }else{
-          //   	$("#eligibility2_error").hide();	
-          //   }
-            
-          //   if(organizer_name == ""){
-          //   $("#organizer_name_error").show();
-          //   $("#organizer_name_error").css("color","red");
-          //   }else{
-          //   	$("#organizer_name_error").hide();	
-          //   }
-          //   if(mobile == ""){
-          //   $("#mobile_error").show();
-          //   $("#mobile_error").css("color","red");
-          //   }else{
-          //   	$("#mobile_error").hide();	
-          //   }
-          //   if(organizer_address_line1 == ""){
-          //   $("#organizer_address_line1_error").show();
-          //   $("#organizer_address_line1_error").css("color","red");
-          //   }else{
-          //   	$("#organizer_address_line1_error").hide();	
-          //   }
-          //   if(organizer_address_line2 == ""){
-          //   $("#organizer_address_line2_error").show();
-          //   $("#organizer_address_line2_error").css("color","red");
-          //   }else{
-          //   	$("#organizer_address_line2_error").hide();	
-          //   }
-          //   if(organizer_city == ""){
-          //   $("#organizer_city_error").show();
-          //   $("#organizer_city_error").css("color","red");
-          //   }else{
-          //   	$("#organizer_city_error").hide();	
-          //   }
-            
-          //   if(start_date == ""){
-          //   $("#start_date_error").show();
-          //   $("#start_date_error").css("color","red");
-          //   }else{
-          //   	$("#start_date_error").hide();	
-          //   }
-          //   if(end_date == ""){
-          //   $("#end_date_error").show();
-          //   $("#end_date_error").css("color","red");
-          //   }else{
-          //   	$("#end_date_error").hide();	
-          //   }
             if(sport == 0){
             $("#sport_error").show();
             $("#sport_error").css("color","red");
             }else{
-            	//alert(sport);
             	$("#sport_error").hide();	
             }
-          //   if(entry_start_date == "")
-          //   {
-          //   $("#entry_start_date_error").show();
-          //   $("#entry_start_date_error").css("color","red");
-          //   }
-          //   else
-          //   {
-          //   	$("#entry_start_date_error").hide();	
-          //   }
-          //   if(entry_end_date == "")
-          //   {
-          //   $("#entry_end_date_error").show();
-          //   $("#entry_end_date_error").css("color","red");
-          //   }
-          //   else
-          //   {
-          //   	$("#entry_end_date_error").hide();	
-          //   }
-          //   if(email_app_collection  == "")
-          //   {
-          //   $("#email_app_collection_error").show();
-          //   $("#email_app_collection_error").css("color","red");
-          //   }
-          //   else
-          //   {
-          //   	$("#email_app_collection_error").hide();	
-          //   }
       }  
 	});
 </script>
