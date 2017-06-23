@@ -139,6 +139,7 @@ var data =  eval(data1);//JSON.stringify(data1);
 				if(!empty($event)){
 					$event = $event[0];
 				}
+				print_r($event);
 
 			//print_r($event) ; 
 			?>
