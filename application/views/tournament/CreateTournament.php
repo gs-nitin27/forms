@@ -250,6 +250,10 @@ var data = JSON.stringify(data1);
 							<option id="18-22">18-22</option>
 							<option id="20-25">20-25</option>
 							<option id="24-28">24-28</option>
+							<option id="24-28">Under 10</option>
+							<option id="24-28">Under 15</option>
+							<option id="24-28">Under 19</option>
+							<option id="24-28">Under 20</option>
 						</select>
 					</div>
 					<div class="form-group">
@@ -258,7 +262,6 @@ var data = JSON.stringify(data1);
 							<option>-Select-</option>
 							<option id="Male">Male</option>
 							<option id="Female">Female</option>
-							<option id="Transgender">All</option>
 						</select>
 					</div>
 
