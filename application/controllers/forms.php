@@ -1670,7 +1670,7 @@ public function Emailfind()
  public function imageupload()
  {   $newpath=$_POST['path'];
      
-      if($_POST['file_name'] != '')
+      if(isset($_POST['file_name']) && $_POST['file_name'] != '')
                {
                $filename1 =implode('_',explode(" ",$_POST['file_name'])); 
                }else

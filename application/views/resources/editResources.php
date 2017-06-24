@@ -323,6 +323,7 @@ var data = eval(data1);//JSON.stringify(data1);
                <input type="hidden" class="form-control" name="path"   id="path" value="uploads/resources/">
               <input type="hidden" class="form-control" name="height" id="height" value="640">
               <input type="hidden" class="form-control" name="width"  id="width" value="1115">
+               <input type="hidden" class="form-control" name="file_name"  id="file_name" value="1115">
                   <input type="hidden" class="form-control" name="oldimage" id="pid" value="<?php echo $value['image']; ?>">
                 </div>
                <div class="form-group">
@@ -362,7 +363,8 @@ var data = eval(data1);//JSON.stringify(data1);
   $(document).ready(function (e) {
 
   $("#form").on('submit',(function(e) {
-
+   var file_name = $('#rtitle').val();
+   $('#file_name').val(file_name);
    if($('#file').val())
    {
   $('#imagelodar').show();
