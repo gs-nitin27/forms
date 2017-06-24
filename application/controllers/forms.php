@@ -1668,13 +1668,19 @@ public function Emailfind()
 }
 //==================================End Email================================= 
  public function imageupload()
- {     
-  $newpath=$_POST['path'];
-
- // print_r($newpath) ;//die;
+ {   $newpath=$_POST['path'];
+     
+      if($_POST['file_name'] != '')
+               {
+               $filename1 =implode('_',explode(" ",$_POST['file_name'])); 
+               }else
+               {
+                $filename1 = '';
+               }
 
      switch ($newpath) {
       case 'uploads/resources/':
+            $prename = 'resources';
             if ($_POST['oldimageid'])
                   {
             if($_POST['oldimage'])
@@ -1682,10 +1688,12 @@ public function Emailfind()
                 $id = $_POST['oldimageid'];
                   $image = $_POST['oldimage'];
                 $temp= $this->register->removeimage($id,$image);
+                
             }
               }
         break;
       case 'uploads/tournament/':
+              $prename = 'tournament';
               if ($_POST['oldimageid'])
                      {
             if($_POST['oldimage'])
@@ -1697,6 +1705,7 @@ public function Emailfind()
               }
         break;
           case 'uploads/job/':
+          $prename = 'job';
               if ($_POST['oldimageid'])
                      {
             if($_POST['oldimage'])
@@ -1708,6 +1717,7 @@ public function Emailfind()
               }
         break;
          case 'uploads/event/':
+         $prename = 'event';
               if ($_POST['oldimageid'])
                      {
             if($_POST['oldimage'])
@@ -1735,7 +1745,10 @@ public function Emailfind()
 }
             $temp = explode(".", $_FILES["file"]["name"]);
             date_default_timezone_set("Asia/Kolkata");
-            $newfilename1='res_'.time();
+            if($filename1 == '')
+            {$newfilename1=$prename."_".time();}
+            else
+            {$newfilename1=$filename1;}
             $newfilename = $newfilename1. '.' . end($temp);
 
            

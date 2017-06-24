@@ -469,6 +469,7 @@ document.getElementById("addTicket").onclick = function()
 	              <input type="hidden" class="form-control" name="path"   id="path" value="uploads/event/">
 	              <input type="hidden" class="form-control" name="height" id="height" value="640">
 	              <input type="hidden" class="form-control" name="width"  id="width" value="1115">
+	              <input type="hidden" class="form-control" name="file_name"  id="file_name" value="1115">
 	              </div>
 	             <!--  <input id="button" type="submit" value="Upload"> -->
             </form>
@@ -513,7 +514,8 @@ function addTextBox(btn) {
   $(document).ready(function (e) {
 
   $("#form1").on('submit',(function(e) 
-  {
+  { var file_name = $('#evname').val();
+    $('#file_name').val(file_name);
     if($('#timage').val())
     {
     $('#imagelodar').show();
