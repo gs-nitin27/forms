@@ -166,7 +166,7 @@ $("#save").click(function()
      dataType: 'text',        
      success:function(result)
      {
-      alert(result);
+      alert(result.data);
        if(result.data == 1)
        {
         $.confirm({
