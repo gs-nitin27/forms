@@ -102,7 +102,7 @@
                           </div>
 
                           <div class="input-field col s8">
-                            <button class="btn cyan waves-effect waves-light right" type="submit"  id="save" name="action">Sign UP
+                            <button class="btn cyan waves-effect waves-light right" type="button"  id="save" name="action">Sign UP
                               
                             </button>
                           </div>
