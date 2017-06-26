@@ -163,7 +163,7 @@ $("#save").click(function()
      type: "POST",
      url: "<?php echo site_url('forms/user_register');?>",                  
      data:"data="+data,                        
-     dataType: 'text',        
+     dataType: 'JSON',        
      success:function(result)
      {
       alert(result.data);
