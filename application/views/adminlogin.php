@@ -23,7 +23,7 @@
   <div class = "container">
 	<div class="wrapper" style="position:fiexd; margin-top:2%;">
 		<form action="<?php echo site_url('forms/newadmin'); ?>" method="post" name="Login_Form" class="form-signin">  
-		  <h3 class="form-signin-heading">Admin Log In</h3>
+		  <h3 class="form-signin-heading">Admin Sign In</h3>
 			<hr class="colorgraph"><br>
 			<input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
 			<input type="password" class="form-control" name="password" placeholder="Password" required=""/>      

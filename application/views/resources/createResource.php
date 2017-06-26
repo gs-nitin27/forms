@@ -368,6 +368,7 @@ $(function() {
             <input type="hidden" class="form-control" name="path"   id="path" value="uploads/resources/">
             <input type="hidden" class="form-control" name="height" id="height" value="640">
             <input type="hidden" class="form-control" name="width"  id="width" value="1115">
+            <input type="hidden" class="form-control" name="file_name"  id="file_name" value="">
             </div>
             </form>
             <input type="hidden" class="form-control" name="photo" id="photo_url"> 
@@ -421,8 +422,11 @@ else
 <script type="text/javascript">
   $(document).ready(function (e) {
   $("#form").on('submit',(function(e) {
+  var title = $('#rtitle').val();
+  $('#file_name').val(title);
   if($("#Nimage").val()){
   $('#imagelodar').show();
+   // alert(new FormData(this));return;
     e.preventDefault();
     $.ajax({
       url: "<?php echo site_url('forms/imageupload'); ?>",
