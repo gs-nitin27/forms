@@ -166,7 +166,7 @@ $("#save").click(function()
      dataType: 'JSON',        
      success:function(result)
      {
-      alert(result.data);
+      
        if(result.data == 1)
        {
         $.confirm({
