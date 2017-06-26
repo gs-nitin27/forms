@@ -66,7 +66,7 @@ var data1 = {
     "entry_start_date"        : $("#estartD").val(),
     "entry_end_date"          : $("#eendD").val(),
     "emailid"                 : $("#email").val(),
-    "tournament_ageGroup"     : $("#tage").val(),
+    "tournament_ageGroup"     : JSON.stringify($("#tage").val()),
     "file_name"               : $("#filename").val(),
     "image"                   : $("#photo_url").val()
 };
@@ -244,7 +244,7 @@ var data = JSON.stringify(data1);
 					
 					<div class="form-group">
 					<label for="sports">Age Group</label>
-						<select id="tage" class="form-control" >
+						<select id="tage" name="age-group" class="form-control" multiple>
 							<option>-Select-</option>
 							<option id="15-18">15-18</option>
 							<option id="18-22">18-22</option>
