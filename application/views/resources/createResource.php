@@ -10,11 +10,12 @@
 
 function save()
 {
+  
 $('#imagelodar').show();
 var summary1        = $("#rsummary").val();
 var summary12       = summary1.toString();
 var string          = summary12.replace(/[\/\\'\.\"<>~{}]/g, '');
-var description      = editor.getData();
+var description     = editor.getData();
 var data1 = 
 {
     "id"                      : 0, 
@@ -33,7 +34,7 @@ var data1 =
     "sport"                   : $("#dates-field2").val().toString()
 };
 
-
+console.log(JSON.stringify(data1)); 
 
 var url = '<?php echo site_url();?>'
 var data = eval(data1);//JSON.stringify(data1);
@@ -285,11 +286,6 @@ $(function() {
                 <label id="location_error" hidden="">A location is required</label>
                 </div>
 
-
-               
-
-
-
                 <div class="form-group">
                 <label for="eventtype">Topic Of The Article</label>
                 <select id="article" class="form-control" name="topic_of_artical">
@@ -372,6 +368,7 @@ $(function() {
             <input type="hidden" class="form-control" name="path"   id="path" value="uploads/resources/">
             <input type="hidden" class="form-control" name="height" id="height" value="640">
             <input type="hidden" class="form-control" name="width"  id="width" value="1115">
+            <input type="hidden" class="form-control" name="file_name"  id="file_name" value="">
             </div>
             </form>
             <input type="hidden" class="form-control" name="photo" id="photo_url"> 
@@ -380,7 +377,6 @@ $(function() {
             <div class="box-footer">
             <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
             </div>
-         
             </div>
             </div>
             </div>
@@ -389,7 +385,7 @@ $(function() {
 </div>
 
 <script type="text/javascript">
-  function getId(url) {
+  function get_Id(url) {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
 
@@ -403,14 +399,15 @@ $(function() {
 var myId;
 
 // $('#myBtn').click(function () {
-  function mybtn(){
+  function mybtn()
+  {
+
     var myUrl = $('#myUrl').val();
     if(myUrl)
     {
-    myId = getId(myUrl);
-    
+    myId = get_Id(myUrl);
+
     $('#myId').html(myId);
-    
     $('#myCode').html('<iframe width="560" height="315" src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>');
 // });
 }
@@ -425,8 +422,11 @@ else
 <script type="text/javascript">
   $(document).ready(function (e) {
   $("#form").on('submit',(function(e) {
+  var title = $('#rtitle').val();
+  $('#file_name').val(title);
   if($("#Nimage").val()){
   $('#imagelodar').show();
+   // alert(new FormData(this));return;
     e.preventDefault();
     $.ajax({
       url: "<?php echo site_url('forms/imageupload'); ?>",
@@ -621,6 +621,7 @@ $(function() {
 <script type="text/javascript">
      $('#save').click(function()
      {
+
         var title = $('#rtitle').val();
         if(title == "")
         {
@@ -644,7 +645,6 @@ $(function() {
 
       var editorData      =  editor.getData();
       var description     =  editorData.replace(/[\/\\<>~\{}]/g, '');
-       
         if(description == "")
         {
           $("#description_error").show();
@@ -655,20 +655,29 @@ $(function() {
           $("#description_error").hide(); 
         }
 
-
-
         var article = $('#article').val();
         if(article == "")
         {
           $("#article_error").show();
           $("#article_error").css('color', 'red');
         }
-        else{
+        else
+        {
           $("#article_error").hide(); 
         }
-       if(title!="" &&  article!="" && location!="" &&summary!="" &&description!=""){
+
+        if($('#types').val() == 'video')
+        {
+          if(title!="" &&  article!="" && location!="" &&summary!="")
+            save();
+        }
+        else
+        {
+       if(title!="" &&  article!="" && location!="" &&summary!="" &&description!="")
+       {
          save();
        }
+     }
     });
   </script> 
 

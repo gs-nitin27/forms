@@ -263,7 +263,7 @@ var data =  eval(data1);//JSON.stringify(data1);
 					</div >
 					<div class="form-group">
 					<label for="pin">Pin</label>
-					<input type="text" class="form-control"  id="pin" placeholder="Enter Pin">
+					<input type="number" class="form-control"  id="pin" placeholder="Enter Pin" min="1" max="100">
 					<label id="pin_error" hidden>Pin is required .</label> 
 					</div >
 					<div class="form-group">
@@ -405,7 +405,7 @@ document.getElementById("addTicket").onclick = function()
 {
     var form 		 = document.getElementById("EventTicket");
 	var newDiv  	 = document.createElement("div");
-	newDiv.innerHTML = "<div class='box-body'  style='background-color: #AEB6BF; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group'><label for='ticketName'>Ticket Name :</label><input type='text' class='form-control' id='ticketname"+ window.flagTicket +"' placeholder='Enter Ticket Name'><label id='ticketname_error' hidden>Ticket Name is required .</label></div><div class='form-group'><label for='ticketPrice'>Ticket Price :</label><input type='text' class='form-control' id='ticketPrice"+ window.flagTicket +"' placeholder='Enter ticket price'><label id='ticketprice_error' hidden> Ticket price is required .</label></div>  <label for='NoofTicket'>Number of Ticket:</label><input type='text' class='form-control' id='noofticket"+ window.flagTicket +"' placeholder='Enter Number of Ticket'><label id='numberofticket_error' hidden>Number of Ticket is required .</label></div>	"; 
+	newDiv.innerHTML = "<div class='box-body'  style='background-color: #AEB6BF; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group'><label for='ticketName'>Ticket Name :</label><input type='text' class='form-control' id='ticketname"+ window.flagTicket +"' placeholder='Enter Ticket Name'><label id='ticketname_error' hidden>Ticket Name is required .</label></div><div class='form-group'><label for='ticketPrice'>Ticket Price :</label><input type='number' class='form-control' id='ticketPrice"+ window.flagTicket +"' placeholder='Enter ticket price'><label id='ticketprice_error' hidden> Ticket price is required .</label></div>  <label for='NoofTicket'>Number of Ticket:</label><input type='number' class='form-control' id='noofticket"+ window.flagTicket +"' placeholder='Enter Number of Ticket'><label id='numberofticket_error' hidden>Number of Ticket is required .</label></div>	"; 
 		form.appendChild(newDiv);
 		window.flagTicket++;
 
@@ -469,6 +469,7 @@ document.getElementById("addTicket").onclick = function()
 	              <input type="hidden" class="form-control" name="path"   id="path" value="uploads/event/">
 	              <input type="hidden" class="form-control" name="height" id="height" value="640">
 	              <input type="hidden" class="form-control" name="width"  id="width" value="1115">
+	              <input type="hidden" class="form-control" name="file_name"  id="file_name" value="1115">
 	              </div>
 	             <!--  <input id="button" type="submit" value="Upload"> -->
             </form>
@@ -513,7 +514,8 @@ function addTextBox(btn) {
   $(document).ready(function (e) {
 
   $("#form1").on('submit',(function(e) 
-  {
+  { var file_name = $('#evname').val();
+    $('#file_name').val(file_name);
     if($('#timage').val())
     {
     $('#imagelodar').show();
@@ -658,6 +660,7 @@ $(function() {
           // $("#3").css("color","red");
           // $("#4").css("color","red");
           // $("html, body").animate({ scrollTop: 0 }, 500);
+
           if(name =="")
           {
               $("#name_error").show();

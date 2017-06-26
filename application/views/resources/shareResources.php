@@ -342,6 +342,7 @@ var jsondata = eval(data1);
         <input type="hidden" class="form-control" name="path"   id="path" value="uploads/resources/">
         <input type="hidden" class="form-control" name="height" id="height" value="640">
         <input type="hidden" class="form-control" name="width"  id="width" value="1115">
+         <input type="hidden" class="form-control" name="file_name" id="file_name" value="">
         </div>
        <!--  <input id="button" type="submit" value="Upload"> -->
         </form>
@@ -391,6 +392,8 @@ var jsondata = eval(data1);
 <script type="text/javascript">
     $(document).ready(function (e) {
     $("#form").on('submit',(function(e) {
+      var file_name = $('#rtitle').val();
+      $('#file_name').val(file_name);
    if($("#Nimage").val()){
     $('#imagelodar').show();
     e.preventDefault();
