@@ -1,123 +1,140 @@
-<!DOCTYPE html>
+<!Doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Getsporty | Admin</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
-   <link rel="stylesheet" href="<?php echo base_url('assets/css/default.css'); ?>">
-   <script src="<?php echo base_url('assets/jquery-ui.min.js'); ?>"></script>
-   <script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-   <script type="text/javascript" src="<?php echo base_url('assets/plugins/datepicker/bootstrap-datepicker.js'); ?>"></script>
-   <script type="text/javascript" src="<?php echo base_url('assets/plugins/daterangepicker/daterangepicker.js'); ?>"></script>
-   <script type="text/javascript" src="<?php echo base_url('assets/plugins/daterangepicker/moment.min.js'); ?>"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.css">
+<title>Getsporty</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.js"></script>
+<link href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css" rel="stylesheet" />   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url('assets/reg.css'); ?>">
+  </head>
+<body style="background-color: #03a9f4">
+ <div class="section"></div>
+  <main>
+    <div style="text-align: center;">
+      <img class="responsive-img" style="width: 300px;height: 60px;" src="http://getsporty.in/img/logo.png" />
+      <div class="section"></div>
 
-    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/datepicker/datepicker3.css'); ?>">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/plugins/daterangepicker/daterangepicker.css'); ?>">
-</head>
-<style type="text/css">
-  /* Credit to bootsnipp.com for the css for the color graph */
-.colorgraph {
-  height: 5px;
-  border-top: 0;
-  background: #c4e17f;
-  border-radius: 5px;
-  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-}
-</style>
+    
 
-<body>
- <div class="pre-loader">
-        <div class="load-con" style="text-align: center;">
-            <img src="<?php echo base_url('img/logo.png');?>" class="animated fadeInDown"  alt=""> 
-        </div>
-    </div>
-
-<div class="container">
+      <div class="container">
+        <div class="z-depth-4 grey lighten-4 row" style=" display: inline-block; padding: 4% 4% 4% 4%; border: 1px solid #EEE;">
 <div class="row">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-      <hr class="colorgraph">
-      <div class="form-group">
-      <input type="text" name="name" id="name" class="form-control input-lg" placeholder="Enter Name">
-      </div>
-      <div class="form-group">
-      <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email">
-      </div>
-      <div class="form-group">
-        <input type="text" name="phone_no" id="phone_no" class="form-control input-lg" placeholder="Phone No" >
-      </div>
-      <!-- <div class="form-group">
-        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
-      </div> -->
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6">
-          <div class="form-group">
-           <?php  $sports = $this->register->getSport();?>
-                <select id="sport" class="form-control" name="sport">
-                <option >-select Sport -</option> 
-                <?php if(!empty($sports)){
+
+<h4> Register</h4>
+          <div class="row">
+          <form class="col s12">   
+          <div class="row">
+          <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+
+          <input id="name" type="text" class="validate">
+          <label for="name">Name</label>
+        </div></div>
+        <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="text" class="validate">
+          <label for="email">Email</label>
+        </div></div>
+                 <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">phonelink_ring</i>
+          <input id="phone_no" type="text" class="validate">
+          <label for="phone_no">Phone No</label>
+        </div></div>
+                <div class="row">
+                  <div class="input-field col s6">
+                     <i class="material-icons prefix"></i> 
+                      <?php  $sports = $this->register->getSport();?>
+                      <select id="sport" name="sport">
+                              <option value="" disabled selected>Choose your option</option>
+                              <?php if(!empty($sports)){
                         foreach($sports as $sport){?>
-                <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
-                <?php   }
+
+                                <option  value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
+                                  <?php   }
                            } 
                          ?>
-                </select>
-          </div>
+                       </select>
+                      <label>Choose sports</label>
+                    </div>
+                 <div class="input-field col s6">
+          
+          <input id="dob"  type="email" class="validate datepicker">
+          <label for="dob" data-error="wrong" data-success="right">Date Of Birth</label>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-6">
-          <div class="form-group">
-            <input type="text" class="form-control"  id="dob" placeholder="Date of Birth">
-          </div>
-        </div>
-         <div class="col-xs-12 col-sm-6 col-md-6">
-          <div class="form-group">
-            <?php  $prof = $this->register->getprofession();?>
-                <select id="profession" class="form-control" name="profession">
-                <option >-select Profession -</option> 
-                <?php if(!empty($prof)){
+  </div>
+      <div class="row">
+      <div class="input-field col s6">
+      <i class="material-icons prefix"></i> 
+       <?php  $prof = $this->register->getprofession();?>
+    <select id="profession"  name="profession">
+      <option value="" disabled selected>Choose your option</option>
+      <?php if(!empty($prof)){
                         foreach($prof as $prf){?>
-                <option value ="<?php echo $prf['profession'];?>,<?php echo $prf['id'];?>"><?php echo $prf['profession'];?> </option>
-                <?php   }
+       <option value ="<?php echo $prf['profession'];?>,<?php echo $prf['id'];?>"><?php echo $prf['profession'];?> </option>
+       <?php   }
                            } 
                          ?>
-                </select>
-          </div>
-        </div>
-         <div class="col-xs-12 col-sm-6 col-md-6">
-          <div class="form-group">
-            <select id="gender" class="form-control" name="gender">
-                  <option>-Select Gender-</option>
+    </select>
+    <label>Choose profession</label>
+  </div>
+         <div class="input-field col s6">
+     <select id="gender"  name="gender">
+      <option value="" disabled selected>Choose your Gender</option>
                   <option id="male" value="Male">Male</option>
                   <option id="female" value="Female">Female</option>
-                  </select>
-          </div>
+    </select>
+    <label>Gender</label>
+  </div></div>
+                 <div class="row">
+                           <div class="input-field col s4">
+                           <label style='float: right;'>
+                <a class='pink-text' href='#!'><b>Already registered?</b></a>
+              </label>
+                          </div>
+
+                          <div class="input-field col s8">
+                            <button class="btn cyan waves-effect waves-light right" type="submit"  id="save" name="action">Sign UP
+                              
+                            </button>
+                          </div>
+                        </div>
+                    
+                    </form>
+                  </div>
         </div>
       </div>
-      
-      <hr class="colorgraph">
-      <div class="form-group">
-        <input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" id="save">
-      </div>
+
+    </div>
+
   </div>
-</div>
-</div>
-</body>
+  </main>
+  </body>
 
 <script type="text/javascript">
-
-$(document).ready(function(){
-  $("#dob").datepicker();
+    
+    $(document).ready(function() {
+    $('select').material_select();
+  });
+    $('.datepicker').pickadate({  
+    selectYears: 120,
+    selectMonths: 12, // 
+    format: 'dd/mm/yyyy',
+    
+    max: true,
+    closeOnSelect: true,
+    closeOnClear: true,
 });
+
+
 
 
 $("#save").click(function()
@@ -128,7 +145,6 @@ $("#save").click(function()
 
   var prof_id    = prof_data[1];
   var prof_name  = prof_data[0];
-
 
 
   var data1 = {
