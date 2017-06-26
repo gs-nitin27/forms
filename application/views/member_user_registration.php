@@ -95,14 +95,14 @@
     <label>Gender</label>
   </div></div>
                  <div class="row">
-                           <div class="input-field col s4">
+                           <!-- <div class="input-field col s4">
                            <label style='float: right;'>
                 <a class='pink-text' href='#!'><b>Already registered?</b></a>
               </label>
-                          </div>
+                          </div> -->
 
                           <div class="input-field col s8">
-                            <button class="btn cyan waves-effect waves-light right" type="button"  id="save" name="action">Sign UP
+                            <button class="btn cyan waves-effect waves-light right" type="button"  id="save" name="action">REGISTER
                               
                             </button>
                           </div>
