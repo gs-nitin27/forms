@@ -293,8 +293,7 @@ $(function() {
                 <option value ="Jobs">Jobs </option>
                      <option value ="Tournaments">Tournaments</option>
                      <option value="Events">Events</option> 
-                     <option value ="News & Articles">News & Articles</option>
-                     <option value ="Training & Knowledge">Training & Knowledge</option>
+                     <option value ="News & Articles">News & Articles</option> <option value ="Training & Knowledge">Training & Knowledge</option>
                      <option value ="Others">Others</option>
                 </select>
                 <label id="article_error" hidden="">Article type is required</label>

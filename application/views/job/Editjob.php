@@ -150,7 +150,7 @@ var data = eval(data1);//JSON.stringify(data1);
 	</div >
      <?php
           $data=$this->session->userdata('item');
-          $userid=$data['userid'];
+          $userid = $data['adminid'];
           {  ?>
     <div class="form-group">
     <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">

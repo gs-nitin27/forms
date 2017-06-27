@@ -1,4 +1,4 @@
-
+ 
 <link rel="stylesheet" href="<?php echo base_url('assets/jquery-ui.css'); ?>" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo base_url('assets/ui.theme.css'); ?>" type="text/ css" media="all" />
 <script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" >
@@ -231,17 +231,18 @@ var data = eval(data1);//JSON.stringify(data1);
 
                     </div>
 
-                </div>
+                <!--  </div>  -->
 
 
-                 <div class="form-group">
-                  <label for="exampleInputEmail1">Location</label>
+                <!-- <div class="form-group">
+                -->
+                  <label for="exampleInputEmail1">&nbsp;&nbsp;Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location" value="<?php echo $value['location']; ?>">
                  <label id="location_error" hidden="">A location is required</label>
-                </div>
+               <!--  </div> -->
 
-                <div class="form-group">
-                     <label for="eventtype">Topic Of The Article</label>
+              <!--    <div class="form-group"> -->
+                     <label for="eventtype">&nbsp;&nbsp;Topic Of The Article</label>
                      <select id="rartical" class="form-control" >
                      <option value="<?php echo $value['topic_of_artical']; ?>"><?php echo $value['topic_of_artical']; ?></option> 
 
@@ -254,7 +255,8 @@ var data = eval(data1);//JSON.stringify(data1);
 
                      </select>
                   <label id="article_error" hidden="">Article type is required</label>
-                  </div >
+
+               <!--   </div > -->
 
                <!--  <div class="form-group">
                         <?php // $sports = $this->register->getSport();
@@ -278,14 +280,22 @@ var data = eval(data1);//JSON.stringify(data1);
         <tr>
         <td>
              <?php if($value['image']) { ?>
-             <div class="form-group">
-                <img style="display:block; border:2px solid SteelBlue";  width="400px" height="300px" margin-left="20px" src = "<?php  echo base_url()."uploads/resources/".$value['image']; ?>">
-             </div>
+
+            <!-- <div class="form-group" align="left" >  -->
+
+                <img style="display:block; border:2px solid SteelBlue";  width="400px" height="300px" src = "<?php  echo base_url()."uploads/resources/".$value['image']; ?>">
+            <!-- </div>  -->
+
               <?php } else { ?>
-               <div class="form-group">
-             <img style="display:block; border:2px solid SteelBlue";  width="400px" height="300px" margin-left="20px" src = "<?php  echo base_url('img/no-image.jpg'); ?>">
+
+             <!--  <div class="form-group">
+
+                 -->
+             <img style="display:block; border:2px solid SteelBlue";  width="200px" height="300px" align="center" src = "<?php  echo base_url('img/no-image.jpg'); ?>">
              <?php } ?>
-             </div>
+
+             <!-- </div>  -->
+
           </td>
           </tr>
           <tr style="margin-top:20px">

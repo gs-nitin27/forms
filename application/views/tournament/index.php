@@ -39,13 +39,12 @@
                     ?>
 
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-
   <?php }?>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
                 </tr>
-
-               
-                </thead>
+              </thead>
 			      	<tbody>
               <?php 
               $i =1;
@@ -112,6 +111,12 @@
                                 $num=$temp;
                                 {  ?>
 					<td><a href = "<?php echo site_url('forms/viewtournament/'.$num.'?tournament'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
+          <td><a href = "<?php echo site_url('forms/edittournament/'.$num.'?tournament'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+                <td><a href = "<?php echo site_url('forms/deleteTournament/'.$num.'?tournament'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
+
+
+
+
                 </tr>
 				<?php } } } ?>
                 </tbody>

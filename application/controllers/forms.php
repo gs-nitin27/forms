@@ -400,6 +400,31 @@ public function CreateEvent()
 
   }
 
+
+public function deleteTournament($str)
+  {
+     $id = $this->stringtonumber($str);
+     $this->load->model('register');
+     $this->register->deleteTournament($id);
+     $data['middle'] = 'tournament/index';
+     $this->load->view('templates/template',$data);
+
+  }
+
+public function deleteJob($str)
+  {
+     $id = $this->stringtonumber($str);
+     $this->load->model('register');
+     $this->register->deleteJob($id);
+     $data['middle'] = 'tournament/index';
+     $this->load->view('templates/template',$data);
+
+  }
+
+
+
+
+
 public function userCreateEvent()
   {
     $this->load->view('event/CreateEvent');
@@ -665,7 +690,7 @@ else{
 
 public function editjob($str)
 {
-	    $id= $this->stringtonumber($str); 
+	  $id= $this->stringtonumber($str); 
 		$data['middle']="job/Editjob";
 		$data['required']= array(
 			                     'id' => $id 

@@ -52,6 +52,8 @@
 
                     <?php }?>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -118,6 +120,13 @@
                                 $num=$temp;
                                 { ?>
 					<td><a href = "<?php echo site_url('forms/viewJob/'.$num.'?job'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
+
+                 <td><a href = "<?php echo site_url('forms/editjob/'.$num.'?job'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+                <td><a href = "<?php echo site_url('forms/deleteJob/'.$num.'?job'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
+
+
+
+
                 </tr>
 				<?php } } } ?>
                 </tbody>

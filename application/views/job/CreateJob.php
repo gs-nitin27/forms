@@ -1,14 +1,18 @@
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
+ <!--
     <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
         rel="stylesheet" type="text/css" />
+
+        -->
+
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+   
     <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
         rel="stylesheet" type="text/css" />
     <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
         type="text/javascript"></script>
-
-
-
   
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -307,7 +311,8 @@
 
 <script type="text/javascript">
 var expanded = false;
-function showCheckboxes() {
+function showCheckboxes() 
+{
   var checkboxes = document.getElementById("checkboxes");
   if (!expanded) {
     checkboxes.style.display = "block";
@@ -564,7 +569,7 @@ var data1 = {
 
 };
 var url = '<?php echo site_url();?>';
-console.log(JSON.stringify(data1));
+//console.log(JSON.stringify(data1));
 var data = eval(data1);
   $.ajax({
 
@@ -573,7 +578,7 @@ var data = eval(data1);
     data: data,
     dataType: "text",
     success: function(result) {
-    //  alert(result);
+      alert(result);
        if(result == '1')
          {
          $.confirm({

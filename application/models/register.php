@@ -1271,6 +1271,23 @@ public function deleteEvent($id)
   $this->db->delete('gs_eventinfo');
 } 
 
+
+public function deleteTournament($id)
+{
+  $this->db->where('id',$id);
+  $this->db->delete('gs_tournament_info');
+} 
+
+
+public function deleteJob($id)
+{
+  $this->db->where('id',$id);
+  $this->db->delete('gs_jobInfo');
+} 
+
+
+
+
 public function resources($id)
 {
 	$this->db->from('gs_resources');
