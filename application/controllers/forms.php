@@ -3404,9 +3404,7 @@ public function user_register()
   
  // print_r($_REQUEST['data']);die;
 
-
-  $item = new stdClass();
-  
+  $item = new stdClass();  
   $item->userType        = 103;
   $item->name            = $data->name;
   $item->email           = $data->email;
