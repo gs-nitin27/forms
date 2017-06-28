@@ -234,14 +234,14 @@ var data = eval(data1);//JSON.stringify(data1);
                 <!--  </div>  -->
 
 
-                <!-- <div class="form-group">
-                -->
-                  <label for="exampleInputEmail1">&nbsp;&nbsp;Location</label>
+                <div class="form-group">
+               
+                  <label for="rlocation">&nbsp;&nbsp;Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location" value="<?php echo $value['location']; ?>">
                  <label id="location_error" hidden="">A location is required</label>
-               <!--  </div> -->
+                </div>
 
-              <!--    <div class="form-group"> -->
+                 <div class="form-group">
                      <label for="eventtype">&nbsp;&nbsp;Topic Of The Article</label>
                      <select id="rartical" class="form-control" >
                      <option value="<?php echo $value['topic_of_artical']; ?>"><?php echo $value['topic_of_artical']; ?></option> 
@@ -256,7 +256,7 @@ var data = eval(data1);//JSON.stringify(data1);
                      </select>
                   <label id="article_error" hidden="">Article type is required</label>
 
-               <!--   </div > -->
+                 </div >
 
                <!--  <div class="form-group">
                         <?php // $sports = $this->register->getSport();
@@ -333,8 +333,8 @@ var data = eval(data1);//JSON.stringify(data1);
                <input type="hidden" class="form-control" name="path"   id="path" value="uploads/resources/">
               <input type="hidden" class="form-control" name="height" id="height" value="640">
               <input type="hidden" class="form-control" name="width"  id="width" value="1115">
-               <input type="hidden" class="form-control" name="file_name"  id="file_name" value="1115">
-                  <input type="hidden" class="form-control" name="oldimage" id="pid" value="<?php echo $value['image']; ?>">
+               <input type="hidden" class="form-control" name="file_name"  id="file_name">
+                  <!-- <input type="hidden" class="form-control" name="oldimage" id="pid" value="<?php //echo $value['image']; ?>"> -->
                 </div>
                <div class="form-group">
                   <input type="hidden" class="form-control" name="oldimageid" id="pid" value="<?php echo $value['id']; ?>">
