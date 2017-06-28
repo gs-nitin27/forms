@@ -1266,9 +1266,8 @@ public function event($id)
 }
 
 public function deleteEvent($id)
-{
+{ $this->remove_Image($id);
   $this->db->where('id',$id);
-  $this->remove_Image($id);die;
   $this->db->delete('gs_eventinfo');
 } 
 public function remove_Image($id)
@@ -1282,6 +1281,7 @@ if($q[0]['image'] != '' && file_exists("uploads/tournament/".$q[0]['image']))
 {
 unlink("uploads/event/".$q[0]['image']);
 }
+//return true;
 }
 public function resources($id)
 {
