@@ -400,31 +400,6 @@ public function CreateEvent()
 
   }
 
-
-public function deleteTournament($str)
-  {
-     $id = $this->stringtonumber($str);
-     $this->load->model('register');
-     $this->register->deleteTournament($id);
-     $data['middle'] = 'tournament/index';
-     $this->load->view('templates/template',$data);
-
-  }
-
-public function deleteJob($str)
-  {
-     $id = $this->stringtonumber($str);
-     $this->load->model('register');
-     $this->register->deleteJob($id);
-     $data['middle'] = 'tournament/index';
-     $this->load->view('templates/template',$data);
-
-  }
-
-
-
-
-
 public function userCreateEvent()
   {
     $this->load->view('event/CreateEvent');
@@ -460,12 +435,12 @@ $item->organizer_city            = $_POST['organizer_city'];
 $item->organizer_pin             = $_POST['organizer_pin'];
 $item->organizer_state           = $_POST['organizer_state'];
 $item->event_links               = mysql_real_escape_string($_POST['event_links']);
-$item->start_date                = strtotime($_POST['start_date']);//strtotime();
-$item->end_date                  = strtotime($_POST['end_date']);//strtotime($data1['end_date']);
+$item->start_date                = $_POST['start_date'];//strtotime();
+$item->end_date                  = $_POST['end_date'];//strtotime($data1['end_date']);
 $item->sport                     = $_POST['sport'];
 $item->sport_name                = $_POST['sport_name'];
-$item->entry_start_date          = strtotime($_POST['entry_start_date']);//strtotime($data1['entry_start_date']);
-$item->entry_end_date            = strtotime($_POST['entry_end_date']);//strtotime($data1['entry_end_date']);
+$item->entry_start_date          = $_POST['entry_start_date'];//strtotime($data1['entry_start_date']);
+$item->entry_end_date            = $_POST['entry_end_date'];//strtotime($data1['entry_end_date']);
 $item->file_name                 = $_POST['file_name'];
 $item->email_app_collection      = $_POST['email_app_collection'];
 $item->image                     = $_POST['image']; 
@@ -690,7 +665,7 @@ else{
 
 public function editjob($str)
 {
-	  $id= $this->stringtonumber($str); 
+	    $id= $this->stringtonumber($str); 
 		$data['middle']="job/Editjob";
 		$data['required']= array(
 			                     'id' => $id 
@@ -3404,7 +3379,9 @@ public function user_register()
   
  // print_r($_REQUEST['data']);die;
 
-  $item = new stdClass();  
+
+  $item = new stdClass();
+  
   $item->userType        = 103;
   $item->name            = $data->name;
   $item->email           = $data->email;
