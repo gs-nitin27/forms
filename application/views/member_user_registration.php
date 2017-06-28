@@ -34,31 +34,32 @@
           <div class="input-field col s12">
           <i class="material-icons prefix">account_circle</i>
 
-          <input id="name" type="text" class="validate">
+          <input id="name" type="text" class="validate" name="name">
           <label for="name">Name</label>
         </div></div>
         <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">email</i>
-          <input id="email" type="text" class="validate">
+          <input id="email" type="email" class="validate" >
           <label for="email">Email</label>
         </div></div>
                  <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">phonelink_ring</i>
-          <input id="phone_no" type="text" class="validate">
+          <input id="phone_no" type="text" class="validate" >
           <label for="phone_no">Phone No</label>
         </div></div>
                 <div class="row">
-                  <div class="input-field col s6">
+                  <div class="input-field col s6" >
                      <i class="material-icons prefix"></i> 
-                      <?php  $sports = $this->register->getSport();?>
-                      <select id="sport" name="sport">
-                              <option value="" disabled selected>Choose your option</option>
-                              <?php if(!empty($sports)){
-                        foreach($sports as $sport){?>
-
-                                <option  value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
+                      <?php  $sports = $this->register->getSport();
+                                                  ?>
+                      <select id ="sport" >
+                              <option  value="" disabled selected >Choose your option </option>
+                              <?php  if(!empty($sports))
+                              {
+                                foreach($sports as $sport){?>
+                                <option  ><?php echo $sport['sports'];?>  </option> 
                                   <?php   }
                            } 
                          ?>
@@ -67,7 +68,7 @@
                     </div>
                  <div class="input-field col s6">
           
-          <input id="dob"  type="email" class="validate datepicker">
+          <input id="dob"  type="email" class="validate datepicker" name="dob">
           <label for="dob" data-error="wrong" data-success="right">Date Of Birth</label>
         </div>
   </div>
@@ -75,7 +76,7 @@
       <div class="input-field col s6">
       <i class="material-icons prefix"></i> 
        <?php  $prof = $this->register->getprofession();?>
-    <select id="profession"  name="profession">
+    <select id="profession" >
       <option value="" disabled selected>Choose your option</option>
       <?php if(!empty($prof)){
                         foreach($prof as $prf){?>
@@ -95,14 +96,14 @@
     <label>Gender</label>
   </div></div>
                  <div class="row">
-                           <div class="input-field col s4">
+                           <!-- <div class="input-field col s4">
                            <label style='float: right;'>
                 <a class='pink-text' href='#!'><b>Already registered?</b></a>
               </label>
-                          </div>
+                          </div> -->
 
                           <div class="input-field col s8">
-                            <button class="btn cyan waves-effect waves-light right" type="button"  id="save" name="action">Sign UP
+                            <button class="btn cyan waves-effect waves-light right" type="button"  id="save" name="action" onclick="valname()" >REGISTER
                               
                             </button>
                           </div>
@@ -135,18 +136,117 @@
 });
 
 
+$( "#img" ).hide();
+function valname()
+    {
+        var n=0;
+        if($('#name').val() == "")
+        {
+            $( '#name' ).addClass('invalid');
+             n++;
+        }
+        else
+        {
+            $( '#name' ).css("border-bottom-color","green");       
+        }
+        if($('#phone_no').val() == "")
+        {
+            $( '#phone_no' ).addClass('invalid');
+             n++;
+        }
+        else
+        {
+            $( '#phone_no' ).css("border-bottom-color","green");       
+        }
+
+
+        if($('#email').val() == "")
+        {
+            $( '#email' ).addClass('invalid');
+             n++;
+        }
+        else
+        {
+            $( '#email' ).css("border-bottom-color","green");       
+        }
+
+        if($('#male').val() == "")
+        {
+            $( '#male' ).addClass('invalid');
+             n++;
+        }
+        else
+        {
+            $( '#male' ).css("border-bottom-color","green");       
+        }
+
+        if($('#female').val() == "")
+        {
+            $( '#female' ).addClass('invalid');
+             n++;
+        }
+        else
+        {
+            $( '#female' ).css("border-bottom-color","green");       
+        }
+
+        if($('#dob').val() == "")
+        {
+            $( '#dob' ).addClass('invalid');
+             n++;
+        }
+        else
+        {
+            $( '#dob' ).css("border-bottom-color","green");       
+        }
+
+        if($('#sport').val() == "")
+        {
+            $( '#sport' ).addClass('invalid');
+             n++;
+        }
+        else
+        {
+            $( '#sport' ).css("border-bottom-color","green");       
+        }
+
+        if($('#profession').val() == "")
+        {
+            $( '#profession' ).addClass('invalid');
+             n++;
+        }
+        else
+        {
+            $( '#profession' ).css("border-bottom-color","green");       
+        }
+       if(n==0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+
+
+
 
 
 $("#save").click(function()
 {
-
+     if(!valname())
+        {
+            return false;
+        }
+        else
+        {
   var professions = $("#profession").val();
   var prof_data = professions.split(",");
-
   var prof_id    = prof_data[1];
   var prof_name  = prof_data[0];
-
-
   var data1 = {
     "name"      : $("#name").val(),
     "email"     : $("#email").val(),
@@ -157,6 +257,7 @@ $("#save").click(function()
     "prof_id"   : prof_id,
     "gender"    : $("#gender").val()
   };
+
   console.log(JSON.stringify(data1));
   var data = JSON.stringify(data1);
     $.ajax({ 
@@ -241,7 +342,7 @@ $("#save").click(function()
      }
   });
 
-
+}
 });
 
 </script>

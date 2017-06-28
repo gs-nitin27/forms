@@ -184,8 +184,6 @@ var data =  eval(data1);//JSON.stringify(data1);
 					</div>
 					 <input type="hidden" class="form-control" name="eventid" id="eventid" value="<?php echo $event['id'] ; ?>">
 
-
-
           <?php
           $data=$this->session->userdata('item');
           $userid=$data['adminid'];
