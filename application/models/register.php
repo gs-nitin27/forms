@@ -1268,9 +1268,21 @@ public function event($id)
 public function deleteEvent($id)
 {
   $this->db->where('id',$id);
+  $this->remove_Image($id);die;
   $this->db->delete('gs_eventinfo');
 } 
+public function remove_Image($id)
+{
 
+$this->db->from('gs_eventinfo');
+$this->db->where('id',$id);
+$query = $this->db->get();
+$q =  $query->result_array();
+if($q[0]['image'] != '')
+{
+unlink("uploads/event/".$q[0]['image']);
+}
+}
 public function resources($id)
 {
 	$this->db->from('gs_resources');
