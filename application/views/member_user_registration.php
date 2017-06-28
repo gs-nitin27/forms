@@ -138,7 +138,8 @@
 
 $( "#img" ).hide();
 function valname()
-    {
+    {   
+
         var n=0;
         if($('#name').val() == "")
         {
@@ -202,6 +203,7 @@ function valname()
 
         if($('#sport').val() == "")
         {
+
             $( '#sport' ).addClass('invalid');
              n++;
         }
@@ -229,10 +231,6 @@ function valname()
         }
 
     }
-
-
-
-
 
 
 $("#save").click(function()
