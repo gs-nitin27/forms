@@ -121,7 +121,7 @@ var data =  eval(data1);//JSON.stringify(data1);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Create Event
+        Edit Event
 
 
         
@@ -151,7 +151,7 @@ var data =  eval(data1);//JSON.stringify(data1);
               <li><a href="#tab_eligible" data-toggle="tab" id="3" >Eligibility</a></li>
                <li><a href="#ticket" data-toggle="tab" id="4" >Ticket</a></li>
              </ul> 	 
-             <form role="form" action="" class="register">  
+
             <div class="tab-content">
               <div class="tab-pane active" id="tab_event">
                 
@@ -245,7 +245,7 @@ var data =  eval(data1);//JSON.stringify(data1);
 						?>
 					<label for="sports">Sport</label>
 				    <select id="sport" class="form-control" >
-					<option value="<?php echo $event['sport_name'];?>,<?php echo $event['sport'];?>"><?php echo $event['sport_name'] ; ?></option> 
+					<option value="<?php echo $event['sport'];?>,<?php echo $event['sport_name'];?>"><?php echo $event['sport_name'] ; ?></option> 
 					<?php if(!empty($sports)){
 									foreach($sports as $sport){?>
 					<option value ="<?php echo $sport['id'];?>,<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
@@ -446,29 +446,37 @@ var data =  eval(data1);//JSON.stringify(data1);
             
 
                  	
-				<!--	<h4>Ticket Details:</h4 > 		-->
+			
 					
 
 					
-					
-		<script >
-	//var flag=0;
-document.getElementById("addTicket").onclick = function() 
-{
-    var form 		 = document.getElementById("EventTicket");
-	var newDiv  	 = document.createElement("div");
-	newDiv.innerHTML = "<div class='box-body' id='div_"+ window.flagTicket +"' style='background-color: #dff0d8; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group' ><span style='right:2px; top: 0px;' id='"+ window.flagTicket +"' onclick='deleteticket(this);'  class='glyphicon glyphicon-remove-circle'></span><label for='ticketName'>Ticket Name :</label><input type='text' class='form-control' id='ticketname"+ window.flagTicket +"' placeholder='Enter Ticket Name'><label id='ticketname_error' hidden>Ticket Name is required .</label></div><div class='form-group'><label for='ticketPrice'>Ticket Price :</label><input type='text' class='form-control' id='ticketPrice"+ window.flagTicket +"' placeholder='Enter ticket price'><label id='ticketprice_error' hidden> Ticket price is required .</label></div>  <label for='NoofTicket'>Number of Ticket:</label><input type='text' class='form-control' id='noofticket"+ window.flagTicket +"' placeholder='Enter Number of Ticket'><label id='numberofticket_error' hidden>Number of Ticket is required .</label></div>	"; 
-		form.appendChild(newDiv);
-		window.flagTicket++;
-
-}
-
-</script>
+	
 		</div>
-       </div>     
-       </div>
-            <!-- /.tab-content -->
-             </form>
+       </div>   
+       <table>
+        <tr>
+        <td>
+             <?php if($event['image']) { ?>
+
+            <!-- <div class="form-group" align="left" >  -->
+
+                <img style="display:block; border:2px solid SteelBlue";  width="400px" height="300px" src = "<?php  echo base_url()."uploads/event/".$event['image']; ?>">
+            <!-- </div>  -->
+
+              <?php } else { ?>
+
+             <!--  <div class="form-group">
+
+                 -->
+             <img style="display:block; border:2px solid SteelBlue";  width="200px" height="300px" align="center" src = "<?php  echo base_url('img/no-image.jpg'); ?>">
+             <?php } ?>
+
+             <!-- </div>  -->
+
+          </td>
+          </tr>
+          <tr style="margin-top:20px">
+          <td>
             <form id="form1"  method="post" enctype="multipart/form-data">
 	             <!--  Image : <input type="file" name="file" id="file" /> -->
 	 <div class="container">
@@ -501,33 +509,44 @@ document.getElementById("addTicket").onclick = function()
 	              <input type="hidden" class="form-control" name="path"   id="path" value="uploads/event/">
 	              <input type="hidden" class="form-control" name="height" id="height" value="640">
 	              <input type="hidden" class="form-control" name="width"  id="width" value="1115">
+	              <input type="hidden" class="form-control" name="file_name"  id="file_name">
 	              </div>
 	             <!--  <input id="button" type="submit" value="Upload"> -->
             </form>
+    
+        <div class="form-group">
+                  <input type="hidden" class="form-control" name="oldimageid" id="pid" value="<?php echo $event['id']; ?>">
+                </div>
+               <!--  <input id="button" type="submit" value="Upload"> -->
+               </form>
 
-              <input type="hidden" class="form-control" name="photo" id="photo_url"> 
+
+                
+               <input type="hidden" class="form-control" name="photo" id="photo_url" value="<?php echo $event['image']; ?>"> 
+             <!--  <input type="hidden" class="form-control" name="photo" id="photo_url">  -->
               <div id="mess" hidden>Image Uploded</div>
-			<div class="box-footer">
+			
+
+         
+             </td>
+             </tr>
+             </table>  
+       </div>
+          
+         
+
+
+
+
+ 
+             <div class="box-footer">
 			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Create Event" name="Create">
 			</div>
-			
-			
           </div>
-	  </div>
+</div>
 </section>
 </div>
-<!--
-<script>
-function addTextBox(btn) {
-    var element = document.createElement("input");
-    element.setAttribute("type", "text");
-    element.setAttribute("value", "OK");
-    element.setAttribute("name", "Test Name");
-    btn.parentNode.insertBefore(element, btn)
-}
-</script>
 
--->
 
  <script type="text/javascript">
     $("#etypes").change(function(){
@@ -730,4 +749,18 @@ function deleteticket($this)
 
   
 }	
+</script>
+				
+		<script >
+	//var flag=0;
+document.getElementById("addTicket").onclick = function() 
+{
+    var form 		 = document.getElementById("EventTicket");
+	var newDiv  	 = document.createElement("div");
+	newDiv.innerHTML = "<div class='box-body' id='div_"+ window.flagTicket +"' style='background-color: #dff0d8; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group' ><span style='right:2px; top: 0px;' id='"+ window.flagTicket +"' onclick='deleteticket(this);'  class='glyphicon glyphicon-remove-circle'></span><label for='ticketName'>Ticket Name :</label><input type='text' class='form-control' id='ticketname"+ window.flagTicket +"' placeholder='Enter Ticket Name'><label id='ticketname_error' hidden>Ticket Name is required .</label></div><div class='form-group'><label for='ticketPrice'>Ticket Price :</label><input type='text' class='form-control' id='ticketPrice"+ window.flagTicket +"' placeholder='Enter ticket price'><label id='ticketprice_error' hidden> Ticket price is required .</label></div>  <label for='NoofTicket'>Number of Ticket:</label><input type='text' class='form-control' id='noofticket"+ window.flagTicket +"' placeholder='Enter Number of Ticket'><label id='numberofticket_error' hidden>Number of Ticket is required .</label></div>	"; 
+		form.appendChild(newDiv);
+		window.flagTicket++;
+
+}
+
 </script>
