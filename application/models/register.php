@@ -1278,7 +1278,7 @@ $this->db->from('gs_eventinfo');
 $this->db->where('id',$id);
 $query = $this->db->get();
 $q =  $query->result_array();
-if($q[0]['image'] != '')
+if($q[0]['image'] != '' && file_exists("uploads/tournament/".$q[0]['image']))
 {
 unlink("uploads/event/".$q[0]['image']);
 }
