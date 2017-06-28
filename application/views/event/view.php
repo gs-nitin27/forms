@@ -131,7 +131,7 @@
 			</div>
                 <div class="box-body">
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Criteria 1: </b> &nbsp;<?php echo $event['eligibility1']." Years";?></h5>
+						<h5 class="timeline-header no-border"><b>Criteria 1: </b> &nbsp;<?php echo $event['eligibility1'];?></h5>
 					</div>
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Criteria 2: </b> &nbsp;<?php echo $event['eligibility2'];?></h5>

@@ -121,7 +121,7 @@ var data =  eval(data1);//JSON.stringify(data1);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Create Event
+        Edit Event
 
 
         
