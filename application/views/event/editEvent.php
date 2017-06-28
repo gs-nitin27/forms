@@ -245,7 +245,7 @@ var data =  eval(data1);//JSON.stringify(data1);
 						?>
 					<label for="sports">Sport</label>
 				    <select id="sport" class="form-control" >
-					<option value="<?php echo $event['sport_name'];?>,<?php echo $event['sport'];?>"><?php echo $event['sport_name'] ; ?></option> 
+					<option value="<?php echo $event['sport'];?>,<?php echo $event['sport_name'];?>"><?php echo $event['sport_name'] ; ?></option> 
 					<?php if(!empty($sports)){
 									foreach($sports as $sport){?>
 					<option value ="<?php echo $sport['id'];?>,<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
