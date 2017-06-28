@@ -405,7 +405,6 @@ public function CreateEvent()
      $this->load->view('templates/template',$data);
 
   }
-
 public function userCreateEvent()
   {
     $this->load->view('event/CreateEvent');
