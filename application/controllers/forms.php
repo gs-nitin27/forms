@@ -354,6 +354,12 @@ public function createNewUser()
  	 $this->load->view('templates/template',$data);
 }
 
+public function registrationprofile($str)
+{ 
+      $data = array( 'id' => $str);
+      $this->load->view('RegistrationProfile',$data);
+}
+
 public function userprofile($str)
 { 
       $id = $this->stringtonumber($str);
@@ -3420,8 +3426,8 @@ public function user_register()
       if($res)
       {  
 
-      	 $this->sendmail($data->email);
-         echo json_encode(array('data' =>1 , 'message' =>'User register Sucessfull'));
+      	// $this->sendmail($data->email);
+         echo json_encode(array('data' =>$res , 'message' =>'User register Sucessfull'));
       }
       else
       {

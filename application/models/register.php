@@ -1522,7 +1522,8 @@ public function user_register($item)
 	$query = $this->db->query($insert);
 	if($query)
 	{
-      return 1;
+	   $id = mysql_insert_id();	 
+      return $id;
 	}
 	else
 	{ 

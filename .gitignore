@@ -13,3 +13,4 @@ application/logs/*
 /application/config/database.php
 /application/config/database.php
 /uploads/resources
+/uploads

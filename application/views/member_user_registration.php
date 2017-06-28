@@ -259,6 +259,7 @@ $("#save").click(function()
   };
 
   console.log(JSON.stringify(data1));
+  var profileurl = '<?php echo site_url();?>';
   var data = JSON.stringify(data1);
     $.ajax({ 
      type: "POST",
@@ -267,21 +268,23 @@ $("#save").click(function()
      dataType: 'JSON',        
      success:function(result)
      {
-      
-       if(result.data == 1)
+       alert(result.data);
+       if(result.data == 3 || result.data == 4)
        {
-        $.confirm({
-        title: 'Congratulations!',
-        content: '<h3>Registration is complete.</h3>',
-        type: 'green',
+
+     $.confirm({
+        title: 'Sorry!',
+        content: '<h3>User is already register please loging.</h3>',
+        type: 'red',
         typeAnimated: true,
         animationSpeed: 1500,
         animationBounce: 3,
         buttons: {
             tryAgain: {
-                text: 'Thank You !',
-                btnClass: 'btn-green',
+                text: 'OK !',
+                btnClass: 'btn-red',
                 action: function(){
+
                 }
             },
             close: function () {
@@ -289,6 +292,9 @@ $("#save").click(function()
             }
         }
     });
+
+
+        
        }
        else if(result.data == 0)
        {
@@ -315,21 +321,25 @@ $("#save").click(function()
        }
        else
        {
-        $.confirm({
-        title: 'Sorry!',
-        content: '<h3>User is already register please loging.</h3>',
-        type: 'red',
+    $.confirm({
+        title: 'Congratulations!',
+        content: '<h3>Registration is complete.</h3>',
+        type: 'green',
         typeAnimated: true,
         animationSpeed: 1500,
         animationBounce: 3,
         buttons: {
             tryAgain: {
-                text: 'OK !',
-                btnClass: 'btn-red',
+                text: 'Thank You !',
+                btnClass: 'btn-green',
                 action: function(){
+                  window.location.href = profileurl+ "/forms/registrationprofile/" + result.data;
+
                 }
             },
             close: function () {
+              window.location.href = profileurl+ "/forms/registrationprofile/" + result.data;
+
              
             }
         }
