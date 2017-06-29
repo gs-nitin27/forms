@@ -1734,8 +1734,10 @@ public function Emailfind()
      
       if(isset($_POST['file_name']) && $_POST['file_name'] != '')
                {
-               $image_file = preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['file_name']);
-               $filename1 =implode('_',explode(" ",$image_file)); 
+               $filename1 =implode('_',explode(" ",$_POST['file_name']));  
+               $image_file = preg_replace('/[^ \w]+/', '', $filename1);
+               echo $image_file;die;
+               
                }else
                {
                 $filename1 = '';
