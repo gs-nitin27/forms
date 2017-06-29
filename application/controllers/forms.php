@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
  
 class Forms extends CI_Controller
 {
@@ -12,8 +13,8 @@ public function __construct()
          
 public function index()
 {   
-   //$this->load->view('login');
-  $this->adminlogin();
+   //$this->load->view('login');  viewJob
+     $this->adminlogin();
 }
 
 public function home()
@@ -22,12 +23,14 @@ public function home()
    $this->load->view('templates/template',$data);
 }
 
+
 public function userhome()
 {
 
   $data['middle'] = 'userdashboard';
   $this->load->view('templates/template',$data);
 }
+
 
  public function gmaillogin()
  {
@@ -93,7 +96,8 @@ public function newadmin()
 
 }
 
-//======================User ======================================
+//======================User =====================
+
 public function adminlogin()
 {
   $this->load->view('adminlogin');
@@ -114,9 +118,8 @@ public function login()
              redirect('forms/index','refresh');
             }
       else
-       {
+      {
       $res = $this->register->login($username, $password); 
-     // print_r($res); die();
       if($res != 0)
       {
       	 $this->session->set_userdata('item',$res);
@@ -139,7 +142,7 @@ public function login()
     }
     }
 
-    public function usermodule()
+public function usermodule()
 {
 	   $data['middle'] = 'userModule/usermodule';
 		$this->load->view('templates/template',$data);
@@ -238,8 +241,7 @@ public function signout()
      $this->session->unset_userdata($newdata);
      $this->session->sess_destroy();
      $this->index();
-     //die;
- }
+}
 
  public function admin_profile()
  {
@@ -250,10 +252,8 @@ public function profile()
 {
 $data=json_decode($_REQUEST['data']);
 $name=$data->name;
-
 $pass=md5($data->password);
 $item= new stdClass();
-
 $item->userid                     =$data->userid;
 $item->name                       =$name;
 $item->password                   =$pass;
@@ -278,15 +278,14 @@ $item->other_skill_detail         =@$data->other_skill_detail;
 $item->age_catered                =@$data->age_catered;
 $item->device_id                  =@$data->device_id;
 $item->about_me                   =@$data->about_me;
-
 $this->load->model('register');
 $res= $this->register->updateProfile($item);
 if($res)
 {
 	echo "1";
-	//$this->varifyemail();
 }
-else {
+else 
+{
 	echo "0";
 }
 }
@@ -406,10 +405,10 @@ public function CreateEvent()
 
   }
 public function userCreateEvent()
-  {
+{
     $this->load->view('event/CreateEvent');
   
-  }  
+}  
   
 public function event()
 {
@@ -535,11 +534,8 @@ public function CreateJob()
 
 public function saveJob()
 {
-//$data1 = json_decode($_REQUEST['data']);
 
 $item  = new stdClass(); 
-
-//print_r($_POST);die;
 
 $item->id                    = $_POST['id'];
 $item->userid                = $_POST['userid'];
@@ -568,7 +564,6 @@ $item->contact               = $_POST['contact'];
 $item->image                 = $_POST['image'];
 $item->email                 = $_POST['email_app_collection'];
 $item->job_link              = $_POST['job_links'];
-//print_r($item);die();
 $this->load->model('register');
 $res = $this->register->create_job($item);
 if($res == 1)
@@ -586,6 +581,7 @@ public function getJob()
 		$data['middle'] = 'job/index';
 		$this->load->view('templates/template',$data);
 }
+
 
 public function usercreatejob()
 {
@@ -616,8 +612,7 @@ public function viewJob($str)
 		$data['required'] = array(
 									'id'=>$id
 								 );
-          //$data['noheader'] = true;
-		$this->load->view('templates/template',$data);
+   $this->load->view('templates/template',$data);
 }
 
 
@@ -638,27 +633,17 @@ public function mobileview()
 
 public function StatusJob()
 {
-  // print_r("expression");
-//	die;
 $data2 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
-
-//print_r($data2);die;
-
 $item->id                    = $data2->id;
 $item->publish               = $data2->publish;
-
 $this->load->model('register');
 $res = $this->register->StatusJob($item);
 if($data2->publish==1)
 {    
 	//$jdata=$this->register->getJobInfo($data2->id);
-    
     $data = array('status' => 1, "msg" =>"Activated");
     echo json_encode($data);
-
-
-  //  print_r($jdata);
 	//$this->register->addJobData($jdata);
 }
 else{
@@ -678,9 +663,13 @@ public function editjob($str)
 		$this->load->view('templates/template',$data);
 }
 
-//==================== End Job=================================================
 
-//============================= Start Tournament===============================
+
+//==================== End Job==============================
+
+//================ Start Tournament==============
+
+
 public function CreateTournament()
 	{
 	$data['middle'] = 'tournament/CreateTournament';
@@ -689,12 +678,8 @@ public function CreateTournament()
 
 public function saveTournament()
 {
-
 $data1 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
-
-//print_r($data1);die;
-
 $item->id                      = $data1->id;
 $item->organizer_name          = $data1->organizer_name;
 $item->tournament_level        = $data1->tournament_level;
@@ -731,8 +716,6 @@ $item->sport                   = $data1->sport;
 $item->publish                 = 0;
 $item->image                   = $data1->image;  
 
-//print_r($item);//die;
- 
 $this->load->model('register');
 $res = $this->register->saveTournament($item);
 if($res == '1')
@@ -786,7 +769,8 @@ if($data2->publish==1)
 	//$tdata=$this->register->getTournamentInfo($data2->id);
 	//$this->register->addTournamentData($tdata);
 }
-else{
+else
+{
 	//$this->register->deletePublishTournament($data2->id);
 }
 }
@@ -956,9 +940,10 @@ if($data2->status==1)
 	$rdata=$this->register->getResourceInfo($data2->id);
   $this->register->addResourcesData($rdata);	
   echo "Resources Is Activate";
-
 }
-else{
+
+else
+{
 	echo "Resources Is Deactivate";
 	$this->register->deleteStatusResources($data2->id);
 }
@@ -972,7 +957,7 @@ public function createContent()
 {
 		$data['middle'] = 'content/create_content';
 		$this->load->view('templates/template',$data);
-	}
+}
 
   public function getContent(){
 		$data['middle'] = 'content/list';
@@ -1003,9 +988,7 @@ public function editContent($str)
 public function saveContent()
 {
 $data12 = json_decode($_REQUEST['data']);
- 
 $item  = new stdClass(); 
-
 $item->id                    = $data12->id;
 $item->userid                = $data12->userid;
 $item->title                 = $data12->title;
@@ -1014,7 +997,6 @@ $item->content               = $data12->content;
 $item->publish               = $data12->publish;
 $item->date_created          = @strtotime($data12->date_created);
 $item->date_updated          = @strtotime($data12->date_updated);
-
 //print_r($item);die();
 $this->load->model('register');
 $res = $this->register->create_content($item);

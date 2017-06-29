@@ -174,7 +174,7 @@
 		   <div class="timeline-item">
 		   <h5 class="timeline-header"><b href="#">Job Description: </b></h5>
 		   <div class="timeline-body">
-		   <?php echo $job['description'];?>
+		   <?php  echo substr($job['description'],0,10);?>
 		   </div>  
 		   </div>
 		   <div class="timeline-item">
@@ -213,7 +213,7 @@
 					<div class="timeline-item">
 					<h5 class="timeline-header"><b href="#">About Organisation: </b></h5>
 					<div class="timeline-body">
-					<?php echo $job['about'];?>
+					<?php echo substr($job['about'],0,10);?>
 					</div>
 					</div>
 					<div class="timeline-item">
