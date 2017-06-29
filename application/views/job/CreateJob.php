@@ -434,97 +434,53 @@ $(function() {
        
    
 
-       if($("#jtitle").val() !="" && $("#jdesc").val() !="" && $("#orgName").val() !="" && $("#job_link").val() !="" ){
-
+       if($("#jtitle").val() !="" && $("#jdesc").val() !="" && $("#orgName").val() !="" && $("#job_link").val() !="" )
+       {
             save();
-       }else{ //alert($("#jtitle").val()+$("#jdesc").val()+$("#orgName").val() !="");
-                  // alert($("#2").val());
+       }else
+       {
                   $("#2").css("color","red");
-                  //$("#3").css("color","red");
                   $("html, body").animate({ scrollTop: 0 }, 500);
-              
-                if($("#jtitle").val() ==""){
+           
+                if($("#jtitle").val() =="")
+                {
                   $("#jtitle_error").show();
                   $("#jtitle_error").css("color","red");
 
-                }else{
+                }
+                else
+                {
                     $("#jtitle_error").hide();
                 }
-                // if($("#jadd2").val() ==""){
-                //   $("#jadd2_error").show();
-                //   $("#jadd2_error").css("color","red");
-                // }else{
-                //   $("#jadd2_error").hide();
-                // }
-                // if($("#jtype").val() == 0){
-                //   $("#jtype_error").show();
-                //   $("#jtype_error").css("color","red");
-                // }else{
-                //   $("#jtype_error").hide();
-                // }
-               
-                if($("#jdesc").val() ==""){
-                  $("#jdesc_error").show();
-                  $("#jdesc_error").css("color","red");
-                }else{
+                  if($("#jdesc").val() =="")
+                  {
+                    $("#jdesc_error").show();
+                    $("#jdesc_error").css("color","red");
+                  }
+                 else
+                 {
                   $("#jdesc_error").hide();
-                }
+                 }
                
-                if($("#job_link").val() ==""){
+                if($("#job_link").val() =="")
+                {
                   $("#job_link_error").show();
                   $("#job_link_error").css("color","red");
-                }else{
+                }
+                else
+                {
                   $("#job_link_error").hide();
                 }
-               
-                // if($("#abOrg").val() ==""){
-                //   $("#abOrg_error").show();
-                //   $("#abOrg_error").css("color","red");
-                // }else{
-                //   $("#abOrg_error").hide();
-                // }
-                if($("#orgName").val() ==""){
-                  $("#orgName_error").show();
-                  $("#orgName_error").css("color","red");
-                }else{
+                 if($("#orgName").val() =="")
+                 {
+                 $("#orgName_error").show();
+                 $("#orgName_error").css("color","red");
+                 }
+                else
+                {
                   $("#orgName_error").hide();
                 }
-              
-                // if($("#add1").val() ==""){
-                //   $("#add1_error").show();
-                //   $("#add1_error").css("color","red");
-                // }else{
-                //   $("#add1_error").hide();
-                // }
-                // if($("#add2").val() ==""){
-                //   $("#add2_error").show();
-                //   $("#add2_error").css("color","red");
-                // }else{
-                //   $("#add2_error").hide();
-                // }
-               
-                // if($("#email").val() ==""){
-                //   $("#email_error").show();
-                //   $("#email_error").css("color","red");
-                // }else{
-                //   $("#email_error").hide();
-                // }
-               
-                // if($("#jadd1").val() ==""){
-                //   $("#jadd1_error").show();
-                //   $("#jadd1_error").css("color","red");
-                // }else{
-                //   $("#jadd1_error").hide();
-                // }
-                // if($("#jsports").val() == '-select-'){
-               
-                //   $("#jsports_error").show();
-                //   $("#jsports_error").css("color","red");
-                // }else{
-                //   // alert($("#jsports").val());
-                //   $("#jsports_error").hide();
-                // }
-       }
+          }
     });
   </script>
    <script>
@@ -572,13 +528,11 @@ var url = '<?php echo site_url();?>';
 //console.log(JSON.stringify(data1));
 var data = eval(data1);
   $.ajax({
-
     type: "POST",
     url: '<?php echo site_url('forms/saveJob'); ?>',
     data: data,
     dataType: "text",
     success: function(result) {
-      alert(result);
        if(result == '1')
          {
          $.confirm({

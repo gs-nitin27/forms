@@ -576,6 +576,7 @@ echo "0";
 }
 }
 
+
 public function getJob()
 {
 		$data['middle'] = 'job/index';
@@ -583,9 +584,58 @@ public function getJob()
 }
 
 
+public function saveEditJob()
+{
+$item  = new stdClass(); 
+$item->id                    = $_POST['id'];
+$item->userid                = $_POST['userid'];
+$item->title                 = mysql_real_escape_string($_POST['title']);
+$item->type                  = $_POST['type'];
+$item->sports                = $_POST['sports'];
+$item->gender                = $_POST['gender'];
+$item->work_exp              = mysql_real_escape_string($_POST['work_experience']);
+$item->desc                  = mysql_real_escape_string($_POST['description']);
+$item->desiredskill          = mysql_real_escape_string($_POST['desired_skills']);
+$item->qualification         = mysql_real_escape_string($_POST['qualification']);
+$item->keyreq                = mysql_real_escape_string($_POST['key_requirement']);
+$item->org_address1          = mysql_real_escape_string($_POST['org_address1']);
+$item->org_address2          = mysql_real_escape_string($_POST['org_address2']);
+$item->org_city              = mysql_real_escape_string($_POST['org_city']);
+$item->org_state             = mysql_real_escape_string($_POST['org_state']);
+$item->org_pin               = $_POST['org_pin'];
+$item->org_name              = $_POST['organisation_name'];
+$item->about                 = mysql_real_escape_string($_POST['about']);
+$item->address1              = mysql_real_escape_string($_POST['address_line1']); 
+$item->address2              = $_POST['address_line1'];
+$item->state                 = $_POST['state'];
+$item->city                  = $_POST['city'];
+$item->pin                   = $_POST['pin'];
+$item->contact               = $_POST['contact'];
+$item->image                 = $_POST['image'];
+$item->email                 = $_POST['email_app_collection'];
+//$item->job_link              = $_POST['job_links'];
+$this->load->model('register');
+$res = $this->register->save_Edit_Job($item);
+if($res == 1)
+{
+echo "1";
+}
+else
+{
+echo "0";
+}
+}
+
+
+
+
+
+
+
+
+
 public function usercreatejob()
 {
-   // $data['middle'] = 'job/index';
     $this->load->view('job/CreateJob');
 }
 	
@@ -831,6 +881,8 @@ $res = $this->register->saveResources($item);
 echo json_encode(array('response' => $res));
 }
 
+
+
 public function SaveshareResources()
 {
 $item  = new stdClass(); 
@@ -907,6 +959,28 @@ public function deleteResources($str)
         $data['middle'] = 'resources/index';
 	    	$this->load->view('templates/template',$data);
 }
+
+public function deleteJob($str)
+{
+        $id = $this->stringtonumber($str);
+        $this->register->deleteJob($id);
+        $data['middle'] = 'job/index';
+        $this->load->view('templates/template',$data);
+}
+
+public function deleteTournament($str)
+{
+        $id = $this->stringtonumber($str);
+        $this->register->deleteTournament($id);
+        $data['middle'] = 'tournament/index';
+        $this->load->view('templates/template',$data);
+}
+
+
+
+
+
+
 
 public function mobileviewResources()
 {
@@ -1655,7 +1729,8 @@ public function Emailfind()
 }
 //==================================End Email================================= 
  public function imageupload()
- {   $newpath=$_POST['path'];
+ {   
+  $newpath=$_POST['path'];
      
       if(isset($_POST['file_name']) && $_POST['file_name'] != '')
                {
@@ -1733,12 +1808,14 @@ public function Emailfind()
             $temp = explode(".", $_FILES["file"]["name"]);
             date_default_timezone_set("Asia/Kolkata");
             if($filename1 == '')
-            {$newfilename1=$prename."_".time();}
+            {
+              $newfilename1=$prename."_".time();
+            }
             else
-            {$newfilename1=$filename1;}
+            {
+              $newfilename1=$filename1;}
             $newfilename = $newfilename1. '.' . end($temp);
 
-           
 
             move_uploaded_file($_FILES["file"]["tmp_name"], $newpath. $newfilename);
   //===================image size fix ==============================================================
