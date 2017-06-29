@@ -642,7 +642,8 @@ $(function() {
      var entry_start_date          = $("#estartD").val();
      var entry_end_date            = $("#eendD").val();
      var email_app_collection      = $("#email_app_collection").val();
-     var ticketArray = [];
+
+    var ticketArray = [];
 	for(var i =0; i <window.flagTicket; i++)
 	{
 		var temp = {"ticketname":$("#ticketname"+i).val(),"ticketPrice":$("#ticketPrice"+i).val(),"noofticket":$("#noofticket"+i).val()};
