@@ -346,7 +346,7 @@ else
 //    $this->load->view('templates/template',$data);
     
   
-// }
+// } 
 
 public function createNewUser()
 {
@@ -3827,6 +3827,29 @@ public function contentangular()
     echo json_encode($res); 
 }
 
+
+public function Registration_userdata()
+{
+
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
+
+//print_r($data2);die;
+
+$item->id                    = $data2->id;
+$item->userdata              = $data2->userdata;
+$item->prof_id               = 1;
+
+$this->load->model('register');
+$res = $this->register->Registration_userdata($item);
+
+if($res)
+{
+    echo $res; 
+
+}
+
+}
 
 }
   

@@ -1770,6 +1770,21 @@ public function sendNotification($registration_ids, $message,$google_api)
        return 1;
 }
 
+public function Registration_userdata($item)
+{
+   $insert = "INSERT `gs_userdata`(`userid`,`prof_id`,`user_detail`,`created_date`) VALUES('$item->id','$item->prof_id','$item->userdata',CURDATE())";
+
+	$query = $this->db->query($insert);
+	if($query)
+	{
+      return 1;
+	}
+	else
+	{ 
+      return 0;
+	}
+
+}
 
 }
  ?>
