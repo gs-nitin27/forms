@@ -1731,8 +1731,7 @@ public function Emailfind()
  public function imageupload()
  {   
        $newpath=$_POST['path'];
-     
-      if(isset($_POST['file_name']) && $_POST['file_name'] != '')
+          if(isset($_POST['file_name']) && $_POST['file_name'] != '')
                {
                $image_file =implode('_',explode(" ",$_POST['file_name']));  
                $filename1 = preg_replace('/[^ \w]+/', '', $image_file);

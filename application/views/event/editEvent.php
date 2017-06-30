@@ -707,8 +707,7 @@ $(function() {
 		var totalTicket = JSON.stringify(ticketArray);
        if(name != "" && sport != '')
       {    
-      	    alert(totalTicket);
-           save(totalTicket);
+      	     save(totalTicket);
       }  
       else
       {  

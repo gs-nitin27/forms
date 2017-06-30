@@ -8,6 +8,11 @@
 
 function save()
 { 
+<<<<<<< HEAD
+=======
+ // alert($("#dates-field2").val());
+
+>>>>>>> 4211bf656d0e532f361f2e74c3a479a064b19c9f
 $('#imagelodar').show();
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
