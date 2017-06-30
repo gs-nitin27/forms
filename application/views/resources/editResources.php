@@ -8,7 +8,8 @@
 
 function save()
 { 
-  alert($("#dates-field2").val());
+ // alert($("#dates-field2").val());
+
 $('#imagelodar').show();
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
