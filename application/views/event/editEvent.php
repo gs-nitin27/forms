@@ -229,7 +229,6 @@ var data =  eval(data1);//JSON.stringify(data1);
 				         {      
 				         	    $("#otherevent").hide();
 				         	    $("#evtype").val(selectedCountry);
-				         	   // alert(selectedCountry);
 				         }
 				       });
 				    </script>
