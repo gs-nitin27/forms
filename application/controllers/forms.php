@@ -1730,14 +1730,8 @@ public function Emailfind()
 //==================================End Email================================= 
  public function imageupload()
  {   
-<<<<<<< HEAD
-  $newpath=$_POST['path'];
-  //echo "$newpath";
-=======
        $newpath=$_POST['path'];
->>>>>>> 700bc407a9e6688f100bc2edb499d7aeec86ad79
-     
-      if(isset($_POST['file_name']) && $_POST['file_name'] != '')
+          if(isset($_POST['file_name']) && $_POST['file_name'] != '')
                {
                $filename1 =implode('_',explode(" ",$_POST['file_name']));  
                $image_file = preg_replace('/[^ \w]+/', '', $filename1);
