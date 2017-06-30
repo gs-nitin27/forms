@@ -8,17 +8,29 @@
 
 function save()
 { 
-  alert($("#dates-field2").val());
 $('#imagelodar').show();
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
 var string = summary12.replace(/[\/\\<>~{}]/g, '');
 var description      = editor.getData();
+var url = ''
+if($('#token').val() == 2)
+{
+url = get_Id($('#rurl').val());
+}
+else if($('#token').val() == 0)
+{
+url =  $('#rurl').val();
+}
+else
+{
+  url = '';
+}
 var data1 = {
     "id"                      : $("#rid").val(), 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
-    "url"                     : $("#rurl").val(),
+    "url"                     : url,
     "description"             : description, 
     "summary"                 : string,
     "location"                : $("#rlocation").val(), 
@@ -27,9 +39,8 @@ var data1 = {
     "image"                   : $("#photo_url").val(),
     "status"                  : $("#status").val(),
      "token"                  : $("#token").val(),
-    "sport"                   : $("#dates-field2").val().toString()
+    "sport"                   : $("#sport").val().toString()
 };
-//alert(data1);
 console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>'
 var data = eval(data1);//JSON.stringify(data1);
@@ -147,12 +158,20 @@ var data = eval(data1);//JSON.stringify(data1);
                   <label id="title_error" hidden="">A title is required</label>
                 </div>
                 <div class="form-group">
+                  
+                  <?php if($value['token'] == 2){ ?>
                   <label for="exampleInputEmail1">Link</label>
+                  <!-- <div  class="modal fade" id="myModal" role="dialog"> -->
+                  <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link" value="<?php echo 'https://www.youtube.com/watch?v='.$value['video_link']; ?>" onfocus="edit_video(this.id)"><!-- </div> -->
+                  <label id="url_error" hidden="">A valid url is required</label>
+                   <?php }else if($value['token'] == 0){ ?>
+                  <label for="exampleInputEmail1">Link</label> 
                   <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link" value="<?php echo $value['url']; ?>">
-                <label id="url_error" hidden="">A valid url is required</label>
+                  <label id="url_error" hidden="">A valid url is required</label>
+                  <?php } ?>
                 </div>
                 <script type="text/javascript">
-               
+                 var get_sport = [];
                function loadData()
                { 
                   var sport_value =  $("#sport").val();
@@ -160,6 +179,7 @@ var data = eval(data1);//JSON.stringify(data1);
                   for(var i = 0; i<splt_sport.length ; i++)
                   {
                     $("input[value='"+splt_sport[i]+"']").prop('checked', true);  
+                    get_sport.push(splt_sport[i]);
                   } 
                 }
                 
@@ -173,7 +193,7 @@ var data = eval(data1);//JSON.stringify(data1);
               <div class="col-md-4">
               <div class="form-group">
               <label class="exampleInputEmail1" for="rolename">Sports</label>
-              <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" >
+              <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" onchange="getSports(this.id)">
                <?php  $sports = $this->register->getSport();?>
                <?php if(!empty($sports)){
                         foreach($sports as $sport){?>
@@ -211,7 +231,7 @@ var data = eval(data1);//JSON.stringify(data1);
                   {
                      $('#abc').show();
                   }
-                   if($('#token').val() == '0')
+                  else
                   {
                    $('#abc').hide();
                   }
@@ -356,7 +376,7 @@ var data = eval(data1);//JSON.stringify(data1);
        
           <?php } ?>
            <div class="box-footer">
-                <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
+                <input type="button" class="btn btn-lg btn-primary" id="save" value="Submit" name="Create">
               </div>
 
 
@@ -369,6 +389,39 @@ var data = eval(data1);//JSON.stringify(data1);
 </section>
 
 </div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+
+
+         <div class="form-group">Enter a YouTube URL:
+         <input id="myUrl" class="form-control" type="text"/>
+         </div>
+         <div class="form-group">
+         <button type="button" class="btn btn-default" id="myBtn" onclick='mybtn()';>Upload</button>
+         </div>
+
+       
+          <div> YouTube ID: <span id="myId"></span>
+          </div>
+          <div><input type="hidden" name=""  id="myId1" value=""></div>
+
+         <div>Embed code: <pre id="myCode"></pre></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 <script type="text/javascript">
   $(document).ready(function (e) {
 
@@ -572,6 +625,8 @@ $(function() {
           $("#title_error").hide(); 
         }
             
+      if($('#token').val() == 1)
+      {
        var description      =  editor.getData();
        if(description == "")
         {
@@ -582,6 +637,7 @@ $(function() {
         {
           $("#description_error").hide(); 
         }
+      }
         var summary = $('#rsummary').val();
         if(summary == "")
         {
@@ -606,6 +662,52 @@ $(function() {
           save();
         }
     });
+
+
+     edit_video = function(id)
+     {
+      $('#myModal').modal('show'); 
+    var url = $('#'+id).val();
+      $("#myUrl").val(url);
+      mybtn();
+     }
+
+   function mybtn()
+   {
+    var myId;
+    var myUrl = $('#myUrl').val();
+    if(myUrl)
+    {
+    myId = get_Id(myUrl);
+
+    $('#myId').html(myId);
+    $('#myCode').html('<iframe width="560" height="315" src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>');
+    }
+    else
+    {
+      alert("Please Give YouTube URL");
+    }
+  }
+
+function get_Id(url) {
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+
+    if (match && match[2].length == 11) {
+        $('#rurl').val(url);
+        return match[2];
+    } else {
+        return 'error';
+    }
+}
+
+function getSports(id)
+{
+ var list_select = $('#dates-field2').val().concat(get_sport);
+ var list =  list_select.join(',')
+ $('#sport').val(list.replace(/,\s*$/, ""));
+ ;
+} 
   </script>
 
 
