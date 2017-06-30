@@ -1733,10 +1733,8 @@ public function Emailfind()
        $newpath=$_POST['path'];
           if(isset($_POST['file_name']) && $_POST['file_name'] != '')
                {
-               $filename1 =implode('_',explode(" ",$_POST['file_name']));  
-               $image_file = preg_replace('/[^ \w]+/', '', $filename1);
-               echo $image_file;die;
-               
+               $image_file =implode('_',explode(" ",$_POST['file_name']));  
+               $filename1 = preg_replace('/[^ \w]+/', '', $image_file);
                }else
                {
                 $filename1 = '';
