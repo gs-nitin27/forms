@@ -8,11 +8,6 @@
 
 function save()
 { 
-<<<<<<< HEAD
-=======
- // alert($("#dates-field2").val());
-
->>>>>>> 4211bf656d0e532f361f2e74c3a479a064b19c9f
 $('#imagelodar').show();
 var summary1=$("#rsummary").val();
 var summary12=summary1.toString();
@@ -663,7 +658,7 @@ $(function() {
         else{
           $("#article_error").hide(); 
         }
-       if(title!="" &&  article!="" && location!="" &&summary!="" &&description!=""){
+       if(title!="" &&  article!="" && location!="" &&summary!="" /*&& description!=""*/){
           save();
         }
     });
@@ -711,7 +706,6 @@ function getSports(id)
  var list_select = $('#dates-field2').val().concat(get_sport);
  var list =  list_select.join(',')
  $('#sport').val(list.replace(/,\s*$/, ""));
- ;
 } 
   </script>
 
