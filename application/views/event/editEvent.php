@@ -229,7 +229,6 @@ var data =  eval(data1);//JSON.stringify(data1);
 				         {      
 				         	    $("#otherevent").hide();
 				         	    $("#evtype").val(selectedCountry);
-				         	   // alert(selectedCountry);
 				         }
 				       });
 				    </script>
@@ -708,8 +707,7 @@ $(function() {
 		var totalTicket = JSON.stringify(ticketArray);
        if(name != "" && sport != '')
       {    
-      	    alert(totalTicket);
-           save(totalTicket);
+      	     save(totalTicket);
       }  
       else
       {  

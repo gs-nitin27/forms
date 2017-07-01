@@ -44,6 +44,7 @@ var data1 = {
     "org_state"               : $("#orgstate").val(),
     "tournament_links"        : $("#evlink").val(),
     "start_date"              : $("#startD").val(),
+    "job_links"               : $("#job_link").val(),
     "end_date"                : $("#endD").val(),
     "sports"                  : $("#jsport").val().toString(),
     "image"                   : $("#photo_url").val(),
@@ -57,9 +58,9 @@ var data = eval(data1);//JSON.stringify(data1);
   $.ajax({
 
     type: "POST",
-    url: '<?php echo site_url('forms/saveJob'); ?>',
+    url: '<?php echo site_url('forms/saveEditJob'); ?>',
     data: data,
-    dataType: "text",
+    dataType: "text",  
     success: function(result) {
       //alert(result);
      $("#imagelodar").hide();

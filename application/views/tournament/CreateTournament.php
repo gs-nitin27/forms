@@ -33,9 +33,7 @@ $(document).ready(function(){
 function save(){
    $("#imagelodar").show();
 var data1 = {
- 
-
-    "id"                      : 0, 
+     "id"                      : 0, 
     "userid"                  : $("#userid").val(),
     "catagory"                : $("#tcatagory").val(),
     "address_line1"           : $("#add1").val(), 
@@ -81,10 +79,10 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-    	// $("#imagelodar").hide();
+    	$("#imagelodar").hide();
        if(result == '1')
          {
-         // $("#imagelodar").hide();
+          $("#imagelodar").hide();
          $.confirm({
          title: 'Congratulations!',
          content: 'Tournament is created.',
@@ -504,7 +502,7 @@ var data = JSON.stringify(data1);
   {
     if($('#timage').val())
     {
-    $('#imagelodar').show();
+   $('#imagelodar').show();
     e.preventDefault();
     $.ajax({
       url: "<?php echo site_url('forms/imageupload'); ?>",

@@ -14,8 +14,8 @@
 		<div class="col-md-12">
 				
 			<?php $resource = $this->register->getResourceInfo($id); 
-				if(!empty($resource)){
-					
+				if(!empty($resource))
+				{
 					$resource = $resource[0];
 				}
 			?>

@@ -200,7 +200,7 @@
             </div>
             <div class="box-body">
                <?php if($event['image']) { ?>
-		   <img style="display:block; border:2px"; width="325px" height="225px" src = "<?php  echo base_url()."uploads/tournament/".$event['image']; ?>">
+		   <img style="display:block; border:2px"; width="200px" height="210px" src = "<?php  echo base_url()."uploads/tournament/".$event['image']; ?>">
             <?php } else { ?>
 		   <img style="display:block; border:2px"; width="325px" height="225px" src = "<?php  echo base_url('img/no-image.jpg');?>">
           <?php } ?>	
