@@ -24,7 +24,7 @@
  <div class="pre-loader">
         <div class="load-con" style="text-align: center;">
             <img src="<?php echo base_url('img/logo.png');?>" class="animated fadeInDown"  alt=""> 
-        </div>
+        </div> 
     </div>
   <div class = "container">
 	<div class="wrapper" style="position:fiexd; margin-top:2%;">
