@@ -49,6 +49,25 @@ public function adminlogin($username,$password)
   }
 } 
 
+
+public function editRegisterUser($username,$password)
+{
+$this->db->where("email", $username);
+$this->db->where("password", $password);
+$qry = $this->db->get('user');
+
+if($qry->num_rows() > 0)
+{
+$q = $qry->row_array();
+if($q['userType']== 103)
+{
+return $q['userid'];
+}
+}
+else
+return 0;
+}
+
 public function login($username,$password)
 {
 $this->db->where("email", $username);
@@ -1848,7 +1867,7 @@ public function sendNotification($registration_ids, $message,$google_api)
 
 public function Registration_userdata($item)
 {
-   $insert = "INSERT `gs_userdata`(`userid`,`prof_id`,`user_detail`,`created_date`) VALUES('$item->id','$item->prof_id','$item->userdata',CURDATE())";
+   $insert = "INSERT `gs_userdata`(`userid`,`prof_id`,`user_detail`,`created_date`) VALUES('$item->id','$item->prof_id','$item->userdata',CURDATE()) ON DUPLICATE KEY UPDATE `user_detail` = '$item->userdata',`updated_date` = CURDATE() ";
 
 	$query = $this->db->query($insert);
 	if($query)
