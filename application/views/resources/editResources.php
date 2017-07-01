@@ -354,7 +354,7 @@ var data = eval(data1);//JSON.stringify(data1);
               <input type="hidden" class="form-control" name="height" id="height" value="640">
               <input type="hidden" class="form-control" name="width"  id="width" value="1115">
                <input type="hidden" class="form-control" name="file_name"  id="file_name">
-                  <!-- <input type="hidden" class="form-control" name="oldimage" id="pid" value="<?php //echo $value['image']; ?>"> -->
+                  <input type="hidden" class="form-control" name="oldimage" id="pid" value="<?php echo $value['image']; ?>">
                 </div>
                <div class="form-group">
                   <input type="hidden" class="form-control" name="oldimageid" id="pid" value="<?php echo $value['id']; ?>">
