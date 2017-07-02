@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/font-awesome.min.css');?>">
 
 <link rel="stylesheet" href="<?php echo base_url('assets/css/loder.css');?>">
-
+<link rel="stylesheet" href="<?php echo base_url('css/style.css');?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/ionicons.min.css');?>">
 <script src="<?php echo base_url('assets/plugins/chartjs/Chart.min.js')?>"></script>
 <script src="<?php echo base_url('assets/plugins/morris/morris.min.js')?>"></script>

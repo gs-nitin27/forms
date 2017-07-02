@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/ui.theme.css'); ?>" type="text/ css" media="all" />
 <script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" >
 </script>
-<style>
+<!-- <style>
 .skin-purple .sidebar-menu>li.header {
     color: #fff;
 }
@@ -49,7 +49,7 @@ span.logo-lg b {
 }
 .box-body{ padding: 10px 15px 20px 15px }
 </style>
- <script>
+ --> <script>
 function save()
 { 
 $('#imagelodar').show();
