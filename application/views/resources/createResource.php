@@ -203,7 +203,7 @@ var data = eval(data1);//JSON.stringify(data1);
         </select>
         </div>
      </div>
-     <input type="text" name="sports" class="form-control" disabled="">
+     <input type="text" name="sports" class="form-control" disabled="" id="sports">
     </div>
 
   
@@ -679,9 +679,9 @@ $(function() {
      }
     });
      get_sport = function()
-     {
+     { $('#sports').val('');
        var list = $('#dates-field2').val().join(',');
-       alert(list);  
+       $('#sports').val(list);   
      }
   </script> 
 
