@@ -87,7 +87,7 @@ $array=json_decode($data);
             <i class="<?php echo $value->class;?>"></i>
             <span><?php echo $value->name;?></span>
             <span class="pull-right-container">
-              <i class="fa fa-arrow-right"></i>
+              <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
