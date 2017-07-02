@@ -12,7 +12,52 @@
   #example1_filter label{
   float:right!important;
   padding-right:2px;
+}
+.skin-purple .sidebar-menu>li.header {
+    color: #fff;
+}
+.sidebar-menu li.header {
+    font-size: 14px;
+}
+.form-group label {
+    text-transform: uppercase;
+width:100%
+}
+.submit-bottom {
+    border-top: 1px solid #ccc;
+    padding-top: 2%;
+    margin-top: 2%;
+}
+.submit-bottom .btn {
+    border-radius: 0!important;
+    padding: 8px;
+    min-width: 220px;
+}
+.btn-block {
+    width: auto;
 } 
+.skin-purple .main-header .logo {
+    background-color: #222d32;
+}
+.skin-purple .main-header .logo:hover {
+    background-color: #222d32;
+}
+
+ul.multiselect-container.dropdown-menu {
+    max-height: 280px;
+    overflow-y: scroll;
+}
+span.logo-lg b {
+    float: left;
+    text-transform: uppercase;
+}
+.img-wrap {
+    border: 1px solid #ccc;
+    display: inherit;
+    padding: 8px;
+}
+.box-body{ padding: 10px 15px 20px 15px }
+ 
 </style>
 </head>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
