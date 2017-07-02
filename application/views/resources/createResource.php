@@ -192,7 +192,7 @@ var data = eval(data1);//JSON.stringify(data1);
                <div class="col-md-4">
                <div class="form-group">
                <label class="exampleInputEmail1" for="rolename">Sports</label>
-              <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple">
+              <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" onchange="get_sport()">
              <?php  $sports = $this->register->getSport();?>
              <?php if(!empty($sports)){
                         foreach($sports as $sport){?>
@@ -678,6 +678,11 @@ $(function() {
        }
      }
     });
+     get_sport = function()
+     {
+       var list = $('#dates-field2').val().join(',');
+       alert(list);  
+     }
   </script> 
 
  <!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
