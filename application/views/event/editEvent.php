@@ -110,10 +110,10 @@ var data =  eval(data1);//JSON.stringify(data1);
 });
 } 
   $(function() {
-    $( "#startD" ).datepicker();
-    $( "#endD" ).datepicker();
-    $( "#estartD" ).datepicker();
-    $( "#eendD" ).datepicker();
+    $( "#startD" ).datepicker({ dateFormat: 'mm-dd-yy' });
+    $( "#endD" ).datepicker({ dateFormat: 'mm-dd-yy' });
+    $( "#estartD" ).datepicker({ dateFormat: 'mm-dd-yy' });
+    $( "#eendD" ).datepicker({ dateFormat: 'mm-dd-yy' });
   });
   </script>
         
@@ -139,6 +139,7 @@ var data =  eval(data1);//JSON.stringify(data1);
 		  <?php $event = $this->register->getEventInfo($id); 
 				if(!empty($event)){
 					$event = $event[0];
+					//$start_date = split('-', )
 				}
 
 			
@@ -229,6 +230,7 @@ var data =  eval(data1);//JSON.stringify(data1);
 				         {      
 				         	    $("#otherevent").hide();
 				         	    $("#evtype").val(selectedCountry);
+				         	   // alert(selectedCountry);
 				         }
 				       });
 				    </script>
@@ -287,12 +289,12 @@ var data =  eval(data1);//JSON.stringify(data1);
 					</div >
 					<div class="form-group">
 					<label for="link">Start Date</label>
-					<input type="text" class="form-control" value="<?php echo $event['start_date'] ; ?>"  id="startD" placeholder="Enter Start Date">
+					<input type="text" class="form-control" value="<?php echo $this->register->alter_DateFormat($event['start_date']); ?>"  id="startD" placeholder="Enter Start Date">
 					<label id="start_date_error" hidden>Start Date is required .</label> 
 					</div >
 					<div class="form-group">
 					<label for="link">End Date</label>
-					<input type="text" class="form-control"  value="<?php echo $event['end_date'] ; ?>" id="endD" placeholder="Enter End Date">
+					<input type="text" class="form-control"  value="<?php echo $this->register->alter_DateFormat($event['end_date']) ; ?>" id="endD" placeholder="Enter End Date">
 					<label id="end_date_error" hidden>End Date is required .</label> 
 					</div >
 					<!-- <div class="form-group">
@@ -371,12 +373,12 @@ var data =  eval(data1);//JSON.stringify(data1);
 					</div>
 					<div class="form-group">
 					  <label for="link">Entry Start Date</label>
-					  <input type="text" class="form-control"  id="estartD" value="<?php echo $event['entry_start_date'] ; ?>" placeholder="Enter Start Date">
+					  <input type="text" class="form-control"  id="estartD" value="<?php echo $this->register->alter_DateFormat($event['entry_start_date']) ; ?>" placeholder="Enter Start Date">
 					<label id="entry_start_date_error" hidden>Entry Start Date is required .</label> 
 					</div>
 					<div class="form-group">
 					  <label for="link">Entry End Date</label>
-					  <input type="text" value="<?php echo $event['entry_end_date'] ; ?>" class="form-control"  id="eendD" placeholder="Enter End Date">
+					  <input type="text" value="<?php echo $this->register->alter_DateFormat($event['entry_end_date']) ; ?>" class="form-control"  id="eendD" placeholder="Enter End Date">
 					<label id="entry_end_date_error" hidden>Entry End Date is required .</label> 
 					</div>
 					<div class="box-header with-border">
@@ -700,9 +702,6 @@ $(function() {
           ticketArray.push(temp);
               }
 
-           
-		
-
 	}
 		var totalTicket = JSON.stringify(ticketArray);
        if(name != "" && sport != '')
@@ -760,5 +759,18 @@ document.getElementById("addTicket").onclick = function()
 		window.flagTicket++;
 
 }
+
+// function getDateFormat(data)
+// {
+// if(data != '')
+// {	
+// var myDate = data;
+// var date = myDate.split('-').join('/');
+// return date;
+// }else
+// {
+// return data;
+// }
+// } 
 
 </script>
