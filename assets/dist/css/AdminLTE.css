@@ -4822,7 +4822,7 @@ table.text-center th {
 .img-bordered-sm {
   border: 2px solid #d2d6de;
   padding: 2px;
-}
+}  
 .attachment-block {
   border: 1px solid #f4f4f4;
   padding: 5px;
@@ -4831,7 +4831,7 @@ table.text-center th {
 }
 .attachment-block .attachment-img {
   max-width: 100px;
-  max-height: 100px;
+  max-height: 100px;  
   height: auto;
   float: left;
 }

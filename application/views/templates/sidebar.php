@@ -98,7 +98,7 @@ $array=json_decode($data);
                // { 
                //    if($value1->admin == 1) {
                ?>
-            <li><a href="<?php echo site_url($value1->url);?>"  id="<?php echo $value1->id;?>"><i class="fa fa-circle-o text-purple"></i><?php echo $value1->name;?></a></li>
+            <li><a href="<?php echo site_url($value1->url);?>"  id="<?php echo $value1->id;?>"><i class="fa fa-circle-o"></i><?php echo $value1->name;?></a></li>
            <?php //} }   else if($usertype == 103)
            // {
            ?>
@@ -140,5 +140,10 @@ var temp1 = '#' + fields1[4];
 
 $(temp1).css('color', '#ffffff');
 
+
+
 });
+
+
+
 </script>

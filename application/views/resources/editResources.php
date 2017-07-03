@@ -3,9 +3,53 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/ui.theme.css'); ?>" type="text/ css" media="all" />
 <script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" >
 </script>
+<!-- <style>
+.skin-purple .sidebar-menu>li.header {
+    color: #fff;
+}
+.sidebar-menu li.header {
+    font-size: 14px;
+}
+.form-group label {
+    text-transform: uppercase;
+width:100%
+}
+.submit-bottom {
+    border-top: 1px solid #ccc;
+    padding-top: 2%;
+    margin-top: 2%;
+}
+.submit-bottom .btn {
+    border-radius: 0!important;
+    padding: 8px;
+    min-width: 220px;
+}
+.btn-block {
+    width: auto;
+}
+.skin-purple .main-header .logo {
+    background-color: #222d32;
+}
+.skin-purple .main-header .logo:hover {
+    background-color: #222d32;
+}
 
- <script>
-
+ul.multiselect-container.dropdown-menu {
+    max-height: 280px;
+    overflow-y: scroll;
+}
+span.logo-lg b {
+    float: left;
+    text-transform: uppercase;
+}
+.img-wrap {
+    border: 1px solid #ccc;
+    display: inherit;
+    padding: 8px;
+}
+.box-body{ padding: 10px 15px 20px 15px }
+</style>
+ --> <script>
 function save()
 { 
 $('#imagelodar').show();
@@ -190,7 +234,8 @@ var data = eval(data1);//JSON.stringify(data1);
                   });
                   </script>
               <div class="form-group">
-              <div class="col-md-4">
+
+              <div class="col-md-6" style="padding: 0">
               <div class="form-group">
               <label class="exampleInputEmail1" for="rolename">Sports</label>
               <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" onchange="getSports(this.id)">
@@ -205,10 +250,12 @@ var data = eval(data1);//JSON.stringify(data1);
         </div>
      </div>
    <input type="text" id="sport" class="form-control" name="sport" value="<?php echo $value['sport']; ?>" disabled="">
+   
+
     </div>
           <div class="form-group">
-          <label for="exampleInputEmail1">Summary</label>
-          <textarea class="form-control" maxlength="360" name="summary" id="rsummary" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['summary']; ?></textarea>
+          <label style="width:100%" for="exampleInputEmail1">Summary</label>
+          <textarea class="form-control" maxlength="360" name="summary" id="rsummary" value="<?php echo $value['summary']; ?>" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['summary']; ?></textarea>
           <label id="summary_error" hidden="">A summary is required</label>
           </div>
           <div id="rem"></div>
@@ -254,15 +301,15 @@ var data = eval(data1);//JSON.stringify(data1);
                 <!--  </div>  -->
 
 
-                <div class="form-group">
+                <div class="form-group box-body">
                
-                  <label for="rlocation">&nbsp;&nbsp;Location</label>
+                  <label for="rlocation">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location" value="<?php echo $value['location']; ?>">
                  <label id="location_error" hidden="">A location is required</label>
                 </div>
 
-                 <div class="form-group">
-                     <label for="eventtype">&nbsp;&nbsp;Topic Of The Article</label>
+                 <div class="form-group box-body">
+                     <label for="eventtype">Topic Of The Article</label>
                      <select id="rartical" class="form-control" >
                      <option value="<?php echo $value['topic_of_artical']; ?>"><?php echo $value['topic_of_artical']; ?></option> 
 
@@ -276,7 +323,7 @@ var data = eval(data1);//JSON.stringify(data1);
                      </select>
                   <label id="article_error" hidden="">Article type is required</label>
 
-                 </div >
+                 </div>
 
                <!--  <div class="form-group">
                         <?php // $sports = $this->register->getSport();
@@ -303,7 +350,7 @@ var data = eval(data1);//JSON.stringify(data1);
 
             <!-- <div class="form-group" align="left" >  -->
 
-                <img style="display:block; border:2px solid SteelBlue";  width="400px" height="300px" src = "<?php  echo base_url()."uploads/resources/".$value['image']; ?>">
+               <div class="img-wrap"> <img style="display:block; width="400px" height="300px" src = "<?php  echo base_url()."uploads/resources/".$value['image']; ?>"> </div>
             <!-- </div>  -->
 
               <?php } else { ?>
@@ -311,7 +358,7 @@ var data = eval(data1);//JSON.stringify(data1);
              <!--  <div class="form-group">
 
                  -->
-             <img style="display:block; border:2px solid SteelBlue";  width="200px" height="300px" align="center" src = "<?php  echo base_url('img/no-image.jpg'); ?>">
+            <div class="img-wrap"> <img style="display:block;" width="" height="" align="center" src = "<?php  echo base_url('img/no-image.jpg'); ?>"> </div>
              <?php } ?>
 
              <!-- </div>  -->
@@ -324,7 +371,7 @@ var data = eval(data1);//JSON.stringify(data1);
 
             <div class="container">
     <div class="row">    
-        <div class="col-xs-6 col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-2" style="float: left; margin-left: 1%;">  
+        <div class="" style="float: left;">  
             <!-- image-preview-filename input [CUT FROM HERE]-->
             <div class="input-group image-preview">
                 <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
@@ -375,7 +422,7 @@ var data = eval(data1);//JSON.stringify(data1);
              </table>
        
           <?php } ?>
-           <div class="box-footer">
+           <div class="submit-bottom">
                 <input type="button" class="btn btn-lg btn-primary" id="save" value="Submit" name="Create">
               </div>
 
