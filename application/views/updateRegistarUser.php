@@ -3,7 +3,12 @@
  <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/datepicker/datepicker3.css'); ?>">
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datepicker/bootstrap-datepicker.js'); ?>"></script>
-
+<link rel="shortcut icon" href="<?php echo base_url('../favicon.ico');?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/normalize.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('fonts/font-awesome-4.2.0/css/font-awesome.min.css'); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/demo.css'); ?>" />
+  
+    <script src="<?php echo base_url('js/classie.js');?>"></script>
  <script type="text/javascript">
    window.sportsticket = 0;
    window.formalticket = 0;
@@ -101,6 +106,174 @@
 .btn-pref .btn {
     -webkit-border-radius:0 !important;
 }
+.input {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin: 5px;
+  width: calc(100% - 2em);
+  vertical-align: top;
+}
+
+.input__field {
+  position: relative;
+  display: block;
+  float: right;
+  padding: 0.8em;
+  width: 60%;
+  border: none;
+  border-radius: 0;
+  background: #f0f0f0;
+  color: #aaa;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-appearance: none; /* for box shadows to show on iOS */
+}
+
+.input__field:focus {
+  outline: none;
+}
+
+.input__label {
+  display: inline-block;
+  float: right;
+  padding: 0 1em;
+  width: 40%;
+  color: #717070;
+  font-weight: 100;
+  font-size: 70.25%;
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 14px;
+}
+
+.input__label-content {
+  position: relative;
+  display: block;
+  padding: 1.6em 0;
+  width: 100%;
+}
+
+.graphic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: none;
+}
+
+.icon {
+  color: #ddd;
+  font-size: 150%;
+}
+/* Hoshi */
+.input--hoshi {
+  overflow: hidden;
+ 
+}
+
+.input__field--hoshi {
+  margin-top: 1em;
+  padding: 0.85em 0.15em;
+  width: 100%;   
+  background: transparent;
+  color: #312a2a;
+   font-size: 19.5px;
+}
+
+.input__label--hoshi {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0 0.25em;
+  width: 100%;
+  height: calc(100% - 1em);
+  text-align: left;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+.input__label-content--hoshi {
+  position: absolute;
+}
+
+.input__label--hoshi::before,
+.input__label--hoshi::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 10px);
+  border-bottom: 1px solid #B9C1CA;
+}
+
+.input__label--hoshi::after {
+  margin-top: 2px;
+  border-bottom: 2px solid red;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.input__label--hoshi-color-1::after {
+  border-color: #5f5d5d;;
+}
+
+
+.input__field--hoshi:focus + .input__label--hoshi::after,
+.input--filled .input__label--hoshi::after {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+}
+
+.input__field--hoshi:focus + .input__label--hoshi .input__label-content--hoshi,
+.input--filled .input__label-content--hoshi {
+  -webkit-animation: anim-1 0.3s forwards;
+  animation: anim-1 0.3s forwards;
+}
+
+@-webkit-keyframes anim-1 {
+  50% {
+    opacity: 0;
+    -webkit-transform: translate3d(1em, 0, 0);
+    transform: translate3d(1em, 0, 0);
+  }
+  51% {
+    opacity: 0;
+    -webkit-transform: translate3d(-1em, -40%, 0);
+    transform: translate3d(-1em, -40%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -40%, 0);
+    transform: translate3d(0, -40%, 0);
+  }
+}
+
+@keyframes anim-1 {
+  50% {
+    opacity: 0;
+    -webkit-transform: translate3d(1em, 0, 0);
+    transform: translate3d(1em, 0, 0);
+  }
+  51% {
+    opacity: 0;
+    -webkit-transform: translate3d(-1em, -40%, 0);
+    transform: translate3d(-1em, -40%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -40%, 0);
+    transform: translate3d(0, -40%, 0);
+  }
+}
 </style>
 
 
@@ -174,8 +347,9 @@ var data = JSON.stringify(data);
 });   
 }
 </script>  
+
 <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
-<div class="wrapper">
+<div class="wrapper" style="background-color: #efefef;">
 <div class="content-wrapper">
 <div class="container">
 <div class="row">
@@ -192,7 +366,7 @@ var data = JSON.stringify(data);
           <img class="card-bkimg" alt="" id="imm1g" src="" alt="User profile picture">
         </div>
 
-        <div class="card-info"><span class="card-title" id="uname"></span></div>
+        <div class="card-info" style="margin-bottom: 10px;"><span class="card-title" id="uname"></span></div>
          <div class="card-name" ><span  id="uprof"><b></b></span></div>
     </div>
 
@@ -264,30 +438,45 @@ var data = JSON.stringify(data);
               {
               ?>
              
-                <div class='box-body'  style='background-color: #ebb89a; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'>
+                <div class='box-body'  style='background-color: white; border-color: black;border-radius: 4px; padding: 10px 20px; margin-bottom: 30px;margin-top: 10px;    box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
 
-                <div class='form-group'>
-                <label for='formal_education'>Name of Formal Education :</label>
-                <input type='text' class='form-control' value="<?php echo $value56->organisation;?>" id="<?php echo 'formal_education'.$i;?>" placeholder='Name of Formal Education'>
+                <div>
+                <span class="input input--hoshi">
+
+                <input type='text' class='input__field input__field--hoshi' value="<?php echo $value56->organisation;?>" id="<?php echo 'formal_education'.$i;?>">
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='formal_education'><span class="input__label-content input__label-content--hoshi">Name of Formal Education</span></label>
+                </span>
                 </div>
-                <div class='form-group'>
-                <label for='formal_inst_org'>Institution / Organisation Name :</label>
-                <input type='text' class='form-control' id="<?php echo 'formal_inst_org'.$i;?>" value="<?php echo $value56->organisation;?>" placeholder='Institution / Organisation Name'></div>  
-                <label for='formal_stream'>Stream / Specialisation:</label>
-                <input type='text' class='form-control' id="<?php echo 'formal_stream'.$i;?>" value="<?php echo $value56->degree;?>" placeholder='Stream / Specialisation'>
-                <div class='form-group'>
-                <label for='link'>Period</label>
+                <div>
+                <span class="input input--hoshi">
+                <input type='text' class='input__field input__field--hoshi' id="<?php echo 'formal_inst_org'.$i;?>" value="<?php echo $value56->organisation;?>">
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='formal_inst_org'><span class="input__label-content input__label-content--hoshi">Institution / Organisation Name</span></label>
+                </span>
+                </div>  
+                <div>
+                <span class="input input--hoshi">
+                <input type='text' class='input__field input__field--hoshi' id="<?php echo 'formal_stream'.$i;?>" value="<?php echo $value56->degree;?>">
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='formal_stream'><span class="input__label-content input__label-content--hoshi">Stream / Specialisation</span></label>
+                </span>
+                </div>
+                <div >
+                <label for='link' style="font-weight: 100; margin:7px;">Period</label>
                 <div></div>
-                <label for='from_period'>From</label>
-                <div class='input-group date' data-provide='datepicker'>
-                <input type='text' id="<?php echo'formal_from_date'.$i;?>" class='form-control'>
-                <div class='input-group-addon'>
+                
+                <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
+            
+                <input type='text' class='input__field input__field--hoshi'  id="<?php echo'formal_from_date'.$i;?>" class='form-control'>
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">From</span></label>
+                <div class='input-group-addon' style="background-color: transparent;border: none;">
                 <span class='glyphicon glyphicon-th'></span>
-                </div></div>
-                <label for='from_period'>To</label>
-                <div class='input-group date' data-provide='datepicker'>
-                <input type='text' id="<?php echo 'formal_to_date'.$i;?>" class='form-control'>
-                <div class='input-group-addon'>
+                </div>
+
+                </div>
+                
+                <div class='input-group date' style="margin: 5px; overflow: hidden;" data-provide='datepicker'>
+                <input class='input__field input__field--hoshi' type='text' id="<?php echo 'formal_to_date'.$i;?>" class='form-control'>
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
+                <div class='input-group-addon' style="background-color: transparent;border: none;" >
                 <span class='glyphicon glyphicon-th'>
                 </span>
                 </div></div></div></div>
@@ -303,22 +492,37 @@ var data = JSON.stringify(data);
 
                 ?>
 
-<div class='box-body'  style='background-color: #d9edf7; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group'>
-<label for='certi_name'>Name of Certificate :</label>
-<input type='text' class='form-control' id="<?php echo 'certi_name'.$i;?>" value="<?php echo $value56->organisation;?>" placeholder='Name of Certificate'></div>
-<div class='form-group'>
-<label for='certi_inst_org'>Institution / Organisation Name  :</label>
-<input type='text' class='form-control' id="<?php echo 'certi_inst_org'.$i;?>"  value="<?php echo $value56->organisation;?>" placeholder='Institution / Organisation Name'></div>
-  <label for='certi_stream'>Stream / Specialisation:</label>
-  <input type='text' class='form-control' value="<?php echo $value56->degree;?>"  id="<?php echo 'certi_stream'.$i;?>" placeholder='Stream / Specialisation'>
-  <label for='link'>Period</label>
-  <div></div><label for='from_period'>From</label>
-  <div class='input-group date' data-provide='datepicker'>
-  <input type='text' id="<?php echo 'certi_from_date'.$i;?>" class='form-control'>
-  <div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><label for='from_period'>To</label>
-  <div class='input-group date' data-provide='datepicker'>
-  <input type='text' id="<?php echo 'certi_to_date'.$i;?>" class='form-control'>
-  <div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>
+<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
+<div>
+<span class="input input--hoshi">
+<input type='text' class='input__field input__field--hoshi' id="<?php echo 'certi_name'.$i;?>" value="<?php echo $value56->organisation;?>">
+<label class="input__label input__label--hoshi input__label--hoshi-color-1"  for='certi_name'><span class="input__label-content input__label-content--hoshi">Name of Certificate</span></label>
+</span>
+</div>
+<div>
+<span class="input input--hoshi">
+<input type='text' class='input__field input__field--hoshi' id="<?php echo 'certi_inst_org'.$i;?>"  value="<?php echo $value56->organisation;?>" >
+<label  class="input__label input__label--hoshi input__label--hoshi-color-1" for='certi_inst_org'><span class="input__label-content input__label-content--hoshi">Institution / Organisation Name</span></label>
+</span>
+</div>
+<div>
+<span class="input input--hoshi">
+<input type='text' class='input__field input__field--hoshi' value="<?php echo $value56->degree;?>"  id="<?php echo 'certi_stream'.$i;?>">
+  <label   class="input__label input__label--hoshi input__label--hoshi-color-1" for='certi_stream'><span class="input__label-content input__label-content--hoshi">Stream / Specialisation</span></label>
+  </span>
+  </div>
+  <label  style="margin:7px;font-weight: 100;" for='link'>Period</label>
+  <div></div>
+
+  <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
+  <input type='text' class='input__field input__field--hoshi' id="<?php echo 'certi_from_date'.$i;?>" class='form-control'>
+  <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">From</span></label>
+  <div class='input-group-addon' style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span></div></div>
+  
+  <div class='input-group date' style="margin:5px; overflow: hidden;"  data-provide='datepicker'>
+  <input type='text' class='input__field input__field--hoshi' id="<?php echo 'certi_to_date'.$i;?>" class='form-control'>
+  <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
+  <div class='input-group-addon' style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span></div></div></div>
 
 <script type="text/javascript">
   window.ohterticket++;
@@ -329,17 +533,43 @@ var data = JSON.stringify(data);
   if($key23 == "sportEducation")
   {   
   ?>
-<div class='box-body'  style='background-color: #d9edf7; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'>
-<div class='form-group'>
-<label for='nameofsporteducation'>Name Of Sport Education :</label>
-<input type='text' class='form-control' id="<?php echo 'nameofsporteducation'.$i;?>" value="<?php echo $value56->organisation;?>" placeholder='Name Of Sport Education'></div>
-<div class='form-group'><label for='sport_inst_org'>Institution/Organisation Name :</label>
-<input type='text' class='form-control' id="<?php echo 'sport_inst_org'.$i;?>" value="<?php echo $value56->organisation;?>"   placeholder='Institution/Organisation Name'></div>
-<div class='form-group'><label for='sport_stream_spel'>Stream /Specialisation:</label>
-<input type='text' class='form-control' id="<?php echo 'sport_stream_spel'.$i;?>" value="<?php echo $value56->degree;?>" placeholder='Stream /Specialisation'></div>
-<div class='form-group'><label for='link'>Period</label><div></div><label for='from_period'>From</label><div class='input-group date' data-provide='datepicker'>
-<input type='text' class='form-control' id="<?php echo 'sport_from_date'.$i;?>"><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><label for='from_period'>To</label><div class='input-group date' data-provide='datepicker'>
-<input type='text' id="<?php echo 'sport_to_date'.$i;?>" class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div></div>
+<div class='box-body'  style='    background-color: white; border-color: black;border-radius: 4px; padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
+<div>
+<span class="input input--hoshi">
+
+<input type='text' class='input__field input__field--hoshi' id="<?php echo 'nameofsporteducation'.$i;?>" value="<?php echo $value56->organisation;?>">
+<label class="input__label input__label--hoshi input__label--hoshi-color-1" for='nameofsporteducation'><span class="input__label-content input__label-content--hoshi">Name Of Sport Education</span></label>
+</span>
+</div>
+<div>
+<span class="input input--hoshi">
+<input type='text' class='input__field input__field--hoshi' id="<?php echo 'sport_inst_org'.$i;?>" value="<?php echo $value56->organisation;?>"  >
+<label class="input__label input__label--hoshi input__label--hoshi-color-1" for='sport_inst_org'><span class="input__label-content input__label-content--hoshi">Institution/Organisation Name </span></label>
+</span>
+</div>
+<div>
+<span class="input input--hoshi">
+<input type='text' class='input__field input__field--hoshi' id="<?php echo 'sport_stream_spel'.$i;?>" value="<?php echo $value56->degree;?>">
+<label class="input__label input__label--hoshi input__label--hoshi-color-1" for='sport_stream_spel'><span class="input__label-content input__label-content--hoshi">Stream /Specialisation</span></label>
+</span>
+</div>
+<label  style="margin:7px;font-weight: 100;"  for='link'>Period</label>
+<div></div>
+<div class='input-group date'  style="margin:5px; overflow: hidden;" data-provide='datepicker'>
+<input class='input__field input__field--hoshi' type='text' class='form-control' id="<?php echo 'sport_from_date'.$i;?>">
+<label for='from_period' class="input__label input__label--hoshi input__label--hoshi-color-1"><span class="input__label-content input__label-content--hoshi">From</span></label>
+<div class='input-group-addon' style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span>
+</div>
+</div>
+<div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
+<input class='input__field input__field--hoshi' type='text' id="<?php echo 'sport_to_date'.$i;?>" class='form-control'>
+<label for='from_period' class="input__label input__label--hoshi input__label--hoshi-color-1"><span class="input__label-content input__label-content--hoshi">To</span></label>
+<div class='input-group-addon' style="background-color: transparent;border: none;">
+<span class='glyphicon glyphicon-th'> 
+</span>
+</div>
+</div>
+</div>
 
 
 
@@ -451,21 +681,38 @@ var data = JSON.stringify(data);
                   echo $key23;
 
                     ?>
-                <div class='box-body'  style='background-color: #d9edf7; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'>
-                <div class='form-group'><label for='asplayer_name'>Designation :</label>
-                <input type='text' class='form-control' id="<?php echo 'exp_asplayer_name'.$j;?>" value="<?php echo $value56->designation;?>" placeholder='Designation'></div>
-                <div class='form-group'><label for='exp_asplayer_inst_org'>Institution / Organisation Name </label>
-                <input type='text' class='form-control' id="<?php echo 'exp_asplayer_inst_org'.$j;?>" value="<?php echo $value56->organisationName;?>" placeholder='Institution / Organisation Name'></div> 
-                <label for='exp_asplayer_desc'>Description:</label>
-                <input type='text' class='form-control' id="<?php echo 'exp_asplayer_desc'.$j;?>" value="<?php echo $value56->description;?>" placeholder='Description'><div class='form-group'>
-                <label for='link'>Period</label><div>  
-                </div><label for='from_period'>From</label>
-                <div class='input-group date' data-provide='datepicker'>
-                <input type='text' id="<?php echo 'exp_asplayer_from_date'.$j;?>" value="<?php echo $value56->dateFrom;?>" class='form-control'>
-                <div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div>
-                </div><label for='from_period'>To</label>
-                <div class='input-group date' data-provide='datepicker'>
-                <input type='text' id="<?php echo 'exp_asplayer_to_date'.$j;?>" value="<?php echo $value56->dateTo;?>" class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>
+                <div class='box-body'  style='    background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
+                <div>
+                <span class="input input--hoshi">
+                <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'exp_asplayer_name'.$j;?>" value="<?php echo $value56->designation;?>" placeholder='Designation'>
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for='asplayer_name'><span class="input__label-content input__label-content--hoshi">Designation</span></label>
+                </span>
+                </div>
+                <div>
+                <span class="input input--hoshi">
+                <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'exp_asplayer_inst_org'.$j;?>" value="<?php echo $value56->organisationName;?>" placeholder='Institution / Organisation Name'>
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for='exp_asplayer_inst_org'><span class="input__label-content input__label-content--hoshi">Institution / Organisation Name </span></label>
+                </span>
+                </div> 
+                <div>
+                <span class="input input--hoshi">
+                <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'exp_asplayer_desc'.$j;?>" value="<?php echo $value56->description;?>" placeholder='Description'>
+                 <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for='exp_asplayer_desc'><span class="input__label-content input__label-content--hoshi">Description</span></label>
+                </span>
+                </div>
+
+                <label  style="margin:7px;font-weight: 100;"   for='link'>Period</label>
+                <div>  </div>
+               
+                <div class='input-group date'  style="margin:5px; overflow: hidden;" data-provide='datepicker'>
+                <input type='text' class='input__field input__field--hoshi' id="<?php echo 'exp_asplayer_from_date'.$j;?>" value="<?php echo $value56->dateFrom;?>" class='form-control'>
+                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">From</span></label>
+                <div class='input-group-addon'  style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span></div>
+                </div>
+                <div class='input-group date'  style="margin:5px; overflow: hidden;" data-provide='datepicker'>
+                <input type='text' class='input__field input__field--hoshi' id="<?php echo 'exp_asplayer_to_date'.$j;?>" value="<?php echo $value56->dateTo;?>" class='form-control'>
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
+                <div class='input-group-addon'  style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span></div></div>
                 </div>
                 <script type="text/javascript">
                  window.asplayerticket++;
@@ -483,23 +730,39 @@ var data = JSON.stringify(data);
 
                    }
                   ?>
-                <div class='box-body'  style='background-color: #2cb2ef; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'>
-                <div class='form-group'>
-                <label for='work_exp_name'>Designation :</label>
-                <input type='text' class='form-control' id="<?php echo 'work_exp_name'.$j;?>" value="<?php echo $value56->designation;?>" placeholder='Designation'></div>
-                <div class='form-group'>
-                <label for='work_exp_inst_org'>Institution / Organisation Name :</label>
-                <input type='text' class='form-control' id="<?php echo 'work_exp_inst_org'.$j;?>" value="<?php echo $value56->organisationName;?>" placeholder='Institution / Organisation Name'></div>  
-                <label for='work_exp_desc'>Description:</label>
-                <input type='text' class='form-control' id="<?php echo 'work_exp_desc'.$j;?>" value="<?php echo $value56->description;?>" placeholder='Description'>
-                <label for='link'>Period</label><div>
-                </div><label for='from_period'>From</label>
-                <div class='input-group date' data-provide='datepicker'>
-                <input type='text' id="<?php echo 'work_from_date'.$j;?>" value="<?php echo $value56->dateFrom;?>" class='form-control'><div class='input-group-addon'>
+                <div class='box-body'  style='background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
+                <div>
+               <span class="input input--hoshi">
+                <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'work_exp_name'.$j;?>" value="<?php echo $value56->designation;?>">
+                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='work_exp_name'><span class="input__label-content input__label-content--hoshi">Designation</span></label>
+                </span>
+                </div>
+                <div>
+               <span class="input input--hoshi">
+                <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'work_exp_inst_org'.$j;?>" value="<?php echo $value56->organisationName;?>">
+                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='work_exp_inst_org'><span class="input__label-content input__label-content--hoshi">Institution / Organisation Name</span></label>
+                 </span>
+                 </div>  
+                 <div>
+               <span class="input input--hoshi">
+                <input type='text' class='input__field input__field--hoshi'   id="<?php echo 'work_exp_desc'.$j;?>" value="<?php echo $value56->description;?>" placeholder='Description'>
+                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='work_exp_desc'><span class="input__label-content input__label-content--hoshi">Description</span></label>
+                 </span>
+                 </div>
+                <label style="margin:7px;font-weight: 100;" for='link'>Period</label>
+                <div>
+                </div>
+
+                <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
+                <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'work_from_date'.$j;?>" value="<?php echo $value56->dateFrom;?>" class='form-control'>
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">From</span></label>
+                <div class='input-group-addon'  style="background-color: transparent;border: none;">
                 <span class='glyphicon glyphicon-th'></span></div>
-                </div><label for='from_period'>To</label>
-                <div class='input-group date' data-provide='datepicker'>
-                <input type='text' id="<?php echo 'work_to_date'.$j;?>" value="<?php echo $value56->dateTo;?>" class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span>
+                </div>
+                <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
+                <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'work_to_date'.$j;?>" value="<?php echo $value56->dateTo;?>" class='form-control'>
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
+                <div class='input-group-addon'  style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span>
                 </div></div></div>   
 
                    <script type="text/javascript">
@@ -566,23 +829,32 @@ var data = JSON.stringify(data);
         <div class="col-md-12">
         <div class="box box-primary" style="margin-top:5%;">
         <div class="box-header with-border">
-          
-         <div class="form-group">
-        <label for="acamedy">Acamedy</label>
-        <input type="text" class="form-control" name="acamedy" id="academy_name" value="<?php echo $arrayvalue->acamedy;?>"  placeholder="Location">
+          <div class='box-body'  style='background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
+         <div>
+         <span class="input input--hoshi">
+        <input type="text" class='input__field input__field--hoshi' name="acamedy" id="academy_name" value="<?php echo $arrayvalue->acamedy;?>" >
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="acamedy"><span class="input__label-content input__label-content--hoshi">Acamedy</span></label>
+        </span>
         </div>
-        <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" class="form-control" name="description" id="designation" value="<?php echo $arrayvalue->description;?>" placeholder="Location">
+        <div>
+        <span class="input input--hoshi">
+        <input type="text" class='input__field input__field--hoshi' name="description" id="designation" value="<?php echo $arrayvalue->description;?>">
+         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="description"><span class="input__label-content input__label-content--hoshi">Description</span></label>
+        </span>
         </div>
-        <div class="form-group">
-        <label for="description">Designation</label>
-        <input type="text" class="form-control" name="designation" id="designation" value="<?php echo $arrayvalue->designation;?>" placeholder="designation" disabled>
+        <div>
+        <span class="input input--hoshi">
+        <input type="text" class='input__field input__field--hoshi' name="designation" id="designation" value="<?php echo $arrayvalue->designation;?>" disabled>
+         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="description"><span class="input__label-content input__label-content--hoshi">Designation</span></label>
+        </span>
         </div>
-        <div class="form-group">
-        <label for="location">Location</label>
-        <input type="text" class="form-control" name="Location" id="location1" value="<?php echo $arrayvalue->location;?>" placeholder="Location">
+        <div>
+         <span class="input input--hoshi">
+        <input type="text" class='input__field input__field--hoshi' name="Location" id="location1" value="<?php echo $arrayvalue->location;?>">
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Location</span></label>
+        </span>
         </div> 
+        </div>
         </div>
         </div>
         </div>
@@ -599,46 +871,67 @@ var data = JSON.stringify(data);
         <div class="col-md-12">
         <div class="box box-primary" style="margin-top:5%;">
         <div class="box-header with-border">
-         <div class="form-group">
-        <label for="location">Name</label>
-        <input type="text" class="form-control" name="name" id="name" value="<?php echo $arrayvalue->name;?>" placeholder="Name" disabled>
+        <div class='box-body'  style='background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
+         <div>
+        <span class="input input--hoshi">
+        <input type="text" class='input__field input__field--hoshi' name="name" id="name" value="<?php echo $arrayvalue->name;?>" disabled>
+         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Name</span></label>
+        </span>
         </div>
-         <div class="form-group">
-        <label for="location">Email</label>
-        <input type="text" class="form-control" name="Location" id="location" value="<?php echo $arrayvalue->email;?>" placeholder="Email" disabled>
+         <div>
+         <span class="input input--hoshi">
+        <input type="text" class='input__field input__field--hoshi' name="Location" id="location" value="<?php echo $arrayvalue->email;?>" disabled>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Email</span></label>
+        </span>
         </div>
-         <div class="form-group">
-        <label for="location">Contact No</label>
-        <input type="text" class="form-control" name="Location" id="location" value="<?php echo $arrayvalue->contact_no;?>" placeholder="Contact No">
+         <div>
+         <span class="input input--hoshi">
+        <input type="text" class='input__field input__field--hoshi' name="Location" id="location" value="<?php echo $arrayvalue->contact_no;?>" >
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Contact No</span></label>
+         </span>
         </div>
-         <div class="form-group">
-        <label for="location">Sport</label>
-        <input type="text" class="form-control" name="sport" id="sport" value="<?php echo $arrayvalue->sport;?>" placeholder="Sport" disabled>
+         <div>
+         <span class="input input--hoshi">
+        <input type="text" class='input__field input__field--hoshi' name="sport" id="sport" value="<?php echo $arrayvalue->sport;?>"  disabled>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Sport</span></label>
+        </span>
         </div>
-         <div class="form-group">
-        <label for="location">Gender</label>
-        <input type="text" class="form-control" name="gender" id="gender" value="<?php echo $arrayvalue->gender;?>" placeholder="Gender" disabled>
+         <div>
+         <span class="input input--hoshi">
+        <input type="text" class='input__field input__field--hoshi' name="gender" id="gender" value="<?php echo $arrayvalue->gender;?>" disabled>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Gender</span></label>
+        </span>
         </div>
-         <div class="form-group">
-        <label for="location">DOB</label>
-        <input type="text" class="form-control" name="Location" id="location" value="<?php echo $arrayvalue->dob;?>" placeholder="DOB" disabled>
+         <div>
+         <span class="input input--hoshi">
+        <input type="text" class='input__field input__field--hoshi' name="Location" id="location" value="<?php echo $arrayvalue->dob;?>"  disabled>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">DOB</span></label>
+        </span>
         </div>
-         <div class="form-group">
-        <label for="location">Location</label>
-        <input type="text" class="form-control" name="Location" id="location" value="<?php echo $arrayvalue->location;?>" placeholder="Location">
+         <div>
+   <span class="input input--hoshi">       
+        <input type="text" class='input__field input__field--hoshi' name="Location" id="location" value="<?php echo $arrayvalue->location;?>">
+         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Location</span></label>
+         </span>
         </div>
-         <div class="form-group">
-        <label for="location">Age Group Coached</label>
-        <input type="text" class="form-control" name="Location" id="location" value="<?php echo $arrayvalue->age_group_coached;?>" placeholder="Age Group Coached">
+         <div>
+        <span class="input input--hoshi">
+        <input type="text" class='input__field input__field--hoshi' name="Location" id="location" value="<?php echo $arrayvalue->age_group_coached;?>">
+         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Age Group Coached</span></label>
+          </span>
         </div>
-         <div class="form-group">
-        <label for="location">Languages Known</label>
-        <input type="text" class="form-control" name="Location" id="location" value="<?php echo $arrayvalue->languages_known;?>" placeholder="Languages Known">
-         <input type="hidden" class="form-control" name="Location" id="prof_name" value="<?php echo $arrayvalue->prof_name;?>">
-        <input type="hidden" class="form-control" name="Location" id="user_image" value="<?php echo $arrayvalue->user_image;?>">
+         <div>
+           <span class="input input--hoshi">       
+        <input type="text" class='input__field input__field--hoshi'  name="Location" id="location" value="<?php echo $arrayvalue->languages_known;?>">
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Languages Known</span></label>
+         <input type="hidden" class='input__field input__field--hoshi'  name="Location" id="prof_name" value="<?php echo $arrayvalue->prof_name;?>">
+        <input type="hidden" class='input__field input__field--hoshi'  name="Location" id="user_image" value="<?php echo $arrayvalue->user_image;?>">
         <input type="hidden" name="userid" id="uid" value="<?php echo $arrayvalue->userid;?>">
+        </span>
         </div>
+
         </div>
+       </div>
         </div>
         </div>
         </div>
@@ -855,6 +1148,41 @@ saveUserProfile(totalftemp);
 });
 
 </script>
+<script>
+      (function() {
+        // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+        if (!String.prototype.trim) {
+          (function() {
+            // Make sure we trim BOM and NBSP
+            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+            String.prototype.trim = function() {
+              return this.replace(rtrim, '');
+            };
+          })();
+        }
+
+        [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+          // in case the input is already filled..
+          if( inputEl.value.trim() !== '' ) {
+            classie.add( inputEl.parentNode, 'input--filled' );
+          }
+
+          // events:
+          inputEl.addEventListener( 'focus', onInputFocus );
+          inputEl.addEventListener( 'blur', onInputBlur );
+        } );
+
+        function onInputFocus( ev ) {
+          classie.add( ev.target.parentNode, 'input--filled' );
+        }
+
+        function onInputBlur( ev ) {
+          if( ev.target.value.trim() === '' ) {
+            classie.remove( ev.target.parentNode, 'input--filled' );
+          }
+        }
+      })();
+    </script>
 
             
     
