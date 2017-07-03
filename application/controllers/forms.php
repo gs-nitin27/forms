@@ -3508,7 +3508,7 @@ public function user_register()
       if($res)
       {  
 
-      	// $this->sendmail($data->email);
+      	 $this->sendmail($data->email);
          echo json_encode(array('data' =>$res , 'message' =>'User register Sucessfull'));
       }
       else
@@ -3939,11 +3939,11 @@ else
 }
 
 
-public function editRegistrationData()
-{
+// public function editRegistrationData()
+// {
    
 
-}
+// }
 
 }
   

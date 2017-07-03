@@ -224,8 +224,8 @@ var data = JSON.stringify(data);
     <div class="tab-content">
 
 
-       <?php 
-         $id1 = 2;
+<?php 
+    $id1 = 2;
     $response=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$id1.'&prof_id=2');
   
      $pdata = json_decode($response);
