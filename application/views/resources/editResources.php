@@ -224,7 +224,9 @@ var data = eval(data1);//JSON.stringify(data1);
                   {
                     $("input[value='"+splt_sport[i]+"']").prop('checked', true);  
                     get_sport.push(splt_sport[i]);
+                   //alert(get_sport);
                   } 
+                  $('#dates-field2').val(get_sport);
                 }
                 //var list_select = $('#dates-field2').val().concat(get_sport);
                 $(function() {
@@ -751,10 +753,14 @@ function get_Id(url) {
 }
 
 function getSports(id)
-{
- var list_select = $('#dates-field2').val().concat(get_sport);
- var list =  list_select.join(',')
- $('#sport').val(list.replace(/,\s*$/, ""));
+{ get_sport = [];
+  $('#sport').val('');
+  get_sport.push($('#dates-field2').val());
+ //alert(get_sport);
+ //var list_select = $('#dates-field2').val().concat(get_sport);
+ //var list =  list_select.join(',')
+ 
+ $('#sport').val(get_sport/*list.replace(/,\s*$/, "")*/);
 }
 
 
