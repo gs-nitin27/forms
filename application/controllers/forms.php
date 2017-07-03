@@ -753,6 +753,9 @@ public function CreateTournament()
 public function saveTournament()
 {
 $data1 = json_decode($_REQUEST['data']);
+
+//print_r($data1->tournament_ageGroup);die;
+
 $item  = new stdClass(); 
 $item->id                      = $data1->id;
 $item->organizer_name          = $data1->organizer_name;
@@ -2133,7 +2136,7 @@ $res = $this->register->verifyuserpassword($item->email,$item->password);
 if($res)
 {
      $this->session->set_flashdata('error','Welcome To GetSporty ');
-      redirect('forms/index','refresh');
+      redirect('forms/new_registration','refresh');
      // echo "Created";
 }
 else
