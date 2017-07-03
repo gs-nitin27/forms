@@ -37,7 +37,7 @@ var data1 = {
 
     "id"                      : $("#id").val(), 
     "userid"                  : $("#userid").val(),
-    "catagory"                : $("#tcatagory").val(),
+  //  "catagory"                : $("#tcatagory").val(),
     "address_line1"           : $("#add1").val(), 
     "address_line2"           : $("#add2").val(), 
     "tournament_name"         : $("#tname").val(),
@@ -66,7 +66,7 @@ var data1 = {
     "entry_start_date"        : $("#estartD").val(),
     "entry_end_date"          : $("#eendD").val(),
     "emailid"                 : $("#email").val(),
-    "tournament_ageGroup"     : $("#tage").val(),
+    "tournament_ageGroup"     : JSON.stringify($("#tage").val()),
     "file_name"               : $("#filename").val(),
     "image"                   : $("#photo_url").val() 
 };
@@ -237,31 +237,34 @@ var data = JSON.stringify(data1);
 						 <label id="tlevel_error" hidden>Level is required .</label> 
 					</div>
 					
-					<div class="form-group">
-						<?php  
-						// LEVEL IS ID BASED
-						$Categories = $this->register->getTournamentCategory();
-							
-						?><label for="sports">Category</label>
-						<select id="tcatagory" class="form-control" >
-						<option value="<?php echo $tournament['category'] ;?>"><?php echo $tournament['category'] ;?></option>
-							<?php if(!empty($Categories)){
-									foreach($Categories as $Category){?>
-								<option value ="<?php echo $Category['category'];?>"><?php echo $Category['category'];?> </option>
-							<?php 	}
-								  }	
-							?>
-						</select>
-					</div>
+					
 					
 					<div class="form-group">
 					<label for="sports">Age Group</label>
-						<select id="tage" class="form-control" >
-							<option ><?php echo $tournament['age_group'] ;?></option>
+						<select id="tage" name="age-group" class="form-control" multiple >
+							<!-- <option ><?php //echo $tournament['age_group'] ;?></option> -->
+							<option>-Select-</option>
 							<option id="15-18">15-18</option>
 							<option id="18-22">18-22</option>
 							<option id="20-25">20-25</option>
 							<option id="24-28">24-28</option>
+							<option id="Under-8">Under 8</option>
+							<option id="Under-9">Under 9</option>
+							<option id="Under-10">Under 10</option>
+							<option id="Under-11">Under 11</option>
+							<option id="Under-12">Under 12</option>
+							<option id="Under-13">Under 13</option>
+							<option id="Under-14">Under 14</option>
+							<option id="Under-15">Under 15</option>
+							<option id="Under-16">Under 16</option>
+							<option id="Under-17">Under 17</option>
+							<option id="Under-18">Under 18</option>
+							<option id="Under-19">Under 19</option>
+							<option id="Under-19">Under 19</option>
+							<option id="Under-21">Under 21</option>
+							<option id="Under-22">Under 22</option>
+							<option id="Under-23">Under 23</option>
+							<option id="All">All</option>
 						</select>
 					</div>
 					<div class="form-group">
@@ -275,20 +278,20 @@ var data = JSON.stringify(data1);
 					</div>
 
 					<?php 
-                      $start_date =new  DateTime($tournament['start_date']);
+                      //$start_date =new  DateTime($tournament['start_date']);
                       //
-                      $end_date = new DateTime($tournament['end_date']);
+                      //$end_date = new DateTime($tournament['end_date']);
                      {
 					?>
 
 					<div class="form-group">
 					  <label for="link">Start Date</label>
-					  <input type="text" class="form-control"  id="startD" placeholder="Enter Start Date" value="<?php echo $start_date->format('m/d/Y');?>">
+					  <input type="text" class="form-control"  id="startD" placeholder="Enter Start Date" value="<?php /*echo $start_date->format('m/d/Y');echo*/ echo $this->register->alter_DateFormat($tournament['start_date']);?>">
 					  <label id="startD_error" hidden>Start Date is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="link">End Date</label>
-					  <input type="text" class="form-control"  id="endD" placeholder="Enter End Date" value="<?php echo $end_date->format('m/d/Y');?>">
+					  <input type="text" class="form-control"  id="endD" placeholder="Enter End Date" value="<?php /*echo $end_date->format('m/d/Y');*/echo $this->register->alter_DateFormat($tournament['end_date']);?>">
 					  <label id="endD_error" hidden>End Date is required .</label> 
 					</div >
 					<?php }?>
@@ -335,20 +338,20 @@ var data = JSON.stringify(data1);
 					  <label id="evlink_error" hidden>Tournament Link is required .</label> 
 					</div >
 					<?php 
-                      $event_entry_date =new  DateTime($tournament['event_entry_date']);
+                     /* $event_entry_date =new  DateTime($tournament['event_entry_date']);
                       
-                      $event_end_date = new DateTime($tournament['event_end_date']);
+                      $event_end_date = new DateTime($tournament['event_end_date']);*/
                      {
 					?>
 					<div class="form-group">
 					  <label for="link">Entry Start Date</label>
-					  <input type="text" class="form-control"  id="estartD" placeholder="Enter Start Date" value="<?php echo $event_entry_date->format('m/d/Y');?>">
+					  <input type="text" class="form-control"  id="estartD" placeholder="Enter Start Date" value="<?php /*echo $event_entry_date->format('m/d/Y'); */ echo $this->register->alter_DateFormat($tournament['event_entry_date']); ?>">
 					   <label id="estartD_error" hidden>Entry Start Date is required .</label> 
 
 					</div >
 					<div class="form-group">
 					  <label for="link">Entry End Date</label>
-					  <input type="text" class="form-control"  id="eendD" placeholder="Enter End Date" value="<?php echo $event_end_date->format('m/d/Y');?>">
+					  <input type="text" class="form-control"  id="eendD" placeholder="Enter End Date" value="<?php /*echo $event_end_date->format('m/d/Y'); */echo $this->register->alter_DateFormat($tournament['event_end_date']);?>">
 					   <label id="eendD_error" hidden>Entry End Date is required .</label> 
 					</div >
 					<?php }?>
@@ -644,66 +647,66 @@ $(function() {
    $("#save").click(function()
    {
       //alert("hi");
-    if($("#add1").val() !="" &&   $("#add2").val() !="" &&   $("#tname").val() !="" &&  $("#city").val() !="" &&  $("#tdesc").val() !="" &&  $("#criteria1").val()!="" &&  $("#criteria2").val() !="" && $("#tlevel").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" &&   $("#orgadd1").val() !="" &&   $("#orgadd2").val() !="" &&   $("#orgcity").val() !="" &&  $("#orgemail").val() !="" &&  $("#evlink").val() !="" &&  $("#startD").val() !="" && $("#endD").val() !="" &&  $("#tsport").val() !="" && $("#estartD").val() !="" && $("#eendD").val() !="" && $("#email").val() !="")
+    if($("#tname").val() !="" &&  $("#tdesc").val() !="" &&  $("#tsport").val() !="")
        {
       	save();
       }else{
 
-             $("#2").css("color","red");
-             $("#3").css("color","red");
-             $("#4").css("color","red");
+            // $("#2").css("color","red");
+            // $("#3").css("color","red");
+            // $("#4").css("color","red");
              $("html, body").animate({ scrollTop: 0 }, 500);
 
-      	if($("#add1").val() ==""){
-      		//alert("hello");
-      		$("#add1_error").show();
-            $("#add1_error").css("color","red");
+      	// if($("#add1").val() ==""){
+      	// 	//alert("hello");
+      	// 	$("#add1_error").show();
+       //      $("#add1_error").css("color","red");
 
-      	}else{
-             $("#add1_error").hide();
-      	}
-      	if($("#add2").val() ==""){
-            $("#add2_error").show();
-      		$("#add2_error").css("color","red");
-      	}else{
-           $("#add2_error").hide();
-      	}
+      	// }else{
+       //       $("#add1_error").hide();
+      	// }
+      	// if($("#add2").val() ==""){
+       //      $("#add2_error").show();
+      	// 	$("#add2_error").css("color","red");
+      	// }else{
+       //     $("#add2_error").hide();
+      	// }
       	if($("#tname").val() ==""){
             $("#tname_error").show();
       		$("#tname_error").css("color","red");
       	}else{
            $("#tname_error").hide();
       	}
-      	if($("#city").val() ==""){
-            $("#city_error").show();
-      		$("#city_error").css("color","red");
-      	}else{
-          $("#city_error").hide();
-      	}
+      	// if($("#city").val() ==""){
+       //      $("#city_error").show();
+      	// 	$("#city_error").css("color","red");
+      	// }else{
+       //    $("#city_error").hide();
+      	// }
       	if($("#tdesc").val() ==""){
             $("#tdesc_error").show();
       		$("#tdesc_error").css("color","red");
       	}else{
             $("#tdesc_error").hide();
       	}
-      	if($("#criteria1").val()==""){
-            $("#criteria1_error").show();
-      		$("#criteria1_error").css("color","red");
-      	}else{
-          $("#criteria1_error").hide();
-      	}
-      	if($("#criteria2").val() ==""){
-            $("#criteria2_error").show();
-      		$("#criteria2_error").css("color","red");
-      	}else{
-          $("#criteria2_error").hide();
-      	}
-      	if($("#tlevel").val() == ""){
-            $("#tlevel_error").show();
-      		$("#tlevel_error").css("color","red");
-      	}else{
-          $("#tlevel_error").hide();
-      	}
+      	// if($("#criteria1").val()==""){
+       //      $("#criteria1_error").show();
+      	// 	$("#criteria1_error").css("color","red");
+      	// }else{
+       //    $("#criteria1_error").hide();
+      	// }
+      	// if($("#criteria2").val() ==""){
+       //      $("#criteria2_error").show();
+      	// 	$("#criteria2_error").css("color","red");
+      	// }else{
+       //    $("#criteria2_error").hide();
+      	// }
+      	// if($("#tlevel").val() == ""){
+       //      $("#tlevel_error").show();
+      	// 	$("#tlevel_error").css("color","red");
+      	// }else{
+       //    $("#tlevel_error").hide();
+      	// }
       	// if($("#terms1").val() ==""){
        //      $("#terms1_error").show();
       	// 	$("#terms1_error").css("color","red");
@@ -716,86 +719,92 @@ $(function() {
       	// }else{
        //    $("#terms2_error").hide();
       	// }
-      	if($("#orgName").val() ==""){
-           $("#orgName_error").show();
-      		$("#orgName_error").css("color","red");
-      	}else{
-          $("#orgName_error").hide();
-      	}
-      	if($("#contact").val() ==""){
-            $("#contact_error").show();
-      		$("#contact_error").css("color","red");
-      	}else{
-          $("#contact_error").hide();
-      	}
-      	if($("#orgadd1").val() ==""){
-            $("#orgadd1_error").show();
-      		$("#orgadd1_error").css("color","red");
-      	}else{
-          $("#orgadd1_error").hide();
-      	}
-      	if($("#orgadd2").val() ==""){
-            $("#orgadd2_error").show();
-      		$("#orgadd2_error").css("color","red");
-      	}else{
-          $("#orgadd2_error").hide();
-      	}
-      	if($("#orgcity").val() ==""){
-            $("#orgcity_error").show();
-      		$("#orgcity_error").css("color","red");
-      	}else{
-          $("#orgcity_error").hide();
-      	}
-      	if($("#orgemail").val() ==""){
-            $("#orgemail_error").show();
-      		$("#orgemail_error").css("color","red");
-      	}else{
-          $("#orgemail_error").hide();
-      	}
-      	if($("#evlink").val() ==""){
-            $("#evlink_error").show();
-      		$("#evlink_error").css("color","red");
-      	}else{
-          $("#evlink_error").hide();
-      	}
-      	if($("#startD").val() ==""){
-            $("#startD_error").show();
-      		$("#startD_error").css("color","red");
-      	}else{
-          $("#startD_error").hide();
-      	}
-      	if($("#endD").val() ==""){
-            $("#endD_error").show();
-      		$("#endD_error").css("color","red");
-      	}else{
-          $("#endD_error").hide();
-      	}
+      	// if($("#orgName").val() ==""){
+       //     $("#orgName_error").show();
+      	// 	$("#orgName_error").css("color","red");
+      	// }else{
+       //    $("#orgName_error").hide();
+      	// }
+      	// if($("#contact").val() ==""){
+       //      $("#contact_error").show();
+      	// 	$("#contact_error").css("color","red");
+      	// }else{
+       //    $("#contact_error").hide();
+      	// }
+      	// if($("#orgadd1").val() ==""){
+       //      $("#orgadd1_error").show();
+      	// 	$("#orgadd1_error").css("color","red");
+      	// }else{
+       //    $("#orgadd1_error").hide();
+      	// }
+      	// if($("#orgadd2").val() ==""){
+       //      $("#orgadd2_error").show();
+      	// 	$("#orgadd2_error").css("color","red");
+      	// }else{
+       //    $("#orgadd2_error").hide();
+      	// }
+      	// if($("#orgcity").val() ==""){
+       //      $("#orgcity_error").show();
+      	// 	$("#orgcity_error").css("color","red");
+      	// }else{
+       //    $("#orgcity_error").hide();
+      	// }
+      	// if($("#orgemail").val() ==""){
+       //      $("#orgemail_error").show();
+      	// 	$("#orgemail_error").css("color","red");
+      	// }else{
+       //    $("#orgemail_error").hide();
+      	// }
+      	// if($("#evlink").val() ==""){
+       //      $("#evlink_error").show();
+      	// 	$("#evlink_error").css("color","red");
+      	// }else{
+       //    $("#evlink_error").hide();
+      	// }
+      	// if($("#startD").val() ==""){
+       //      $("#startD_error").show();
+      	// 	$("#startD_error").css("color","red");
+      	// }else{
+       //    $("#startD_error").hide();
+      	// }
+      	// if($("#endD").val() ==""){
+       //      $("#endD_error").show();
+      	// 	$("#endD_error").css("color","red");
+      	// }else{
+       //    $("#endD_error").hide();
+      	// }
       	if($("#tsport").val() == ""){
             $("#tsport_error").show();
       		$("#tsport_error").css("color","red");
       	}else{
           $("#tsport_error").hide();
       	}
-        if($("#estartD").val() ==""){
-           $("#estartD_error").show();
-      		$("#estartD_error").css("color","red");
-      	}else{
-          $("#estartD_error").hide();
-      	}
-      	if($("#eendD").val() ==""){
-            $("#eendD_error").show();
-      		$("#eendD_error").css("color","red");
-      	}else{
-          $("#eendD_error").hide();
-      	}
-      	if($("#email").val() ==""){
-            $("#email_error").show();
-      		$("#email_error").css("color","red");
-      	}else{
-          $("#email_error").hide();
-      	}          
+       //  if($("#estartD").val() ==""){
+       //     $("#estartD_error").show();
+      	// 	$("#estartD_error").css("color","red");
+      	// }else{
+       //    $("#estartD_error").hide();
+      	// }
+      	// if($("#eendD").val() ==""){
+       //      $("#eendD_error").show();
+      	// 	$("#eendD_error").css("color","red");
+      	// }else{
+       //    $("#eendD_error").hide();
+      	// }
+      	// if($("#email").val() ==""){
+       //      $("#email_error").show();
+      	// 	$("#email_error").css("color","red");
+      	// }else{
+       //    $("#email_error").hide();
+      	// }          
       }
    });
+
+$(window).on("load", function(){
+    var age_group  = '<?php echo $tournament['age_group']; ?>'
+     	//alert(age_group);
+     	$('#tage').val(JSON.parse(age_group));
+});
 </script>
 
 

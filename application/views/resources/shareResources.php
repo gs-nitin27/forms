@@ -190,7 +190,7 @@ var jsondata = eval(data1);
               <div class="col-md-4">
               <div class="form-group">
               <label class="exampleInputEmail1" for="rolename">Sports</label>
-              <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple">
+              <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" onchange="get_sport()">
                <?php  $sports = $this->register->getSport();?>
                <?php if(!empty($sports)){
                         foreach($sports as $sport){?>
@@ -725,4 +725,9 @@ $(function() {
           save();
         }
     });
+      get_sport = function()
+     { $('#sport').val('');
+       var list = $('#dates-field2').val().join(',');
+       $('#sport').val(list);   
+     }
   </script>

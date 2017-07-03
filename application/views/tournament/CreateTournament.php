@@ -35,7 +35,7 @@ function save(){
 var data1 = {
      "id"                      : 0, 
     "userid"                  : $("#userid").val(),
-    "catagory"                : $("#tcatagory").val(),
+    //"catagory"                : $("#tcatagory").val(),
     "address_line1"           : $("#add1").val(), 
     "address_line2"           : $("#add2").val(), 
     "tournament_name"         : $("#tname").val(),
@@ -223,22 +223,7 @@ var data = JSON.stringify(data1);
 						 <label id="tlevel_error" hidden>Level is required .</label> 
 					</div>
 					
-					<div class="form-group">
-						<?php  
-						// LEVEL IS ID BASED
-						$Categories = $this->register->getTournamentCategory();
-							//print_r($Categories);
-						?><label for="sports">Category</label>
-						<select id="tcatagory" class="form-control" >
-						<option value="0">- Select -</option>
-							<?php if(!empty($Categories)){
-									foreach($Categories as $Category){?>
-								<option value ="<?php echo $Category['category'];?>"><?php echo $Category['category'];?> </option>
-							<?php 	}
-								  }	
-							?>
-						</select>
-					</div>
+					
 					
 					<div class="form-group">
 					<label for="sports">Age Group</label>

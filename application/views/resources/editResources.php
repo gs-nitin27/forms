@@ -85,7 +85,7 @@ var data1 = {
      "token"                  : $("#token").val(),
     "sport"                   : $("#sport").val().toString()
 };
-console.log(JSON.stringify(data1));
+console.log(JSON.stringify(data1));//return;
 var url = '<?php echo site_url();?>'
 var data = eval(data1);//JSON.stringify(data1);
   $.ajax({
@@ -224,9 +224,11 @@ var data = eval(data1);//JSON.stringify(data1);
                   {
                     $("input[value='"+splt_sport[i]+"']").prop('checked', true);  
                     get_sport.push(splt_sport[i]);
+                   //alert(get_sport);
                   } 
+                  $('#dates-field2').val(get_sport);
                 }
-                
+                //var list_select = $('#dates-field2').val().concat(get_sport);
                 $(function() {
                $('.multiselect-ui').multiselect({
                       includeSelectAllOption: true
@@ -349,6 +351,7 @@ var data = eval(data1);//JSON.stringify(data1);
              <?php if($value['image']) { ?>
 
             <!-- <div class="form-group" align="left" >  -->
+
 
                <div class="img-wrap"> <img style="display:block; width="400px" height="300px" src = "<?php  echo base_url()."uploads/resources/".$value['image']; ?>"> </div>
             <!-- </div>  -->
@@ -498,6 +501,7 @@ var data = eval(data1);//JSON.stringify(data1);
                 $('#imagelodar').hide();
                 $('#mess').show();
               //  $("#photo_url").val("");
+                $('img .SteelBlue').attr('src','<?php  echo base_url()."uploads/resources/" ?>'+data);
                 $("#photo_url").val(data);   
         },
         error: function(e) 
@@ -749,11 +753,17 @@ function get_Id(url) {
 }
 
 function getSports(id)
-{
- var list_select = $('#dates-field2').val().concat(get_sport);
- var list =  list_select.join(',')
- $('#sport').val(list.replace(/,\s*$/, ""));
-} 
+{ get_sport = [];
+  $('#sport').val('');
+  get_sport.push($('#dates-field2').val());
+ //alert(get_sport);
+ //var list_select = $('#dates-field2').val().concat(get_sport);
+ //var list =  list_select.join(',')
+ 
+ $('#sport').val(get_sport/*list.replace(/,\s*$/, "")*/);
+}
+
+
   </script>
 
 

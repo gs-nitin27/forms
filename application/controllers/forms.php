@@ -753,11 +753,14 @@ public function CreateTournament()
 public function saveTournament()
 {
 $data1 = json_decode($_REQUEST['data']);
+
+//print_r($data1->tournament_ageGroup);die;
+
 $item  = new stdClass(); 
 $item->id                      = $data1->id;
 $item->organizer_name          = $data1->organizer_name;
 $item->tournament_level        = $data1->tournament_level;
-$item->tournament_category     = $data1->catagory;
+//$item->tournament_category     = $data1->catagory;
 $item->tournament_ageGroup     = $data1->tournament_ageGroup;
 $item->tournament_gender       = $data1->tournament_gender;
 $item->userid                  = $data1->userid;
@@ -1753,7 +1756,7 @@ public function Emailfind()
 }
 //==================================End Email================================= 
  public function imageupload()
- {    // print_r($_POST);die; 
+ {     //print_r($_POST);die; 
              $newpath=$_POST['path'];
           if(isset($_POST['file_name']) && $_POST['file_name'] != '')
                {
@@ -2133,7 +2136,7 @@ $res = $this->register->verifyuserpassword($item->email,$item->password);
 if($res)
 {
      $this->session->set_flashdata('error','Welcome To GetSporty ');
-      redirect('forms/index','refresh');
+      redirect('forms/new_registration','refresh');
      // echo "Created";
 }
 else
@@ -3508,7 +3511,7 @@ public function user_register()
       if($res)
       {  
 
-      	// $this->sendmail($data->email);
+      	 $this->sendmail($data->email);
          echo json_encode(array('data' =>$res , 'message' =>'User register Sucessfull'));
       }
       else
@@ -3939,11 +3942,11 @@ else
 }
 
 
-public function editRegistrationData()
-{
+// public function editRegistrationData()
+// {
    
 
-}
+// }
 
 }
   
