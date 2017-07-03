@@ -66,7 +66,7 @@ var data1 = {
     "entry_start_date"        : $("#estartD").val(),
     "entry_end_date"          : $("#eendD").val(),
     "emailid"                 : $("#email").val(),
-    "tournament_ageGroup"     : $("#tage").val(),
+    "tournament_ageGroup"     : JSON.stringify($("#tage").val()),
     "file_name"               : $("#filename").val(),
     "image"                   : $("#photo_url").val() 
 };
@@ -256,12 +256,30 @@ var data = JSON.stringify(data1);
 					
 					<div class="form-group">
 					<label for="sports">Age Group</label>
-						<select id="tage" class="form-control" >
-							<option ><?php echo $tournament['age_group'] ;?></option>
+						<select id="tage" name="age-group" class="form-control" multiple >
+							<!-- <option ><?php //echo $tournament['age_group'] ;?></option> -->
+							<option>-Select-</option>
 							<option id="15-18">15-18</option>
 							<option id="18-22">18-22</option>
 							<option id="20-25">20-25</option>
 							<option id="24-28">24-28</option>
+							<option id="Under-8">Under 8</option>
+							<option id="Under-9">Under 9</option>
+							<option id="Under-10">Under 10</option>
+							<option id="Under-11">Under 11</option>
+							<option id="Under-12">Under 12</option>
+							<option id="Under-13">Under 13</option>
+							<option id="Under-14">Under 14</option>
+							<option id="Under-15">Under 15</option>
+							<option id="Under-16">Under 16</option>
+							<option id="Under-17">Under 17</option>
+							<option id="Under-18">Under 18</option>
+							<option id="Under-19">Under 19</option>
+							<option id="Under-19">Under 19</option>
+							<option id="Under-21">Under 21</option>
+							<option id="Under-22">Under 22</option>
+							<option id="Under-23">Under 23</option>
+							<option id="All">All</option>
 						</select>
 					</div>
 					<div class="form-group">
@@ -796,6 +814,12 @@ $(function() {
       	}          
       }
    });
+
+$(window).on("load", function(){
+    var age_group  = '<?php echo $tournament['age_group']; ?>'
+     	//alert(age_group);
+     	$('#tage').val(JSON.parse(age_group));
+});
 </script>
 
 
