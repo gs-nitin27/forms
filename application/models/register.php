@@ -101,8 +101,7 @@ $insert = "INSERT INTO `gs_eventinfo`(`id`, `userid`,`name`, `type`, `address_1`
  STR_TO_DATE('$item->start_date','%m/%d/%Y'),STR_TO_DATE('$item->end_date','%m/%d/%Y'), STR_TO_DATE('$item->entry_start_date','%m/%d/%Y'),STR_TO_DATE('$item->entry_end_date','%m/%d/%Y'),
 
 
- '$item->file_name','$item->email_app_collection',CURDATE(),'$item->image','$item->feetype','$item->ticket_detail') ON DUPLICATE KEY UPDATE `name` = '$item->name',`address_1` = '$item->address1' ,`address_2` = '$item->address2' ,`location` = '$item->city' ,`state` = '$item->state', `PIN` = '$item->pin' , `description` = '$item->description',`sport` = '$item->sport',`sport_name`='$item->sport_name',`eligibility1` = '$item->eligibility1',`eligibility2` = '$item->eligibility2'  , `terms_cond1` = '$item->tandc1', `terms_cond2` = '$item->tandc2' , `organizer_name` = '$item->organizer_name' ,  `mobile` ='$item->mobile' ,`organizer_address_line1` = '$item->org_address1' , `organizer_address_line2` = '$item->org_address2' , `organizer_city` = '$item->organizer_city' , `organizer_pin` = '$item->organizer_pin', `organizer_state` = '$item->organizer_state' ,  `event_links` = '$item->event_links' , `start_date` = FROM_UNIXTIME ('$item->start_date') ,`end_date` = FROM_UNIXTIME ('$item->end_date') ,  `entry_start_date` =FROM_UNIXTIME ('$item->entry_start_date') , `entry_end_date` = FROM_UNIXTIME ('$item->entry_end_date') , `file_name` = '$item->file_name',`email_app_collection` = '$item->email_app_collection',`image`='$item->image',`ticket_detail`='$item->ticket_detail'";
-
+ '$item->file_name','$item->email_app_collection',CURDATE(),'$item->image','$item->feetype','$item->ticket_detail') ON DUPLICATE KEY UPDATE `name` = '$item->name',`address_1` = '$item->address1' ,`address_2` = '$item->address2' ,`location` = '$item->city' ,`state` = '$item->state', `PIN` = '$item->pin' , `description` = '$item->description',`sport` = '$item->sport',`sport_name`='$item->sport_name',`eligibility1` = '$item->eligibility1',`eligibility2` = '$item->eligibility2'  , `terms_cond1` = '$item->tandc1', `terms_cond2` = '$item->tandc2' , `organizer_name` = '$item->organizer_name' ,  `mobile` ='$item->mobile' ,`organizer_address_line1` = '$item->org_address1' , `organizer_address_line2` = '$item->org_address2' , `organizer_city` = '$item->organizer_city' , `organizer_pin` = '$item->organizer_pin', `organizer_state` = '$item->organizer_state' ,  `event_links` = '$item->event_links' , `start_date` = STR_TO_DATE('$item->start_date','%m/%d/%Y') ,`end_date` = STR_TO_DATE('$item->end_date','%m/%d/%Y') ,  `entry_start_date` =STR_TO_DATE('$item->entry_start_date','%m/%d/%Y') , `entry_end_date` = STR_TO_DATE('$item->entry_end_date','%m/%d/%Y') , `file_name` = '$item->file_name',`email_app_collection` = '$item->email_app_collection',`image`='$item->image',`ticket_detail`='$item->ticket_detail'";
 $query = $this->db->query($insert);
 if($query)
 {   $id = mysql_insert_id();
@@ -1880,6 +1879,12 @@ public function Registration_userdata($item)
 	}
 
 }
-
+ public function alter_DateFormat($date)
+	{
+	$oldDate = $date;
+	$arr = explode('-', $oldDate);
+	$newDate = $arr[1].'/'.$arr[2].'/'.$arr[0];
+	return $newDate;
+	}
 }
  ?>
