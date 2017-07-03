@@ -275,20 +275,20 @@ var data = JSON.stringify(data1);
 					</div>
 
 					<?php 
-                      $start_date =new  DateTime($tournament['start_date']);
+                      //$start_date =new  DateTime($tournament['start_date']);
                       //
-                      $end_date = new DateTime($tournament['end_date']);
+                      //$end_date = new DateTime($tournament['end_date']);
                      {
 					?>
 
 					<div class="form-group">
 					  <label for="link">Start Date</label>
-					  <input type="text" class="form-control"  id="startD" placeholder="Enter Start Date" value="<?php echo $start_date->format('m/d/Y');?>">
+					  <input type="text" class="form-control"  id="startD" placeholder="Enter Start Date" value="<?php /*echo $start_date->format('m/d/Y');echo*/ echo $this->register->alter_DateFormat($tournament['start_date']);?>">
 					  <label id="startD_error" hidden>Start Date is required .</label> 
 					</div >
 					<div class="form-group">
 					  <label for="link">End Date</label>
-					  <input type="text" class="form-control"  id="endD" placeholder="Enter End Date" value="<?php echo $end_date->format('m/d/Y');?>">
+					  <input type="text" class="form-control"  id="endD" placeholder="Enter End Date" value="<?php /*echo $end_date->format('m/d/Y');*/echo $this->register->alter_DateFormat($tournament['end_date']);?>">
 					  <label id="endD_error" hidden>End Date is required .</label> 
 					</div >
 					<?php }?>
@@ -335,20 +335,20 @@ var data = JSON.stringify(data1);
 					  <label id="evlink_error" hidden>Tournament Link is required .</label> 
 					</div >
 					<?php 
-                      $event_entry_date =new  DateTime($tournament['event_entry_date']);
+                     /* $event_entry_date =new  DateTime($tournament['event_entry_date']);
                       
-                      $event_end_date = new DateTime($tournament['event_end_date']);
+                      $event_end_date = new DateTime($tournament['event_end_date']);*/
                      {
 					?>
 					<div class="form-group">
 					  <label for="link">Entry Start Date</label>
-					  <input type="text" class="form-control"  id="estartD" placeholder="Enter Start Date" value="<?php echo $event_entry_date->format('m/d/Y');?>">
+					  <input type="text" class="form-control"  id="estartD" placeholder="Enter Start Date" value="<?php /*echo $event_entry_date->format('m/d/Y'); */ echo $this->register->alter_DateFormat($tournament['event_entry_date']); ?>">
 					   <label id="estartD_error" hidden>Entry Start Date is required .</label> 
 
 					</div >
 					<div class="form-group">
 					  <label for="link">Entry End Date</label>
-					  <input type="text" class="form-control"  id="eendD" placeholder="Enter End Date" value="<?php echo $event_end_date->format('m/d/Y');?>">
+					  <input type="text" class="form-control"  id="eendD" placeholder="Enter End Date" value="<?php /*echo $event_end_date->format('m/d/Y'); */echo $this->register->alter_DateFormat($tournament['event_end_date']);?>">
 					   <label id="eendD_error" hidden>Entry End Date is required .</label> 
 					</div >
 					<?php }?>

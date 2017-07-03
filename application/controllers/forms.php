@@ -1753,7 +1753,7 @@ public function Emailfind()
 }
 //==================================End Email================================= 
  public function imageupload()
- {    // print_r($_POST);die; 
+ {     //print_r($_POST);die; 
              $newpath=$_POST['path'];
           if(isset($_POST['file_name']) && $_POST['file_name'] != '')
                {

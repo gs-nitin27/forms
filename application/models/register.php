@@ -925,7 +925,7 @@ public function removeimage($id,$image)
 {	 
         
 		    if(file_exists("uploads/resources/".$image))
-		    {
+		    {   // echo "uploads/resources/".$image;die;
 		    	 unlink("uploads/resources/".$image);
 		    }
          $update = "UPDATE  `gs_resources` SET  `image` =' ' WHERE `userid` = '$id' ";
