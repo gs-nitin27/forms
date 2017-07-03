@@ -662,66 +662,66 @@ $(function() {
    $("#save").click(function()
    {
       //alert("hi");
-    if($("#add1").val() !="" &&   $("#add2").val() !="" &&   $("#tname").val() !="" &&  $("#city").val() !="" &&  $("#tdesc").val() !="" &&  $("#criteria1").val()!="" &&  $("#criteria2").val() !="" && $("#tlevel").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" &&   $("#orgadd1").val() !="" &&   $("#orgadd2").val() !="" &&   $("#orgcity").val() !="" &&  $("#orgemail").val() !="" &&  $("#evlink").val() !="" &&  $("#startD").val() !="" && $("#endD").val() !="" &&  $("#tsport").val() !="" && $("#estartD").val() !="" && $("#eendD").val() !="" && $("#email").val() !="")
+    if($("#tname").val() !="" &&  $("#tdesc").val() !="" &&  $("#tsport").val() !="")
        {
       	save();
       }else{
 
-             $("#2").css("color","red");
-             $("#3").css("color","red");
-             $("#4").css("color","red");
+            // $("#2").css("color","red");
+            // $("#3").css("color","red");
+            // $("#4").css("color","red");
              $("html, body").animate({ scrollTop: 0 }, 500);
 
-      	if($("#add1").val() ==""){
-      		//alert("hello");
-      		$("#add1_error").show();
-            $("#add1_error").css("color","red");
+      	// if($("#add1").val() ==""){
+      	// 	//alert("hello");
+      	// 	$("#add1_error").show();
+       //      $("#add1_error").css("color","red");
 
-      	}else{
-             $("#add1_error").hide();
-      	}
-      	if($("#add2").val() ==""){
-            $("#add2_error").show();
-      		$("#add2_error").css("color","red");
-      	}else{
-           $("#add2_error").hide();
-      	}
+      	// }else{
+       //       $("#add1_error").hide();
+      	// }
+      	// if($("#add2").val() ==""){
+       //      $("#add2_error").show();
+      	// 	$("#add2_error").css("color","red");
+      	// }else{
+       //     $("#add2_error").hide();
+      	// }
       	if($("#tname").val() ==""){
             $("#tname_error").show();
       		$("#tname_error").css("color","red");
       	}else{
            $("#tname_error").hide();
       	}
-      	if($("#city").val() ==""){
-            $("#city_error").show();
-      		$("#city_error").css("color","red");
-      	}else{
-          $("#city_error").hide();
-      	}
+      	// if($("#city").val() ==""){
+       //      $("#city_error").show();
+      	// 	$("#city_error").css("color","red");
+      	// }else{
+       //    $("#city_error").hide();
+      	// }
       	if($("#tdesc").val() ==""){
             $("#tdesc_error").show();
       		$("#tdesc_error").css("color","red");
       	}else{
             $("#tdesc_error").hide();
       	}
-      	if($("#criteria1").val()==""){
-            $("#criteria1_error").show();
-      		$("#criteria1_error").css("color","red");
-      	}else{
-          $("#criteria1_error").hide();
-      	}
-      	if($("#criteria2").val() ==""){
-            $("#criteria2_error").show();
-      		$("#criteria2_error").css("color","red");
-      	}else{
-          $("#criteria2_error").hide();
-      	}
-      	if($("#tlevel").val() == ""){
-            $("#tlevel_error").show();
-      		$("#tlevel_error").css("color","red");
-      	}else{
-          $("#tlevel_error").hide();
-      	}
+      	// if($("#criteria1").val()==""){
+       //      $("#criteria1_error").show();
+      	// 	$("#criteria1_error").css("color","red");
+      	// }else{
+       //    $("#criteria1_error").hide();
+      	// }
+      	// if($("#criteria2").val() ==""){
+       //      $("#criteria2_error").show();
+      	// 	$("#criteria2_error").css("color","red");
+      	// }else{
+       //    $("#criteria2_error").hide();
+      	// }
+      	// if($("#tlevel").val() == ""){
+       //      $("#tlevel_error").show();
+      	// 	$("#tlevel_error").css("color","red");
+      	// }else{
+       //    $("#tlevel_error").hide();
+      	// }
       	// if($("#terms1").val() ==""){
        //      $("#terms1_error").show();
       	// 	$("#terms1_error").css("color","red");
@@ -734,84 +734,84 @@ $(function() {
       	// }else{
        //    $("#terms2_error").hide();
       	// }
-      	if($("#orgName").val() ==""){
-           $("#orgName_error").show();
-      		$("#orgName_error").css("color","red");
-      	}else{
-          $("#orgName_error").hide();
-      	}
-      	if($("#contact").val() ==""){
-            $("#contact_error").show();
-      		$("#contact_error").css("color","red");
-      	}else{
-          $("#contact_error").hide();
-      	}
-      	if($("#orgadd1").val() ==""){
-            $("#orgadd1_error").show();
-      		$("#orgadd1_error").css("color","red");
-      	}else{
-          $("#orgadd1_error").hide();
-      	}
-      	if($("#orgadd2").val() ==""){
-            $("#orgadd2_error").show();
-      		$("#orgadd2_error").css("color","red");
-      	}else{
-          $("#orgadd2_error").hide();
-      	}
-      	if($("#orgcity").val() ==""){
-            $("#orgcity_error").show();
-      		$("#orgcity_error").css("color","red");
-      	}else{
-          $("#orgcity_error").hide();
-      	}
-      	if($("#orgemail").val() ==""){
-            $("#orgemail_error").show();
-      		$("#orgemail_error").css("color","red");
-      	}else{
-          $("#orgemail_error").hide();
-      	}
-      	if($("#evlink").val() ==""){
-            $("#evlink_error").show();
-      		$("#evlink_error").css("color","red");
-      	}else{
-          $("#evlink_error").hide();
-      	}
-      	if($("#startD").val() ==""){
-            $("#startD_error").show();
-      		$("#startD_error").css("color","red");
-      	}else{
-          $("#startD_error").hide();
-      	}
-      	if($("#endD").val() ==""){
-            $("#endD_error").show();
-      		$("#endD_error").css("color","red");
-      	}else{
-          $("#endD_error").hide();
-      	}
+      	// if($("#orgName").val() ==""){
+       //     $("#orgName_error").show();
+      	// 	$("#orgName_error").css("color","red");
+      	// }else{
+       //    $("#orgName_error").hide();
+      	// }
+      	// if($("#contact").val() ==""){
+       //      $("#contact_error").show();
+      	// 	$("#contact_error").css("color","red");
+      	// }else{
+       //    $("#contact_error").hide();
+      	// }
+      	// if($("#orgadd1").val() ==""){
+       //      $("#orgadd1_error").show();
+      	// 	$("#orgadd1_error").css("color","red");
+      	// }else{
+       //    $("#orgadd1_error").hide();
+      	// }
+      	// if($("#orgadd2").val() ==""){
+       //      $("#orgadd2_error").show();
+      	// 	$("#orgadd2_error").css("color","red");
+      	// }else{
+       //    $("#orgadd2_error").hide();
+      	// }
+      	// if($("#orgcity").val() ==""){
+       //      $("#orgcity_error").show();
+      	// 	$("#orgcity_error").css("color","red");
+      	// }else{
+       //    $("#orgcity_error").hide();
+      	// }
+      	// if($("#orgemail").val() ==""){
+       //      $("#orgemail_error").show();
+      	// 	$("#orgemail_error").css("color","red");
+      	// }else{
+       //    $("#orgemail_error").hide();
+      	// }
+      	// if($("#evlink").val() ==""){
+       //      $("#evlink_error").show();
+      	// 	$("#evlink_error").css("color","red");
+      	// }else{
+       //    $("#evlink_error").hide();
+      	// }
+      	// if($("#startD").val() ==""){
+       //      $("#startD_error").show();
+      	// 	$("#startD_error").css("color","red");
+      	// }else{
+       //    $("#startD_error").hide();
+      	// }
+      	// if($("#endD").val() ==""){
+       //      $("#endD_error").show();
+      	// 	$("#endD_error").css("color","red");
+      	// }else{
+       //    $("#endD_error").hide();
+      	// }
       	if($("#tsport").val() == ""){
             $("#tsport_error").show();
       		$("#tsport_error").css("color","red");
       	}else{
           $("#tsport_error").hide();
       	}
-        if($("#estartD").val() ==""){
-           $("#estartD_error").show();
-      		$("#estartD_error").css("color","red");
-      	}else{
-          $("#estartD_error").hide();
-      	}
-      	if($("#eendD").val() ==""){
-            $("#eendD_error").show();
-      		$("#eendD_error").css("color","red");
-      	}else{
-          $("#eendD_error").hide();
-      	}
-      	if($("#email").val() ==""){
-            $("#email_error").show();
-      		$("#email_error").css("color","red");
-      	}else{
-          $("#email_error").hide();
-      	}          
+       //  if($("#estartD").val() ==""){
+       //     $("#estartD_error").show();
+      	// 	$("#estartD_error").css("color","red");
+      	// }else{
+       //    $("#estartD_error").hide();
+      	// }
+      	// if($("#eendD").val() ==""){
+       //      $("#eendD_error").show();
+      	// 	$("#eendD_error").css("color","red");
+      	// }else{
+       //    $("#eendD_error").hide();
+      	// }
+      	// if($("#email").val() ==""){
+       //      $("#email_error").show();
+      	// 	$("#email_error").css("color","red");
+      	// }else{
+       //    $("#email_error").hide();
+      	// }          
       }
    });
 
