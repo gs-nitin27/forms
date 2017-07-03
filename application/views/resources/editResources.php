@@ -350,11 +350,8 @@ var data = eval(data1);//JSON.stringify(data1);
 
             <!-- <div class="form-group" align="left" >  -->
 
-<<<<<<< HEAD
-                <img style="display:block; border:2px solid SteelBlue";  width="400px" height="300px" src = "<?php  echo base_url()."uploads/resources/".$value['image']; ?>" id="image_view">
-=======
+
                <div class="img-wrap"> <img style="display:block; width="400px" height="300px" src = "<?php  echo base_url()."uploads/resources/".$value['image']; ?>"> </div>
->>>>>>> 5f1d2a192c8a4a13db04f3bf1d97ce535dbc8859
             <!-- </div>  -->
 
               <?php } else { ?>
@@ -756,7 +753,6 @@ function get_Id(url) {
 function getSports(id)
 {
  var list_select = $('#dates-field2').val().concat(get_sport);
- alert(list_select);
  var list =  list_select.join(',')
  $('#sport').val(list.replace(/,\s*$/, ""));
 }
