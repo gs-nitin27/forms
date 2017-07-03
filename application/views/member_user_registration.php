@@ -14,6 +14,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/reg.css'); ?>">
   </head>
+
 <body style="background-color: #03a9f4">
  <div class="section"></div>
   <main>
@@ -95,17 +96,16 @@
     </select>
     <label>Gender</label>
   </div></div>
-                 <div class="row">
-                           <!-- <div class="input-field col s4">
-                           <label style='float: right;'>
-                <a class='pink-text' href='#!'><b>Already registered?</b></a>
-              </label>
-                          </div> -->
+                <div class="row">
 
-                          <div class="input-field col s8">
-                            <button class="btn cyan waves-effect waves-light right" type="button"  id="save" name="action" onclick="valname()" >REGISTER
-                              
-                            </button>
+                <div class="input-field col s4">
+                <label style='float: right;'>
+                <a class='pink-text' onclick="register();"><b>Already registered?</b></a>
+                </label>
+                </div>
+                <div class="input-field col s8">
+                <button class="btn cyan waves-effect waves-light right" type="button"  id="save" name="action" onclick="valname()" >REGISTER              
+                </button>
                           </div>
                         </div>
                     
@@ -118,9 +118,109 @@
 
   </div>
   </main>
+
+
+
   </body>
 
 <script type="text/javascript">
+
+  function register()
+  {
+   $.confirm({
+
+        title: 'Sign In',
+        boxWidth: '33%',
+        useBootstrap: false,
+        content: '' +
+      '<hr class="colorgraph"><br>' +
+      '<input type="text" class="form-control" id="username" name="username" placeholder="Username" required="" autofocus="" />' +
+      '<input type="password" class="form-control" id="password" name="password" placeholder="Password" required=""/>',
+        buttons: {
+            formSubmit: {
+                 text: 'Submit',
+                 btnClass: 'btn-blue',
+                 action: function(){
+
+                 var data1 = {
+                    "email"      : $("#username").val(),
+                    "password"     : $("#password").val()
+                   };
+
+                  console.log(JSON.stringify(data1));
+                  var profileurl = '<?php echo site_url();?>';
+                  var data = JSON.stringify(data1);
+                    $.ajax({ 
+                     type: "POST",
+                     url: "<?php echo site_url('forms/editRegiterUser');?>",                  
+                     data:"data="+data,                        
+                     dataType: 'JSON',        
+                     success:function(result)
+                     {
+                          if(result.data)
+                          {
+                              $.confirm({
+                              title: 'Thank You For Login!',
+                              content: '<h3>Please Update Your Profile</h3>',
+                              type: 'green',
+                              typeAnimated: true,
+                              boxWidth: '33%',
+                              useBootstrap: false,
+                              animationSpeed: 1500,
+                              animationBounce: 3,
+                              buttons: {
+                                  tryAgain: {
+                                      text: 'Thank You !',
+                                      btnClass: 'btn-green',
+                                      action: function(){
+                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile/" + result.data;
+
+                                      }
+                                  },
+                                  close: function () {
+                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile/" + result.data;
+
+                                   
+                                  }
+                              }
+                          });
+
+                          }
+                          else
+                          {
+                            $.confirm({
+                              title: 'Encountered an error!',
+                              content: 'Something went Worng, this may be server issue.',
+                              type: 'dark',
+                              typeAnimated: true,
+                              boxWidth: '33%',
+                              useBootstrap: false,
+                              animationSpeed: 1500,
+                              animationBounce: 3,
+                              buttons: {
+                                  tryAgain: {
+                                      text: 'Try again',
+                                      btnClass: 'btn-dark',
+                                      action: function(){
+                                      }
+                                  },
+                                  close: function () {
+                                  }
+                              }
+                          });
+
+                          }
+                     }
+                      });
+              }
+            },
+            cancel: function () {
+               
+            }
+        }
+    });
+  }
+
     
     $(document).ready(function() {
     $('select').material_select();
@@ -268,29 +368,99 @@ $("#save").click(function()
      {
        alert(result.data);
        if(result.data == 3 || result.data == 4)
-       {
+       { 
+            $.confirm({
 
-     $.confirm({
-        title: 'Sorry!',
-        content: '<h3>User is already register please loging.</h3>',
-        type: 'red',
-        typeAnimated: true,
-        animationSpeed: 1500,
-        animationBounce: 3,
+        title: 'Sign In',
+        boxWidth: '33%',
+        useBootstrap: false,
+        content: '' +
+      '<hr class="colorgraph"><br>' +
+      '<input type="text" class="form-control" id="username" name="username" placeholder="Username" required="" autofocus="" />' +
+      '<input type="password" class="form-control" id="password" name="password" placeholder="Password" required=""/>',
         buttons: {
-            tryAgain: {
-                text: 'OK !',
-                btnClass: 'btn-red',
-                action: function(){
+            formSubmit: {
+                 text: 'Submit',
+                 btnClass: 'btn-blue',
+                 action: function(){
 
-                }
+                 var data1 = {
+                    "email"      : $("#username").val(),
+                    "password"     : $("#password").val()
+                   };
+
+                  console.log(JSON.stringify(data1));
+                  var profileurl = '<?php echo site_url();?>';
+                  var data = JSON.stringify(data1);
+                    $.ajax({ 
+                     type: "POST",
+                     url: "<?php echo site_url('forms/editRegiterUser');?>",                  
+                     data:"data="+data,                        
+                     dataType: 'JSON',        
+                     success:function(result)
+                     {
+                          if(result.data)
+                          {
+                              $.confirm({
+                              title: 'Thank You For Login!',
+                              content: '<h3>Please Update Your Profile</h3>',
+                              type: 'green',
+                              typeAnimated: true,
+                              boxWidth: '33%',
+                              useBootstrap: false,
+                              animationSpeed: 1500,
+                              animationBounce: 3,
+                              buttons: {
+                                  tryAgain: {
+                                      text: 'Thank You !',
+                                      btnClass: 'btn-green',
+                                  action: function(){
+                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile/" + result.data;
+
+                                      }
+                                  },
+                                  close: function () {
+                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile/" + result.data;
+
+                                   
+                                  }
+                              }
+                          });
+
+                          }
+                          else
+                          {
+                            $.confirm({
+                              title: 'Encountered an error!',
+                              content: 'Something went Worng, this may be server issue.',
+                              type: 'dark',
+                              typeAnimated: true,
+                              boxWidth: '33%',
+                              useBootstrap: false,
+                              animationSpeed: 1500,
+                              animationBounce: 3,
+                              buttons: {
+                                  tryAgain: {
+                                      text: 'Try again',
+                                      btnClass: 'btn-dark',
+                                      action: function(){
+                                      }
+                                  },
+                                  close: function () {
+                                  }
+                              }
+                          });
+
+                          }
+                     }
+                      });
+              }
             },
-            close: function () {
-             
+            cancel: function () {
+               
             }
         }
     });
-
 
         
        }
@@ -354,4 +524,6 @@ $("#save").click(function()
 });
 
 </script>
+
+
 </html>

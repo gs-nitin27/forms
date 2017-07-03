@@ -103,6 +103,22 @@ public function adminlogin()
   $this->load->view('adminlogin');
 }
 
+public function editRegiterUser()
+{
+   $data = json_decode($_REQUEST['data']);
+   $this->load->model('register');
+
+   $res = $this->register->editRegisterUser($data->email,md5($data->password));
+   if($res != 0)
+   {
+     echo json_encode($data = array("data" => $res));
+   }
+   else
+   {
+    echo json_encode($data = array("data" => 0));
+   }
+}
+
 public function login()
 {
       $username = $_POST['username'];
@@ -121,7 +137,8 @@ public function login()
       {
       $res = $this->register->login($username, $password); 
       if($res != 0)
-      {
+      {   
+
       	 $this->session->set_userdata('item',$res);
          $sessdata = $this->session->userdata('item');
          redirect('forms/userhome');
@@ -357,6 +374,13 @@ public function registrationprofile($str)
 { 
       $data = array( 'id' => $str);
       $this->load->view('RegistrationProfile',$data);
+}
+
+public function editRegisterUserProfile($str)
+{
+   $data = array('id' => $str);
+   $this->load->view('updateRegistarUser',$data);
+
 }
 
 public function userprofile($str)
@@ -3484,7 +3508,7 @@ public function user_register()
       if($res)
       {  
 
-      	// $this->sendmail($data->email);
+      	 $this->sendmail($data->email);
          echo json_encode(array('data' =>$res , 'message' =>'User register Sucessfull'));
       }
       else
@@ -3907,8 +3931,19 @@ if($res)
     echo $res; 
 
 }
+else
+{
+    echo $res;
+}
 
 }
+
+
+// public function editRegistrationData()
+// {
+   
+
+// }
 
 }
   
