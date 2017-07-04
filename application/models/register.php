@@ -61,7 +61,10 @@ if($qry->num_rows() > 0)
 $q = $qry->row_array();
 if($q['userType']== 103)
 {
-return $q['userid'];
+	 $udata['userid'] = $q['userid'];
+	 $udata['prof_id'] = $q['prof_id'];
+	 
+return $udata;
 }
 }
 else

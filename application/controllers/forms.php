@@ -109,6 +109,7 @@ public function editRegiterUser()
    $this->load->model('register');
 
    $res = $this->register->editRegisterUser($data->email,md5($data->password));
+  // print_r($res);die;
    if($res != 0)
    {
      echo json_encode($data = array("data" => $res));
@@ -376,10 +377,11 @@ public function registrationprofile($str)
       $this->load->view('RegistrationProfile',$data);
 }
 
-public function editRegisterUserProfile($str)
+public function editRegisterUserProfile()
 {
-   $data = array('id' => $str);
-   $this->load->view('updateRegistarUser',$data);
+   // $data = array('id' => $str);
+
+   $this->load->view('updateRegistarUser');
 
 }
 

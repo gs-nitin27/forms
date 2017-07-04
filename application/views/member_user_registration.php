@@ -157,7 +157,10 @@
                      dataType: 'JSON',        
                      success:function(result)
                      {
-                          if(result.data)
+                         //alert(result.data.userid);
+                         //return ;
+
+                          if(result.data.userid)
                           {
                               $.confirm({
                               title: 'Thank You For Login!',
@@ -173,12 +176,38 @@
                                       text: 'Thank You !',
                                       btnClass: 'btn-green',
                                       action: function(){
-                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile/" + result.data;
+
+                                        localStorage.setItem('userid',result.data.userid);
+                                        localStorage.setItem('prof_id',result.data.prof_id);
+                                   // $.ajax({
+                                   //  url: "http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid=2&prof_id=2",
+                                   //  type: "GET",
+                                   //    success: function(resultData) {
+                                              
+                                   //            localStorage.setItem('userid',);
+                                   //            localStorage.setItem('userid',)
+                                   //        // localStorage.setItem('testObject',JSON.stringify(resultData));
+                                   //        //alert(localStorage.getItem('testObject'));
+                                   //      },
+                                   //      error : function(jqXHR, textStatus, errorThrown) {
+                                   //      },
+
+                                   //      timeout: 120000,
+                                   //  });
+                                     
+                                    //return;
+
+                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile";
 
                                       }
                                   },
                                   close: function () {
-                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile/" + result.data;
+
+                                    localStorage.setItem('userid',result.data.userid);
+                                    localStorage.setItem('prof_id',result.data.prof_id);
+
+                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile";
+                                    // window.location.href = profileurl+ "/forms/editRegisterUserProfile" + result.data.userid + "," + result.data.userid;
 
                                    
                                   }
@@ -399,7 +428,7 @@ $("#save").click(function()
                      dataType: 'JSON',        
                      success:function(result)
                      {
-                          if(result.data)
+                          if(result.data.userid)
                           {
                               $.confirm({
                               title: 'Thank You For Login!',
@@ -415,12 +444,41 @@ $("#save").click(function()
                                       text: 'Thank You !',
                                       btnClass: 'btn-green',
                                   action: function(){
-                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile/" + result.data;
 
+
+                                    //    $.ajax({
+
+                                    // url: "http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid=2&prof_id=2",
+
+                                    //     type: "GET",
+
+                                    //     contentType: 'application/json; charset=utf-8',
+                                    //     success: function(resultData) {
+                                    //         alert(resultData);
+
+                                    //     },
+                                    //     error : function(jqXHR, textStatus, errorThrown) {
+                                    //     },
+
+                                    //     timeout: 120000,
+                                    // });
+
+                                        localStorage.setItem('userid',result.data.userid);
+                                        localStorage.setItem('prof_id',result.data.prof_id);
+
+                                          alert(localStorage.getItem('prof_id'));
+                                          alert(localStorage.getItem('userid'));
+
+
+
+                                      window.location.href = profileurl+ "/forms/editRegisterUserProfile"; 
+                                      
                                       }
                                   },
                                   close: function () {
-                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile/" + result.data;
+                                        localStorage.setItem('userid',result.data.userid);
+                                        localStorage.setItem('prof_id',result.data.prof_id);
+                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile";
 
                                    
                                   }

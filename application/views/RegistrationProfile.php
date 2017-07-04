@@ -489,7 +489,7 @@ $("#save").click(function()
     var fromdate = formatDate($("#sport_from_date"+i).val());
      var todate = formatDate($("#sport_to_date"+i).val());
 
-    var temp = {"degree":$("#nameofsporteducation"+i).val(),"organisation":$("#sport_inst_org"+i).val(),"stream":$("#sport_stream_spel"+i).val(),"courseDuration":fromdate + "-" + todate };
+    var temp = {"degree":$("#nameofsporteducation"+i).val(),"organisation":$("#sport_inst_org"+i).val(),"stream":$("#sport_stream_spel"+i).val(),"courseDuration":fromdate + " to " + todate };
       sportArray.push(temp);
 
   }
@@ -498,7 +498,7 @@ $("#save").click(function()
   {
      var fromdate = formatDate($("#formal_from_date"+i).val());
      var todate = formatDate($("#formal_to_date"+i).val());
-    var temp = {"degree":$("#formal_education"+i).val(),"organisation":$("#formal_inst_org"+i).val(),"stream":$("#formal_stream"+i).val(),"courseDuration":fromdate + "-" + todate };
+    var temp = {"degree":$("#formal_education"+i).val(),"organisation":$("#formal_inst_org"+i).val(),"stream":$("#formal_stream"+i).val(),"courseDuration":fromdate + " to " + todate };
       formalArray.push(temp);
 
   }
@@ -508,7 +508,7 @@ $("#save").click(function()
      var fromdate = formatDate($("#certi_from_date"+i).val());
      var todate = formatDate($("#certi_to_date"+i).val());
 
-    var temp = {"degree":$("#certi_name"+i).val(),"organisation":$("#certi_inst_org"+i).val(),"stream":$("#certi_stream"+i).val(),"courseDuration":fromdate + "-" + todate };
+    var temp = {"degree":$("#certi_name"+i).val(),"organisation":$("#certi_inst_org"+i).val(),"stream":$("#certi_stream"+i).val(),"courseDuration":fromdate + " to " + todate };
       otherArray.push(temp);
 
   }
@@ -534,12 +534,12 @@ for(var i =0; i <window.workexpticket; i++)
   }
 
 
-    var totalsportArray = JSON.stringify(sportArray);
-    var totalformalArray = JSON.stringify(formalArray);
-    var totalotherArray = JSON.stringify(otherArray);
-    var totalworkArray = JSON.stringify(workArray);
-    var totalasplayerArray = JSON.stringify(asplayerArray);
-
+    // var totalsportArray = JSON.stringify(sportArray);
+    // var totalformalArray = JSON.stringify(formalArray);
+    // var totalotherArray = JSON.stringify(otherArray);
+    // var totalworkArray = JSON.stringify(workArray);
+    // var totalasplayerArray = JSON.stringify(asplayerArray);
+  
   var ftemp = {"Education":{"formalEducation" : formalArray,"otherCertification":otherArray,"sportEducation":sportArray},"Experience":{"experienceAsPlayer":asplayerArray,"workExperience":workArray},"HeaderDetails":{"acamedy":$("#academy_name").val() ,"description":$("#description").val() ,"designation":$("#prof_name").val() ,"location":$("#location").val()}};
 
 var totalftemp = JSON.stringify(ftemp);

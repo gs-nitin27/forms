@@ -429,53 +429,53 @@ var data = JSON.stringify(data);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-     alert(result);
-    //   if(result == '1')
-    //   {
-    //       // $("#imagelodar").hide();
-    //     $.confirm({
-    //     title: 'Congratulations!',
-    //     content: 'Module is Created.',
-    //     type: 'green',
-    //     typeAnimated: true,
-    //     buttons: {
-    //         tryAgain: {
-    //             text: 'Thank You !',
-    //             btnClass: 'btn-green',
-    //             action: function(){
-    //               $("#imagelodar").hide();
-    //              //window.location.href = url+"/forms/getContent?Content";
-    //             }
-    //         },
-    //         close: function () {
-    //           $("#imagelodar").hide();
-    //          //window.location.href = url+"/forms/getContent?Content";
-    //         }
-    //     }
-    // });
-    //   }
-    //   else
-    //   {
-    //          // $("#imagelodar").hide();
-    //          $.confirm({
-    //           title: 'Encountered an error!',
-    //           content: 'Something went Worng, this may be server issue.',
-    //           type: 'dark',
-    //           typeAnimated: true,
-    //           buttons: {
-    //               tryAgain: {
-    //                   text: 'Try again',
-    //                   btnClass: 'btn-dark',
-    //                   action: function(){
-    //                     $("#imagelodar").hide();
-    //                   }
-    //               },
-    //               close: function () {
-    //                 $("#imagelodar").hide();
-    //               }
-    //           }
-    //       });
-    //   }
+    // alert(result);
+      if(result == '1')
+      {
+          // $("#imagelodar").hide();
+        $.confirm({
+        title: 'Congratulations!',
+        content: 'Module is Created.',
+        type: 'green',
+        typeAnimated: true,
+        buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                  $("#imagelodar").hide();
+                 //window.location.href = url+"/forms/getContent?Content";
+                }
+            },
+            close: function () {
+              $("#imagelodar").hide();
+             //window.location.href = url+"/forms/getContent?Content";
+            }
+        }
+    });
+      }
+      else
+      {
+             // $("#imagelodar").hide();
+             $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                        $("#imagelodar").hide();
+                      }
+                  },
+                  close: function () {
+                    $("#imagelodar").hide();
+                  }
+              }
+          });
+      }
     }
 });   
 }
@@ -559,15 +559,27 @@ var data = JSON.stringify(data);
 
 
 <?php 
-    $id1 = 2;
-    $response=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$id1.'&prof_id=2');
-  
-     $pdata = json_decode($response);
+    //$userid1 = 18;  $prof_id1 = 2;
+
+    $userid = "<script>document.write(localStorage.getItem('userid'));</script>";
+    $prof_id = "<script>document.write(localStorage.getItem('prof_id'));</script>";
+    // $response = echo "<script> localStorage.getItem('testObject'); </script>";
+
+     $response1=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id.'');
+ 
+
+
+     $pdata = json_decode($response1);
+     
+     print_r($prof_id);
+     echo "<br>";
+     print_r($userid);
+
+
      $temp = 0;
-
-    foreach ($pdata as $key => $profil) {
-      
-
+     if($pdata)
+     {
+      foreach ($pdata as $key => $profil) {
      if(is_object($profil))
      {
       foreach ($profil as $arrayvalue1 => $arrayvalue) 
@@ -622,10 +634,13 @@ var data = JSON.stringify(data);
                 <div >
                 <label for='link' style="font-weight: 100; margin:7px;">Period</label>
                 <div></div>
-                
+                <?php 
+                     $datefromandto = explode("to",$value56->courseDuration);
+                  ?>
+                    
                 <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
             
-                <input type='text' class='input__field input__field--hoshi'  id="<?php echo'formal_from_date'.$i;?>" class='form-control'>
+                <input type='text' class='input__field input__field--hoshi'  value="<?php echo $datefromandto[0];?>" id="<?php echo'formal_from_date'.$i;?>" class='form-control'>
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">From</span></label>
                 <div class='input-group-addon' style="background-color: transparent;border: none;">
                 <span class='glyphicon glyphicon-th'></span>
@@ -634,7 +649,7 @@ var data = JSON.stringify(data);
                 </div>
                 
                 <div class='input-group date' style="margin: 5px; overflow: hidden;" data-provide='datepicker'>
-                <input class='input__field input__field--hoshi' type='text' id="<?php echo 'formal_to_date'.$i;?>" class='form-control'>
+                <input class='input__field input__field--hoshi' value="<?php echo $datefromandto[1];?>" type='text' id="<?php echo 'formal_to_date'.$i;?>" class='form-control'>
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
                 <div class='input-group-addon' style="background-color: transparent;border: none;" >
                 <span class='glyphicon glyphicon-th'>
@@ -691,7 +706,7 @@ var data = JSON.stringify(data);
  $i++;   
   }
   if($key23 == "sportEducation")
-  {   
+  {   //print_r($value56);
   ?>
 <div class='box-body'  style='    background-color: white; border-color: black;border-radius: 4px; padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
 <div>
@@ -716,13 +731,17 @@ var data = JSON.stringify(data);
 <label  style="margin:7px;font-weight: 100;"  for='link'>Period</label>
 <div></div>
 <div class='input-group date'  style="margin:5px; overflow: hidden;" data-provide='datepicker'>
-<input class='input__field input__field--hoshi' type='text' class='form-control' id="<?php echo 'sport_from_date'.$i;?>">
+<?php 
+     $datefromandto = explode("to",$value56->courseDuration);
+  ?>
+<input class='input__field input__field--hoshi' type='text' value="<?php echo $datefromandto[0];?>" class='form-control' id="<?php echo 'sport_from_date'.$i;?>">
+
 <label for='from_period' class="input__label input__label--hoshi input__label--hoshi-color-1"><span class="input__label-content input__label-content--hoshi">From</span></label>
 <div class='input-group-addon' style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span>
 </div>
 </div>
 <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
-<input class='input__field input__field--hoshi' type='text' id="<?php echo 'sport_to_date'.$i;?>" class='form-control'>
+<input class='input__field input__field--hoshi' value="<?php echo $datefromandto[1];?>" type='text' id="<?php echo 'sport_to_date'.$i;?>" class='form-control'>
 <label for='from_period' class="input__label input__label--hoshi input__label--hoshi-color-1"><span class="input__label-content input__label-content--hoshi">To</span></label>
 <div class='input-group-addon' style="background-color: transparent;border: none;">
 <span class='glyphicon glyphicon-th'> 
@@ -761,8 +780,8 @@ var data = JSON.stringify(data);
         }
         else
         {
-
-              echo $arrayvalue;
+             // echo " aasfdasfdasf";
+              //echo $arrayvalue;
         }
 
 
@@ -1145,6 +1164,7 @@ var data = JSON.stringify(data);
        }
      }
     }
+  }
        ?>
 
 
@@ -1195,6 +1215,7 @@ else
 
 $("#uname").text($("#name").val());
 $("#uprof").text($("#prof_name").val());
+
 
 });
     
@@ -1281,8 +1302,10 @@ $("#save").click(function()
   {
     var fromdate = formatDate($("#sport_from_date"+i).val());
      var todate = formatDate($("#sport_to_date"+i).val());
+     // alert(todate);
+     // return ;
 
-    var temp = {"degree":$("#nameofsporteducation"+i).val(),"organisation":$("#sport_inst_org"+i).val(),"stream":$("#sport_stream_spel"+i).val(),"courseDuration":fromdate + "-" + todate };
+    var temp = {"degree":$("#nameofsporteducation"+i).val(),"organisation":$("#sport_inst_org"+i).val(),"stream":$("#sport_stream_spel"+i).val(),"courseDuration":fromdate + " to " + todate };
       sportArray.push(temp);
 
   }
@@ -1291,7 +1314,7 @@ $("#save").click(function()
   {
      var fromdate = formatDate($("#formal_from_date"+i).val());
      var todate = formatDate($("#formal_to_date"+i).val());
-    var temp = {"degree":$("#formal_education"+i).val(),"organisation":$("#formal_inst_org"+i).val(),"stream":$("#formal_stream"+i).val(),"courseDuration":fromdate + "-" + todate };
+    var temp = {"degree":$("#formal_education"+i).val(),"organisation":$("#formal_inst_org"+i).val(),"stream":$("#formal_stream"+i).val(),"courseDuration":fromdate + " to " + todate };
       formalArray.push(temp);
 
   }
@@ -1301,7 +1324,7 @@ $("#save").click(function()
      var fromdate = formatDate($("#certi_from_date"+i).val());
      var todate = formatDate($("#certi_to_date"+i).val());
 
-    var temp = {"degree":$("#certi_name"+i).val(),"organisation":$("#certi_inst_org"+i).val(),"stream":$("#certi_stream"+i).val(),"courseDuration":fromdate + "-" + todate };
+    var temp = {"degree":$("#certi_name"+i).val(),"organisation":$("#certi_inst_org"+i).val(),"stream":$("#certi_stream"+i).val(),"courseDuration":fromdate + " to " + todate };
       otherArray.push(temp);
 
   }
@@ -1324,11 +1347,11 @@ for(var i =0; i <window.workexpticket; i++)
       asplayerArray.push(temp);
   }
 
-    var totalsportArray = JSON.stringify(sportArray);
-    var totalformalArray = JSON.stringify(formalArray);
-    var totalotherArray = JSON.stringify(otherArray);
-    var totalworkArray = JSON.stringify(workArray);
-    var totalasplayerArray = JSON.stringify(asplayerArray);
+    // var totalsportArray = JSON.stringify(sportArray);
+    // var totalformalArray = JSON.stringify(formalArray);
+    // var totalotherArray = JSON.stringify(otherArray);
+    // var totalworkArray = JSON.stringify(workArray);
+    // var totalasplayerArray = JSON.stringify(asplayerArray);
 
   var ftemp = {"Education":{"formalEducation" : formalArray,"otherCertification":otherArray,"sportEducation":sportArray},"Experience":{"experienceAsPlayer":asplayerArray,"workExperience":workArray},"HeaderDetails":{"acamedy":$("#academy_name").val() ,"description":$("#designation").val() ,"designation":$("#prof_name").val() ,"location":$("#location1").val()}};
 
