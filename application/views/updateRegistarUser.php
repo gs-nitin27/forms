@@ -465,7 +465,7 @@ var data = JSON.stringify(data);
                 <?php 
                      $datefromandto = explode("to",$value56->courseDuration);
                   ?>
-                
+                    
                 <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
             
                 <input type='text' class='input__field input__field--hoshi'  value="<?php echo $datefromandto[0];?>" id="<?php echo'formal_from_date'.$i;?>" class='form-control'>

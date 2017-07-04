@@ -539,7 +539,7 @@ for(var i =0; i <window.workexpticket; i++)
     // var totalotherArray = JSON.stringify(otherArray);
     // var totalworkArray = JSON.stringify(workArray);
     // var totalasplayerArray = JSON.stringify(asplayerArray);
-
+  
   var ftemp = {"Education":{"formalEducation" : formalArray,"otherCertification":otherArray,"sportEducation":sportArray},"Experience":{"experienceAsPlayer":asplayerArray,"workExperience":workArray},"HeaderDetails":{"acamedy":$("#academy_name").val() ,"description":$("#description").val() ,"designation":$("#prof_name").val() ,"location":$("#location").val()}};
 
 var totalftemp = JSON.stringify(ftemp);
