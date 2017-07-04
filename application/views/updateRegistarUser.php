@@ -323,53 +323,53 @@ var data = JSON.stringify(data);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-     alert(result);
-    //   if(result == '1')
-    //   {
-    //       // $("#imagelodar").hide();
-    //     $.confirm({
-    //     title: 'Congratulations!',
-    //     content: 'Module is Created.',
-    //     type: 'green',
-    //     typeAnimated: true,
-    //     buttons: {
-    //         tryAgain: {
-    //             text: 'Thank You !',
-    //             btnClass: 'btn-green',
-    //             action: function(){
-    //               $("#imagelodar").hide();
-    //              //window.location.href = url+"/forms/getContent?Content";
-    //             }
-    //         },
-    //         close: function () {
-    //           $("#imagelodar").hide();
-    //          //window.location.href = url+"/forms/getContent?Content";
-    //         }
-    //     }
-    // });
-    //   }
-    //   else
-    //   {
-    //          // $("#imagelodar").hide();
-    //          $.confirm({
-    //           title: 'Encountered an error!',
-    //           content: 'Something went Worng, this may be server issue.',
-    //           type: 'dark',
-    //           typeAnimated: true,
-    //           buttons: {
-    //               tryAgain: {
-    //                   text: 'Try again',
-    //                   btnClass: 'btn-dark',
-    //                   action: function(){
-    //                     $("#imagelodar").hide();
-    //                   }
-    //               },
-    //               close: function () {
-    //                 $("#imagelodar").hide();
-    //               }
-    //           }
-    //       });
-    //   }
+    // alert(result);
+      if(result == '1')
+      {
+          // $("#imagelodar").hide();
+        $.confirm({
+        title: 'Congratulations!',
+        content: 'Module is Created.',
+        type: 'green',
+        typeAnimated: true,
+        buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                  $("#imagelodar").hide();
+                 //window.location.href = url+"/forms/getContent?Content";
+                }
+            },
+            close: function () {
+              $("#imagelodar").hide();
+             //window.location.href = url+"/forms/getContent?Content";
+            }
+        }
+    });
+      }
+      else
+      {
+             // $("#imagelodar").hide();
+             $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                        $("#imagelodar").hide();
+                      }
+                  },
+                  close: function () {
+                    $("#imagelodar").hide();
+                  }
+              }
+          });
+      }
     }
 });   
 }
@@ -426,15 +426,20 @@ var data = JSON.stringify(data);
 
 
 <?php 
-    $id1 = 2;
-    $response=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$id1.'&prof_id=2');
-  
-     $pdata = json_decode($response);
+    //$userid1 = 18;  $prof_id1 = 2;
+
+    $userid = "<script>document.write(localStorage.getItem('userid'));</script>";
+    $prof_id = "<script>document.write(localStorage.getItem('prof_id'));</script>";
+    // $response = echo "<script> localStorage.getItem('testObject'); </script>";
+
+     $response1=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
+ 
+     $pdata = json_decode($response1);
+     //print_r($pdata);
      $temp = 0;
-
-    foreach ($pdata as $key => $profil) {
-      
-
+     if($pdata)
+     {
+      foreach ($pdata as $key => $profil) {
      if(is_object($profil))
      {
       foreach ($profil as $arrayvalue1 => $arrayvalue) 
@@ -988,6 +993,7 @@ var data = JSON.stringify(data);
        }
      }
     }
+  }
        ?>
 
 
@@ -1038,6 +1044,7 @@ else
 
 $("#uname").text($("#name").val());
 $("#uprof").text($("#prof_name").val());
+
 
 });
     
