@@ -38,9 +38,11 @@
     text-align: center;
     background-color: #fff;
     background-color: rgba(255, 255, 255, 1);
+       background-color: white;
 }
 .card.hovercard .card-background {
     height: 130px;
+
 }
 .card-background img {
     -webkit-filter: blur(25px);
@@ -213,8 +215,8 @@
 }
 
 .input__label--hoshi::after {
-  margin-top: 2px;
-  border-bottom: 2px solid red;
+  
+  border-bottom: 1px solid red;
   -webkit-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
   -webkit-transition: -webkit-transform 0.3s;
@@ -222,7 +224,7 @@
 }
 
 .input__label--hoshi-color-1::after {
-  border-color: #5f5d5d;;
+  border-color: #5f5d5d;
 }
 
 
@@ -273,6 +275,31 @@
     -webkit-transform: translate3d(0, -40%, 0);
     transform: translate3d(0, -40%, 0);
   }
+}
+.btn-primary {
+    color: #fff;
+    background-color: #2bb1ee;
+    border-color: #2bb1ee;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #2ab1ee;
+    border-color: #2bb2ef;
+}
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #2bb1ee;
+    border-color: #2bb1ee;
+}
+.btn-primary.focus, .btn-primary:focus {
+    color: #fff;
+    background-color: #2bb1ee;
+    border-color: #2bb1ee;
+}
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
+    color: #fff;
+    background-color: #2cb0ee;
+    border-color: #2bb1ee;
 }
 </style>
 
@@ -360,7 +387,7 @@ var data = JSON.stringify(data);
              
           <!--   <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/"> -->
             <!-- http://lorempixel.com/850/280/people/9/ -->
-             <img class="card-bkimg" alt="" src="<?php echo base_url('img/background.jpg');?>" alt="User profile picture">
+            
         </div>
         <div class="useravatar">
           <img class="card-bkimg" alt="" id="imm1g" src="" alt="User profile picture">
@@ -1018,9 +1045,9 @@ document.getElementById("addSportEdu").onclick = function()
 {
   var form     = document.getElementById("SportTicket");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='background-color: #d9edf7; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group'><label for='nameofsporteducation'>Name Of Sport Education :</label><input type='text' class='form-control' id='nameofsporteducation"+ window.sportsticket +"' placeholder='Name Of Sport Education'></div><div class='form-group'><label for='sport_inst_org'>Institution/Organisation Name :</label><input type='text' class='form-control' id='sport_inst_org"+ window.sportsticket +"' placeholder='Institution/Organisation Name'></div><div class='form-group'><label for='sport_stream_spel'>Stream /Specialisation:</label><input type='text' class='form-control' id='sport_stream_spel"+ window.sportsticket +"' placeholder='Stream /Specialisation'></div><div class='form-group'><label for='link'>Period</label><div></div><label for='from_period'>From</label><div class='input-group date' data-provide='datepicker'><input type='text' class='form-control' id='sport_from_date"+ window.sportsticket +"'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><label for='from_period'>To</label><div class='input-group date' data-provide='datepicker'><input type='text' id='sport_to_date"+ window.sportsticket +"' class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div></div>"; 
-    form.appendChild(newDiv);
-    window.sportsticket++;
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='nameofsporteducation"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='nameofsporteducation'><span class='input__label-content input__label-content--hoshi'>Name Of Sport Education</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_inst_org"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution/Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_stream_spel"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_stream_spel'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='sport_from_date"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='sport_to_date"+ window.sportsticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
+
+   form.appendChild(newDiv); window.sportsticket++;
 }
 
 document.getElementById("addSportFormal").onclick = function() 
@@ -1156,7 +1183,13 @@ saveUserProfile(totalftemp);
 
 });
 
+
+
 </script>
+
+
+            
+    
 <script>
       (function() {
         // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
@@ -1192,6 +1225,3 @@ saveUserProfile(totalftemp);
         }
       })();
     </script>
-
-            
-    
