@@ -432,9 +432,9 @@ var data = JSON.stringify(data);
     $prof_id = "<script>document.write(localStorage.getItem('prof_id'));</script>";
     // $response = echo "<script> localStorage.getItem('testObject'); </script>";
 
-     $response1=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
+     $response1=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id.'');
  
-       print_r($response1); 
+
 
      $pdata = json_decode($response1);
      
