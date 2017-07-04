@@ -466,7 +466,8 @@ $("#save").click(function()
                                         localStorage.setItem('userid',result.data.userid);
                                         localStorage.setItem('prof_id',result.data.prof_id);
 
-
+                                          alert(localStorage.getItem('prof_id'));
+                                          alert(localStorage.getItem('userid'));
 
 
 

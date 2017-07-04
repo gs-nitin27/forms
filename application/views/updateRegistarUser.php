@@ -435,7 +435,7 @@ var data = JSON.stringify(data);
      $response1=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
  
      $pdata = json_decode($response1);
-     //print_r($pdata);
+     print_r($pdata);
      $temp = 0;
      if($pdata)
      {
