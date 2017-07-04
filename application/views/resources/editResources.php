@@ -257,13 +257,13 @@ var data = eval(data1);//JSON.stringify(data1);
     </div>
           <div class="form-group">
           <label style="width:100%" for="exampleInputEmail1">Summary</label>
-          <textarea class="form-control" maxlength="360" name="summary" id="rsummary" value="<?php echo $value['summary']; ?>" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['summary']; ?></textarea>
+          <textarea class="form-control" maxlength="375" name="summary" id="rsummary" value="<?php echo $value['summary']; ?>" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['summary']; ?></textarea>
           <label id="summary_error" hidden="">A summary is required</label>
           </div>
           <div id="rem"></div>
           <script>
             document.getElementById('rsummary').onkeyup = function () {
-            document.getElementById('rem').innerHTML = "Characters left: " + (360 - this.value.length);
+            document.getElementById('rem').innerHTML = "Characters left: " + (375 - this.value.length);
                 };
           </script>
              <div class="form-group">
@@ -289,7 +289,7 @@ var data = eval(data1);//JSON.stringify(data1);
                    <div class="form-group" id="abc">
                    <label for="exampleInputEmail1">Description</label>
 
-                   <textarea class="ckeditor" maxlength="36" name="summary" id="rdescription" placeholder="Place some text here(Maximum 360 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['description']; ?></textarea>
+                   <textarea class="ckeditor" maxlength="36" name="summary" id="rdescription" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $value['description']; ?></textarea>
              <script>
                 var editor=CKEDITOR.replace('rdescription');
               </script>
