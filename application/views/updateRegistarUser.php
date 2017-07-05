@@ -800,9 +800,15 @@ var data = JSON.stringify(data);
            ?>
 
 
-           <div class="panel panel-primary">
+   <div class="panel panel-primary">
     <div class="panel-heading clearfix">
       <h4 class="panel-title pull-left" style="padding-top: 7.5px; font-weight: bold;font-size: 17px;">Sports Education</h4>
+       <div class="form-group"> 
+          <div class="box-header with-border">
+           <div id="SportTicket" >
+           </div>
+           </div>
+          </div>
       <div class="btn-group pull-right">
         <input type="button" id="addSportEdu" class="btn btn-danger btn1" value="Add Sport Education" />
       </div>
@@ -812,50 +818,41 @@ var data = JSON.stringify(data);
 
 
    
-           <div class="form-group"> 
-           <div class="box-header with-border">
-           
-           <div id="SportTicket" ></div>
-           
-           </div>
-          </div>
           
-           <div class="panel panel-primary">
-    <div class="panel-heading clearfix">
+          
+      <div class="panel panel-primary">
+      <div class="panel-heading clearfix">
       <h4 class="panel-title pull-left" style="padding-top: 7.5px; font-weight: bold;font-size: 17px;">Formal Education</h4>
-      <div class="btn-group pull-right">
-        <input type="button" id="addSportFormal" class="btn btn-danger btn1" value="Add Formal Education" />
+      <div class="form-group">
+      <div class="box-header with-border">
+      <div id="FormalEducation" ></div>
       </div>
-    </div>
-    </div>
+      </div>   
+      <div class="btn-group pull-right">
+      <input type="button" id="addSportFormal" class="btn btn-danger btn1" value="Add Formal Education" />
+      </div>
+      </div>
+      </div>
           
 
-          <div class="form-group">
-           <div class="box-header with-border">
           
-           <div id="FormalEducation" ></div>
-           
-           </div>
-           </div>
-               
           
-           <div class="panel panel-primary">
+    <div class="panel panel-primary">
     <div class="panel-heading clearfix">
-      <h4 class="panel-title pull-left" style="padding-top: 7.5px; font-weight: bold;font-size: 17px;">Certification</h4>
-      <div class="btn-group pull-right">
-        <input type="button" id="addothereducation" class="btn btn-danger btn1" value="Add Certification" />
-      </div>
+    <h4 class="panel-title pull-left" style="padding-top: 7.5px; font-weight: bold;font-size: 17px;">Certification</h4>
+    <div class="form-group">
+    <div class="box-header with-border">  
+    <div id="OtherEducation" ></div>
+    </div>
+    </div>
+    <div class="btn-group pull-right">
+    <input type="button" id="addothereducation" class="btn btn-danger btn1" value="Add Certification" />
+    </div>
     </div>
     </div>
 
 
-          <div class="form-group">
-           <div class="box-header with-border">
           
-           <div id="OtherEducation" ></div>
-           
-           </div>
-           </div>
 
              
              <?php 
