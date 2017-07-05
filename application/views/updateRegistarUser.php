@@ -294,36 +294,51 @@
     color: white;
     background-color: #ffc107;
     border-color: #ffc107;
+    outline-color: transparent;
 }
 .btn-primary:hover {
     color: #2bb1ee;
     background-color: #ffc107;
     border-color: #ffc107;
+    outline-color: transparent;
 }
 .btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
     color: white;
     background-color: #ffc107;
     border-color: #ffc107;
+    outline-color: transparent;
 }
 .btn-primary.focus,.btn-default:focus, .btn-primary:focus {
     color: white;
     background-color: #ffc107;
     border-color: #ffc107;
+    outline-color: transparent;
 }
 .btn-default.focus, .btn-default:focus {
     color: white;
     background-color: #ffc107;
     border-color: #ffc107;
+    outline-color: transparent;
 }
-.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover,.btn-default:active:hover .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
     color: white;
     background-color: #ffc107;
     border-color: #ffc107;
+    outline-color: transparent;
 }
   .btn-primary:active:focus {
     color: white;
     background-color: #ffc107;
     border-color: #ffc107;
+    outline-color: transparent;
+}
+.btn-default:active:hover{
+    color: #2bb1ee;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    outline-color: transparent;
+}
+
 }
 .navv{
   max-height: 70px;
@@ -406,7 +421,12 @@
 }
 .subbtn,.subbtn:active,.subbtn:focus,.subbtn:focus:active{
       background-color: #14b0f7;
+}
 
+@font-face { font-family: GillSans; src: url('../../../font/GillSans.ttf'); } 
+body{
+  font-family: 'Gillsans',sans-serif;
+}
 </style>
 
 
