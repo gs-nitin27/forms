@@ -330,9 +330,6 @@
     color: white;
     background-color: #ffc107;
     border-color: #ffc107;
-<<<<<<< HEAD
-} 
-=======
     outline-color: transparent;
 }
 .btn-default:active:hover{
@@ -342,8 +339,7 @@
     outline-color: transparent;
 }
 
-}
->>>>>>> c25477e2387b30c0f48a08acc3a9cdb41031977b
+
 .navv{
   max-height: 70px;
     background-color: #03a9f4;
@@ -600,9 +596,11 @@ var data = JSON.stringify(data);
      
      $pdata = json_decode($response1);
      
+
      echo "User Id".$userid;
-     echo "<br>Prof_id".$prof_id; 
-    
+     echo "<br>Prof_id".$prof_id."<br>";
+     print_r($pdata);
+     
 
      $temp = 0;
      if($pdata)
