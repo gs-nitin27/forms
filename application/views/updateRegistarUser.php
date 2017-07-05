@@ -324,7 +324,7 @@
     color: white;
     background-color: #ffc107;
     border-color: #ffc107;
-}
+} 
 .navv{
   max-height: 70px;
     background-color: #03a9f4;
@@ -576,8 +576,9 @@ var data = JSON.stringify(data);
      
      $pdata = json_decode($response1);
      
-     
-
+     echo "User Id".$userid;
+     echo "<br>Prof_id".$prof_id; 
+    
 
      $temp = 0;
      if($pdata)
