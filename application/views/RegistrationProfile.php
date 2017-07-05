@@ -1,6 +1,8 @@
  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
  <script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
  <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/datepicker/datepicker3.css'); ?>">
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datepicker/bootstrap-datepicker.js'); ?>"></script>
 
@@ -8,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/normalize.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('fonts/font-awesome-4.2.0/css/font-awesome.min.css'); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/demo.css'); ?>" />
-  
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/loder.css');?>">
     <script src="<?php echo base_url('js/classie.js');?>"></script>
 
  <script type="text/javascript">
@@ -449,53 +451,53 @@ var data = JSON.stringify(data);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-     alert(result);
-    //   if(result == '1')
-    //   {
-    //       // $("#imagelodar").hide();
-    //     $.confirm({
-    //     title: 'Congratulations!',
-    //     content: 'Module is Created.',
-    //     type: 'green',
-    //     typeAnimated: true,
-    //     buttons: {
-    //         tryAgain: {
-    //             text: 'Thank You !',
-    //             btnClass: 'btn-green',
-    //             action: function(){
-    //               $("#imagelodar").hide();
-    //              //window.location.href = url+"/forms/getContent?Content";
-    //             }
-    //         },
-    //         close: function () {
-    //           $("#imagelodar").hide();
-    //          //window.location.href = url+"/forms/getContent?Content";
-    //         }
-    //     }
-    // });
-    //   }
-    //   else
-    //   {
-    //          // $("#imagelodar").hide();
-    //          $.confirm({
-    //           title: 'Encountered an error!',
-    //           content: 'Something went Worng, this may be server issue.',
-    //           type: 'dark',
-    //           typeAnimated: true,
-    //           buttons: {
-    //               tryAgain: {
-    //                   text: 'Try again',
-    //                   btnClass: 'btn-dark',
-    //                   action: function(){
-    //                     $("#imagelodar").hide();
-    //                   }
-    //               },
-    //               close: function () {
-    //                 $("#imagelodar").hide();
-    //               }
-    //           }
-    //       });
-    //   }
+     //alert(result);
+      if(result == '1')
+      {
+         
+        $.confirm({
+        title: 'Congratulations!',
+        content: 'Profile is Updated.',
+        type: 'green',
+        typeAnimated: true,
+        buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                  $("#imagelodar").hide();
+                 //window.location.href = url+"/forms/getContent?Content";
+                }
+            },
+            close: function () {
+              $("#imagelodar").hide();
+             //window.location.href = url+"/forms/getContent?Content";
+            }
+        }
+    });
+      }
+      else
+      {
+             // $("#imagelodar").hide();
+             $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                        $("#imagelodar").hide();
+                      }
+                  },
+                  close: function () {
+                    $("#imagelodar").hide();
+                  }
+              }
+          });
+      }
     }
 });   
 }

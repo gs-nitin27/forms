@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/normalize.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('fonts/font-awesome-4.2.0/css/font-awesome.min.css'); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/demo.css'); ?>" />
-  
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/loder.css');?>">
     <script src="<?php echo base_url('js/classie.js');?>"></script>
  <script type="text/javascript">
    window.sportsticket = 0;

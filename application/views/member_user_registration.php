@@ -14,7 +14,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/reg.css'); ?>">
   </head>
- 
+ <link rel="stylesheet" href="<?php echo base_url('assets/css/loder.css');?>">
+
 <body style="background-color: #03a9f4">
  <div class="section"></div>
   <main>
@@ -140,6 +141,8 @@
                  text: 'Submit',
                  btnClass: 'btn-blue',
                  action: function(){
+
+                  
 
                  var data1 = {
                     "email"      : $("#username").val(),
@@ -394,7 +397,7 @@ $("#save").click(function()
      dataType: 'JSON',        
      success:function(result)
      {
-       alert(result.data);
+       //alert(result.data);
        if(result.data == 3 || result.data == 4)
        { 
             $.confirm({
@@ -465,8 +468,8 @@ $("#save").click(function()
                                         localStorage.setItem('userid',result.data.userid);
                                         localStorage.setItem('prof_id',result.data.prof_id);
 
-                                          alert(localStorage.getItem('prof_id'));
-                                          alert(localStorage.getItem('userid'));
+                                          //alert(localStorage.getItem('prof_id'));
+                                          //alert(localStorage.getItem('userid'));
 
 
 
