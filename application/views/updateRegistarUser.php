@@ -1004,23 +1004,6 @@ var data = JSON.stringify(data);
     </div>
     </div>
     </div>
-
-
- <!--    <div class="panel panel-primary">
-    <div class="panel-heading clearfix">
-
-    <div>
-      <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Work Experience</h4>
-      </div>
-      <div class="btn-group pull-right">
-        <input type="button" id="workexp" class="btn btn-danger btn1" value="Add Work Experience" />
-      </div>
-
-    </div>
-    </div>
- -->
-
-         
  <div class="panel panel-primary">
     <div class="panel-heading clearfix">
 
@@ -1051,16 +1034,12 @@ var data = JSON.stringify(data);
        if($arrayvalue1 == "HeaderDetails" || $arrayvalue1 == "user" || $arrayvalue1 == "profile")
        {
         ?>       
-        
         <?php 
               if(is_array($arrayvalue))
               {
-                
-
               }
               elseif (is_object($arrayvalue))
               {
-                
                  if($arrayvalue1 =="HeaderDetails")
                  {
                  ?>
@@ -1226,7 +1205,7 @@ var data = JSON.stringify(data);
         $(this).removeClass("btn-default").addClass("btn-primary");   
 });
 
-if(!$("#user_image").val())
+if($("#user_image").val())
 {
 $("#imm1g").attr('src',$("#user_image").val());
 }
