@@ -983,17 +983,37 @@ var data = JSON.stringify(data);
         {   
         }
    ?>
+
+          <div class="panel panel-primary">
+    <div class="panel-heading clearfix">
+      <h4 class="panel-title pull-left" style="padding-top: 7.5px; font-weight: bold;font-size: 17px;">Work Experience</h4>
+      <div class="btn-group pull-right">
+        <input type="button" id="workexp" class="btn btn-danger btn1" value="Add Work Experience" />
+      </div>
+    </div>
+    </div>
+
+
           <div class="form-group">
            <div class="box-header with-border">
-           <input type="button" id="workexp" class="btn btn-danger" value="Add Work Experience" />
+           
            <div id="workexpericence" ></div>
            
            </div>
            </div>
 
+
+  <div class="panel panel-primary">
+    <div class="panel-heading clearfix">
+      <h4 class="panel-title pull-left" style="padding-top: 7.5px; font-weight: bold;font-size: 17px;">Experience as a Player</h4>
+      <div class="btn-group pull-right">
+       <input type="button" id="asplayerexp" class="btn btn-danger btn1" value="Add Experience as player" />
+      </div>
+    </div>
+    </div>
            <div class="form-group">
            <div class="box-header with-border">
-            <input type="button" id="asplayerexp" class="btn btn-danger" value="Add Experience as player" />
+           
            <div id="playerexp" ></div>
           
            </div>
