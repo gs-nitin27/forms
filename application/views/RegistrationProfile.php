@@ -4,6 +4,13 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/datepicker/datepicker3.css'); ?>">
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datepicker/bootstrap-datepicker.js'); ?>"></script>
 
+<link rel="shortcut icon" href="<?php echo base_url('../favicon.ico');?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/normalize.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('fonts/font-awesome-4.2.0/css/font-awesome.min.css'); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/demo.css'); ?>" />
+  
+    <script src="<?php echo base_url('js/classie.js');?>"></script>
+
  <script type="text/javascript">
    window.sportsticket = 0;
    window.formalticket = 0;
@@ -13,7 +20,7 @@
  </script>
 <style type="text/css">
  .card {
-    margin-top: 20px;
+    margin-top: 20px; 
     padding: 30px;
     background-color: rgba(214, 224, 226, 0.2);
     -webkit-border-top-left-radius:5px;
@@ -33,9 +40,11 @@
     text-align: center;
     background-color: #fff;
     background-color: rgba(255, 255, 255, 1);
+       background-color: #efefef;
 }
 .card.hovercard .card-background {
     height: 130px;
+
 }
 .card-background img {
     -webkit-filter: blur(25px);
@@ -101,8 +110,325 @@
 .btn-pref .btn {
     -webkit-border-radius:0 !important;
 }
-</style>
+.input {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin: 5px;
+  width: calc(100% - 2em);
+  vertical-align: top;
+}
 
+.input__field {
+  position: relative;
+  display: block;
+  float: right;
+  padding: 0.8em;
+  width: 60%;
+  border: none;
+  border-radius: 0;
+  background: #f0f0f0;
+  color: #aaa;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-appearance: none; /* for box shadows to show on iOS */
+}
+
+.input__field:focus {
+  outline: none;
+}
+
+.input__label {
+  display: inline-block;
+  float: right;
+  padding: 0 1em;
+  width: 40%;
+  color: #717070;
+  font-weight: 100;
+  font-size: 70.25%;
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 14px;
+}
+
+.input__label-content {
+  position: relative;
+  display: block;
+  padding: 1.6em 0;
+  width: 100%;
+}
+
+.graphic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: none;
+}
+
+.icon {
+  color: #ddd;
+  font-size: 150%;
+}
+/* Hoshi */
+.input--hoshi {
+  overflow: hidden;
+ 
+}
+
+.input__field--hoshi {
+  margin-top: 1em;
+  padding: 0.85em 0.15em;
+  width: 100%;   
+  background: transparent;
+  color: #312a2a;
+   font-size: 19.5px;
+}
+
+.input__label--hoshi {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0 0.25em;
+  width: 100%;
+  height: calc(100% - 1em);
+  text-align: left;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+.input__label-content--hoshi {
+  position: absolute;
+}
+
+.input__label--hoshi::before,
+.input__label--hoshi::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 10px);
+  border-bottom: 1px solid #B9C1CA;
+}
+
+.input__label--hoshi::after {
+  
+  border-bottom: 1px solid red;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.input__label--hoshi-color-1::after {
+  border-color: #5f5d5d;
+}
+
+
+.input__field--hoshi:focus + .input__label--hoshi::after,
+.input--filled .input__label--hoshi::after {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+}
+
+.input__field--hoshi:focus + .input__label--hoshi .input__label-content--hoshi,
+.input--filled .input__label-content--hoshi {
+  -webkit-animation: anim-1 0.3s forwards;
+  animation: anim-1 0.3s forwards;
+}
+
+@-webkit-keyframes anim-1 {
+  50% {
+    opacity: 0;
+    -webkit-transform: translate3d(1em, 0, 0);
+    transform: translate3d(1em, 0, 0);
+  }
+  51% {
+    opacity: 0;
+    -webkit-transform: translate3d(-1em, -40%, 0);
+    transform: translate3d(-1em, -40%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -40%, 0);
+    transform: translate3d(0, -40%, 0);
+  }
+}
+
+@keyframes anim-1 {
+  50% {
+    opacity: 0;
+    -webkit-transform: translate3d(1em, 0, 0);
+    transform: translate3d(1em, 0, 0);
+  }
+  51% {
+    opacity: 0;
+    -webkit-transform: translate3d(-1em, -40%, 0);
+    transform: translate3d(-1em, -40%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -40%, 0);
+    transform: translate3d(0, -40%, 0);
+  }
+}
+.btn-default {
+    color: white;
+    background-color: #2bb1ee;
+    border-color: #efefef;
+}
+.btn-default:hover{
+  color: white;
+    background-color: #2bb1ee;
+    border-color: #efefef;
+}
+
+
+
+.btn-primary {
+    color: white;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    outline-color: transparent;
+}
+.btn-primary:hover {
+    color: #2bb1ee;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    outline-color: transparent;
+}
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
+    color: white;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    outline-color: transparent;
+}
+.btn-primary.focus,.btn-default:focus, .btn-primary:focus {
+    color: white;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    outline-color: transparent;
+}
+.btn-default.focus, .btn-default:focus {
+    color: white;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    outline-color: transparent;
+}
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover,.btn-default:active:hover .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
+    color: white;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    outline-color: transparent;
+}
+  .btn-primary:active:focus {
+    color: white;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    outline-color: transparent;
+}
+.btn-default:active:hover{
+    color: #2bb1ee;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    outline-color: transparent;
+}
+
+
+.navv{
+  max-height: 70px;
+    background-color: #03a9f4;
+    padding-bottom: 18px;
+    border-radius: 0px;
+    webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    color: #fff;
+  
+    margin-bottom: 0px;
+}
+.navbar-nav{
+  list-style: none;
+}
+.ulclass{
+      float: right;
+    list-style: none;
+    padding-top: 10px;
+    padding-right: 25px;
+}
+.liclass{
+  font-size: 18px;
+    color: #fff;
+    -webkit-transition: .35s;
+    transition: .35s;
+    padding-right: 20px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+   
+    background: transparent !important ;
+}
+.liclass:hover, .liclass:focus{
+  color:#333;
+}
+.liclass:active,.licalss:visited{
+  color:white;
+}
+
+@media (max-width: 768px){
+.navbar-nav>li>a {
+    padding-top: 0px;
+    
+}
+}
+.box-footer{
+  margin-bottom: 30px;
+}
+.panel{
+  border-radius: 2px;
+}
+.btn1,.btn1:active,.btn1:focus,.btn1:focus:active{
+      background-color: #f1bc1d;;
+    border-radius: 2px;
+    border-color: #f1bc1d;;
+}
+.btn1:hover{
+      background-color: #ffc107;
+    border-radius: 2px;
+    border-color: #ffc107;
+}
+.panel-primary {
+    border-color: #03a9f4;
+}
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: #03a9f4;
+    border-color: #03a9f4;
+}
+.subbtn{
+      background-color: #03a9f4;
+    color: white;
+    padding: 7px 16px;
+    border-radius: 5px;
+}
+.subbtn,.subbtn:active,.subbtn:focus,.subbtn:focus:active{
+      background-color: #14b0f7;
+}
+
+@font-face { font-family: GillSans; src: url('../../../font/GillSans.ttf'); } 
+body{
+  font-family: 'Gillsans',sans-serif;
+}
+</style>
 
 <script>
 
@@ -183,8 +509,35 @@ var data = JSON.stringify(data);
 
       // print_r($value);
       ?>
+
+      <header>
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-dark navbar-fixed-top scrolling-navbar double-nav navv">
+            <!-- Breadcrumb-->
+            <ul class="navbar-nav mr-auto">
+                <li class="">
+                       <a class="nav-link navbar-brand" href="#bdy">
+                            <div class="hj-logo"><img src="../../../img/logo.png" style="    max-width: 180px;"></div>
+                        </a>
+                </li>                                
+            </ul>       
+            <ul class="nav navbar-nav ml-auto flex-row ulclass">
+                <li class="nav-item">
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>">Logout</a>
+                </li>                              
+            </ul>
+            <ul class="nav navbar-nav ml-auto flex-row ulclass">
+                <li class="nav-item">
+                    <a id="link-2" class="nav-link liclass" href="http://getsporty.in/">Home</a>
+                </li>                          
+            </ul>
+        </nav>
+        <!-- /.Navbar -->
+    </header>
+
+
 <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
-<div class="wrapper">
+<div class="wrapper" style="background-color: #efefef; margin-top: 50px;">
 <div class="content-wrapper">
 <div class="container">
 <div class="row">
@@ -245,35 +598,63 @@ var data = JSON.stringify(data);
           <div class="box box-primary" style="margin-top:5%;">
           <div class="box-body box-profile">
           <input type="hidden" name="userid" id="uid" value="<?php echo $value['userid']; ?>">
-           <div class="form-group"> 
-           <div class="box-header with-border">
-           <div id="SportTicket" ></div>
-           <input type="button" id="addSportEdu" class="btn btn-danger" value="Add Sport Education" />
-           </div>
-          </div>
+
+           <div class="panel panel-primary">
+              <div class="panel-heading clearfix">
+
+              <div>
+                <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Sports Education</h4>
+                </div>
+                 <div> 
+                    <div class="box-header with-border">
+                     <div id="SportTicket" >
+                     </div>
+                     </div>
+                    </div>
+                <div class="btn-group pull-right">
+                  <input type="button" id="addSportEdu" class="btn btn-danger btn1" value="Add Sport Education" />
+                </div>
+              </div>
+    </div>
           
           
 
-          <div class="form-group">
-           <div class="box-header with-border">
-           <div id="FormalEducation" ></div>
-           <input type="button" id="addSportFormal" class="btn btn-danger" value="Add Formal Education" />
-           </div>
-           </div>
+               
+      <div class="panel panel-primary">
+      <div class="panel-heading clearfix">
+      <div>
+      <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Formal Education</h4>
+      </div>
+      <div>
+      <div class="box-header with-border">
+      <div id="FormalEducation" ></div>
+      </div>
+      </div>   
+      <div class="btn-group pull-right">
+      <input type="button" id="addSportFormal" class="btn btn-danger btn1" value="Add Formal Education" />
+      </div>
+      </div>
+      </div>
+               
                
           
           
 
-
-          <div class="form-group">
-           <div class="box-header with-border">
-           <div id="OtherEducation" ></div>
-           <input type="button" id="addothereducation" class="btn btn-danger" value="Add Certification" />
-           </div>
-           </div>
-               
-          
-          
+ <div class="panel panel-primary">
+    <div class="panel-heading clearfix">
+    <div>
+    <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Certification</h4>
+    </div>
+    <div>
+    <div class="box-header with-border">  
+    <div id="OtherEducation" ></div>
+    </div>
+    </div>
+    <div class="btn-group pull-right">
+    <input type="button" id="addothereducation" class="btn btn-danger btn1" value="Add Certification" />
+    </div>
+    </div>
+    </div>
 
 
 
@@ -294,20 +675,34 @@ var data = JSON.stringify(data);
             <div class="box-header with-border">
           
 
+  <div class="panel panel-primary">
+    <div class="panel-heading clearfix">
 
-          <div class="form-group">
-           <div class="box-header with-border">
-           <div id="workexpericence" ></div>
-           <input type="button" id="workexp" class="btn btn-danger" value="Add Work Experience" />
-           </div>
-           </div>
+    <div>
+      <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Work Experience</h4>
+      </div>
+      <div id="workexpericence"></div>
+      <div class="btn-group pull-right">
+        <input type="button" id="workexp" class="btn btn-danger btn1" value="Add Work Experience" />
+      </div>
 
-           <div class="form-group">
-           <div class="box-header with-border">
-           <div id="playerexp" ></div>
-           <input type="button" id="asplayerexp" class="btn btn-danger" value="Add Experience as player" />
-           </div>
-           </div>
+    </div>
+    </div>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading clearfix">
+
+    <div>
+      <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Experience as a Player</h4>
+
+      </div>
+      <div id="playerexp"></div>
+      <div class="btn-group pull-right">
+       <input type="button" id="asplayerexp" class="btn btn-danger btn1" value="Add Experience as player" />
+      </div>
+    </div>
+    </div>
+           
             
          
           </div>
@@ -322,62 +717,91 @@ var data = JSON.stringify(data);
         <div class="col-md-12">
         <div class="box box-primary" style="margin-top:5%;">
         <div class="box-header with-border">
+        <div class='box-body'  style='background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
 
-        <div class="form-group">
-        <label for="dob">Date Of Birth</label>
-        <input type="text" class="form-control" name="dob" id="dob" value="<?php echo $value['dob'];?>" placeholder="Date Of Birth" disabled>
+        <div>
+          <span class="input input--hoshi">
+        
+        <input type="text" class='input__field input__field--hoshi' name="dob" id="dob" value="<?php echo $value['dob'];?>" disabled>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="dob"><span class="input__label-content input__label-content--hoshi">Date Of Birth</span></label>
+        </span>
         </div>
          
 
-        <div class="form-group">
-        <label for="prof_language">Language Known</label>
-        <input type="text" class="form-control" name="prof_language" id="prof_language" value="<?php echo $value['prof_language'];?>"  placeholder="Language Known">
+        <div>
+          <span class="input input--hoshi">
+        
+        <input type="text" class='input__field input__field--hoshi' name="prof_language" id="prof_language" value="<?php echo $value['prof_language'];?>"  >
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="prof_language"><span class="input__label-content input__label-content--hoshi">Language Known</span></label>
+        </span>
         </div>
 
-        <div class="form-group">
-        <label for="exampleInputEmail1">Age Group Coach</label>
-        <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link">
+        <div>
+          <span class="input input--hoshi">
+       
+        <input type="text" class='input__field input__field--hoshi' name="rurl" id="rurl" >
+         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="exampleInputEmail1"><span class="input__label-content input__label-content--hoshi">Age Group Coach</span></label>
+        </span>
         </div>
 
-        <div class="form-group">
-        <label for="prof_name">Profession</label>
-        <input type="text" class="form-control" name="prof_name" id="prof_name" value="<?php echo $value['prof_name'];?>" disabled>
+        <div>
+          <span class="input input--hoshi">
+        
+        <input type="text" class='input__field input__field--hoshi' name="prof_name" id="prof_name" value="<?php echo $value['prof_name'];?>" disabled>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="prof_name"><span class="input__label-content input__label-content--hoshi">Profession</span></label>
+        </span>
         </div>
-        <div class="form-group">
-        <label for="sport">Sport</label>
-        <input type="text" class="form-control" name="sport" id="sport" value="<?php echo $value['sport'];?>" placeholder="sport" disabled>
+        <div>
+          <span class="input input--hoshi">
+        
+        <input type="text" class='input__field input__field--hoshi' name="sport" id="sport" value="<?php echo $value['sport'];?>"  disabled>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="sport"><span class="input__label-content input__label-content--hoshi">Sport</span></label>
+        </span>
         </div>
-        <div class="form-group">
-        <label for="gender">Gender</label>
-        <input type="text" class="form-control" name="gender" id="gender" value="<?php echo $value['gender'];?>" placeholder="Gender" disabled>
+        <div>
+          <span class="input input--hoshi">
+       
+        <input type="text" class='input__field input__field--hoshi' name="gender" id="gender" value="<?php echo $value['gender'];?>"  disabled>
+         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="gender"><span class="input__label-content input__label-content--hoshi">Gender</span></label>
+        </span>
         </div>
-        <div class="form-group">
-        <label for="exampleInputEmail1">Link to personal Website</label>
-        <input type="text" class="form-control" name="rurl" id="rurl" placeholder="Enter Link">
-        </div>
-
-
-        <div class="box box-default">
-        <div class="box-body box-profile">
-        <div class="form-group">
-        <label for="academy_name">Academy / Business Name</label>
-        <input type="text" class="form-control" name="academy_name" id="academy_name" placeholder="Academy / Business Name">
-        </div>
-        <div class="form-group">
-        <label for="location">Location</label>
-        <input type="text" class="form-control" name="Location" id="location" placeholder="Location">
-        </div>
-        <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" class="form-control" name="Description" id="description" placeholder="Description">
-        <input type="hidden" class="form-control" name="Prof" id="prof_name" value="<?php echo $value['prof_name'];?>">
-        </div>
-        </div>
+        <div>
+          <span class="input input--hoshi">
+       
+        <input type="text" class='input__field input__field--hoshi' name="rurl" id="rurl" >
+         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="exampleInputEmail1"><span class="input__label-content input__label-content--hoshi">Link to personal Website</span></label>
+        </span>
         </div>
 
 
+        <div>
+          <span class="input input--hoshi">
+        
+        <input type="text" class='input__field input__field--hoshi' name="academy_name" id="academy_name" >
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="academy_name"><span class="input__label-content input__label-content--hoshi">Academy / Business Name</span></label>
+        </span>
+        </div>
+        <div>
+          <span class="input input--hoshi">
+       
+        <input type="text" class='input__field input__field--hoshi' name="Location" id="location" >
+         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Location</span></label>
+        </span>
+        </div>
+        <div>
+          <span class="input input--hoshi">
+       
+        <input type="text" class='input__field input__field--hoshi' name="Description" id="description" >
+        <input type="hidden" class='input__field input__field--hoshi' name="Prof" id="prof_name" value="<?php echo $value['prof_name'];?>">
+         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="description"><span class="input__label-content input__label-content--hoshi">Description</span></label>
+        </span>
+        </div>
+        
 
 
+
+
+        </div>
         </div>
         </div>
         </div>
@@ -410,7 +834,7 @@ document.getElementById("addSportEdu").onclick = function()
 {
   var form     = document.getElementById("SportTicket");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='background-color: #d9edf7; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group'><label for='nameofsporteducation'>Name Of Sport Education :</label><input type='text' class='form-control' id='nameofsporteducation"+ window.sportsticket +"' placeholder='Name Of Sport Education'></div><div class='form-group'><label for='sport_inst_org'>Institution/Organisation Name :</label><input type='text' class='form-control' id='sport_inst_org"+ window.sportsticket +"' placeholder='Institution/Organisation Name'></div><div class='form-group'><label for='sport_stream_spel'>Stream /Specialisation:</label><input type='text' class='form-control' id='sport_stream_spel"+ window.sportsticket +"' placeholder='Stream /Specialisation'></div><div class='form-group'><label for='link'>Period</label><div></div><label for='from_period'>From</label><div class='input-group date' data-provide='datepicker'><input type='text' class='form-control' id='sport_from_date"+ window.sportsticket +"'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><label for='from_period'>To</label><div class='input-group date' data-provide='datepicker'><input type='text' id='sport_to_date"+ window.sportsticket +"' class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='nameofsporteducation"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='nameofsporteducation'><span class='input__label-content input__label-content--hoshi'>Name Of Sport Education</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_inst_org"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution/Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_stream_spel"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_stream_spel'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='sport_from_date"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='sport_to_date"+ window.sportsticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
     form.appendChild(newDiv);
     window.sportsticket++;
 }
@@ -419,7 +843,7 @@ document.getElementById("addSportFormal").onclick = function()
 {
   var form     = document.getElementById("FormalEducation");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='background-color: #d9edf7; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group'><label for='formal_education'>Name of Formal Education :</label><input type='text' class='form-control' id='formal_education"+ window.formalticket +"' placeholder='Name of Formal Education'></div><div class='form-group'><label for='formal_inst_org'>Institution / Organisation Name :</label><input type='text' class='form-control' id='formal_inst_org"+ window.formalticket +"' placeholder='Institution / Organisation Name'></div>  <label for='formal_stream'>Stream / Specialisation:</label><input type='text' class='form-control' id='formal_stream"+ window.formalticket +"' placeholder='Stream / Specialisation'><div class='form-group'><label for='link'>Period</label><div></div><label for='from_period'>From</label><div class='input-group date' data-provide='datepicker'><input type='text' id='formal_from_date"+ window.formalticket +"' class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><label for='from_period'>To</label><div class='input-group date' data-provide='datepicker'><input type='text'id='formal_to_date"+ window.formalticket +"' class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='formal_education"+  window.formalticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='formal_education'><span class='input__label-content input__label-content--hoshi'>Name of Formal Education</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='formal_inst_org"+ window.formalticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='formal_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution / Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='formal_stream"+ window.formalticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='formal_stream'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='formal_from_date"+ window.formalticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='formal_to_date"+  window.formalticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
     form.appendChild(newDiv);
     window.formalticket++;
 }
@@ -428,7 +852,7 @@ document.getElementById("addothereducation").onclick = function()
 {
   var form     = document.getElementById("OtherEducation");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='background-color: #d9edf7; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group'><label for='certi_name'>Name of Certificate :</label><input type='text' class='form-control' id='certi_name"+ window.ohterticket +"' placeholder='Name of Certificate'></div><div class='form-group'><label for='certi_inst_org'>Institution / Organisation Name  :</label><input type='text' class='form-control' id='certi_inst_org"+ window.ohterticket +"' placeholder='Institution / Organisation Name'></div>  <label for='certi_stream'>Stream / Specialisation:</label><input type='text' class='form-control' id='certi_stream"+ window.ohterticket +"' placeholder='Stream / Specialisation'><label for='link'>Period</label><div></div><label for='from_period'>From</label><div class='input-group date' data-provide='datepicker'><input type='text' id='certi_from_date"+ window.ohterticket +"' class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><label for='from_period'>To</label><div class='input-group date' data-provide='datepicker'><input type='text' id='certi_to_date"+ window.ohterticket +"' class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='certi_name"+  window.ohterticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='certi_name'><span class='input__label-content input__label-content--hoshi'>Name of Certificate</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='certi_inst_org"+ window.ohterticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='certi_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution / Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='certi_stream"+window.ohterticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='certi_stream'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='certi_from_date"+ window.ohterticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='certi_to_date"+ window.ohterticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
     form.appendChild(newDiv);
     window.ohterticket++;
 }
@@ -445,7 +869,7 @@ document.getElementById("workexp").onclick = function()
 {
   var form     = document.getElementById("workexpericence");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='background-color: #d9edf7; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group'><label for='work_exp_name'>Designation :</label><input type='text' class='form-control' id='work_exp_name"+ window.workexpticket +"' placeholder='Designation'></div><div class='form-group'><label for='work_exp_inst_org'>Institution / Organisation Name :</label><input type='text' class='form-control' id='work_exp_inst_org"+ window.workexpticket +"' placeholder='Institution / Organisation Name'></div>  <label for='work_exp_desc'>Description:</label><input type='text' class='form-control' id='work_exp_desc"+ window.workexpticket +"' placeholder='Description'><label for='link'>Period</label><div></div><label for='from_period'>From</label><div class='input-group date' data-provide='datepicker'><input type='text' id='work_from_date"+ window.workexpticket +"' class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><label for='from_period'>To</label><div class='input-group date' data-provide='datepicker'><input type='text' id='work_to_date"+ window.workexpticket +"' class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='work_exp_name"+ window.workexpticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='work_exp_inst_org'><span class='input__label-content input__label-content--hoshi'>Designation</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='work_exp_inst_org"+ window.workexpticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='work_exp_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution / Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='work_exp_desc"+ window.workexpticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='work_exp_desc'><span class='input__label-content input__label-content--hoshi'>Description</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='work_from_date"+ window.workexpticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='work_to_date"+ window.workexpticket +"'  class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
     form.appendChild(newDiv);
     window.workexpticket++;
 }
@@ -453,7 +877,7 @@ document.getElementById("asplayerexp").onclick = function()
 {
   var form     = document.getElementById("playerexp");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='background-color: #d9edf7; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group'><label for='asplayer_name'>Designation :</label><input type='text' class='form-control' id='exp_asplayer_name"+ window.asplayerticket +"' placeholder='Designation'></div><div class='form-group'><label for='exp_asplayer_inst_org'>Institution / Organisation Name </label><input type='text' class='form-control' id='exp_asplayer_inst_org"+ window.asplayerticket +"' placeholder='Institution / Organisation Name'></div>  <label for='exp_asplayer_desc'>Description:</label><input type='text' class='form-control' id='exp_asplayer_desc"+ window.asplayerticket +"' placeholder='Description'><div class='form-group'><label for='link'>Period</label><div></div><label for='from_period'>From</label><div class='input-group date' data-provide='datepicker'><input type='text' id='exp_asplayer_from_date"+ window.asplayerticket +"' class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><label for='from_period'>To</label><div class='input-group date' data-provide='datepicker'><input type='text' id='exp_asplayer_to_date"+ window.asplayerticket +"' class='form-control'><div class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_name"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='asplayer_name'><span class='input__label-content input__label-content--hoshi'>Designation</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_inst_org"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='exp_asplayer_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution / Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_desc"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='exp_asplayer_desc'><span class='input__label-content input__label-content--hoshi'>Description</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='exp_asplayer_from_date"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_to_date"+ window.asplayerticket +"'  class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
     form.appendChild(newDiv);
     window.asplayerticket++;
 }
@@ -552,5 +976,40 @@ saveUserProfile(totalftemp);
 
 </script>
 
-            
+                
+<script>
+      (function() {
+        // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+        if (!String.prototype.trim) {
+          (function() {
+            // Make sure we trim BOM and NBSP
+            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+            String.prototype.trim = function() {
+              return this.replace(rtrim, '');
+            };
+          })();
+        }
+
+        [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+          // in case the input is already filled..
+          if( inputEl.value.trim() !== '' ) {
+            classie.add( inputEl.parentNode, 'input--filled' );
+          }
+
+          // events:
+          inputEl.addEventListener( 'focus', onInputFocus );
+          inputEl.addEventListener( 'blur', onInputBlur );
+        } );
+
+        function onInputFocus( ev ) {
+          classie.add( ev.target.parentNode, 'input--filled' );
+        }
+
+        function onInputBlur( ev ) {
+          if( ev.target.value.trim() === '' ) {
+            classie.remove( ev.target.parentNode, 'input--filled' );
+          }
+        }
+      })();
+    </script>
     
