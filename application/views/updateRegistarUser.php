@@ -1,6 +1,8 @@
  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
  <script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
  <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/datepicker/datepicker3.css'); ?>">
 
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datepicker/bootstrap-datepicker.js'); ?>"></script>
@@ -990,36 +992,37 @@ var data = JSON.stringify(data);
         }
    ?>
 
-    <div class="panel panel-primary">
-    <div class="panel-heading clearfix">
 
+ <div class="panel panel-primary">
+    <div class="panel-heading clearfix">
     <div>
       <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Work Experience</h4>
       </div>
-      <div class="btn-group pull-right">
-        <input type="button" id="workexp" class="btn btn-danger btn1" value="Add Work Experience" />
-      </div>
-
+    <div class="box-header with-border">
+    <div id="workexpericence" ></div>
+    </div>
+    <div class="btn-group pull-right">
+    <input type="button" id="workexp" class="btn btn-danger btn1" value="Add Work Experience" />
     </div>
     </div>
-
-
-         
-
-
-  <div class="panel panel-primary">
+    </div>
+ <div class="panel panel-primary">
     <div class="panel-heading clearfix">
 
-    <div>
+      <div>
       <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Experience as a Player</h4>
-
       </div>
+
+      <!-- <div class="form-group"> -->
+      <div class="box-header with-border">
+      <div id="playerexp" ></div>
+      </div>
+    <!--   </div> -->
       <div class="btn-group pull-right">
        <input type="button" id="asplayerexp" class="btn btn-danger btn1" value="Add Experience as player" />
       </div>
     </div>
     </div>
-           
           </div>
          </div>
          </div>
@@ -1033,16 +1036,12 @@ var data = JSON.stringify(data);
        if($arrayvalue1 == "HeaderDetails" || $arrayvalue1 == "user" || $arrayvalue1 == "profile")
        {
         ?>       
-        
         <?php 
               if(is_array($arrayvalue))
               {
-                
-
               }
               elseif (is_object($arrayvalue))
               {
-                
                  if($arrayvalue1 =="HeaderDetails")
                  {
                  ?>
@@ -1208,7 +1207,7 @@ var data = JSON.stringify(data);
         $(this).removeClass("btn-default").addClass("btn-primary");   
 });
 
-if(!$("#user_image").val())
+if($("#user_image").val())
 {
 $("#imm1g").attr('src',$("#user_image").val());
 }
