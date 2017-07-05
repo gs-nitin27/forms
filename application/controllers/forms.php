@@ -112,6 +112,9 @@ public function editRegiterUser()
   // print_r($res);die;
    if($res != 0)
    {
+         $this->session->set_userdata('item',$res);
+         $sessdata = $this->session->userdata('item');
+         
      echo json_encode($data = array("data" => $res));
    }
    else

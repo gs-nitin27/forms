@@ -14,7 +14,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/reg.css'); ?>">
   </head>
-
+ 
 <body style="background-color: #03a9f4">
  <div class="section"></div>
   <main>
@@ -128,7 +128,6 @@
   function register()
   {
    $.confirm({
-
         title: 'Sign In',
         boxWidth: '33%',
         useBootstrap: false,
