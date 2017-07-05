@@ -517,7 +517,7 @@ var data = JSON.stringify(data);
             </ul>       
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="#about">Home</a>
+                    <a id="link-2" class="nav-link liclass" href="http://getsporty.in/">Home</a>
                 </li>
                                                 
             </ul>
@@ -579,21 +579,24 @@ var data = JSON.stringify(data);
 
 
 <?php 
-    //$userid1 = 18;  $prof_id1 = 2;
+    $userid1 = 2;  $prof_id1 = 2;
 
-    $userid = "<script>document.write(localStorage.getItem('userid'));</script>";
-    $prof_id = "<script>document.write(localStorage.getItem('prof_id'));</script>";
+    // $userid = "<script>document.write(localStorage.getItem('userid'));</script>";
+    // $prof_id = "<script>document.write(localStorage.getItem('prof_id'));</script>";
     // $response = echo "<script> localStorage.getItem('testObject'); </script>";
 
-     $response1=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id.'');
+    $data=$this->session->userdata('item');  
+
+    $userid = $data['userid'];
+    $prof_id = $data['prof_id'];
+
+     $response1=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
  
 
-
+     
      $pdata = json_decode($response1);
      
-     print_r($prof_id);
-     echo "<br>";
-     print_r($userid);
+     
 
 
      $temp = 0;
