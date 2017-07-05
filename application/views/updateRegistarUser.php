@@ -457,7 +457,7 @@ var data = JSON.stringify(data);
           // $("#imagelodar").hide();
         $.confirm({
         title: 'Congratulations!',
-        content: 'Module is Created.',
+        content: 'Profile is Updated.',
         type: 'green',
         typeAnimated: true,
         buttons: {
@@ -466,12 +466,11 @@ var data = JSON.stringify(data);
                 btnClass: 'btn-green',
                 action: function(){
                   $("#imagelodar").hide();
-                 //window.location.href = url+"/forms/getContent?Content";
+                 
                 }
             },
             close: function () {
               $("#imagelodar").hide();
-             //window.location.href = url+"/forms/getContent?Content";
             }
         }
     });
