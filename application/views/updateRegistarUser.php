@@ -500,14 +500,10 @@ var data = JSON.stringify(data);
 });   
 }
 </script>  
-
-
 <header>
-
         <!-- Navbar -->
         <nav class="navbar fixed-top navbar-toggleable-md navbar-dark navbar-fixed-top scrolling-navbar double-nav navv">
             <!-- Breadcrumb-->
-  
             <ul class="navbar-nav mr-auto">
                 <li class="">
                        <a class="nav-link navbar-brand" href="#bdy">
@@ -518,50 +514,36 @@ var data = JSON.stringify(data);
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
                     <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>">Logout</a>
-                </li>
-                                                
+                </li>                              
             </ul>
-
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
                     <a id="link-2" class="nav-link liclass" href="http://getsporty.in/">Home</a>
-                </li>
-                                                
+                </li>                          
             </ul>
-        
         </nav>
-
         <!-- /.Navbar -->
     </header>
-
-
 <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
 <div class="wrapper" style="background-color: #efefef; margin-top: 50px;">
 <div class="content-wrapper">
 <div class="container">
 <div class="row">
 <div class="col-lg-11 col-sm-11">
-    <div class="card hovercard">
-        <div class="card-background">
-
-             
+<div class="card hovercard">
+<div class="card-background">
           <!--   <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/"> -->
             <!-- http://lorempixel.com/850/280/people/9/ -->
-            
-        </div>
-        <div class="useravatar">
-          <img class="card-bkimg" alt="" id="imm1g" src="" alt="User profile picture">
-        </div>
-
-        <div class="card-info" style="margin-bottom: 10px;"><span class="card-title" id="uname"></span></div>
-         <div class="card-name" ><span  id="uprof"><b></b></span></div>
-    </div>
-
-
-    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
-        <div class="btn-group" role="group">
-            <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab" style="height:48px;">
-                <div>Education</div>
+</div>
+<div class="useravatar">
+<img class="card-bkimg" alt="" id="imm1g" src="" alt="User profile picture">
+</div>
+<div class="card-info" style="margin-bottom: 10px;"><span class="card-title" id="uname"></span></div>
+<div class="card-name" ><span  id="uprof"><b></b></span></div></div>
+<div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+<div class="btn-group" role="group">
+<button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab" style="height:48px;">
+         <div>Education</div>
             </button>
         </div>
         
@@ -800,8 +782,9 @@ var data = JSON.stringify(data);
            ?>
 
 
-   <div class="panel panel-primary">
+    <div class="panel panel-primary">
     <div class="panel-heading clearfix">
+
     <div>
       <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Sports Education</h4>
       </div>
@@ -837,9 +820,7 @@ var data = JSON.stringify(data);
       </div>
       </div>
       </div>
-          
-
-          
+               
           
     <div class="panel panel-primary">
     <div class="panel-heading clearfix">
@@ -1009,44 +990,36 @@ var data = JSON.stringify(data);
         }
    ?>
 
-          <div class="panel panel-primary">
+    <div class="panel panel-primary">
     <div class="panel-heading clearfix">
+
     <div>
       <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Work Experience</h4>
       </div>
       <div class="btn-group pull-right">
         <input type="button" id="workexp" class="btn btn-danger btn1" value="Add Work Experience" />
       </div>
+
     </div>
     </div>
 
 
-          <div class="form-group">
-           <div class="box-header with-border">
-           
-           <div id="workexpericence" ></div>
-           
-           </div>
-           </div>
+         
 
 
   <div class="panel panel-primary">
     <div class="panel-heading clearfix">
+
     <div>
       <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Experience as a Player</h4>
+
       </div>
       <div class="btn-group pull-right">
        <input type="button" id="asplayerexp" class="btn btn-danger btn1" value="Add Experience as player" />
       </div>
     </div>
     </div>
-           <div class="form-group">
-           <div class="box-header with-border">
            
-           <div id="playerexp" ></div>
-          
-           </div>
-           </div>
           </div>
          </div>
          </div>
