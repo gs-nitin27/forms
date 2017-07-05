@@ -497,7 +497,7 @@ var data = JSON.stringify(data);
             </ul>       
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="#about">Home</a>
+                    <a id="link-2" class="nav-link liclass" href="http://getsporty.in/">Home</a>
                 </li>
                                                 
             </ul>
