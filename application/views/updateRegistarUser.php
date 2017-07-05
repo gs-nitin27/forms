@@ -517,6 +517,13 @@ var data = JSON.stringify(data);
             </ul>       
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>">Logout</a>
+                </li>
+                                                
+            </ul>
+
+            <ul class="nav navbar-nav ml-auto flex-row ulclass">
+                <li class="nav-item">
                     <a id="link-2" class="nav-link liclass" href="http://getsporty.in/">Home</a>
                 </li>
                                                 

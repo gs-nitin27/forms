@@ -114,7 +114,7 @@ public function editRegiterUser()
    {
          $this->session->set_userdata('item',$res);
          $sessdata = $this->session->userdata('item');
-         
+
      echo json_encode($data = array("data" => $res));
    }
    else
@@ -262,12 +262,22 @@ public function signout()
      $this->session->unset_userdata($newdata);
      $this->session->sess_destroy();
      $this->index();
+    
 }
 
- public function admin_profile()
- {
 
- }
+public function guestsignout()
+{
+     $newdata = array(
+                'name'  =>'',
+                'email' => '',
+                'logged_in' => FALSE,
+               );
+     $this->session->unset_userdata($newdata);
+     $this->session->sess_destroy();
+     //$this->index();
+     redirect('http://getsporty.in/');
+}
 
 public function profile()
 {
