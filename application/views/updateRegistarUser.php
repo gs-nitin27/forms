@@ -574,34 +574,16 @@ var data = JSON.stringify(data);
             </button>
         </div>
     </div>
-  
     <div class="tab-content">
-
-
 <?php 
-    $userid1 = 2;  $prof_id1 = 2;
-
     // $userid = "<script>document.write(localStorage.getItem('userid'));</script>";
     // $prof_id = "<script>document.write(localStorage.getItem('prof_id'));</script>";
     // $response = echo "<script> localStorage.getItem('testObject'); </script>";
-
     $data=$this->session->userdata('item');  
-
     $userid = $data['userid'];
     $prof_id = $data['prof_id'];
-
      $response1=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
- 
-
-     
      $pdata = json_decode($response1);
-     
-
-     echo "User Id".$userid;
-     echo "<br>Prof_id".$prof_id."<br>";
-     print_r($pdata);
-     
-
      $temp = 0;
      if($pdata)
      {
@@ -610,9 +592,6 @@ var data = JSON.stringify(data);
      {
       foreach ($profil as $arrayvalue1 => $arrayvalue) 
       {
-
-       //print_r($arrayvalue);die;
-
        if($arrayvalue1 == "Education")
        {
         ?>
