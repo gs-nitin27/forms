@@ -508,7 +508,7 @@ var data = JSON.stringify(data);
             <ul class="navbar-nav mr-auto">
                 <li class="">
                        <a class="nav-link navbar-brand" href="#bdy">
-                            <div class="hj-logo"><img src="../../../img/logo.png" style="    max-width: 180px;"></div>
+                            <div class="hj-logo"><img src="http://getsporty.in/img/logo.png" style="    max-width: 180px;"></div>
                         </a>
                 </li>                                
             </ul>       
