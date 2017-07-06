@@ -3510,8 +3510,9 @@ public function user_register()
          if($pass)
           {
 
-          	  $this->sendmail($data->email);
-              echo json_encode(array('data' =>4 ,'message' =>'You are already register with us. Please Activate your acount with mail !'));
+          	  
+            echo json_encode(array('data' =>4 ,'message' =>'You are already register with us. Please Activate your acount with mail !'));
+            $this->sendmail($data->email);
 
            }
            else 
@@ -3526,8 +3527,9 @@ public function user_register()
       if($res)
       {  
 
-      	 $this->sendmail($data->email);
+      	 
          echo json_encode(array('data' =>$res , 'message' =>'User register Sucessfull'));
+         $this->sendmail($data->email);
       }
       else
       {
