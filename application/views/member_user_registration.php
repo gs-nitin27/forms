@@ -506,7 +506,10 @@ $("#save").click(function()
 
                                     //     timeout: 120000,
                                     // });
-
+                                        var options = {
+                                        origin: "http://www.getsporty.in"
+                                        };
+                                        Storage = crossDomainStorage(options);
                                         localStorage.setItem('userid',result.data.userid);
                                         localStorage.setItem('prof_id',result.data.prof_id);
 
@@ -520,6 +523,10 @@ $("#save").click(function()
                                       }
                                   },
                                   close: function () {
+                                        var options = {
+                                        origin: "http://www.getsporty.in"
+                                        };
+                                    Storage = crossDomainStorage(options);
                                         localStorage.setItem('userid',result.data.userid);
                                         localStorage.setItem('prof_id',result.data.prof_id);
                                     window.location.href = profileurl+ "/forms/editRegisterUserProfile";
