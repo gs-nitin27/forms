@@ -46,6 +46,7 @@ body{
 </style>
 <body style="background-color: #03a9f4">
  <div class="section"></div>
+ <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
   <main>
     <div style="text-align: center;">
       <img class="responsive-img" style="width: 300px;height: 60px;" src="http://getsporty.in/img/logo.png" />
@@ -170,8 +171,8 @@ body{
                  btnClass: 'btn-blue',
                  action: function(){
 
-                  
-
+                $("#imagelodar").show();
+                     
                  var data1 = {
                     "email"      : $("#username").val(),
                     "password"     : $("#password").val()
@@ -261,9 +262,11 @@ body{
                                       text: 'Try again',
                                       btnClass: 'btn-dark',
                                       action: function(){
+                                        $("#imagelodar").hide();
                                       }
                                   },
                                   close: function () {
+                                    $("#imagelodar").hide();
                                   }
                               }
                           });
@@ -406,7 +409,9 @@ $("#save").click(function()
             return false;
         }
         else
-        {
+  {
+
+  $("#imagelodar").show();
   var professions = $("#profession").val();
   var prof_data = professions.split(",");
   var prof_id    = prof_data[1];
@@ -435,9 +440,9 @@ $("#save").click(function()
        //alert(result.data);
        if(result.data == 3 || result.data == 4)
        { 
-            $.confirm({
-
-        title: 'Sign In',
+        $("#imagelodar").hide();
+        $.confirm({
+        title: 'You are Already Register Please Sign In',
         boxWidth: '33%',
         useBootstrap: false,
         content: '' +
@@ -449,6 +454,8 @@ $("#save").click(function()
                  text: 'Submit',
                  btnClass: 'btn-blue',
                  action: function(){
+
+                  $("#imagelodar").show();
 
                  var data1 = {
                     "email"      : $("#username").val(),
@@ -539,9 +546,11 @@ $("#save").click(function()
                                       text: 'Try again',
                                       btnClass: 'btn-dark',
                                       action: function(){
+                                        $("#imagelodar").hide();
                                       }
                                   },
                                   close: function () {
+                                    $("#imagelodar").hide();
                                   }
                               }
                           });
@@ -565,6 +574,8 @@ $("#save").click(function()
               title: 'Encountered an error!',
               content: 'Something went Worng, this may be server issue.',
               type: 'dark',
+              boxWidth: '33%',
+              useBootstrap: false,
               typeAnimated: true,
               animationSpeed: 1500,
               animationBounce: 3,
@@ -573,9 +584,11 @@ $("#save").click(function()
                       text: 'Try again',
                       btnClass: 'btn-dark',
                       action: function(){
+                        $("#imagelodar").hide();
                       }
                   },
                   close: function () {
+                    $("#imagelodar").hide();
                   }
               }
           });
@@ -588,6 +601,8 @@ $("#save").click(function()
         title: 'Congratulations!',
         content: '<h3>Registration is complete.</h3>',
         type: 'green',
+        boxWidth: '33%',
+        useBootstrap: false,
         typeAnimated: true,
         animationSpeed: 1500,
         animationBounce: 3,

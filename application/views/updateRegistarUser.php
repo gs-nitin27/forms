@@ -16,7 +16,7 @@
     <script src="<?php echo base_url('../../../js/classie.js');?>"></script>
  <script type="text/javascript">
    window.sportsticket = 0;
-   window.formalticket = 0;
+   window.formalticket = 0; 
    window.ohterticket = 0; 
    window.workexpticket =0;
    window.asplayerticket = 0; 
