@@ -1,6 +1,11 @@
 <script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
 
+ <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
 
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+          
 
 <style>
 
@@ -14,10 +19,10 @@
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  max-width: 360px;
+  max-width: 380px;
   margin: 0 auto 100px;
-  padding: 45px;
-  text-align: center;
+  padding: 25px 30px;
+  
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
@@ -35,18 +40,20 @@
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
-  width: 100%;
+  background: #03a9f4;
+  width: 40%;
   border: 0;
-  padding: 15px;
+  padding: 9px 15px;
   color: #FFFFFF;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+      border-radius: 2.5%;
+
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #4344a0;
+  background: #2cbcfd;
 }
 .form .message {
   margin: 15px 0 0;
@@ -93,16 +100,23 @@
 .container .info span .fa {
   color: #EF3B3A;
 }
+@font-face { font-family: GillSans; src: url('../../../font/GillSans.ttf'); } 
+
 body {
-  background: #5867be; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #5867be, #4c5dba);
-  background: -moz-linear-gradient(right, #5867be, #4c5dba);
-  background: -o-linear-gradient(right, #5867be, #4c5dba);
-  background: linear-gradient(to left, #5867be, #4c5dba);
-  font-family: "Roboto", sans-serif;
+      background: #03a9f4;
+ 
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
+  -moz-osx-font-smoothing: grayscale;  
+  font-family: 'Gillsans',sans-serif;   
 }
+input[type=password]:not(.browser-default):focus:not([readonly]){
+      border-bottom: 1px solid #03a9f4;
+    box-shadow: 0 1px 0 0 #03a9f4;
+}
+input[type=password]:not(.browser-default):focus:not([readonly])+label{
+      color: #03a9f4;
+}
+
 </style>
       
 
@@ -113,28 +127,41 @@ body {
 
 
   
- 
+ <div style="text-align: center;">
+
+<img style="    width: 238px; margin-top: 4%;"src="" >
+
+ </div>
    
  
   
   
   <div class="login-page">
-   <div class="form" style="margin-top: 12%;">
+   <div class="form" style="margin-top: 4%;">
 <form class="login-form" action="<?php echo site_url('forms/verifyuser'); ?>" method="post"  onsubmit="return Emailcheak();" > 
     <div class="container" style="width:300px;">
     <input type="hidden" name="email" value="<?php echo $_GET['email'];?>">
   
     <input type="hidden" placeholder="Verification Code" name="Verification" required> 
-    <label><b>New Password</b></label>
-    <input type="password" placeholder="New Password"  name="Newpassword" id="Newpassword" required>
-    <label><b>Confirm Password</b></label>
-    <input type="password" placeholder="Confirm Password" name="Confirmpassword" id="Confirmpassword" required>
+    <div><h2 style="        margin: 10px;margin-bottom: 25px; font-size: 1.5em; text-align: center;">Change Your Password</h2></div>
+    <div class="input-field">
+    <input type="password" class="validate"  name="Newpassword" id="Newpassword" required>
+    <label for="Newpassword">New Password</label>
+    </div>
+    <div class="input-field">
+    <input type="password"  class="validate" name="Confirmpassword" id="Confirmpassword" required>
+      <label for="Confirmpassword">Confirm Password</label></div>
     <button type="submit"  >Submit</button>
   </div>
+  <div id="error_text"><h3 style="text-align: center;color:red"><?php echo $this->session->flashdata('error');?></h3>
+</div> 
+
+<div style="    font-size: 15px; text-align: center; color: red" id="msg" ></div>
+
 </form>
 </div>
 </div>
-<div id="error_text"><h3 style="text-align: center;color:red"><?php echo $this->session->flashdata('error');?></h2>
+<div id="error_text"><h3 style="text-align: center;color:red"><?php echo $this->session->flashdata('error');?></h3>
 </div> 
 
 <div style="text-align: center; color: red" id="msg" ></div>
@@ -151,7 +178,12 @@ function Emailcheak()
         { 
         if($('#Newpassword').val()!=$('#Confirmpassword').val())
         {
-            $('#msg').text('Password Not Matched');
+            $('#msg').text('Password does not matched');
+            $('#Newpassword').removeClass('valid');
+            $('#Newpassword').addClass('invalid');
+            $('#Confirmpassword').removeClass('valid');
+            $('#Confirmpassword').addClass('invalid');
+            
             return false;
         }
          else
@@ -164,7 +196,12 @@ function Emailcheak()
     else
     {
         
-       $('#msg').text('Minimum length 6');
+       $('#msg').text('Minimum 6 character required');
+
+            $('#Newpassword').removeClass('valid');
+            $('#Newpassword').addClass('invalid');
+            $('#Confirmpassword').removeClass('valid');
+            $('#Confirmpassword').addClass('invalid');
        return false;
     }
 }

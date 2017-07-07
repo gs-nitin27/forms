@@ -99,7 +99,7 @@ body{
                     </div>
                  <div class="input-field col s6">
           
-          <input id="dob"  type="email" class="validate datepicker"  name="dob">
+          <input  id="dob"  type="email" class="validate datepicker"  name="dob">
           <label for="dob" data-error="wrong" data-success="right">Date Of Birth</label>
         </div>
   </div>
