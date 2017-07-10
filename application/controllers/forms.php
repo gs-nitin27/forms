@@ -109,8 +109,12 @@ public function editRegiterUser()
    $this->load->model('register');
 
    $res = $this->register->editRegisterUser($data->email,md5($data->password));
+  // print_r($res);die;
    if($res != 0)
    {
+         $this->session->set_userdata('item',$res);
+         $sessdata = $this->session->userdata('item');
+
      echo json_encode($data = array("data" => $res));
    }
    else
@@ -258,12 +262,22 @@ public function signout()
      $this->session->unset_userdata($newdata);
      $this->session->sess_destroy();
      $this->index();
+    
 }
 
- public function admin_profile()
- {
 
- }
+public function guestsignout()
+{
+     $newdata = array(
+                'name'  =>'',
+                'email' => '',
+                'logged_in' => FALSE,
+               );
+     $this->session->unset_userdata($newdata);
+     $this->session->sess_destroy();
+     //$this->index();
+     redirect('http://getsporty.in/');
+}
 
 public function profile()
 {
@@ -376,10 +390,11 @@ public function registrationprofile($str)
       $this->load->view('RegistrationProfile',$data);
 }
 
-public function editRegisterUserProfile($str)
+public function editRegisterUserProfile()
 {
-   $data = array('id' => $str);
-   $this->load->view('updateRegistarUser',$data);
+   // $data = array('id' => $str);
+
+   $this->load->view('updateRegistarUser');
 
 }
 
@@ -3495,8 +3510,9 @@ public function user_register()
          if($pass)
           {
 
-          	  $this->sendmail($data->email);
-              echo json_encode(array('data' =>4 ,'message' =>'You are already register with us. Please Activate your acount with mail !'));
+          	  
+            echo json_encode(array('data' =>4 ,'message' =>'You are already register with us. Please Activate your acount with mail !'));
+            $this->sendmail($data->email);
 
            }
            else 
@@ -3511,8 +3527,9 @@ public function user_register()
       if($res)
       {  
 
-      	 $this->sendmail($data->email);
+      	 
          echo json_encode(array('data' =>$res , 'message' =>'User register Sucessfull'));
+         $this->sendmail($data->email);
       }
       else
       {

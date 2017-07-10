@@ -14,9 +14,39 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/reg.css'); ?>">
   </head>
-
+ <link rel="stylesheet" href="<?php echo base_url('assets/css/loder.css');?>">
+<style type="text/css">
+  @font-face { font-family: GillSans; src: url('../../../font/GillSans.ttf'); } 
+body{
+  font-family: 'Gillsans',sans-serif;
+}
+.input-field input[type=date]:focus, .input-field input[type=text]:focus, .input-field input[type=email]:focus, .input-field input[type=password]:focus {
+    border-bottom: 2px solid #03a9f4;
+    box-shadow: none;
+}
+.input-field .prefix.active{
+  color:#03a9f4;
+}
+.input-field input[type=text]:focus+label{
+  color:#03a9f4;
+}
+.pink-text {
+    color: #03a9f4 !important;
+}
+.dropdown-content li>a, .dropdown-content li>span {
+   
+    color: #03a9f4;
+  }
+  .grey.lighten-4 {
+    background-color: #fffefe !important;
+}
+.cyan {
+    background-color: #03a9f4 !important;
+}
+</style>
 <body style="background-color: #03a9f4">
  <div class="section"></div>
+ <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
   <main>
     <div style="text-align: center;">
       <img class="responsive-img" style="width: 300px;height: 60px;" src="http://getsporty.in/img/logo.png" />
@@ -25,7 +55,7 @@
     
 
       <div class="container">
-        <div class="z-depth-4 grey lighten-4 row" style=" display: inline-block; padding: 4% 4% 4% 4%; border: 1px solid #EEE;">
+        <div class="z-depth-4 grey lighten-4 row" style=" width: 80%; display: inline-block; padding: 4% 4% 4% 4%; border: 1px solid #EEE;">
 <div class="row">
 
 <h4> Register</h4>
@@ -47,7 +77,7 @@
                  <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">phonelink_ring</i>
-          <input id="phone_no" type="text" class="validate" >
+          <input id="phone_no" type="number" class="validate" >
           <label for="phone_no">Phone No</label>
         </div></div>
                 <div class="row">
@@ -69,7 +99,7 @@
                     </div>
                  <div class="input-field col s6">
           
-          <input id="dob"  type="email" class="validate datepicker" name="dob">
+          <input  id="dob"  type="email" class="validate datepicker"  name="dob">
           <label for="dob" data-error="wrong" data-success="right">Date Of Birth</label>
         </div>
   </div>
@@ -99,12 +129,12 @@
                 <div class="row">
 
                 <div class="input-field col s4">
-                <label style='float: right;'>
-                <a class='pink-text' onclick="register();"><b>Already registered?</b></a>
+                <label style='margin-left: 18%;float: right;'>
+                <a style="cursor: pointer;" class='pink-text' onclick="register();"><b>Already registered?</b></a>
                 </label>
                 </div>
                 <div class="input-field col s8">
-                <button class="btn cyan waves-effect waves-light right" type="button"  id="save" name="action" onclick="valname()" >REGISTER              
+                <button class="btn cyan waves-effect waves-light right" type="button"  id="save" name="action"  >REGISTER              
                 </button>
                           </div>
                         </div>
@@ -128,7 +158,6 @@
   function register()
   {
    $.confirm({
-
         title: 'Sign In',
         boxWidth: '33%',
         useBootstrap: false,
@@ -142,6 +171,8 @@
                  btnClass: 'btn-blue',
                  action: function(){
 
+                $("#imagelodar").show();
+                     
                  var data1 = {
                     "email"      : $("#username").val(),
                     "password"     : $("#password").val()
@@ -157,7 +188,10 @@
                      dataType: 'JSON',        
                      success:function(result)
                      {
-                          if(result.data)
+                         //alert(result.data.userid);
+                         //return ;
+
+                          if(result.data.userid)
                           {
                               $.confirm({
                               title: 'Thank You For Login!',
@@ -173,12 +207,38 @@
                                       text: 'Thank You !',
                                       btnClass: 'btn-green',
                                       action: function(){
-                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile/" + result.data;
+
+                                        localStorage.setItem('userid',result.data.userid);
+                                        localStorage.setItem('prof_id',result.data.prof_id);
+                                   // $.ajax({
+                                   //  url: "http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid=2&prof_id=2",
+                                   //  type: "GET",
+                                   //    success: function(resultData) {
+                                              
+                                   //            localStorage.setItem('userid',);
+                                   //            localStorage.setItem('userid',)
+                                   //        // localStorage.setItem('testObject',JSON.stringify(resultData));
+                                   //        //alert(localStorage.getItem('testObject'));
+                                   //      },
+                                   //      error : function(jqXHR, textStatus, errorThrown) {
+                                   //      },
+
+                                   //      timeout: 120000,
+                                   //  });
+                                     
+                                    //return;
+
+                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile";
 
                                       }
                                   },
                                   close: function () {
-                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile/" + result.data;
+
+                                    localStorage.setItem('userid',result.data.userid);
+                                    localStorage.setItem('prof_id',result.data.prof_id);
+
+                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile";
+                                    // window.location.href = profileurl+ "/forms/editRegisterUserProfile" + result.data.userid + "," + result.data.userid;
 
                                    
                                   }
@@ -202,9 +262,11 @@
                                       text: 'Try again',
                                       btnClass: 'btn-dark',
                                       action: function(){
+                                        $("#imagelodar").hide();
                                       }
                                   },
                                   close: function () {
+                                    $("#imagelodar").hide();
                                   }
                               }
                           });
@@ -237,8 +299,11 @@
 
 
 $( "#img" ).hide();
+
+
 function valname()
     {   
+
 
         var n=0;
         if($('#name').val() == "")
@@ -291,14 +356,16 @@ function valname()
             $( '#female' ).css("border-bottom-color","green");       
         }
 
-        if($('#dob').val() == "")
-        {
+         if($('#dob').val() == "")
+        {  
             $( '#dob' ).addClass('invalid');
              n++;
         }
         else
         {
-            $( '#dob' ).css("border-bottom-color","green");       
+            $( '#dob' ).removeClass('invalid');
+            $( '#dob' ).addClass('valid');
+
         }
 
         if($('#sport').val() == "")
@@ -321,6 +388,8 @@ function valname()
         {
             $( '#profession' ).css("border-bottom-color","green");       
         }
+
+
        if(n==0)
         {
             return true;
@@ -340,7 +409,9 @@ $("#save").click(function()
             return false;
         }
         else
-        {
+  {
+
+  $("#imagelodar").show();
   var professions = $("#profession").val();
   var prof_data = professions.split(",");
   var prof_id    = prof_data[1];
@@ -366,12 +437,12 @@ $("#save").click(function()
      dataType: 'JSON',        
      success:function(result)
      {
-       alert(result.data);
+       //alert(result.data);
        if(result.data == 3 || result.data == 4)
        { 
-            $.confirm({
-
-        title: 'Sign In',
+        $("#imagelodar").hide();
+        $.confirm({
+        title: 'You are Already Register Please Sign In',
         boxWidth: '33%',
         useBootstrap: false,
         content: '' +
@@ -383,6 +454,8 @@ $("#save").click(function()
                  text: 'Submit',
                  btnClass: 'btn-blue',
                  action: function(){
+
+                  $("#imagelodar").show();
 
                  var data1 = {
                     "email"      : $("#username").val(),
@@ -399,7 +472,7 @@ $("#save").click(function()
                      dataType: 'JSON',        
                      success:function(result)
                      {
-                          if(result.data)
+                          if(result.data.userid)
                           {
                               $.confirm({
                               title: 'Thank You For Login!',
@@ -415,12 +488,48 @@ $("#save").click(function()
                                       text: 'Thank You !',
                                       btnClass: 'btn-green',
                                   action: function(){
-                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile/" + result.data;
 
+
+                                    //    $.ajax({
+
+                                    // url: "http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid=2&prof_id=2",
+
+                                    //     type: "GET",
+
+                                    //     contentType: 'application/json; charset=utf-8',
+                                    //     success: function(resultData) {
+                                    //         alert(resultData);
+
+                                    //     },
+                                    //     error : function(jqXHR, textStatus, errorThrown) {
+                                    //     },
+
+                                    //     timeout: 120000,
+                                    // });
+                                        var options = {
+                                        origin: "http://www.getsporty.in"
+                                        };
+                                        Storage = crossDomainStorage(options);
+                                        localStorage.setItem('userid',result.data.userid);
+                                        localStorage.setItem('prof_id',result.data.prof_id);
+
+                                          //alert(localStorage.getItem('prof_id'));
+                                          //alert(localStorage.getItem('userid'));
+
+
+
+                                      window.location.href = profileurl+ "/forms/editRegisterUserProfile"; 
+                                      
                                       }
                                   },
                                   close: function () {
-                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile/" + result.data;
+                                        var options = {
+                                        origin: "http://www.getsporty.in"
+                                        };
+                                    Storage = crossDomainStorage(options);
+                                        localStorage.setItem('userid',result.data.userid);
+                                        localStorage.setItem('prof_id',result.data.prof_id);
+                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile";
 
                                    
                                   }
@@ -444,9 +553,11 @@ $("#save").click(function()
                                       text: 'Try again',
                                       btnClass: 'btn-dark',
                                       action: function(){
+                                        $("#imagelodar").hide();
                                       }
                                   },
                                   close: function () {
+                                    $("#imagelodar").hide();
                                   }
                               }
                           });
@@ -470,6 +581,8 @@ $("#save").click(function()
               title: 'Encountered an error!',
               content: 'Something went Worng, this may be server issue.',
               type: 'dark',
+              boxWidth: '33%',
+              useBootstrap: false,
               typeAnimated: true,
               animationSpeed: 1500,
               animationBounce: 3,
@@ -478,9 +591,11 @@ $("#save").click(function()
                       text: 'Try again',
                       btnClass: 'btn-dark',
                       action: function(){
+                        $("#imagelodar").hide();
                       }
                   },
                   close: function () {
+                    $("#imagelodar").hide();
                   }
               }
           });
@@ -493,6 +608,8 @@ $("#save").click(function()
         title: 'Congratulations!',
         content: '<h3>Registration is complete.</h3>',
         type: 'green',
+        boxWidth: '33%',
+        useBootstrap: false,
         typeAnimated: true,
         animationSpeed: 1500,
         animationBounce: 3,
@@ -521,6 +638,11 @@ $("#save").click(function()
   });
 
 }
+});
+
+$('.picker__day--infocus').click(function(){
+
+  $('#dob').removeClass('invalid');
 });
 
 </script>
