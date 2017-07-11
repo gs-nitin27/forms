@@ -295,10 +295,7 @@ var data = eval(data1);//JSON.stringify(data1);
               </script>
                 <label id="description_error" hidden="">A Description is required</label>
               </div>
-
-
-
-                    </div>
+             </div>
 
                 <!--  </div>  -->
 
