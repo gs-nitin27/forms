@@ -129,7 +129,7 @@ input[type=password]:not(.browser-default):focus:not([readonly])+label{
   
  <div style="text-align: center;">
 
-<img style="    width: 238px; margin-top: 4%;"src="" >
+<img style="    width: 238px; margin-top: 4%;" src="http://getsporty.in/img/logo.png" >
 
  </div>
    

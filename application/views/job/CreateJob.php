@@ -431,11 +431,10 @@ $(function() {
 
    
     $("#save").click(function(){
-       
-   
 
-       if($("#jtitle").val() !="" && $("#jdesc").val() !="" && $("#orgName").val() !="" && $("#job_link").val() !="" )
-       {
+       
+   if($("#jtitle").val() !="" && $("#jdesc").val() !="" && $("#orgName").val() !="" & $("#job_link").val() !="" )
+     {
             save();
        }else
        {
@@ -525,7 +524,9 @@ var data1 = {
 
 };
 var url = '<?php echo site_url();?>';
+
 //console.log(JSON.stringify(data1));
+
 var data = eval(data1);
   $.ajax({
     type: "POST",
