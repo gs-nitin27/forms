@@ -81,7 +81,7 @@ body{
           <label for="phone_no">Phone No</label>
         </div></div>
                 <div class="row">
-                  <div class="input-field col s6" >
+                  <div id="sports1" class="input-field col s6" >
                      <i class="material-icons prefix"></i> 
                       <?php  $sports = $this->register->getSport();
                                                   ?>
@@ -104,7 +104,7 @@ body{
         </div>
   </div>
       <div class="row">
-      <div class="input-field col s6">
+      <div  id="profession1" class="input-field col s6">
       <i class="material-icons prefix"></i> 
        <?php  $prof = $this->register->getprofession();?>
     <select id="profession" >
@@ -118,7 +118,7 @@ body{
     </select>
     <label>Choose profession</label>
   </div>
-         <div class="input-field col s6">
+         <div id="gender1" class="input-field col s6">
      <select id="gender"  name="gender">
       <option value="" disabled selected>Choose your Gender</option>
                   <option id="male" value="Male">Male</option>
@@ -306,14 +306,19 @@ function valname()
 
 
         var n=0;
+         var email1=document.getElementById('email').value;
+        var atpos = email1.indexOf("@");
+        var dotpos = email1.lastIndexOf(".");
         if($('#name').val() == "")
         {
             $( '#name' ).addClass('invalid');
              n++;
+
         }
         else
         {
-            $( '#name' ).css("border-bottom-color","green");       
+          $( '#name' ).addClass('valid');
+                 
         }
         if($('#phone_no').val() == "")
         {
@@ -322,39 +327,41 @@ function valname()
         }
         else
         {
-            $( '#phone_no' ).css("border-bottom-color","green");       
+           $( '#phone_no' ).addClass('valid');
+                 
         }
 
 
-        if($('#email').val() == "")
+        if(atpos<1 || dotpos<atpos+2 || dotpos+2>=email1.length)
         {
             $( '#email' ).addClass('invalid');
              n++;
         }
         else
         {
-            $( '#email' ).css("border-bottom-color","green");       
+          $( '#email' ).addClass('valid');
+              
         }
 
-        if($('#male').val() == "")
+        if($('#gender :selected').val() == "")
         {
-            $( '#male' ).addClass('invalid');
+           $( '#gender1 input' ).css("border-bottom","none"); 
+
+            $( '#gender1 input' ).addClass('invalid');
+              $( '#gender1 input' ).css("border-bottom","1px solid red"); 
+
              n++;
+
         }
         else
         {
-            $( '#male' ).css("border-bottom-color","green");       
+            
+            $( '#gender1 input' ).removeClass('invalid');
+            $( '#gender1 input' ).addClass('valid');
+            $( '#gender1 input' ).css("border-bottom","1px solid green");  
         }
 
-        if($('#female').val() == "")
-        {
-            $( '#female' ).addClass('invalid');
-             n++;
-        }
-        else
-        {
-            $( '#female' ).css("border-bottom-color","green");       
-        }
+       
 
          if($('#dob').val() == "")
         {  
@@ -368,25 +375,35 @@ function valname()
 
         }
 
-        if($('#sport').val() == "")
+        if($('#sport :selected').val() == "")
         {
+             $( '#sports1 input' ).css("border-bottom","none");  
+            $( '#sports1 input' ).addClass('invalid');
+              $( '#sports1 input' ).css("border-bottom","1px solid red"); 
 
-            $( '#sport' ).addClass('invalid');
              n++;
+              
         }
         else
         {
-            $( '#sport' ).css("border-bottom-color","green");       
+           $( '#sports1 input' ).removeClass('invalid');
+            $( '#sports1 input' ).addClass('valid');
+            $( '#sports1 input' ).css("border-bottom","1px solid green");       
         }
 
-        if($('#profession').val() == "")
+        if($('#profession :selected').val() == "")
         {
-            $( '#profession' ).addClass('invalid');
+            $( '#profession1 input' ).css("border-bottom","none");
+            $( '#profession1 input' ).addClass('invalid');
+              $( '#profession1 input' ).css("border-bottom","1px solid red"); 
              n++;
+
         }
         else
         {
-            $( '#profession' ).css("border-bottom-color","green");       
+            $( '#profession1 input' ).removeClass('invalid');
+             $( '#profession1 input' ).addClass('valid');
+            $( '#profession1 input' ).css("border-bottom","1px solid green");             
         }
 
 
@@ -413,9 +430,20 @@ $("#save").click(function()
 
   $("#imagelodar").show();
   var professions = $("#profession").val();
-  var prof_data = professions.split(",");
-  var prof_id    = prof_data[1];
+  var prof_data;
+  var prof_id=null;
+  var prof_name=null;
+  
+  
+  if(professions!=null){
+    var prof_data = professions.split(",");
+    var prof_id    = prof_data[1];
   var prof_name  = prof_data[0];
+  }
+  else{
+  prof_data = $("#profession").val();
+  }
+
   var data1 = {
     "name"      : $("#name").val(),
     "email"     : $("#email").val(),
