@@ -574,7 +574,7 @@ var data = JSON.stringify(data);
     $data=$this->session->userdata('item');  
     $userid = $data['userid'];
     $prof_id = $data['prof_id'];
-     $response1=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
+     $response1=file_get_contents(API_URL.'/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
      $pdata = json_decode($response1);
      $temp = 0;
      if($pdata)
