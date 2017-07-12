@@ -169,7 +169,6 @@
 	height: calc(100% - 10px);
 	border-bottom: 1px solid #B9C1CA;
 }
-
 .input__label--hoshi::after {
 	margin-top: 2px;
 	border-bottom: 4px solid red;
@@ -178,19 +177,15 @@
 	-webkit-transition: -webkit-transform 0.3s;
 	transition: transform 0.3s;
 }
-
 .input__label--hoshi-color-1::after {
 	border-color: hsl(200, 100%, 50%);
 }
-
 .input__label--hoshi-color-2::after {
 	border-color: hsl(160, 100%, 50%);
 }
-
 .input__label--hoshi-color-3::after {
 	border-color: hsl(20, 100%, 50%);
 }
-
 .input__field--hoshi:focus + .input__label--hoshi::after,
 .input--filled .input__label--hoshi::after {
 	-webkit-transform: translate3d(0, 0, 0);

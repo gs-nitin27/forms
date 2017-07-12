@@ -1323,22 +1323,24 @@ $("#save").click(function()
      }
      else
      {
-       $("#sport_from_date"+i).addClass('invalid');
+        $("#sport_from_date"+i).css("border-bottom-color","red");
+
+       // $("#sport_from_date"+i).addClass('invalid');
        return ;
       
 
      }
      if($("#sport_to_date"+i).val())
      {
+
      var todate = formatDate($("#sport_to_date"+i).val());
      }
      else
      {
-      $("#sport_to_date"+i).addClass('invalid');
+      $("#sport_to_date"+i).css("color","red");
+    
        return ;
      }
-     // alert(todate);
-     // return ;
 
     var temp = {"degree":$("#nameofsporteducation"+i).val(),"organisation":$("#sport_inst_org"+i).val(),"stream":$("#sport_stream_spel"+i).val(),"courseDuration":fromdate + " to " + todate };
       sportArray.push(temp);
@@ -1351,9 +1353,17 @@ $("#save").click(function()
      {
      var fromdate = formatDate($("#formal_from_date"+i).val());
      }
+     else
+     {
+       return ;
+     }
      if($("#formal_to_date"+i).val())
       {
         var todate = formatDate($("#formal_to_date"+i).val());
+      }
+      else
+      {
+              return ;
       }
     var temp = {"degree":$("#formal_education"+i).val(),"organisation":$("#formal_inst_org"+i).val(),"stream":$("#formal_stream"+i).val(),"courseDuration":fromdate + " to " + todate };
       formalArray.push(temp);
@@ -1366,9 +1376,17 @@ $("#save").click(function()
      {
      var fromdate = formatDate($("#certi_from_date"+i).val());
      }
+     else
+     {
+      return;
+     }
      if($("#certi_to_date"+i).val())
      {
      var todate = formatDate($("#certi_to_date"+i).val());
+     }
+     else
+     {
+        return ;
      }
     var temp = {"degree":$("#certi_name"+i).val(),"organisation":$("#certi_inst_org"+i).val(),"stream":$("#certi_stream"+i).val(),"courseDuration":fromdate + " to " + todate };
       otherArray.push(temp);
@@ -1381,9 +1399,18 @@ for(var i =0; i <window.workexpticket; i++)
      {
      var fromdate = formatDate($("#work_from_date"+i).val());
      }
+     else
+     {
+           return;
+     }
      if($("#work_to_date"+i).val())
      {
      var todate = formatDate($("#work_to_date"+i).val());
+     }
+     else
+     {
+ 
+          return ;
      } 
     var temp = {"designation":$("#work_exp_name"+i).val(),"organisationName":$("#work_exp_inst_org"+i).val(),"description":$("#work_exp_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate};
       workArray.push(temp);
@@ -1396,9 +1423,18 @@ for(var i =0; i <window.workexpticket; i++)
     {
     var fromdate = formatDate($("#exp_asplayer_from_date"+i).val());
     }
+    else
+    {
+       return ;
+    }
     if($("#exp_asplayer_to_date"+i).val())
     {
     var todate = formatDate($("#exp_asplayer_to_date"+i).val());
+    }
+    else
+    {
+
+      return ;
     }
     var temp = {"designation":$("#exp_asplayer_name"+i).val(),"organisationName":$("#exp_asplayer_inst_org"+i).val(),"description":$("#exp_asplayer_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate};
       asplayerArray.push(temp);
