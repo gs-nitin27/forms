@@ -670,7 +670,7 @@ var data = JSON.stringify(data);
 <div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
 <div>
 <span class="input input--hoshi">
-<input type='text' class='input__field input__field--hoshi' id="<?php echo 'certi_name'.$i;?>" value="<?php echo $value56->organisation;?>">
+<input type='text' class='input__field input__field--hoshi' id="<?php echo 'certi_name'.$i;?>" value="<?php echo $value56->degree;?>">
 <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for='certi_name'><span class="input__label-content input__label-content--hoshi">Name of Certificate</span></label>
 </span>
 </div>
@@ -682,7 +682,7 @@ var data = JSON.stringify(data);
 </div>
 <div>
 <span class="input input--hoshi">
-<input type='text' class='input__field input__field--hoshi' value="<?php echo $value56->degree;?>"  id="<?php echo 'certi_stream'.$i;?>">
+<input type='text' class='input__field input__field--hoshi' value="<?php echo $value56->stream;?>"  id="<?php echo 'certi_stream'.$i;?>">
   <label   class="input__label input__label--hoshi input__label--hoshi-color-1" for='certi_stream'><span class="input__label-content input__label-content--hoshi">Stream / Specialisation</span></label>
   </span>
   </div>
