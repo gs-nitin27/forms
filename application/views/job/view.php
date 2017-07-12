@@ -100,7 +100,7 @@
 					</div>
 				    </div>
 					<div class="timeline-item">
-					<h5 class="timeline-header no-border"><b>Address Line1: </b> &nbsp;<?php echo $job['org_address2'];?></h5>
+					<h5 class="timeline-header no-border"><b>Address Line1: </b> &nbsp;<?php echo $job['org_address1'];?></h5>
 					</div>
 					<div class="timeline-item">
 					<h5 class="timeline-header no-border"><b>Address Line2: </b> &nbsp;<?php echo $job['org_address2'];?></h5>
