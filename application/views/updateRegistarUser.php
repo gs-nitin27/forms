@@ -1289,7 +1289,7 @@ document.getElementById("asplayerexp").onclick = function()
 
 function formatDate(date) {
 
-        alert(date);
+        // alert(date);
         var d = new Date(date),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
@@ -1321,9 +1321,21 @@ $("#save").click(function()
      {
      var fromdate = formatDate($("#sport_from_date"+i).val());
      }
+     else
+     {
+       $("#sport_from_date"+i).addClass('invalid');
+       return ;
+      
+
+     }
      if($("#sport_to_date"+i).val())
      {
      var todate = formatDate($("#sport_to_date"+i).val());
+     }
+     else
+     {
+      $("#sport_to_date"+i).addClass('invalid');
+       return ;
      }
      // alert(todate);
      // return ;
