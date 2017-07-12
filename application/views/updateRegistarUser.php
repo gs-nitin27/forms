@@ -736,13 +736,13 @@ var data = JSON.stringify(data);
   ?>
 <input class='input__field input__field--hoshi' type='text' value="<?php echo $datefromandto[0];?>" class='form-control' id="<?php echo 'sport_from_date'.$i;?>">
 
-<label for='from_period' class="input__label input__label--hoshi input__label--hoshi-color-1"><span class="input__label-content input__label-content--hoshi">From</span></label>
+<label for='<?php echo 'sport_from_date'.$i;?>' class="input__label input__label--hoshi input__label--hoshi-color-1"><span class="input__label-content input__label-content--hoshi">From</span></label>
 <div class='input-group-addon' style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span>
 </div>
 </div>
 <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
 <input class='input__field input__field--hoshi' value="<?php echo $datefromandto[1];?>" type='text' id="<?php echo 'sport_to_date'.$i;?>" class='form-control'>
-<label for='from_period' class="input__label input__label--hoshi input__label--hoshi-color-1"><span class="input__label-content input__label-content--hoshi">To</span></label>
+<label for='<?php echo 'sport_to_date'.$i;?>' class="input__label input__label--hoshi input__label--hoshi-color-1"><span class="input__label-content input__label-content--hoshi">To</span></label>
 <div class='input-group-addon' style="background-color: transparent;border: none;">
 <span class='glyphicon glyphicon-th'> 
 </span>
