@@ -5,13 +5,15 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/datepicker/datepicker3.css'); ?>">
 
+   
+
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datepicker/bootstrap-datepicker.js'); ?>"></script>
 <link rel="shortcut icon" href="<?php echo base_url('../favicon.ico');?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/normalize.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('fonts/font-awesome-4.2.0/css/font-awesome.min.css'); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/demo.css'); ?>" />
   <link rel="stylesheet" href="<?php echo base_url('assets/css/loder.css');?>">
-    <script src="<?php echo base_url('js/classie.js');?>"></script>
+    <script src="<?php echo base_url('../../../js/classie.js');?>"></script>
  <script type="text/javascript">
    window.sportsticket = 0;
    window.formalticket = 0; 
@@ -572,7 +574,7 @@ var data = JSON.stringify(data);
     $data=$this->session->userdata('item');  
     $userid = $data['userid'];
     $prof_id = $data['prof_id'];
-     $response1=file_get_contents('http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
+     $response1=file_get_contents(API_URL.'/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
      $pdata = json_decode($response1);
 
 print_r($pdata);
