@@ -564,7 +564,7 @@ $("#save").click(function()
        {
     $.confirm({
         title: 'Congratulations!',
-        content: '<h3>Registration is complete.</h3>',
+        content: '<h3>Registration is complete .</h3>',
         type: 'green',
         boxWidth: '33%',
         useBootstrap: false,
