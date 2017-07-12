@@ -577,7 +577,7 @@ var data = JSON.stringify(data);
      $response1=file_get_contents(API_URL.'/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
      $pdata = json_decode($response1);
 
-print_r($pdata);
+//print_r($pdata);
 
      $temp = 0;
      if($pdata)
@@ -1288,7 +1288,7 @@ document.getElementById("asplayerexp").onclick = function()
 }
 
 function formatDate(date) {
-    var d = new Date(date),
+        var d = new Date(date),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
         year = d.getFullYear();
@@ -1314,9 +1314,15 @@ $("#save").click(function()
 
 
   for(var i =0; i <window.sportsticket; i++)
-  {
-    var fromdate = formatDate($("#sport_from_date"+i).val());
+  {   
+     if($("#sport_from_date"+i).val())
+     {
+     var fromdate = formatDate($("#sport_from_date"+i).val());
+     }
+     if($("#sport_to_date"+i).val())
+     {
      var todate = formatDate($("#sport_to_date"+i).val());
+     }
      // alert(todate);
      // return ;
 
@@ -1327,8 +1333,14 @@ $("#save").click(function()
 
   for(var i =0; i <window.formalticket; i++)
   {
+     if($("#formal_from_date"+i).val())
+     {
      var fromdate = formatDate($("#formal_from_date"+i).val());
-     var todate = formatDate($("#formal_to_date"+i).val());
+     }
+     if($("#formal_to_date"+i).val())
+      {
+        var todate = formatDate($("#formal_to_date"+i).val());
+      }
     var temp = {"degree":$("#formal_education"+i).val(),"organisation":$("#formal_inst_org"+i).val(),"stream":$("#formal_stream"+i).val(),"courseDuration":fromdate + " to " + todate };
       formalArray.push(temp);
 
@@ -1336,19 +1348,29 @@ $("#save").click(function()
 
   for(var i =0; i <window.ohterticket; i++)
   {
+     if($("#certi_from_date"+i).val())
+     {
      var fromdate = formatDate($("#certi_from_date"+i).val());
+     }
+     if($("#certi_to_date"+i).val())
+     {
      var todate = formatDate($("#certi_to_date"+i).val());
-
+     }
     var temp = {"degree":$("#certi_name"+i).val(),"organisation":$("#certi_inst_org"+i).val(),"stream":$("#certi_stream"+i).val(),"courseDuration":fromdate + " to " + todate };
       otherArray.push(temp);
 
   }
 
 for(var i =0; i <window.workexpticket; i++)
-  {
+  { 
+     if($("#work_from_date"+i).val())
+     {
      var fromdate = formatDate($("#work_from_date"+i).val());
+     }
+     if($("#work_to_date"+i).val())
+     {
      var todate = formatDate($("#work_to_date"+i).val());
-
+     } 
     var temp = {"designation":$("#work_exp_name"+i).val(),"organisationName":$("#work_exp_inst_org"+i).val(),"description":$("#work_exp_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate};
       workArray.push(temp);
 
@@ -1356,8 +1378,14 @@ for(var i =0; i <window.workexpticket; i++)
 
   for(var i =0; i <window.asplayerticket; i++)
   {
+    if($("#exp_asplayer_from_date"+i).val())
+    {
     var fromdate = formatDate($("#exp_asplayer_from_date"+i).val());
+    }
+    if($("#exp_asplayer_to_date"+i).val())
+    {
     var todate = formatDate($("#exp_asplayer_to_date"+i).val());
+    }
     var temp = {"designation":$("#exp_asplayer_name"+i).val(),"organisationName":$("#exp_asplayer_inst_org"+i).val(),"description":$("#exp_asplayer_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate};
       asplayerArray.push(temp);
   }
