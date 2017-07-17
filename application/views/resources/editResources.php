@@ -275,8 +275,7 @@ var data = eval(data1);//JSON.stringify(data1);
 
                    window.onload = loadData();
 
-
-                  if($('#token').val() == '1')
+                  if($('#token').val() == '1' || $('#token').val() == '3')
                   {
                      $('#abc').show();
                   }

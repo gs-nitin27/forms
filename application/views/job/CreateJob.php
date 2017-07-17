@@ -1,3 +1,11 @@
+<!-- Js files-->
+
+  <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
+  <script src="http://demo.itsolutionstuff.com/plugin/croppie.js"></script>
+  <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
+  <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/croppie.css">
+
+
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 
@@ -262,7 +270,12 @@
             </div>
             <!-- /.tab-content -->
             </form>
+
+            
+
             <form id="form"  method="post" enctype="multipart/form-data">
+
+
                <!--  Image : <input type="file" name="file" id="file" /> -->
    <div class="container">
     <div class="row">    
@@ -275,15 +288,22 @@
                     <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
                         <span class="glyphicon glyphicon-remove"></span> Clear
                     </button>
+
+
+
                     <!-- image-preview-input -->
                     <div class="btn btn-default image-preview-input">
                         <span class="glyphicon glyphicon-folder-open"></span>
                         <span class="image-preview-input-title">Browse</span>
+
                         <input type="file" accept="image/png, image/jpeg, image/gif" id="Jimage" name="file"/>
+                        
                         
                          <!-- rename it -->
                     </div>
                      <input id="button" type="submit" class="btn btn-danger" value="Upload Image" name="submit">
+
+
                 </span>
             </div><!-- /input-group image-preview [TO HERE]--> 
         </div>
@@ -362,7 +382,12 @@ function showCheckboxes()
   }));
 });
 
+
+
 </script>
+
+
+
 
 
   <script type="text/javascript">
@@ -374,7 +399,8 @@ function showCheckboxes()
         function () {
            $('.image-preview').popover('show');
         }, 
-         function () {
+         function () 
+         {
            $('.image-preview').popover('hide');
         }
     );    
@@ -405,13 +431,16 @@ $(function() {
         $('.image-preview-input input:file').val("");
         $(".image-preview-input-title").text("Browse"); 
     }); 
+
     // Create the preview image
     $(".image-preview-input input:file").change(function (){     
         var img = $('<img/>', {
             id: 'dynamic',
             width:250,
             height:200
-        });    
+        }); 
+
+
         var file = this.files[0];
         var reader = new FileReader();
         // Set preview image into the popover data-content
@@ -426,6 +455,11 @@ $(function() {
     });  
 });
   </script>
+
+
+
+
+
 
   <script type="text/javascript">
 
