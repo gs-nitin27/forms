@@ -249,6 +249,8 @@ var data = JSON.stringify(data1);
 							<option id="Under-21">Under 21</option>
 							<option id="Under-22">Under 22</option>
 							<option id="Under-23">Under 23</option>
+							<option id=">18"> >18 </option>
+							<option id="Senior"> Senior </option>
 							<option id="All">All</option>
 						</select>
 					</div>
