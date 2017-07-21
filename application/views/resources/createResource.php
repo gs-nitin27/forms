@@ -18,13 +18,14 @@ var string          = summary12.replace(/[\/\\'\\"<>~{}]/g, '');
 var description     = editor.getData();
 var data1 = 
 {
+
     "id"                      : 0, 
     "userid"                  : $("#userid").val(),
     "title"                   : $("#rtitle").val(),
     "url"                     : $("#myId").text(),
     "description"             : description, 
     "summary"                 : string,
-    "keyword"                 : "",
+    "keyword"                 : $("#keyword").val(),
     "status"                  : 0,
     "location"                : $("#rlocation").val(), 
     "topic_of_artical"        : $("#article").val(), 
@@ -163,6 +164,7 @@ var data = eval(data1);//JSON.stringify(data1);
             });
             });
             </script>
+
              <div class="form-group"> 
                      <label for="exampleInputEmail1">Resource Type</label>
                      <select  id="types" class="form-control" >
@@ -171,6 +173,11 @@ var data = eval(data1);//JSON.stringify(data1);
                      <option value="video">Video</option>
                      <option value="blog">Blog</option>
                      </select>
+              </div >
+
+              <div class="form-group"> 
+                     <label for="exampleInputEmail1">Keywords</label>
+                     <input type="text" class="form-control" style="font-family: lower;" name="keywords" id="keywords" placeholder="Type keywords">
               </div >
              <?php     
              date_default_timezone_set("Asia/Kolkata");
@@ -197,9 +204,12 @@ var data = eval(data1);//JSON.stringify(data1);
              <?php if(!empty($sports)){
                         foreach($sports as $sport){?>
              <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
-         <?php   }
-                           } 
-                         ?>
+         <?php 
+           }
+
+           } 
+           ?>
+           
         </select>
         </div>
      </div>
