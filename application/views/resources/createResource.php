@@ -25,7 +25,7 @@ var data1 =
     "url"                     : $("#myId").text(),
     "description"             : description, 
     "summary"                 : string,
-    "keyword"                 : $("#keyword").val(),
+    "keyword"                 : $("#keywords").val(),
     "status"                  : 0,
     "location"                : $("#rlocation").val(), 
     "topic_of_artical"        : $("#article").val(), 
