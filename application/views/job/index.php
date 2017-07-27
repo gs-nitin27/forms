@@ -122,13 +122,20 @@
 					<td><a href = "<?php echo site_url('forms/viewJob/'.$num.'?job'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
 
                  <td><a href = "<?php echo site_url('forms/editjob/'.$num.'?job'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
-                <td><a href = "<?php echo site_url('forms/deleteJob/'.$num.'?job'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
 
+                    <?php  if($usertype==101)
+                   {
+                    ?>
 
+                <td><a href = "<?php echo site_url('forms/deleteJob/'.$num.'?job'); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
 
+ 
+                     <?php } }?>
 
                 </tr>
-				<?php } } } ?>
+
+		<?php } } ?>
+
                 </tbody>
                 <tfoot>
                  <tr>

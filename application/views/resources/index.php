@@ -171,8 +171,14 @@
                      <?php  if($usertype==101)
                    {
                     ?>
+
+
                     <td><a href = "<?php echo site_url('forms/deleteResources/'.$num); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
+                    
                      <?php } }?>
+
+
+
                 </tr>
                 <?php } } ?>
                 </tbody>

@@ -51,10 +51,13 @@ var data1 =
 
 
 };
+
 var url = '<?php echo site_url();?>';
 
 console.log(JSON.stringify(data1));
+
 var data =  eval(data1);//JSON.stringify(data1);
+
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/event'); ?>',
@@ -256,11 +259,13 @@ var data =  eval(data1);//JSON.stringify(data1);
 					<label id="city_error" hidden>City is required .</label> 
 					</div >
 					<div class="form-group">
+
 					<label for="state">State</label>
-					<input type="hidden" class="form-control"  id="state">
-					<input type="text" class="form-control"  id="state_value" placeholder="Enter State" disabled>
+					
+					<input type="text" class="form-control"  id="state" placeholder="Enter State" >
 					<label id="state_error" hidden>State is required .</label> 
 					</div >
+
 					<div class="form-group">
 					<label for="pin">Pin</label>
 					<input type="number" class="form-control"  id="pin" placeholder="Enter Pin" min="1" max="100">
@@ -328,8 +333,7 @@ var data =  eval(data1);//JSON.stringify(data1);
 					</div>
 					<div class="form-group">
 					  <label for="state">State</label>
-					  <input type="hidden" class="form-control"  id="orgstate">
-					  <input type="text" class="form-control"  id="orgstate_value" placeholder="Enter State" disabled>
+					  <input type="text" class="form-control"  id="orgstate" placeholder="Enter State" >
 					  <label id="organizer_state_error" hidden>State is required .</label> 
 					</div>
 					<div class="form-group">

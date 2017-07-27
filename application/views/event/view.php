@@ -39,7 +39,7 @@
             <div class="tab-content">
               <div class="tab-pane active" id="tab_event">
 			   <div class="box-header with-border">
-                <h4>Job Details:</h4 > 	
+                <h4>Event Details:</h4 > 	
 				</div>
                 <div class="box-body">
 					<div class="timeline-item">

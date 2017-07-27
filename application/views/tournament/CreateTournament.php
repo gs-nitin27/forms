@@ -64,16 +64,20 @@ var data1 = {
     "entry_start_date"        : $("#estartD").val(),
     "entry_end_date"          : $("#eendD").val(),
     "emailid"                 : $("#email").val(),
+
     "tournament_ageGroup"     : JSON.stringify($("#tage").val()),
+
     "file_name"               : $("#filename").val(),
     "image"                   : $("#photo_url").val()
 };
  
-console.log(JSON.stringify(data1));
-var url = '<?php echo site_url();?>';
-var data = JSON.stringify(data1);
-  $.ajax({
+//console.log(JSON.stringify(data1));
 
+var url = '<?php echo site_url();?>';
+
+var data =  eval(data1);//JSON.stringify(data1);
+
+  $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/saveTournament'); ?>',
     data: "data="+data,

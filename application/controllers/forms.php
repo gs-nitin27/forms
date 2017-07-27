@@ -452,6 +452,7 @@ public function userCreateEvent()
 public function event()
 {
 $item = new stdClass();
+
 $item->id                        = $_POST['id'];
 $item->userid                    = $_POST['userid'];
 $item->feetype                   = mysql_real_escape_string($_POST['etypes']);
@@ -767,11 +768,15 @@ public function CreateTournament()
 
 public function saveTournament()
 {
+
+
 $data1 = json_decode($_REQUEST['data']);
 
 //print_r($data1->tournament_ageGroup);die;
 
 $item  = new stdClass(); 
+
+
 $item->id                      = $data1->id;
 $item->organizer_name          = $data1->organizer_name;
 $item->tournament_level        = $data1->tournament_level;

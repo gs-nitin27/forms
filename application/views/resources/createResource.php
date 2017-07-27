@@ -32,7 +32,7 @@ var data1 =
     "image"                   : $("#photo_url").val(),
     "date_created"            : $("#date_created").val(),
 	  "token"                   : $("#token").val(),
-    "sport"                   : $("#dates-field2").val().toString()
+    "sport"                   : $("#jsports").val().toString()
 };
 
 console.log(JSON.stringify(data1)); 
@@ -194,34 +194,54 @@ var data = eval(data1);//JSON.stringify(data1);
                 <label id="title_error" hidden="">A title is required</label>
                 </div>
 
-               
-               <div class="form-group">
-               <div class="col-md-4">
-               <div class="form-group">
-               <label class="exampleInputEmail1" for="rolename">Sports</label>
-              <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" onchange="get_sport()">
-             <?php  $sports = $this->register->getSport();?>
-             <?php if(!empty($sports)){
+ <script type="text/javascript">
+        $(function () {
+            $('#lstFruits').multiselect({
+                includeSelectAllOption: true
+            });
+            $('#btnSelected').click(function () {
+                var selected = $("#lstFruits option:selected");
+                var message = "";
+                var i =0;
+                selected.each(function () {
+                  if(i==0)
+                  {
+                    message +=$(this).val();
+                    i = i+1;
+                  }
+                  else
+                  {
+                    i = i+1;
+                    message += " , " + $(this).val() ;
+                  }
+                });
+                
+                $("#jsports").val(message);
+            });
+        });
+    </script>
+    <div class="form-group">
+    <?php  $sports = $this->register->getSport();?>
+    <select id="lstFruits" class="form-control"  multiple="multiple" >
+       <?php if(!empty($sports)){
                         foreach($sports as $sport){?>
-             <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
-         <?php 
-           }
-
-           } 
-           ?>
-           
-        </select>
-        </div>
+        <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
+         <?php   }
+                           } 
+                         ?>
+    </select>
+    <input type="button" id="btnSelected" value="Get Selected" />
      </div>
-     <input type="text" name="sports" class="form-control" disabled="" id="sports">
-    </div>
+    <div class="form-group">
+    <input type="text" id="jsports" class="form-control" name="sport" disabled="">
+   </div>
 
-  
+   
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
 
 
-                <textarea class="form-control" maxlength="375" name="summary" id="rsummary" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                <textarea class="form-control" maxlength="400" name="summary" id="rsummary" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
                 <label id="summary_error" hidden="">A summary is required</label>
 
@@ -235,7 +255,7 @@ var data = eval(data1);//JSON.stringify(data1);
            <div class="form-group" id="abc">
 
            <label for="exampleInputEmail1">Description</label>
-           <textarea class="ckeditor" maxlength="375" name="description" id="rdescription" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> 
+           <textarea class="ckeditor" maxlength="400" name="description" id="rdescription" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> 
           
           <script>
           var editor=CKEDITOR.replace('rdescription');
@@ -281,7 +301,8 @@ var data = eval(data1);//JSON.stringify(data1);
       
     </div>
   </div>
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
 $(function() {
   //alert("fssa");
     $('.multiselect-ui').multiselect({
@@ -289,7 +310,7 @@ $(function() {
         includeSelectAllOption: true
     });
 });
-</script>
+</script> -->
                  <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location">
@@ -308,43 +329,6 @@ $(function() {
                 </select>
                 <label id="article_error" hidden="">Article type is required</label>
                 </div>
-
-
-      
-
-    <!-- <div class="form-group">
-    <label for="sports">Sport</label>
-    <?php//  $sports = $this->register->getSport();?>
-    <select id="lstFruits" class="form-control"  multiple="multiple">
-       <?php// if(!empty($sports)){
-                       // foreach($sports as $sport){?>
-        <option value ="<?php// echo $sport['sports'];?>"><?php //echo $sport['sports'];?> </option>
-         <?php //  }
-                      //     } 
-                         ?>
-    </select>
-    <input type="button" id="btnSelected" value="Get Selected" />
-     </div>
-    <div class="form-group">
-    <input type="text" id="sport" class="form-control" name="sport" disabled="">
-     <label id="sport_error" hidden>Sport Name is required .</label>
-   </div>
- -->
-   
-
-                <!-- <div class="form-group">
-                <?php//  $sports = $this->register->getSport();?>
-                <label for="sports">Sport</label>
-                <select id="sport" class="form-control" name="sport">
-                <option >-select-</option> 
-                <?php// if(!empty($sports)){
-                      //  foreach($sports as $sport){?>
-                <option value ="<?php// echo $sport['sports'];?>"><?php// echo $sport['sports'];?> </option>
-                <?php //  }
-                         //  } 
-                         ?>
-                </select>
-                </div> -->
 
 
             </form>
@@ -689,35 +673,11 @@ $(function() {
      }
     });
      get_sport = function()
-     { $('#sports').val('');
-       var list = $('#dates-field2').val().join(',');
-       $('#sports').val(list);   
+     {
+         $('#sports').val('');
+         var list = $('#dates-field2').val().join(',');
+        $('#sports').val(list);   
      }
   </script> 
 
- <!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
- </script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
-        rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
-        rel="stylesheet" type="text/css" />
-    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
-        type="text/javascript"></script>
-  <script type="text/javascript">
-        var tt =  $.noConflict();
-        tt(function () {
-            tt('#lstFruits').multiselect({
-                includeSelectAllOption: true
-            });
-            tt('#btnSelected').click(function () {
-                var selected = tt("#lstFruits option:selected");
-                var message = "";
-                selected.each(function () {
-                    message +=tt(this).val() + " , ";
-                });
-                
-                tt("#sport").val(message);
-            });
-        });
-    </script> -->
+
