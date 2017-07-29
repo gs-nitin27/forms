@@ -125,7 +125,7 @@
 			  </div>
               <div class="box-body">
 			  <div class="timeline-item">
-			  <h5 class="timeline-header no-border"><b>Work Experience: </b> &nbsp;<?php echo $job['work_experience']." Years";?></h5>
+			  <h5 class="timeline-header no-border"><b>Work Experience: </b> &nbsp;<?php echo $job['work_experience'];?></h5>
 			  </div>
 			  <div class="timeline-item">
 			  <h5 class="timeline-header no-border"><b>Qualifications: </b> &nbsp;<?php echo $job['qualification'];?></h5>
@@ -247,7 +247,7 @@
 			</div>
                 <div class="box-body">
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Work Experience: </b> &nbsp;<?php echo $job['work_experience']." Years";?></h5>
+						<h5 class="timeline-header no-border"><b>Work Experience: </b> &nbsp;<?php echo $job['work_experience'];?></h5>
 					</div>
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Qualifications: </b> &nbsp;<?php echo $job['qualification'];?></h5>
