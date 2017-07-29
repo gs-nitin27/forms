@@ -14,7 +14,7 @@ function save()
 $('#imagelodar').show();
 var summary1        = $("#rsummary").val();
 var summary12       = summary1.toString();
-var string          = summary12.replace(/[\/\\'\\"<>~{}]/g, '');
+var string          = summary12.replace(/[\/\"<>~{}]/g, '');
 var description     = editor.getData();
 var data1 = 
 {
