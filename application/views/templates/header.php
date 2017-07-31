@@ -121,14 +121,18 @@ if($this->session->userdata('item')==''){
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
                 <?php if($image) { ?>
-               <img src="<?php  echo base_url()."uploads/profile/".$image; ?>" class="user-image" alt="User Image">
+               <img src="<?php  echo base_url()."img/team/".$image; ?>" class="user-image" alt="User Image ">
                <?php } else { 
                   if($mod['gender'] == 'Female') { ?>
                 <img src="<?php  echo base_url('img/female.jpg');?>" class="user-image" alt="User Image">
                <?php }
                 else
                    {  ?>
+
+
                      <img src="<?php  echo base_url('img/user.jpg');?>" class="user-image" alt="User Image">
+
+
                     <?php  }  } ?>
 
               <span class="hidden-xs"><?php echo $name ;?></span>
@@ -137,14 +141,19 @@ if($this->session->userdata('item')==''){
               <!-- User image -->
               <li class="user-header">
 
+
+
                  <?php if($image) { ?>
                 <img src="<?php  echo base_url()."uploads/profile/".$image; ?>" class="img-circle" alt="User Image">
-                  <?php } else {
+                  <?php } else
+                  {
                   if($mod['gender'] == 'Female') { ?>
                 <img src="<?php  echo base_url('img/female.jpg');?>" class="user-image" alt="User Image">
-               <?php }
+               <?php 
+             }
                 else
-                   {  ?>
+                   {
+                     ?>
                      <img src="<?php  echo base_url('img/user.jpg');?>" class="user-image" alt="User Image">
                      
                   <?php } } ?>

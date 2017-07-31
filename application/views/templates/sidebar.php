@@ -12,14 +12,16 @@ $array=json_decode($data);
       <div class="user-panel">
 
  <?php
-          $data=$this->session->userdata('item');
-          $name=$data['name'];
-          $usertype = $data['userType'];
-
-          //print_r($data);die;
-         
+          $data        =$this->session->userdata('item');
+          $name        = $data['name'];
           
-        { 
+          $usertype    = $data['userType'];
+          $image       = $data['user_image'];
+
+         //print_r($data);die;
+         
+          {
+       
              
             if($usertype == 102  || $usertype == 101)
             {
@@ -37,22 +39,40 @@ $array=json_decode($data);
                } }?>
          
           <?php if($mod['user_image']){?>
+
          <div class="pull-left image">
-          <img src="<?php  echo base_url()."uploads/profile/".$mod['user_image']; ?>" class="" alt="User Image">
+         <img src="<?php  echo base_url()."img/team/".$image; ?>" class="user-image" alt="User Image ">
+          
+
         </div>
-          <?php } else { 
+          <?php
+           }
+           else { 
           if($mod['gender'] == 'Female') { ?> ?>
 
         <div class="pull-left image">
-          <img src="<?php  echo base_url('img/female.jpg');?>" class="" alt="User Image">
+          <img src="<?php  echo base_url('img/female.jpg');?>" alt="User Image">
         </div>
 
         <?php }
+
+     
+
                 else
                    {  ?>
 
                 <div class="pull-left image">
-          <img src="<?php  echo base_url('img/user.jpg');?>" class="" alt="User Image">
+
+<!-- This is a code for Image
+          <img src="<?php  //echo base_url('img/user.jpg');?>" class="" alt="User Image dev ">
+-->
+
+
+
+
+
+
+
         </div>
        <?php  }  } ?>
      
