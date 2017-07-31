@@ -121,7 +121,9 @@ if($this->session->userdata('item')==''){
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
                 <?php if($image) { ?>
+
                <img src="<?php  echo base_url()."img/team/".$image; ?>" class="user-image" alt="User Image ">
+               
                <?php } else { 
                   if($mod['gender'] == 'Female') { ?>
                 <img src="<?php  echo base_url('img/female.jpg');?>" class="user-image" alt="User Image">

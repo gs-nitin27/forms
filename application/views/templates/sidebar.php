@@ -40,10 +40,9 @@ $array=json_decode($data);
          
           <?php if($mod['user_image']){?>
 
-         <div class="pull-left image">
-         <img src="<?php  echo base_url()."img/team/".$image; ?>" class="user-image" alt="User Image ">
-          
 
+         <div class="pull-left image">
+          <img src="<?php  echo base_url()."img/team/".$mod['user_image']; ?>" class="user-image" alt="User Image name ">
         </div>
           <?php
            }
