@@ -123,7 +123,7 @@ if($this->session->userdata('item')==''){
                 <?php if($image) { ?>
 
                <img src="<?php  echo base_url()."img/team/".$image; ?>" class="user-image" alt="User Image ">
-               
+
                <?php } else { 
                   if($mod['gender'] == 'Female') { ?>
                 <img src="<?php  echo base_url('img/female.jpg');?>" class="user-image" alt="User Image">
@@ -141,12 +141,15 @@ if($this->session->userdata('item')==''){
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
+
               <li class="user-header">
 
 
 
                  <?php if($image) { ?>
-                <img src="<?php  echo base_url()."uploads/profile/".$image; ?>" class="img-circle" alt="User Image">
+
+                <img src="<?php  echo base_url()."img/team/".$image; ?>" class="user-image" alt="User Image ">
+
                   <?php } else
                   {
                   if($mod['gender'] == 'Female') { ?>
