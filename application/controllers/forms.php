@@ -769,14 +769,11 @@ public function CreateTournament()
 public function saveTournament()
 {
 
-
 $data1 = json_decode($_REQUEST['data']);
 
-//print_r($data1->tournament_ageGroup);die;
+
 
 $item  = new stdClass(); 
-
-
 $item->id                      = $data1->id;
 $item->organizer_name          = $data1->organizer_name;
 $item->tournament_level        = $data1->tournament_level;
@@ -814,24 +811,31 @@ $item->publish                 = 0;
 $item->image                   = $data1->image;  
 
 $this->load->model('register');
+
 $res = $this->register->saveTournament($item);
 if($res == '1')
  {
  echo "1";
  }
 else
+{
  echo "0";
 }
+}
 
-public function usercreateTournament(){
+
+public function usercreateTournament()
+{
     $this->load->view('tournament/CreateTournament');
   }
 
-public function getTournament(){
+
+public function getTournament()
+{
 		$data['middle'] = 'tournament/index';
 
 		$this->load->view('templates/template',$data);
-	}
+}
 public function viewTournament($str)
 {
     $id= $this->stringtonumber($str);
@@ -840,7 +844,7 @@ public function viewTournament($str)
 									'id'=>$id	
 								 ); 
 		$this->load->view('templates/template',$data);
-	}
+}
 
 public function Tournamentmobileview()
 {
