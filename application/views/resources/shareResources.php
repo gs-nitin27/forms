@@ -186,13 +186,15 @@ var jsondata = eval(data1);
                     });
                 });
                 </script>
+
               <div class="form-group">
               <div class="col-md-4">
               <div class="form-group">
               <label class="exampleInputEmail1" for="rolename">Sports</label>
               <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" onchange="get_sport()">
                <?php  $sports = $this->register->getSport();?>
-               <?php if(!empty($sports)){
+               <?php if(!empty($sports))
+               {
                         foreach($sports as $sport){?>
               <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
                   <?php   }
@@ -201,8 +203,15 @@ var jsondata = eval(data1);
       </select>
       </div>
      </div>
+
+
    <input type="text" id="sport" class="form-control" name="sport" value="" disabled="">
     </div>
+
+
+
+
+
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
                 <textarea class="form-control" maxlength="375" name="summary" id="rsummary" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
