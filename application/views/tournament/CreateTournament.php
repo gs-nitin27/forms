@@ -30,10 +30,11 @@ $(document).ready(function(){
 		});
  });
     
-function save(){
+function save()
+{
    $("#imagelodar").show();
 var data1 = {
-     "id"                      : 0, 
+    "id"                      : "0", 
     "userid"                  : $("#userid").val(),
     //"catagory"                : $("#tcatagory").val(),
     "address_line1"           : $("#add1").val(), 
@@ -64,18 +65,16 @@ var data1 = {
     "entry_start_date"        : $("#estartD").val(),
     "entry_end_date"          : $("#eendD").val(),
     "emailid"                 : $("#email").val(),
-
     "tournament_ageGroup"     : JSON.stringify($("#tage").val()),
-
     "file_name"               : $("#filename").val(),
     "image"                   : $("#photo_url").val()
 };
  
-//console.log(JSON.stringify(data1));
-
 var url = '<?php echo site_url();?>';
 
-var data =  eval(data1);//JSON.stringify(data1);
+//var data =  eval(data1);
+var data = JSON.stringify(data1);
+
 
   $.ajax({
     type: "POST",
@@ -83,7 +82,7 @@ var data =  eval(data1);//JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-    	$("#imagelodar").hide();
+  	$("#imagelodar").hide();
        if(result == '1')
          {
           $("#imagelodar").hide();
