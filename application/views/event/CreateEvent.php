@@ -1,4 +1,3 @@
-
 <script>
 window.flagTicket = 0;
 window.flagTerm   = 0;
@@ -965,11 +964,3 @@ function deleteCriteria($this)
 }
 
 </script>
-
-
-
-
-
-
-
-

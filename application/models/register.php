@@ -1899,4 +1899,5 @@ public function Registration_userdata($item)
 	return $newDate;
 	}
 }
+
  ?>

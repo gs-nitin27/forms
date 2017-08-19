@@ -1,4 +1,3 @@
-
 <script>
 window.flagTicket = 0;
 window.flagTerm   = 0;
@@ -914,9 +913,6 @@ document.getElementById("addCriteria").onclick = function()
 
 
 <script>
-
-
-
 function deleteterm($this)
 {
    var id = $this.id;
@@ -928,5 +924,6 @@ function deleteCriteria($this)
    var id = $this.id;
    $('#divCRT_'+id).hide();
 }
+
 
 </script>
