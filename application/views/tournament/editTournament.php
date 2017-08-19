@@ -73,15 +73,16 @@ var data1 = {
 
 console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>';
-var data = JSON.stringify(data1);
+//var data = JSON.stringify(data1);
+var data =  eval(data1);
   $.ajax({
-
     type: "POST",
     url: '<?php echo site_url('forms/saveTournament'); ?>',
-    data: "data="+data,
-    dataType: "text",
+    data: data,
+    dataType: "json",
     success: function(result) {
       // $("#imagelodar").hide();
+      $("#imagelodar").hide();
        if(result == '1')
          {
 
