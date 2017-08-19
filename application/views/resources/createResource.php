@@ -32,9 +32,13 @@ function save()
                   "sport"                   : $("#sport").val().toString()
               };
                   console.log(JSON.stringify(data1)); 
+
           var url = '<?php echo site_url();?>'
 
+
           var data = eval(data1);//JSON.stringify(data1);
+
+
           $.ajax({
             type: "POST",
             url: '<?php echo site_url('forms/SavecreateResources'); ?>',

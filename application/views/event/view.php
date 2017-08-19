@@ -1,4 +1,4 @@
-
+uu
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
  <section class="content-header">
@@ -130,12 +130,30 @@
                 <h4>Requirements:</h4> 	
 			</div>
                 <div class="box-body">
+
+          <?php
+     
+            $ticketdata = json_decode($event['eligibility1']);
+            $i= 1;
+             foreach($ticketdata as $key1 => $test) 
+              {
+                ?>
+                  
+
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Criteria 1: </b> &nbsp;<?php echo $event['eligibility1'];?></h5>
+						<h5 class="timeline-header no-border"><b>Criteria <?php echo $i; ?> :  </b> &nbsp;<?php echo $test->criteria;?></h5>
+            
 					</div>
-					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Criteria 2: </b> &nbsp;<?php echo $event['eligibility2'];?></h5>
-					</div>
+					
+
+
+<?php
+$i++;
+
+}
+        
+          ?>
+
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Entry Start Date: </b> &nbsp;<?php echo $event['entry_start_date'];?></h5>
 					</div>
@@ -143,12 +161,26 @@
 						<h5 class="timeline-header no-border"><b>Entry End Date: </b> &nbsp;<?php echo $event['entry_end_date'];?></h5>
 					</div>
 					
+          <?php
+
+             $ticketdata1 = json_decode($event['terms_cond1']);
+              
+             $i= 1;
+             foreach($ticketdata1 as $key1 => $test) 
+              {
+
+                ?>
+
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>T & C 1: </b> &nbsp;<?php echo $event['terms_cond1'];?></h5>
-					</div>
-					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>T & C 2: </b> &nbsp;<?php echo $event['terms_cond2'];?></h5>
-					</div>
+
+						<h5 class="timeline-header no-border"><b>T & C <?php echo $i; ?> : </b> &nbsp;<?php echo $test->term; ?></h5>
+            </div>
+<?php
+$i++;
+}
+        
+          ?>
+
 				</div>
               </div>
               <!-- /.tab-pane -->
