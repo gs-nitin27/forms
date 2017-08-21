@@ -23,7 +23,6 @@
 			<?php $event = $this->register->getEventInfo($id); 
 			//print_r($event);
 				if(!empty($event)){
-					
 					$event = $event[0];
 				}
 				
@@ -135,6 +134,8 @@
      
             $ticketdata = json_decode($event['eligibility1']);
             $i= 1;
+            if (!empty($ticketdata))
+            {
              foreach($ticketdata as $key1 => $test) 
               {
                 ?>
@@ -151,7 +152,7 @@
 $i++;
 
 }
-        
+       } 
           ?>
 
 					<div class="timeline-item">
@@ -166,6 +167,8 @@ $i++;
              $ticketdata1 = json_decode($event['terms_cond1']);
               
              $i= 1;
+             if(!empty($ticketdata1))
+            {
              foreach($ticketdata1 as $key1 => $test) 
               {
 
@@ -178,7 +181,7 @@ $i++;
 <?php
 $i++;
 }
-        
+    }    
           ?>
 
 				</div>
