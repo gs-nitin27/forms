@@ -476,9 +476,8 @@ $(function() {
   <script type="text/javascript">
 
    
-    $("#save").click(function(){
-       // save();
-      
+    $("#save").click(function()
+    {
       var editorData      =  editor.getData();
       var description     =  editorData.replace(/[\/\\<>~\{}]/g, '');
        

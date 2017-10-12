@@ -184,7 +184,8 @@ public function create_job($item)
          'image' => $item->image,
          'email' => $item->email,
          'job_link' => $item->job_link,
-         'date_created' => date('Y-m-d')
+         'date_created' => date('Y-m-d'),
+         'date_updated' => date('Y-m-d')
 );
 
 if($this->db->insert('gs_jobInfo', $data))
@@ -209,6 +210,22 @@ if($this->db->insert('gs_jobInfo', $data))
 // }
 
 } 
+
+public function Republish($id)
+{
+
+$data =  array('date_updated' => date('Y-m-d'));
+$this->db->where('id',$id);
+if($this->db->update('gs_jobInfo',$data))
+{
+	return 1;
+}
+else
+{
+	return 0;
+}
+
+}
 
 
 public function save_Edit_Job($item)

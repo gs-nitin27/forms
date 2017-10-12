@@ -51,7 +51,8 @@
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
 
                     <?php }?>
-                  <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Republish</th>
+                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
                 </tr>
@@ -94,6 +95,7 @@
           <button class="badge bg-green" onclick="myfunction(<?php echo $job['id'];?>,0)"><?php echo "Deactivate";?></button>
           <?php } ?>
           </td>
+
            <?php }  $list=array('a' => 0,
                                 'b' => 1,
                                 'c' => 2,
@@ -119,6 +121,7 @@
                                 }
                                 $num=$temp;
                                 { ?>
+           <td> <button class="badge bg-purple" onclick="Republish(<?php echo $job['id'];?>)"><?php echo "Republish";?></button></td>                       
 					<td><a href = "<?php echo site_url('forms/viewJob/'.$num.'?job'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
 
                  <td><a href = "<?php echo site_url('forms/editjob/'.$num.'?job'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
@@ -152,6 +155,8 @@
                     ?>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish</th>
                   <?php } } ?>
+                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Republish</th>
+                </tr>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
                 </tr>
                 </tfoot>
@@ -179,6 +184,51 @@
 </script>
 
 <script>
+
+ function Republish(id)
+{
+var data1 =
+{
+           "id"               : id
+};
+
+
+var url = '<?php echo site_url();?>'
+var data = JSON.stringify(data1);
+  $.ajax({
+
+    type: "POST",
+    url: '<?php echo site_url('forms/Republish'); ?>',
+    data: "data="+data,
+    dataType: "text",
+    success: function(result) {
+   
+     // window.location.href = url+"/forms/getjob?job";
+
+    }
+});
+
+
+  // var data1 = { 'id' : id };
+
+  // var url = '<?php// echo site_url();?>';
+  // var data = JSON.stringify(data1);
+  // $.ajax({
+  //      type : "POST",
+  //      url : '<?php// echo site_url('forms/Republish')?>',
+  //      data : 'data='+data,
+  //      dataType : "text"
+  //      success : function(result)
+  //      {
+  //          alert(result);
+  //      window.location.href = url+"/forms/getjob?job";
+  //      } 
+
+  // });
+
+}
+
+
   function myfunction(id,uid)
   {  
     var data1 = {
@@ -195,6 +245,7 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
+   
       window.location.href = url+"/forms/getjob?job";
 
     }

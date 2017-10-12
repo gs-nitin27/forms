@@ -676,7 +676,16 @@ echo "0";
 
 
 
+public function Republish()
+{
 
+ $data2 = json_decode($_REQUEST['data']);
+
+ $this->load->model('register');
+ $res = $this->register->Republish($data2->id); 
+ echo json_encode($res);
+
+}
 
 
 
