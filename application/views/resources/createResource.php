@@ -1,100 +1,106 @@
-
 <link rel="stylesheet" href="<?php echo base_url('assets/jquery-ui.css'); ?>" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo base_url('assets/ui.theme.css'); ?>" type="text/ css" media="all" />
 
-<script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" >
- 
-</script>
+  <script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" > </script>
+
 <script>
-
-
 function save()
 {
-  
-$('#imagelodar').show();
-var summary1        = $("#rsummary").val();
-var summary12       = summary1.toString();
-var string          = summary12.replace(/[\/\\'\\"<>~{}]/g, '');
-var description     = editor.getData();
-var data1 = 
-{
-    "id"                      : 0, 
-    "userid"                  : $("#userid").val(),
-    "title"                   : $("#rtitle").val(),
-    "url"                     : $("#myId").text(),
-    "description"             : description, 
-    "summary"                 : string,
-    "keyword"                 : "",
-    "status"                  : 0,
-    "location"                : $("#rlocation").val(), 
-    "topic_of_artical"        : $("#article").val(), 
-    "image"                   : $("#photo_url").val(),
-    "date_created"            : $("#date_created").val(),
-	  "token"                   : $("#token").val(),
-    "sport"                   : $("#dates-field2").val().toString()
-};
+    
+          $('#imagelodar').show();
+          var summary1        = $("#rsummary").val();
+          var summary12       = summary1.toString();
+          var string          = summary12.replace(/[\/\"<>~{}]/g, '');
+          var description     = editor.getData();
+              var data1 = 
+              {
 
-console.log(JSON.stringify(data1)); 
+                  "id"                      : 0, 
+                  "userid"                  : $("#userid").val(),
+                  "title"                   : $("#rtitle").val(),
+                  "url"                     : $("#myId").text(),
+                  "description"             : description, 
+                  "summary"                 : string,
+                  "keyword"                 : $("#keywords").val(),
+                  "status"                  : 0,
+                  "location"                : $("#rlocation").val(), 
+                  "topic_of_artical"        : $("#article").val(), 
+                  "image"                   : $("#photo_url").val(),
+                  "date_created"            : $("#date_created").val(),
+              	  "token"                   : $("#token").val(),
+                  "sport"                   : $("#sport").val().toString()
+              };
+                  console.log(JSON.stringify(data1)); 
 
-var url = '<?php echo site_url();?>'
-var data = eval(data1);//JSON.stringify(data1);
-  $.ajax({
-    type: "POST",
-    url: '<?php echo site_url('forms/SavecreateResources'); ?>',
-    data: data,
-    dataType: "json",
-    success: function(result) 
-    {
+          var url = '<?php echo site_url();?>'
 
-     // $('#imagelodar').hide();
 
-    if(result.response == '1')
-      {
-        $.confirm({
-        animationSpeed: 1000,
-        animationBounce: 3,
-        title: 'Congratulations!',
-        content: 'Resource is created.',
-        type: 'green',
-        typeAnimated: true,
-        buttons: {
-            tryAgain: {
-                text: 'Thank You !',
-                btnClass: 'btn-green',
-                action: function(){
-                  window.location.href = url+"/forms/getresources?resources";
-                }
-            },
-            close: function () {
-              window.location.href = url+"/forms/getresources?resources";
-            }
-        }
-    });
-      }else
-      {
-      $('#imagelodar').hide();
-      $.confirm({
-              title: 'Encountered an error!',
-              content: 'Something went Worng, this may be server issue.',
-              type: 'dark',
-              typeAnimated: true,
-              animationSpeed: 1500,
-              animationBounce: 3,
-              buttons: {
-                  tryAgain: {
-                      text: 'Try again',
-                      btnClass: 'btn-dark',
-                      action: function(){
-                      }
-                  },
-                  close: function () {
-                  }
+          var data = eval(data1);//JSON.stringify(data1);
+
+
+          $.ajax({
+            type: "POST",
+            url: '<?php echo site_url('forms/SavecreateResources'); ?>',
+            data: data,
+            dataType: "json",
+            success: function(result) 
+            {
+              if(result.response == '1')
+              {
+                      $.confirm({
+                          animationSpeed: 1000,
+                          animationBounce: 3,
+                          title: 'Congratulations!',
+                          content: 'Resource is created.',
+                          type: 'green',
+                          typeAnimated: true,
+                          buttons: 
+                          {
+                              tryAgain:
+                              {
+                                  text: 'Thank You !',
+                                  btnClass: 'btn-green',
+                                  action: function()
+                                  {
+                                    window.location.href = url+"/forms/getresources?resources";
+                                  }
+                              },
+                              close: function () 
+                              {
+                                window.location.href = url+"/forms/getresources?resources";
+                              }
+                          }
+                     });
               }
-          });
-      }      
-    }
-}); 
-}
+              else
+              {
+              $('#imagelodar').hide();
+              $.confirm({
+                            title: 'Encountered an error!',
+                            content: 'Something went Worng, this may be server issue.',
+                            type: 'dark',
+                            typeAnimated: true,
+                            animationSpeed: 1500,
+                            animationBounce: 3,
+                            buttons: 
+                            {
+                                tryAgain: 
+                                {
+                                    text: 'Try again',
+                                    btnClass: 'btn-dark',
+                                    action: function()
+                                    {
+                                    }
+                                },
+                                  close: function ()
+                                  {
+                                  }
+                            }
+                        });
+                   }      
+                   }
+                }); 
+ }
 </script>
 
  <div class="content-wrapper">
@@ -163,6 +169,7 @@ var data = eval(data1);//JSON.stringify(data1);
             });
             });
             </script>
+
              <div class="form-group"> 
                      <label for="exampleInputEmail1">Resource Type</label>
                      <select  id="types" class="form-control" >
@@ -171,6 +178,11 @@ var data = eval(data1);//JSON.stringify(data1);
                      <option value="video">Video</option>
                      <option value="blog">Blog</option>
                      </select>
+              </div >
+
+              <div class="form-group"> 
+                     <label for="exampleInputEmail1">Keywords</label>
+                     <input type="text" class="form-control" style="font-family: lower;" name="keywords" id="keywords" placeholder="Type keywords">
               </div >
              <?php     
              date_default_timezone_set("Asia/Kolkata");
@@ -187,31 +199,55 @@ var data = eval(data1);//JSON.stringify(data1);
                 <label id="title_error" hidden="">A title is required</label>
                 </div>
 
-               
-               <div class="form-group">
-               <div class="col-md-4">
-               <div class="form-group">
-               <label class="exampleInputEmail1" for="rolename">Sports</label>
+                
+
+                <script type="text/javascript">
+                $(function() {
+                  //alert("fssa");
+                    $('.multiselect-ui').multiselect({
+
+                        includeSelectAllOption: true
+                    });
+                });
+                </script>
+
+              <div class="form-group">
+              <div class="col-md-4">
+              <div class="form-group">
+              <label class="exampleInputEmail1" for="rolename">Sports</label>
               <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" onchange="get_sport()">
-             <?php  $sports = $this->register->getSport();?>
-             <?php if(!empty($sports)){
+               <?php  $sports = $this->register->getSport();?>
+               <?php if(!empty($sports))
+               {
                         foreach($sports as $sport){?>
-             <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
-         <?php   }
+              <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
+                  <?php   }
                            } 
                          ?>
-        </select>
-        </div>
+      </select>
+      </div>
      </div>
-     <input type="text" name="sports" class="form-control" disabled="" id="sports">
+
+
+   <input type="text" id="sport" class="form-control" name="sport" value="" disabled="">
     </div>
 
-  
+
+
+
+
+
+
+   
+
+
+
+
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
 
 
-                <textarea class="form-control" maxlength="375" name="summary" id="rsummary" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                <textarea class="form-control" maxlength="400" name="summary" id="rsummary" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
                 <label id="summary_error" hidden="">A summary is required</label>
 
@@ -225,7 +261,7 @@ var data = eval(data1);//JSON.stringify(data1);
            <div class="form-group" id="abc">
 
            <label for="exampleInputEmail1">Description</label>
-           <textarea class="ckeditor" maxlength="375" name="description" id="rdescription" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> 
+           <textarea class="ckeditor" maxlength="400" name="description" id="rdescription" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> 
           
           <script>
           var editor=CKEDITOR.replace('rdescription');
@@ -271,7 +307,8 @@ var data = eval(data1);//JSON.stringify(data1);
       
     </div>
   </div>
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
 $(function() {
   //alert("fssa");
     $('.multiselect-ui').multiselect({
@@ -279,7 +316,7 @@ $(function() {
         includeSelectAllOption: true
     });
 });
-</script>
+</script> -->
                  <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location">
@@ -298,43 +335,6 @@ $(function() {
                 </select>
                 <label id="article_error" hidden="">Article type is required</label>
                 </div>
-
-
-      
-
-    <!-- <div class="form-group">
-    <label for="sports">Sport</label>
-    <?php//  $sports = $this->register->getSport();?>
-    <select id="lstFruits" class="form-control"  multiple="multiple">
-       <?php// if(!empty($sports)){
-                       // foreach($sports as $sport){?>
-        <option value ="<?php// echo $sport['sports'];?>"><?php //echo $sport['sports'];?> </option>
-         <?php //  }
-                      //     } 
-                         ?>
-    </select>
-    <input type="button" id="btnSelected" value="Get Selected" />
-     </div>
-    <div class="form-group">
-    <input type="text" id="sport" class="form-control" name="sport" disabled="">
-     <label id="sport_error" hidden>Sport Name is required .</label>
-   </div>
- -->
-   
-
-                <!-- <div class="form-group">
-                <?php//  $sports = $this->register->getSport();?>
-                <label for="sports">Sport</label>
-                <select id="sport" class="form-control" name="sport">
-                <option >-select-</option> 
-                <?php// if(!empty($sports)){
-                      //  foreach($sports as $sport){?>
-                <option value ="<?php// echo $sport['sports'];?>"><?php// echo $sport['sports'];?> </option>
-                <?php //  }
-                         //  } 
-                         ?>
-                </select>
-                </div> -->
 
 
             </form>
@@ -679,35 +679,11 @@ $(function() {
      }
     });
      get_sport = function()
-     { $('#sports').val('');
-       var list = $('#dates-field2').val().join(',');
-       $('#sports').val(list);   
+     {
+         $('#sport').val('');
+         var list = $('#dates-field2').val().join(',');
+        $('#sport').val(list);   
      }
   </script> 
 
- <!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
- </script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
-        rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
-        rel="stylesheet" type="text/css" />
-    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
-        type="text/javascript"></script>
-  <script type="text/javascript">
-        var tt =  $.noConflict();
-        tt(function () {
-            tt('#lstFruits').multiselect({
-                includeSelectAllOption: true
-            });
-            tt('#btnSelected').click(function () {
-                var selected = tt("#lstFruits option:selected");
-                var message = "";
-                selected.each(function () {
-                    message +=tt(this).val() + " , ";
-                });
-                
-                tt("#sport").val(message);
-            });
-        });
-    </script> -->
+

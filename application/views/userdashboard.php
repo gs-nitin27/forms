@@ -26,6 +26,8 @@
              {
               $id = $user['adminid'];
              }
+
+            // print_r($id);
              $event  =  $this->register->user_dashboard_event($id);  
 
            

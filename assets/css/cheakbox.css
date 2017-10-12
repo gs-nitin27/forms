@@ -1,3 +1,4 @@
+
 /* Hiding the checkbox, but allowing it to be focused */
 .badgebox
 {
@@ -49,5 +50,6 @@
 .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
     display: none;   
 }
+
 
 

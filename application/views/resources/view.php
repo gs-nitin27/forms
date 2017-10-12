@@ -29,16 +29,18 @@
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border" style="color:rgb(0,0,255);opacity:0.6;"><b> Title: </b></h5> &nbsp;<?php echo ucfirst($resource['title']);?>
 					</div>
+					<?php if(!empty(ucfirst($resource['url']))) 
+					{
+							?>	
+
 					<div class="timeline-item">
                         <h5 class="timeline-header no-border" style="color:rgb(0,0,255);opacity:0.6;">
                         <b> Link: </b></h5>&nbsp;
 				    	<a href="<?php echo ucfirst($resource['url']);?>" target="_blank"><?php echo ucfirst($resource['url']);?></a>
 					</div>
 
-				<!--	<div class="timeline-item">
-                        <h5 class="timeline-header no-border" style="color:rgb(0,0,255);opacity:0.6;"><b> Image: </b>&nbsp;</h5>
-					</div>
-					-->
+				<?php 	} ?>
+
 
 					<div class="timeline-item">
 						<h5 class="timeline-header" style="color:rgb(0,0,255);opacity:0.6;"><b href="#"> Summary: </b></h5>
@@ -48,6 +50,8 @@
 						</div>
 					   
 				     </div>
+				     <?php if(!empty($resource['description'])) { ?>
+
 					  <div class="timeline-item">
 						<h5 class="timeline-header" style="color:rgb(0,0,255);opacity:0.6;"><b href="#"> Description: </b></h5>
 
@@ -57,6 +61,7 @@
 					   
 					  </div>		
               </div>
+              <?php } ?>
 			  </td>
 			  <td style="width: 10px; height: 10px; ">
 						

@@ -206,6 +206,7 @@ var data = eval(data1);//JSON.stringify(data1);
           }
          // $userid=$data['userid'];
 
+
         {  ?>
           <div class="form-group">
                   <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
@@ -407,6 +408,6 @@ $('#tactical').change(function() {
         }
     });
 
-</script>
 
+</script>
 

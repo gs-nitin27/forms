@@ -153,8 +153,8 @@
           <!-- STATE IS ID BASED -->
           <div class="form-group">
             <label for="state">State</label>
-            <input type="hidden" class="form-control"  id="jstate">
-            <input type="text" class="form-control"  id="jstate_value" placeholder="Enter State" disabled>
+            <input type="text" class="form-control"  id="jstate" placeholder="Enter State" >
+
            <label id="jstate_error" hidden>State Name is required .</label> 
           </div >
           <div class="form-group">
@@ -204,8 +204,8 @@
           <!-- STATE IS ID BASED -->
           <div class="form-group">
             <label for="state">State</label>
-            <input type="hidden" class="form-control"  id="orgstate">
-            <input type="text" class="form-control"  id="orgstate_value" placeholder="Enter State" disabled>
+            <input type="text" class="form-control"  id="orgstate" placeholder="Enter State" >
+
            <label id="orgstate_error" hidden>State Name is required .</label> 
           </div >
           <div class="form-group">

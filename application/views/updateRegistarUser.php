@@ -1,4 +1,4 @@
- <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
  <script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
  <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.css">
@@ -6,14 +6,14 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/datepicker/datepicker3.css'); ?>">
 
    
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/cheakbox.css');?>">
+
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datepicker/bootstrap-datepicker.js'); ?>"></script>
 <link rel="shortcut icon" href="<?php echo base_url('../favicon.ico');?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/normalize.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('fonts/font-awesome-4.2.0/css/font-awesome.min.css'); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/demo.css'); ?>" />
   <link rel="stylesheet" href="<?php echo base_url('assets/css/loder.css');?>">
-    <script src="<?php echo base_url('assets/js/classie.js');?>"></script>
+    <script src="<?php echo base_url('../../../js/classie.js');?>"></script>
  <script type="text/javascript">
    window.sportsticket = 0;
    window.formalticket = 0; 
@@ -443,7 +443,6 @@ $("#imagelodar").show();
 var data = {
 
     "id"                       : $("#uid").val(),
-    "prof_id"                  : $("#prof_id").val(),
     "userdata"                 : userjson
 };
 console.log(JSON.stringify(data));
@@ -454,7 +453,7 @@ var data = JSON.stringify(data);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-     alert(result);
+    // alert(result);
       if(result == '1')
       {
           // $("#imagelodar").hide();
@@ -550,6 +549,7 @@ var data = JSON.stringify(data);
          <div>Education</div>
             </button>
         </div>
+        
         <div class="btn-group" role="group">
             <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab" style="height:48px;">
                 <div>Experience</div>
@@ -568,12 +568,16 @@ var data = JSON.stringify(data);
     </div>
     <div class="tab-content">
 <?php 
+    // $userid = "<script>document.write(localStorage.getItem('userid'));</script>";
+    // $prof_id = "<script>document.write(localStorage.getItem('prof_id'));</script>";
+    // $response = echo "<script> localStorage.getItem('testObject'); </script>";
     $data=$this->session->userdata('item');  
     $userid = $data['userid'];
     $prof_id = $data['prof_id'];
      $response1=file_get_contents(API_URL.'/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
      $pdata = json_decode($response1);
 
+//print_r($pdata);
 
      $temp = 0;
      if($pdata)
@@ -591,6 +595,7 @@ var data = JSON.stringify(data);
           <div class="col-md-12">
           <div class="box box-primary" style="margin-top:5%;">
           <div class="box-body box-profile">
+        
         <?php  
        if(is_object($arrayvalue))
        {
@@ -643,28 +648,13 @@ var data = JSON.stringify(data);
 
                 </div>
                 
-                <div class='input-group date' style="margin: 5px; overflow: hidden;" data-provide='datepicker'  id="<?php echo 'formal_till_date'.$i.'_div';?>">
+                <div class='input-group date' style="margin: 5px; overflow: hidden;" data-provide='datepicker'>
                 <input class='input__field input__field--hoshi' value="<?php echo $datefromandto[1];?>" type='text' id="<?php echo 'formal_to_date'.$i;?>" class='form-control'>
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
                 <div class='input-group-addon' style="background-color: transparent;border: none;" >
                 <span class='glyphicon glyphicon-th'>
                 </span>
-                </div></div>
-                      
-                
-                <div class="form-groupr">
-                <input type="checkbox" value="Till Date" id="<?php echo 'formal_till_date'.$i;?>" style="width: 3%;height: 5%;">
-                <label>Appear</label>
-                </div>
-
-
-              <script type="text/javascript">
-              $('#formal_till_date'+ window.formalticket ).change(function() 
-              {if ($(this).prop('checked')){var  divid = this.id+'_div';$("#"+divid).hide();}else{var  divid = this.id+'_div';$("#"+divid).show();}});        
-               </script>
-               
-
-                </div></div>
+                </div></div></div></div>
                 <script type="text/javascript">
                   window.formalticket++;
                 </script>
@@ -699,16 +689,13 @@ var data = JSON.stringify(data);
   <label  style="margin:7px;font-weight: 100;" for='link'>Period</label>
   <div></div>
 
-  <?php 
-     $datefromandto = explode("to",$value56->courseDuration);
-  ?>
-
   <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
-  <input type='text' class='input__field input__field--hoshi' id="<?php echo 'certi_from_date'.$i;?>" class='form-control' value="<?php echo $datefromandto[0];?>">
+  <input type='text' class='input__field input__field--hoshi' id="<?php echo 'certi_from_date'.$i;?>" class='form-control'>
   <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">From</span></label>
   <div class='input-group-addon' style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span></div></div>
+  
   <div class='input-group date' style="margin:5px; overflow: hidden;"  data-provide='datepicker'>
-  <input type='text' class='input__field input__field--hoshi' id="<?php echo 'certi_to_date'.$i;?>" class='form-control' value="<?php echo $datefromandto[1];?>">
+  <input type='text' class='input__field input__field--hoshi' id="<?php echo 'certi_to_date'.$i;?>" class='form-control'>
   <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
   <div class='input-group-addon' style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span></div></div></div>
 
@@ -760,7 +747,6 @@ var data = JSON.stringify(data);
 <span class='glyphicon glyphicon-th'> 
 </span>
 </div>
-
 </div>
 </div>
 
@@ -794,7 +780,11 @@ var data = JSON.stringify(data);
         }
         else
         {
+             // echo " aasfdasfdasf";
+              //echo $arrayvalue;
         }
+
+
            ?>
 
 
@@ -1157,10 +1147,9 @@ var data = JSON.stringify(data);
         </div>
          <div>
            <span class="input input--hoshi">       
-        <input type="text" class='input__field input__field--hoshi'  name="languages_known" id="languages_known" value="<?php echo $arrayvalue->languages_known;?>">
+        <input type="text" class='input__field input__field--hoshi'  name="Location" id="location" value="<?php echo $arrayvalue->languages_known;?>">
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Languages Known</span></label>
-         <input type="hidden" class='input__field input__field--hoshi'  name="prof_name" id="prof_name" value="<?php echo $arrayvalue->prof_name;?>">
-         <input type="text" class='input__field input__field--hoshi'  name="prof_id" id="prof_id" value="<?php echo $arrayvalue->prof_id;?>">
+         <input type="hidden" class='input__field input__field--hoshi'  name="Location" id="prof_name" value="<?php echo $arrayvalue->prof_name;?>">
         <input type="hidden" class='input__field input__field--hoshi'  name="Location" id="user_image" value="<?php echo $arrayvalue->user_image;?>">
         <input type="hidden" name="userid" id="uid" value="<?php echo $arrayvalue->userid;?>">
         </span>
@@ -1178,7 +1167,15 @@ var data = JSON.stringify(data);
              }
 
                
-              }   
+        
+       ?>
+
+
+       <?php
+                 
+       } 
+       
+  
        }
      }
     }
@@ -1186,7 +1183,13 @@ var data = JSON.stringify(data);
        ?>
 
 
- 
+
+
+
+      
+       
+       
+       
       </div>
 
       <div class="box-footer">
@@ -1204,11 +1207,11 @@ var data = JSON.stringify(data);
         $(document).ready(function() {
         $(".btn-pref .btn").click(function () {
         $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+    // $(".tab").addClass("active"); // instead of this do the below 
         $(this).removeClass("btn-default").addClass("btn-primary");   
 });
 
-
-if($("#user_image").val()) 
+if($("#user_image").val())
 {
 $("#imm1g").attr('src',$("#user_image").val());
 }
@@ -1222,19 +1225,22 @@ else
 {  
  $("#imm1g").attr('src','<?php echo base_url('img/female.jpg');?>');
 }
+
 }
+
 $("#uname").text($("#name").val());
 $("#uprof").text($("#prof_name").val());
+
+
 });
     
 document.getElementById("addSportEdu").onclick = function() 
 {
   var form     = document.getElementById("SportTicket");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body' id='div_"+ window.sportsticket +"' style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='nameofsporteducation"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='nameofsporteducation'><span class='input__label-content input__label-content--hoshi'>Name Of Sport Education</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_inst_org"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution/Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_stream_spel"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_stream_spel'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='sport_from_date"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' id='sport_till_date"+ window.sportsticket + '_div'+"'  style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='sport_to_date"+ window.sportsticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='form-groupr'><input type='checkbox' value='Till Date' class='checkbox_check' onclick='cheak(this);' id='sport_till_date"+ window.sportsticket +"' style='width: 3%;height: 5%;''><label>Appear</label></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='nameofsporteducation"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='nameofsporteducation'><span class='input__label-content input__label-content--hoshi'>Name Of Sport Education</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_inst_org"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution/Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_stream_spel"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_stream_spel'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='sport_from_date"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='sport_to_date"+ window.sportsticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
 
-form.appendChild(newDiv); 
-window.sportsticket++;
+   form.appendChild(newDiv); window.sportsticket++;
 }
 
 document.getElementById("addSportFormal").onclick = function() 
@@ -1254,6 +1260,13 @@ document.getElementById("addothereducation").onclick = function()
     form.appendChild(newDiv);
     window.ohterticket++;
 }
+
+
+
+
+
+
+
 
 
 document.getElementById("workexp").onclick = function() 
@@ -1288,6 +1301,7 @@ function formatDate(date) {
 
 
 
+
 $("#save").click(function()
 {
 
@@ -1303,38 +1317,38 @@ $("#save").click(function()
 
   for(var i =0; i <window.sportsticket; i++)
   {   
-    if ($('#sport_till_date'+ i).is(':checked')) 
-    {
-      var todate = "Till Date";
-    } 
-    else
-    {  
-    if($("#sport_to_date"+i).val())
-    {
-     var todate = formatDate($("#sport_to_date"+i).val());
-    }
-    else
-    {
-    $("#sport_to_date"+i).css("color","red");
-    return ;
-    }
-    }       
-
-    if($("#sport_from_date"+i).val())
-    {
+     if($("#sport_from_date"+i).val())
+     {
      var fromdate = formatDate($("#sport_from_date"+i).val());
-    }
-    else
-    { 
+     }
+     else
+     {
+        $("#sport_from_date"+i).css("border-bottom-color","red");
+
+       // $("#sport_from_date"+i).addClass('invalid');
        return ;
-    }     
+      
+
+     }
+     if($("#sport_to_date"+i).val())
+     {
+
+     var todate = formatDate($("#sport_to_date"+i).val());
+     }
+     else
+     {
+      $("#sport_to_date"+i).css("color","red");
     
-  var temp = {"degree":$("#nameofsporteducation"+i).val(),"organisation":$("#sport_inst_org"+i).val(),"stream":$("#sport_stream_spel"+i).val(),"courseDuration":fromdate + " to " + todate };
+       return ;
+     }
+
+    var temp = {"degree":$("#nameofsporteducation"+i).val(),"organisation":$("#sport_inst_org"+i).val(),"stream":$("#sport_stream_spel"+i).val(),"courseDuration":fromdate + " to " + todate };
       sportArray.push(temp);
+
   }
 
-for(var i =0; i <window.formalticket; i++)
-{
+  for(var i =0; i <window.formalticket; i++)
+  {
      if($("#formal_from_date"+i).val())
      {
      var fromdate = formatDate($("#formal_from_date"+i).val());
@@ -1451,8 +1465,10 @@ alert(totalftemp);
     
 <script>
       (function() {
+        // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
         if (!String.prototype.trim) {
           (function() {
+            // Make sure we trim BOM and NBSP
             var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
             String.prototype.trim = function() {
               return this.replace(rtrim, '');
@@ -1460,11 +1476,11 @@ alert(totalftemp);
           })();
         }
 
-        [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) 
-        {
+        [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+          // in case the input is already filled..
           if( inputEl.value.trim() !== '' ) {
             classie.add( inputEl.parentNode, 'input--filled' );
-        }
+          }
 
           // events:
           inputEl.addEventListener( 'focus', onInputFocus );
@@ -1481,19 +1497,5 @@ alert(totalftemp);
           }
         }
       })();
+    </script>
 
-
-function cheak($this)
-{
-var id = "#"+ $this.id+"_div";
-if ($('input.checkbox_check').is(':checked')) 
-{
-  $(id).hide();
-}
-else
-{
-  $(id).show();
-}
-}
-
-</script>

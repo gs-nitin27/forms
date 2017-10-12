@@ -767,10 +767,9 @@ public function CreateTournament()
 
 public function saveTournament()
 {
+
 $data1 = json_decode($_REQUEST['data']);
-
 //print_r($data1->tournament_ageGroup);die;
-
 $item  = new stdClass(); 
 $item->id                      = $data1->id;
 $item->organizer_name          = $data1->organizer_name;
@@ -815,7 +814,9 @@ if($res == '1')
  echo "1";
  }
 else
+{
  echo "0";
+}
 }
 
 public function usercreateTournament(){

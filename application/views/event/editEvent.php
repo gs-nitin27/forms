@@ -1,8 +1,15 @@
-
 <script>
 window.flagTicket = 0;
-var deletearray = [];
-function save(totalTicket)
+window.flagTerm   = 0;
+window.flagCriteria =0;
+
+var deletearray 	= [];
+var deleteTermArray = [];
+var deleteCrtArray  = [];
+
+
+
+function save(totalTicket,totalTerm,totalCriteria)
 {
 
 //alert(totalTicket);return ;
@@ -23,11 +30,11 @@ var data1 =
     "city"                    : $("#city").val(), 
     "pin"                     : $("#pin").val(), 
     "description"             : $("#edesc").val(),
-    "eligibility1"            : $("#criteria1").val(),
-    "eligibility2"            : $("#criteria2").val(),
+    //"eligibility1"            : $("#criteria1").val(),
+   // "eligibility2"            : $("#criteria2").val(),
     "state"                   : $("#state").val(),
-    "terms_and_conditions1"   : $("#terms1").val(),
-    "terms_and_conditions2"   : $("#terms2").val(),
+   // "terms_and_conditions1"   : $("#terms1").val(),
+   // "terms_and_conditions2"   : $("#terms2").val(),
     "organizer_name"          : $("#orgName").val(),
     "mobile"                  : $("#contact").val(),
     "organizer_address_line1" : $("#orgadd1").val(), 
@@ -47,7 +54,10 @@ var data1 =
     "file_name"               : $("#filename").val(),
     "image"                   : $("#photo_url").val(),
     "image"                   : $("#photo_url").val(),
-    "ticketdetails"           : totalTicket
+    "ticketdetails"           : totalTicket,
+    "terms_and_conditions1"   : totalTerm,
+    "eligibility1"            : totalCriteria
+
    // "ticketArray" 			  :	ticketArray;
 
 
@@ -55,6 +65,7 @@ var data1 =
 var url = '<?php echo site_url();?>';
 
 console.log(JSON.stringify(data1));
+
 var data =  eval(data1);//JSON.stringify(data1);
   $.ajax({
     type: "POST",
@@ -360,17 +371,63 @@ var data =  eval(data1);//JSON.stringify(data1);
                  <div class="box-header with-border">
 					<h4>Eligibility Criteria:</h4 > 		
 				</div>
-                <div class="box-body">
-					 <div class="form-group">
-					  <label for="eventName">Criteria 1</label>
-					  <input type="text" class="form-control" id="criteria1" value="<?php echo $event['eligibility1'] ; ?>" placeholder="Enter Eligibility">
+
+
+                <div class="form-group">
+					
+          <?php
+     
+            $ticketdata = json_decode($event['eligibility1']);
+
+            
+            $i= 0;
+
+            if (!empty($ticketdata))
+            {
+            	
+             foreach($ticketdata as $key1 => $test) 
+              {
+                ?>
+					 
+<div class='box-body' id="<?php echo "divCRT_".$i;?>" style='background-color: #d0ebff; border-color: black;border-radius: 10px;margin-bottom: 5px;margin-top: 5px;'><div class='form-group' ><span title='Close'  style='margin-left:1px;' id="<?php echo $i;?>" onclick='deleteCriteria(this);'  class='glyphicon glyphicon-remove-circle'></span>
+
+					  <label for="eventName">Criteria: <?php echo $i; ?> </label>
+					  <input type="text" class="form-control" id='criteria<?php echo $i;?>'  value="<?php echo $test->criteria;?>" placeholder="Enter Eligibility">
 				      <label id="eligibility1_error" hidden>Criteria 1 is required .</label> 
 					</div>
-					<div class="form-group">
-					  <label for="eventName">Criteria 2</label>
-					  <input type="text" value="<?php echo $event['eligibility2'] ; ?>" class="form-control" id="criteria2" placeholder="Enter Eligibility">
-				   	<label id="eligibility2_error" hidden>Criteria 2 is required .</label> 
 					</div>
+
+
+
+				<?php
+				$i++;
+				echo "<script> window.flagCriteria++; </script>";
+						}
+					}
+				?>
+
+
+
+<div class="box-body">
+					 <div class="form-group">
+					 <div id="EventCriteria" ></div>
+					  <label id="eligibility1_error" hidden>Criteria 1 is required .</label> 
+			  		
+				<div id="Eligibility Criteria"></div>
+<input type="button" class="btn btn-lg btn-primary"  id="addCriteria" value="Add Eligibility Criteria " style="background-color: #08457e; color: white;
+    padding: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;" " />
+
+
+</div>
+					</div>
+
+
+
+					
 					<div class="form-group">
 					  <label for="link">Entry Start Date</label>
 					  <input type="text" class="form-control"  id="estartD" value="<?php echo $this->register->alter_DateFormat($event['entry_start_date']) ; ?>" placeholder="Enter Start Date">
@@ -385,19 +442,46 @@ var data =  eval(data1);//JSON.stringify(data1);
 					<h4>Terms & Conditions:</h4> 
 					</div>	
 					  <div class="form-group">
-					  <label for="eventName">T & C 1</label>
-					  <input type="text" class="form-control" id="terms1" value="<?php echo $event['terms_cond1'] ; ?>" placeholder="">
+<?php
+
+             $ticketdata = json_decode($event['terms_cond1']);
+                                      
+             $i=0;
+             if (!empty($ticketdata))
+            {
+             foreach ($ticketdata as $key1 => $test) 
+              {
+                ?>
+                	<div class='box-body' id="<?php echo "divTRM_".$i;?>" style='background-color: #d0ebff; border-color: black;border-radius: 10px;margin-bottom: 5px;margin-top: 5px;'><div class='form-group' ><span title='Close'  style='margin-left:1px;' id="<?php echo $i;?>" onclick='deleteterm(this);'  class='glyphicon glyphicon-remove-circle'></span>
+
+					  <label for="eventName">T & C : <?php echo $i; ?></label>
+  				  <input type="text" class="form-control" id='term<?php echo $i;?>'  value="<?php echo $test->term; ?>" placeholder="" >
 					<label id="terms_and_conditions1_error" hidden>Terms & Conditions is required .</label> 
 					</div >
-					<div class="form-group">
-					  <label for="eventName">T & C 2</label>
-					  <input type="text" value="<?php echo $event['terms_cond2'] ; ?>" class="form-control" id="terms2" placeholder="">
-					  <label id="terms_and_conditions2_error" hidden>Terms & Conditions is required .</label> 
-					  <input type="hidden" class="form-control" id="filename" placeholder="">
-					<!--   <label id="file_name_error" hidden>Terms & Conditions is required .</label>  -->
+					</div>
+					
+ <?php
+                    $i++;
+                	echo "<script> window.flagTerm++; </script>";
+                }  
+            }
+             ?>	
+
+					
+					<div id="EvnetTerm"></div>
+
+					  <input type="button" class="btn btn-lg btn-primary"  id="addTerm" value="Add ( T & C )" style="background-color: #08457e; color: white;
+    					padding: 8px 8px;
+					    text-align: center;
+					    text-decoration: none;
+					    display: inline-block;
+					    font-size: 16px;" " />
 					</div >
 				</div>
               </div>
+         
+
+
 
 		    <div class="tab-pane" id="ticket">
             <div class="box-header with-border">
@@ -407,6 +491,8 @@ var data =  eval(data1);//JSON.stringify(data1);
              $ticketdata = json_decode($event['ticket_detail']);
              // print_r($ticketdata);
              $i=0;
+            if (!empty($ticketdata))
+            {
              foreach ($ticketdata as $key1 => $test) 
               {
                 ?>
@@ -433,12 +519,12 @@ var data =  eval(data1);//JSON.stringify(data1);
                     $i++;
                 	echo "<script> window.flagTicket++; </script>";
                 }  
+            }
              ?>	
 
 
-
-
              <div id="EventTicket" ></div>
+
             <input type="button" id="addTicket" class="btn btn-danger" value="Add Ticket" />
             </div>
                
@@ -526,22 +612,15 @@ var data =  eval(data1);//JSON.stringify(data1);
                <input type="hidden" class="form-control" name="photo" id="photo_url" value="<?php echo $event['image']; ?>"> 
              <!--  <input type="hidden" class="form-control" name="photo" id="photo_url">  -->
               <div id="mess" hidden>Image Uploded</div>
-			
-
-         
+			        
              </td>
              </tr>
              </table>  
        </div>
           
          
-
-
-
-
- 
-             <div class="box-footer">
-			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Create Event" name="Create">
+            <div class="box-footer">
+			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Update Event" name="Create">
 			</div>
           </div>
 </div>
@@ -692,22 +771,61 @@ $(function() {
      var entry_start_date          = $("#estartD").val();
      var entry_end_date            = $("#eendD").val();
      var email_app_collection      = $("#email_app_collection").val();
+
      var ticketArray = [];
+     var termArray  = [];
+     var criteriaArray =[];
+
 	for(var i =0; i <window.flagTicket; i++)
 	{
  
         if($("#ticketname"+i).val())
         {
-          var temp = {"ticketname":$("#ticketname"+i).val(),"ticketPrice":$("#ticketPrice"+i).val(),"noofticket":$("#noofticket"+i).val()};
-          ticketArray.push(temp);
-              }
+          var temp1 = {"ticketname":$("#ticketname"+i).val(),"ticketPrice":$("#ticketPrice"+i).val(),"noofticket":$("#noofticket"+i).val()};
+          ticketArray.push(temp1);
+        }
+	}
+
+	for(var i =0; i <window.flagTerm; i++)
+	{
+		if($("#term"+i).val())
+		{
+		var temp2 = {"term":$("#term"+i).val()};
+	    termArray.push(temp2);
+		}
 
 	}
+
+	for(var i =0; i <window.flagCriteria; i++)
+	{
+		if($("#criteria"+i).val())
+		{
+		var temp3 = {"criteria":$("#criteria"+i).val()};
+	    criteriaArray.push(temp3);
+		}
+
+	}
+
+
+
+
+
 		var totalTicket = JSON.stringify(ticketArray);
+
+
+
+		var totalTerm = JSON.stringify(termArray);
+
+		var totalCriteria = JSON.stringify(criteriaArray);
+
+
        if(name != "" && sport != '')
       {    
-      	     save(totalTicket);
+      	     save(totalTicket,totalTerm,totalCriteria)
       }  
+
+
+
       else
       {  
           if(name =="")
@@ -738,27 +856,26 @@ function deleteticket($this)
    $('#ticketname'+id).attr('id', 'other_1');
    $('#ticketPrice'+id).attr('id', 'other_2');
    $('#noofticket'+id).attr('id', 'other_3');
-
    deletearray.push(id);
-    
-    $('#div_'+id).hide();
-    
-
+   $('#div_'+id).hide();
   
 }	
 </script>
-				
-		<script >
+
+<script>
+
 	//var flag=0;
+
 document.getElementById("addTicket").onclick = function() 
 {
     var form 		 = document.getElementById("EventTicket");
 	var newDiv  	 = document.createElement("div");
-	newDiv.innerHTML = "<div class='box-body' id='div_"+ window.flagTicket +"' style='background-color: #dff0d8; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group' ><span style='right:2px; top: 0px;' id='"+ window.flagTicket +"' onclick='deleteticket(this);'  class='glyphicon glyphicon-remove-circle'></span><label for='ticketName'>Ticket Name :</label><input type='text' class='form-control' id='ticketname"+ window.flagTicket +"' placeholder='Enter Ticket Name'><label id='ticketname_error' hidden>Ticket Name is required .</label></div><div class='form-group'><label for='ticketPrice'>Ticket Price :</label><input type='text' class='form-control' id='ticketPrice"+ window.flagTicket +"' placeholder='Enter ticket price'><label id='ticketprice_error' hidden> Ticket price is required .</label></div>  <label for='NoofTicket'>Number of Ticket:</label><input type='text' class='form-control' id='noofticket"+ window.flagTicket +"' placeholder='Enter Number of Ticket'><label id='numberofticket_error' hidden>Number of Ticket is required .</label></div>	"; 
+	newDiv.innerHTML = "<div class='box-body' id='div_"+ window.flagTicket +"' style='background-color: #26c4f1; border-color: black;border-radius: 10px;margin-bottom: 10px;margin-top: 10px;'><div class='form-group' ><span style='right:2px; top: 0px;' id='"+ window.flagTicket +"' onclick='deleteticket(this);'  class='glyphicon glyphicon-remove-circle'></span><label for='ticketName'>Ticket Name :</label><input type='text' class='form-control' id='ticketname"+ window.flagTicket +"' placeholder='Enter Ticket Name'><label id='ticketname_error' hidden>Ticket Name is required .</label></div><div class='form-group'><label for='ticketPrice'>Ticket Price :</label><input type='text' class='form-control' id='ticketPrice"+ window.flagTicket +"' placeholder='Enter ticket price'><label id='ticketprice_error' hidden> Ticket price is required .</label></div>  <label for='NoofTicket'>Number of Ticket:</label><input type='text' class='form-control' id='noofticket"+ window.flagTicket +"' placeholder='Enter Number of Ticket'><label id='numberofticket_error' hidden>Number of Ticket is required .</label></div>	"; 
 		form.appendChild(newDiv);
 		window.flagTicket++;
 
 }
+
 
 // function getDateFormat(data)
 // {
@@ -772,5 +889,72 @@ document.getElementById("addTicket").onclick = function()
 // return data;
 // }
 // } 
+
+</script>
+
+
+<script>
+	//var flag=0;
+	//var flag=0;
+document.getElementById("addTerm").onclick = function() 
+{
+	//#26c4f1  
+    var form 		 = document.getElementById("EvnetTerm");
+	var addTermDiv  	 = document.createElement("div");
+	addTermDiv.innerHTML = "<div class='box-body' id='divTRM_"+ window.flagTerm +"' style='background-color: #d0ebff; border-color: black;border-radius: 10px;margin-bottom: 5px;margin-top: 5px;'><div class='form-group' ><span title='Close'  style='margin-left:1px;' id='"+ window.flagTerm +"' onclick='deleteterm(this);'  class='glyphicon glyphicon-remove-circle'></span><label for='eventName'>T & C </label><input type='text' class='form-control' id='term"+ window.flagTerm +"' placeholder='Enter T & C '> <label id='terms_and_conditions1_error' hidden>Terms & Conditions is required .</label></div >"; 
+
+		//console.log(newDiv.innerHTML);
+
+		form.appendChild(addTermDiv);
+		window.flagTerm++;
+
+
+}
+
+</script>
+
+
+<script>
+	//var flag=0;
+document.getElementById("addCriteria").onclick = function() 
+{
+	//#26c4f1
+
+    var form 		 = document.getElementById("EventCriteria");
+	var addCriteriaDiv  	 = document.createElement("div");
+	addCriteriaDiv.innerHTML = "<div class='box-body' id='divCRT_"+ window.flagCriteria +"' style='background-color: #d0ebff; border-color: black;border-radius: 10px;margin-bottom: 5px;margin-top: 5px;'><div class='form-group' ><span title='Close'  style='margin-left:1px;' id='"+ window.flagCriteria +"' onclick='deleteCriteria(this);'  class='glyphicon glyphicon-remove-circle'></span><label for='eventName'>Eligibility Criteria  </label><input type='text' class='form-control' id='criteria"+ window.flagCriteria +"' placeholder='Enter Eligibility Criteria '> <label id='terms_and_conditions1_error' hidden>Terms & Conditions is required .</label></div >";
+	 //console.log(newDiv.innerHTML);
+		form.appendChild(addCriteriaDiv);
+		window.flagCriteria++;
+
+
+}
+
+</script>
+
+	<script>
+	function deleteterm($this)
+	{
+	   var id = $this.id;
+	  // $('#divTRM_'+id).hide();
+	//addTerm
+	 //var id = $this.id;
+	   //alert(id);
+	   $('#term'+id).attr('id', 'other_6');
+	  // $('#ticketPrice'+id).attr('id', 'other_2');
+	  // $('#noofticket'+id).attr('id', 'other_3');
+	   deleteTermArray.push(id);
+	   $('#divTRM_'+id).hide();
+
+	  // $('#div_'+id).hide();
+	}
+
+	function deleteCriteria($this)
+	{
+	   var id = $this.id;
+	   $('#criteria'+id).attr('id', 'other_8');
+	   $('#divCRT_'+id).hide();
+	   deleteCrtArray.push(id);
+	}
 
 </script>

@@ -75,9 +75,7 @@
 				<div class="timeline-item">
 				<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['city'];?></h5>
 				</div>
-				<div class="timeline-item">
-				<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $job['state'];?></h5>
-				</div>
+				
 				<div class="timeline-item">
 				<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['pin'];?></h5>
 				</div>
@@ -108,9 +106,7 @@
 					<div class="timeline-item">
 					<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['org_city'];?></h5>
 					</div>
-					<div class="timeline-item">
-					<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $job['org_state'];?></h5>
-					</div>
+					
 					<div class="timeline-item">
 					<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['org_pin'];?></h5>
 					</div>
@@ -129,14 +125,23 @@
 			  </div>
               <div class="box-body">
 			  <div class="timeline-item">
-			  <h5 class="timeline-header no-border"><b>Work Experience: </b> &nbsp;<?php echo $job['work_experience']." Years";?></h5>
+			  <h5 class="timeline-header no-border"><b>Work Experience: </b> &nbsp;<?php echo $job['work_experience'];?></h5>
 			  </div>
 			  <div class="timeline-item">
 			  <h5 class="timeline-header no-border"><b>Qualifications: </b> &nbsp;<?php echo $job['qualification'];?></h5>
 			  </div>
+
+			  <div class="timeline-item">
+			  <h5 class="timeline-header no-border"><b>Desired Skills: </b> &nbsp;<?php echo $job['desired_skills'];?></h5>
+			  </div>
+
+
 			  <div class="timeline-item">
 			  <h5 class="timeline-header no-border"><b>Key Requirement: </b> &nbsp;<?php echo $job['key_requirement'];?></h5>
 			  </div>
+
+
+
 			  <div class="timeline-item">
 			  <h5 class="timeline-header no-border"><b>Gender: </b> &nbsp;<?php echo $job['gender'];?></h5>
 			  </div>	
@@ -192,9 +197,7 @@
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['city'];?></h5>
 					</div>
-					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $job['state'];?></h5>
-					</div>
+					
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['pin'];?></h5>
 					</div>
@@ -225,9 +228,7 @@
 					<div class="timeline-item">
 					<h5 class="timeline-header no-border"><b>City: </b> &nbsp;<?php echo $job['org_city'];?></h5>
 					</div>
-					<div class="timeline-item">
-					<h5 class="timeline-header no-border"><b>State: </b> &nbsp;<?php echo $job['org_state'];?></h5>
-					</div>
+					
 					<div class="timeline-item">
 					<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['org_pin'];?></h5>
 					</div>
@@ -246,7 +247,7 @@
 			</div>
                 <div class="box-body">
 					<div class="timeline-item">
-						<h5 class="timeline-header no-border"><b>Work Experience: </b> &nbsp;<?php echo $job['work_experience']." Years";?></h5>
+						<h5 class="timeline-header no-border"><b>Work Experience: </b> &nbsp;<?php echo $job['work_experience'];?></h5>
 					</div>
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Qualifications: </b> &nbsp;<?php echo $job['qualification'];?></h5>

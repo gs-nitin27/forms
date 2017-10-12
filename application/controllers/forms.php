@@ -451,7 +451,9 @@ public function userCreateEvent()
   
 public function event()
 {
+
 $item = new stdClass();
+
 $item->id                        = $_POST['id'];
 $item->userid                    = $_POST['userid'];
 $item->feetype                   = mysql_real_escape_string($_POST['etypes']);
@@ -466,10 +468,10 @@ $item->city                      = $_POST['city'];
 $item->pin                       = $_POST['pin'];
 $item->description               = mysql_real_escape_string($_POST['description']);
 $item->eligibility1              = mysql_real_escape_string($_POST['eligibility1']);
-$item->eligibility2              = mysql_real_escape_string($_POST['eligibility2']);
+//$item->eligibility2              = mysql_real_escape_string($_POST['eligibility2']);
 $item->state                     = $_POST['state'];
 $item->tandc1                    = mysql_real_escape_string($_POST['terms_and_conditions1']);
-$item->tandc2                    = mysql_real_escape_string($_POST['terms_and_conditions2']);
+//$item->tandc2                    = mysql_real_escape_string($_POST['terms_and_conditions2']);
 $item->organizer_name            = mysql_real_escape_string($_POST['organizer_name']);
 $item->mobile                    = $_POST['mobile'];
 $item->org_address1              = mysql_real_escape_string($_POST['organizer_address_line1']);
@@ -484,12 +486,14 @@ $item->sport                     = $_POST['sport'];
 $item->sport_name                = $_POST['sport_name'];
 $item->entry_start_date          = $_POST['entry_start_date'];//strtotime($data1['entry_start_date']);
 $item->entry_end_date            = $_POST['entry_end_date'];//strtotime($data1['entry_end_date']);
-$item->file_name                 = $_POST['file_name'];
+//$item->file_name                 = $_POST['file_name'];
+
 $item->email_app_collection      = $_POST['email_app_collection'];
 $item->image                     = $_POST['image']; 
  
 $this->load->model('register');
 $res = $this->register->saveEvent($item);
+
 
 if($res == '1')
  {
@@ -767,66 +771,71 @@ public function CreateTournament()
 
 public function saveTournament()
 {
-$data1 = json_decode($_REQUEST['data']);
-
-//print_r($data1->tournament_ageGroup);die;
-
 $item  = new stdClass(); 
-$item->id                      = $data1->id;
-$item->organizer_name          = $data1->organizer_name;
-$item->tournament_level        = $data1->tournament_level;
+$item->id                      = $_POST['id'];//$data2->id;
+//$item->organizer_name          = $_POST['organizer_name'];//$data1->$_POST;
+$item->tournament_level        = $_POST['tournament_level'];//$data1->tournament_level;
+
 //$item->tournament_category     = $data1->catagory;
-$item->tournament_ageGroup     = $data1->tournament_ageGroup;
-$item->tournament_gender       = $data1->tournament_gender;
-$item->userid                  = $data1->userid;
-$item->type                    = $data1->tournament_name;
-$item->address_line1           = $data1->address_line1;
-$item->address_line2           = $data1->address_line2;
-$item->city                    = $data1->city;
-$item->state                   = $data1->state;
-$item->pin                     = $data1->pin;
-$item->description             = $data1->description;
-$item->eligibility1            = $data1->eligibility1;
-$item->eligibility2            = $data1->eligibility2;
-$item->terms_and_conditions1   = $data1->terms_and_conditions1;
-$item->terms_and_conditions2   = $data1->terms_and_conditions2;
-$item->organizer_name          = $data1->organizer_name;
-$item->mobile                  = $data1->mobile;
-$item->emailid                 = $data1->emailid;
-$item->organizer_address_line1 = $data1->organizer_address_line1;
-$item->organizer_address_line2 = $data1->organizer_address_line2;
-$item->organizer_city          = $data1->organizer_city;
-$item->organizer_state         = $data1->organizer_state;
-$item->organizer_pin           = $data1->organizer_pin;
-$item->tournament_links        = $data1->tournament_links;
-$item->start_date              = $data1->start_date;//$data1['start_date'];
-$item->end_date                = $data1->end_date;//$data1['end_date'];
-$item->entry_start_date        = $data1->entry_start_date;//$data1['entry_start_date'];
-$item->entry_end_date          = $data1->entry_end_date;//$data1['entry_end_date'];
-$item->file_name               = $data1->file_name;
-$item->sport                   = $data1->sport;
+
+$item->tournament_ageGroup     = mysql_real_escape_string($_POST['tournament_ageGroup']);//$data1->tournament_ageGroup;
+$item->tournament_gender       = $_POST['tournament_gender'];//$data1->tournament_gender;
+$item->userid                  = $_POST['userid']; //$data1->userid;
+$item->type                    = mysql_real_escape_string($_POST['tournament_name']); //$data1->tournament_name;
+$item->address_line1           = mysql_real_escape_string($_POST['address_line1']);//$data1->address_line1;
+$item->address_line2           = mysql_real_escape_string($_POST['address_line2']);//$data1->address_line2;
+$item->city                    = $_POST['city'];//$data1->city;
+$item->state                   = $_POST['state'];//$data1->state;
+$item->pin                     = $_POST['pin'];//$data1->pin;
+$item->description             = mysql_real_escape_string($_POST['description']);//$data1->description;
+$item->eligibility1            = mysql_real_escape_string($_POST['eligibility1']);//$data1->eligibility1;
+$item->eligibility2            = mysql_real_escape_string($_POST['eligibility2']);//$data1->eligibility2;
+$item->terms_and_conditions1   = mysql_real_escape_string($_POST['terms_and_conditions1']);//$data1->terms_and_conditions1;
+$item->terms_and_conditions2   = mysql_real_escape_string($_POST['terms_and_conditions2']);//$data1->terms_and_conditions2;
+$item->organizer_name          = mysql_real_escape_string($_POST['organizer_name']);//$data1->organizer_name;
+$item->mobile                  = $_POST['mobile'];//$data1->mobile;
+$item->emailid                 = $_POST['emailid'];//$data1->emailid;
+$item->organizer_address_line1 = mysql_real_escape_string($_POST['organizer_address_line1']);//$data1->organizer_address_line1;
+$item->organizer_address_line2 = mysql_real_escape_string($_POST['organizer_address_line2']);//$data1->organizer_address_line2;
+$item->organizer_city          = $_POST['organizer_city'];//$data1->organizer_city;
+$item->organizer_state         = $_POST['organizer_state'];//$data1->organizer_state;
+$item->organizer_pin           = $_POST['organizer_pin'];// $data1->organizer_pin;
+$item->tournament_links        = $_POST['tournament_links'];//$data1->tournament_links;
+$item->start_date              = $_POST['start_date'];//$data1->start_date;//$data1['start_date'];
+$item->end_date                = $_POST['end_date'];//$data1->end_date;//$data1['end_date'];
+$item->entry_start_date        = $_POST['entry_start_date'];//$data1->entry_start_date;//$data1['entry_start_date'];;
+$item->entry_end_date          = $_POST['entry_end_date'];//$data1->entry_end_date;//$data1['entry_end_date'];
+$item->file_name               = $_POST['file_name'];//$data1->file_name;
+$item->sport                   = $_POST['sport'];//$data1->sport;
 $item->publish                 = 0;
-$item->image                   = $data1->image;  
+$item->image                   = $_POST['image'];//$data1->image;  
 
 $this->load->model('register');
+
 $res = $this->register->saveTournament($item);
 if($res == '1')
  {
  echo "1";
  }
 else
+{
  echo "0";
 }
+}
 
-public function usercreateTournament(){
+
+public function usercreateTournament()
+{
     $this->load->view('tournament/CreateTournament');
   }
 
-public function getTournament(){
+
+public function getTournament()
+{
 		$data['middle'] = 'tournament/index';
 
 		$this->load->view('templates/template',$data);
-	}
+}
 public function viewTournament($str)
 {
     $id= $this->stringtonumber($str);
@@ -835,7 +844,7 @@ public function viewTournament($str)
 									'id'=>$id	
 								 ); 
 		$this->load->view('templates/template',$data);
-	}
+}
 
 public function Tournamentmobileview()
 {
@@ -3966,4 +3975,4 @@ else
 // }
 
 }
-  
+
