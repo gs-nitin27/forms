@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/jquery-ui.css'); ?>" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo base_url('assets/ui.theme.css'); ?>" type="text/ css" media="all" />
-
-  <script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" > </script>
+<script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" > </script>
 
 <script>
 function save()
@@ -45,6 +44,7 @@ function save()
             dataType: "json",
             success: function(result) 
             {
+              // alert(result);return;
               if(result.response == '1')
               {
                       $.confirm({
@@ -266,9 +266,8 @@ function save()
           <script>
           var editor=CKEDITOR.replace('rdescription');
           </script>
-
-                <label id="description_error" hidden="">A Description is required</label>
-                </div>
+          <label id="description_error" hidden="">A Description is required</label>
+          </div>
      
   <button type="button" id="videobutton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Youtube Video Url</button>
 

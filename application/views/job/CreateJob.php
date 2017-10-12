@@ -4,6 +4,7 @@
   <script src="http://demo.itsolutionstuff.com/plugin/croppie.js"></script>
   <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
   <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/croppie.css">
+  <script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" > </script>
 
 
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -70,11 +71,22 @@
           <?php }?>
 
 
-          <div class="form-group">
+
+            <label for="exampleInputEmail1">Description</label>
+           <textarea class="ckeditor"  name="description" id="jdesc" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> 
+          
+          <script>
+          var editor=CKEDITOR.replace('jdesc');
+          </script>
+
+
+
+
+     <!--      <div class="form-group">
             <label>Job Description</label>
             <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="jdesc" ></textarea>
            <label id="jdesc_error" hidden>Job Description is required .</label> 
-          </div>
+          </div> -->
            
           <div class="form-group">
             
@@ -465,15 +477,12 @@ $(function() {
 
    
     $("#save").click(function(){
-
-      alert($("#jdesc").val());
-
-        save();
-
-      return ;
-
+       // save();
+      
+      var editorData      =  editor.getData();
+      var description     =  editorData.replace(/[\/\\<>~\{}]/g, '');
        
-   if($("#jtitle").val() !="" && $("#jdesc").val() !="" && $("#orgName").val() !="" & $("#job_link").val() !="" )
+   if($("#jtitle").val() !="" && description !="" && $("#orgName").val() !="" & $("#job_link").val() !="" )
      {
             save();
        }else
@@ -491,7 +500,7 @@ $(function() {
                 {
                     $("#jtitle_error").hide();
                 }
-                  if($("#jdesc").val() =="")
+                  if(description =="")
                   {
                     $("#jdesc_error").show();
                     $("#jdesc_error").css("color","red");
@@ -530,7 +539,10 @@ function save()
 
 
 
-  //$("#imagelodar").show();
+  $("#imagelodar").show();
+  var description     = editor.getData();
+
+  // alert(description);return;
 
 var data1 = {
     "id"                      : 0, 
@@ -542,10 +554,9 @@ var data1 = {
     "city"                    : $("#jcity").val(), 
     "pin"                     : $("#jpin").val(), 
     "state"                   : $("#jstate").val(),
-    "description"             : $("#jdesc").val(),
     "work_experience"         : $("#jexp").val(),
     "desired_skills"          : $("#skill").val(),
-    "description"             : $("#jdesc").val(),
+    "description"             : description,
     "qualification"           : $("#jqualification").val(),
     "key_requirement"         : $("#jreq").val(),
     "about"                   : $("#abOrg").val(),
@@ -578,7 +589,7 @@ var data = eval(data1);
     dataType: "text",
     success: function(result) {
 
-      alert(result);return;
+     // alert(result);return;
 
        if(result == '1')
          {

@@ -54,11 +54,13 @@
 				<div class="timeline-item">
 				<h5 class="timeline-header no-border"><b>Job Title: </b> &nbsp;<?php echo ucfirst($job['title']);?></h5>
 				</div>
-				<div class="timeline-item">
-				<h5 class="timeline-header"><b href="#">Job Description: </b></h5>
+                
+                <div class="timeline-item">
+			    <h5 class="timeline-header" style="color:rgb(0,0,255);opacity:0.6;"><b href="#"> Description: </b></h5>
 				<div class="timeline-body">
-				<?php echo htmlspecialchars_decode($job['description']);?>
-				</div> 
+						 <?php echo nl2br($job['description']);?>
+				</div>
+					   
 				</div>
 				<div class="timeline-item">
 				<h5 class="timeline-header no-border"><b>Job Type: </b> &nbsp;<?php echo $job['type'];?></h5>
