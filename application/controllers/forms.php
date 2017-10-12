@@ -578,6 +578,8 @@ public function CreateJob()
 public function saveJob()
 {
 
+
+
 $item  = new stdClass(); 
 
 $item->id                    = $_POST['id'];
@@ -607,6 +609,9 @@ $item->contact               = $_POST['contact'];
 $item->image                 = $_POST['image'];
 $item->email                 = $_POST['email_app_collection'];
 $item->job_link              = $_POST['job_links'];
+
+//print_r($item->desc);die;
+
 $this->load->model('register');
 $res = $this->register->create_job($item);
 if($res == 1)

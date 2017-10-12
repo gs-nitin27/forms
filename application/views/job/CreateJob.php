@@ -466,6 +466,12 @@ $(function() {
    
     $("#save").click(function(){
 
+      alert($("#jdesc").val());
+
+        save();
+
+      return ;
+
        
    if($("#jtitle").val() !="" && $("#jdesc").val() !="" && $("#orgName").val() !="" & $("#job_link").val() !="" )
      {
@@ -522,7 +528,10 @@ $(function() {
 function save()
 {
 
-  $("#imagelodar").show();
+
+
+  //$("#imagelodar").show();
+
 var data1 = {
     "id"                      : 0, 
     "userid"                  : $("#userid").val(),
@@ -568,6 +577,9 @@ var data = eval(data1);
     data: data,
     dataType: "text",
     success: function(result) {
+
+      alert(result);return;
+
        if(result == '1')
          {
          $.confirm({

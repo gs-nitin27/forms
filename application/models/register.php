@@ -155,27 +155,56 @@ if($query)
 
 public function create_job($item)
 {
+ $data = array(
+         'id' => $item->id,
+         'userid' => $item->userid,
+         'title' => $item->title,
+         'gender' => $item->gender,
+         'sport' => $item->sports,
+         'type' => $item->type,
+         'work_experience' => $item->work_exp,
+         'description' => $item->desc,
+         'desired_skills' => $item->desiredskill,
+         'qualification' => $item->qualification,
+         'key_requirement' => $item->keyreq,
+         'org_address1' => $item->org_address1,
+         'org_address2' => $item->org_address2,
+         'org_city' => $item->org_city,
+         'org_state' => $item->org_state, 
+         'org_pin' => $item->org_pin,
+         'organisation_name' => $item->org_name,
+         'about' => $item->about,
+         'address1' => $item->address1,
+         'address2' => $item->address2,
+         'state' => $item->state,
+         'city' => $item->city,
+         'pin' => $item->pin,
+         'contact' => $item->contact,
+         'image' => $item->image,
+         'email' => $item->email,
+         'job_link' => $item->job_link,
+         'date_created' => date('Y-m-d')
+);
 
-$insert = "INSERT INTO `gs_jobInfo`(`id`, `userid`, `title`, `gender`, `sport`, `type`, `work_experience`, `description`, `desired_skills`, `qualification`, `key_requirement`, `org_address1`, `org_address2`, `org_city`, `org_state`, `org_pin`, `organisation_name`, `about`, `address1`, `address2`, `state`, `city`, `pin`, `contact`, `image`,`email`,`job_link`, `date_created`) VALUES ('$item->id','$item->userid','$item->title','$item->gender','$item->sports','$item->type','$item->work_exp','$item->desc','$item->desiredskill','$item->qualification','$item->keyreq','$item->org_address1','$item->org_address2','$item->org_city','$item->org_state','$item->org_pin','$item->org_name','$item->about','$item->address1','$item->address2','$item->state','$item->city','$item->pin','$item->contact','$item->image','$item->email','$item->job_link',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `sport` = '$item->sports',`gender` = '$item->gender' ,`type` = '$item->type' , `work_experience` = '$item->work_exp' , `description` = '$item->desc' , `desired_skills` = '$item->desiredskill' , `qualification` = '$item->qualification' , `key_requirement` = '$item->keyreq' , `organisation_name` = '$item->org_name' , `about` = '$item->about', `image` = '$item->image' , `contact` = '$item->contact' , `email` = '$item->email' , `date_created` = CURDATE(), `org_address1` = '$item->org_address1',`org_address2` = '$item->org_address2',`org_city` = '$item->org_city' , `org_pin` = '$item->org_pin' , `org_state`= '$item->org_state' , `address1`= '$item->address1' , `address2` = '$item->address2' , `city` = '$item->city' , `state` = '$item->state' , `publish` = 0, `pin` = '$item->pin',`job_link` = '$item->job_link'";
-$query = $this->db->query($insert);
-if($query)
+if($this->db->insert('gs_jobInfo', $data))
 {
-	//$id = mysql_insert_id();
-	//$data =  "INSERT INTO `gs_activity_log`(`userid`, `module`,`creation_id`,`activity`, `date_created`) VALUES ('$item->userid','job','$id','create','".date("Y-m-d")."')"; 
-	//$log  = $this->create_log($data,$item->userid);
-     //if($log == 1)
-    // {
-     return 1;
-}
-else
+	return 1;
+}else
 {
-     return 0;
+	return 0;
 }
-//}
-//else
-//{
-  // return 0;
-//}
+
+// $insert = "INSERT INTO `gs_jobInfo`(`id`, `userid`, `title`, `gender`, `sport`, `type`, `work_experience`, `description`, `desired_skills`, `qualification`, `key_requirement`, `org_address1`, `org_address2`, `org_city`, `org_state`, `org_pin`, `organisation_name`, `about`, `address1`, `address2`, `state`, `city`, `pin`, `contact`, `image`,`email`,`job_link`, `date_created`) VALUES ('$item->id','$item->userid','$item->title','$item->gender','$item->sports','$item->type','$item->work_exp','$item->desc','$item->desiredskill','$item->qualification','$item->keyreq','$item->org_address1','$item->org_address2','$item->org_city','$item->org_state','$item->org_pin','$item->org_name','$item->about','$item->address1','$item->address2','$item->state','$item->city','$item->pin','$item->contact','$item->image','$item->email','$item->job_link',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `sport` = '$item->sports',`gender` = '$item->gender' ,`type` = '$item->type' , `work_experience` = '$item->work_exp' , `description` = '$item->desc' , `desired_skills` = '$item->desiredskill' , `qualification` = '$item->qualification' , `key_requirement` = '$item->keyreq' , `organisation_name` = '$item->org_name' , `about` = '$item->about', `image` = '$item->image' , `contact` = '$item->contact' , `email` = '$item->email' , `date_created` = CURDATE(), `org_address1` = '$item->org_address1',`org_address2` = '$item->org_address2',`org_city` = '$item->org_city' , `org_pin` = '$item->org_pin' , `org_state`= '$item->org_state' , `address1`= '$item->address1' , `address2` = '$item->address2' , `city` = '$item->city' , `state` = '$item->state' , `publish` = 0, `pin` = '$item->pin',`job_link` = '$item->job_link'";
+// $query = $this->db->query($insert);
+// if($query)
+// {
+//      return 1;
+// }
+// else
+// {
+//      return 0;
+// }
+
 } 
 
 
@@ -193,21 +222,6 @@ else
    return 0;
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -424,7 +438,6 @@ public function deleteTournament($id)
 
 public function saveResources($item)
 {   
-
    if($item->token == 2)
 	{
         $video_url = $item->url; 
@@ -435,17 +448,43 @@ public function saveResources($item)
 		$video_url = "";
 		$url = $item->url;
 	}
- $insert = "INSERT INTO `gs_resources`(`userid`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`,`video_link`) VALUES ('$item->userid','$item->title','$url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->status',CURDATE(),'$video_url')";
 
-$query = $this->db->query($insert);
-if($query)
+ $data = array(
+         'userid' => $item->userid,
+         'title' => $item->title,
+         'url' => $url,
+         'description' => $item->description,
+         'summary' => $item->summary,
+         'image' => $item->image,
+         'keyword' => $item->keyword,
+         'topic_of_artical' => $item->topic_of_artical,
+         'sport' => $item->sport,
+		 'location' => $item->location,
+         'token' => $item->token,
+         'status' => $item->status,
+         'date_created' => date('Y-m-d'),
+         'video_link' => $video_url,
+);
+
+
+if($this->db->insert('gs_resources', $data))
 {
 	return 1;
-}
-else
+}else
 {
-   return 0;
+	return 0;
 }
+//  $insert = "INSERT INTO `gs_resources`(`userid`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`,`video_link`) VALUES ('$item->userid','$item->title','$url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->status',CURDATE(),'$video_url')";
+
+// $query = $this->db->query($insert);
+// if($query)
+// {
+// 	return 1;
+// }
+// else
+// {
+//    return 0;
+// }
 }
 
 

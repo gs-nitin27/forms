@@ -57,7 +57,7 @@
 				<div class="timeline-item">
 				<h5 class="timeline-header"><b href="#">Job Description: </b></h5>
 				<div class="timeline-body">
-				<?php echo $job['description'];?>
+				<?php echo htmlspecialchars_decode($job['description']);?>
 				</div> 
 				</div>
 				<div class="timeline-item">
