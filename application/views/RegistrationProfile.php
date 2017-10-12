@@ -441,6 +441,7 @@ $("#imagelodar").show();
 var data = {
 
     "id"                       : $("#uid").val(),
+    "prof_id"                  : $("#prof_id").val(),
     "userdata"                 : userjson
 };
 console.log(JSON.stringify(data));
@@ -509,7 +510,7 @@ var data = JSON.stringify(data);
       {
       }
 
-      // print_r($value);
+      //print_r($value);
       ?>
 
       <header>
@@ -600,6 +601,7 @@ var data = JSON.stringify(data);
           <div class="box box-primary" style="margin-top:5%;">
           <div class="box-body box-profile">
           <input type="hidden" name="userid" id="uid" value="<?php echo $value['userid']; ?>">
+           <input type="hidden" name="prof_id" id="prof_id" value="<?php echo $value['prof_id']; ?>">
 
            <div class="panel panel-primary">
               <div class="panel-heading clearfix">

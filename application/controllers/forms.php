@@ -96,7 +96,7 @@ public function newadmin()
 
 }
 
-//======================User =====================
+//======================  User =====================
 
 public function adminlogin()
 {
@@ -418,7 +418,7 @@ public function admin_module_assign($str)
 //======================== End User =========================
 
 
-// ============================== Start Event==============================    
+// ============================== Start Event ==============================    
 public function CreateEvent()
 	{
 	  $data['middle'] = 'event/CreateEvent';
@@ -3941,7 +3941,7 @@ $item  = new stdClass();
 
 $item->id                    = $data2->id;
 $item->userdata              = $data2->userdata;
-$item->prof_id               = 1;
+$item->prof_id               = $data2->prof_id;
 
 $this->load->model('register');
 $res = $this->register->Registration_userdata($item);
