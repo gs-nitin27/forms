@@ -17,7 +17,7 @@ var data1 =
     "etypes"                  : $("#etypes").val(),
     "userid"                  : $("#userid").val(),
     "name"                    : $("#evname").val(),
-    "type"                    : $("#evtype2").val(),
+    "type"                    : $("#evtype").val(),
     "address_line1"           : $("#add1").val(), 
     "address_line2"           : $("#add2").val(), 
     "city"                    : $("#city").val(), 

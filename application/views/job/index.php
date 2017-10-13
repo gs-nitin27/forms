@@ -21,6 +21,7 @@
     <!-- Content Header (Page header) -->
 
     <!-- Main content -->
+    <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div> 
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
@@ -178,8 +179,9 @@
 
 <script>
 
- function Republish(id)
+function Republish(id)
 {
+$("#imagelodar").show();
 var data1 =
 {
            "id"               : id
@@ -195,13 +197,51 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-   
-    
+        if(result == '1')
+         {
+         $("#imagelodar").hide();
+         $.confirm({
+         title: 'Congratulations!',
+         content: 'Job is Republish.',
+         type: 'green',
+         typeAnimated: true,
+         buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                 
+                }
+            },
+            close: function () {
+           
+            }
+        }
+    });
+      }
+      else
+      { 
+            $("#imagelodar").hide();
+             $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                      }
+                  },
+                  close: function () {
+                  }
+              }
+          });
+      }
 
     }
 });
-
-
 }
 
 

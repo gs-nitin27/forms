@@ -332,14 +332,14 @@
 
 <script>
 	$('#myModal').click(function(){
-		window.location.href='<?php echo site_url("forms/viewjob/$job['id']");?>';
+		window.location.href='<?php echo site_url("forms/viewjob/$job[infoId]");?>';
 	});	
 	
 	$('#btnbbb').click(function(){
 //		alert("hi");
 		$.ajax({
 			method:"POST",
-			data:{infoid:'<?php echo $job["id"];?>'},
+			data:{infoid:'<?php echo $job["infoId"];?>'},
 			url: "<?php echo site_url('forms/mobileview'); ?>",
 			success: function(result){
         		$(".modal-body").html(result);
