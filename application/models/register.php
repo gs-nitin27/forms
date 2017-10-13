@@ -134,11 +134,6 @@ $query = $this->db->query($insert);
 
 if($query)
 {
-	//$id = mysql_insert_id();
-	//$data =  "INSERT INTO `gs_activity_log`(`userid`, `module`,`creation_id`,`activity`, `date_created`) VALUES ('$item->userid','job','$id','create','".date("Y-m-d")."')";
-	//$log  = $this->create_log($data,$item->userid);
-     //if($log == 1)
-     //{
      return 1;
  }
  else
@@ -156,9 +151,8 @@ if($query)
 public function create_job($item)
 {
 
- $str= preg_replace( "/\r|\n/", "", $item->desc ); //str_replace("\n\n"," ",$item->desc);
+ $str= preg_replace( "/\r|\n/", "", $item->desc ) ; //str_replace("\n\n"," ",$item->desc);
 
- // print_r($str);die;
 
  $data = array(
          'id' => $item->id,
@@ -472,8 +466,6 @@ public function saveResources($item)
 		$video_url = "";
 		$url = $item->url;
 	}
-
-
  $data = array(
          'userid' => $item->userid,
          'title' => $item->title,
