@@ -156,8 +156,10 @@
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish</th>
                   <?php } } ?>
                    <th style="width: 40px; background: #5262bc; color: #ffffff;">Republish</th>
-                </tr>
+         
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
+                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
                 </tr>
                 </tfoot>
               </table>
