@@ -196,28 +196,11 @@ var data = JSON.stringify(data1);
     dataType: "text",
     success: function(result) {
    
-     // window.location.href = url+"/forms/getjob?job";
+    
 
     }
 });
 
-
-  // var data1 = { 'id' : id };
-
-  // var url = '<?php// echo site_url();?>';
-  // var data = JSON.stringify(data1);
-  // $.ajax({
-  //      type : "POST",
-  //      url : '<?php// echo site_url('forms/Republish')?>',
-  //      data : 'data='+data,
-  //      dataType : "text"
-  //      success : function(result)
-  //      {
-  //          alert(result);
-  //      window.location.href = url+"/forms/getjob?job";
-  //      } 
-
-  // });
 
 }
 
