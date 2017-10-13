@@ -456,6 +456,9 @@ public function deleteTournament($id)
 
 public function saveResources($item)
 {   
+
+ 
+
    if($item->token == 2)
 	{
         $video_url = $item->url; 
@@ -483,6 +486,8 @@ public function saveResources($item)
          'video_link' => $video_url,
 );
 
+
+//print_r($data);//die;
 
 if($this->db->insert('gs_resources', $data))
 {

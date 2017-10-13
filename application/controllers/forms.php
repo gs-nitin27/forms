@@ -930,13 +930,17 @@ $item->url                   = $_POST['url'];//$data2->url;
 $item->status                = $_POST['status'];//$data2->status;
 $item->summary               = mysql_real_escape_string($_POST['summary']);//mysql_real_escape_string($data2->summary);
 $item->keyword               = mysql_real_escape_string($_POST['keyword']);//$data2->keyword;
-$item->description           = mysql_real_escape_string($_POST['description']);//mysql_real_escape_string($data2->description);
+$item->description           = $_POST['description'];//mysql_real_escape_string($data2->description);
 $item->topic_of_artical      = $_POST['topic_of_artical'];//$data2->topic_of_artical;
 $item->sport                 = $_POST['sport'];//$data2->sport;
 $item->location              = $_POST['location'];//$data2->location;
 $item->image                 = $_POST['image'];//$data2->image;
 $item->token                 = $_POST['token'];//$data2->token;
 $item->date_created          = $_POST['date_created'];//$data2->date_created;
+
+
+// print_r($item->description );die;
+
 
 $this->load->model('register');
 $res = $this->register->saveResources($item);

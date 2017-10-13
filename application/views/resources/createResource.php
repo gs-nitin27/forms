@@ -44,7 +44,11 @@ function save()
             dataType: "json",
             success: function(result) 
             {
-              // alert(result);return;
+              // alert(result);
+               
+              // $('#imagelodar').hide();
+             //  return;
+
               if(result.response == '1')
               {
                       $.confirm({
