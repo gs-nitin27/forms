@@ -27,7 +27,7 @@ function save()
               	  "token"                   : $("#token").val(),
                   "sport"                   : $("#sport").val().toString()
               };
-                  console.log(JSON.stringify(data1)); 
+          console.log(JSON.stringify(data1)); 
           var url = '<?php echo site_url();?>'
           var data = eval(data1);//JSON.stringify(data1);
 
@@ -156,19 +156,15 @@ function save()
              $('#videobutton').hide();
              $("#token").val("1");
             }
-
-
             if($('#types').val() == 'blog')
             {
              $('#abc').show();
              $('#videobutton').hide();
              $("#token").val("3");
             }
-
             });
             });
             </script>
-
              <div class="form-group"> 
                      <label for="exampleInputEmail1">Resource Type</label>
                      <select  id="types" class="form-control" >
@@ -197,9 +193,6 @@ function save()
                 <input type="text" class="form-control" maxlength="50" name="rtitle" id="rtitle" placeholder="Enter title">
                 <label id="title_error" hidden="">A title is required</label>
                 </div>
-
-                
-
                 <script type="text/javascript">
                 $(function() {
                   //alert("fssa");
@@ -227,29 +220,13 @@ function save()
       </div>
      </div>
 
-
-   <input type="text" id="sport" class="form-control" name="sport" value="" disabled="">
-    </div>
-
-
-
-
-
-
-
-   
-
-
-
-
+<input type="text" id="sport" class="form-control" name="sport" value="" disabled="">
+</div>
                 <div class="form-group">
                 <label for="exampleInputEmail1">Summary</label>
-
-
                 <textarea class="form-control" maxlength="400" name="summary" id="rsummary" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
                 <label id="summary_error" hidden="">A summary is required</label>
-
                 </div>
                 <div id="rem"></div>
             <script>

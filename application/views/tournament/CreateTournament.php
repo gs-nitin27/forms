@@ -139,7 +139,6 @@ var data =  eval(data1);
 
   </script>
     <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         Create Tournament
@@ -167,15 +166,9 @@ var data =  eval(data1);
                 <h4>Tournament Details:</h4 > 	
 				</div>
                 <div class="box-body">
-
-            
-    
-                   
 					<div class="form-group">
 					  <label>Tournament Description</label>
-
 					  <textarea class="ckeditor" maxlength="400" name="description" id="tdesc" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-<!-- 					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="tdesc" ></textarea> -->
 					  <label id="tdesc_error" hidden>Tournament Description is required .</label>
 					</div>
 				  <script>
