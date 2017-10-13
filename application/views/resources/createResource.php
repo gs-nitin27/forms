@@ -5,7 +5,6 @@
 <script>
 function save()
 {
-    
           $('#imagelodar').show();
           var summary1        = $("#rsummary").val();
           var summary12       = summary1.toString();
@@ -13,7 +12,6 @@ function save()
           var description     = editor.getData();
               var data1 = 
               {
-
                   "id"                      : 0, 
                   "userid"                  : $("#userid").val(),
                   "title"                   : $("#rtitle").val(),
@@ -30,10 +28,7 @@ function save()
                   "sport"                   : $("#sport").val().toString()
               };
                   console.log(JSON.stringify(data1)); 
-
           var url = '<?php echo site_url();?>'
-
-
           var data = eval(data1);//JSON.stringify(data1);
 
 

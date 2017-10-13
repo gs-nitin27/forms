@@ -1,3 +1,4 @@
+<script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" > </script>
 <script>
 $(document).ready(function(){
    $('#city').focusout(function(){
@@ -32,6 +33,9 @@ $(document).ready(function(){
 function save()
 {
    $("#imagelodar").show();
+
+   var description      =  editor.getData();
+
 var data1 = {
     "id"                      : "0", 
     "userid"                  : $("#userid").val(),
@@ -42,7 +46,7 @@ var data1 = {
     "city"                    : $("#city").val(), 
     "pin"                     : $("#pin").val(), 
     "state"                   : $("#state").val(),
-    "description"             : $("#tdesc").val(),
+    "description"             : description,
     "eligibility1"            : $("#criteria1").val(),
     "eligibility2"            : $("#criteria2").val(),
     "tournament_level"        : $("#tlevel").val(),
@@ -139,9 +143,7 @@ var data =  eval(data1);
     <section class="content-header">
       <h1>
         Create Tournament
-        
       </h1>
-     
     </section>
          <section class="content"> 
           <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div> 
@@ -165,11 +167,20 @@ var data =  eval(data1);
                 <h4>Tournament Details:</h4 > 	
 				</div>
                 <div class="box-body">
+
+            
+    
+                   
 					<div class="form-group">
 					  <label>Tournament Description</label>
-					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="tdesc" ></textarea>
+
+					  <textarea class="ckeditor" maxlength="400" name="description" id="tdesc" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+<!-- 					  <textarea class="form-control" rows="3" style="resize:none;" class="desc" id="tdesc" ></textarea> -->
 					  <label id="tdesc_error" hidden>Tournament Description is required .</label>
 					</div>
+				  <script>
+                          var editor=CKEDITOR.replace('tdesc');
+                   </script>
 					<div class="form-group">
 					  <label for="eventName">Tournament Name</label>
 					  <input type="text" class="form-control"  id="tname" >
@@ -589,7 +600,11 @@ $(function() {
    $("#save").click(function()
    {
       //alert("hi");
-    if(  $("#tname").val() !="" && $("#tdesc").val() != "" &&  $("#startD").val() !="" && $("#endD").val() !="" && $("#evlink").val() != "")
+    var editorData      =  editor.getData();
+    var description     =  editorData.replace(/[\/\\<>~\{}]/g, '');
+
+
+    if(  $("#tname").val() !="" && description != "" &&  $("#startD").val() !="" && $("#endD").val() !="" && $("#evlink").val() != "")
        {
       	save();
       }else{
@@ -625,7 +640,7 @@ $(function() {
       	// }else{
        //    $("#city_error").hide();
       	// }
-      	if($("#tdesc").val() ==""){
+      	if(description ==""){
             $("#tdesc_error").show();
       		$("#tdesc_error").css("color","red");
       	}else{
