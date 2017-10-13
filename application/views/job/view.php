@@ -332,7 +332,7 @@
 
 <script>
 	$('#myModal').click(function(){
-		window.location.href='<?php echo site_url("forms/viewjob/$job[infoId]");?>';
+		window.location.href='<?php echo site_url("forms/viewjob/$job['infoId']");?>';
 	});	
 	
 	$('#btnbbb').click(function(){
