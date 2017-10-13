@@ -1,18 +1,22 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
         rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
-        rel="stylesheet" type="text/css" />
-    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
         type="text/javascript"></script>
-   <script>
+ <script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" ></script>
+
+
+<script>
 
 
 function save(){
      
 $("#imagelodar").show();
 //alert("sadf");
+
+var description      =  editor.getData();
 
 var data1 = {
 
@@ -26,10 +30,9 @@ var data1 = {
     "city"                    : $("#jcity").val(), 
     "pin"                     : $("#jpin").val(), 
     "state"                   : $("#jstate").val(),
-    "description"             : $("#jdesc").val(),
+    "description"             : description,
     "work_experience"         : $("#jexp").val(),
     "desired_skills"          : $("#skill").val(),
-    "description"             : $("#jdesc").val(),
     "qualification"           : $("#jqualification").val(),
     "key_requirement"         : $("#jreq").val(),
     "about"                   : $("#abOrg").val(),
@@ -157,11 +160,24 @@ var data = eval(data1);//JSON.stringify(data1);
     <input type="hidden" class="form-control" name="userid" id="userid" value="<?php echo $userid;?>">
     </div>
           <?php }?>
-	<div class="form-group">
+	
+
+
+    <label for="exampleInputEmail1">Description</label>
+    <textarea class="ckeditor"  name="description" id="jdesc" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $job['description'];?></textarea>
+     <script>
+    var editor=CKEDITOR.replace('jdesc');
+    </script>
+
+
+
+<!--   <div class="form-group">
 	<label>Job Description</label>
-	<textarea class="form-control" rows="3" style="resize:none;" class="desc" id="jdesc" ><?php echo $job['description'];?></textarea>
+	<textarea class="form-control" rows="3" style="resize:none;" class="desc" id="jdesc" ><?php //echo $job['description'];?></textarea>
   <label id="jdesc_error" hidden>Job Description is required .</label>
-	</div>	 
+	</div>	  -->
+
+
 	<div class="form-group">
 	<label for="eventtype">Job Type</label>
 	<select id="jtype" class="form-control" >
@@ -551,7 +567,13 @@ $(function() {
   <script type="text/javascript">
 
     $("#save").click(function(){
-       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 &&  $("#jdesc").val() !="" && $("#jexp").val() !=0  &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" && $("#add1").val() !="" &&  $("#add2").val() !="" &&    $("#email").val() !="" && $("#cont").val() !="" &&  $("#jadd1").val() !="" &&  $("#sport").val() !=0){
+
+
+      var editorData      =  editor.getData();
+      var description     =  editorData.replace(/[\/\\<>~\{}]/g, '');
+
+
+       if( $("#jtitle").val() !="" &&  $("#jadd2").val() !="" &&  $("#jtype").val() !=0 &&  description !="" && $("#jexp").val() !=0  &&  $("#jqualification").val() !="" &&  $("#abOrg").val() !="" &&  $("#orgName").val() !="" &&  $("#contact").val() !="" && $("#add1").val() !="" &&  $("#add2").val() !="" &&    $("#email").val() !="" && $("#cont").val() !="" &&  $("#jadd1").val() !="" &&  $("#sport").val() !=0){
 
             save();
        }else{
@@ -595,7 +617,7 @@ $(function() {
                 // }else{
                 //   $("#jstate_error").hide();
                 // }
-                if($("#jdesc").val() ==""){
+                if(description ==""){
                   $("#jdesc_error").show();
                   $("#jdesc_error").css("color","red");
                 }else{

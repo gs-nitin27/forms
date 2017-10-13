@@ -156,6 +156,10 @@ if($query)
 public function create_job($item)
 {
 
+ $str= preg_replace( "/\r|\n/", "", $item->desc ); //str_replace("\n\n"," ",$item->desc);
+
+ // print_r($str);die;
+
  $data = array(
          'id' => $item->id,
          'userid' => $item->userid,
@@ -164,7 +168,7 @@ public function create_job($item)
          'sport' => $item->sports,
          'type' => $item->type,
          'work_experience' => $item->work_exp,
-         'description' => $item->desc,
+         'description' => $str,
          'desired_skills' => $item->desiredskill,
          'qualification' => $item->qualification,
          'key_requirement' => $item->keyreq,

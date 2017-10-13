@@ -72,9 +72,8 @@
 
 
 
-            <label for="exampleInputEmail1">Description</label>
-           <textarea class="ckeditor"  name="description" id="jdesc" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> 
-          
+          <label for="exampleInputEmail1">Description</label>
+           <textarea class="ckeditor"  name="description" id="jdesc" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
           <script>
           var editor=CKEDITOR.replace('jdesc');
           </script>
@@ -142,11 +141,6 @@
     <div class="form-group">
     <input type="text" id="jsports" class="form-control" name="sport" disabled="">
    </div>
-
-
-
-
-
           <div class="form-group">
             <label for="city">Job Location</label>
             <input type="text" class="form-control"  id="jcity" placeholder="Enter City">
@@ -588,7 +582,7 @@ var data = eval(data1);
     dataType: "text",
     success: function(result) {
 
-     // alert(result);return;
+     // alert(result);//return;
 
        if(result == '1')
          {

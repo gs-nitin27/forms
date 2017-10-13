@@ -58,7 +58,7 @@
                 <div class="timeline-item">
 			    <h5 class="timeline-header" style="color:rgb(0,0,255);opacity:0.6;"><b href="#"> Description: </b></h5>
 				<div class="timeline-body">
-						 <?php echo nl2br($job['description']);?>
+						 <?php print_r($job['description']);?>
 				</div>
 					   
 				</div>

@@ -251,7 +251,6 @@ public function saveadminmodule()
 }
 
 
-
 public function signout()
 {
      $newdata = array(
@@ -374,8 +373,6 @@ else
 //    $this->register->deleteUser($id,$activate);
 //    $data['middle']='userModule/usermodule';
 //    $this->load->view('templates/template',$data);
-    
-  
 // } 
 
 public function createNewUser()
@@ -589,7 +586,7 @@ $item->type                  = $_POST['type'];
 $item->sports                = $_POST['sports'];
 $item->gender                = $_POST['gender'];
 $item->work_exp              = mysql_real_escape_string($_POST['work_experience']);
-$item->desc                  = mysql_real_escape_string($_POST['description']);
+$item->desc                  = $_POST['description'];
 $item->desiredskill          = mysql_real_escape_string($_POST['desired_skills']);
 $item->qualification         = mysql_real_escape_string($_POST['qualification']);
 $item->keyreq                = mysql_real_escape_string($_POST['key_requirement']);

@@ -125,20 +125,13 @@
 					<td><a href = "<?php echo site_url('forms/viewJob/'.$num.'?job'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
 
                  <td><a href = "<?php echo site_url('forms/editjob/'.$num.'?job'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
-
                     <?php  if($usertype==101)
                    {
                     ?>
-
                 <td><a href = "<?php echo site_url('forms/deleteJob/'.$num.'?job'); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
-
- 
                      <?php } }?>
-
                 </tr>
-
 		<?php } } ?>
-
                 </tbody>
                 <tfoot>
                  <tr>
@@ -148,7 +141,6 @@
                   <th style="background: #5262bc; color: #ffffff;">Sport</th>
                   <th style="background: #5262bc; color: #ffffff;">Location</th>
                   <th style="background: #5262bc; color: #ffffff;">Organisation</th>
-
                   <?php
              if($usertype==101 || $usertype==102 )
                    {
@@ -156,7 +148,6 @@
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish</th>
                   <?php } } ?>
                    <th style="width: 40px; background: #5262bc; color: #ffffff;">Republish</th>
-         
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
