@@ -49,7 +49,10 @@ span.logo-lg b {
 }
 .box-body{ padding: 10px 15px 20px 15px }
 </style>
- --> <script>
+ --> 
+
+
+<script>
 function save()
 { 
 $('#imagelodar').show();
@@ -198,7 +201,7 @@ var data = eval(data1);//JSON.stringify(data1);
                    </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" name="rtitle" maxlength="50" id="rtitle" placeholder="Enter title" value="<?php echo $value['title']; ?>">
+                  <input type="text" class="form-control" name="rtitle" maxlength="50" id="rtitle" placeholder="Enter title" value="<?php echo htmlentities($value['title']); ?>">
                   <label id="title_error" hidden="">A title is required</label>
                 </div>
                 <div class="form-group">
