@@ -562,7 +562,6 @@ var data = eval(data1);//JSON.stringify(data1);
                 margin: -1px;
             }
         </style>
-          
         <script type="text/javascript">
         $(this).ready( function() {
             $("#rlocation").autocomplete({
@@ -674,7 +673,6 @@ $(function() {
         else{
           $("#title_error").hide(); 
         }
-            
       if($('#token').val() == 1)
       {
        var description      =  editor.getData();
@@ -712,16 +710,13 @@ $(function() {
           save();
         }
     });
-
-
-     edit_video = function(id)
-     {
-      $('#myModal').modal('show'); 
+  edit_video = function(id)
+  {
+    $('#myModal').modal('show'); 
     var url = $('#'+id).val();
-      $("#myUrl").val(url);
-      mybtn();
-     }
-
+    $("#myUrl").val(url);
+    mybtn();
+    }
    function mybtn()
    {
     var myId;
@@ -729,7 +724,6 @@ $(function() {
     if(myUrl)
     {
     myId = get_Id(myUrl);
-
     $('#myId').html(myId);
     $('#myCode').html('<iframe width="560" height="315" src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>');
     }
@@ -738,6 +732,7 @@ $(function() {
       alert("Please Give YouTube URL");
     }
   }
+
 
 function get_Id(url) {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -751,6 +746,7 @@ function get_Id(url) {
     }
 }
 
+
 function getSports(id)
 { get_sport = [];
   $('#sport').val('');
@@ -761,8 +757,6 @@ function getSports(id)
  
  $('#sport').val(get_sport/*list.replace(/,\s*$/, "")*/);
 }
-
-
   </script>
 
 
