@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/jquery-ui.css'); ?>" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo base_url('assets/ui.theme.css'); ?>" type="text/ css" media="all" />
  <script>
+
 //document.domain = "getsporty.in";
 
 function save()
@@ -27,13 +28,11 @@ var data1 = {
     "token"                   : $("#token").val(),
     "sport"                   : $("#sport").val().toString()
 };
-
 console.log(JSON.stringify(data1));
 var url = '<?php echo site_url();?>'
 var jsondata = eval(data1);
 //jsondata = JSON.stringify(jsondata);
   $.ajax({
-
     type: "POST",
     url: '<?php echo site_url('forms/SaveshareResources'); ?>',
     data: jsondata,

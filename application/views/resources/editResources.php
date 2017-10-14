@@ -153,18 +153,13 @@ var data = eval(data1);//JSON.stringify(data1);
     <section class="content-header">
       <h1>
      Edit Resources
-        
       </h1>
-     
     </section>
          <section class="content"> 
           <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
       <div class="row">
     <?php  if(isset($msg) && $msg != ""){?>
     <div class="col-md-12">
-    <!-- <div class=" alert alert-success" id="msgdiv" >
-      <strong>Info! <span id = "msg"><?php// echo $msg;?></span></strong> 
-    </div> -->
     <?php }?>
 <div class="col-md-12">
 <div class=" alert alert-success" id="msgdiv" style="display:none" >
@@ -384,11 +379,10 @@ var data = eval(data1);//JSON.stringify(data1);
                     </button>
                     <!-- image-preview-input -->
                     <div class="btn btn-default image-preview-input">
-                        <span class="glyphicon glyphicon-folder-open"></span>
-                        <span class="image-preview-input-title">Browse</span>
-                        <input type="file" accept="image/png, image/jpeg, image/gif" name="file" id="file" />
-                        
-                         <!-- rename it -->
+                    <span class="glyphicon glyphicon-folder-open"></span>
+                    <span class="image-preview-input-title">Browse</span>
+                    <input type="file" accept="image/png, image/jpeg, image/gif" name="file" id="file" />
+                        <!-- rename it -->
                     </div>
                      <input id="button" type="submit" class="btn btn-danger" value="Upload Image" name="submit">
                 </span>
@@ -397,7 +391,6 @@ var data = eval(data1);//JSON.stringify(data1);
     </div>
 </div>
               <!--  Image : <input type="file" name="file" id="file" /> -->
-
                <div class="form-group">
                <input type="hidden" class="form-control" name="path"   id="path" value="uploads/resources/">
               <input type="hidden" class="form-control" name="height" id="height" value="640">
@@ -410,65 +403,47 @@ var data = eval(data1);//JSON.stringify(data1);
                 </div>
                <!--  <input id="button" type="submit" value="Upload"> -->
                </form>
-
-
-                
                <input type="hidden" class="form-control" name="photo" id="photo_url" value="<?php echo $value['image']; ?>"> 
-
                 <img src="<?php echo base_url("img/loader.gif");?>"  id="loader_img" hidden></img> 
                  <div id="mess" hidden>Image Uploded</div>
-
             </div>
              </td>
              </tr>
              </table>
-       
           <?php } ?>
            <div class="submit-bottom">
                 <input type="button" class="btn btn-lg btn-primary" id="save" value="Submit" name="Create">
               </div>
-
-
-  
           </div>
     </div>
-    
 </div>
 </div>
 </section>
-
 </div>
 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
+      <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-
-
-         <div class="form-group">Enter a YouTube URL:
-         <input id="myUrl" class="form-control" type="text"/>
-         </div>
-         <div class="form-group">
-         <button type="button" class="btn btn-default" id="myBtn" onclick='mybtn()';>Upload</button>
-         </div>
-
-       
-          <div> YouTube ID: <span id="myId"></span>
-          </div>
-          <div><input type="hidden" name=""  id="myId1" value=""></div>
-
-         <div>Embed code: <pre id="myCode"></pre></div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Modal Header</h4>
       </div>
-      
+      <div class="modal-body">
+      <div class="form-group">Enter a YouTube URL:
+      <input id="myUrl" class="form-control" type="text"/>
+      </div>
+      <div class="form-group">
+      <button type="button" class="btn btn-default" id="myBtn" onclick='mybtn()';>Upload</button>
+      </div>
+      <div> YouTube ID: <span id="myId"></span>
+      </div>
+      <div><input type="hidden" name=""  id="myId1" value=""></div>
+      <div>Embed code: <pre id="myCode"></pre></div>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+      </div>
     </div>
   </div>
 <script type="text/javascript">
@@ -519,7 +494,6 @@ var data = eval(data1);//JSON.stringify(data1);
 });
 
 </script>
-
  <style>
             /* Autocomplete
             ----------------------------------*/
@@ -566,7 +540,6 @@ var data = eval(data1);//JSON.stringify(data1);
         $(this).ready( function() {
             $("#rlocation").autocomplete({
                 minLength: 1,
-
                 source: 
                 function(req, add){
                     $.ajax({
