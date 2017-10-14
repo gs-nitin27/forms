@@ -35,11 +35,11 @@ function save()
             type: "POST",
             url: '<?php echo site_url('forms/SavecreateResources'); ?>',
             data: data,
-            dataType: "text",
+            dataType: "json",
             success: function(result) 
             {
-               alert(result);
-               return;
+               //alert(result);
+              /// return;
                
               // $('#imagelodar').hide();
              //  return;
