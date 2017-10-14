@@ -457,6 +457,7 @@ public function deleteTournament($id)
 public function saveResources($item)
 {   
 
+
  
 
    if($item->token == 2)
@@ -487,7 +488,8 @@ public function saveResources($item)
 );
 
 
-//print_r($data);//die;
+// print_r($data);
+//die;
 
 if($this->db->insert('gs_resources', $data))
 {

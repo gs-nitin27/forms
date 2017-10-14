@@ -31,15 +31,15 @@ function save()
           var url = '<?php echo site_url();?>'
           var data = eval(data1);//JSON.stringify(data1);
 
-
           $.ajax({
             type: "POST",
             url: '<?php echo site_url('forms/SavecreateResources'); ?>',
             data: data,
-            dataType: "json",
+            dataType: "text",
             success: function(result) 
             {
-              // alert(result);
+               alert(result);
+               return;
                
               // $('#imagelodar').hide();
              //  return;
@@ -282,42 +282,28 @@ function save()
       
     </div>
   </div>
-
-<!-- <script type="text/javascript">
-$(function() {
-  //alert("fssa");
-    $('.multiselect-ui').multiselect({
-
-        includeSelectAllOption: true
-    });
-});
-</script> -->
                  <div class="form-group">
                   <label for="exampleInputEmail1">Location</label>
                   <input type="text" class="form-control" name="location" id="rlocation" placeholder="Enter Location">
                 <label id="location_error" hidden="">A location is required</label>
                 </div>
-
                 <div class="form-group">
                 <label for="eventtype">Topic Of The Article</label>
                 <select id="article" class="form-control" name="topic_of_artical">
                 <option value="">- Select -</option> 
                 <option value ="Jobs">Jobs </option>
-                     <option value ="Tournaments">Tournaments</option>
-                     <option value="Events">Events</option> 
-                     <option value ="News & Articles">News & Articles</option> <option value ="Training & Knowledge">Training & Knowledge</option>
-                     <option value ="Others">Others</option>
+                <option value ="Tournaments">Tournaments</option>
+                <option value="Events">Events</option> 
+                <option value ="News & Articles">News & Articles</option> <option value ="Training & Knowledge">Training & Knowledge</option>
+                <option value ="Others">Others</option>
                 </select>
                 <label id="article_error" hidden="">Article type is required</label>
                 </div>
-
-
             </form>
             <form id="form" action="" method="post" enctype="multipart/form-data">
             <div class="container">
             <div class="row">    
-            <div class="col-xs-6 col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-2" style="float: left;margin-left: -1%;">  
-            <!-- image-preview-filename input [CUT FROM HERE]-->
+            <div class="col-xs-6 col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-2" style="float: left;margin-left: -1%;">
             <div class="input-group image-preview">
             <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
             <span class="input-group-btn">
@@ -619,15 +605,15 @@ $(function() {
 
       var editorData      =  editor.getData();
       var description     =  editorData.replace(/[\/\\<>~\{}]/g, '');
-        if(description == "")
-        {
-          $("#description_error").show();
-          $("#description_error").css('color', 'red');
-        }
-        else
-        {
-          $("#description_error").hide(); 
-        }
+        // if(description == "")
+        // {
+        //   $("#description_error").show();
+        //   $("#description_error").css('color', 'red');
+        // }
+        // else
+        // {
+        //   $("#description_error").hide(); 
+        // }
 
         var article = $('#article').val();
         if(article == "")
@@ -647,7 +633,7 @@ $(function() {
         }
         else
         {
-       if(title!="" &&  article!="" && location!="" &&summary!="" &&description!="")
+       if(title!="" &&  article!="" && location!="" &&summary!="" )
        {
          save();
        }

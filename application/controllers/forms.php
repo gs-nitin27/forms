@@ -922,14 +922,17 @@ public function shareResources()
 
 public function SavecreateResources()
 {
+
+
+
 $item  = new stdClass(); 
 $item->id                    = $_POST['id'];//$data2->id;
 $item->userid                = $_POST['userid'];//$data2->userid;
-$item->title                 = mysql_real_escape_string($_POST['title']);//mysql_real_escape_string($data2->title);
+$item->title                 = $_POST['title'];//mysql_real_escape_string($data2->title);
 $item->url                   = $_POST['url'];//$data2->url;
 $item->status                = $_POST['status'];//$data2->status;
-$item->summary               = mysql_real_escape_string($_POST['summary']);//mysql_real_escape_string($data2->summary);
-$item->keyword               = mysql_real_escape_string($_POST['keyword']);//$data2->keyword;
+$item->summary               = $_POST['summary'];//mysql_real_escape_string($data2->summary);
+$item->keyword               = $_POST['keyword'];//$data2->keyword;
 $item->description           = $_POST['description'];//mysql_real_escape_string($data2->description);
 $item->topic_of_artical      = $_POST['topic_of_artical'];//$data2->topic_of_artical;
 $item->sport                 = $_POST['sport'];//$data2->sport;
@@ -939,7 +942,7 @@ $item->token                 = $_POST['token'];//$data2->token;
 $item->date_created          = $_POST['date_created'];//$data2->date_created;
 
 
-// print_r($item->description );die;
+ // print_r($item->title);die;
 
 
 $this->load->model('register');
