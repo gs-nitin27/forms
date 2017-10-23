@@ -1,3 +1,4 @@
+<script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" ></script>
 <script>
 window.flagTicket = 0;
 window.flagTerm   = 0;
@@ -5,7 +6,7 @@ window.flagCriteria =0;
 function save(totalTicket,totalTerm,totalCriteria)
 {
 
-//alert(totalTicket);return ;
+ var description      =  editor.getData();
 
 $("#imagelodar").show();
 var sport  		= $("#sport").val();
@@ -22,7 +23,7 @@ var data1 =
     "address_line2"           : $("#add2").val(), 
     "city"                    : $("#city").val(), 
     "pin"                     : $("#pin").val(), 
-    "description"             : $("#edesc").val(),
+    "description"             : description,
     //"eligibility1"            : $("#criteria1").val(),
     //"eligibility2"            : $("#criteria2").val(),
     "state"                   : $("#state").val(),
@@ -180,11 +181,26 @@ var data2 =  eval(data1);//JSON.stringify(data1);
 				    <label id="price_error" hidden>Ticket price is required .</label> 
 					</div> -->
 
-					<div class="form-group">
+	<!-- 				<div class="form-group">
 					  <label>Event Description</label>
 					  <textarea class="form-control" rows="3" style="resize:none;" placeholder="Enter ..." class="desc" id="edesc" ></textarea>
                     <label id="description_error" hidden>Description is required .</label> 
+					</div> -->
+
+
+				  <div class="form-group">
+					  <label>Event Description</label>
+					  <textarea class="ckeditor" maxlength="" name="description" id="edesc" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+					<label id="description_error" hidden>Description is required .</label> 
 					</div>
+				  <script>
+                          var editor=CKEDITOR.replace('edesc');
+                   </script>
+
+
+
+
+
 
           <?php
           $data=$this->session->userdata('item');
@@ -707,6 +723,9 @@ $(function() {
   
 	$("#save").click(function()
 	{
+
+    var editorData      =  editor.getData();
+    var description     =  editorData.replace(/[\/\\<>~\{}]/g, '');
 		
      var name                      = $("#evname").val();
      var type                      = $("#evtype").val();
@@ -714,7 +733,7 @@ $(function() {
      var address_line2             = $("#add2").val();
      var city                      = $("#city").val(); 
      var pin                       = $("#pin").val();
-     var description               = $("#edesc").val();
+     var description               = description;
      var eligibility1              = $("#criteria1").val();
      var eligibility2              = $("#criteria2").val();
      var state                     = $("#state").val();
