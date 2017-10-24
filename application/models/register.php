@@ -456,10 +456,6 @@ public function deleteTournament($id)
 
 public function saveResources($item)
 {   
-
-
- 
-
    if($item->token == 2)
 	{
         $video_url = $item->url; 
@@ -486,8 +482,6 @@ public function saveResources($item)
          'date_created' => date('Y-m-d'),
          'video_link' => $video_url,
 );
-
-
 
 if($this->db->insert('gs_resources', $data))
 {
@@ -526,7 +520,7 @@ public function saveEditResources($item)
 
 
  $data = array(
- 	     'id'   => $item->id,
+ 	    //  'id'   => $item->id,
          'userid' => $item->userid,
          'title' => $item->title,
          'url' => $url,
@@ -542,9 +536,9 @@ public function saveEditResources($item)
          'video_link' => $video_url,
 );
 
-print_r($data);//die;
-
-if($this->db->insert('gs_resources', $data))
+//print_r($data);//die;
+$this->db->where('id',$item->id);
+if($this->db->update('gs_resources', $data))
 {
 	return 1;
 }else
