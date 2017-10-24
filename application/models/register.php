@@ -523,17 +523,47 @@ public function saveEditResources($item)
 		$video_url = "";
 		$url = $item->url;
 	}
- $insert = "INSERT INTO `gs_resources`(`id`, `userid`,`title`, `url`,`video_link`,`description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$item->id','$item->userid','$item->title','$url','$video_url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->status',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$url',`video_link` = '$video_url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image',`keyword` ='$item->keyword' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`status` ='$item->status',`location` ='$item->location'";
 
-$query = $this->db->query($insert);
-if($query)
+
+ $data = array(
+ 	     'id'   => $item->id,
+         'userid' => $item->userid,
+         'title' => $item->title,
+         'url' => $url,
+         'description' => $item->description,
+         'summary' => $item->summary,
+         'image' => $item->image,
+         'keyword' => $item->keyword,
+         'topic_of_artical' => $item->topic_of_artical,
+         'sport' => $item->sport,
+		 'location' => $item->location,
+         'token' => $item->token,
+         'status' => $item->status,
+         'video_link' => $video_url,
+);
+
+
+
+if($this->db->insert('gs_resources', $data))
 {
 	return 1;
-}
-else
+}else
 {
-   return 0;
+	return 0;
 }
+
+
+//  $insert = "INSERT INTO `gs_resources`(`id`, `userid`,`title`, `url`,`video_link`,`description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`) VALUES ('$item->id','$item->userid','$item->title','$url','$video_url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->status',CURDATE()) ON DUPLICATE KEY UPDATE `title` ='$item->title' , `url` = '$url',`video_link` = '$video_url',`description` = '$item->description', `summary` = '$item->summary',`image` ='$item->image',`keyword` ='$item->keyword' , `topic_of_artical` ='$item->topic_of_artical',`sport` = '$item->sport',`status` ='$item->status',`location` ='$item->location'";
+
+// $query = $this->db->query($insert);
+// if($query)
+// {
+// 	return 1;
+// }
+// else
+// {
+//    return 0;
+// }
 }
 
 
