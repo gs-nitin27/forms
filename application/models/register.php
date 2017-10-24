@@ -491,8 +491,7 @@ if($this->db->insert('gs_resources', $data))
 	return 0;
 }
 
-//  $insert = "INSERT INTO `gs_resources`(`userid`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`,`video_link`) VALUES ('$item->userid','$item->title','$url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->status',CURDATE(),'$video_url')";
-
+// $insert = "INSERT INTO `gs_resources`(`userid`,`title`, `url`, `description`,`summary`, `image`, `keyword`, `topic_of_artical`, `sport`,`location`,`token`,`status`,`date_created`,`video_link`) VALUES ('$item->userid','$item->title','$url','$item->description','$item->summary','$item->image','$item->keyword','$item->topic_of_artical','$item->sport','$item->location','$item->token','$item->status',CURDATE(),'$video_url')";
 // $query = $this->db->query($insert);
 // if($query)
 // {
