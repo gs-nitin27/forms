@@ -542,7 +542,7 @@ public function saveEditResources($item)
          'video_link' => $video_url,
 );
 
-alert($data);die;
+print_r($data);//die;
 
 if($this->db->insert('gs_resources', $data))
 {
