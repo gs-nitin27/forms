@@ -1003,7 +1003,7 @@ $item  = new stdClass();
 //print_r($_POST);//die;
 $item->id                    = $_POST['id'];//$data2->id;
 $item->userid                = $_POST['userid'];//$data2->userid;
-$item->title                 = mysql_real_escape_string($_POST['title']);//mysql_real_escape_string($data2->title);
+$item->title                 = $_POST['title'];//mysql_real_escape_string($data2->title);
 $item->url                   = $_POST['url'];//$data2->url;
 $item->summary               = $_POST['summary'];//mysql_real_escape_string($data2->summary);
 $item->description           = $_POST['description'];//mysql_real_escape_string($data2->description);
