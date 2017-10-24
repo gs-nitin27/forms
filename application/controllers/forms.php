@@ -878,8 +878,10 @@ $this->load->model('register');
 $res = $this->register->Statustournament($item);
 if($data2->publish==1)
 {    
+  
 	//$tdata=$this->register->getTournamentInfo($data2->id);
 	//$this->register->addTournamentData($tdata);
+
 }
 else
 {

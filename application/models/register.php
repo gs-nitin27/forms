@@ -503,7 +503,6 @@ if($this->db->insert('gs_resources', $data))
 // }
 }
 
-
 public function saveEditResources($item)
 {
 	if($item->token == 2)
