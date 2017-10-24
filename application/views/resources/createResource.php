@@ -3,7 +3,7 @@
 <script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" > </script>
 
 <script>
-function save()
+function save() 
 {
           $('#imagelodar').show();
           var summary1        = $("#rsummary").val();
@@ -195,14 +195,11 @@ function save()
                 </div>
                 <script type="text/javascript">
                 $(function() {
-                  //alert("fssa");
                     $('.multiselect-ui').multiselect({
-
                         includeSelectAllOption: true
                     });
                 });
                 </script>
-
               <div class="form-group">
               <div class="col-md-4">
               <div class="form-group">
@@ -213,39 +210,34 @@ function save()
                {
                         foreach($sports as $sport){?>
               <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
-                  <?php   }
-                           } 
+                  <?php  }
+                          } 
                          ?>
       </select>
       </div>
      </div>
-
 <input type="text" id="sport" class="form-control" name="sport" value="" disabled="">
 </div>
-                <div class="form-group">
-                <label for="exampleInputEmail1">Summary</label>
-                <textarea class="form-control" maxlength="400" name="summary" id="rsummary" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-
-                <label id="summary_error" hidden="">A summary is required</label>
-                </div>
-                <div id="rem"></div>
-            <script>
+      <div class="form-group">
+      <label for="exampleInputEmail1">Summary</label>
+      <textarea class="form-control" maxlength="400" name="summary" id="rsummary" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+      <label id="summary_error" hidden="">A summary is required</label>
+      </div>
+      <div id="rem"></div>
+      <script>
             document.getElementById('rsummary').onkeyup = function () {
             document.getElementById('rem').innerHTML = "Characters left: " + (375 - this.value.length);
                 };
-            </script>       
-           <div class="form-group" id="abc">
-
-           <label for="exampleInputEmail1">Description</label>
-           <textarea class="ckeditor" maxlength="400" name="description" id="rdescription" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> 
-          
-          <script>
+      </script>       
+      <div class="form-group" id="abc">
+      <label for="exampleInputEmail1">Description</label>
+      <textarea class="ckeditor" maxlength="400" name="description" id="rdescription" placeholder="Place some text here(Maximum 375 Characters)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> 
+      <script>
           var editor=CKEDITOR.replace('rdescription');
-          </script>
-          <label id="description_error" hidden="">A Description is required</label>
-          </div>
-     
-  <button type="button" id="videobutton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Youtube Video Url</button>
+      </script>
+      <label id="description_error" hidden="">A Description is required</label>
+      </div>
+      <button type="button" id="videobutton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Youtube Video Url</button>
 
   <!-- Modal -->
 
@@ -532,7 +524,6 @@ else
 });
 
 $(function() {
-    // Create the close button
     var closebtn = $('<button/>', {
         type:"button",
         text: 'x',
@@ -540,7 +531,6 @@ $(function() {
         style: 'font-size: initial;',
     });
     closebtn.attr("class","close pull-right");
-    // Set the popover default content
     $('.image-preview').popover({
         trigger:'manual',
         html:true,
@@ -548,15 +538,13 @@ $(function() {
         content: "There's no image",
         placement:'top'
     });
-    // Clear event
     $('.image-preview-clear').click(function(){
         $('.image-preview').attr("data-content","").popover('hide');
         $('.image-preview-filename').val("");
         $('.image-preview-clear').hide();
         $('.image-preview-input input:file').val("");
         $(".image-preview-input-title").text("Browse"); 
-    }); 
-    // Create the preview image
+    });
     $(".image-preview-input input:file").change(function (){     
         var img = $('<img/>', {
             id: 'dynamic',
@@ -565,7 +553,6 @@ $(function() {
         });    
         var file = this.files[0];
         var reader = new FileReader();
-        // Set preview image into the popover data-content
         reader.onload = function (e) {
             $(".image-preview-input-title").text("Change");
             $(".image-preview-clear").show();
@@ -577,11 +564,9 @@ $(function() {
     });  
 });
 </script>
-
 <script type="text/javascript">
      $('#save').click(function()
      {
-
         var title = $('#rtitle').val();
         if(title == "")
         {
@@ -605,44 +590,33 @@ $(function() {
 
       var editorData      =  editor.getData();
       var description     =  editorData.replace(/[\/\\<>~\{}]/g, '');
-        // if(description == "")
-        // {
-        //   $("#description_error").show();
-        //   $("#description_error").css('color', 'red');
-        // }
-        // else
-        // {
-        //   $("#description_error").hide(); 
-        // }
-
-        var article = $('#article').val();
-        if(article == "")
-        {
-          $("#article_error").show();
-          $("#article_error").css('color', 'red');
-        }
-        else
-        {
-          $("#article_error").hide(); 
-        }
-
-        if($('#types').val() == 'video')
-        {
-          if(title!="" &&  article!="" && location!="" &&summary!="")
-            save();
-        }
-        else
-        {
-       if(title!="" &&  article!="" && location!="" &&summary!="" )
-       {
+      var article = $('#article').val();
+      if(article == "")
+      {
+        $("#article_error").show();
+        $("#article_error").css('color', 'red');
+      }
+      else
+      {
+        $("#article_error").hide(); 
+      }
+      if($('#types').val() == 'video')
+      {
+        if(title!="" &&  article!="" && location!="" &&summary!="")
+        save();
+      }
+      else
+      {
+        if(title!="" &&  article!="" && location!="" &&summary!="" )
+      {
          save();
-       }
+      }
      }
     });
      get_sport = function()
      {
-         $('#sport').val('');
-         var list = $('#dates-field2').val().join(',');
+        $('#sport').val('');
+        var list = $('#dates-field2').val().join(',');
         $('#sport').val(list);   
      }
   </script> 

@@ -488,8 +488,6 @@ public function saveResources($item)
 );
 
 
-// print_r($data);
-//die;
 
 if($this->db->insert('gs_resources', $data))
 {
