@@ -3898,6 +3898,8 @@ public function bugemail($email,$buglist,$subject,$name)
                $i = $i+1;
               }
                $data =  file_get_contents("assets/emailtemplate/forgotpassword.php"); 
+
+               print_r($data);
              require('class.phpmailer.php');
               $mail = new PHPMailer(true);
               $to=$email;
