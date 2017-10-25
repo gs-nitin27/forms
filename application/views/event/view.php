@@ -295,7 +295,7 @@ function sendmail()
   	dataType :"text",
   	success :function(result)
   	{
-  		// alert(result);
+  		 alert(result);
   		if(result == 1)
         {
         $.confirm({
