@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-  
+    
 class Forms extends CI_Controller
 {
 public function __construct() 
@@ -3920,7 +3920,7 @@ public function bugemail($email,$buglist,$subject,$name)
                $mail->AddAddress($to);
                $mail->Send();
              
-             print_r($data);
+           //  print_r($data);
               echo "1";
 }
 

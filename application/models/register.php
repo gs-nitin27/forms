@@ -1,6 +1,5 @@
 <?php
-
-		
+	
 class Register extends CI_Model
 {
 
@@ -535,6 +534,7 @@ public function saveEditResources($item)
 );
 
 //print_r($data);//die;
+
 $this->db->where('id',$item->id);
 if($this->db->update('gs_resources', $data))
 {
