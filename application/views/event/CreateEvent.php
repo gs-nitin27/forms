@@ -772,7 +772,7 @@ $(function() {
 
 	}
 
-	for(var i =0; i <window.flagTerm; i++)
+	for(var i =0; i <window.flagCriteria; i++)
 	{
 		var temp = {"criteria":$("#criteria"+i).val()};
 	    criteriaArray.push(temp);
