@@ -43,7 +43,6 @@ var data = JSON.stringify(data);
                 btnClass: 'btn-green',
                 action: function(){
                   $("#imagelodar").hide();
-                 //window.location.href = url+"/forms/getContent?Content";
                 }
             },
             close: function () {
@@ -275,12 +274,11 @@ var data = JSON.stringify(data);
 				</div>
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="others">
-                 <div class="box-header with-border">
-					<h4>Others:</h4 > 		
-		     </div>
-            <div class="box-body">
-
+        <div class="tab-pane" id="others">
+        <div class="box-header with-border">
+		<h4>Others:</h4 > 		
+		</div>
+        <div class="box-body">
         <div class="form-group">
         <label >Academy / Business Name</label>
         <input type="text" class='form-control' name="academy_name" id="academy_name" >
@@ -288,7 +286,7 @@ var data = JSON.stringify(data);
         <div class="form-group">
         <label >Description</label>
         <input type="text" class='form-control' name="Description" id="description" >
-        </div> 
+        </div>
         <div class="form-group">
         <label >Designation</label>
         <input type="text" class='form-control' name="designation" id="designation" disabled="">
@@ -297,19 +295,14 @@ var data = JSON.stringify(data);
         <label >Location</label>
         <input type="text" class='form-control' name="Location" id="location" >
         </div>
-           
         <input type="button" class="btn btn-lg btn-primary" id="save"  value="Submit" name="Create">
-
 		</div>
         </div>
            
             </div>
             </form>
          
-             
-			<!-- <div class="box-footer">
-			<input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Create">
-			</div> -->
+          
 			 
 			
           </div>
@@ -371,13 +364,50 @@ $("#basicdata").click(function()
       {
           if(result.data == 0)
           {
+             $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                        $("#imagelodar").hide();
+                      }
+                  },
+                  close: function () {
+                    $("#imagelodar").hide();
+                  }
+              }
+          });
+
 
 
           }else if(result.data == 3){
-
+           $.confirm({
+              title: 'Ohh!',
+              content: 'You are Aleardy register with Us!',
+              type: 'red',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-red',
+                      action: function(){
+                        $("#imagelodar").hide();
+                      }
+                  },
+                  close: function () {
+                    $("#imagelodar").hide();
+                  }
+              }
+          });
 
           }else{
-          	   $("#newuserid").val(result.data);
+           
+               $("#newuserid").val(result.data);
 			   $("#tab_event").hide();
 			   $("#basicdata").hide();
 			   $("#2").show();
@@ -387,6 +417,35 @@ $("#basicdata").click(function()
 			   $("#education1").addClass("active");
                $("#basic1").removeClass('active');
 	           $("#tabs").tabs("option", "active", 1);
+
+        $.confirm({
+        title: 'Congratulations!',
+        content: 'Profile is Updated.',
+        type: 'green',
+        typeAnimated: true,
+        buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                  $("#imagelodar").hide();
+
+
+                }
+            },
+            close: function () {
+              $("#imagelodar").hide();
+            
+            }
+        }
+    });
+
+
+
+
+
+
+
           }
       }
     });
