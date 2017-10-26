@@ -138,11 +138,12 @@ var data =  eval(data1);
   });
 
   </script>
+
     <div class="content-wrapper">
     <section class="content-header">
-      <h1>
+    <h1>
         Create Tournament
-      </h1>
+    </h1>
     </section>
          <section class="content"> 
           <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div> 
@@ -322,11 +323,7 @@ var data =  eval(data1);
 					  <label for="pin">Pin</label>
 					  <input type="text" class="form-control"  id="pin" placeholder="Enter Pin">
 					</div >
-					<!-- <div class="form-group">
-					  <label for="pin">Tournament Link</label>
-					  <input type="text" class="form-control"  id="evlink" value="http://" />
-					  <label id="evlink_error" hidden>Tournament Link is required .</label> 
-					</div > -->
+					
 					<div class="form-group">
 					  <label for="link">Entry Start Date</label>
 					  <input type="text" class="form-control"  id="estartD" placeholder="Enter Start Date">

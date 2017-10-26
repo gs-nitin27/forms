@@ -801,9 +801,6 @@ var data = JSON.stringify(data);
         </div>
         
 
-
-
-
         </div>
         </div>
         </div>
@@ -885,7 +882,8 @@ document.getElementById("asplayerexp").onclick = function()
     window.asplayerticket++;
 }
 
-function formatDate(date) {
+function formatDate(date) 
+{
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
@@ -895,13 +893,8 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
-
-
-
 $("#save").click(function()
 {
-
- 
  var sportArray = [];
  var formalArray = [];
  var otherArray = [];
@@ -961,11 +954,6 @@ for(var i =0; i <window.workexpticket; i++)
   }
 
 
-    // var totalsportArray = JSON.stringify(sportArray);
-    // var totalformalArray = JSON.stringify(formalArray);
-    // var totalotherArray = JSON.stringify(otherArray);
-    // var totalworkArray = JSON.stringify(workArray);
-    // var totalasplayerArray = JSON.stringify(asplayerArray);
   
   var ftemp = {"Education":{"formalEducation" : formalArray,"otherCertification":otherArray,"sportEducation":sportArray},"Experience":{"experienceAsPlayer":asplayerArray,"workExperience":workArray},"HeaderDetails":{"acamedy":$("#academy_name").val() ,"description":$("#description").val() ,"designation":$("#prof_name").val() ,"location":$("#location").val()}};
 

@@ -381,6 +381,11 @@ public function createNewUser()
  	 $this->load->view('templates/template',$data);
 }
 
+public function newEndUser()
+{
+  $data['middle'] = 'userModule/createnewEndUser';
+  $this->load->view('templates/template',$data);
+}
 public function registrationprofile($str)
 { 
       $data = array( 'id' => $str);
@@ -3514,7 +3519,6 @@ public function user_register()
   
  // print_r($_REQUEST['data']);die;
 
-
   $item = new stdClass();
   
   $item->userType        = 103;
@@ -3988,11 +3992,45 @@ else
 }
 
 
-// public function editRegistrationData()
-// {
-   
+public function user_register_byAdmin()
+{
+  $data = json_decode($_REQUEST['data']);
+  
+  $item = new stdClass();
+  $item->userType        = 103;
+  $item->name            = $data->name;
+  $item->email           = $data->email;
+  $item->phone_no        = $data->phone_no;
+  $item->forget_code     = mt_rand(1000,10000);
+  $item->dob             = $data->dob;
+  $item->sport           = $data->sport;
+  $item->prof_name       = $data->prof_name;
+  $item->prof_id         = $data->prof_id;
+  $item->gender          = $data->gender;
+  $item->access_module   = "1,2,3";
 
-// }
 
+  $this->load->model('register');
+ 
+  $emailid = $this->register->Emailfind($data->email);
+  if($emailid)
+  {
+    echo json_encode(array('data' =>3 ,'message' =>'User is already registered with Us!'));    
+  }
+  else
+  {
+      $res = $this->register->user_register($item);
+      if($res)
+      {  
+         echo json_encode(array('data' =>$res , 'message' =>'User register Sucessfull'));
+      }
+      else
+      {
+       echo json_encode(array('data' => 0,'message' => 'Sorry resgistration in not done' ));
+      }
+
+  }
+
+}
 }
 
