@@ -47,7 +47,7 @@ var data = JSON.stringify(data);
             },
             close: function () {
               $("#imagelodar").hide();
-             //window.location.href = url+"/forms/getContent?Content";
+             
             }
         }
     });
@@ -113,7 +113,9 @@ var data = JSON.stringify(data);
 			    <div class="form-group">
 			    <label for="eventName">Email</label>
 				<input type="text" class="form-control"  id="email" >
-                <label id="email_error" hidden>Email is required .</label>
+                <p class="text-danger" id="email_error" hidden="">Email is required.</p>
+               <!--  <label id="email_error" hidden>Email is required .</label> -->
+
 			    </div>
 			    <div class="form-group">
 			    <label for="eventName">Phone</label>
@@ -149,7 +151,8 @@ var data = JSON.stringify(data);
                            } 
                          ?>
 					</select>
-						<label id="tsport_error" hidden>Sport Name is required .</label> 
+					 <p class="text-danger" id="prof_error" hidden="">Profession Name is required.</p>
+					<!-- 	<label id="prof_error" hidden>Profession Name is required .</label>  -->
 					</div>
 					<div class="form-group">
 					<label for="sports">Gender</label>
@@ -327,8 +330,21 @@ var data = JSON.stringify(data);
 
 $("#basicdata").click(function()
 {
-   var professions = $("#prof").val();
 
+  var professions = $("#prof").val();
+
+  
+  if(professions == 0 || $("#email").val() == '')
+  {
+    $("#email_error").show();   
+    $("#prof_error").show();       
+ 
+
+  }else{
+
+     $("#email_error").hide();   
+    $("#prof_error").hide(); 
+ 
     if(professions!=null)
     {
     var prof_data = professions.split(",");
@@ -338,8 +354,6 @@ $("#basicdata").click(function()
     $("#profid").val(prof_id);
     $("#designation").val(prof_name);
    }
-
-
 
     var data1 = 
     {
@@ -449,6 +463,8 @@ $("#basicdata").click(function()
           }
       }
     });
+
+}
 });
 </script>
 <script type="text/javascript">

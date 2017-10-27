@@ -434,12 +434,12 @@ $("#save").click(function()
   var prof_id=null;
   var prof_name=null;
   
-  
-  if(professions!=null){
-    var prof_data = professions.split(",");
-    var prof_id    = prof_data[1];
+if(professions!=null)
+{
+  var prof_data = professions.split(",");
+  var prof_id    = prof_data[1];
   var prof_name  = prof_data[0];
-  }
+}
   else{
   prof_data = $("#profession").val();
   }
