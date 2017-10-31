@@ -424,6 +424,7 @@ $("#basicdata").click(function()
            
          if($("#designation").val() == "Trainer" || $("#designation").val() == "Coach" )
          {
+
             $("#exp_as_player").show();
          }  
          $("#newuserid").val(result.data);
@@ -558,6 +559,7 @@ if($("#designation").val() == "Trainer" )
 { 
   if(window.sportsticket == 0)
   {
+  $("#2").css('color', 'red');  
   $("#sport_edu_error").show();
   return ; 
 
