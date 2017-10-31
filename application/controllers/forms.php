@@ -1,10 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-  
 class Forms extends CI_Controller
 {
 public function __construct() 
-{
+{ 
     parent::__construct();
 		$this->load->model('register');
 		$this->load->library('session');	
@@ -13,7 +12,6 @@ public function __construct()
          
 public function index()
 {   
-   //$this->load->view('login');  viewJob
      $this->adminlogin();
 }
 
@@ -22,7 +20,6 @@ public function home()
    $data['middle'] = 'dashboard';
    $this->load->view('templates/template',$data);
 }
-
 
 public function userhome()
 {

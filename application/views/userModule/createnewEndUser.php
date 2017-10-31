@@ -114,8 +114,6 @@ var data = JSON.stringify(data);
 			    <label for="eventName">Email</label>
 				<input type="text" class="form-control"  id="email" >
                 <p class="text-danger" id="email_error" hidden="">Email is required.</p>
-               <!--  <label id="email_error" hidden>Email is required .</label> -->
-
 			    </div>
 			    <div class="form-group">
 			    <label for="eventName">Phone</label>
@@ -139,7 +137,7 @@ var data = JSON.stringify(data);
 				<label id="tsport_error" hidden>Sport Name is required .</label> 
 				</div>
 
-                <div class="form-group">
+        <div class="form-group">
 				<?php  $prof = $this->register->getprofession();?>
 				<label for="prof">Profession</label>
 				<select id="prof" class="form-control" >
@@ -152,7 +150,6 @@ var data = JSON.stringify(data);
                          ?>
 					</select>
 					 <p class="text-danger" id="prof_error" hidden="">Profession Name is required.</p>
-					<!-- 	<label id="prof_error" hidden>Profession Name is required .</label>  -->
 					</div>
 					<div class="form-group">
 					<label for="sports">Gender</label>
@@ -184,7 +181,7 @@ var data = JSON.stringify(data);
 			 <input type="hidden" name="profid" class="form-control" id="profid">	
 
 
-            <div class="panel panel-primary">
+            <div class="panel panel-primary" >
             <div class="panel-heading clearfix">
             <div>
             <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Sports Education</h4>
@@ -199,7 +196,9 @@ var data = JSON.stringify(data);
             <input type="button" id="addSportEdu" class="btn btn-danger btn1" value="Add Sport Education" />
             </div>
             </div>
+             <p class="text-danger" id="sport_edu_error" hidden=""><b>Sports Education is required.</b></p>
             </div>
+
                
 
 
@@ -260,10 +259,10 @@ var data = JSON.stringify(data);
     </div>
     </div>
 
-  <div class="panel panel-primary">
+  <div class="panel panel-primary" id="exp_as_player">
     <div class="panel-heading clearfix">
-
     <div>
+
       <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Experience as a Player</h4>
 
       </div>
@@ -293,6 +292,7 @@ var data = JSON.stringify(data);
         <div class="form-group">
         <label >Designation</label>
         <input type="text" class='form-control' name="designation" id="designation" disabled="">
+
         </div>
         <div class="form-group">
         <label >Location</label>
@@ -320,7 +320,8 @@ var data = JSON.stringify(data);
 	$(function() {
     $("#dob").datepicker();
   });
-
+   
+    $("#exp_as_player").hide();
    $("#2").hide();
    $("#3").hide(); 
    $("#4").hide();
@@ -421,7 +422,11 @@ $("#basicdata").click(function()
 
           }else{
            
-               $("#newuserid").val(result.data);
+         if($("#designation").val() == "Trainer" || $("#designation").val() == "Coach" )
+         {
+            $("#exp_as_player").show();
+         }  
+         $("#newuserid").val(result.data);
 			   $("#tab_event").hide();
 			   $("#basicdata").hide();
 			   $("#2").show();
@@ -429,8 +434,8 @@ $("#basicdata").click(function()
 			   $("#4").show();
 			   $("#save").show();
 			   $("#education1").addClass("active");
-               $("#basic1").removeClass('active');
-	           $("#tabs").tabs("option", "active", 1);
+         $("#basic1").removeClass('active');
+	       $("#tabs").tabs("option", "active", 1);
 
         $.confirm({
         title: 'Congratulations!',
@@ -453,17 +458,9 @@ $("#basicdata").click(function()
             }
         }
     });
-
-
-
-
-
-
-
-          }
+      }
       }
     });
-
 }
 });
 </script>
@@ -535,7 +532,7 @@ $("#tabs").tabs();
 $("#next").click(function() 
 {
 	$("#experience2").addClass("active");
-    $("#education1").removeClass('active');
+  $("#education1").removeClass('active');
 	$("#tabs").tabs("option", "active", 2);
 });
 
@@ -557,6 +554,15 @@ $("#save").click(function()
  var finalArray = [];
 
 
+if($("#designation").val() == "Trainer" )
+{ 
+  if(window.sportsticket == 0)
+  {
+  $("#sport_edu_error").show();
+  return ; 
+
+  }
+}
 
   for(var i =0; i <window.sportsticket; i++)
   {
@@ -612,9 +618,6 @@ for(var i =0; i <window.workexpticket; i++)
   var ftemp = {"Education":{"formalEducation" : formalArray,"otherCertification":otherArray,"sportEducation":sportArray},"Experience":{"experienceAsPlayer":asplayerArray,"workExperience":workArray},"HeaderDetails":{"acamedy":$("#academy_name").val() ,"description":$("#description").val() ,"designation":$("#designation").val() ,"location":$("#location").val()}};
 
 var totalftemp = JSON.stringify(ftemp);
-
-//alert(totalftemp); 
-
 saveUserProfile(totalftemp);
 
 });
