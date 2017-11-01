@@ -100,11 +100,12 @@
           </div >
          
 
-       <script type="text/javascript">
+<!--        <script type="text/javascript">
         $(function () {
             $('#lstFruits').multiselect({
                 includeSelectAllOption: true
             });
+
             $('#btnSelected').click(function () {
                 var selected = $("#lstFruits option:selected");
                 var message = "";
@@ -125,22 +126,62 @@
                 $("#jsports").val(message);
             });
         });
-    </script>
-    <div class="form-group">
-    <?php  $sports = $this->register->getSport();?>
+    </script> -->
+<!--     <div class="form-group">
+    <?php // $sports = $this->register->getSport();?>
     <select id="lstFruits" class="form-control"  multiple="multiple">
-       <?php if(!empty($sports)){
-                        foreach($sports as $sport){?>
-        <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
-         <?php   }
-                           } 
-                         ?>
+       <?php// if(!empty($sports)){
+                      //  foreach($sports as $sport){?>
+        <option value ="<?php// echo $sport['sports'];?>"><?php// echo $sport['sports'];?> </option>
+         <?php //  }
+                        //   } 
+                       //  ?>
     </select>
     <input type="button" id="btnSelected" value="Get Selected" />
+     </div> -->
+
+            <script type="text/javascript">
+                $(function() {
+                    $('.multiselect-ui').multiselect({
+                        includeSelectAllOption: true
+                    });
+                });
+
+
+      get_sport = function()
+     {
+        $('#sport').val('');
+        var list = $('#dates-field2').val().join(',');
+        $('#sport').val(list);   
+     }
+                </script>
+
+              <div class="form-group">
+              <div class="col-md-4">
+              <div class="form-group">
+              <label class="exampleInputEmail1" for="rolename">Sports</label>
+              <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" onchange="get_sport()">
+               <?php  $sports = $this->register->getSport();?>
+               <?php if(!empty($sports))
+               {
+                        foreach($sports as $sport){?>
+              <option  value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
+                  <?php  }
+                          } 
+                         ?>
+      </select>
+      </div>
      </div>
+<input type="text" id="sport" class="form-control" name="sport" value="" disabled="">
+</div>
+
+
+
+<!-- 
     <div class="form-group">
     <input type="text" id="jsports" class="form-control" name="sport" disabled="">
-   </div>
+   </div> -->
+   
           <div class="form-group">
             <label for="city">Job Location</label>
             <input type="text" class="form-control"  id="jcity" placeholder="Enter City">
@@ -524,7 +565,7 @@ $(function() {
           }
     });
   </script>
-   <script>
+  <script type="text/javascript">
 
 
 function save()
@@ -565,7 +606,7 @@ var data1 = {
     "job_links"               : $("#job_link").val(),
     "start_date"              : $("#startD").val(),
     "end_date"                : $("#endD").val(),
-    "sports"                  : $("#jsports").val().toString(),
+    "sports"                  : $("#sport").val().toString(),
     "image"                   : $("#photo_url").val(),
     "gender"                  : $("#gender").val()
 

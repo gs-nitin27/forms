@@ -403,7 +403,7 @@ public function updateResourceImage($img)
 		return true;
 }
 
-   //==================harshvardhan========================
+//==================harshvardhan========================
 
 // public function getResourceInfo($id = false){
 // 		$this->db->select('*, JI.id as infoId, L.city as city_name, L.state as state_name, LM.state as state_org, LM.city as city_org');

@@ -49,7 +49,7 @@ var data1 = {
     "start_date"              : $("#startD").val(),
     "job_links"               : $("#job_link").val(),
     "end_date"                : $("#endD").val(),
-    "sports"                  : $("#jsport").val().toString(),
+    "sports"                  : $("#sport").val().toString(),
     "image"                   : $("#photo_url").val(),
     "gender"                  : $('#gender').val()
 
@@ -190,7 +190,7 @@ var data = eval(data1);//JSON.stringify(data1);
 
 
 
-   <script type="text/javascript">
+<!--    <script type="text/javascript">
         $(function () {
             $('#lstFruits').multiselect({
                 includeSelectAllOption: true
@@ -217,19 +217,60 @@ var data = eval(data1);//JSON.stringify(data1);
         });
     </script>
     <div class="form-group">
-    <?php  $sports = $this->register->getSport();?>
+    <?php//  $sports = $this->register->getSport();?>
     <select id="lstFruits" class="form-control"  multiple="multiple">
-       <?php if(!empty($sports)){
-                        foreach($sports as $sport){?>
-        <option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
-         <?php   }
-                           } 
-                         ?>
+       <?php// if(!empty($sports)){
+                     //   foreach($sports as $sport){?>
+        <option value ="<?php// echo $sport['sports'];?>"><?php //echo $sport['sports'];?> </option>
+         <?php //  }
+                       //    } 
+                     //    ?>
     </select>
     <input type="button" id="btnSelected" value="Get Selected" />
+     </div> -->
+
+
+
+      <script type="text/javascript">
+            $(function() {
+            $('.multiselect-ui').multiselect({
+                includeSelectAllOption: true
+              });
+            });
+
+
+      get_sport = function()
+     {
+        $('#sport').val('');
+        var list = $('#dates-field2').val().join(',');
+        $('#sport').val(list);   
+     }
+                </script>
+
+  
+      <div class="form-group">
+      <div class="col-md-4">
+      <div class="form-group">
+      <label class="exampleInputEmail1" for="rolename">Sports</label>
+      <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" onchange="get_sport()">
+      <?php  $sports = $this->register->getSport();?>
+            <?php if(!empty($sports))
+              {
+              foreach($sports as $sport){?>
+        <option  value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
+                  <?php  }
+                          } 
+                         ?>
+      </select>
+      </div>
      </div>
+<!-- <input type="text" id="sport" class="form-control" name="sport" value="" disabled=""> -->
+</div>
+
+
+
     <div class="form-group">
-    <input type="text" id="jsport" class="form-control" name="sport" value="<?php echo $job['sport'];?>" disabled="">
+    <input type="text" id="sport" class="form-control" name="sport" value="<?php echo $job['sport'];?>" disabled="">
      <label id="sport_error" hidden>Sport Name is required .</label>
    </div>
 
