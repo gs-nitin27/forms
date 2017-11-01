@@ -3595,7 +3595,7 @@ public function sendmail($email)
               $mail->Password = "2016Darkhorse";           
               $mail->SetFrom($from, $from_name);
               $mail->Subject = $subject;
-              $mail->Body = '<html lang="en">
+              $mail->Body = 'Thanks for registering with us!Our Team will contact you soon.'/*'<html lang="en">
 <head>
   <meta charset="utf-8"> 
   <meta name="viewport" content="width=device-width"> 
@@ -3798,7 +3798,7 @@ public function sendmail($email)
 
     </center>
 </body>
-</html>'; 
+</html>'; */
                $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
                $mail->AltBody = $txt; 
                $mail->AddAddress($to);
