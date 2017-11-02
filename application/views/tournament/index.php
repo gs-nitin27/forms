@@ -42,7 +42,11 @@
   <?php }?>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
+                   <?php  if($usertype==101)
+                   {
+                    ?>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
+                    <?php }?>
                 </tr>
               </thead>
 			      	<tbody>
@@ -145,6 +149,13 @@
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish</th>
                    <?php } }?>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
+
+                  <th style="background: #5262bc; color: #ffffff;">Edit</th>
+                    <?php  if($usertype==101)
+                   {
+                    ?>
+                  <th style="background: #5262bc; color: #ffffff;">Delete</th>
+                  <?php } ?>
                 </tr>
                 </tfoot>
               </table>
