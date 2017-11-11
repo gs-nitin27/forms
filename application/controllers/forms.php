@@ -3578,7 +3578,7 @@ public function sendmail($email)
               $to=$email;
               $from="info@darkhorsesports.in";
               $from_name="Getsporty";
-              $subject="Email varification ";
+              $subject="Thank you";
 
              // $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
               $emailconform  =  site_url().'/forms/forgotpassword?email=';
