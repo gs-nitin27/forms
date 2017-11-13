@@ -39,18 +39,16 @@
                   if($usertype==101 || $usertype==102 )
                    {
                     ?>
-
-                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-
+             <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                     <?php }?>
-                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Republish</th>
-                   <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
-                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
+                <th style="width: 40px; background: #5262bc; color: #ffffff;">Republish</th>
+                <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
+                <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
                   <?php  if($usertype==101)
                    {
                     ?>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Delete</th>
-                  <?php  }?>
+                  <?php  } ?>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,10 +61,8 @@
         }
         else
         {
-                
             $data=$this->session->userdata('item');
-            $userid=$data['userid']; 
-            // $jobs = $this->register->getJobInfo($userid);
+            $userid=$data['userid'];
             $jobs = $this->register->getUserJobInfo($userid);
         }
 			  if(!empty($jobs))

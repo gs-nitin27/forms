@@ -119,26 +119,18 @@
                       <ul class="enlarge">
                      <li><img src="<?php echo base_url().'uploads/resources/'.$resource['image'] ;?>" width="50px" height="50px" alt="Dechairs" /><span><img src="<?php echo base_url().'uploads/resources/'.$resource['image'] ;?>" width="450px" height="400px" alt="Deckchairs" /></span></li>
                     </ul>
-                     <!--  <img style="width: 50px;height: 50px; border: 2px solid #5262bc;" src="<?php// echo base_url().'uploads/resources/'.$resource['image'] ;?>"> -->
-
-
                     <?php } else { ?>
                      <img style="width: 50px;height: 50px; border: 2px solid red; margin-left: 39%; " src="<?php echo base_url('img/no-image.jpg');?>">
                      <?php }?>
-
-
                     </td>
 				          <!-- 	<td><?php //echo substr($resource['description'],0,170); ?></td> -->
                    <!--  <td><?php// echo $resource['url']; ?></td> -->
                     <td><?php echo $resource['topic_of_artical']; ?></td>
                     <td><?php echo $resource['location']; ?></td>
-
-              
           <?php
              if($usertype==101 || $usertype==102 )
                    {
                     ?>
-
                  <td>
                     <?php if($resource['status']==0){?>
                     <button class="badge bg-red" onclick="myfunction(<?php echo $resource['id'];?>,1)"><?php echo "Activate";?></button>
@@ -171,8 +163,6 @@
                      <?php  if($usertype==101)
                    {
                     ?>
-
-
                     <td><a href = "<?php echo site_url('forms/deleteResources/'.$num); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
                     
                      <?php } }?>

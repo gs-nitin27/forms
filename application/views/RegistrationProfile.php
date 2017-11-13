@@ -442,7 +442,8 @@ $("#imagelodar").show();
 var data = {
 
     "id"                       : $("#uid").val(),
-    "userdata"                 : userjson
+    "userdata"                 : userjson,
+    "prof_id"                  : $("#prof_id").val()
 };
 console.log(JSON.stringify(data));
 var data = JSON.stringify(data);
@@ -547,7 +548,7 @@ var data = JSON.stringify(data);
 <div class="col-lg-11 col-sm-11">
     <div class="card hovercard">
         <div class="card-background">
-
+ 
              
           <!--   <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/"> -->
             <!-- http://lorempixel.com/850/280/people/9/ -->
@@ -567,6 +568,7 @@ var data = JSON.stringify(data);
         <div class="card-info"><span class="card-title"><?php echo $value['name'];?></span></div>
       <?php if($value['prof_name']) {?>
          <div class="card-name" ><span ><b><?php echo $value['prof_name'];?></b></span></div>
+
          <?php }?>
     </div>
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
@@ -796,6 +798,7 @@ var data = JSON.stringify(data);
        
         <input type="text" class='input__field input__field--hoshi' name="Description" id="description" >
         <input type="hidden" class='input__field input__field--hoshi' name="Prof" id="prof_name" value="<?php echo $value['prof_name'];?>">
+        <input type="hidden" name="prof_id" id="prof_id" value="<?php echo $value['prof_id']?>;">
          <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="description"><span class="input__label-content input__label-content--hoshi">Description</span></label>
         </span>
         </div>
