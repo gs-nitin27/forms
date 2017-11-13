@@ -798,7 +798,7 @@ var data = JSON.stringify(data);
        
         <input type="text" class='input__field input__field--hoshi' name="Description" id="description" >
         <input type="hidden" class='input__field input__field--hoshi' name="Prof" id="prof_name" value="<?php echo $value['prof_name'];?>">
-        <input type="hidden" name="prof_id" id="prof_id" value="<?php echo $value['prof_id']?>;">
+        <input type="hidden" name="prof_id" id="prof_id" value="<?php echo $value['prof_id'];?>">
          <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="description"><span class="input__label-content input__label-content--hoshi">Description</span></label>
         </span>
         </div>
