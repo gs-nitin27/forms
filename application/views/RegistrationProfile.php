@@ -1004,6 +1004,9 @@ saveUserProfile(totalftemp);
             classie.remove( ev.target.parentNode, 'input--filled' );
           }
         }
+
+     $('.jconfirm-box jconfirm-hilight-shake jconfirm-type-green jconfirm-type-animated').css('margin-top','260px');
+
       })();
     </script>
     
