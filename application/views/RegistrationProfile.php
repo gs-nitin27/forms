@@ -22,6 +22,12 @@
    window.asplayerticket = 0; 
  </script>
 <style type="text/css">
+
+
+  .jconfirm-box jconfirm-hilight-shake jconfirm-type-green jconfirm-type-animated{
+    margin-top : 200px; 
+  }
+
  .card {
     margin-top: 20px; 
     padding: 30px;
@@ -1005,7 +1011,7 @@ saveUserProfile(totalftemp);
           }
         }
 
-     $('.jconfirm-box jconfirm-hilight-shake jconfirm-type-green jconfirm-type-animated').css('margin-top','260px');
+   
 
       })();
     </script>
