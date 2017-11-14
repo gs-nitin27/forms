@@ -25,7 +25,7 @@
 
 
   .jconfirm-box jconfirm-hilight-shake jconfirm-type-green jconfirm-type-animated{
-    margin-top : 200px; 
+    margin-top : 150px; 
   }
 
  .card {
