@@ -166,6 +166,13 @@ public function usermodule()
 		$this->load->view('templates/template',$data);
 }
 
+
+public function adminusermodule()
+{
+  $data['middle'] = 'userModule/adminusermodule';
+  $this->load->view('templates/template',$data);
+}
+
 public function edituser()
 {
 	      $data=$this->session->userdata('item');

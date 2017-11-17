@@ -13,6 +13,7 @@ var data = {
     "resources"                : $("#RESOURCES").val(), 
     "content"                  : $("#CONTENT").val(),
     "performace"               : $("#PERFORMANCE").val(),
+    "adminusermenu"            : $("#ADMINUSERROLE").val(),
     "usermenu"                 : $("#USER_ROLE_MANAGEMENT").val()
 };
 console.log(JSON.stringify(data));
@@ -92,6 +93,12 @@ var data = JSON.stringify(data);
               <li class="list-group-item">
               <label for="USER_ROLE_MANAGEMENT" class="btn btn-danger">USER ROLE MANAGEMENT<input type="checkbox" id="USER_ROLE_MANAGEMENT" class="badgebox"><span class="badge">&check;</span></label>
               </li>
+
+              <li class="list-group-item">
+               <label for="ADMINUSERROLE" class="btn btn-danger">ADMIN USER ROLE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="ADMINUSERROLE" class="badgebox"><span class="badge">&check;</span></label>
+             </li>
+
+
                <li class="list-group-item">
 
                  <label for="PERFORMANCE" class="btn btn-warning">PERFORMANCE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="PERFORMANCE" class="badgebox"><span class="badge">&check;</span></label>
@@ -248,6 +255,9 @@ if(mod[1] ==2){
  $('#PERFORMANCE').prop('checked',true);
  }
  if(mod[6]==7 ){
+ $('#ADMINUSERROLE').prop('checked',true);
+ }
+ if(mod[7]==8 ){
  $('#USER_ROLE_MANAGEMENT').prop('checked',true);
  }
 }
@@ -258,7 +268,9 @@ if(mod[1] ==2){
     $('#RESOURCES').val(mod[3]);
     $('#CONTENT').val(mod[4]);
     $('#PERFORMANCE').val(mod[5]);
-    $('#USER_ROLE_MANAGEMENT').val(mod[6]);
+    $('#ADMINUSERROLE').val(mod[6]);
+     $('#USER_ROLE_MANAGEMENT').val(mod[7]);
+    
 
  });
 
@@ -338,10 +350,22 @@ $('#EVENT').change(function() {
         }
     });
      
-        $('#USER_ROLE_MANAGEMENT').change(function() {
+        $('#ADMINUSERROLE').change(function() {
         if ($(this).prop('checked')) {
-            var val=$("#USER_ROLE_MANAGEMENT").val(7);
+            var val=$("#ADMINUSERROLE").val(7);
                val=7;
+                   }
+        else {
+          var val=$("#ADMINUSERROLE").val(0);
+               val=0;
+            
+        }
+    });
+
+         $('#USER_ROLE_MANAGEMENT').change(function() {
+        if ($(this).prop('checked')) {
+            var val=$("#USER_ROLE_MANAGEMENT").val(8);
+               val=8;
                    }
         else {
           var val=$("#USER_ROLE_MANAGEMENT").val(0);

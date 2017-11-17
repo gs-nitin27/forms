@@ -17,19 +17,19 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                 <th style="width: 10px;background: #5262bc; color: #ffffff;"><img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px>#</img></th>
-                  <th style="background: #5262bc; color: #ffffff;">Email <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img> </th>
-                  <th style="background: #5262bc; color: #ffffff;">Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
+                 <th style="width: 10px; background: #5262bc;"><img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px>#</img></th>
+                  <th style="background: #5262bc;">Email <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img> </th>
+                  <th style="background: #5262bc;">Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
 
-                  <th style="background: #5262bc; color: #ffffff;">Userid  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
+                  <th style="background: #5262bc;">Userid  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
 
-                  <th style="background: #5262bc; color: #ffffff;">Profession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
+                  <th style="background: #5262bc;">Profession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
                  <!--  <th style="background: #5262bc; color: #ffffff;">Usertype <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th> -->
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
 
-                  <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
+                  <th style="width: 40px;background: #5262bc;">View</th>
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
-                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Activate</th>
+                  <th style="width: 40px;background: #5262bc;">Activate</th>
                 </tr>
                 </thead>
         <tbody>
@@ -37,70 +37,8 @@
                    $data = $this->session->userdata('item');
                     // print_r($data);die;
                 $i =1;
-                 if($data['userType'] == 101)
-                 {
-                    $users = $this->register->getadminUserInfo();
-                 
-                if(!empty($users)){
-                        foreach($users as $user){ ?>
-                <tr>
-                    <td><?php echo $i++; ?></td>
-                    <td><?php echo $user['email']; ?></td>
-                    <td><?php echo $user['name']; ?></td>
-                    <td><?php echo $user['adminid']; ?></td>
-                    
-                    
-                    <td><?php echo "Admin"; ?></td>
-                    <!-- <td><?php// echo $user['userType']; ?></td> -->
-                <!--  <td>
-                    <?php //if($user['status']==0){?>
-                    <button class="badge bg-red" onclick="myfunction(<?php// echo $user['userid'];?>,1)"><?php// echo "Activate";?></button>
-                    <?php// }else{?> 
-                    <button class="badge bg-green" onclick="myfunction(<?php //echo $user['userid'];?>,0)"><?php //echo "Deactivate";?></button>
-                    <?php //} ?>
-                    </td> -->
-                        
-                    <?php  $list=array('a' => 0,
-                                'b' => 1,
-                                'c' => 2,
-                                'd' => 3,
-                                'e' => 4,
-                                'f' => 5,
-                                'g' => 6,
-                                'h' => 7,
-                                'i' => 8,
-                                'j' => 9);
-                                 $num=$user['adminid']; //your value
-                                 $temp='';
-                                 $arr_num=str_split ($num);
-                                foreach($arr_num as $data)
-                                {
-                                $temp.=array_search($data,$list);
-                                }
-                                $num=$temp;
-                                {  ?>
 
-   
-
-                     <td><a href = "<?php echo site_url('forms/admin_module_assign/'.$num.'?module'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
-
-                    <!-- <td><a href = "<?php// echo site_url('forms/edituserProfile/'.$user['userid']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-edit"></i></a></td>  -->
-
-                    <!-- <td><a href = "<?php// echo site_url('forms/deleteUser/'.$user['userid']); ?>" onclick="return confirm('Are you sure you want to Deactivate this User?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>  -->
-                      <?php }?>
-                  <td>
-                    <?php if($user['activeuser']==0){?>
-                    <button class="badge bg-red" onclick="myfunctionadmin(<?php echo $user['adminid'];?>,1)"><?php echo "Activate";?></button>
-                    <?php }else{?> 
-                    <button class="badge bg-green" onclick="myfunctionadmin(<?php echo $user['adminid'];?>,0)"><?php echo "Deactivate";?></button>
-                    <?php } ?>
-                    </td>
-                </tr>
-                <?php } } }
-                    
-                    else if($data['userType'] == 102)
-                 {
-                    $users = $this->register->getUserInfo();  
+                $users = $this->register->getUserInfo();  
                  if(!empty($users)){
                         foreach($users as $user){ ?>
                 <tr>
@@ -156,7 +94,7 @@
                     <?php } ?>
                     </td>
                 </tr>
-                <?php } } }
+                <?php } } 
 
 
                 ?>
@@ -170,9 +108,9 @@
                   <th style="background: #5262bc; color: #ffffff;">Profession  </th>
                   <!-- <th style="background: #5262bc; color: #ffffff;">Usertype  </th> -->
                   <!-- <th style="width: 40px; background: #5262bc; color: #ffffff;">Permission</th> -->
-                  <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
+                  <th style="background: #5262bc; color: #ffffff;">View</th>
                 <!--   <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
-                  <th style="width: 40px; background: #5262bc; color: #ffffff;">Activate</th>
+                  <th style="background: #5262bc; color: #ffffff;">Activate</th>
                 </tr>
                 </tfoot>
               </table>
@@ -189,12 +127,38 @@
   <div class="control-sidebar-bg"></div>
 </div>
 </div>
-<script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+ <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script> 
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
 <script>
-  $(function () {
-    $("#example1").DataTable();
-  });
+
+    $(document).ready(function() {
+    $('#example1').DataTable( {
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.header()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+                 
+                column.data().unique().sort().each( function ( d, j ) {
+                  //  alert(j);
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+              
+                } );
+
+            } );
+        }
+    } );
+} );
 </script>
 
 <script type="text/javascript">

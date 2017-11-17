@@ -1046,9 +1046,26 @@ public function getUserInfo($id=false)
 
 public function getadminUserInfo($id=false)
 {
-   $query = $this->db->get('gs_admin_user');
-   $q = $query->result_array();
-   return $q;
+
+    
+            $this->db->select('*');
+            $this->db->from('gs_admin_user');
+            $this->db->where('userType','102');
+            $query = $this->db->get();
+
+           if($query->num_rows() > 0)
+           {
+            $row = $query->result_array();
+            return $row;
+           }
+           else
+           {
+           	return 0;
+           }
+
+   // $query = $this->db->get('gs_admin_user');
+   // $q = $query->result_array();
+   // return $q;
 
 }
 
@@ -1983,6 +2000,24 @@ public function Registration_userdata($item)
 	$newDate = $arr[1].'/'.$arr[2].'/'.$arr[0];
 	return $newDate;
 	}
+
+
+public function prof_data($userid)
+{
+   $this->db->select('user_detail');
+   $this->db->from('gs_userdata');
+   $this->db->where('userid',$userid);
+   $query = $this->db->get();
+   if($query->num_rows() > 0)
+   {
+        $row = $query->row_array();
+        return $row;
+   }else
+   {
+   	return 0;   
+   }
+}
+
 }
 
  ?>

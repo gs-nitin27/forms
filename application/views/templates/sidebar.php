@@ -6,23 +6,15 @@ $data = file_get_contents($file);
 $array=json_decode($data);
 ?>
     <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      <!-- Sidebar user panel -->
       <div class="user-panel">
-
  <?php
           $data        =$this->session->userdata('item');
           $name        = $data['name'];
-          
           $usertype    = $data['userType'];
           $image       = $data['user_image'];
-
          //print_r($data);die;
-         
           {
-       
-             
             if($usertype == 102  || $usertype == 101)
             {
              $id=$data['adminid'];

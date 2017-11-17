@@ -174,25 +174,42 @@
 
     "7" :  {
 
-                 "url": "#USERROLE",
+                 "url": "#ADMINUSERROLE",
                  "class": "fa fa-users fa-x",
-                 "name": "USER ROLE",
+                 "name": "ADMIN USER ROLE",
                  "id":"module",
                  "child" :
                  {
                    "1" :{
                         "admin" :"1",
                         "id":"usermodule",
-                        "url": "/forms/usermodule?module",
-                        "name": "USER ROLE MANAGEMENT"
+                        "url": "/forms/adminusermodule?module",
+                        "name": "ADMIN ROLE MANAGEMENT"
                         },
                   "2" : {
-                         "admin" :"1",
+                        "admin" :"1",
                         "id":"createnewUser",
                         "url": "/forms/createnewUser?module",
                         "name": "New Admin User"
-                       },
-                  "3" : {
+                       }
+
+      }
+    },
+        "8" :  {
+
+                 "url": "#USERROLE",
+                 "class": "fa fa-users fa-x",
+                 "name": "USER ROLE",
+                 "id":"module1",
+                 "child" :
+                 {
+                   "1" :{
+                        "admin" :"1",
+                        "id":"usermodule",
+                        "url": "/forms/usermodule?module1",
+                        "name": "USER ROLE MANAGEMENT"
+                        },
+                  "2" : {
                         "admin" :"1",
                         "id":"newEndUser",
                         "url": "/forms/newEndUser?module",
@@ -200,5 +217,7 @@
                        }
       }
     }
+
+
          
       }
