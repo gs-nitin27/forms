@@ -27,9 +27,9 @@
                  <!--  <th style="background: #5262bc; color: #ffffff;">Usertype <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th> -->
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
 
-                  <th style="width: 40px;background: #5262bc;">View</th>
+                  <th style="background: #5262bc;">View</th>
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
-                  <th style="width: 40px;background: #5262bc;">Activate</th>
+                  <th style="background: #5262bc;">Activate</th>
                 </tr>
                 </thead>
         <tbody>

@@ -537,9 +537,9 @@ if(professions!=null)
                                         var options = {
                                         origin: "http://www.getsporty.in"
                                         };
-                                        Storage = crossDomainStorage(options);
-                                        localStorage.setItem('userid',result.data.userid);
-                                        localStorage.setItem('prof_id',result.data.prof_id);
+                                        // Storage = crossDomainStorage(options);
+                                        // localStorage.setItem('userid',result.data.userid);
+                                        // localStorage.setItem('prof_id',result.data.prof_id);
 
                                           //alert(localStorage.getItem('prof_id'));
                                           //alert(localStorage.getItem('userid'));
@@ -554,9 +554,9 @@ if(professions!=null)
                                         var options = {
                                         origin: "http://www.getsporty.in"
                                         };
-                                    Storage = crossDomainStorage(options);
-                                        localStorage.setItem('userid',result.data.userid);
-                                        localStorage.setItem('prof_id',result.data.prof_id);
+                                    //Storage = crossDomainStorage(options);
+                                       // localStorage.setItem('userid',result.data.userid);
+                                       // localStorage.setItem('prof_id',result.data.prof_id);
                                     window.location.href = profileurl+ "/forms/editRegisterUserProfile";
 
                                    
