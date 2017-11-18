@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('fonts/font-awesome-4.2.0/css/font-awesome.min.css'); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/demo.css'); ?>" />
   <link rel="stylesheet" href="<?php echo base_url('assets/css/loder.css');?>">
-    <script src="<?php echo base_url('../../../js/classie.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/classie.js');?>"></script>
  <script type="text/javascript">
    window.sportsticket = 0;
    window.formalticket = 0; 
@@ -22,6 +22,10 @@
    window.asplayerticket = 0; 
  </script>
 <style type="text/css">
+
+  .jconfirm-box jconfirm-hilight-shake jconfirm-type-green jconfirm-type-animated{
+    margin-top : 150px; 
+  }
  .card {
     margin-top: 20px; 
     padding: 30px;
@@ -438,6 +442,7 @@ body{
 
 function saveUserProfile(userjson)
 {
+
 $("#imagelodar").show();
 
 var data = {
@@ -609,7 +614,7 @@ var data = JSON.stringify(data);
             foreach ($value23 as $key56 => $value56) 
               {
               if($key23 == "formalEducation")
-              {
+              { echo "<span><b>Formal Education</b></span>";
               ?>
              
                 <div class='box-body'  style='background-color: white; border-color: black;border-radius: 4px; padding: 10px 20px; margin-bottom: 30px;margin-top: 10px;    box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
@@ -667,8 +672,8 @@ var data = JSON.stringify(data);
                    }
                  if($key23 == "otherCertification")
                  {
-                    
-
+                   
+                  echo "<span><b>Other Certification</b></span>";
                 ?>
 
 <div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
@@ -692,14 +697,16 @@ var data = JSON.stringify(data);
   </div>
   <label  style="margin:7px;font-weight: 100;" for='link'>Period</label>
   <div></div>
-
+    <?php 
+                     $datefromandto = explode("to",$value56->courseDuration);
+    ?>
   <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
-  <input type='text' class='input__field input__field--hoshi' id="<?php echo 'certi_from_date'.$i;?>" class='form-control'>
+  <input type='text' class='input__field input__field--hoshi' value="<?php echo $datefromandto[0];?>" id="<?php echo 'certi_from_date'.$i;?>" class='form-control'>
   <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">From</span></label>
   <div class='input-group-addon' style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span></div></div>
   
   <div class='input-group date' style="margin:5px; overflow: hidden;"  data-provide='datepicker'>
-  <input type='text' class='input__field input__field--hoshi' id="<?php echo 'certi_to_date'.$i;?>" class='form-control'>
+  <input type='text' class='input__field input__field--hoshi' value="<?php echo $datefromandto[1];?>" id="<?php echo 'certi_to_date'.$i;?>" class='form-control'>
   <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
   <div class='input-group-addon' style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span></div></div></div>
 
@@ -710,7 +717,7 @@ var data = JSON.stringify(data);
  $i++;   
   }
   if($key23 == "sportEducation")
-  {   //print_r($value56);
+  {    echo "<span><b>Sport Education</b></span>";
   ?>
 <div class='box-body'  style='    background-color: white; border-color: black;border-radius: 4px; padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
 <div>
@@ -847,10 +854,6 @@ var data = JSON.stringify(data);
     </div>
     </div>
     </div>
-
-
-          
-
              
              <?php 
 
@@ -892,7 +895,7 @@ var data = JSON.stringify(data);
                 if($key23 == "experienceAsPlayer")
                 {
 
-                  echo $key23;
+                 echo "<span><b>Experience As Player</b></span>";
 
                     ?>
                 <div class='box-body'  style='    background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
@@ -938,8 +941,8 @@ var data = JSON.stringify(data);
                   {
                    if($k == 0)
                    {
-                     
-                     echo "<span>workExperience</span>";
+                    
+                     echo "<span><b>Work Experience</b></span>";
                      $k++;
 
                    }
@@ -966,7 +969,7 @@ var data = JSON.stringify(data);
                 <label style="margin:7px;font-weight: 100;" for='link'>Period</label>
                 <div>
                 </div>
-
+                   
                 <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
                 <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'work_from_date'.$j;?>" value="<?php echo $value56->dateFrom;?>" class='form-control'>
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">From</span></label>
@@ -1309,7 +1312,7 @@ function formatDate(date) {
 $("#save").click(function()
 {
 
- 
+
  var sportArray = [];
  var formalArray = [];
  var otherArray = [];
@@ -1321,6 +1324,9 @@ $("#save").click(function()
 
   for(var i =0; i <window.sportsticket; i++)
   {   
+
+ 
+
      if($("#sport_from_date"+i).val())
      {
      var fromdate = formatDate($("#sport_from_date"+i).val());
@@ -1353,6 +1359,7 @@ $("#save").click(function()
 
   for(var i =0; i <window.formalticket; i++)
   {
+
      if($("#formal_from_date"+i).val())
      {
      var fromdate = formatDate($("#formal_from_date"+i).val());
@@ -1376,6 +1383,7 @@ $("#save").click(function()
 
   for(var i =0; i <window.ohterticket; i++)
   {
+
      if($("#certi_from_date"+i).val())
      {
      var fromdate = formatDate($("#certi_from_date"+i).val());
