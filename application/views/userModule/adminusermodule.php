@@ -24,6 +24,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Userid  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
 
                   <th style="background: #5262bc; color: #ffffff;">Profession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
+
                  <!--  <th style="background: #5262bc; color: #ffffff;">Usertype <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th> -->
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
 
@@ -47,6 +48,9 @@
                     
                     
                     <td><?php echo "Admin"; ?></td>
+
+
+
                     <!-- <td><?php// echo $user['userType']; ?></td> -->
                 <!--  <td>
                     <?php //if($user['status']==0){?>
@@ -56,6 +60,7 @@
                     <?php //} ?>
                     </td> -->
                         
+
                     <?php  $list=array('a' => 0,
                                 'b' => 1,
                                 'c' => 2,
