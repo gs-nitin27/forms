@@ -624,7 +624,7 @@ var data = JSON.stringify(data);
                  
                
 
-                <input type='text' class='input__field input__field--hoshi' value="<?php echo $value56->organisation;?>" id="<?php echo 'formal_education'.$i;?>">
+                <input type='text' class='input__field input__field--hoshi' value="<?php echo $value56->degree;?>" id="<?php echo 'formal_education'.$i;?>">
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='formal_education'><span class="input__label-content input__label-content--hoshi">Name of Formal Education</span></label>
                 </span>
                 </div>
@@ -636,7 +636,7 @@ var data = JSON.stringify(data);
                 </div>  
                 <div>
                 <span class="input input--hoshi">
-                <input type='text' class='input__field input__field--hoshi' id="<?php echo 'formal_stream'.$i;?>" value="<?php echo $value56->degree;?>">
+                <input type='text' class='input__field input__field--hoshi' id="<?php echo 'formal_stream'.$i;?>" value="<?php echo $value56->stream;?>">
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='formal_stream'><span class="input__label-content input__label-content--hoshi">Stream / Specialisation</span></label>
                 </span>
                 </div>
@@ -723,7 +723,7 @@ var data = JSON.stringify(data);
 <div>
 <span class="input input--hoshi">
 
-<input type='text' class='input__field input__field--hoshi' id="<?php echo 'nameofsporteducation'.$i;?>" value="<?php echo $value56->organisation;?>">
+<input type='text' class='input__field input__field--hoshi' id="<?php echo 'nameofsporteducation'.$i;?>" value="<?php echo $value56->degree;?>">
 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='nameofsporteducation'><span class="input__label-content input__label-content--hoshi">Name Of Sport Education</span></label>
 </span>
 </div>
@@ -735,7 +735,7 @@ var data = JSON.stringify(data);
 </div>
 <div>
 <span class="input input--hoshi">
-<input type='text' class='input__field input__field--hoshi' id="<?php echo 'sport_stream_spel'.$i;?>" value="<?php echo $value56->degree;?>">
+<input type='text' class='input__field input__field--hoshi' id="<?php echo 'sport_stream_spel'.$i;?>" value="<?php echo $value56->stream;?>">
 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='sport_stream_spel'><span class="input__label-content input__label-content--hoshi">Stream /Specialisation</span></label>
 </span>
 </div>
@@ -1077,7 +1077,7 @@ var data = JSON.stringify(data);
         <div>
         <span class="input input--hoshi">
         <input type="text" class='input__field input__field--hoshi' name="designation" id="designation" value="<?php echo $arrayvalue->designation;?>" disabled>
-         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="description"><span class="input__label-content input__label-content--hoshi">Designation</span></label>
+         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="designation"><span class="input__label-content input__label-content--hoshi">Designation</span></label>
         </span>
         </div>
         <div>
