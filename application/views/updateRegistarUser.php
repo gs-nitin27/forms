@@ -443,7 +443,8 @@ $("#imagelodar").show();
 var data = {
 
     "id"                       : $("#uid").val(),
-    "userdata"                 : userjson
+    "userdata"                 : userjson,
+    "prof_id"                  : $("#prof_id").val()
 };
 console.log(JSON.stringify(data));
 var data = JSON.stringify(data);
@@ -614,6 +615,8 @@ var data = JSON.stringify(data);
 
                 <div>
                 <span class="input input--hoshi">
+                 
+                <input type="hidden" name="prof_id" id="prof_id" value="<?php echo $prof_id;?>">
 
                 <input type='text' class='input__field input__field--hoshi' value="<?php echo $value56->organisation;?>" id="<?php echo 'formal_education'.$i;?>">
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='formal_education'><span class="input__label-content input__label-content--hoshi">Name of Formal Education</span></label>
