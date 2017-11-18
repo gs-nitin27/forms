@@ -1450,9 +1450,9 @@ for(var i =0; i <window.workexpticket; i++)
 
 var totalftemp = JSON.stringify(ftemp);
 
-alert(totalftemp);
+//alert(totalftemp);
 
-//saveUserProfile(totalftemp);
+saveUserProfile(totalftemp);
 
 });
 
