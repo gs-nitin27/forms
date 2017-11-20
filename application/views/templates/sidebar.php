@@ -40,36 +40,19 @@ $array=json_decode($data);
            }
            else { 
           if($mod['gender'] == 'Female') { ?> ?>
-
         <div class="pull-left image">
           <img src="<?php  echo base_url('img/female.jpg');?>" alt="User Image">
         </div>
-
         <?php }
-
-     
-
                 else
                    {  ?>
-
                 <div class="pull-left image">
-
 <!-- This is a code for Image
           <img src="<?php  //echo base_url('img/user.jpg');?>" class="" alt="User Image dev ">
 -->
-
-
-
-
-
-
-
         </div>
        <?php  }  } ?>
-     
-
       </div>
-
       <ul class="sidebar-menu">
       <li class="header">Dashboard</li>
       <?php 
@@ -84,15 +67,10 @@ $array=json_decode($data);
         foreach($array as $key => $value){ 
              if($module_id == $key)
              {
-
           if(isset($value->child)){
-
-           
           //  $string= explode(" ",$str)
-           
            ?>
       <!-- sidebar menu: : style can be found in sidebar.less -->
-                 
         <li class="treeview" id="<?php echo $value->id;?>">
           <a href="<?php echo $value->url;?>">
             <i class="<?php echo $value->class;?>"></i>

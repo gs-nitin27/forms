@@ -505,16 +505,14 @@ var data = JSON.stringify(data);
     <!-- Right Column -->
     <div class="w3-twothird">
 
-    <?php 
-     $prof_data = $this->register->prof_data($id);
+<?php 
+$prof_data = $this->register->prof_data($id);
      // print_r($prof_data);
 //die;
-  if($prof_data)
-  {
+if($prof_data)
+{
   /// die;
-  $profiledata = json_decode($prof_data['user_detail']);
-
-
+$profiledata = json_decode($prof_data['user_detail']);
  
 if($value['userType'] == 103)
 {
@@ -661,7 +659,6 @@ foreach ($value as $key1 => $value1)
 <?php
 }
 }
-
 ?>
 <div class="w3-container w3-card w3-white">
 <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Bio</h2>
@@ -702,18 +699,17 @@ foreach ($profiledata->Bio as $key => $value)
 
 <?php 
 }
-}
 ?>
-       
     </div>
   </div>
 </div>
 </div>
 
+<?php
+}
+?>
 
-
-
-       <!--  <div class="row">  -->
+<!--  <div class="row">  -->
 <!--         <div class="col-md-6">
             <div class="box box-primary" style="margin-top:5%;">
             <div class="box-header with-border">
@@ -759,8 +755,8 @@ foreach ($profiledata->Bio as $key => $value)
             </div>
           </div> -->
           <?php 
-
-        } ?>
+        }
+        else { ?>
              
 
 
@@ -786,6 +782,7 @@ foreach ($profiledata->Bio as $key => $value)
 <!-- </div>-->
         <?php 
       }
+    }
 
 
           ?>

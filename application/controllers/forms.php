@@ -3602,7 +3602,8 @@ public function sendmail($email)
               $mail->Password = "2016Darkhorse";           
               $mail->SetFrom($from, $from_name);
               $mail->Subject = $subject;
-              $mail->Body = 'Thanks for registering with us!Our Team will contact you soon.';/*'<html lang="en">
+              $mail->Body = /*'Thanks for registering with us!Our Team will contact you soon.';*/
+              '<html lang="en">
 <head>
   <meta charset="utf-8"> 
   <meta name="viewport" content="width=device-width"> 
@@ -3733,7 +3734,7 @@ public function sendmail($email)
             </tr>
             <tr>
                 <td bgcolor="#ffffff" style="padding: 0 40px 10px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to reset your password.
+                    <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to generate your password.
                     </p>
                 </td>
             </tr>
@@ -3793,11 +3794,7 @@ public function sendmail($email)
         <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
             <tr>
                 <td style="background:#000000;padding: 10px 10px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:18px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
-                    <webversion style="color:#cccccc; text-decoration:underline; font-weight: bold;">Lorem ipsum dolor sit amet</webversion>
-                    <br><br>
-                    Company Name<br>consectetur adipiscing elit. In quis fermentum<br>(123) 456-7890
-                    <br><br>
-                    <unsubscribe style="color:#888888; text-decoration:underline;">unsubscribe</unsubscribe>
+                    <webversion style="color:#cccccc; text-decoration:underline; font-weight: bold;"></webversion>
                 </td>
             </tr>
         </table>
@@ -3805,7 +3802,7 @@ public function sendmail($email)
 
     </center>
 </body>
-</html>'; */
+</html>'; 
                $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
                $mail->AltBody = $txt; 
                $mail->AddAddress($to);
