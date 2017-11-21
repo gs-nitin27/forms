@@ -192,7 +192,6 @@
                         "url": "/forms/createnewUser?module",
                         "name": "New Admin User"
                        }
-
       }
     },
         "8" :  {
@@ -212,7 +211,7 @@
                   "2" : {
                         "admin" :"1",
                         "id":"newEndUser",
-                        "url": "/forms/newEndUser?module",
+                        "url": "/forms/newEndUser?module1",
                         "name": "New End User"
                        }
       }

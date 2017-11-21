@@ -8,7 +8,7 @@ public function __construct()
 		$this->load->model('register');
 		$this->load->library('session');	
     include('assets/emailtemplate/simple_html_dom.php');
-}  
+}    
          
 public function index()
 {   
@@ -23,14 +23,12 @@ public function home()
 
 public function userhome()
 {
-
   $data['middle'] = 'userdashboard';
   $this->load->view('templates/template',$data);
 }
 
-
- public function gmaillogin()
- {
+public function gmaillogin()
+{
     $data=json_decode($_REQUEST['data']);
     $username=$data->email;
     $password=md5($data->email);
@@ -90,11 +88,9 @@ public function newadmin()
         $this->session->set_flashdata('error','Invalid User.');
           redirect('forms/adminlogin','refresh');
     }
-
 }
 
 //======================  User =====================
-
 public function adminlogin()
 {
   $this->load->view('adminlogin');
@@ -104,14 +100,12 @@ public function editRegiterUser()
 {
    $data = json_decode($_REQUEST['data']);
    $this->load->model('register');
-
    $res = $this->register->editRegisterUser($data->email,md5($data->password));
   // print_r($res);die;
    if($res != 0)
    {
          $this->session->set_userdata('item',$res);
          $sessdata = $this->session->userdata('item');
-
      echo json_encode($data = array("data" => $res));
    }
    else
@@ -139,7 +133,6 @@ public function login()
       $res = $this->register->login($username, $password); 
       if($res != 0)
       {   
-
       	 $this->session->set_userdata('item',$res);
          $sessdata = $this->session->userdata('item');
          redirect('forms/userhome');
@@ -162,10 +155,9 @@ public function login()
 
 public function usermodule()
 {
-	   $data['middle'] = 'userModule/usermodule';
-		$this->load->view('templates/template',$data);
+	$data['middle'] = 'userModule/usermodule';
+	$this->load->view('templates/template',$data);
 }
-
 
 public function adminusermodule()
 {
@@ -195,7 +187,6 @@ public function adminedituser()
 public function saveuserModule()
 {
   $data = json_decode($_REQUEST['data']);
- // $res=[];
   $i =0;
  foreach ($data as  $value) 
  {
@@ -207,14 +198,9 @@ public function saveuserModule()
    {
     $res[]=$value; 
    }
-  //  print_r($data);
-  //if($value->id)
-  //{}else{
-  //$res[]=$value; }
  }
 $commaList = implode(',',$res);
 $this->load->model('register');
-//print_r($commaList);die;
 $res = $this->register->update_userModule($data->id,$commaList);
 if($res == 1)
 {
@@ -278,7 +264,6 @@ public function guestsignout()
                );
      $this->session->unset_userdata($newdata);
      $this->session->sess_destroy();
-     //$this->index();
      redirect('http://getsporty.in/');
 }
 
@@ -351,7 +336,6 @@ else
 	echo "User Is Deactivate";
 }
 }
-
 
 public function Activateadmin()
 {
@@ -1186,14 +1170,10 @@ $res = $this->register->create_content($item);
 echo json_encode(array('response' => "Content Updated"));
 }
 
-
-
-
 public function StatusContent()
 {
 $data2 = json_decode($_REQUEST['data']);
-$item  = new stdClass(); 
-
+$item  = new stdClass();
 $item->id                    = $data2->id;
 $item->publish               = $data2->publish;
 
@@ -1207,11 +1187,9 @@ if($data2->publish==1)
 }
 else{
 	//$this->register->deletePublishContent($data2->id);
-
 }
 }
 // =============================== End Content==============================
-
 //==================================Start Email=============================
 
 public function edit_admin()
@@ -1232,7 +1210,6 @@ $item->status                     =@$data->status;
 $item->userType                   =@$data->userType;
 $item->password                   = $data->password;
 $item->access_module              = $data->access_module;
-
 $res= $this->register->admin_registration($item);
 if($res)
 {
@@ -1280,8 +1257,8 @@ $item->access_module              = $data->access_module;
 $item->device_id                  =@$data->device_id;
 $item->about_me                   =@$data->about_me;
 
-$res= $this->register->admin_registration($item);
 
+$res= $this->register->admin_registration($item);
 if($res)
 {  
     echo json_encode(array('response' => '2'));
@@ -3546,25 +3523,19 @@ public function user_register()
        $pass = $this->register->passwordfind($data->email);   
          if($pass)
           {
-
-          	  
             echo json_encode(array('data' =>4 ,'message' =>'You are already register with us. Please Activate your acount with mail !'));
             $this->sendmail($data->email);
-
            }
            else 
            {
              echo json_encode(array('data' =>3 ,'message' =>'User is already register please loging'));    
            }
-
   }
   else
   {
       $res = $this->register->user_register($item);
       if($res)
-      {  
-
-      	 
+      {
          echo json_encode(array('data' =>$res , 'message' =>'User register Sucessfull'));
          $this->sendmail($data->email);
       }
@@ -3572,11 +3543,8 @@ public function user_register()
       {
        echo json_encode(array('data' => 0,'message' => 'Sorry resgistration in not done' ));
       }
-
   }
-
 }
-
 
 public function sendmail($email)
 {
@@ -3586,7 +3554,6 @@ public function sendmail($email)
               $from="info@darkhorsesports.in";
               $from_name="Getsporty";
               $subject="Thank you";
-
              // $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
               $emailconform  =  site_url().'/forms/forgotpassword?email=';
               //global $error;
@@ -3634,7 +3601,6 @@ public function sendmail($email)
             border-spacing: 0 !important;
             border-collapse: collapse !important;
             table-layout: fixed !important;
-        
         }
         table table table {
             table-layout: auto;
@@ -3661,9 +3627,7 @@ public function sendmail($email)
       }
         .button-link {
             text-decoration: none !important;
-        }
-
-       
+        }       
         @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { 
             .email-container {
                 min-width: 375px !important;
@@ -3681,7 +3645,6 @@ public function sendmail($email)
             border-color: #555555 !important;
         }
         @media screen and (max-width: 600px) {
-
             .email-container {
                 width: 100% !important;
                 margin: auto !important;
@@ -3739,8 +3702,8 @@ public function sendmail($email)
                 </td>
             </tr>
       <tr>
-                <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+          <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+          <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
                 </td>
             </tr>
             <tr>

@@ -582,13 +582,12 @@ var data = JSON.stringify(data);
     $prof_id = $data['prof_id'];
      $response1=file_get_contents(API_URL.'/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
      $pdata = json_decode($response1);
-
 //print_r($pdata);
-
      $temp = 0;
-     if($pdata)
-     {
-      foreach ($pdata as $key => $profil) {
+    if($pdata)
+    {
+    foreach ($pdata as $key => $profil) 
+    {
      if(is_object($profil))
      {
       foreach ($profil as $arrayvalue1 => $arrayvalue) 
@@ -601,8 +600,7 @@ var data = JSON.stringify(data);
           <div class="col-md-12">
           <div class="box box-primary" style="margin-top:5%;">
           <div class="box-body box-profile">
-          <input type="hidden" name="prof_id" id="prof_id" value="<?php echo $prof_id;?>">
-        
+          <input type="hidden" name="prof_id" id="prof_id" value="<?php echo $prof_id;?>">    
         <?php  
        if(is_object($arrayvalue))
        {
@@ -616,14 +614,9 @@ var data = JSON.stringify(data);
               if($key23 == "formalEducation")
               { echo "<span><b>Formal Education</b></span>";
               ?>
-             
                 <div class='box-body'  style='background-color: white; border-color: black;border-radius: 4px; padding: 10px 20px; margin-bottom: 30px;margin-top: 10px;    box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
-
                 <div>
                 <span class="input input--hoshi">
-                 
-               
-
                 <input type='text' class='input__field input__field--hoshi' value="<?php echo $value56->degree;?>" id="<?php echo 'formal_education'.$i;?>">
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='formal_education'><span class="input__label-content input__label-content--hoshi">Name of Formal Education</span></label>
                 </span>
@@ -646,17 +639,13 @@ var data = JSON.stringify(data);
                 <?php 
                      $datefromandto = explode("to",$value56->courseDuration);
                   ?>
-                    
                 <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
-            
-                <input type='text' class='input__field input__field--hoshi'  value="<?php echo $datefromandto[0];?>" id="<?php echo'formal_from_date'.$i;?>" class='form-control'>
+                <input type='text' class='input__field input__field--hoshi' value="<?php echo $datefromandto[0];?>" id="<?php echo'formal_from_date'.$i;?>" class='form-control'>
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">From</span></label>
                 <div class='input-group-addon' style="background-color: transparent;border: none;">
                 <span class='glyphicon glyphicon-th'></span>
                 </div>
-
                 </div>
-                
                 <div class='input-group date' style="margin: 5px; overflow: hidden;" data-provide='datepicker'>
                 <input class='input__field input__field--hoshi' value="<?php echo $datefromandto[1];?>" type='text' id="<?php echo 'formal_to_date'.$i;?>" class='form-control'>
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
@@ -672,10 +661,8 @@ var data = JSON.stringify(data);
                    }
                  if($key23 == "otherCertification")
                  {
-                   
                   echo "<span><b>Other Certification</b></span>";
                 ?>
-
 <div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
 <div>
 <span class="input input--hoshi">
@@ -698,18 +685,16 @@ var data = JSON.stringify(data);
   <label  style="margin:7px;font-weight: 100;" for='link'>Period</label>
   <div></div>
     <?php 
-                     $datefromandto = explode("to",$value56->courseDuration);
+              $datefromandto = explode("to",$value56->courseDuration);
     ?>
   <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
   <input type='text' class='input__field input__field--hoshi' value="<?php echo $datefromandto[0];?>" id="<?php echo 'certi_from_date'.$i;?>" class='form-control'>
   <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">From</span></label>
   <div class='input-group-addon' style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span></div></div>
-  
   <div class='input-group date' style="margin:5px; overflow: hidden;"  data-provide='datepicker'>
   <input type='text' class='input__field input__field--hoshi' value="<?php echo $datefromandto[1];?>" id="<?php echo 'certi_to_date'.$i;?>" class='form-control'>
   <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
   <div class='input-group-addon' style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span></div></div></div>
-
 <script type="text/javascript">
   window.ohterticket++;
 </script>
@@ -722,7 +707,6 @@ var data = JSON.stringify(data);
 <div class='box-body'  style='    background-color: white; border-color: black;border-radius: 4px; padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
 <div>
 <span class="input input--hoshi">
-
 <input type='text' class='input__field input__field--hoshi' id="<?php echo 'nameofsporteducation'.$i;?>" value="<?php echo $value56->degree;?>">
 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='nameofsporteducation'><span class="input__label-content input__label-content--hoshi">Name Of Sport Education</span></label>
 </span>
@@ -746,7 +730,6 @@ var data = JSON.stringify(data);
      $datefromandto = explode("to",$value56->courseDuration);
   ?>
 <input class='input__field input__field--hoshi' type='text' value="<?php echo $datefromandto[0];?>" class='form-control' id="<?php echo 'sport_from_date'.$i;?>">
-
 <label for='<?php echo 'sport_from_date'.$i;?>' class="input__label input__label--hoshi input__label--hoshi-color-1"><span class="input__label-content input__label-content--hoshi">From</span></label>
 <div class='input-group-addon' style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span>
 </div>
@@ -760,29 +743,17 @@ var data = JSON.stringify(data);
 </div>
 </div>
 </div>
-
-
-
 <script type="text/javascript">
   window.sportsticket++;
 </script>
-
-
         <?php
         $i++;
-          }
-
-                  
+          }         
                  } 
              }
              else
              {
-
-
-                 echo '<input type="text"  class="form-control" disabled value='.$value23.'>';
-
-
-
+              echo '<input type="text"  class="form-control" disabled value='.$value23.'>';
              } 
         }
         }
@@ -794,51 +765,38 @@ var data = JSON.stringify(data);
              // echo " aasfdasfdasf";
               //echo $arrayvalue;
         }
-
-
            ?>
-
-
     <div class="panel panel-primary">
     <div class="panel-heading clearfix">
-
     <div>
-      <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Sports Education</h4>
-      </div>
-       <div> 
-          <div class="box-header with-border">
-           <div id="SportTicket" >
-           </div>
-           </div>
-          </div>
-      <div class="btn-group pull-right">
-        <input type="button" id="addSportEdu" class="btn btn-danger btn1" value="Add Sport Education" />
-      </div>
+    <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Sports Education</h4>
+    </div>
+    <div> 
+    <div class="box-header with-border">
+    <div id="SportTicket" >
     </div>
     </div>
-
-
-
-   
-          
-          
-      <div class="panel panel-primary">
-      <div class="panel-heading clearfix">
-      <div>
-      <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Formal Education</h4>
-      </div>
-      <div>
-      <div class="box-header with-border">
-      <div id="FormalEducation" ></div>
-      </div>
-      </div>   
-      <div class="btn-group pull-right">
-      <input type="button" id="addSportFormal" class="btn btn-danger btn1" value="Add Formal Education" />
-      </div>
-      </div>
-      </div>
-               
-          
+    </div>
+    <div class="btn-group pull-right">
+    <input type="button" id="addSportEdu" class="btn btn-danger btn1" value="Add Sport Education" />
+    </div>
+    </div>
+    </div>
+    <div class="panel panel-primary">
+    <div class="panel-heading clearfix">
+    <div>
+    <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Formal Education</h4>
+    </div>
+    <div>
+    <div class="box-header with-border">
+    <div id="FormalEducation" ></div>
+    </div>
+    </div>   
+    <div class="btn-group pull-right">
+    <input type="button" id="addSportFormal" class="btn btn-danger btn1" value="Add Formal Education" />
+    </div>
+    </div>
+    </div>           
     <div class="panel panel-primary">
     <div class="panel-heading clearfix">
     <div>
@@ -854,33 +812,23 @@ var data = JSON.stringify(data);
     </div>
     </div>
     </div>
-             
              <?php 
-
-
              ?>
-
             </div>
           </div>
-         
-
 </div>
-     
             </div>
-
         </div>
         <?php
        }
        if($arrayvalue1 == "Experience")
        {
       ?>
-
        <div class="tab-pane fade in" id="tab2">
         <div class="row"> 
         <div class="col-md-12">
         <div class="box box-primary" style="margin-top:5%;">
-        <div class="box-header with-border">
-          
+        <div class="box-header with-border">          
    <?php 
        if(is_object($arrayvalue))
        {
@@ -894,11 +842,9 @@ var data = JSON.stringify(data);
               {  
                 if($key23 == "experienceAsPlayer")
                 {
-
                  echo "<span><b>Experience As Player</b></span>";
-
-                    ?>
-                <div class='box-body'  style='    background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
+                  ?>
+                <div class='box-body'  style='background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
                 <div>
                 <span class="input input--hoshi">
                 <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'exp_asplayer_name'.$j;?>" value="<?php echo $value56->designation;?>" placeholder='Designation'>
@@ -949,27 +895,26 @@ var data = JSON.stringify(data);
                   ?>
                 <div class='box-body'  style='background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
                 <div>
-               <span class="input input--hoshi">
+                <span class="input input--hoshi">
                 <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'work_exp_name'.$j;?>" value="<?php echo $value56->designation;?>">
-                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='work_exp_name'><span class="input__label-content input__label-content--hoshi">Designation</span></label>
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='work_exp_name'><span class="input__label-content input__label-content--hoshi">Designation</span></label>
                 </span>
                 </div>
                 <div>
-               <span class="input input--hoshi">
+                <span class="input input--hoshi">
                 <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'work_exp_inst_org'.$j;?>" value="<?php echo $value56->organisationName;?>">
-                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='work_exp_inst_org'><span class="input__label-content input__label-content--hoshi">Institution / Organisation Name</span></label>
-                 </span>
-                 </div>  
-                 <div>
-               <span class="input input--hoshi">
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='work_exp_inst_org'><span class="input__label-content input__label-content--hoshi">Institution / Organisation Name</span></label>
+                </span>
+                </div>  
+                <div>
+                <span class="input input--hoshi">
                 <input type='text' class='input__field input__field--hoshi'   id="<?php echo 'work_exp_desc'.$j;?>" value="<?php echo $value56->description;?>" placeholder='Description'>
-                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='work_exp_desc'><span class="input__label-content input__label-content--hoshi">Description</span></label>
-                 </span>
-                 </div>
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='work_exp_desc'><span class="input__label-content input__label-content--hoshi">Description</span></label>
+                </span>
+                </div>
                 <label style="margin:7px;font-weight: 100;" for='link'>Period</label>
                 <div>
-                </div>
-                   
+                </div>   
                 <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
                 <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'work_from_date'.$j;?>" value="<?php echo $value56->dateFrom;?>" class='form-control'>
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">From</span></label>
@@ -980,12 +925,10 @@ var data = JSON.stringify(data);
                 <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'work_to_date'.$j;?>" value="<?php echo $value56->dateTo;?>" class='form-control'>
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
                 <div class='input-group-addon'  style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span>
-                </div></div></div>   
-
+                </div></div></div>
                    <script type="text/javascript">
                     window.workexpticket++;
                    </script>
-
                  <?php 
                  $j++;
                    }
@@ -1002,48 +945,41 @@ var data = JSON.stringify(data);
         {   
         }
    ?>
-
-
  <div class="panel panel-primary">
-    <div class="panel-heading clearfix">
-    <div>
-      <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Work Experience</h4>
-      </div>
-    <div class="box-header with-border">
-    <div id="workexpericence" ></div>
-    </div>
-    <div class="btn-group pull-right">
-    <input type="button" id="workexp" class="btn btn-danger btn1" value="Add Work Experience" />
-    </div>
-    </div>
-    </div>
- <div class="panel panel-primary">
-    <div class="panel-heading clearfix">
-
-      <div>
-      <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Experience as a Player</h4>
-      </div>
-
+  <div class="panel-heading clearfix">
+  <div>
+  <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Work Experience</h4>
+  </div>
+  <div class="box-header with-border">
+  <div id="workexpericence" ></div>
+  </div>
+  <div class="btn-group pull-right">
+  <input type="button" id="workexp" class="btn btn-danger btn1" value="Add Work Experience" />
+  </div>
+  </div>
+  </div>
+  <div class="panel panel-primary">
+  <div class="panel-heading clearfix">
+  <div>
+  <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Experience as a Player</h4>
+  </div>
       <!-- <div class="form-group"> -->
-      <div class="box-header with-border">
-      <div id="playerexp" ></div>
-      </div>
+  <div class="box-header with-border">
+  <div id="playerexp" ></div>
+  </div>
     <!--   </div> -->
-      <div class="btn-group pull-right">
-       <input type="button" id="asplayerexp" class="btn btn-danger btn1" value="Add Experience as player" />
-      </div>
-    </div>
-    </div>
-          </div>
-         </div>
-         </div>
-            </div>
-        </div>
-
-
+  <div class="btn-group pull-right">
+  <input type="button" id="asplayerexp" class="btn btn-danger btn1" value="Add Experience as player" />
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
       <?php
        } 
-      
        if($arrayvalue1 == "HeaderDetails" || $arrayvalue1 == "user" || $arrayvalue1 == "profile")
        {
         ?>       
@@ -1061,9 +997,9 @@ var data = JSON.stringify(data);
         <div class="col-md-12">
         <div class="box box-primary" style="margin-top:5%;">
         <div class="box-header with-border">
-          <div class='box-body'  style='background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
-         <div>
-         <span class="input input--hoshi">
+        <div class='box-body'  style='background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
+        <div>
+        <span class="input input--hoshi">
         <input type="text" class='input__field input__field--hoshi' name="acamedy" id="academy_name" value="<?php echo $arrayvalue->acamedy;?>" >
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="acamedy"><span class="input__label-content input__label-content--hoshi">Acamedy</span></label>
         </span>
@@ -1077,7 +1013,7 @@ var data = JSON.stringify(data);
         <div>
         <span class="input input--hoshi">
         <input type="text" class='input__field input__field--hoshi' name="designation" id="designation" value="<?php echo $arrayvalue->designation;?>" disabled>
-         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="designation"><span class="input__label-content input__label-content--hoshi">Designation</span></label>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="designation"><span class="input__label-content input__label-content--hoshi">Designation</span></label>
         </span>
         </div>
         <div>
@@ -1104,72 +1040,70 @@ var data = JSON.stringify(data);
         <div class="box box-primary" style="margin-top:5%;">
         <div class="box-header with-border">
         <div class='box-body'  style='background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
-         <div>
+        <div>
         <span class="input input--hoshi">
         <input type="text" class='input__field input__field--hoshi' name="name" id="name" value="<?php echo $arrayvalue->name;?>" disabled>
-         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Name</span></label>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Name</span></label>
         </span>
         </div>
-         <div>
-         <span class="input input--hoshi">
+        <div>
+        <span class="input input--hoshi">
         <input type="text" class='input__field input__field--hoshi' name="Location" id="location" value="<?php echo $arrayvalue->email;?>" disabled>
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Email</span></label>
         </span>
         </div>
-         <div>
-         <span class="input input--hoshi">
+        <div>
+        <span class="input input--hoshi">
         <input type="text" class='input__field input__field--hoshi' name="Location" id="location" value="<?php echo $arrayvalue->contact_no;?>" >
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Contact No</span></label>
-         </span>
+        </span>
         </div>
-         <div>
-         <span class="input input--hoshi">
+        <div>
+        <span class="input input--hoshi">
         <input type="text" class='input__field input__field--hoshi' name="sport" id="sport" value="<?php echo $arrayvalue->sport;?>"  disabled>
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Sport</span></label>
         </span>
         </div>
-         <div>
-         <span class="input input--hoshi">
+        <div>
+        <span class="input input--hoshi">
         <input type="text" class='input__field input__field--hoshi' name="gender" id="gender" value="<?php echo $arrayvalue->gender;?>" disabled>
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Gender</span></label>
         </span>
         </div>
-         <div>
-         <span class="input input--hoshi">
+        <div>
+        <span class="input input--hoshi">
         <input type="text" class='input__field input__field--hoshi' name="Location" id="location" value="<?php echo $arrayvalue->dob;?>"  disabled>
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">DOB</span></label>
         </span>
         </div>
-         <div>
-   <span class="input input--hoshi">       
+        <div>
+        <span class="input input--hoshi">       
         <input type="text" class='input__field input__field--hoshi' name="Location" id="location" value="<?php echo $arrayvalue->location;?>">
-         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Location</span></label>
-         </span>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Location</span></label>
+        </span>
         </div>
-         <div>
+        <div>
         <span class="input input--hoshi">
         <input type="text" class='input__field input__field--hoshi' name="Location" id="location" value="<?php echo $arrayvalue->age_group_coached;?>">
-         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Age Group Coached</span></label>
-          </span>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Age Group Coached</span></label>
+        </span>
         </div>
-         <div>
-           <span class="input input--hoshi">       
+        <div>
+        <span class="input input--hoshi">       
         <input type="text" class='input__field input__field--hoshi'  name="Location" id="location" value="<?php echo $arrayvalue->languages_known;?>">
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Languages Known</span></label>
-         <input type="hidden" class='input__field input__field--hoshi'  name="Location" id="prof_name" value="<?php echo $arrayvalue->prof_name;?>">
+        <input type="hidden" class='input__field input__field--hoshi'  name="Location" id="prof_name" value="<?php echo $arrayvalue->prof_name;?>">
         <input type="hidden" class='input__field input__field--hoshi'  name="Location" id="user_image" value="<?php echo $arrayvalue->user_image;?>">
         <input type="hidden" name="userid" id="uid" value="<?php echo $arrayvalue->userid;?>">
         </span>
         </div>
-
-        </div>
-       </div>
         </div>
         </div>
         </div>
-        
         </div>
-                <?php 
+        </div>
+        </div>
+          <?php 
               }
              }
 
@@ -1188,27 +1122,14 @@ var data = JSON.stringify(data);
     }
   }
        ?>
-
-
-
-
-
-      
-       
-       
-       
-      </div>
-
-      <div class="box-footer">
-      <input type="button" class="btn btn-lg btn-primary " id="save" onclick="" value="Submit" name="Submit">
-      </div>
-
-
     </div>
-     </div>
-      </div>
+    <div class="box-footer">
+    <input type="button" class="btn btn-lg btn-primary " id="save" onclick="" value="Submit" name="Submit">
     </div>
-    
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -1217,7 +1138,6 @@ var data = JSON.stringify(data);
     // $(".tab").addClass("active"); // instead of this do the below 
         $(this).removeClass("btn-default").addClass("btn-primary");   
 });
-
 if($("#user_image").val())
 {
 $("#imm1g").attr('src',$("#user_image").val());
@@ -1232,24 +1152,17 @@ else
 {  
  $("#imm1g").attr('src','<?php echo base_url('img/female.jpg');?>');
 }
-
 }
-
 $("#uname").text($("#name").val());
 $("#uprof").text($("#prof_name").val());
-
-
 });
-    
 document.getElementById("addSportEdu").onclick = function() 
 {
   var form     = document.getElementById("SportTicket");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='nameofsporteducation"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='nameofsporteducation'><span class='input__label-content input__label-content--hoshi'>Name Of Sport Education</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_inst_org"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution/Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_stream_spel"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_stream_spel'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='sport_from_date"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='sport_to_date"+ window.sportsticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
-
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='nameofsporteducation"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='nameofsporteducation'><span class='input__label-content input__label-content--hoshi'>Name Of Sport Education</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_inst_org"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution/Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_stream_spel"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_stream_spel'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='sport_from_date"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='sport_to_date"+ window.sportsticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>";
    form.appendChild(newDiv); window.sportsticket++;
 }
-
 document.getElementById("addSportFormal").onclick = function() 
 {
   var form     = document.getElementById("FormalEducation");
@@ -1268,14 +1181,6 @@ document.getElementById("addothereducation").onclick = function()
     window.ohterticket++;
 }
 
-
-
-
-
-
-
-
-
 document.getElementById("workexp").onclick = function() 
 {
   var form     = document.getElementById("workexpericence");
@@ -1289,13 +1194,12 @@ document.getElementById("asplayerexp").onclick = function()
   var form     = document.getElementById("playerexp");
   var newDiv     = document.createElement("div");
   newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_name"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='asplayer_name'><span class='input__label-content input__label-content--hoshi'>Designation</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_inst_org"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='exp_asplayer_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution / Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_desc"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='exp_asplayer_desc'><span class='input__label-content input__label-content--hoshi'>Description</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='exp_asplayer_from_date"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_to_date"+ window.asplayerticket +"'  class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
-
     form.appendChild(newDiv);
     window.asplayerticket++;
 }
 
-function formatDate(date) {
-
+function formatDate(date) 
+{
         // alert(date);
         var d = new Date(date),
         month = '' + (d.getMonth() + 1),
@@ -1306,27 +1210,16 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
-
-
-
 $("#save").click(function()
 {
-
-
  var sportArray = [];
  var formalArray = [];
  var otherArray = [];
  var workArray = [];
  var asplayerArray = [];
  var finalArray = [];
-
-
-
-  for(var i =0; i <window.sportsticket; i++)
-  {   
-
- 
-
+for(var i =0; i <window.sportsticket; i++)
+{   
      if($("#sport_from_date"+i).val())
      {
      var fromdate = formatDate($("#sport_from_date"+i).val());
@@ -1334,27 +1227,21 @@ $("#save").click(function()
      else
      {
         $("#sport_from_date"+i).css("border-bottom-color","red");
-
        // $("#sport_from_date"+i).addClass('invalid');
        return ;
-      
-
      }
      if($("#sport_to_date"+i).val())
      {
-
      var todate = formatDate($("#sport_to_date"+i).val());
      }
      else
      {
       $("#sport_to_date"+i).css("color","red");
-    
        return ;
      }
 
     var temp = {"degree":$("#nameofsporteducation"+i).val(),"organisation":$("#sport_inst_org"+i).val(),"stream":$("#sport_stream_spel"+i).val(),"courseDuration":fromdate + " to " + todate };
       sportArray.push(temp);
-
   }
 
   for(var i =0; i <window.formalticket; i++)

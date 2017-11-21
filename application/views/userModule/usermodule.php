@@ -17,19 +17,19 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                 <th style="width: 10px; background: #5262bc;"><img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px>#</img></th>
-                  <th style="background: #5262bc;">Email <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img> </th>
-                  <th style="background: #5262bc;">Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
+                 <th style="width: 10px; background: #5262bc;" disabled><img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px>#</img></th>
+                  <th style="background: #5262bc;" disabled>Email <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img> </th>
+                  <th style="background: #5262bc;" disabled>Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
 
-                  <th style="background: #5262bc;">Userid  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
+                  <th style="background: #5262bc;" disabled>Userid  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
 
                   <th style="background: #5262bc;">Profession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
                  <!--  <th style="background: #5262bc; color: #ffffff;">Usertype <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th> -->
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
 
-                  <th style="background: #5262bc;">View</th>
+                  <th style="background: #5262bc;" disabled>View</th>
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
-                  <th style="background: #5262bc;">Activate</th>
+                  <th style="background: #5262bc;" disabled>Activate</th>
                 </tr>
                 </thead>
         <tbody>
@@ -130,12 +130,14 @@
  <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script> 
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
 <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
+
+
 <script>
 
     $(document).ready(function() {
     $('#example1').DataTable( {
         initComplete: function () {
-            this.api().columns().every( function () {
+          this.api().columns([4]).every( function () {
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
                     .appendTo( $(column.header()).empty() )
@@ -150,7 +152,7 @@
                     } );
                  
                 column.data().unique().sort().each( function ( d, j ) {
-                  //  alert(j);
+                    //alert(d);
                     select.append( '<option value="'+d+'">'+d+'</option>' )
               
                 } );
@@ -159,6 +161,8 @@
         }
     } );
 } );
+
+
 </script>
 
 <script type="text/javascript">
