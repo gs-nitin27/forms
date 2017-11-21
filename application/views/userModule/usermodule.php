@@ -17,19 +17,19 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                 <th style="width: 10px; background: #5262bc;" disabled><img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px>#</img></th>
-                  <th style="background: #5262bc;" disabled>Email <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img> </th>
-                  <th style="background: #5262bc;" disabled>Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
+                 <th style="width: 10px; background: #5262bc;color: #ffffff;"><img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px>#</img></th>
+                  <th style="background: #5262bc;color: #ffffff;" >Email <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img> </th>
+                  <th style="background: #5262bc;color: #ffffff;" >Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
 
-                  <th style="background: #5262bc;" disabled>Userid  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
+                  <th style="background: #5262bc;color: #ffffff;" >Userid  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
 
                   <th style="background: #5262bc;">Profession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
                  <!--  <th style="background: #5262bc; color: #ffffff;">Usertype <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th> -->
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
 
-                  <th style="background: #5262bc;" disabled>View</th>
+                  <th style="background: #5262bc;color: #ffffff;">View</th>
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
-                  <th style="background: #5262bc;" disabled>Activate</th>
+                  <th style="background: #5262bc;color: #ffffff;">Activate</th>
                 </tr>
                 </thead>
         <tbody>
