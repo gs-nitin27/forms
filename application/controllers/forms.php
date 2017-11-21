@@ -405,6 +405,11 @@ public function admin_module_assign($str)
 
 }
 
+
+public function user_profile()
+{
+  $this->load->view('user_profile');
+}
 //======================== End User =========================
 
 
