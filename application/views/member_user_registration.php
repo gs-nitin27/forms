@@ -130,7 +130,7 @@ body{
 
                 <div class="input-field col s4">
                 <label style='margin-left: 18%;float: right;'>
-                <a style="cursor: pointer;" class='pink-text' onclick="register();"><b>Already registered?</b></a>
+                <a style="cursor: pointer;" class='pink-text' onclick="register1();"><b>Already registered?</b></a>
                 </label>
                 </div>
                 <div class="input-field col s8">
@@ -154,6 +154,12 @@ body{
   </body>
 
 <script type="text/javascript">
+
+
+ function register1()
+ {
+ window.location.href = "https://getsporty.in/web/#/login";
+ } 
 
   function register()
   {
@@ -469,139 +475,156 @@ if(professions!=null)
        if(result.data == 3 || result.data == 4)
        { 
         $("#imagelodar").hide();
+
         $.confirm({
-        title: 'You are Already Register Please Sign In',
+        title: 'You are Already Register With Us!',
+        content: '<h3>Please Sign In .</h3>',
+        type: 'green',
         boxWidth: '33%',
         useBootstrap: false,
-        content: '' +
-      '<hr class="colorgraph"><br>' +
-      '<input type="text" class="form-control" id="username" name="username" placeholder="Username" required="" autofocus="" />' +
-      '<input type="password" class="form-control" id="password" name="password" placeholder="Password" required=""/>',
+        typeAnimated: true,
+        animationSpeed: 1500,
+        animationBounce: 3,
         buttons: {
-            formSubmit: {
-                 text: 'Submit',
-                 btnClass: 'btn-blue',
-                 action: function(){
-
-                  $("#imagelodar").show();
-
-                 var data1 = {
-                    "email"      : $("#username").val(),
-                    "password"     : $("#password").val()
-                   };
-
-                  console.log(JSON.stringify(data1));
-                  var profileurl = '<?php echo site_url();?>';
-                  var data = JSON.stringify(data1);
-                    $.ajax({ 
-                     type: "POST",
-                     url: "<?php echo site_url('forms/editRegiterUser');?>",                  
-                     data:"data="+data,                        
-                     dataType: 'JSON',        
-                     success:function(result)
-                     {
-                          if(result.data.userid)
-                          {
-                              $.confirm({
-                              title: 'Thank You For Login!',
-                              content: '<h3>Please Update Your Profile</h3>',
-                              type: 'green',
-                              typeAnimated: true,
-                              boxWidth: '33%',
-                              useBootstrap: false,
-                              animationSpeed: 1500,
-                              animationBounce: 3,
-                              buttons: {
-                                  tryAgain: {
-                                      text: 'Thank You !',
-                                      btnClass: 'btn-green',
-                                  action: function(){
-
-
-                                    //    $.ajax({
-
-                                    // url: "http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid=2&prof_id=2",
-
-                                    //     type: "GET",
-
-                                    //     contentType: 'application/json; charset=utf-8',
-                                    //     success: function(resultData) {
-                                    //         alert(resultData);
-
-                                    //     },
-                                    //     error : function(jqXHR, textStatus, errorThrown) {
-                                    //     },
-
-                                    //     timeout: 120000,
-                                    // });
-                                        var options = {
-                                        origin: "http://www.getsporty.in"
-                                        };
-                                        // Storage = crossDomainStorage(options);
-                                        // localStorage.setItem('userid',result.data.userid);
-                                        // localStorage.setItem('prof_id',result.data.prof_id);
-
-                                          //alert(localStorage.getItem('prof_id'));
-                                          //alert(localStorage.getItem('userid'));
-
-
-
-                                      window.location.href = profileurl+ "/forms/editRegisterUserProfile"; 
-                                      
-                                      }
-                                  },
-                                  close: function () {
-                                        var options = {
-                                        origin: "http://www.getsporty.in"
-                                        };
-                                    //Storage = crossDomainStorage(options);
-                                       // localStorage.setItem('userid',result.data.userid);
-                                       // localStorage.setItem('prof_id',result.data.prof_id);
-                                    window.location.href = profileurl+ "/forms/editRegisterUserProfile";
-
-                                   
-                                  }
-                              }
-                          });
-
-                          }
-                          else
-                          {
-                            $.confirm({
-                              title: 'Encountered an error!',
-                              content: 'Something went Worng, this may be server issue.',
-                              type: 'dark',
-                              typeAnimated: true,
-                              boxWidth: '33%',
-                              useBootstrap: false,
-                              animationSpeed: 1500,
-                              animationBounce: 3,
-                              buttons: {
-                                  tryAgain: {
-                                      text: 'Try again',
-                                      btnClass: 'btn-dark',
-                                      action: function(){
-                                        $("#imagelodar").hide();
-                                      }
-                                  },
-                                  close: function () {
-                                    $("#imagelodar").hide();
-                                  }
-                              }
-                          });
-
-                          }
-                     }
-                      });
-              }
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                   window.location.href = "https://getsporty.in/web/#/login";
+                }
             },
-            cancel: function () {
-               
+            close: function () {
+               window.location.href = "https://getsporty.in/web/#/login";
             }
         }
     });
+    //     $.confirm({
+    //     title: 'You are Already Register Please Sign In',
+    //     boxWidth: '33%',
+    //     useBootstrap: false,
+    //     content: '' +
+    //   '<hr class="colorgraph"><br>' +
+    //   '<input type="text" class="form-control" id="username" name="username" placeholder="Username" required="" autofocus="" />' +
+    //   '<input type="password" class="form-control" id="password" name="password" placeholder="Password" required=""/>',
+    //     buttons: {
+    //         formSubmit: {
+    //              text: 'Submit',
+    //              btnClass: 'btn-blue',
+    //              action: function(){
+    //               $("#imagelodar").show();
+    //              var data1 = {
+    //                 "email"      : $("#username").val(),
+    //                 "password"     : $("#password").val()
+    //                };
+    //               console.log(JSON.stringify(data1));
+    //               var profileurl = '<?php //echo site_url();?>';
+    //               var data = JSON.stringify(data1);
+    //                 $.ajax({ 
+    //                 type: "POST",
+    //                 url: "<?php //echo site_url('forms/editRegiterUser');?>",                  
+    //                 data:"data="+data,                        
+    //                 dataType: 'JSON',        
+    //                 success:function(result)
+    //                 {
+    //                       if(result.data.userid)
+    //                       {
+    //                           $.confirm({
+    //                           title: 'Thank You For Login!',
+    //                           content: '<h3>Please Update Your Profile</h3>',
+    //                           type: 'green',
+    //                           typeAnimated: true,
+    //                           boxWidth: '33%',
+    //                           useBootstrap: false,
+    //                           animationSpeed: 1500,
+    //                           animationBounce: 3,
+    //                           buttons: {
+    //                               tryAgain: {
+    //                                   text: 'Thank You !',
+    //                                   btnClass: 'btn-green',
+    //                               action: function(){
 
-        
+
+    //                                 //    $.ajax({
+
+    //                                 // url: "http://testingapp.getsporty.in/userEdit.php?act=getUserProfile&userid=2&prof_id=2",
+
+    //                                 //     type: "GET",
+
+    //                                 //     contentType: 'application/json; charset=utf-8',
+    //                                 //     success: function(resultData) {
+    //                                 //         alert(resultData);
+
+    //                                 //     },
+    //                                 //     error : function(jqXHR, textStatus, errorThrown) {
+    //                                 //     },
+
+    //                                 //     timeout: 120000,
+    //                                 // });
+    //                                     var options = {
+    //                                     origin: "http://www.getsporty.in"
+    //                                     };
+    //                                     // Storage = crossDomainStorage(options);
+    //                                     // localStorage.setItem('userid',result.data.userid);
+    //                                     // localStorage.setItem('prof_id',result.data.prof_id);
+
+    //                                       //alert(localStorage.getItem('prof_id'));
+    //                                       //alert(localStorage.getItem('userid'));
+
+
+
+    //                                   window.location.href = profileurl+ "/forms/editRegisterUserProfile"; 
+                                      
+    //                                   }
+    //                               },
+    //                               close: function () {
+    //                                     var options = {
+    //                                     origin: "http://www.getsporty.in"
+    //                                     };
+    //                                 //Storage = crossDomainStorage(options);
+    //                                    // localStorage.setItem('userid',result.data.userid);
+    //                                    // localStorage.setItem('prof_id',result.data.prof_id);
+    //                                 window.location.href = profileurl+ "/forms/editRegisterUserProfile";
+
+                                   
+    //                               }
+    //                           }
+    //                       });
+
+    //                       }
+    //                       else
+    //                       {
+    //                         $.confirm({
+    //                           title: 'Encountered an error!',
+    //                           content: 'Something went Worng, this may be server issue.',
+    //                           type: 'dark',
+    //                           typeAnimated: true,
+    //                           boxWidth: '33%',
+    //                           useBootstrap: false,
+    //                           animationSpeed: 1500,
+    //                           animationBounce: 3,
+    //                           buttons: {
+    //                               tryAgain: {
+    //                                   text: 'Try again',
+    //                                   btnClass: 'btn-dark',
+    //                                   action: function(){
+    //                                     $("#imagelodar").hide();
+    //                                   }
+    //                               },
+    //                               close: function () {
+    //                                 $("#imagelodar").hide();
+    //                               }
+    //                           }
+    //                       });
+
+    //                       }
+    //                  }
+    //                   });
+    //           }
+    //         },
+    //         cancel: function () {
+    //         }
+    //     }
+    // });  
        }
        else if(result.data == 0)
        {
@@ -627,8 +650,6 @@ if(professions!=null)
                   }
               }
           });
-
-
        }
        else
        {
@@ -647,33 +668,20 @@ if(professions!=null)
                 btnClass: 'btn-green',
                 action: function(){
                   window.location.href = profileurl+ "/forms/registrationprofile/" + result.data;
-
                 }
             },
             close: function () {
               window.location.href = profileurl+ "/forms/registrationprofile/" + result.data;
-
-             
             }
         }
     });
-
-
        }
-
-
      }
   });
-
 }
 });
-
 $('.picker__day--infocus').click(function(){
-
   $('#dob').removeClass('invalid');
 });
-
 </script>
-
-
 </html>

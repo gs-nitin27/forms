@@ -1,74 +1,113 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/profile.css'); ?>">
+ <script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
 
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+
+
+/*#fixme {
+
+  position:fixed;
+  top:0px;
+
+}*/
 </style>
 
-<body class="w3-light-grey">
-        <div class="tab-pane fade in" id="tab2">
+<script>
 
+// $(window).scroll(function(){
+//     $("#fixme").css("top",Math.max(-900,2-$(this).scrollTop()));
+
+  
+// });
+
+</script>
+
+
+<body class="w3-light-grey">
+
+<?php 
+  $userdata = $this->session->userdata('item');
+  $profile = $this->register->profile($userdata['userid']); 
+  // print_r($profile[0]['userType']);
+  // print_r($profile);
+
+
+?>
 
 
 
 <div class="w3-light-grey">
 <div class="w3-content w3-margin-top" style="max-width:1400px;">
 <div class="w3-row-padding">
-  
 
-    <div class="w3-third">
-    
-      <div class="w3-white w3-text-grey w3-card-4">
-        <div class="w3-container">
-          <br>
+      <div class="w3-third">
+      <div class="w3-white w3-text-grey w3-card-4" id="fixme">
+      <div class="w3-display-container">
+      <img src="https://www.w3schools.com/w3images/avatar_hat.jpg" style="width:100%" alt="Avatar">
+      <div class="w3-display-bottomleft w3-container w3-text-black">
+      <h2>  <?php echo $profile[0]['name']; ?></h2>
+      </div>
+      </div>
+      <div class="w3-container">
+        <br>
               <strong><i class="fa fa-venus-double margin-r-5"></i>Gender</strong>
               <p class="text-muted">
-               gender
+               <?php echo $profile[0]['gender']; ?>
               </p>
               <hr>
               <strong>
               <i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-              <p class="text-muted">address1</p>
-              <p class="text-muted">address2</p>
-               <p class="text-muted">location</p>
-              <p class="text-muted">address3</p>
+              <p class="text-muted"><?php echo $profile[0]['address1']; ?></p>
+              <p class="text-muted"><?php echo $profile[0]['address2']; ?></p>
+               <p class="text-muted"><?php echo $profile[0]['location']; ?></p>
+              <p class="text-muted"><?php echo $profile[0]['address3']; ?></p>
               <hr>
             <strong><i class="fa fa-mobile margin-r-5"></i>Contact No</strong>
-            <p>contact_no</p>
+            <p>  <?php echo $profile[0]['contact_no']; ?></p>
             <hr>
-
           <strong><i class="fa fa-futbol-o margin-r-5"></i>Sport</strong>
-          <p class="text-muted">
-                sport
-            </p>
+          <p class="text-muted"><?php echo $profile[0]['sport']; ?>  </p>
             <hr>
             <strong><i class="fa fa-calendar-check-o margin-r-5"></i>DOB</strong>
-            <p class="text-muted">dob</p>
+            <p class="text-muted"><?php echo $profile[0]['dob']; ?> </p>
             <hr>
             <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
             <p>
-            <span class="label label-danger">prof_language</span>
-            <span class="label label-success">other_skill_name</span>
-            <span class="label label-info">other_skill_detail</span>
-               <!--  <span class="label label-warning">PHP</span>
-                <span class="label label-primary">Node.js</span> -->
+            <span class="label label-danger"><?php echo $profile[0]['prof_language']; ?></span>
+            <span class="label label-success"><?php echo $profile[0]['other_skill_name']; ?></span>
+            <span class="label label-info"><?php echo $profile[0]['other_skill_detail']; ?></span>
             </p>
             <hr>
             <strong><i class="fa fa-envelope margin-r-5"></i>Email</strong>
-            <button style="margin-left: 71%;" id="ebutton"><i class="fa fa-pencil margin-r-5"></i></button>
-            <p>email</p>
-
-
+            <p><?php echo $profile[0]['email']; ?></p>
             <hr>
-            <strong><i class="fa fa-file-text-o margin-r-5"></i>About Me</strong>
-            <p>about_me</p>
+
+  
+            <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Header Details</h2>
+            <div class="w3-container">
+            <h5 class="w3-opacity"><b>Academy: </b></h5><p id="academy"></p>
+             <hr>
+             <h5 class="w3-opacity"><b>Description : </b></h5><p id="description"></p>
+             <hr>
+             <h5 class="w3-opacity"><b>Designation : </b></h5><p id="designation"></p>
+             <hr>
+             <h5 class="w3-opacity"><b>Location : </b></h5><p id="location"></p>
+             <hr>
+            </div>
+
+
+
+
+<!--             <strong><i class="fa fa-file-text-o margin-r-5"></i>About Me</strong>
+            <p><?php// echo $profile[0]['about_me']; ?></p> -->
         </div>
       </div><br>
     <!-- End Left Column -->
@@ -78,35 +117,29 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
 <?php 
 $prof_data = $this->register->prof_data(2);
-     // print_r($prof_data);
-//die;
 if($prof_data)
 {
-  /// die;
 $profiledata = json_decode($prof_data['user_detail']);
  
-if( 103)
+if($profile[0]['userType'] == 103)
 {
 
  ?>
-  <div class="w3-container w3-card w3-white w3-margin-bottom">
-  <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Header Details</h2>
+ <!--  <div class="w3-container w3-card w3-white w3-margin-bottom">
+  <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Header Details</h2> -->
 <?php 
     foreach ($profiledata->HeaderDetails as $key => $value) 
     {
     ?>
-    <h5 class="w3-opacity"><b><?php echo $key ;?> - </b><?php echo $value; ?></h5>
+   <input type="hidden"  id="<?php echo $key.'1';?>" value="<?php echo $value; ?>">
     <?php     
     }
 ?>
-</div>
+<!-- </div> -->
 <?php 
     foreach($profiledata->Education as $key => $value) 
     {
-       
    ?>
-
-  
   <div class="w3-container w3-card w3-white">
   <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><?php echo $key ?></h2>
  <?php
@@ -145,7 +178,7 @@ if( 103)
 
       <h5 class="w3-opacity"><b>Designation : </b></h5><p><?php echo $value1->designation ;?></p> 
 
-      <h5 class="w3-opacity"><b>Description : </b></h5><p><?php echo $value1->description ;?></p> 
+    <!--   <h5 class="w3-opacity"><b>Description : </b></h5><p><?php// echo $value1->description ;?></p>  -->
 
 
       <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo $value1->dateFrom; ?> -  <span class="w3-tag w3-teal w3-round"><?php echo $value1->dateTo; ?></span></h6>
@@ -161,22 +194,21 @@ if( 103)
   <?php 
 }
 }
-else if(104)
+else if($profile[0]['userType'] == 104)
 {
 if($profiledata)
 { ?>
-<div class="w3-container w3-card w3-white">
-<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Header Details</h2>
-<div class="w3-container">
+
+
  <?php 
 foreach ($profiledata->Header as $key => $value) 
 {
 ?>
-<h5 class="w3-opacity"><b><?php echo $key; ?> : </b></h5><p><?php echo $value; ?></p>
+    <input type="text"  id="<?php echo $key.'1';?>" value="<?php echo $value; ?>">
 <?php } ?>
  <hr>
-</div>
-</div>
+
+
 <br>
 <?php 
 foreach ($profiledata->Achivement as $key => $value) 
@@ -199,7 +231,6 @@ foreach ($value as $key1 => $value1)
       </div> 
         <?php 
         }
-      
       ?>
        </div>
        <br>
@@ -279,119 +310,38 @@ foreach ($profiledata->Bio as $key => $value)
 <?php
 }
 ?>
-
-<!--  <div class="row">  -->
-<!--         <div class="col-md-6">
-            <div class="box box-primary" style="margin-top:5%;">
-            <div class="box-header with-border">
-              <h3 class="box-title">About Me</h3>
-            </div>
-            <div class="box-body">
-              <strong><i class="fa fa-venus-double margin-r-5"></i>Gender</strong>
-              <p class="text-muted">
-                <?php// echo $value['gender'];?>
-              </p>
-              <hr>
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-              <p class="text-muted"><?php// echo $value['address1'];?></p>
-              <p class="text-muted"><?php// echo $value['address2'];?></p>
-               <p class="text-muted"><?php// echo $value['location'];?></p>
-              <p class="text-muted"><?php/// echo $value['address3'];?></p>
-              <hr>
-              <strong><i class="fa fa-mobile margin-r-5"></i>Contact No</strong>
-               <p><?php //echo $value['contact_no'];?></p>
-              <hr>
-              <strong><i class="fa fa-envelope margin-r-5"></i>Email</strong>
-              <button style="margin-left: 71%;" id="ebutton"><i class="fa fa-pencil margin-r-5"></i></button>
-              <p><?php// echo $value['email'];?></p>
-              
-              <script>
-              $(document).ready(function(){
-                  // alert("sdg");
-                 $("#activity").addClass('active');
-                $("#newemail").hide();
-                $("#ebutton").click(function(){
-                $("#newemail").toggle();
-                });
-              });
-               </script>
-               <div id="newemail">
-                <div class="form-group">
-                <input type="text" class="form-control" id="updateemail" placeholder="Enter Email">
-                 <input type="hidden" class="form-control" name="UserId"  id="euid" value="<?php //echo $value['userid']; ?>">
-                </div><div class="form-group">
-                <input type="button" class="btn btn btn-primary" id="emailsave" onclick="" value="Update" name="Update">
-                </div >
-              </div>
-            </div>
-          </div> -->
           <?php 
         }
         else { ?>
              
-
-
-  
-
-<!--     <div class="w3-third">-->
     
   <div class="w3-container w3-card w3-white">
   <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>No Details Is Present</h2>
-
-<!--   <div class="w3-container">
-      <h5 class="w3-opacity"><b>Name Of Competation : </b></h5><p><?php //echo $value1->nameOfCompetation;?></p> 
-        <h5 class="w3-opacity"><b>Detail : </b></h5><p><?php //echo $value1->detail;?></p> 
-      <h5 class="w3-opacity"><b>Opponent : </b></h5><p><?php //echo $value1->opponent; ?></p>
-      <h5 class="w3-opacity"><b>Round : </b></h5><p><?php// e//cho $value1->round; ?></p> 
-      <h5 class="w3-opacity"><b>Score : </b></h5><p><?php// echo $value1->score; ?></p>  
-     
-   <hr> 
-      </div>  -->
        </div>
-
-
-<!-- </div>-->
         <?php 
       }
-
-
-
-          ?>
-         <!--  </div> -->
-
-           <!--  <div class="col-md-6">
-            <div class="box box-primary" style="margin-top:5%;">
-            <div class="box-header with-border">
-            <h3 class="box-title">About Proffession</h3>
-            </div>
-            <div class="box-body">
-            <strong><i class="fa fa-futbol-o margin-r-5"></i>Sport</strong>
-            <p class="text-muted">
-                <?php// echo $value['sport'];?>
-            </p>
-            <hr>
-            <strong><i class="fa fa-calendar-check-o margin-r-5"></i>DOB</strong>
-            <p class="text-muted"><?php //echo $value['dob'];?></p>
-            <hr>
-            <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-            <p>
-            <span class="label label-danger"><?php// echo $value['prof_language'];?></span>
-            <span class="label label-success"><?php// echo $value['other_skill_name'];?></span>
-            <span class="label label-info"><?php// echo $value['other_skill_detail'];?></span>
-            </p>
-            <hr>
-            <strong><i class="fa fa-file-text-o margin-r-5"></i>About Me</strong>
-            <p><?php// echo $value['about_me'];?></p>
-            </div>
-            </div>
-            </div>
- -->
-
-           <!--  </div> -->
-
-
-
-             
-        </div>
+  ?>
 </body>
+
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+
+    var acamedy = $("#acamedy1").val();
+    $("#academy").text(acamedy);
+
+     var description = $("#description1").val();
+    $("#description").text(description);
+
+     var designation = $("#designation1").val();
+    $("#designation").text(designation);
+
+     var location = $("#location1").val();
+    $("#location").text(location);
+
+   
+  });
+
+</script>
+
 </html>

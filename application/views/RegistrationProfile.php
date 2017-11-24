@@ -665,171 +665,127 @@ var data = JSON.stringify(data);
     <input type="button" id="addothereducation" class="btn btn-danger btn1" value="Add Certification" />
     </div>
     </div>
+    </div>  
     </div>
-
-
-
-            
-            </div>
-          </div>
-         
-
+    </div>
 </div>
-     
-            </div>
-
-        </div>
-        <div class="tab-pane fade in" id="tab2">
-        <div class="row"> 
-        <div class="col-md-12">
-        <div class="box box-primary" style="margin-top:5%;">
-            <div class="box-header with-border">
-          
-
-  <div class="panel panel-primary">
-    <div class="panel-heading clearfix">
-
-    <div>
+    </div>
+      </div>
+      <div class="tab-pane fade in" id="tab2">
+      <div class="row"> 
+      <div class="col-md-12">
+      <div class="box box-primary" style="margin-top:5%;">
+      <div class="box-header with-border">
+      <div class="panel panel-primary">
+      <div class="panel-heading clearfix">
+      <div>
       <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Work Experience</h4>
       </div>
       <div id="workexpericence"></div>
       <div class="btn-group pull-right">
-        <input type="button" id="workexp" class="btn btn-danger btn1" value="Add Work Experience" />
+      <input type="button" id="workexp" class="btn btn-danger btn1" value="Add Work Experience" />
       </div>
-
-    </div>
-    </div>
-
-  <div class="panel panel-primary">
-    <div class="panel-heading clearfix">
-
-    <div>
+      </div>
+      </div>
+      <div class="panel panel-primary">
+      <div class="panel-heading clearfix">
+      <div>
       <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Experience as a Player</h4>
-
       </div>
       <div id="playerexp"></div>
       <div class="btn-group pull-right">
-       <input type="button" id="asplayerexp" class="btn btn-danger btn1" value="Add Experience as player" />
+      <input type="button" id="asplayerexp" class="btn btn-danger btn1" value="Add Experience as player" />
       </div>
-    </div>
-    </div>
-           
-            
-         
-          </div>
-         </div>
-         </div>
-            
-            </div>
-             
-        </div>
-        <div class="tab-pane fade in" id="tab3">
-        <div class="row"> 
-        <div class="col-md-12">
-        <div class="box box-primary" style="margin-top:5%;">
-        <div class="box-header with-border">
-        <div class='box-body'  style='background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
-
-        <div>
-          <span class="input input--hoshi">
-        
-        <input type="text" class='input__field input__field--hoshi' name="dob" id="dob" value="<?php echo $value['dob'];?>" disabled>
-        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="dob"><span class="input__label-content input__label-content--hoshi">Date Of Birth</span></label>
-        </span>
-        </div>
-         
-
-        <div>
-          <span class="input input--hoshi">
-        
-        <input type="text" class='input__field input__field--hoshi' name="prof_language" id="prof_language" value="<?php echo $value['prof_language'];?>"  >
-        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="prof_language"><span class="input__label-content input__label-content--hoshi">Language Known</span></label>
-        </span>
-        </div>
-
-        <div>
-          <span class="input input--hoshi">
-       
-        <input type="text" class='input__field input__field--hoshi' name="rurl" id="rurl" >
-         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="exampleInputEmail1"><span class="input__label-content input__label-content--hoshi">Age Group Coach</span></label>
-        </span>
-        </div>
-
-        <div>
-          <span class="input input--hoshi">
-        
-        <input type="text" class='input__field input__field--hoshi' name="prof_name" id="prof_name" value="<?php echo $value['prof_name'];?>" disabled>
-        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="prof_name"><span class="input__label-content input__label-content--hoshi">Profession</span></label>
-        </span>
-        </div>
-        <div>
-          <span class="input input--hoshi">
-        
-        <input type="text" class='input__field input__field--hoshi' name="sport" id="sport" value="<?php echo $value['sport'];?>"  disabled>
-        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="sport"><span class="input__label-content input__label-content--hoshi">Sport</span></label>
-        </span>
-        </div>
-        <div>
-          <span class="input input--hoshi">
-       
-        <input type="text" class='input__field input__field--hoshi' name="gender" id="gender" value="<?php echo $value['gender'];?>"  disabled>
-         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="gender"><span class="input__label-content input__label-content--hoshi">Gender</span></label>
-        </span>
-        </div>
-        <div>
-          <span class="input input--hoshi">
-       
-        <input type="text" class='input__field input__field--hoshi' name="rurl" id="rurl" >
-         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="exampleInputEmail1"><span class="input__label-content input__label-content--hoshi">Link to personal Website</span></label>
-        </span>
-        </div>
-
-
-        <div>
-          <span class="input input--hoshi">
-        
-        <input type="text" class='input__field input__field--hoshi' name="academy_name" id="academy_name" >
-        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="academy_name"><span class="input__label-content input__label-content--hoshi">Academy / Business Name</span></label>
-        </span>
-        </div>
-        <div>
-          <span class="input input--hoshi">
-       
-        <input type="text" class='input__field input__field--hoshi' name="Location" id="location" >
-         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Location</span></label>
-        </span>
-        </div>
-        <div>
-          <span class="input input--hoshi">
-       
-        <input type="text" class='input__field input__field--hoshi' name="Description" id="description" >
-        <input type="hidden" class='input__field input__field--hoshi' name="Prof" id="prof_name" value="<?php echo $value['prof_name'];?>">
-        <input type="hidden" name="prof_id" id="prof_id" value="<?php echo $value['prof_id'];?>">
-         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="description"><span class="input__label-content input__label-content--hoshi">Description</span></label>
-        </span>
-        </div>
-        
-
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        
-        </div>
       </div>
-
+      </div>   
+      </div>
+      </div>
+      </div>      
+      </div>       
+      </div>
+      <div class="tab-pane fade in" id="tab3">
+      <div class="row"> 
+      <div class="col-md-12">
+      <div class="box box-primary" style="margin-top:5%;">
+      <div class="box-header with-border">
+      <div class='box-body'  style='background-color: white; border-color: black; border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'>
+      <div>
+      <span class="input input--hoshi">  
+      <input type="text" class='input__field input__field--hoshi' name="dob" id="dob" value="<?php echo $value['dob'];?>" disabled>
+      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="dob"><span class="input__label-content input__label-content--hoshi">Date Of Birth</span></label>
+      </span>
+      </div>
+      <div>
+      <span class="input input--hoshi">  
+      <input type="text" class='input__field input__field--hoshi' name="prof_language" id="prof_language" value="<?php echo $value['prof_language'];?>"  >
+      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="prof_language"><span class="input__label-content input__label-content--hoshi">Language Known</span></label>
+      </span>
+      </div>
+      <div>
+      <span class="input input--hoshi"> 
+      <input type="text" class='input__field input__field--hoshi' name="rurl" id="rurl" >
+      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="exampleInputEmail1"><span class="input__label-content input__label-content--hoshi">Age Group Coach</span></label>
+      </span>
+      </div>
+      <div>
+      <span class="input input--hoshi">  
+      <input type="text" class='input__field input__field--hoshi' name="prof_name" id="prof_name" value="<?php echo $value['prof_name'];?>" disabled>
+      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="prof_name"><span class="input__label-content input__label-content--hoshi">Profession</span></label>
+      </span>
+      </div>
+      <div>
+      <span class="input input--hoshi">  
+      <input type="text" class='input__field input__field--hoshi' name="sport" id="sport" value="<?php echo $value['sport'];?>"  disabled>
+      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="sport"><span class="input__label-content input__label-content--hoshi">Sport</span></label>
+      </span>
+      </div>
+      <div>
+      <span class="input input--hoshi">     
+      <input type="text" class='input__field input__field--hoshi' name="gender" id="gender" value="<?php echo $value['gender'];?>"  disabled>
+      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="gender"><span class="input__label-content input__label-content--hoshi">Gender</span></label>
+      </span>
+      </div>
+      <div>
+      <span class="input input--hoshi"> 
+      <input type="text" class='input__field input__field--hoshi' name="rurl" id="rurl" >
+      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="exampleInputEmail1"><span class="input__label-content input__label-content--hoshi">Link to personal Website</span></label>
+      </span>
+      </div>
+      <div>
+      <span class="input input--hoshi">  
+      <input type="text" class='input__field input__field--hoshi' name="academy_name" id="academy_name" >
+      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="academy_name"><span class="input__label-content input__label-content--hoshi">Academy / Business Name</span></label>
+      </span>
+      </div>
+      <div>
+      <span class="input input--hoshi"> 
+      <input type="text" class='input__field input__field--hoshi' name="Location" id="location" >
+      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Location</span></label>
+      </span>
+      </div>
+      <div>
+      <span class="input input--hoshi"> 
+      <input type="text" class='input__field input__field--hoshi' name="Description" id="description" >
+      <input type="hidden" class='input__field input__field--hoshi' name="Prof" id="prof_name" value="<?php echo $value['prof_name'];?>">
+      <input type="hidden" name="prof_id" id="prof_id" value="<?php echo $value['prof_id'];?>">
+      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="description"><span class="input__label-content input__label-content--hoshi">Description</span></label>
+      </span>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>  
+      </div>
+      </div>
       <div class="box-footer">
       <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Submit" name="Submit">
       </div>
-
-
-    </div>
-     </div>
       </div>
-    </div>
-    
-    </div>
+      </div>
+      </div>
+      </div>
+      </div>
     <script type="text/javascript">
         $(document).ready(function() {
         $(".btn-pref .btn").click(function () {
@@ -838,7 +794,6 @@ var data = JSON.stringify(data);
         $(this).removeClass("btn-default").addClass("btn-primary");   
 });
 });
-    
 document.getElementById("addSportEdu").onclick = function() 
 {
   var form     = document.getElementById("SportTicket");
@@ -847,7 +802,6 @@ document.getElementById("addSportEdu").onclick = function()
     form.appendChild(newDiv);
     window.sportsticket++;
 }
-
 document.getElementById("addSportFormal").onclick = function() 
 {
   var form     = document.getElementById("FormalEducation");
@@ -856,7 +810,6 @@ document.getElementById("addSportFormal").onclick = function()
     form.appendChild(newDiv);
     window.formalticket++;
 }
-
 document.getElementById("addothereducation").onclick = function() 
 {
   var form     = document.getElementById("OtherEducation");
@@ -865,15 +818,6 @@ document.getElementById("addothereducation").onclick = function()
     form.appendChild(newDiv);
     window.ohterticket++;
 }
-
-
-
-
-
-
-
-
-
 document.getElementById("workexp").onclick = function() 
 {
   var form     = document.getElementById("workexpericence");
@@ -890,7 +834,6 @@ document.getElementById("asplayerexp").onclick = function()
     form.appendChild(newDiv);
     window.asplayerticket++;
 }
-
 function formatDate(date) 
 {
     var d = new Date(date),
@@ -901,7 +844,6 @@ function formatDate(date)
     if (day.length < 2) day = '0' + day;
     return [year, month, day].join('-');
 }
-
 $("#save").click(function()
 {
  var sportArray = [];
@@ -911,16 +853,12 @@ $("#save").click(function()
  var asplayerArray = [];
  var finalArray = [];
 
-
-
   for(var i =0; i <window.sportsticket; i++)
   {
     var fromdate = formatDate($("#sport_from_date"+i).val());
-     var todate = formatDate($("#sport_to_date"+i).val());
-
+    var todate = formatDate($("#sport_to_date"+i).val());
     var temp = {"degree":$("#nameofsporteducation"+i).val(),"organisation":$("#sport_inst_org"+i).val(),"stream":$("#sport_stream_spel"+i).val(),"courseDuration":fromdate + " to " + todate };
       sportArray.push(temp);
-
   }
 
   for(var i =0; i <window.formalticket; i++)
@@ -929,54 +867,35 @@ $("#save").click(function()
      var todate = formatDate($("#formal_to_date"+i).val());
     var temp = {"degree":$("#formal_education"+i).val(),"organisation":$("#formal_inst_org"+i).val(),"stream":$("#formal_stream"+i).val(),"courseDuration":fromdate + " to " + todate };
       formalArray.push(temp);
-
   }
-
   for(var i =0; i <window.ohterticket; i++)
   {
      var fromdate = formatDate($("#certi_from_date"+i).val());
      var todate = formatDate($("#certi_to_date"+i).val());
-
     var temp = {"degree":$("#certi_name"+i).val(),"organisation":$("#certi_inst_org"+i).val(),"stream":$("#certi_stream"+i).val(),"courseDuration":fromdate + " to " + todate };
       otherArray.push(temp);
-
   }
 
 for(var i =0; i <window.workexpticket; i++)
   {
      var fromdate = formatDate($("#work_from_date"+i).val());
      var todate = formatDate($("#work_to_date"+i).val());
-
     var temp = {"designation":$("#work_exp_name"+i).val(),"organisationName":$("#work_exp_inst_org"+i).val(),"description":$("#work_exp_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate};
       workArray.push(temp);
-
   }
-
   for(var i =0; i <window.asplayerticket; i++)
   {
      var fromdate = formatDate($("#exp_asplayer_from_date"+i).val());
      var todate = formatDate($("#exp_asplayer_to_date"+i).val());
-
     var temp = {"designation":$("#exp_asplayer_name"+i).val(),"organisationName":$("#exp_asplayer_inst_org"+i).val(),"description":$("#exp_asplayer_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate};
       asplayerArray.push(temp);
-
   }
-
-
-  
   var ftemp = {"Education":{"formalEducation" : formalArray,"otherCertification":otherArray,"sportEducation":sportArray},"Experience":{"experienceAsPlayer":asplayerArray,"workExperience":workArray},"HeaderDetails":{"acamedy":$("#academy_name").val() ,"description":$("#description").val() ,"designation":$("#prof_name").val() ,"location":$("#location").val()}};
-
 var totalftemp = JSON.stringify(ftemp);
-
 //alert(totalftemp); 
-
 saveUserProfile(totalftemp);
-
 });
-
-</script>
-
-                
+</script>               
 <script>
       (function() {
         // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
