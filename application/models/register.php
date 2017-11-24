@@ -2018,6 +2018,27 @@ public function prof_data($userid)
    }
 }
 
+public function getMessages($id)
+ {
+	    $this->db->select('data');
+	    $this->db->from('gs_message');
+	    $this->db->where('reciever_id',$id);
+	    $this->db->order_by('date_created', 'desc');
+	    $this->db->limit('10');      
+	    $query = $this->db->get();
+	       if($query->num_rows() > 0){
+	        foreach($query->result_array() as $row){
+            $data[] = json_decode($row['data']);
+	        }
+	    return $data;   
+	 }
+else
+	{
+		return 0;
+	}
+}
+
+
 }
 
  ?>

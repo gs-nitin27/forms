@@ -49,7 +49,12 @@ public function gmaillogin()
       echo "2";
      }
 }
+public function show_profile()
+{
+   //$data = $id;
+   $this->load->view('user_profile');
 
+}
 public function newadmin()
 {
     $username = $_POST['username'];
@@ -386,6 +391,21 @@ public function editRegisterUserProfile()
 
    $this->load->view('updateRegistarUser');
 
+}
+
+public function get_coach_messages()
+{
+  $id  = $_POST['id'];
+  $this->load->model('register');
+  $msg = $this->register->getMessages($id);
+  if($msg != 0)
+  {
+    $response = array('status' =>'1' , 'data'=>$msg);
+  }else
+  {
+    $response = array('status' =>'0' , 'data'=>[]);
+  }  
+echo json_encode($response);
 }
 
 public function userprofile($str)
@@ -2204,11 +2224,16 @@ public function verifyadmin()
 function logincall()
 {
 
-            $data['middle'] = 'dashboard';
-           $this->load->view('login-callback',$data);
+  $data['middle'] = 'dashboard';
+  $this->load->view('login-callback',$data);
 
 }
 
+
+public function load_messages()
+{
+
+}
 
 public function profileimage()
 {  

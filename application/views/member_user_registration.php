@@ -130,7 +130,7 @@ body{
 
                 <div class="input-field col s4">
                 <label style='margin-left: 18%;float: right;'>
-                <a style="cursor: pointer;" class='pink-text' onclick="register1();"><b>Already registered?</b></a>
+                <a style="cursor: pointer;" class='pink-text' onclick="register();"><b>Already registered?</b></a>
                 </label>
                 </div>
                 <div class="input-field col s8">

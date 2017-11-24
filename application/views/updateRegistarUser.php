@@ -519,20 +519,28 @@ var data = JSON.stringify(data);
                             <div class="hj-logo"><img src="http://getsporty.in/img/logo.png" style="    max-width: 180px;"></div>
                         </a>
                 </li>                                
+            </ul>
+            <ul class="nav navbar-nav ml-auto flex-row ulclass">
+                <li class="nav-item">
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_profile');?>"><span class="glyphicon glyphicon-user"></a>
+                </li>                              
             </ul>       
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>">Logout</a>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>"><span class="glyphicon glyphicon-off"></a>
                 </li>                              
             </ul>
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="http://getsporty.in/">Home</a>
-                </li>                          
-            </ul>
-        </nav>
+                    <a id="link-2" class="nav-link liclass" href="javascript:void(0)" data-toggle="collapse" data-target="#message"><span class="glyphicon glyphicon-envelope" onclick="getmessage()"></span></a>
+                    <ul class="list-group collapse" id="message">
+                    </ul>
+            </nav>
         <!-- /.Navbar -->
     </header>
+
+
+    
 <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
 <div class="wrapper" style="background-color: #efefef; margin-top: 50px;">
 <div class="content-wrapper">
@@ -1355,8 +1363,50 @@ saveUserProfile(totalftemp);
 
 });
 
+function showmessage()
+{
+  if($("#message").css("display") == 'none')
+  {
+    $("#message").show();
+    $(".glyphicon glyphicon-envelope").css({"color":"#333"});
+  }
+  else
+  {
+    $("#message").hide();
+    $(".glyphicon glyphicon-envelope").css({"color":"#fff"});
+  }
+}
 
+function getmessage()
+{
+var userid = '<?php echo $userid; ?>';
+    $.ajax({
+    type: "POST",
+    url: '<?php echo site_url('forms/get_coach_messages'); ?>',
+    data: 'id='+userid,
+    dataType: "json",success:function(result){
+     if(result.status == 1)
+     {
+       var data = result.data;
+       var list = '';
+       var i = 0;
+        data.forEach(function(data){
+             i++;    
+              list += '<li class="list-group-item" style="max-height: 80px;width: 217px;"><span><b style="color:#000;float:right" >'+data.athlete_name+'</b></br><p style="color:#bbb;float:right;display: inline">'+data.athlete_no+'</p></span><img src="http://placehold.it/150x100" class="img-responsive inline-block" alt="Responsive image" style="border-radius:50%;height:50px;width:50px;margin-top: -13%"/><a href="javascript:void(0)" onclick="show_profile('+data.userid+')">view profile</a>&nbsp&nbsp<a href="javascript:void(0)" data-toggle="collapse" data-target="#message'+i+'" style="color: #000; float: right; padding: -4px 3px 0px 0px; margin-left: 8%; margin-top: -30px;glyphicon glyphicon-triangle-bottom">show message</a><li class="collapse" style="color:#fff;background-color:#000;width: 217px;" id="message'+i+'">'+data.message+'</li></li>';
+           
 
+        });
+        $("#message").html(list);
+
+     }
+     else
+     {
+      alert("0");
+     }
+    }
+  });
+
+}
 </script>
 
 
@@ -1396,5 +1446,11 @@ saveUserProfile(totalftemp);
           }
         }
       })();
+      function show_profile(id)
+      {
+
+      window.location.href = "<?php echo site_url();?>"+'/forms/show_athlete_profile/'+id;
+   
+      }
     </script>
 
