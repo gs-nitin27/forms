@@ -516,7 +516,7 @@ var data = JSON.stringify(data);
             <ul class="navbar-nav mr-auto">
                 <li class="">
                        <a class="nav-link navbar-brand" href="#bdy">
-                            <div class="hj-logo"><img src="http://getsporty.in/img/logo.png" style="    max-width: 180px;"></div>
+                            <div class="hj-logo"><img src="http://getsporty.in/img/logo.png" style="max-width: 180px;"></div>
                         </a>
                 </li>                                
             </ul>
@@ -532,7 +532,7 @@ var data = JSON.stringify(data);
             </ul>
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="javascript:void(0)" data-toggle="collapse" data-target="#message"><span class="glyphicon glyphicon-envelope" onclick="getmessage()"></span></a>
+                    <a id="link-2" class="nav-link liclass" href="javascript:void(0)" data-toggle="collapse" data-target="#message"><span class="glyphicon glyphicon-envelope" style="float:right;" onclick="getmessage()"></span></a>
                     <ul class="list-group collapse" id="message">
                     </ul>
             </nav>
