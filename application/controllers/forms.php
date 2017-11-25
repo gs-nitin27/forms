@@ -42,22 +42,45 @@ public function gmaillogin()
       $this->session->set_userdata('item',$res);
       $sessdata = $this->session->userdata('item');
        echo  "1";
-       }
-     }
+    }
+    }
     else
     {
       echo "2";
-     }
+    }
 }
-public function show_athlete_profile($id)
-{  $this->load->model('register');
+public function show_profile($id)
+{  
+   $this->load->model('register');
    $userdata = $this->register->prof_data($id);
    $use_info = $this->register->user_basic($id);
-   //user_basic($id)
    $data['user_data'] = $userdata;
    $data['user_info'] = $use_info;
-   
+   if($use_info['prof_id'] == '1' && $use_info['userType'] == '104')
+   {
    $this->load->view('athlete_profile',$data);
+   }
+   else
+   {
+   $this->load->view('user_profile',$data);
+   }
+
+}
+public function show_user_profile()
+{ /* $id = 
+   $this->load->model('register');
+   $userdata = $this->register->prof_data($id);
+   $use_info = $this->register->user_basic($id);
+   $data['user_data'] = $userdata;
+   $data['user_info'] = $use_info;
+   if($use_info['prof_id'] == '1' && $use_info['userType'] == '104')
+   {
+   $this->load->view('athlete_profile',$data);
+   }
+   else*/
+   //{
+   $this->load->view('user_profile');
+   //}
 
 }
 public function newadmin()
@@ -88,16 +111,13 @@ public function newadmin()
       { 
          $this->session->set_flashdata('error','Please give the correct  password.');
          redirect('forms/adminlogin','refresh');
-        //echo $res['message'] ='Invalid login credentials';
-       // $res['message'] ='Invalid login credentials';
-       // $this->load->view('login',$res);
       }
-  }
+    }
     }
     else {
         $this->session->set_flashdata('error','Invalid User.');
           redirect('forms/adminlogin','refresh');
-    }
+         }
 }
 
 //======================  User =====================
@@ -151,17 +171,14 @@ public function login()
       { 
       	 $this->session->set_flashdata('error','Please give the correct  password.');
          redirect('forms/index','refresh');
-      	//echo $res['message'] ='Invalid login credentials';
-       // $res['message'] ='Invalid login credentials';
-       // $this->load->view('login',$res);
       }
-  }
+     }
     }
     else {
     	  $this->session->set_flashdata('error','Invalid User.');
           redirect('forms/index','refresh');
     }
-    }
+}
 
 public function usermodule()
 {

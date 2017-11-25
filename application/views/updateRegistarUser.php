@@ -522,7 +522,7 @@ var data = JSON.stringify(data);
             </ul>
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_profile');?>"><span class="glyphicon glyphicon-user"></a>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_user_profile');?>"><span class="glyphicon glyphicon-user"></a>
                 </li>                              
             </ul>       
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
@@ -582,9 +582,6 @@ var data = JSON.stringify(data);
     </div>
     <div class="tab-content">
 <?php 
-    // $userid = "<script>document.write(localStorage.getItem('userid'));</script>";
-    // $prof_id = "<script>document.write(localStorage.getItem('prof_id'));</script>";
-    // $response = echo "<script> localStorage.getItem('testObject'); </script>";
     $data=$this->session->userdata('item');  
     $userid = $data['userid'];
     $prof_id = $data['prof_id'];
@@ -1392,7 +1389,7 @@ var userid = '<?php echo $userid; ?>';
        var i = 0;
         data.forEach(function(data){
              i++;    
-              list += '<li class="list-group-item" style="max-height: 80px;width: 217px;"><span><b style="color:#000;float:right" >'+data.athlete_name+'</b></br><p style="color:#bbb;float:right;display: inline">'+data.athlete_no+'</p></span><img src="http://placehold.it/150x100" class="img-responsive inline-block" alt="Responsive image" style="border-radius:50%;height:50px;width:50px;margin-top: -13%"/><a href="javascript:void(0)" onclick="show_profile('+data.userid+')">view profile</a>&nbsp&nbsp<a href="javascript:void(0)" data-toggle="collapse" data-target="#message'+i+'" style="color: #000; float: right; padding: -4px 3px 0px 0px; margin-left: 8%; margin-top: -30px;glyphicon glyphicon-triangle-bottom">show message</a><li class="collapse" style="color:#fff;background-color:#000;width: 217px;" id="message'+i+'">'+data.message+'</li></li>';
+              list += '<li class="list-group-item" style="max-height: 80px;width: 217px;"><span><b style="color:#000;float:right" >'+data.athlete_name+'</b></br><p style="color:#bbb;float:right;display: inline">'+data.athlete_no+'</p></span><a href="javascript:void(0)" onclick="show_profile('+data.userid+')"><img src="'+data.profileImage+'" class="img-responsive inline-block" alt="Responsive image" style="border-radius:50%;height:50px;width:50px;margin-top: -13%"/></a><a href="javascript:void(0)" onclick="show_profile('+data.userid+')">view profile</a>&nbsp&nbsp<a href="javascript:void(0)" data-toggle="collapse" data-target="#message'+i+'" style="color: #000; float: right; padding: -4px 3px 0px 0px; margin-left: 8%; margin-top: -30px;glyphicon glyphicon-triangle-bottom">show message</a><li class="collapse" style="color:#fff;background-color:#000;width: 217px;" id="message'+i+'">'+data.message+'</li></li>';
            
 
         });
@@ -1449,7 +1446,7 @@ var userid = '<?php echo $userid; ?>';
       function show_profile(id)
       {
 
-      window.location.href = "<?php echo site_url();?>"+'/forms/show_athlete_profile/'+id;
+      window.location.href = "<?php echo site_url();?>"+'/forms/show_profile/'+id;
    
       }
     </script>

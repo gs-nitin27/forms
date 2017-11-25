@@ -492,7 +492,7 @@ body{
             </ul>
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_profile');?>"><span class="glyphicon glyphicon-user"></a>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_user_profile');?>"><span class="glyphicon glyphicon-user"></a>
                 </li>                              
             </ul>       
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
@@ -508,7 +508,7 @@ body{
             </nav>
         <!-- /.Navbar -->
     </header>
-
+<br><br><br>
 
 <div class="w3-light-grey">
 <div class="w3-content w3-margin-top" style="max-width:1400px;">
@@ -582,7 +582,7 @@ body{
     <div class="w3-twothird">
 
 <?php 
-$prof_data = $this->register->prof_data(2);
+$prof_data = $this->register->prof_data($profile[0]['userid']);
 if($prof_data)
 {
 $profiledata = json_decode($prof_data['user_detail']);
