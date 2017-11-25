@@ -22,13 +22,21 @@ $user_row      = mysql_fetch_assoc($query);
 */
 $user_row      = $user_info;
 $user_image  =  $user_row['user_image'];
+if($user_image == '' || $user_image == null)
+{
+  $user_image = 'https://freedom.press/static/images/anonymous-avatar.svg';
+}
 $name        =  $user_row['name'];
 $email        =  $user_row['email'];
 $mobile_no        =  $user_row['contact_no'];
+$dob        =  $user_row['dob'];
+$location         = $user_row['location'];;
 //print_r($user_row);die;
 /*$query1        = mysql_query("SELECT * FROM `gs_userdata` WHERE userid=$userid AND prof_id=$prof_id");
 $data_row     = mysql_fetch_assoc($query1);
 */
+if($user_data != 0)
+{
 $data = json_decode($user_data['user_detail']/*$data_row['user_detail']*/);
 //print_r($data);
 $awards       = $data->Achivement->awards;
@@ -46,7 +54,7 @@ $LatestResults   = $data->LatestResults;
 
 $clubOrAcademy      = $data->Bio->clubOrAcademy;
 $coachName          = $data->Bio->coachName;
-$dob                = $data->Bio->dob;
+//$dob                = $data->Bio->dob;
 $height             = $data->Bio->height;
 $styleOrTypeOfPlay  = $data->Bio->styleOrTypeOfPlay;
 $weight             = $data->Bio->weight;
@@ -55,10 +63,10 @@ $weight             = $data->Bio->weight;
 
 $description      = $data->Header->description;
 $level            = $data->Header->level;
-$location         = $data->Header->location;
+
 $name             = $data->Header->name;
 $rank             = $data->Header->rank;
-
+}
 
 
 
@@ -78,6 +86,7 @@ $rank             = $data->Header->rank;
     
       <div class="w3-white w3-text-grey w3-card-4">
         <div class="w3-display-container">
+
           <img src="<?php echo $user_image ?>" style="width:100% " alt="Avatar">
           <div class="w3-display-bottomleft w3-container w3-text-black">
             <h2><?php echo $name ?></h2>
@@ -85,7 +94,6 @@ $rank             = $data->Header->rank;
         </div>
         <div class="w3-container">
           
-          <p><i class="fa fa-blind fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $styleOrTypeOfPlay; ?></p>
           <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $location  ?></p>
           <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $email?></p>
           <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $mobile_no ?></p>
@@ -93,8 +101,12 @@ $rank             = $data->Header->rank;
           <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-teal" aria-hidden="true"></i><?php echo $dob  ?></p>
 
           <hr>
-
+<?php if($user_data != 0)
+{
+?>
           <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Header</b></p>
+          
+          <p><i class="fa fa-blind fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $styleOrTypeOfPlay; ?></p>
           <p><?php echo $description ?></p>
           <div class="w3-light-grey w3-round-xlarge w3-small">
             <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:0%">0</div>
@@ -260,6 +272,8 @@ $score              = $LatestResults[$i]->score;
           <hr>
         </div>
 <?php
+}
+
 }
 ?>
 
