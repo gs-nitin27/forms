@@ -1,6 +1,7 @@
 <?php //print_r($user_data);//die; ?>
 <!DOCTYPE html>
 <html>
+<?php $user_row = $user_info;?>
 <title><?php echo $user_row['name']; ?></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +21,7 @@ $prof_id  = $_REQUEST['prof_id'];
 $query    = mysql_query("SELECT  *FROM `user` WHERE userid =$userid ");
 $user_row      = mysql_fetch_assoc($query);
 */
-$user_row      = $user_info;
+
 $user_image  =  $user_row['user_image'];
 if($user_image == '' || $user_image == null)
 {
