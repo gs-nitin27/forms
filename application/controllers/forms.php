@@ -49,10 +49,15 @@ public function gmaillogin()
       echo "2";
      }
 }
-public function show_profile()
-{
-   //$data = $id;
-   $this->load->view('user_profile');
+public function show_athlete_profile($id)
+{  $this->load->model('register');
+   $userdata = $this->register->prof_data($id);
+   $use_info = $this->register->user_basic($id);
+   //user_basic($id)
+   $data['user_data'] = $userdata;
+   $data['user_info'] = $use_info;
+   
+   $this->load->view('athlete_profile',$data);
 
 }
 public function newadmin()
@@ -426,10 +431,10 @@ public function admin_module_assign($str)
 }
 
 
-public function user_profile()
+/*public function user_profile()
 {
   $this->load->view('user_profile');
-}
+}*/
 //======================== End User =========================
 
 

@@ -48,6 +48,31 @@ public function adminlogin($username,$password)
   	return 0;
   }
 } 
+public function user_basic($id)
+{  
+  // print_r($username);die;	
+  $this->db->where("userid",$id);
+  $query = $this->db->get('user');
+  if($query->num_rows()>0)
+  {
+  	 $q = $query->row_array();
+  	// print_r($q);die;
+
+  	 if($q['userType'] == 104)
+  	 {
+       return $q;
+  	 }
+  	 else
+  	 {
+  	 	return 0;
+  	 }
+  }
+  else
+  {
+  	return 0;
+  }
+} 
+
 
 
 public function editRegisterUser($username,$password)
