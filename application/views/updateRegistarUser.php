@@ -533,8 +533,10 @@ var data = JSON.stringify(data);
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
                     <a id="link-2" class="nav-link liclass" href="javascript:void(0)" data-toggle="collapse" data-target="#message"><span class="glyphicon glyphicon-envelope" style="float:right;" onclick="getmessage()"></span></a>
+                    
                     <ul class="list-group collapse" id="message">
-                    </ul>
+                    <ul class="list-group message_container">
+                    </ul></ul>
             </nav>
         <!-- /.Navbar -->
     </header>
@@ -1382,24 +1384,21 @@ var userid = '<?php echo $userid; ?>';
     url: '<?php echo site_url('forms/get_coach_messages'); ?>',
     data: 'id='+userid,
     dataType: "json",success:function(result){
+      var list = '';
      if(result.status == 1)
      {
        var data = result.data;
-       var list = '';
        var i = 0;
         data.forEach(function(data){
              i++;    
               list += '<li class="list-group-item" style="max-height: 80px;width: 217px;"><span><b style="color:#000;float:right" >'+data.athlete_name+'</b></br><p style="color:#bbb;float:right;display: inline">'+data.athlete_no+'</p></span><a href="javascript:void(0)" onclick="show_profile('+data.userid+')"><img src="'+data.profileImage+'" class="img-responsive inline-block" alt="Responsive image" style="border-radius:50%;height:50px;width:50px;margin-top: -13%"/></a><a href="javascript:void(0)" onclick="show_profile('+data.userid+')">view profile</a>&nbsp&nbsp<a href="javascript:void(0)" data-toggle="collapse" data-target="#message'+i+'" style="color: #000; float: right; padding: -4px 3px 0px 0px; margin-left: 8%; margin-top: -30px;glyphicon glyphicon-triangle-bottom">show message</a><li class="collapse" style="color:#fff;background-color:#000;width: 217px;" id="message'+i+'">'+data.message+'</li></li>';
-           
-
         });
-        $("#message").html(list);
-
      }
      else
      {
-      alert("0");
+      list = '<li class="list-group-item" style="max-height: 80px;width: 217px;color:#000;text-align:center;"><span>No message</span></li>';
      }
+     $("#message").html(list);
     }
   });
 

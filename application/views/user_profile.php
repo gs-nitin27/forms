@@ -517,7 +517,7 @@ body{
       <div class="w3-third">
       <div class="w3-white w3-text-grey w3-card-4" id="fixme">
       <div class="w3-display-container">
-      <img src="https://www.w3schools.com/w3images/avatar_hat.jpg" style="width:100%" alt="Avatar">
+      <img src="<?php echo $profile[0]['user_image'];  ?>" style="width:100%" alt="Avatar">
       <div class="w3-display-bottomleft w3-container w3-text-black">
       <h2>  <?php echo $profile[0]['name']; ?></h2>
       </div>
@@ -543,7 +543,7 @@ body{
           <p class="text-muted"><?php echo $profile[0]['sport']; ?>  </p>
             <hr>
             <strong><i class="fa fa-calendar-check-o margin-r-5"></i>DOB</strong>
-            <p class="text-muted"><?php echo $profile[0]['dob']; ?> </p>
+            <p class="text-muted"><?php echo date("M jS, Y", strtotime($profile[0]['dob']));?> </p>
             <hr>
             <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
             <p>
@@ -647,7 +647,7 @@ if($profile[0]['userType'] == 103)
     <!--   <h5 class="w3-opacity"><b>Description : </b></h5><p><?php// echo $value1->description ;?></p>  -->
 
 
-      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo $value1->dateFrom; ?> -  <span class="w3-tag w3-teal w3-round"><?php echo $value1->dateTo; ?></span></h6>
+      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo date("M jS, Y", strtotime($value1->dateFrom));?> -  <span class="w3-tag w3-teal w3-round"><?php echo date("M jS, Y", strtotime($value1->dateTo));?></span></h6>
 
       <hr>
       </div>
@@ -691,8 +691,7 @@ foreach ($value as $key1 => $value1)
       <div class="w3-container">
       <h5 class="w3-opacity"><b>Name Of Award : </b></h5><p><?php echo $value1->nameOfAward; ?></p>
       <h5 class="w3-opacity"><b>Description : </b></h5><p><?php echo $value1->description; ?></p>
-      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
-        $value1->date ;?></h6>
+      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php  echo date("M jS, Y", strtotime($value1->date));?></h6>
       <hr>
       </div> 
         <?php 
@@ -714,8 +713,8 @@ foreach ($value as $key1 => $value1)
       <h5 class="w3-opacity"><b>Name Of Comptation: </b></h5><p><?php echo $value1->nameComptation; ?></p>
       <h5 class="w3-opacity"><b>Rounds : </b></h5><p><?php echo $value1->rounds; ?></p>
       <h5 class="w3-opacity"><b>Result : </b></h5><p><?php echo $value1->result; ?></p>   
-      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
-        $value1->date ;?></h6>
+      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php 
+        echo date("M jS, Y", strtotime($value1->date));?></h6>
       <hr>
       </div> 
         <?php 
@@ -755,8 +754,8 @@ foreach ($profiledata->Bio as $key => $value)
       <h5 class="w3-opacity"><b>Opponent : </b></h5><p><?php echo $value1->opponent; ?></p>
       <h5 class="w3-opacity"><b>Round : </b></h5><p><?php echo $value1->round; ?></p> 
       <h5 class="w3-opacity"><b>Score : </b></h5><p><?php echo $value1->score; ?></p>  
-      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
-        $value1->dateOfCompetation ;?></h6> 
+      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo date("M jS, Y", strtotime($value1->dateOfCompetation ))
+        ;?></h6> 
    <hr> 
       </div> 
         <?php 
