@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Getsporty</title>
 <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
  <script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
  <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
@@ -509,6 +513,8 @@ var data = JSON.stringify(data);
 });   
 }
 </script>  
+</head>
+<body>
 <header>
         <!-- Navbar -->
         <nav class="navbar fixed-top navbar-toggleable-md navbar-dark navbar-fixed-top scrolling-navbar double-nav navv">
@@ -1138,6 +1144,8 @@ var data = JSON.stringify(data);
     </div>
     </div>
     </div>
+
+</body>
     <script type="text/javascript">
         $(document).ready(function() {
         $(".btn-pref .btn").click(function () {
@@ -1450,3 +1458,5 @@ var userid = '<?php echo $userid; ?>';
       }
     </script>
 
+
+</html>

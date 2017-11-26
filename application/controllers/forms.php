@@ -3458,9 +3458,6 @@ public function searchsection()
 	$data = json_decode($_REQUEST['data']);
     $this->load->model('register');
     $res =  $this->register->searchsection($data->id);
-    
-    //print_r();
-
     if($res)
     {
         $section = explode(',', $res[0]['section']);	
@@ -3473,9 +3470,8 @@ public function searchsection()
 }
 
 public function searchagegroup()
-{
-
-	    $data = json_decode($_REQUEST['data']);
+{       
+        $data = json_decode($_REQUEST['data']);
         $this->load->model('register');
         $res =  $this->register->getstate($data->gender);
         echo json_encode($res);
@@ -3529,8 +3525,7 @@ public function updatequestion()
    {
       echo "0";
    }
-   //print_r($res);
-}
+ }
 
 
 public function getQuestions_data()

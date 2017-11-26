@@ -38,7 +38,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
   $profile = $this->register->profile($userdata['userid']); 
   // print_r($profile[0]['userType']);
   // print_r($profile);
-
+if($user_image == '' || $user_image == null)
+{
+  $user_image = 'https://freedom.press/static/images/anonymous-avatar.svg';
+}
 
 ?>
 
@@ -517,7 +520,7 @@ body{
       <div class="w3-third">
       <div class="w3-white w3-text-grey w3-card-4" id="fixme">
       <div class="w3-display-container">
-      <img src="<?php echo $profile[0]['user_image'];  ?>" style="width:100%" alt="Avatar">
+      <img src="<?php echo $user_image;  ?>" style="width:100%" alt="Avatar">
       <div class="w3-display-bottomleft w3-container w3-text-black">
       <h2>  <?php echo $profile[0]['name']; ?></h2>
       </div>
