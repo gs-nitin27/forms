@@ -3542,8 +3542,17 @@ public function getQuestions_data()
 }
 
 public function  new_registration()
-{
-	$this->load->view('member_user_registration');
+{ 
+
+    if($this->session->userdata('item'))
+    {
+      $this->editRegisterUserProfile();
+    }
+    else
+    {
+      $this->load->view('member_user_registration');
+    }
+    	
 }
 
 public function user_register()
