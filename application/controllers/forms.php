@@ -1454,8 +1454,8 @@ if($res)
     <center style="width: 100%; text-align: left;">
         <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
           <tr>
-        <td bgcolor="#5766BE">
-          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        <td bgcolor="#03a9f4">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #03a9f4; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
         </td>
             </tr>
             <tr>
@@ -1471,7 +1471,7 @@ if($res)
             </tr>
       <tr>
                 <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                    <p style="margin: 0;"><a style="color:#03a9f4;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
                 </td>
             </tr>
             <tr>
@@ -1717,8 +1717,8 @@ public function Emailfind()
     <center style="width: 100%; text-align: left;">
         <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
           <tr>
-        <td bgcolor="#5766BE">
-          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        <td bgcolor="#03a9f4">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #03a9f4; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
         </td>
             </tr>
             <tr>
@@ -1734,7 +1734,7 @@ public function Emailfind()
             </tr>
       <tr>
                 <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                    <p style="margin: 0;"><a style="color:#03a9f4;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
                 </td>
             </tr>
             <tr>
@@ -2465,8 +2465,8 @@ public function Passwordreset()
     <center style="width: 100%; text-align: left;">
         <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
           <tr>
-        <td bgcolor="#5766BE">
-          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        <td bgcolor="#03a9f4">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #03a9f4; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
         </td>
             </tr>
             <tr>
@@ -2482,7 +2482,7 @@ public function Passwordreset()
             </tr>
       <tr>
                 <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                    <p style="margin: 0;"><a style="color:#03a9f4;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
                 </td>
             </tr>
             <tr>
@@ -2708,8 +2708,8 @@ public function adminPasswordreset()
     <center style="width: 100%; text-align: left;">
         <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
           <tr>
-        <td bgcolor="#5766BE">
-          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        <td bgcolor="#03a9f4">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #03a9f4; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
         </td>
             </tr>
             <tr>
@@ -2725,7 +2725,7 @@ public function adminPasswordreset()
             </tr>
       <tr>
                 <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                    <p style="margin: 0;"><a style="color:#03a9f4;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
                 </td>
             </tr>
             <tr>
@@ -2959,8 +2959,8 @@ if($result)
     <center style="width: 100%; text-align: left;">
         <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
           <tr>
-        <td bgcolor="#5766BE">
-          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        <td bgcolor="#03a9f4">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #03a9f4; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
         </td>
             </tr>
             <tr>
@@ -2976,7 +2976,7 @@ if($result)
             </tr>
       <tr>
                 <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                    <p style="margin: 0;"><a style="color:#03a9f4;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
                 </td>
             </tr>
             <tr>
@@ -3207,8 +3207,8 @@ if($result)
     <center style="width: 100%; text-align: left;">
         <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
           <tr>
-        <td bgcolor="#5766BE">
-          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        <td bgcolor="#03a9f4">
+          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #03a9f4; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
         </td>
             </tr>
             <tr>
@@ -3224,7 +3224,7 @@ if($result)
             </tr>
       <tr>
                 <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                    <p style="margin: 0;"><a style="color:#03a9f4;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
                 </td>
             </tr>
             <tr>
@@ -3742,8 +3742,8 @@ public function sendmail($email)
     <center style="width: 100%; text-align: left;">
         <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
           <tr>
-        <td bgcolor="#5766BE">
-          <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #5766BE; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+        <td bgcolor="#03a9f4">
+          <img src="http://getsporty.in/img/logo.png" aria-hidden="true" width="180" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; background: #03a9f4; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
         </td>
             </tr>
             <tr>
@@ -3759,7 +3759,7 @@ public function sendmail($email)
             </tr>
       <tr>
           <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-          <p style="margin: 0;"><a style="color:#5766BE;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+          <p style="margin: 0;"><a style="color:#03a9f4;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
                 </td>
             </tr>
             <tr>
