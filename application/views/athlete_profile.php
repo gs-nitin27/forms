@@ -23,9 +23,14 @@ $user_row      = mysql_fetch_assoc($query);
 */
 
 $user_image  =  $user_row['user_image'];
-if($user_image == '' || $user_image == null)
+$user_gender =  $user_row['gender'];
+if(($user_image == '' || $user_image == null)  && ($user_gender != 'Female'))
 {
   $user_image = 'https://freedom.press/static/images/anonymous-avatar.svg';
+}
+else if(($user_image == '' || $user_image == null) && ($user_gender == 'Female'))
+{
+  $user_image = 'https://cdn1.rojelab.com/asset/images/avatars/404.jpg'; 
 }
 $name        =  $user_row['name'];
 $email        =  $user_row['email'];

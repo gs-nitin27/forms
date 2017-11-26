@@ -36,8 +36,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 <?php 
   $userdata = $this->session->userdata('item');
   $profile = $this->register->profile($userdata['userid']); 
-  // print_r($profile[0]['userType']);
-  // print_r($profile);
   $user_image  =  $profile[0]['user_image'];
   $user_gender =  $profile[0]['gender'];
 if(($user_image == '' || $user_image == null)  && ($user_gender != 'Female'))
