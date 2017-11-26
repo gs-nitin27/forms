@@ -39,9 +39,14 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
   // print_r($profile[0]['userType']);
   // print_r($profile);
   $user_image  =  $profile[0]['user_image'];
-if($user_image == '' || $user_image == null)
+  $user_gender =  $profile[0]['gender'];
+if(($user_image == '' || $user_image == null)  && ($user_gender != 'Female'))
 {
   $user_image = 'https://freedom.press/static/images/anonymous-avatar.svg';
+}
+else if(($user_image == '' || $user_image == null) && ($user_gender == 'Female'))
+{
+  $user_image = 'https://cdn1.rojelab.com/asset/images/avatars/404.jpg'; 
 }
 
 ?>
