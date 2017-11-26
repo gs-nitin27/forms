@@ -490,11 +490,11 @@ if(professions!=null)
                 text: 'Thank You !',
                 btnClass: 'btn-green',
                 action: function(){
-                   window.location.href ="<?php echo site_url('forms/editRegisterUserProfile');?>";
+                  // window.location.href = "https://getsporty.in/web/#/login";
                 }
             },
             close: function () {
-               window.location.href = "<?php echo site_url('forms/editRegisterUserProfile');?>";
+              // window.location.href = "https://getsporty.in/web/#/login";
             }
         }
     });
