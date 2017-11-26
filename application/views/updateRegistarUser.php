@@ -1398,7 +1398,14 @@ var userid = '<?php echo $userid; ?>';
        var data = result.data;
        var i = 0;
         data.forEach(function(data){
-             i++;    
+             if((data.profileImage == '' || data.profileImage == null)  && (data.profileImage != 'Female')){
+                        data.profileImage = 'https://freedom.press/static/images/anonymous-avatar.svg';
+                      }
+                      else if((data.profileImage == '' || data.profileImage == null) && (data.profileImage == 'Female'))
+                      {
+                        data.profileImage = 'https://cdn1.rojelab.com/asset/images/avatars/404.jpg'; 
+                      }             
+                      i++;    
               list += '<li class="list-group-item" style="max-height: 80px;width: 217px;"><span><b style="color:#000;float:right" >'+data.athlete_name+'</b></br><p style="color:#bbb;float:right;display: inline">'+data.athlete_no+'</p></span><a href="javascript:void(0)" onclick="show_profile('+data.userid+')"><img src="'+data.profileImage+'" class="img-responsive inline-block" alt="Responsive image" style="border-radius:50%;height:50px;width:50px;margin-top: -13%"/></a><a href="javascript:void(0)" onclick="show_profile('+data.userid+')">view profile</a>&nbsp&nbsp<a href="javascript:void(0)" data-toggle="collapse" data-target="#message'+i+'" style="color: #000; float: right; padding: -4px 3px 0px 0px; margin-left: 8%; margin-top: -30px;glyphicon glyphicon-triangle-bottom">show message</a><li class="collapse" style="color:#fff;background-color:#000;width: 217px;" id="message'+i+'">'+data.message+'</li></li>';
         });
      }
