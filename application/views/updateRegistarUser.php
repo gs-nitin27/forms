@@ -528,19 +528,23 @@ var data = JSON.stringify(data);
             </ul>
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_user_profile');?>"><span class="glyphicon glyphicon-user"></a>
-                </li>                              
-            </ul>       
-            <ul class="nav navbar-nav ml-auto flex-row ulclass">
-                <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>"><span class="glyphicon glyphicon-off"></a>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>"><!-- <span class="glyphicon glyphicon-off"> -->Logout</a>
                 </li>                              
             </ul>
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="javascript:void(0)" data-toggle="collapse" data-target="#message"><span class="glyphicon glyphicon-envelope" style="float:right;" onclick="getmessage()"></span></a>
-                    
-                    <ul class="list-group collapse" id="message">
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_user_profile');?>"><!-- <span class="glyphicon glyphicon-user"> -->View Profile</a>
+                </li>                              
+            </ul>       
+            <ul class="nav navbar-nav ml-auto flex-row ulclass">
+                <li class="nav-item">
+                    <a id="link-2" class="nav-link liclass" href="javascript:void(0)" data-toggle="collapse" data-target="#message" onclick="getmessage()" style="float:right;"><!-- <span class="glyphicon glyphicon-envelope" ></span> -->Messages</a></li></ul>
+                    <ul class="nav navbar-nav ml-auto flex-row ulclass">
+                <li class="nav-item">
+                    <a id="link-2" class="nav-link liclass" href="https://getsporty.in"><!-- <span class="glyphicon glyphicon-off"> -->Home</a>
+                </li>                              
+            </ul> 
+                    <ul class="list-group collapse" id="message" style="float: right; margin-top: 5%; margin-right: -23%; height: 0px;">
                     <ul class="list-group message_container">
                     </ul></ul>
             </nav>
