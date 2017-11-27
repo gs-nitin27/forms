@@ -3780,7 +3780,7 @@ public function sendmail($email)
                                    
                                     <tr>
                                         <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
-                                            <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="120" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                                            <img src="http://getsporty.in/img/logo.png" aria-hidden="true" width="120" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
                                         </td>
                                     </tr>
                                 </table>
@@ -3794,7 +3794,7 @@ public function sendmail($email)
                                         <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
                                             <ul>
                                                 <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/f.png"></a></li>
-                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="https://getsporty.in/img/logo.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="https://getsporty.in/emailimages/go.png"></a></li>
                                                 <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/ln.png"></a></li>
                                                 <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/t.png"></a></li>
                                             </ul>
