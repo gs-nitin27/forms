@@ -34,18 +34,17 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 <body class="w3-light-grey">
 
 <?php 
-  $userdata = $this->session->userdata('item');
+  $userdata = $this->session->userdata('item');//print_r($userdata);die;
   $profile = $this->register->profile($userdata['userid']); 
-  $user_image  =  $profile[0]['user_image'];
-  $user_gender =  $profile[0]['gender'];
-if(($user_image == '' || $user_image == null)  && ($user_gender != 'Female'))
-{
-  $user_image = 'https://freedom.press/static/images/anonymous-avatar.svg';
-}
-else if(($user_image == '' || $user_image == null) && ($user_gender == 'Female'))
-{
-  $user_image = 'https://cdn1.rojelab.com/asset/images/avatars/404.jpg'; 
-}
+  $userid = $userdata['userid'];
+  $profile_image = $profile[0]['user_image'];
+  if($profile_image == '' || $profile_image == null )
+  {
+    $profile_image = 'https://freedom.press/static/images/anonymous-avatar.svg';
+  }
+  // print_r($profile[0]['userType']);
+  // print_r($profile);
+
 
 ?>
 
@@ -499,21 +498,45 @@ body{
             </ul>
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_user_profile');?>"><span class="glyphicon glyphicon-user"></a>
-                </li>                              
-            </ul>       
-            <ul class="nav navbar-nav ml-auto flex-row ulclass">
-                <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>"><span class="glyphicon glyphicon-off"></a>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>"><!-- <span class="glyphicon glyphicon-off"> -->Logout</a>
                 </li>                              
             </ul>
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="javascript:void(0)" data-toggle="collapse" data-target="#message"><span class="glyphicon glyphicon-envelope" onclick="getmessage()"></span></a>
-                    <ul class="list-group collapse" id="message">
-                    </ul>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_user_profile');?>"><!-- <span class="glyphicon glyphicon-user"> -->View Profile</a>
+                </li>                              
+            </ul>       
+            <ul class="nav navbar-nav ml-auto flex-row ulclass">
+                <li class="nav-item">
+                    <a id="link-2" class="nav-link liclass" href="javascript:void(0)" data-toggle="collapse" data-target="#message" style="float:right;" onclick="getmessage()"><!-- <span></span> -->Messages</a>
+                </li>
+            </ul>
+                    <ul class="nav navbar-nav ml-auto flex-row ulclass">
+                <li class="nav-item">
+                    <a id="link-2" class="nav-link liclass" href="https://getsporty.in"><!-- <span class="glyphicon glyphicon-off"> -->Home</a>
+                </li>                              
+            </ul> 
+            <ul class="list-group collapse" id="message" style="float: right; margin-top: 5%; margin-right: -23%; height: 0px;">
+                    <ul class="list-group message_container">
+                    </ul></ul>
             </nav>
         <!-- /.Navbar -->
+        <script type="text/javascript">
+/*function showmessage()
+{
+  if($("#message").css("display") == 'none')
+  {
+    $("#message").show();
+    $(".glyphicon glyphicon-envelope").css({"color":"#333"});
+  }
+  else
+  {
+    $("#message").hide();
+    $(".glyphicon glyphicon-envelope").css({"color":"#fff"});
+  }
+}*/
+
+    </script>
     </header>
 <br><br><br>
 
@@ -524,7 +547,7 @@ body{
       <div class="w3-third">
       <div class="w3-white w3-text-grey w3-card-4" id="fixme">
       <div class="w3-display-container">
-      <img src="<?php echo $user_image  ?>" style="width:100%" alt="Avatar">
+      <img src="<?php echo $profile_image;  ?>" style="width:100%" alt="Avatar">
       <div class="w3-display-bottomleft w3-container w3-text-black">
       <h2>  <?php echo $profile[0]['name']; ?></h2>
       </div>
@@ -645,12 +668,20 @@ if($profile[0]['userType'] == 103)
       <?php
         foreach ($value as $key1 => $value1) {
 ?>
-
+       <?php  if($key != 'experienceAsPlayer'){ ?>
       <div class="w3-container">
       <h5 class="w3-opacity"><b>Organisation Name : </b></h5><p><?php echo $value1->organisationName ;?></p> 
 
       <h5 class="w3-opacity"><b>Designation : </b></h5><p><?php echo $value1->designation ;?></p> 
+     <?php }else{ ?> 
+     <div class="w3-container">
+      <h5 class="w3-opacity"><b>Tournament Name: </b></h5><p><?php echo $value1->organisationName ;?></p> 
 
+      <h5 class="w3-opacity"><b>Best Result: </b></h5><p><?php echo $value1->designation ;?></p> 
+
+      <h5 class="w3-opacity"><b>Level: </b></h5><p><?php echo $value1->description ;?></p>
+
+     <?php } ?>
     <!--   <h5 class="w3-opacity"><b>Description : </b></h5><p><?php// echo $value1->description ;?></p>  -->
 
 
@@ -796,7 +827,7 @@ foreach ($profiledata->Bio as $key => $value)
 </body>
 
 <script type="text/javascript">
-  
+
   $(document).ready(function(){
 
     var acamedy = $("#acamedy1").val();
@@ -813,7 +844,41 @@ foreach ($profiledata->Bio as $key => $value)
 
    
   });
+function getmessage()
+{
+var userid = '<?php echo $userid; ?>';
+    $.ajax({
+    type: "POST",
+    url: '<?php echo site_url('forms/get_coach_messages'); ?>',
+    data: 'id='+userid,
+    dataType: "json",success:function(result){
+      var list = '';
+     if(result.status == 1)
+     {
+       var data = result.data;
+       var i = 0;
+        data.forEach(function(data){
+             if((data.profileImage == '' || data.profileImage == null)  && (data.profileImage != 'Female')){
+                        data.profileImage = 'https://freedom.press/static/images/anonymous-avatar.svg';
+                      }
+                      else if((data.profileImage == '' || data.profileImage == null) && (data.profileImage == 'Female'))
+                      {
+                        data.profileImage = 'https://cdn1.rojelab.com/asset/images/avatars/404.jpg'; 
+                      }             
+                      i++;    
+              list += '<li class="list-group-item" style="max-height: 80px;width: 258px;"><span><b style="color:#000;float:right" >'+data.athlete_name+'</b></br><p style="color:#bbb;float:right;display: inline">'+data.athlete_no+'</p></span><a href="javascript:void(0)" onclick="show_profile('+data.userid+')"><img src="'+data.profileImage+'" class="img-responsive inline-block" alt="Responsive image" style="border-radius:50%;height:50px;width:50px;margin-top: -13%"/></a><a href="javascript:void(0)" onclick="show_profile('+data.userid+')">view profile</a>&nbsp&nbsp<a href="javascript:void(0)" data-toggle="collapse" data-target="#message'+i+'" style="color: #000; float: right; padding: -4px 3px 0px 0px; margin-left: 8%; margin-top: -30px;glyphicon glyphicon-triangle-bottom">show message</a><li class="collapse" style="color:#fff;background-color:#000;width: 217px;" id="message'+i+'">'+data.message+'</li></li>';
+        });
+     }
+     else
+     {
+      list = '<li class="list-group-item" style="max-height: 80px;width: 258px;color:#000;text-align:center;"><span>No message</span></li>';
+     }
+     $("#message").html(list);
+    }
+  });
 
+}
+    
 </script>
 
 </html>

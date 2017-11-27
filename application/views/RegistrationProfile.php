@@ -1,4 +1,7 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+<title>Getsporty</title>
  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
  <script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
  <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
@@ -438,7 +441,7 @@ body{
   font-family: 'Gillsans',sans-serif;
 }
 </style>
-
+</head>
 <script>
 
 function saveUserProfile(userjson)
@@ -533,12 +536,12 @@ var data = JSON.stringify(data);
             </ul>       
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_user_profile');?>"><span class="glyphicon glyphicon-user"></a>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_user_profile');?>"><span class="glyphicon glyphicon-user">View Profile</a>
                 </li>                              
             </ul>       
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>"><span class="glyphicon glyphicon-off"></a>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>"><span class="glyphicon glyphicon-off">Logout</a>
                 </li>                              
             </ul>
         </nav>
@@ -830,7 +833,7 @@ document.getElementById("asplayerexp").onclick = function()
 {
   var form     = document.getElementById("playerexp");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_name"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='asplayer_name'><span class='input__label-content input__label-content--hoshi'>Designation</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_inst_org"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='exp_asplayer_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution / Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_desc"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='exp_asplayer_desc'><span class='input__label-content input__label-content--hoshi'>Description</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='exp_asplayer_from_date"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_to_date"+ window.asplayerticket +"'  class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_name"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='asplayer_name'><span class='input__label-content input__label-content--hoshi'>Best Result</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_inst_org"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='exp_asplayer_inst_org'><span class='input__label-content input__label-content--hoshi'>Tournament / Competition Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_desc"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='exp_asplayer_desc'><span class='input__label-content input__label-content--hoshi'>Level</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='exp_asplayer_from_date"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_to_date"+ window.asplayerticket +"'  class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
     form.appendChild(newDiv);
     window.asplayerticket++;
 }
@@ -933,5 +936,5 @@ saveUserProfile(totalftemp);
    
 
       })();
-    </script>
+    </script></html>
     

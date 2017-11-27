@@ -67,7 +67,8 @@ public function show_profile($id)
 
 }
 public function show_user_profile()
-{ /* $id = 
+{  $sessdata = $this->session->userdata('item'); 
+   $id = $sessdata['userid'];
    $this->load->model('register');
    $userdata = $this->register->prof_data($id);
    $use_info = $this->register->user_basic($id);
@@ -77,8 +78,7 @@ public function show_user_profile()
    {
    $this->load->view('athlete_profile',$data);
    }
-   else*/
-   //{
+      //{
    $this->load->view('user_profile');
    //}
 
@@ -3563,13 +3563,14 @@ public function user_register()
   $item->email           = $data->email;
   $item->phone_no        = $data->phone_no;
   $item->forget_code     = mt_rand(1000,10000);
-  $item->dob             = $data->dob;
+ // $item->dob             = $data->dob;
   $item->sport           = $data->sport;
   $item->prof_name       = $data->prof_name;
   $item->prof_id         = $data->prof_id;
   $item->gender          = $data->gender;
   $item->access_module   = "1,2,3";
-
+  $date = explode('/', $data->dob);
+  $item->dob = $date[2].'-'.$date[1].'-'.$date[0];
 
   $this->load->model('register');
  
@@ -3592,6 +3593,8 @@ public function user_register()
       $res = $this->register->user_register($item);
       if($res)
       {
+         $resp = $this->register->user_basic($res);
+         $this->session->set_userdata('item',$resp);
          echo json_encode(array('data' =>$res , 'message' =>'User register Sucessfull'));
          $this->sendmail($data->email);
       }
@@ -3777,7 +3780,7 @@ public function sendmail($email)
                                    
                                     <tr>
                                         <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
-                                            <img src="http://getsporty.in/emailimages/logo.png" aria-hidden="true" width="120" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                                            <img src="http://getsporty.in/img/logo.png" aria-hidden="true" width="120" height="" alt="alt_text" border="0" align="center" style="margin:0 0 0 15px;height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
                                         </td>
                                     </tr>
                                 </table>
@@ -3791,7 +3794,7 @@ public function sendmail($email)
                                         <td style="font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
                                             <ul>
                                                 <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/f.png"></a></li>
-                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="https://getsporty.in/img/logo.png"></a></li>
+                                                <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="https://getsporty.in/emailimages/go.png"></a></li>
                                                 <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/ln.png"></a></li>
                                                 <li style="list-style:none;display:inline-block;"><a href=""><img style="width:30px" src="http://getsporty.in/emailimages/t.png"></a></li>
                                             </ul>
