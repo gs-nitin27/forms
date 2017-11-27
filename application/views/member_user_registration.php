@@ -1,7 +1,7 @@
 <!Doctype html>
 <html>
 <head>
-<title>Getsporty</title>
+<title>Getsporty::Register</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
