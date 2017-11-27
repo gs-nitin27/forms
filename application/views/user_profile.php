@@ -34,8 +34,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 <body class="w3-light-grey">
 
 <?php 
-  $userdata = $this->session->userdata('item');
+  $userdata = $this->session->userdata('item');//print_r($userdata);die;
   $profile = $this->register->profile($userdata['userid']); 
+  
   $profile_image = $profile[0]['user_image'];
   if($profile_image == '' || $profile_image == null )
   {

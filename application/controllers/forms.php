@@ -67,7 +67,8 @@ public function show_profile($id)
 
 }
 public function show_user_profile()
-{ /* $id = 
+{  $sessdata = $this->session->userdata('item'); 
+   $id = $sessdata['userid'];
    $this->load->model('register');
    $userdata = $this->register->prof_data($id);
    $use_info = $this->register->user_basic($id);
@@ -77,8 +78,7 @@ public function show_user_profile()
    {
    $this->load->view('athlete_profile',$data);
    }
-   else*/
-   //{
+      //{
    $this->load->view('user_profile');
    //}
 
@@ -3593,6 +3593,8 @@ public function user_register()
       $res = $this->register->user_register($item);
       if($res)
       {
+         $resp = $this->register->user_basic($res);
+         $this->session->set_userdata('item',$resp);
          echo json_encode(array('data' =>$res , 'message' =>'User register Sucessfull'));
          $this->sendmail($data->email);
       }
