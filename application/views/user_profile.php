@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Getsporty::Profile</title>
+<title></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/profile.css'); ?>">
@@ -36,16 +36,14 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 <?php 
   $userdata = $this->session->userdata('item');
   $profile = $this->register->profile($userdata['userid']); 
-  $user_image  =  $profile[0]['user_image'];
-  $user_gender =  $profile[0]['gender'];
-if(($user_image == '' || $user_image == null)  && ($user_gender != 'Female'))
-{
-  $user_image = 'https://freedom.press/static/images/anonymous-avatar.svg';
-}
-else if(($user_image == '' || $user_image == null) && ($user_gender == 'Female'))
-{
-  $user_image = 'https://cdn1.rojelab.com/asset/images/avatars/404.jpg'; 
-}
+  $profile_image = $profile[0]['user_image'];
+  if($profile_image == '' || $profile_image == null )
+  {
+    $profile_image = 'https://freedom.press/static/images/anonymous-avatar.svg';
+  }
+  // print_r($profile[0]['userType']);
+  // print_r($profile);
+
 
 ?>
 
@@ -524,7 +522,7 @@ body{
       <div class="w3-third">
       <div class="w3-white w3-text-grey w3-card-4" id="fixme">
       <div class="w3-display-container">
-      <img src="<?php echo $user_image  ?>" style="width:100%" alt="Avatar">
+      <img src="<?php echo $profile_image;  ?>" style="width:100%" alt="Avatar">
       <div class="w3-display-bottomleft w3-container w3-text-black">
       <h2>  <?php echo $profile[0]['name']; ?></h2>
       </div>
@@ -645,12 +643,20 @@ if($profile[0]['userType'] == 103)
       <?php
         foreach ($value as $key1 => $value1) {
 ?>
-
+       <?php  if($key != 'experienceAsPlayer'){ ?>
       <div class="w3-container">
       <h5 class="w3-opacity"><b>Organisation Name : </b></h5><p><?php echo $value1->organisationName ;?></p> 
 
       <h5 class="w3-opacity"><b>Designation : </b></h5><p><?php echo $value1->designation ;?></p> 
+     <?php }else{ ?> 
+     <div class="w3-container">
+      <h5 class="w3-opacity"><b>Tournament Name: </b></h5><p><?php echo $value1->organisationName ;?></p> 
 
+      <h5 class="w3-opacity"><b>Best Result: </b></h5><p><?php echo $value1->designation ;?></p> 
+
+      <h5 class="w3-opacity"><b>Level: </b></h5><p><?php echo $value1->description ;?></p>
+
+     <?php } ?>
     <!--   <h5 class="w3-opacity"><b>Description : </b></h5><p><?php// echo $value1->description ;?></p>  -->
 
 
