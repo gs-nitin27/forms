@@ -558,8 +558,10 @@ var data = JSON.stringify(data);
         <?php } else { ?>
         <img class="card-bkimg" alt="" src="<?php echo base_url('img/user.jpg');?>" alt="User profile picture">
         <?php } } ?>
-        <label for="file-upload" class="custom-file-upload" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil margin-r-5"></i></label>
+       
         </div>
+        <div class="card-info">
+         <label style="margin-left:8%;margin-bottom: 3.5%;" for="file-upload" class="custom-file-upload" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil margin-r-5" style="font-size:24px;color: black;"></i></label></div>
 
         <div class="card-info"><span class="card-title"><?php echo $value['name'];?></span></div>
       <?php if($value['prof_name']) {?>
@@ -1067,7 +1069,7 @@ saveUserProfile(totalftemp);
 
 
 <style>
-  .container{
+.container{
     margin-top:20px;
 }
 .image-preview-input {
