@@ -1377,7 +1377,7 @@ public function removetournamentimage($id,$image)
 
 public function verifyuserpassword($email,$password)
 {
-     $update = "UPDATE  `user` SET  `password` = '$password' ,`status` = '1'  WHERE `email` = '".$email."'";
+     $update = "UPDATE  `user` SET  `password` = '$password' ,`status` = '1' ,`userType` = '103' WHERE `email` = '".$email."' AND `userType` > 102";
      $query = $this->db->query($update);
      if($query)
        {

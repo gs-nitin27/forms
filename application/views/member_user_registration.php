@@ -478,8 +478,8 @@ if(professions!=null)
 
         $.confirm({
         title: 'You are Already Register With Us!',
-        content: '<h3>Please Sign In .</h3>',
-        type: 'green',
+        content: '<h3>A password generation link has been sent to your registered email Id</h3>',
+        type: 'blue',
         boxWidth: '33%',
         useBootstrap: false,
         typeAnimated: true,
