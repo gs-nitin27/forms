@@ -1,7 +1,7 @@
 <!Doctype html>
 <html>
 <head>
-<title>Getsporty</title>
+<title>Getsporty::Register</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -96,7 +96,28 @@ body{
     
 
                 <div class="row">
-                  <div id="sports1" class="input-field col s6" >
+                 <div  id="profession1" class="input-field col s6">
+      <i class="material-icons prefix"></i> 
+       <?php  $prof = $this->register->getprofession();?>
+    <select id="profession" >
+      <option value="" disabled selected>Choose your option</option>
+      <?php if(!empty($prof)){
+                        foreach($prof as $prf){?>
+       <option value ="<?php echo $prf['profession'];?>,<?php echo $prf['id'];?>"><?php echo $prf['profession'];?> </option>
+       <?php   }
+                           } 
+                         ?>
+    </select>
+    <label>Choose profession</label>
+  </div>
+                 <div class="input-field col s6">
+          
+          <input  id="dob"  type="email" class="validate datepicker"  name="dob">
+          <label for="dob" data-error="wrong" data-success="right">Date Of Birth</label>
+        </div>
+  </div>
+      <div class="row">
+      <div id="sports1" class="input-field col s6" >
                      <i class="material-icons prefix"></i> 
                       <?php  $sports = $this->register->getSport();
                                                   ?>
@@ -112,27 +133,6 @@ body{
                        </select>
                       <label>Choose sports</label>
                     </div>
-                 <div class="input-field col s6">
-          
-          <input  id="dob"  type="email" class="validate datepicker"  name="dob">
-          <label for="dob" data-error="wrong" data-success="right">Date Of Birth</label>
-        </div>
-  </div>
-      <div class="row">
-      <div  id="profession1" class="input-field col s6">
-      <i class="material-icons prefix"></i> 
-       <?php  $prof = $this->register->getprofession();?>
-    <select id="profession" >
-      <option value="" disabled selected>Choose your option</option>
-      <?php if(!empty($prof)){
-                        foreach($prof as $prf){?>
-       <option value ="<?php echo $prf['profession'];?>,<?php echo $prf['id'];?>"><?php echo $prf['profession'];?> </option>
-       <?php   }
-                           } 
-                         ?>
-    </select>
-    <label>Choose profession</label>
-  </div>
          <div id="gender1" class="input-field col s6">
      <select id="gender"  name="gender">
       <option value="" disabled selected>Choose your Gender</option>
@@ -395,7 +395,7 @@ function valname()
             $( '#dob' ).addClass('valid');
 
         }
-
+        if($('#profession :selected').val() == "Coach,2"){
         if($('#sport :selected').val() == "")
         {
              $( '#sports1 input' ).css("border-bottom","none");  
@@ -410,7 +410,7 @@ function valname()
            $( '#sports1 input' ).removeClass('invalid');
             $( '#sports1 input' ).addClass('valid');
             $( '#sports1 input' ).css("border-bottom","1px solid green");       
-        }
+        }}
 
         if($('#profession :selected').val() == "")
         {
@@ -699,6 +699,18 @@ if(professions!=null)
 $('.picker__day--infocus').click(function(){
   $('#dob').removeClass('invalid');
 });
+$('#profession').on('change',function(){
+
+var proff = $(this).val();
+var proff = proff.split(',');
+if(proff[1]!='2'){
+  $('#sports1').hide();
+  $('#gender1').css({"float":"right"})
+}else{
+  $('#sports1').show();
+}
+});
+
 </script>
 
  
