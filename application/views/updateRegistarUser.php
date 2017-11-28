@@ -567,6 +567,10 @@ var data = JSON.stringify(data);
 <div class="useravatar">
 <img class="card-bkimg" alt="" id="imm1g" src="" alt="User profile picture">
 </div>
+ <div class="card-info">
+<label style="margin-left:8%;margin-bottom: 3.5%;" for="file-upload" class="custom-file-upload" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil margin-r-5" style="font-size:24px;color:black;"></i></label></div>
+
+
 <div class="card-info" style="margin-bottom: 10px;"><span class="card-title" id="uname"></span></div>
 <div class="card-name" ><span  id="uprof"><b></b></span></div></div>
 <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
@@ -613,6 +617,56 @@ var data = JSON.stringify(data);
        {
         ?>
           <div class="tab-pane fade in active" id="tab1">
+
+           <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Upload Profile Image</h4>
+        </div>
+        <div class="modal-body">
+        
+
+         <form id="form" action="" method="post" enctype="multipart/form-data">
+            <div class="container">
+            <div class="row">    
+            <div class="col-xs-6 col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-2" style="float: left;margin-left: -1%;">
+            <div class="input-group image-preview">
+            <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+            <span class="input-group-btn">
+            <!-- image-preview-clear button -->
+            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+            <span class="glyphicon glyphicon-remove"></span> Clear
+            </button>
+            <!-- image-preview-input -->
+            <div class="btn btn-default image-preview-input">
+            <span class="glyphicon glyphicon-folder-open"></span>
+            <span class="image-preview-input-title">Browse</span>
+            <input type="file" accept="image/png, image/jpeg, image/gif" id="Nimage" name="file"/>
+            </div>
+            <input id="button" type="submit" class="btn btn-danger" value="Upload Image" name="submit">
+            </span>
+            </div>
+            </div>
+            </div>
+            </div>
+            <div class="form-group">
+            <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $userid;?>">
+            <input type="hidden" class="form-control" name="file_name"  id="file_name" value="">
+            </div>
+            </form>
+            <input type="hidden" class="form-control" name="photo" id="photo_url"> 
+            <div id="mess" hidden>Image Uploded</div>
+            <div id="mess1" style="color:red;" hidden>Please Select the Image.</div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+            
           <div class="row">
           <div class="col-md-12">
           <div class="box box-primary" style="margin-top:5%;">
@@ -1469,5 +1523,122 @@ var userid = '<?php echo $userid; ?>';
       }
     </script>
 
+<script type="text/javascript">
+  $(document).ready(function (e) {
+  $("#form").on('submit',(function(e) {  
+    var url = '<?php echo site_url();?>';
+   $('#imagelodar').show();
+    e.preventDefault();
+    $.ajax({
+      url: "<?php echo site_url('forms/profileimage');?>",
+      type: "POST",
+      data:  new FormData(this),
+      contentType: false,
+          cache: false,
+      processData:false,
+      beforeSend : function()
+      {
+        $("#err").fadeOut();
+      },
+      success: function(data)
+        {
+           $('#myModal').modal('toggle');
+            location.reload();
+           $('#imagelodar').hide();
+          
+        },
+        error: function(e) 
+        {   
+        }           
+     });
+  }));
+});
+</script>
+
+
+
+<style>
+.container{
+    margin-top:20px;
+}
+.image-preview-input {
+    position: relative;
+  overflow: hidden;
+  margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+  </style>
+  <script type="text/javascript">
+    
+    $(document).on('click', '#close-preview', function(){ 
+    $('.image-preview').popover('hide');
+    // Hover befor close the preview
+    $('.image-preview').hover(
+        function () {
+           $('.image-preview').popover('show');
+        }, 
+         function () {
+           $('.image-preview').popover('hide');
+        }
+    );    
+});
+
+$(function() {
+    var closebtn = $('<button/>', {
+        type:"button",
+        text: 'x',
+        id: 'close-preview',
+        style: 'font-size: initial;',
+    });
+    closebtn.attr("class","close pull-right");
+    $('.image-preview').popover({
+        trigger:'manual',
+        html:true,
+        title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+        content: "There's no image",
+        placement:'top'
+    });
+    $('.image-preview-clear').click(function(){
+        $('.image-preview').attr("data-content","").popover('hide');
+        $('.image-preview-filename').val("");
+        $('.image-preview-clear').hide();
+        $('.image-preview-input input:file').val("");
+        $(".image-preview-input-title").text("Browse"); 
+    });
+    $(".image-preview-input input:file").change(function (){     
+        var img = $('<img/>', {
+            id: 'dynamic',
+            width:250,
+            height:200
+        });    
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $(".image-preview-input-title").text("Change");
+            $(".image-preview-clear").show();
+            $(".image-preview-filename").val(file.name);            
+            img.attr('src', e.target.result);
+            $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+        }        
+        reader.readAsDataURL(file);
+    });  
+});
+</script>
 
 </html>

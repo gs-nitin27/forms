@@ -552,7 +552,7 @@ var data = JSON.stringify(data);
           <?php 
           if($value['user_image']) {
           ?>
-        <img class="card-bkimg" alt="" src="<?php echo base_url()."uploads/profile/".$value['user_image'];?>" alt="User profile picture">
+        <img class="card-bkimg" alt="" src="<?php echo $value['user_image'];?>" alt="User profile picture">
         <?php } else { if($value['gender'] == 'Female') { ?>
         <img class="card-bkimg" alt="" src="<?php echo base_url('img/female.jpg');?>" alt="User profile picture">
         <?php } else { ?>
@@ -585,21 +585,10 @@ var data = JSON.stringify(data);
         <div class="hidden-xs">Others</div>
         </button>
         </div>
-        <!-- <div class="btn-group" role="group">
-            <button type="button" id="basic" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                <div class="hidden-xs">Favorites</div>
-            </button>
-        </div> -->
     </div>
     <div class="tab-content">
     <div class="tab-pane fade in active" id="tab1">
   
-<!--   <label for="file-upload" class="custom-file-upload" data-toggle="modal" data-target="#myModal">
-    <i class="fa fa-pencil margin-r-5"></i>
-    </label> --> 
-
-<!-- <button type="button"  data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil margin-r-5"></i></button> -->
-
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -641,10 +630,6 @@ var data = JSON.stringify(data);
             <input type="hidden" class="form-control" name="photo" id="photo_url"> 
             <div id="mess" hidden>Image Uploded</div>
             <div id="mess1" style="color:red;" hidden>Please Select the Image.</div>
-          
-
-
-
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
