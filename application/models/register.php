@@ -346,7 +346,6 @@ public function getEventInfo($id = false)
 		// }
 		// $query = $this->db->get();
 		// $q =  $query->result_array();
-		
 		// return $q;
 }
 	
@@ -1752,7 +1751,7 @@ else {
 
 public function user_register($item)
 {
-	$insert = "INSERT `user`(`name`,`userType`,`email`,`sport`,`gender`,`dob`,`prof_id`,`prof_name`,`contact_no`,`access_module`,`forget_code`) VALUES ('$item->name','$item->userType','$item->email','$item->sport','$item->gender','$item->dob','$item->prof_id','$item->prof_name','$item->phone_no','$item->access_module','$item->forget_code')";
+	$insert = "INSERT `user`(`name`,`userType`,`email`,`sport`,`gender`,`dob`,`location`,`prof_id`,`prof_name`,`contact_no`,`access_module`,`forget_code`) VALUES ('$item->name','$item->userType','$item->email','$item->sport','$item->gender','$item->dob','$item->location','$item->prof_id','$item->prof_name','$item->phone_no','$item->access_module','$item->forget_code')";
 
 	$query = $this->db->query($insert);
 	if($query)

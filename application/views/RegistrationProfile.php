@@ -1,33 +1,31 @@
 
- <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
- <script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
- <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
+<script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/datepicker/datepicker3.css'); ?>">
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/datepicker/bootstrap-datepicker.js'); ?>"></script>
-
 <link rel="shortcut icon" href="<?php echo base_url('../favicon.ico');?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/normalize.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('fonts/font-awesome-4.2.0/css/font-awesome.min.css'); ?>" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/demo.css'); ?>" />
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/loder.css');?>">
-    <script src="<?php echo base_url('js/classie.js');?>"></script>
-
- <script type="text/javascript">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('css/normalize.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('fonts/font-awesome-4.2.0/css/font-awesome.min.css'); ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('css/demo.css'); ?>" />
+<link rel="stylesheet" href="<?php echo base_url('assets/css/loder.css');?>">
+<script src="<?php echo base_url('js/classie.js');?>"></script>
+<script type="text/javascript">
    window.sportsticket = 0;
    window.formalticket = 0;
    window.ohterticket = 0; 
    window.workexpticket =0;
    window.asplayerticket = 0; 
- </script>
+</script>
+
+
+
 <style type="text/css">
-
-
   .jconfirm-box jconfirm-hilight-shake jconfirm-type-green jconfirm-type-animated{
     margin-top : 150px; 
   }
-
  .card {
     margin-top: 20px; 
     padding: 30px;
@@ -49,11 +47,10 @@
     text-align: center;
     background-color: #fff;
     background-color: rgba(255, 255, 255, 1);
-       background-color: #efefef;
+    background-color: #efefef;
 }
 .card.hovercard .card-background {
     height: 130px;
-
 }
 .card-background img {
     -webkit-filter: blur(25px);
@@ -348,8 +345,6 @@
     border-color: #ffc107;
     outline-color: transparent;
 }
-
-
 .navv{
   max-height: 70px;
     background-color: #03a9f4;
@@ -383,7 +378,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-   
     background: transparent !important ;
 }
 .liclass:hover, .liclass:focus{
@@ -396,7 +390,6 @@
 @media (max-width: 768px){
 .navbar-nav>li>a {
     padding-top: 0px;
-    
 }
 }
 .box-footer{
@@ -432,19 +425,26 @@
 .subbtn,.subbtn:active,.subbtn:focus,.subbtn:focus:active{
       background-color: #14b0f7;
 }
-
 @font-face { font-family: GillSans; src: url('../../../font/GillSans.ttf'); } 
 body{
   font-family: 'Gillsans',sans-serif;
 }
 </style>
-
+<!-- <style type="text/css">
+  input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+</style> -->
 <script>
-
 function saveUserProfile(userjson)
 {
 $("#imagelodar").show();
-
 var data = {
 
     "id"                       : $("#uid").val(),
@@ -554,44 +554,42 @@ var data = JSON.stringify(data);
 <div class="col-lg-11 col-sm-11">
     <div class="card hovercard">
         <div class="card-background">
- 
-             
-          <!--   <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/"> -->
-            <!-- http://lorempixel.com/850/280/people/9/ -->
              <img class="card-bkimg" alt="" src="<?php echo base_url('img/background.jpg');?>" alt="User profile picture">
         </div>
         <div class="useravatar">
-            <?php 
-                    if($value['user_image']) {
-             ?>
-           <img class="card-bkimg" alt="" src="<?php echo base_url()."uploads/profile/".$value['user_image'];?>" alt="User profile picture">
-             <?php } else { if($value['gender'] == 'Female') { ?>
-                <img class="card-bkimg" alt="" src="<?php echo base_url('img/female.jpg');?>" alt="User profile picture">
-           <?php } else { ?>
-          <img class="card-bkimg" alt="" src="<?php echo base_url('img/user.jpg');?>" alt="User profile picture">
-            <?php } } ?>
+          <?php 
+          if($value['user_image']) {
+          ?>
+        <img class="card-bkimg" alt="" src="<?php echo base_url()."uploads/profile/".$value['user_image'];?>" alt="User profile picture">
+        <?php } else { if($value['gender'] == 'Female') { ?>
+        <img class="card-bkimg" alt="" src="<?php echo base_url('img/female.jpg');?>" alt="User profile picture">
+        <?php } else { ?>
+        <img class="card-bkimg" alt="" src="<?php echo base_url('img/user.jpg');?>" alt="User profile picture">
+        <?php } } ?>
+        <label for="file-upload" class="custom-file-upload" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil margin-r-5"></i></label>
         </div>
+
         <div class="card-info"><span class="card-title"><?php echo $value['name'];?></span></div>
       <?php if($value['prof_name']) {?>
          <div class="card-name" ><span ><b><?php echo $value['prof_name'];?></b></span></div>
-
          <?php }?>
     </div>
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
         <div class="btn-group" role="group">
-            <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                <div class="hidden-xs">Education</div>
-            </button>
+          <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab">
+          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+          <div class="hidden-xs">Education</div>
+          </button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                <div class="hidden-xs">Experience</div>
-            </button>
+        <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        <div class="hidden-xs">Experience</div>
+        </button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                <div class="hidden-xs">Others</div>
-            </button>
+        <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        <div class="hidden-xs">Others</div>
+        </button>
         </div>
         <!-- <div class="btn-group" role="group">
             <button type="button" id="basic" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
@@ -599,11 +597,70 @@ var data = JSON.stringify(data);
             </button>
         </div> -->
     </div>
+    <div class="tab-content">
+    <div class="tab-pane fade in active" id="tab1">
+  
+<!--   <label for="file-upload" class="custom-file-upload" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-pencil margin-r-5"></i>
+    </label> --> 
+
+<!-- <button type="button"  data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil margin-r-5"></i></button> -->
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Upload Profile Image</h4>
+        </div>
+        <div class="modal-body">
+        
+
+         <form id="form" action="" method="post" enctype="multipart/form-data">
+            <div class="container">
+            <div class="row">    
+            <div class="col-xs-6 col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-2" style="float: left;margin-left: -1%;">
+            <div class="input-group image-preview">
+            <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+            <span class="input-group-btn">
+            <!-- image-preview-clear button -->
+            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+            <span class="glyphicon glyphicon-remove"></span> Clear
+            </button>
+            <!-- image-preview-input -->
+            <div class="btn btn-default image-preview-input">
+            <span class="glyphicon glyphicon-folder-open"></span>
+            <span class="image-preview-input-title">Browse</span>
+            <input type="file" accept="image/png, image/jpeg, image/gif" id="Nimage" name="file"/>
+            </div>
+            <input id="button" type="submit" class="btn btn-danger" value="Upload Image" name="submit">
+            </span>
+            </div>
+            </div>
+            </div>
+            </div>
+            <div class="form-group">
+            <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $value['userid'];?>">
+            <input type="hidden" class="form-control" name="file_name"  id="file_name" value="">
+            </div>
+            </form>
+            <input type="hidden" class="form-control" name="photo" id="photo_url"> 
+            <div id="mess" hidden>Image Uploded</div>
+            <div id="mess1" style="color:red;" hidden>Please Select the Image.</div>
+          
 
 
-      <div class="tab-content">
-       <div class="tab-pane fade in active" id="tab1">
-           
+
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
           <div class="row">
           <div class="col-md-12">
           <div class="box box-primary" style="margin-top:5%;">
@@ -759,7 +816,7 @@ var data = JSON.stringify(data);
       </div>
       <div>
       <span class="input input--hoshi"> 
-      <input type="text" class='input__field input__field--hoshi' name="Location" id="location" >
+      <input type="text" class='input__field input__field--hoshi' value="<?php echo $value['location'];?>" name="Location" id="location" >
       <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Location</span></label>
       </span>
       </div>
@@ -934,4 +991,171 @@ saveUserProfile(totalftemp);
 
       })();
     </script>
+<!-- 
+    <script type="text/javascript">
+    function showPreview(objFileInput) {
+      alert(objFileInput)
+      hideUploadOption();
+      if (objFileInput.files[0]) {
+        var fileReader = new FileReader();
+        fileReader.onload = function (e) {
+          $("#targetLayer").html('<img src="'+e.target.result+'" width="200px" height="200px" class="upload-preview" />');
+          $("#targetLayer").css('opacity','0.7');
+          $(".icon-choose-image").css('opacity','0.5');
+        }
+        fileReader.readAsDataURL(objFileInput.files[0]);
+      }
+    }
+    function showUploadOption(){
+      alert("fdas");
+      $("#profile-upload-option").css('display','block');
+    }
+
+    function hideUploadOption(){
+      $("#profile-upload-option").css('display','none');
+    }
+
+    $(document).ready(function (e) {
+      $("#uploadForm").on('submit',(function(e) {
+        e.preventDefault();
+        $.ajax({
+          url: "upload.php",
+          type: "POST",
+          data:  new FormData(this),
+          beforeSend: function(){$("#body-overlay").show();},
+          contentType: false,
+          processData:false,
+          success: function(data)
+          {
+          $("#targetLayer").css('opacity','1');
+          setInterval(function() {$("#body-overlay").hide(); },500);
+          },
+          error: function() 
+          {
+          }           
+         });
+      }));
+    });
+    </script>
+  -->
+ 
+<script type="text/javascript">
+  $(document).ready(function (e) {
+  $("#form").on('submit',(function(e) {  
+    var url = '<?php echo site_url();?>';
+   $('#imagelodar').show();
+    e.preventDefault();
+    $.ajax({
+      url: "<?php echo site_url('forms/profileimage');?>",
+      type: "POST",
+      data:  new FormData(this),
+      contentType: false,
+          cache: false,
+      processData:false,
+      beforeSend : function()
+      {
+        $("#err").fadeOut();
+      },
+      success: function(data)
+        {
+           $('#myModal').modal('toggle');
+            location.reload();
+           $('#imagelodar').hide();
+          
+        },
+        error: function(e) 
+        {   
+        }           
+     });
+  }));
+});
+</script>
+
+
+
+<style>
+  .container{
+    margin-top:20px;
+}
+.image-preview-input {
+    position: relative;
+  overflow: hidden;
+  margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+  </style>
+  <script type="text/javascript">
+    
+    $(document).on('click', '#close-preview', function(){ 
+    $('.image-preview').popover('hide');
+    // Hover befor close the preview
+    $('.image-preview').hover(
+        function () {
+           $('.image-preview').popover('show');
+        }, 
+         function () {
+           $('.image-preview').popover('hide');
+        }
+    );    
+});
+
+$(function() {
+    var closebtn = $('<button/>', {
+        type:"button",
+        text: 'x',
+        id: 'close-preview',
+        style: 'font-size: initial;',
+    });
+    closebtn.attr("class","close pull-right");
+    $('.image-preview').popover({
+        trigger:'manual',
+        html:true,
+        title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+        content: "There's no image",
+        placement:'top'
+    });
+    $('.image-preview-clear').click(function(){
+        $('.image-preview').attr("data-content","").popover('hide');
+        $('.image-preview-filename').val("");
+        $('.image-preview-clear').hide();
+        $('.image-preview-input input:file').val("");
+        $(".image-preview-input-title").text("Browse"); 
+    });
+    $(".image-preview-input input:file").change(function (){     
+        var img = $('<img/>', {
+            id: 'dynamic',
+            width:250,
+            height:200
+        });    
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $(".image-preview-input-title").text("Change");
+            $(".image-preview-clear").show();
+            $(".image-preview-filename").val(file.name);            
+            img.attr('src', e.target.result);
+            $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+        }        
+        reader.readAsDataURL(file);
+    });  
+});
+</script>
+
+
     

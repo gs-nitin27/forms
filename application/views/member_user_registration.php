@@ -8,6 +8,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.css">
+
+
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.js"></script>
 <link href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css" rel="stylesheet" />   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
@@ -74,12 +77,24 @@ body{
           <input id="email" type="email" class="validate" >
           <label for="email">Email</label>
         </div></div>
-                 <div class="row">
+        <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">phonelink_ring</i>
           <input id="phone_no" type="number" class="validate" >
           <label for="phone_no">Phone No</label>
-        </div></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">Location</i>
+
+          <input id="location" class="validate" type="text" size="50" placeholder="Enter a location" autocomplete="on">
+          <label for="location">Location</label>
+        </div>
+      </div>
+    
+
                 <div class="row">
                   <div id="sports1" class="input-field col s6" >
                      <i class="material-icons prefix"></i> 
@@ -458,6 +473,7 @@ if(professions!=null)
     "sport"     : $("#sport").val(),
     "prof_name" : prof_name,
     "prof_id"   : prof_id,
+    'location'  : $("#location").val(),
     "gender"    : $("#gender").val()
   };
 
@@ -684,4 +700,29 @@ $('.picker__day--infocus').click(function(){
   $('#dob').removeClass('invalid');
 });
 </script>
+
+ 
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8Uo3o2e6vatJumjoa_ghLU_Xs_apoKJ4&libraries=places" type="text/javascript"></script>
+
+<script type="text/javascript">
+  
+function initialize() {
+
+ var options = {
+  types: ['(cities)'],
+  componentRestrictions: {country: "ind"}
+ };
+
+ var input = document.getElementById('location');
+ var autocomplete = new google.maps.places.Autocomplete(input, options);
+}
+
+   //function initialize() {
+    //  var input = document.getElementById('searchTextField');
+    //  var autocomplete = new google.maps.places.Autocomplete(input);
+  // }
+   google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
 </html>
+

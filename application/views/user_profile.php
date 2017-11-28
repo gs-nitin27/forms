@@ -779,41 +779,22 @@ foreach ($profiledata->Bio as $key => $value)
 </div>
 </div>
 
-<?php
-}
-?>
-          <?php 
-        }
-        else { ?>
-             
-    
+<?php } } else { ?>
   <div class="w3-container w3-card w3-white">
   <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>No Details Is Present</h2>
-       </div>
-        <?php 
-      }
-  ?>
+  </div>
+  <?php  } ?>
 </body>
-
 <script type="text/javascript">
-  
   $(document).ready(function(){
-
     var acamedy = $("#acamedy1").val();
     $("#academy").text(acamedy);
-
      var description = $("#description1").val();
     $("#description").text(description);
-
      var designation = $("#designation1").val();
     $("#designation").text(designation);
-
      var location = $("#location1").val();
     $("#location").text(location);
-
-   
   });
-
 </script>
-
 </html>

@@ -64,7 +64,7 @@ public function show_profile($id)
    {
    $this->load->view('user_profile',$data);
    }
-
+ 
 }
 public function show_user_profile()
 { /* $id = 
@@ -3567,6 +3567,7 @@ public function user_register()
   $item->sport           = $data->sport;
   $item->prof_name       = $data->prof_name;
   $item->prof_id         = $data->prof_id;
+  $item->location        = $data->location;
   $item->gender          = $data->gender;
   $item->access_module   = "1,2,3";
 
