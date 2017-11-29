@@ -216,7 +216,7 @@ var data = JSON.stringify(data);
             <?php 
                     if($value['user_image']) {
              ?>
-           <img class="card-bkimg" alt="" src="<?php echo base_url()."uploads/profile/".$value['user_image'];?>" alt="User profile picture">
+           <img class="card-bkimg" alt="" src="<?php echo $value['user_image'];?>" alt="User profile picture">
              <?php } else { if($value['gender'] == 'Female') { ?>
                 <img class="card-bkimg" alt="" src="<?php echo base_url('img/female.jpg');?>" alt="User profile picture">
            <?php } else { ?>
@@ -546,8 +546,10 @@ if($value['userType'] == 103)
       <h5 class="w3-opacity"><b>Organisation : </b></h5><p><?php echo $value1->organisation; ?></p>
       <h5 class="w3-opacity"><b>Degree : </b></h5><p><?php echo $value1->degree; ?></p>
       <h5 class="w3-opacity"><b>Stream : </b></h5><p><?php echo $value1->stream; ?></p>   
-      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
-        $value1->courseDuration ;?></h6>
+      <h6 class="w3-text-teal"><b>Date From :</b><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
+        $value1->dateFrom ;?></h6>
+      <h6 class="w3-text-teal"><b>Date To :</b><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
+        $value1->dateTo ;?></h6>
       <hr>
       </div>
 

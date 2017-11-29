@@ -46,7 +46,7 @@
             <div class="box-body box-profile">
                 
                <?php if($value['user_image']) { ?> 
-              <img class="profile-user-img img-responsive img-circle" src="<?php  echo base_url()."uploads/profile/".$value['user_image']; ?>" alt="User profile picture">
+              <img class="profile-user-img img-responsive img-circle" src="<?php echo $value['user_image'];?>" alt="User profile picture">
                  <?php } else { 
                     if($value['gender'] == 'Female') { ?>
                 <img class="profile-user-img img-responsive img-circle" src="<?php  echo base_url('img/female.jpg'); ?>" alt="User profile picture">   
