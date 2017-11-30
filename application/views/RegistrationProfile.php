@@ -646,42 +646,33 @@ var data = JSON.stringify(data);
       </div>
     </div>
   </div>
-
-
-
-          <div class="row">
-          <div class="col-md-12">
-          <div class="box box-primary" style="margin-top:5%;">
-          <div class="box-body box-profile">
-          <input type="hidden" name="userid" id="uid" value="<?php echo $value['userid']; ?>">
-
-           <div class="panel panel-primary">
-              <div class="panel-heading clearfix">
-
-              <div>
-                <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Sports Education</h4>
-                </div>
-                 <div> 
-                    <div class="box-header with-border">
-                     <div id="SportTicket" >
-                     </div>
-                     </div>
-                    </div>
-                <div class="btn-group pull-right">
-                  <input type="button" id="addSportEdu" class="btn btn-danger btn1" value="Add Sport Education" />
-                </div>
-              </div>
-    </div>
-          
-          
-
-               
-      <div class="panel panel-primary">
-      <div class="panel-heading clearfix">
-      <div>
-      <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Formal Education</h4>
-      </div>
-      <div>
+  <div class="row">
+  <div class="col-md-12">
+  <div class="box box-primary" style="margin-top:5%;">
+  <div class="box-body box-profile">
+  <input type="hidden" name="userid" id="uid" value="<?php echo $value['userid']; ?>">
+  <div class="panel panel-primary">
+  <div class="panel-heading clearfix">
+  <div>
+  <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Sports Education</h4>
+  </div>
+  <div> 
+  <div class="box-header with-border">
+  <div id="SportTicket" >
+  </div>
+  </div>
+  </div>
+  <div class="btn-group pull-right">
+  <input type="button" id="addSportEdu" class="btn btn-danger btn1" value="Add Sport Education"/>
+  </div>
+  </div>
+  </div>             
+  <div class="panel panel-primary">
+  <div class="panel-heading clearfix">
+  <div>
+  <h4 class="panel-title" style="font-weight: bold;font-size: 17px;">Formal Education</h4>
+  </div>
+  <div>
       <div class="box-header with-border">
       <div id="FormalEducation" ></div>
       </div>
@@ -693,9 +684,6 @@ var data = JSON.stringify(data);
       </div>
                
                
-          
-          
-
  <div class="panel panel-primary">
     <div class="panel-heading clearfix">
     <div>
@@ -732,6 +720,7 @@ var data = JSON.stringify(data);
       </div>
       </div>
       </div>
+      <?php if($value['prof_id'] == 2 || $value['prof_id'] == 8) {?>
       <div class="panel panel-primary">
       <div class="panel-heading clearfix">
       <div>
@@ -742,7 +731,9 @@ var data = JSON.stringify(data);
       <input type="button" id="asplayerexp" class="btn btn-danger btn1" value="Add Experience as player" />
       </div>
       </div>
-      </div>   
+      </div>  
+      <?php } ?>
+
       </div>
       </div>
       </div>      
@@ -843,7 +834,7 @@ document.getElementById("addSportEdu").onclick = function()
 {
   var form     = document.getElementById("SportTicket");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='nameofsporteducation"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='nameofsporteducation'><span class='input__label-content input__label-content--hoshi'>Name Of Sport Education</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_inst_org"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution/Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_stream_spel"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_stream_spel'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='sport_from_date"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='collapse in' id='sportedu_colaps"+ window.sportsticket +"'><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='sport_to_date"+ window.sportsticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div><div class='checkbox col-sm-10'><label><input type='checkbox' id='sportedu_cheak"+window.sportsticket+"' data-toggle='collapse' data-target='#sportedu_colaps"+ window.sportsticket +"' aria-expanded='false' aria-controls='sportedu_colaps"+ window.sportsticket +"'>Till Date</label></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='background-color: white;border-color: black;border-radius: 4px;padding: 60px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='nameofsporteducation"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='nameofsporteducation'><span class='input__label-content input__label-content--hoshi'>Name Of Sport Education</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_inst_org"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution/Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='sport_stream_spel"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='sport_stream_spel'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='sport_from_date"+ window.sportsticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='collapse in' id='sportedu_colaps"+ window.sportsticket +"'><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='sport_to_date"+ window.sportsticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div><div class='checkbox col-sm-10'><label style='color:black;'><input type='checkbox' id='sportedu_cheak"+window.sportsticket+"' data-toggle='collapse' data-target='#sportedu_colaps"+ window.sportsticket +"' aria-expanded='false' aria-controls='sportedu_colaps"+ window.sportsticket +"'>Till Date</label></div></div>"; 
     form.appendChild(newDiv);
     window.sportsticket++;
 }
@@ -851,7 +842,7 @@ document.getElementById("addSportFormal").onclick = function()
 {
   var form     = document.getElementById("FormalEducation");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='formal_education"+  window.formalticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='formal_education'><span class='input__label-content input__label-content--hoshi'>Name of Formal Education</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='formal_inst_org"+ window.formalticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='formal_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution / Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='formal_stream"+ window.formalticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='formal_stream'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='formal_from_date"+ window.formalticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='collapse in' id='formaledu_colaps"+ window.formalticket +"'><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='formal_to_date"+  window.formalticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div><div class='checkbox col-sm-10'><label style='color:black;'><input type='checkbox' id='formaledu_cheak"+ window.formalticket +"' data-toggle='collapse' data-target='#formaledu_colaps"+ window.formalticket +"' aria-expanded='false' aria-controls='formaledu_colaps"+ window.formalticket +"'>Till Date</label></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='background-color: white;border-color: black;border-radius: 4px;padding: 60px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='formal_education"+  window.formalticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='formal_education'><span class='input__label-content input__label-content--hoshi'>Name of Formal Education</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='formal_inst_org"+ window.formalticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='formal_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution / Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='formal_stream"+ window.formalticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='formal_stream'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='formal_from_date"+ window.formalticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='collapse in' id='formaledu_colaps"+ window.formalticket +"'><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='formal_to_date"+  window.formalticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div><div class='checkbox col-sm-10'><label style='color:black;'><input type='checkbox' id='formaledu_cheak"+ window.formalticket +"' data-toggle='collapse' data-target='#formaledu_colaps"+ window.formalticket +"' aria-expanded='false' aria-controls='formaledu_colaps"+ window.formalticket +"'>Till Date</label></div></div>"; 
     form.appendChild(newDiv);
     window.formalticket++;
 }
@@ -859,7 +850,7 @@ document.getElementById("addothereducation").onclick = function()
 {
   var form     = document.getElementById("OtherEducation");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='certi_name"+  window.ohterticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='certi_name'><span class='input__label-content input__label-content--hoshi'>Name of Certificate</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='certi_inst_org"+ window.ohterticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='certi_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution / Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='certi_stream"+window.ohterticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='certi_stream'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='certi_from_date"+ window.ohterticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='collapse in' id='other_colaps"+ window.ohterticket +"'><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='certi_to_date"+ window.ohterticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div><div class='checkbox col-sm-10'><label><input type='checkbox' id='otheredu_cheak"+window.ohterticket+"' data-toggle='collapse' value='1' data-target='#other_colaps"+ window.ohterticket +"' aria-expanded='false' aria-controls='other_colaps"+ window.ohterticket +"'>Till Date</label></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 60px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='certi_name"+  window.ohterticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='certi_name'><span class='input__label-content input__label-content--hoshi'>Name of Certificate</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='certi_inst_org"+ window.ohterticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='certi_inst_org'><span class='input__label-content input__label-content--hoshi'>Institution / Organisation Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='certi_stream"+window.ohterticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='certi_stream'><span class='input__label-content input__label-content--hoshi'>Stream /Specialisation</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='certi_from_date"+ window.ohterticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='collapse in' id='other_colaps"+ window.ohterticket +"'><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='certi_to_date"+ window.ohterticket +"' class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div><div class='checkbox col-sm-10'><label style='color:black;'><input type='checkbox' id='otheredu_cheak"+window.ohterticket+"' data-toggle='collapse' value='1' data-target='#other_colaps"+ window.ohterticket +"' aria-expanded='false' aria-controls='other_colaps"+ window.ohterticket +"'>Till Date</label></div></div>"; 
     form.appendChild(newDiv);
     window.ohterticket++;
 }

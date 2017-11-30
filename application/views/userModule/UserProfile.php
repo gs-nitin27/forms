@@ -176,7 +176,7 @@ var data = JSON.stringify(data);
       $profile = $this->register->profile($id); 
 
 
- //    print_r($profile);die;
+     // print_r($profile[0]['prof_id']);die;
 
      foreach ($profile as $value) 
       {
@@ -564,29 +564,46 @@ if($value['userType'] == 103)
       foreach ($profiledata->Experience as $key => $value) 
       {
       ?> 
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
+      
+      <div class="w3-container w3-card w3-white w3-margin-bottom" id="exphide">
       <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><?php echo $key;?></h2>
 
       <?php
         foreach ($value as $key1 => $value1) {
-?>
+      if($key == 'experienceAsPlayer')
+      {  
 
-      <div class="w3-container">
-      <h5 class="w3-opacity"><b>Organisation Name : </b></h5><p><?php echo $value1->organisationName ;?></p> 
+        if($profile[0]['prof_id'] == 2 || $profile[0]['prof_id'] == 8 ){
+       ?>
+      
+        
+    <div class="w3-container">
+    <h5 class="w3-opacity"><b>Organisation Name : </b></h5><p><?php echo $value1->organisationName ;?></p>
+    <h5 class="w3-opacity"><b>Designation : </b></h5><p><?php echo $value1->designation ;?></p> 
+    <h5 class="w3-opacity"><b>Description : </b></h5><p><?php echo $value1->description ;?></p> 
+    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo $value1->dateFrom; ?> -  <span class="w3-tag w3-teal w3-round"><?php echo $value1->dateTo; ?></span></h6>
+    <hr>
+    </div>
+    <?php } else{
+    ?>
+     <script type="text/javascript">
+       
+       $("#exphide").hide();
+     </script>
+  
 
-      <h5 class="w3-opacity"><b>Designation : </b></h5><p><?php echo $value1->designation ;?></p> 
-
-      <h5 class="w3-opacity"><b>Description : </b></h5><p><?php echo $value1->description ;?></p> 
-
-
-      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo $value1->dateFrom; ?> -  <span class="w3-tag w3-teal w3-round"><?php echo $value1->dateTo; ?></span></h6>
-
-      <hr>
-      </div>
-
+ <?php }  } else { ?>  
+ 
+    <div class="w3-container">
+    <h5 class="w3-opacity"><b>Organisation Name : </b></h5><p><?php echo $value1->organisationName ;?></p>
+    <h5 class="w3-opacity"><b>Designation : </b></h5><p><?php echo $value1->designation ;?></p> 
+    <h5 class="w3-opacity"><b>Description : </b></h5><p><?php echo $value1->description ;?></p> 
+    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo $value1->dateFrom; ?> -  <span class="w3-tag w3-teal w3-round"><?php echo $value1->dateTo; ?></span></h6>
+    <hr>
+    </div>
 
 <?php 
-    }
+   } }
   ?>
   </div>
   <?php 
