@@ -525,14 +525,24 @@ var data = JSON.stringify(data);
             </ul>       
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_user_profile');?>"><span class="glyphicon glyphicon-user">View Profile</a>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>"><!-- <span class="glyphicon glyphicon-off"> -->Logout</a>
+                </li>                              
+            </ul>
+            <ul class="nav navbar-nav ml-auto flex-row ulclass">
+                <li class="nav-item">
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/show_user_profile');?>"><!-- <span class="glyphicon glyphicon-user"> -->View Profile</a>
                 </li>                              
             </ul>       
             <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/guestsignout');?>"><span class="glyphicon glyphicon-off">Logout</a>
-                </li>                              
+                    <a id="link-2" class="nav-link liclass" href="javascript:void(0)" data-toggle="collapse" data-target="#message" style="float:right;" onclick="getmessage()"><!-- <span></span> -->Messages</a>
+                </li>
             </ul>
+             <ul class="nav navbar-nav ml-auto flex-row ulclass">
+                <li class="nav-item">
+                    <a id="link-2" class="nav-link liclass" href="https://getsporty.in"><!-- <span class="glyphicon glyphicon-off"> -->Home</a>
+                </li>                              
+             </ul> 
         </nav>
         <!-- /.Navbar -->
     </header>

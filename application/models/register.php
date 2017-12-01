@@ -8,18 +8,18 @@ public function login_google($username,$password)
 {
 // $where = " email = '$username'  AND password = '$password'"; 
 $this->db->where("email", $username);
-$this->db->where("google_password", $password);
+$this->db->where("password", $password);
 $qry = $this->db->get('user');
 if($qry->num_rows() > 0)
 {
-$q = $qry->row_array();
-if(($q['userType']==101 || $q['userType']==102 || $q['userType']==103 ) && $q['activeuser'])
-{
-return $q;
-}
+    $q = $qry->row_array();
+if(($q['userType']==104 || $q['userType']==103) && $q['activeuser'])
+	{
+	return $q;
+	}
 }
 else
-return 0;
+	return 0;
 }
  
 
@@ -2046,6 +2046,31 @@ public function getMessages($id)
 	        }
 	    return $data;   
 	 }
+else
+	{
+		return 0;
+	}
+}
+
+public function user_update($item,$id)
+{ $item->userType        = 103;
+  $item->name            = $data->name;
+  $item->email           = $data->email;
+  $item->phone_no        = $data->phone_no;
+  $item->forget_code     = mt_rand(1000,10000);
+ // $item->dob             = $data->dob;
+  $item->sport           = $data->sport;
+  $item->prof_name       = $data->prof_name;
+  $item->prof_id         = $data->prof_id;
+  $item->location        = $data->location;
+  $item->gender          = $data->gender;
+$update = "UPDATE `user` SET `userType` = '$item->userType', `phone_no` = '$item->phone_no', `forget_code` = '$item->forget_code', `sport` = '$item->sport', `prof_name` = '$item->prof_name' , `prof_id` = '$item->prof_id', `location` = '$item->location', `gender` = '$item->gender' WHERE `userid` = '$id'";
+
+$query = $this->db->query($update);
+if($query)
+	{
+		return $this->user_basic($id);
+	}
 else
 	{
 		return 0;

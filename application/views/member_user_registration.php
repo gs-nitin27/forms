@@ -144,12 +144,12 @@ body{
                 <div class="row">
 
                 <div class="input-field col s4">
-                <label style='margin-left: 18%;float: right;'>
+                <!-- <label style='margin-left: 18%;float: right;'>
                 <a style="cursor: pointer;" class='pink-text' onclick="register();"><b>Already registered?</b></a>
-                </label>
+                </label> -->
                 </div>
                 <div class="input-field col s8">
-                <button class="btn cyan waves-effect waves-light right" type="button"  id="save" name="action"  >REGISTER              
+                <button class="btn cyan waves-effect waves-light right" type="button"  id="save" name="action"  >SUBMIT              
                 </button>
                           </div>
                         </div>
@@ -306,6 +306,12 @@ body{
 
     
     $(document).ready(function() {
+      var userdata = JSON.parse(localStorage.getItem('userdata'));
+      if(userdata.email != '' && userdata.hasOwnProperty('email'))
+      {
+        $('#email').val(userdata.email);
+        
+      }
     $('select').material_select();
   });
     $('.datepicker').pickadate({  
@@ -395,7 +401,7 @@ function valname()
             $( '#dob' ).addClass('valid');
 
         }
-        if($('#profession :selected').val() == "Coach,2"){
+        if($('#profession :selected').val() == "Coach,2" || $('#profession :selected').val() =="Refree,8"){
         if($('#sport :selected').val() == "")
         {
              $( '#sports1 input' ).css("border-bottom","none");  
@@ -703,9 +709,9 @@ $('#profession').on('change',function(){
 
 var proff = $(this).val();
 var proff = proff.split(',');
-if(proff[1]!='2'){
+if(proff[0]!='Coach' && proff[0]!='Refree'){
   $('#sports1').hide();
-  $('#gender1').css({"float":"right"})
+  $('#gender1').css({"float":"right"});
 }else{
   $('#sports1').show();
 }

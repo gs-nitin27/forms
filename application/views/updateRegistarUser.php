@@ -594,7 +594,7 @@ var data = JSON.stringify(data);
     </div>
     <div class="tab-content">
 <?php 
-    $data=$this->session->userdata('item');  
+    $data=$this->session->userdata('useritem');  
     $userid = $data['userid'];
     $prof_id = $data['prof_id'];
      $response1=file_get_contents(API_URL.'/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);

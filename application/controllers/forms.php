@@ -34,20 +34,32 @@ public function gmaillogin()
     $password=md5($data->email);
     $this->load->model('register');
     $emailid = $this->register->Emailfind($data->email);
-    if($emailid!=" ")
-    {   
     $res = $this->register->login_google($username, $password); 
-    if($res != 0)
-    { 
-      $this->session->set_userdata('item',$res);
-      $sessdata = $this->session->userdata('item');
-       echo  "1";
-    }
-    }
-    else
-    {
-      echo "2";
-    }
+    // print_r($emailid);die;
+     if(!empty($emailid))
+     { 
+        if($emailid['prof_name']=='Athletes' || $emailid['prof_name']=='Parent')
+      {
+        $resp =   array('status'=>'3','msg'=>'Already registered as '.$emailid['prof_name'].'');
+
+      }
+        else if(($emailid['prof_name']!='Athletes' || $emailid['prof_name']!='Parent') && !empty($emailid))
+      { 
+        $this->session->set_userdata('useritem',$emailid);
+        $sessdata = $this->session->userdata('useritem');
+        $resp = array('status'=>'1','msg'=>'success');
+        //echo  "1";//die; 
+       }
+      }
+      else
+      { 
+        $resp = array('status'=>'0','msg'=>'user not registered');
+      }
+      echo json_encode($resp); 
+      
+    
+
+   
 }
 public function show_profile($id)
 {  
@@ -67,7 +79,7 @@ public function show_profile($id)
  
 }
 public function show_user_profile()
-{  $sessdata = $this->session->userdata('item'); 
+{  $sessdata = $this->session->userdata('useritem'); 
    $id = $sessdata['userid'];
    $this->load->model('register');
    $userdata = $this->register->prof_data($id);
@@ -131,11 +143,10 @@ public function editRegiterUser()
    $data = json_decode($_REQUEST['data']);
    $this->load->model('register');
    $res = $this->register->editRegisterUser($data->email,md5($data->password));
-  // print_r($res);die;
    if($res != 0)
    {
-         $this->session->set_userdata('item',$res);
-         $sessdata = $this->session->userdata('item');
+     $this->session->set_userdata('item',$res);
+     $sessdata = $this->session->userdata('item');
      echo json_encode($data = array("data" => $res));
    }
    else
@@ -2199,7 +2210,10 @@ public function adminforgotpassword()
    $this->load->view('adminforgotpassword');
 
 }
-
+public function user_login()
+{
+  $this->load->view('login');
+}
 
 public function verifyuser()
 {
@@ -3539,7 +3553,7 @@ public function getQuestions_data()
 public function  new_registration()
 { 
 
-    if($this->session->userdata('item'))
+    if($this->session->userdata('useritem'))
     {
       $this->editRegisterUserProfile();
     }
@@ -3577,7 +3591,7 @@ public function user_register()
  
   $emailid = $this->register->Emailfind($data->email);
   if($emailid)
-  {
+  {   
        $pass = $this->register->passwordfind($data->email);   
          if($pass)
           {
@@ -3586,7 +3600,24 @@ public function user_register()
            }
            else 
            {
-             echo json_encode(array('data' =>3 ,'message' =>'User is already register please loging'));    
+            if($emailid['prof_name'] != 'Parent' || $emailid['prof_name'] != 'Athletes')
+             {
+                $res = $this->register->user_update($item,$emailid['userid']);
+                if($res != 0)
+                {
+                  $this->session->set_userdata('useritem',$res);
+                  echo json_encode(array('data' =>5 ,'message' =>'You are already register with us. Please Activate your acount with mail !'));
+                  $this->sendmail($data->email);
+                }
+             }
+             else if($emailid['prof_name'] == 'Parent' || $emailid['prof_name'] == 'Athletes')
+             {
+               echo json_encode(array('data' =>3 ,'message' =>'User is already register with us as '.$email['prof_name'].''));
+             }
+             else
+             {
+              echo json_encode(array('data' =>3 ,'message' =>'User is already register please login'));
+             }//$this->sendmail($data->email);    
            }
   }
   else
@@ -3595,7 +3626,7 @@ public function user_register()
       if($res)
       {
          $resp = $this->register->user_basic($res);
-         $this->session->set_userdata('item',$resp);
+         $this->session->set_userdata('useritem',$resp);
          echo json_encode(array('data' =>$res , 'message' =>'User register Sucessfull'));
          $this->sendmail($data->email);
       }
@@ -3757,18 +3788,19 @@ public function sendmail($email)
             </tr>
             <tr>
                 <td bgcolor="#ffffff" style="padding: 0 40px 10px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to generate your password.
+                    <p style="margin: 0;">Hi,Greetings! Thanks for registering with us'./*You are just a step away from accessing your getsporty account.Just click on the link below to generate your password*/'.
+                    <br>We request you please complete your profile info, logging into your account via proffessional section on our site.
                     </p>
                 </td>
             </tr>
-      <tr>
+      './*<tr>
           <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
           <p style="margin: 0;"><a style="color:#03a9f4;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
                 </td>
-            </tr>
+            </tr>*/'
             <tr>
                 <td bgcolor="#ffffff" style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;">You will need to enter this new password whenever you sign in to your Get Sporty account in future.</p>
+                    <p style="margin: 0;">'./*You will need to enter this new password whenever you sign in to your Get Sporty account in future*/'.</p>
                 </td>
             </tr>
             <tr>

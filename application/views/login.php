@@ -14,34 +14,55 @@
    <script src="<?php echo base_url('assets/jquery-ui.min.js'); ?>"></script>
    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"></head>
-<script src="<?php echo base_url('assets/platform.js'); ?>" async defer></script>
+<script src="https://apis.google.com/js/platform.js <?php //echo base_url('assets/platform.js'); ?>" async defer></script>
 <meta name="google-signin-scope" content="profile email">
 
 <meta name="google-signin-client_id" content="628993010976-f2btnt5nhtnue8tmkn5s6hrh3h7ersfb.apps.googleusercontent.com">
-     
+ <style type="text/css">
+   .btn-google {
+    background-color: #dd4b39;
+    background-image: url(http://vagnersantana.com/social-signin-btns/img/google.svg);
+}.btn-si {
+    background-position: 1em;
+    background-repeat: no-repeat;
+    background-size: 2em;
+    border-radius: 0.5em;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    height: 4em;
+    line-height: 1em;
+    padding: 0 2em 0 4em;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+ </style>    
 
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=1012196872254220';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
  <div class="pre-loader">
         <div class="load-con" style="text-align: center;">
             <img src="<?php echo base_url('img/logo.png');?>" class="animated fadeInDown"  alt=""> 
         </div> 
     </div>
   <div class = "container">
-	<div class="wrapper" style="position:fiexd; margin-top:2%;">
-		<form action="<?php echo site_url('forms/login'); ?>" method="post" name="Login_Form" class="form-signin">  
-		  <h3 class="form-signin-heading">Sign In</h3>
-			<hr class="colorgraph"><br>
-			<input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
-			<input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
-			<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>
-		</form>		
-    <div class="container" style="background-color:#f1f1f1; text-align: center;">
-    <span class="psw"><h3>Forgot <a href="<?php echo site_url('forms/emailsearch'); ?>">password?</a></h3></span>
-  </div>
-  <!-- <div style="margin-left: 45%;">
-  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"><h3>Click to login</h3></div> -->
-  <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"><img src="<?php// echo base_url('img/google-login-button.png');?>"></div> -->
-<!-- </div> -->
+	<div class="wrapper" style="position:fixed; margin-top:2%;">
+   <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button> --><!-- <div class="fb-login-button" data-width="30" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-onsuccess="login" data-auto-logout-link="false" data-use-continue-as="true"></div> --><div class="fb-login-button" data-width="30" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-onsuccess="login"  onlogin="checkLoginState()" data-auto-logout-link="false" data-use-continue-as="true"></div>
+  <!-- <div id="status"></div><div style="margin-left: 45%;"> -->
+ 
+ <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" <h3>Click to login</h3></div> --> <br>
+<button class="g-signin2 btn-si btn-google" data-onsuccess="onSignIn" data-theme="dark" >Sign in with Google</button>
+  <!-- <button class="btn btn-lg btn-primary btn-block" data-onsuccess="onSignIn" data-theme="dark"><img src="<?php //echo base_url('img/google-login-button.png');?>"></button> --><!-- </form>  -->
+</div> 
   <div id="error_text"><h3 style="text-align: center;color: red"><?php echo $this->session->flashdata('error'); ?></h3></div>	
   <div id="test" hidden>
   <h3 style="text-align: center;color: red;">You are not authorize to loging</h3>
@@ -53,7 +74,40 @@
 </html>
 
 <script type="text/javascript">
+function checkLoginState(){
+FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });}
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    if (response.status === 'connected') {
+      testAPI();
+    } else {
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    }
+  }
+function testAPI() {
+  console.log('Welcome!  Fetching your information.... ');
+  FB.api('/me?fields=id,email,first_name,last_name',function(response) {
+        var email = response.email;
+        login(email,response)
+        console.log('Successful login for: ' + response.name);
+     //   document.getElementById('status').innerHTML = "<img src='"+response.picture.data.url+"'>";
+      }, {scope:'email'});
+  }
+
  $(document).ready(function(){
+
+/*  gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });*/
         localStorage.clear();
        // console.log(email+nitin);
        $('.g-signin2').click(function(){
@@ -62,12 +116,14 @@
       });
 </script>
 <script type="text/javascript">
-function login(emailid)
+function login(emailid,user_data)
   {
    var data1 = {
      "email"    : emailid,
-     "password" : emailid
+     "password" : emailid,
+     "data"     : user_data
      };
+     
 var url = '<?php echo site_url();?>';
 console.log(JSON.stringify(data1));
 var data = JSON.stringify(data1);
@@ -77,12 +133,19 @@ var data = JSON.stringify(data1);
     data: "data="+data,
     dataType: "text",
     success: function(result) {
-    if(result==1){
-      window.location.href = url+"/forms/home";
+      var result  = JSON.parse(result);
+      //alert(result.status);
+      if(result.status==3){
+       // alert(result.msg);
+     return;// window.location.href = url+"/forms/home";
     }
-    else 
-    {
-      $("#test").show();
+    if(result.status==1){//alert(1);
+     window.location.href = url+"/forms/new_registration";
+    }
+    else if(result.status==0) 
+    {//alert(2);//return;
+      localStorage.setItem('userdata',JSON.stringify(data1));
+     window.location.href = url+"/forms/new_registration";
     }
    }
 });
@@ -91,22 +154,50 @@ var data = JSON.stringify(data1);
 
    // alert("hii");
         var profile = googleUser.getBasicProfile();
-        //console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        //console.log('Full Name: ' + profile.getName());
-        //console.log('Given Name: ' + profile.getGivenName());
-       // console.log('Family Name: ' + profile.getFamilyName());
-       // console.log("Image URL: " + profile.getImageUrl());
-      //  console.log("Email: " + profile.getEmail());
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
+        
         if( localStorage.getItem("count") == 2)
         {
          var email = profile.getEmail();
-         login(email);
-       }
-       else
-       {
-        return false;
-       }
+         var user_data = {"name":profile.getName(),"image":profile.getImageUrl(),"Email":profile.getEmail()};
+        //alert(JSON.stringify(data2));return;
+         //localStorage.setItem('data2',data2);
+         login(email,user_data);
+         }
+         else
+         {
+          return false;
+         }
       };
+
+
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1012196872254220',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.11'
+    });
+      FB.AppEvents.logPageView();
+      FB.api('/me', function(response) {
+   });
+};
+
+(function(d, s, id){
+   // alert("dsdsssdssd");
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
 </script>
+
+
