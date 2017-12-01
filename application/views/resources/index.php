@@ -293,7 +293,6 @@ $(function() {
         style: 'font-size: initial;',
     });
     closebtn.attr("class","close pull-right");
-
     // Clear event
     $('.image-preview-clear').click(function(){
         $('.image-preview').attr("data-content","").popover('hide');

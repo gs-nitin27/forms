@@ -10,16 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
-
-
-/*#fixme {
-
-  position:fixed;
-  top:0px;
-
-}*/
 </style>
-
 <script>
 
 // $(window).scroll(function(){
@@ -646,8 +637,10 @@ if($profile[0]['userType'] == 103)
       <h5 class="w3-opacity"><b>Organisation : </b></h5><p><?php echo $value1->organisation; ?></p>
       <h5 class="w3-opacity"><b>Degree : </b></h5><p><?php echo $value1->degree; ?></p>
       <h5 class="w3-opacity"><b>Stream : </b></h5><p><?php echo $value1->stream; ?></p>   
-      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
-        $value1->courseDuration ;?></h6>
+      <h6 class="w3-text-teal">From<i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
+        $value1->dateFrom ;?></h6>
+      <h6 class="w3-text-teal">To<i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
+        $value1->dateTo ;?></h6>
       <hr>
       </div>
 
@@ -660,9 +653,10 @@ if($profile[0]['userType'] == 103)
       }
 
       foreach ($profiledata->Experience as $key => $value) 
-      {
+      { 
       ?> 
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
+
+      <div class="w3-container w3-card w3-white w3-margin-bottom" id="exphide">
       <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><?php echo $key;?></h2>
 
       <?php
@@ -671,27 +665,29 @@ if($profile[0]['userType'] == 103)
        <?php  if($key != 'experienceAsPlayer'){ ?>
       <div class="w3-container">
       <h5 class="w3-opacity"><b>Organisation Name : </b></h5><p><?php echo $value1->organisationName ;?></p> 
-
       <h5 class="w3-opacity"><b>Designation : </b></h5><p><?php echo $value1->designation ;?></p> 
-     <?php }else{ ?> 
+      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo date("M jS, Y", strtotime($value1->dateFrom));?> -  <span class="w3-tag w3-teal w3-round"><?php echo date("M jS, Y", strtotime($value1->dateTo));?></span></h6>
+      <hr>
+      </div>
+
+      <?php }else{ if($profile[0]['prof_id'] == 2 || $profile[0]['prof_id'] == 8) { ?> 
      <div class="w3-container">
       <h5 class="w3-opacity"><b>Tournament Name: </b></h5><p><?php echo $value1->organisationName ;?></p> 
 
       <h5 class="w3-opacity"><b>Best Result: </b></h5><p><?php echo $value1->designation ;?></p> 
 
       <h5 class="w3-opacity"><b>Level: </b></h5><p><?php echo $value1->description ;?></p>
-
-     <?php } ?>
-    <!--   <h5 class="w3-opacity"><b>Description : </b></h5><p><?php// echo $value1->description ;?></p>  -->
-
-
+     
       <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo date("M jS, Y", strtotime($value1->dateFrom));?> -  <span class="w3-tag w3-teal w3-round"><?php echo date("M jS, Y", strtotime($value1->dateTo));?></span></h6>
 
       <hr>
       </div>
-
-
-<?php 
+    <?php }else{ 
+     ?>
+     <script type="text/javascript">
+      $("#exphide").hide(); 
+     </script>
+<?php }  } 
     }
   ?>
   </div>

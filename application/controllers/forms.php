@@ -2273,9 +2273,6 @@ public function load_messages()
 
 public function profileimage()
 {  
-        // print_r($_FILES);
-       //  die;
-         
 
            $userid=$_POST['id'];
 
@@ -2319,9 +2316,11 @@ public function profileimage()
             $out_image=file_get_contents($resize_image);   
 //=================================end image size fix ==================================================
           // print_r($newfilename); //die;
+              
+              $imageUrl = base_url()."uploads/profile/".$newfilename;
 
              $this->load->model('register');
-             $this->register->profileimage($userid,$newfilename);
+             $this->register->profileimage($userid,$imageUrl);
 
             $this->session->set_userdata('user_image', $newfilename);
             
