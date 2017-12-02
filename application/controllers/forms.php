@@ -3550,11 +3550,19 @@ public function getQuestions_data()
 }
 
 public function  new_registration()
-{ 
+{  $data = $this->session->userdata('useritem');
 
-    if($this->session->userdata('useritem'))
-    {
-      $this->editRegisterUserProfile();
+    if($data)
+    { 
+      if($data['prof_name'] == '')
+      {
+        $this->load->view('member_user_registration');   
+      }
+      else
+      {
+        $this->editRegisterUserProfile();
+
+      }
     }
     else
     {
@@ -3588,36 +3596,48 @@ public function user_register()
 
   $this->load->model('register');
  
-  $emailid = $this->register->Emailfind($data->email);
-  if($emailid)
-  {   
-       $pass = $this->register->passwordfind($data->email);   
-         if($pass)
-          {
-            echo json_encode(array('data' =>4 ,'message' =>'You are already register with us. Please Activate your acount with mail !'));
-            $this->sendmail($data->email);
-           }
-           else 
-           {
-            if($emailid['prof_name'] != 'Parent' || $emailid['prof_name'] != 'Athletes')
-             {
-                $res = $this->register->user_update($item,$emailid['userid']);
-                if($res != 0)
-                {
-                  $this->session->set_userdata('useritem',$res);
-                  echo json_encode(array('data' =>5 ,'message' =>'You are already register with us. Please Activate your acount with mail !'));
-                  $this->sendmail($data->email);
-                }
-             }
-             else if($emailid['prof_name'] == 'Parent' || $emailid['prof_name'] == 'Athletes')
-             {
-               echo json_encode(array('data' =>3 ,'message' =>'User is already register with us as '.$email['prof_name'].''));
-             }
-             else
-             {
-              echo json_encode(array('data' =>3 ,'message' =>'User is already register please login'));
-             }//$this->sendmail($data->email);    
-           }
+  //$emailid = $this->register->Emailfind($data->email);
+  $session_data = $this->session->userdata('useritem');
+  if($session_data)
+  {    
+       $res = $this->register->user_update($item,$session_data['userid']); 
+        if($res)
+      {
+
+        echo json_encode(array('data' =>$res , 'message' =>'User info sucessfully updated'));
+         $this->sendmail($data->email);
+      }
+      else
+      {
+       echo json_encode(array('data' => 0,'message' => 'Info not updated' ));
+      }
+       // $pass = $this->register->passwordfind($data->email);   
+       //   if($pass)
+       //    {
+       //      echo json_encode(array('data' =>4 ,'message' =>'You are already register with us. Please Activate your acount with mail !'));
+       //      $this->sendmail($data->email);
+       //     }
+       //     else 
+       //     {
+       //      if($emailid['prof_name'] != 'Parent' || $emailid['prof_name'] != 'Athletes')
+       //       {
+       //          $res = $this->register->user_update($item,$emailid['userid']);
+       //          if($res != 0)
+       //          {
+       //            $this->session->set_userdata('useritem',$res);
+       //            echo json_encode(array('data' =>5 ,'message' =>'You are already register with us. Please Activate your acount with mail !'));
+       //            $this->sendmail($data->email);
+       //          }
+       //       }
+       //       else if($emailid['prof_name'] == 'Parent' || $emailid['prof_name'] == 'Athletes')
+       //       {
+       //         echo json_encode(array('data' =>3 ,'message' =>'User is already register with us as '.$email['prof_name'].''));
+       //       }
+       //       else
+       //       {
+       //        echo json_encode(array('data' =>3 ,'message' =>'User is already register please login'));
+       //       }//$this->sendmail($data->email);    
+       //     }
   }
   else
   {

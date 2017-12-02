@@ -603,7 +603,6 @@ var data = JSON.stringify(data);
     $prof_id = $data['prof_id'];
      $response1=file_get_contents(API_URL.'/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
      $pdata = json_decode($response1);
-//print_r($pdata);
      $temp = 0;
     if($pdata)
     {

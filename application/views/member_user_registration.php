@@ -48,6 +48,30 @@ body{
 }
 </style>
 <body style="background-color: #03a9f4">
+<?php
+if($data=$this->session->userdata('useritem'))
+{
+  ?>
+
+<script type="text/javascript">
+  var userdata = '<?php echo json_encode($data); ?>';
+  userdata = JSON.parse(userdata);
+  //alert(userdata.name);
+  $(document).ready(function(){
+   $('#name').val(userdata.name);
+   $('#email').val(userdata.email);
+   if(userdata.email != '')
+   {
+    $('#email').attr("disabled", true)
+   }
+   $('#phone_no').val(userdata.contact_no);
+  });
+</script>
+
+<?php
+}
+
+ ?>
  <div class="section"></div>
  <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
   <main>
@@ -310,7 +334,10 @@ body{
       if(userdata.email != '' && userdata.hasOwnProperty('email'))
       {
         $('#email').val(userdata.email);
-        
+        if(userdata.email != '')
+         {
+          $('#email').attr("disabled", true)
+         }
       }
     $('select').material_select();
   });

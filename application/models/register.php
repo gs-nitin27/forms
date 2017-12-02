@@ -2053,28 +2053,19 @@ else
 }
 
 public function user_update($item,$id)
-{ $item->userType        = 103;
-  $item->name            = $data->name;
-  $item->email           = $data->email;
-  $item->phone_no        = $data->phone_no;
-  $item->forget_code     = mt_rand(1000,10000);
- // $item->dob             = $data->dob;
-  $item->sport           = $data->sport;
-  $item->prof_name       = $data->prof_name;
-  $item->prof_id         = $data->prof_id;
-  $item->location        = $data->location;
-  $item->gender          = $data->gender;
-$update = "UPDATE `user` SET `userType` = '$item->userType', `phone_no` = '$item->phone_no', `forget_code` = '$item->forget_code', `sport` = '$item->sport', `prof_name` = '$item->prof_name' , `prof_id` = '$item->prof_id', `location` = '$item->location', `gender` = '$item->gender' WHERE `userid` = '$id'";
+{ 
+ $update = "UPDATE `user` SET `name` = '$item->name' , `userType` = '$item->userType',`email`='$item->email',`sport` = '$item->sport',`gender`='$item->gender',`dob`='$item->dob',`location`='$item->location',`prof_id`='$item->prof_id'             ,`prof_name`= '$item->prof_name',`contact_no` = '$item->phone_no',`access_module`='$item->access_module',`forget_code` = '$item->forget_code' ,`date_updated` = CURDATE() WHERE `email` = '$item->email' AND `userid` = '$id'";
+ $query = $this->db->query($update);
+	if($query)
+	{
+	  // $id = mysql_insert_id();	 
+      return $id;
+	}
+	else
+	{ 
+      return 0;
+	}
 
-$query = $this->db->query($update);
-if($query)
-	{
-		return $this->user_basic($id);
-	}
-else
-	{
-		return 0;
-	}
 }
 
 

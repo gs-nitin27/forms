@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start();
+
+ ?>
 
 <!DOCTYPE html>
 <html>
@@ -74,6 +76,7 @@
 </html>
 
 <script type="text/javascript">
+var app_id = '<?php echo FACEBOOK_APP_ID; ?>';
 function checkLoginState(){
 FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
@@ -136,10 +139,11 @@ var data = JSON.stringify(data1);
       var result  = JSON.parse(result);
       //alert(result.status);
       if(result.status==3){
-       // alert(result.msg);
+       alert(result.msg);
      return;// window.location.href = url+"/forms/home";
     }
     if(result.status==1){//alert(1);
+      localStorage.setItem('userdata',JSON.stringify(data1));
      window.location.href = url+"/forms/new_registration";
     }
     else if(result.status==0) 
@@ -180,7 +184,7 @@ var data = JSON.stringify(data1);
 
 window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1012196872254220',
+      appId      : "'"+app_id+"'",
       cookie     : true,
       xfbml      : true,
       version    : 'v2.11'
