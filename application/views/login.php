@@ -94,6 +94,8 @@ border: 0.5px solid #ccc;
 
 <script type="text/javascript">
 var app_id = '<?php echo FACEBOOK_APP_ID; ?>';
+var app_version = '<?php echo FACEBOOK_VERSION; ?>';
+
 function checkLoginState(){
 FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
@@ -204,7 +206,7 @@ window.fbAsyncInit = function() {
       appId      : "'"+app_id+"'",
       cookie     : true,
       xfbml      : true,
-      version    : 'v2.11'
+      version    : "'"+app_version+"'"
     });
       FB.AppEvents.logPageView();
       FB.api('/me', function(response) {
