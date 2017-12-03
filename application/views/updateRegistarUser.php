@@ -1205,14 +1205,14 @@ if($value56->tillDate == '1')
         </div>
         <div>
         <span class="input input--hoshi">
-        <input type="text" class='input__field input__field--hoshi' name="Location" id="location" value="<?php echo $arrayvalue->age_group_coached;?>">
+        <input type="text" class='input__field input__field--hoshi' name="age-group" id="age-group" value="<?php echo $arrayvalue->age_group_coached;?>">
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Age Group Coached</span></label>
         </span>
         </div>
         <div>
         <span class="input input--hoshi">       
-        <input type="text" class='input__field input__field--hoshi'  name="Location" id="location" value="<?php echo $arrayvalue->languages_known;?>">
-        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Languages Known</span></label>
+        <input type="text" class='input__field input__field--hoshi'  name="language" id="language" value="<?php echo $arrayvalue->languages_known;?>">
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Languages Known</span><button type="button" id="prof_language" class="btn btn-danger" style="float:right" onclick="update_info(this.id)" hidden>Add Language</button></label>
         <input type="hidden" class='input__field input__field--hoshi'  name="Location" id="prof_name" value="<?php echo $arrayvalue->prof_name;?>">
         <input type="hidden" class='input__field input__field--hoshi'  name="Location" id="user_image" value="<?php echo $arrayvalue->user_image;?>">
         <input type="hidden" name="userid" id="uid" value="<?php echo $arrayvalue->userid;?>">
@@ -1251,7 +1251,12 @@ if($value56->tillDate == '1')
         $(".btn-pref .btn").click(function () {
         $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
     // $(".tab").addClass("active"); // instead of this do the below 
-        $(this).removeClass("btn-default").addClass("btn-primary");   
+        $(this).removeClass("btn-default").addClass("btn-primary"); 
+        if($('#language').val() == '')
+        {
+          $('#prof_language').show();
+        }
+     
 });
 if($("#user_image").val())
 {
@@ -1462,7 +1467,7 @@ for(var i =0; i <window.workexpticket; i++)
     // var totalworkArray = JSON.stringify(workArray);
     // var totalasplayerArray = JSON.stringify(asplayerArray);
 
-  var ftemp = {"Education":{"formalEducation" : formalArray,"otherCertification":otherArray,"sportEducation":sportArray},"Experience":{"experienceAsPlayer":asplayerArray,"workExperience":workArray},"HeaderDetails":{"acamedy":$("#academy_name").val() ,"description":$("#designation").val() ,"designation":$("#prof_name").val() ,"location":$("#location1").val()}};
+  var ftemp = {"Education":{"formalEducation" : formalArray,"otherCertification":otherArray,"sportEducation":sportArray},"Experience":{"experienceAsPlayer":asplayerArray,"workExperience":workArray},"HeaderDetails":{"acamedy":$("#academy_name").val() ,"description":$("#designation").val() ,"designation":$("#prof_name").val() ,"location":$("#location1").val(),"age-group":$("#age-group").val(),"language":$("#language").val()}};
 
 var totalftemp = JSON.stringify(ftemp);
 
@@ -1595,6 +1600,12 @@ var userid = '<?php echo $userid; ?>';
      });
   }));
 });
+
+  $('#language').on('focus',function(){
+   
+    $('#prof_language').text('Submit');
+
+  });
 </script>
 
 
@@ -1681,6 +1692,12 @@ $(function() {
         reader.readAsDataURL(file);
     });  
 });
+
+function update_info(id)
+{
+  alert(id);
+}
+
 </script>
 
 </html>

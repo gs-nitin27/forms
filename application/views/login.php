@@ -39,7 +39,20 @@
     text-decoration: none;
     transition: all 0.5s;
 }
+.social_login{
+border: 0.5px solid #ccc;
+    padding: 28px 27px 21px 37px;
+    /* align-items: center; */
+    /* float: inherit; */
+    /* vertical-align: middle; */
+    /* margin-left: 0%; */
+    position: relative;
+    left: 130%;
+
+
+}
  </style>    
+
 
 <body>
 <div id="fb-root"></div>
@@ -52,17 +65,21 @@
 }(document, 'script', 'facebook-jssdk'));</script>
  <div class="pre-loader">
         <div class="load-con" style="text-align: center;">
-            <img src="<?php echo base_url('img/logo.png');?>" class="animated fadeInDown"  alt=""> 
+            <img src="<?php echo base_url('img/logo.png');?>" class="animated fadeInDown" style="width: 296px;height: auto;" alt=""> 
         </div> 
     </div>
   <div class = "container">
 	<div class="wrapper" style="position:fixed; margin-top:2%;">
    <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button> --><!-- <div class="fb-login-button" data-width="30" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-onsuccess="login" data-auto-logout-link="false" data-use-continue-as="true"></div> --><div class="fb-login-button" data-width="30" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-onsuccess="login"  onlogin="checkLoginState()" data-auto-logout-link="false" data-use-continue-as="true"></div>
+</fb:login-button> --><!-- <div class="fb-login-button" data-width="30" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-onsuccess="login" data-auto-logout-link="false" data-use-continue-as="true"></div> --><!-- <div class="fb-login-button" data-width="30" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="true" data-onsuccess="login"  onlogin="checkLoginState()" data-auto-logout-link="false" data-use-continue-as="true"></div> -->
   <!-- <div id="status"></div><div style="margin-left: 45%;"> -->
- 
- <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" <h3>Click to login</h3></div> --> <br>
-<button class="g-signin2 btn-si btn-google" data-onsuccess="onSignIn" data-theme="dark" >Sign in with Google</button>
+ <div class="social_login"><!-- <button class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true" onlogin="checkLoginState()" style="min-width:254px;"></button> --><div class="fb-login-button" data-width="254" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState()"></div><!-- </div> -->
+ <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" <h3>Click to login</h3></div> --> <br><br><br>
+<button class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="width:254px;">Sign in with Google</button></div>
+
+<!-- <button type="button" class="btn btn-gplus"><i class="fa fa-google-plus left"></i> Google +</button>
+<button type="button" class="btn btn-fb"><i class="fa fa-facebook left"></i> Facebook</button> -->
+
   <!-- <button class="btn btn-lg btn-primary btn-block" data-onsuccess="onSignIn" data-theme="dark"><img src="<?php //echo base_url('img/google-login-button.png');?>"></button> --><!-- </form>  -->
 </div> 
   <div id="error_text"><h3 style="text-align: center;color: red"><?php echo $this->session->flashdata('error'); ?></h3></div>	
