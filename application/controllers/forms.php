@@ -4107,5 +4107,28 @@ public function user_register_byAdmin()
   }
 
 }
+
+public function update_profile_info()
+{
+  $record = $_REQUEST['data'];
+  $data = $this->session->userdata('useritem');
+  if($data)
+    { $userid = $data['userid']; 
+      $req  = $this->load->model('register');
+      $resp = $this->register->update_user_profile($record,$userid);
+      if($resp == 1)
+      {
+        $response = array('status' => $resp,'msg'=> 'record updated' );
+      }else
+      {
+        $response = array('status' => $resp,'msg'=> 'record not updated' );
+      } 
+    }else
+    {
+      $response = array('status' => 0,'msg'=> 'Invaid user' );
+    }
+    echo json_encode($response);
+}
+
 }
 

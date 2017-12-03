@@ -2068,6 +2068,21 @@ public function user_update($item,$id)
 
 }
 
+public function update_user_profile($record,$userid)
+{
+  //echo "UPDATE `user` SET ".$record." WHERE `userid` = ".$userid;die;
+  $update = "UPDATE `user` SET ".$record." WHERE `userid` = ".$userid;
+  $query = $this->db->query($update);
+	if($query)
+	{
+	  return 1;
+	}
+	else
+	{ 
+      return 0;
+	}
+}
+
 
 }
 
