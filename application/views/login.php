@@ -19,7 +19,7 @@
 <script src="https://apis.google.com/js/platform.js <?php //echo base_url('assets/platform.js'); ?>" async defer></script>
 <meta name="google-signin-scope" content="profile email">
 
-<meta name="google-signin-client_id" content="628993010976-f2btnt5nhtnue8tmkn5s6hrh3h7ersfb.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="<?php echo GOOGLE_APP_ID; ?>">
  <style type="text/css">
    .btn-google {
     background-color: #dd4b39;
