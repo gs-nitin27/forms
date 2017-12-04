@@ -545,7 +545,7 @@ var data = JSON.stringify(data);
                     <a id="link-2" class="nav-link liclass" href="javascript:void(0)" data-toggle="collapse" data-target="#message" onclick="getmessage()" style="float:right;"><!-- <span class="glyphicon glyphicon-envelope" ></span> -->Messages</a></li></ul>
                     <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="https://getsporty.in"><!-- <span class="glyphicon glyphicon-off"> -->Home</a>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/editRegisterUserProfile'); ?>"><!-- <span class="glyphicon glyphicon-off"> -->Home</a>
                 </li>                              
             </ul> 
                     <ul class="list-group collapse" id="message" style="float: right; margin-top: 5%; margin-right: -23%; height: 0px;">
@@ -1126,7 +1126,7 @@ if($value56->tillDate == '1')
         <div>
         <span class="input input--hoshi">
         <input type="text" class='input__field input__field--hoshi' name="acamedy" id="academy_name" value="<?php echo $arrayvalue->acamedy;?>" >
-        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="acamedy"><span class="input__label-content input__label-content--hoshi">Acamedy</span></label>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="acamedy"><span class="input__label-content input__label-content--hoshi">Academy</span></label>
         </span>
         </div>
         <div>

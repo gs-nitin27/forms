@@ -517,7 +517,7 @@ var data = JSON.stringify(data);
             <!-- Breadcrumb-->
             <ul class="navbar-nav mr-auto">
                 <li class="">
-                       <a class="nav-link navbar-brand" href="#bdy">
+                       <a class="nav-link navbar-brand" href="https://getsporty.in">
                             <div class="hj-logo"><img src="http://getsporty.in/img/logo.png" style="    max-width: 180px;"></div>
                         </a>
                 </li>                                
@@ -539,7 +539,7 @@ var data = JSON.stringify(data);
             </ul>
              <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="https://getsporty.in"><!-- <span class="glyphicon glyphicon-off"> -->Home</a>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/editRegisterUserProfile'); ?>"><!-- <span class="glyphicon glyphicon-off"> -->Home</a>
                 </li>                              
              </ul> 
         </nav>
