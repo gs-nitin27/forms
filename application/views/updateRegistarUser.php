@@ -525,7 +525,7 @@ var data = JSON.stringify(data);
             <!-- Breadcrumb-->
             <ul class="navbar-nav mr-auto">
                 <li class="">
-                       <a class="nav-link navbar-brand" href="#bdy">
+                       <a class="nav-link navbar-brand" href="https://getsporty.in">
                             <div class="hj-logo"><img src="http://getsporty.in/img/logo.png" style="max-width: 180px;"></div>
                         </a>
                 </li>                                
