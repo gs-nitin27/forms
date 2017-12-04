@@ -1209,13 +1209,14 @@ if($value56->tillDate == '1')
         </div>
         <div>
         <span class="input input--hoshi">
+        <button type="button" id="age_group_coached" class="btn btn-danger" style="float:right" onclick="update_info(this.id)">Add Age-group</button> 
         <input type="text" class='input__field input__field--hoshi' name="age-group" id="age-group" value="<?php echo $arrayvalue->age_group_coached;?>">
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Age Group Coached</span></label>
         </span>
         </div>
         <div>
         <span class="input input--hoshi"> 
-        <button type="button" id="languages_known" class="btn btn-danger" style="float:right" onclick="update_info(this.id)" hidden>Add Language</button>      
+        <button type="button" id="languages_known" class="btn btn-danger" style="float:right" onclick="update_info(this.id)">Add Language</button>      
         <input type="text" class='input__field input__field--hoshi'  name="language" id="language" value="<?php echo $arrayvalue->languages_known;?>">
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Languages Known</span></label>
         <input type="hidden" class='input__field input__field--hoshi'  name="Location" id="prof_name" value="<?php echo $arrayvalue->prof_name;?>">
@@ -1611,6 +1612,11 @@ var userid = '<?php echo $userid; ?>';
     $('#languages_known').text('Submit');
 
   });
+   $('#age-group').on('focus',function(){
+   
+    $('#age_group_coached').text('Submit');
+
+  });
 </script>
 
 
@@ -1699,13 +1705,17 @@ $(function() {
 });
 
 function update_info(id)
-{
-  if(id = 'languages_known')
+{  var value = '';
+  if(id == 'languages_known')
   {
-     var value = $('#language').val();
+    value  = $('#language').val();
+  }
+  else if(id == 'age_group_coached')
+  {
+    value  = $('#age-group').val();
   }
   data = "`"+id+"`='"+value+"'";
-  $.ajax({
+    $.ajax({
       url: "<?php echo site_url('forms/update_profile_info');?>",
       type: "POST",
       data:  "data="+data,
@@ -1725,7 +1735,7 @@ function update_info(id)
            $('#myModal').modal('toggle');
            if(data.status == 1)
            {
-            $('#'+id).hide();
+            $('#'+id).text('update');
            }
           
         },
