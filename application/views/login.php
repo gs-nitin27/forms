@@ -60,7 +60,7 @@ border: 0.5px solid #ccc;
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=1012196872254220';
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=<?php echo FACEBOOK_APP_ID; ?>';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
  <div class="pre-loader">
@@ -120,8 +120,6 @@ function testAPI() {
   }
 
  $(document).ready(function(){
-var app_id = '<?php echo FACEBOOK_APP_ID; ?>';
-alert(app_id);
 /*  gapi.signin2.render('my-signin2', {
         'scope': 'profile email',
         'width': 240,
