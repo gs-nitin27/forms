@@ -1,3 +1,6 @@
+<?php if(!$this->session->userdata('useritem'))
+{header("Location: https://getsporty.in");
+  }?>
 <!DOCTYPE html>
 <html>
 <title>Getsporty::Profile</title>
