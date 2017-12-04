@@ -678,7 +678,7 @@ if($profile[0]['userType'] == 103)
 
       <h5 class="w3-opacity"><b>Level: </b></h5><p><?php echo $value1->description ;?></p>
      
-      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo date("M jS, Y", strtotime($value1->dateFrom));?> -  <span class="w3-tag w3-teal w3-round"><?php echo date("M jS, Y", strtotime($value1->dateTo));?></span></h6>
+      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo date("M jS, Y", strtotime($value1->dateFrom));?><!--  -  <span class="w3-tag w3-teal w3-round"> --><?php //echo date("M jS, Y", strtotime($value1->dateTo));?><!-- /span> --></h6>
 
       <hr>
       </div>

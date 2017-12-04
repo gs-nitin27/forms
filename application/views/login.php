@@ -158,7 +158,7 @@ var data = JSON.stringify(data1);
       //alert(result.status);
       if(result.status==3){
        alert(result.msg);
-     return;// window.location.href = url+"/forms/home";
+     /*return;*/window.location.href = 'https://play.google.com/store/apps/details?id=getsportylite.darkhoprsesport.com.getsportylite&hl=en';//url+"/forms/home";
     }
     if(result.status==1){//alert(1);
       localStorage.setItem('userdata',JSON.stringify(data1));
