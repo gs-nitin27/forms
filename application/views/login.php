@@ -120,7 +120,8 @@ function testAPI() {
   }
 
  $(document).ready(function(){
-
+var app_id = '<?php echo FACEBOOK_APP_ID; ?>';
+alert(app_id);
 /*  gapi.signin2.render('my-signin2', {
         'scope': 'profile email',
         'width': 240,
