@@ -666,7 +666,7 @@ if($profile[0]['userType'] == 103)
       <div class="w3-container">
       <h5 class="w3-opacity"><b>Organisation Name : </b></h5><p><?php echo $value1->organisationName ;?></p> 
       <h5 class="w3-opacity"><b>Designation : </b></h5><p><?php echo $value1->designation ;?></p> 
-      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo date("M jS, Y", strtotime($value1->dateFrom));?> -  <span class="w3-tag w3-teal w3-round"><?php echo date("M jS, Y", strtotime($value1->dateTo));?></span></h6>
+      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo date("M jS, Y", strtotime($value1->dateFrom));?> -  <span class="w3-tag w3-teal w3-round"><?php if($value1->tillDate !== '1'){echo date("M jS, Y", strtotime($value1->dateTo));}else{echo $value1->dateTo;};?></span></h6>
       <hr>
       </div>
 
