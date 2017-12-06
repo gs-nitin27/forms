@@ -525,7 +525,7 @@ var data = JSON.stringify(data);
             <!-- Breadcrumb-->
             <ul class="navbar-nav mr-auto">
                 <li class="">
-                       <a class="nav-link navbar-brand" href="#bdy">
+                       <a class="nav-link navbar-brand" href="https://getsporty.in">
                             <div class="hj-logo"><img src="http://getsporty.in/img/logo.png" style="max-width: 180px;"></div>
                         </a>
                 </li>                                
@@ -545,7 +545,7 @@ var data = JSON.stringify(data);
                     <a id="link-2" class="nav-link liclass" href="javascript:void(0)" data-toggle="collapse" data-target="#message" onclick="getmessage()" style="float:right;"><!-- <span class="glyphicon glyphicon-envelope" ></span> -->Messages</a></li></ul>
                     <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="https://getsporty.in"><!-- <span class="glyphicon glyphicon-off"> -->Home</a>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/editRegisterUserProfile'); ?>"><!-- <span class="glyphicon glyphicon-off"> -->Home</a>
                 </li>                              
             </ul> 
                     <ul class="list-group collapse" id="message" style="float: right; margin-top: 5%; margin-right: -23%; height: 0px;">
@@ -968,23 +968,23 @@ if($value56->tillDate == '1')
                 <div>
                 <span class="input input--hoshi">
                 <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'exp_asplayer_name'.$j;?>" value="<?php echo $value56->designation;?>" placeholder='Designation'>
-                <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for='asplayer_name'><span class="input__label-content input__label-content--hoshi">Designation</span></label>
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for='asplayer_name'><span class="input__label-content input__label-content--hoshi">Best results</span></label>
                 </span>
                 </div>
                 <div>
                 <span class="input input--hoshi">
                 <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'exp_asplayer_inst_org'.$j;?>" value="<?php echo $value56->organisationName;?>" placeholder='Institution / Organisation Name'>
-                <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for='exp_asplayer_inst_org'><span class="input__label-content input__label-content--hoshi">Institution / Organisation Name </span></label>
+                <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for='exp_asplayer_inst_org'><span class="input__label-content input__label-content--hoshi">Tournament / Competetion Name </span></label>
                 </span>
                 </div> 
                 <div>
                 <span class="input input--hoshi">
                 <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'exp_asplayer_desc'.$j;?>" value="<?php echo $value56->description;?>" placeholder='Description'>
-                 <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for='exp_asplayer_desc'><span class="input__label-content input__label-content--hoshi">Description</span></label>
+                 <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for='exp_asplayer_desc'><span class="input__label-content input__label-content--hoshi">Level</span></label>
                 </span>
                 </div>
 
-                <label  style="margin:7px;font-weight: 100;"   for='link'>Period</label>
+                <label  style="margin:7px;font-weight: 100;"   for='link'>Date</label>
                 <div>  </div>
                
                 <div class='input-group date'  style="margin:5px; overflow: hidden;" data-provide='datepicker'>
@@ -992,7 +992,7 @@ if($value56->tillDate == '1')
                  <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">From</span></label>
                 <div class='input-group-addon'  style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span></div>
                 </div>
-                <div class='input-group date'  style="margin:5px; overflow: hidden;" data-provide='datepicker'>
+                <div class='input-group date'  style="margin:5px; overflow: hidden;display: none;" data-provide='datepicker'>
                 <input type='text' class='input__field input__field--hoshi' id="<?php echo 'exp_asplayer_to_date'.$j;?>" value="<?php echo $value56->dateTo;?>" class='form-control'>
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
                 <div class='input-group-addon'  style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span></div></div>
@@ -1141,7 +1141,7 @@ if($value56->tillDate == '1')
         <div>
         <span class="input input--hoshi">
         <input type="text" class='input__field input__field--hoshi' name="acamedy" id="academy_name" value="<?php echo $arrayvalue->acamedy;?>" >
-        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="acamedy"><span class="input__label-content input__label-content--hoshi">Acamedy</span></label>
+        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="acamedy"><span class="input__label-content input__label-content--hoshi">Academy</span></label>
         </span>
         </div>
         <div>
@@ -1224,13 +1224,14 @@ if($value56->tillDate == '1')
         </div>
         <div>
         <span class="input input--hoshi">
+        <button type="button" id="age_group_coached" class="btn btn-danger" style="float:right" onclick="update_info(this.id)">Add Age-group</button> 
         <input type="text" class='input__field input__field--hoshi' name="age-group" id="age-group" value="<?php echo $arrayvalue->age_group_coached;?>">
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Age Group Coached</span></label>
         </span>
         </div>
         <div>
         <span class="input input--hoshi"> 
-        <button type="button" id="languages_known" class="btn btn-danger" style="float:right" onclick="update_info(this.id)" hidden>Add Language</button>      
+        <button type="button" id="languages_known" class="btn btn-danger" style="float:right" onclick="update_info(this.id)">Add Language</button>      
         <input type="text" class='input__field input__field--hoshi'  name="language" id="language" value="<?php echo $arrayvalue->languages_known;?>">
         <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="location"><span class="input__label-content input__label-content--hoshi">Languages Known</span></label>
         <input type="hidden" class='input__field input__field--hoshi'  name="Location" id="prof_name" value="<?php echo $arrayvalue->prof_name;?>">
@@ -1333,7 +1334,7 @@ document.getElementById("asplayerexp").onclick = function()
 {
   var form     = document.getElementById("playerexp");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_name"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='asplayer_name'><span class='input__label-content input__label-content--hoshi'>Best Result</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_inst_org"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='exp_asplayer_inst_org'><span class='input__label-content input__label-content--hoshi'>Tournament / Competetition Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_desc"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='exp_asplayer_desc'><span class='input__label-content input__label-content--hoshi'>Level</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Period</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='exp_asplayer_from_date"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_to_date"+ window.asplayerticket +"'  class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_name"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='asplayer_name'><span class='input__label-content input__label-content--hoshi'>Best Result</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_inst_org"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='exp_asplayer_inst_org'><span class='input__label-content input__label-content--hoshi'>Tournament / Competetition Name</span></label></span></div><div><span class='input input--hoshi'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_desc"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='exp_asplayer_desc'><span class='input__label-content input__label-content--hoshi'>Level</span></label></span></div><label style='margin:7px;color: #333;font-weight: 100;'  for='link'>Date</label><div></div><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi'   id='exp_asplayer_from_date"+ window.asplayerticket +"'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>From</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div><div class='input-group date' style='margin:5px; overflow: hidden;display:none;' data-provide='datepicker'><input type='text' class='input__field input__field--hoshi' id='exp_asplayer_to_date"+ window.asplayerticket +"'  class='form-control'><label class='input__label input__label--hoshi input__label--hoshi-color-1' for='from_period'><span class='input__label-content input__label-content--hoshi'>To</span></label><div style='background-color: transparent;border: none;' class='input-group-addon'><span class='glyphicon glyphicon-th'></span></div></div></div>"; 
     form.appendChild(newDiv);
     window.asplayerticket++;
 }
@@ -1628,6 +1629,11 @@ var userid = '<?php echo $userid; ?>';
     $('#languages_known').text('Submit');
 
   });
+   $('#age-group').on('focus',function(){
+   
+    $('#age_group_coached').text('Submit');
+
+  });
 </script>
 
 
@@ -1716,13 +1722,17 @@ $(function() {
 });
 
 function update_info(id)
-{
-  if(id = 'languages_known')
+{  var value = '';
+  if(id == 'languages_known')
   {
-     var value = $('#language').val();
+    value  = $('#language').val();
+  }
+  else if(id == 'age_group_coached')
+  {
+    value  = $('#age-group').val();
   }
   data = "`"+id+"`='"+value+"'";
-  $.ajax({
+    $.ajax({
       url: "<?php echo site_url('forms/update_profile_info');?>",
       type: "POST",
       data:  "data="+data,
@@ -1742,7 +1752,7 @@ function update_info(id)
            $('#myModal').modal('toggle');
            if(data.status == 1)
            {
-            $('#'+id).hide();
+            $('#'+id).text('update');
            }
           
         },

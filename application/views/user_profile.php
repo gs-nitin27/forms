@@ -1,3 +1,6 @@
+<?php if(!$this->session->userdata('useritem'))
+{header("Location: https://getsporty.in");
+  }?>
 <!DOCTYPE html>
 <html>
 <title>Getsporty::Profile</title>
@@ -482,7 +485,7 @@ body{
             <!-- Breadcrumb-->
             <ul class="navbar-nav mr-auto">
                 <li class="">
-                       <a class="nav-link navbar-brand" href="<?php echo site_url('forms/editRegisterUserProfile');?>">
+                       <a class="nav-link navbar-brand" href="https://getsporty.in">
                             <div class="hj-logo"><img src="http://getsporty.in/img/logo.png" style="max-width: 180px;"></div>
                         </a>
                 </li>                                
@@ -504,7 +507,7 @@ body{
             </ul>
                     <ul class="nav navbar-nav ml-auto flex-row ulclass">
                 <li class="nav-item">
-                    <a id="link-2" class="nav-link liclass" href="https://getsporty.in"><!-- <span class="glyphicon glyphicon-off"> -->Home</a>
+                    <a id="link-2" class="nav-link liclass" href="<?php echo site_url('forms/editRegisterUserProfile'); ?>"><!-- <span class="glyphicon glyphicon-off"> -->Home</a>
                 </li>                              
             </ul> 
             <ul class="list-group collapse" id="message" style="float: right; margin-top: 5%; margin-right: -23%; height: 0px;">
@@ -678,7 +681,7 @@ if($profile[0]['userType'] == 103)
 
       <h5 class="w3-opacity"><b>Level: </b></h5><p><?php echo $value1->description ;?></p>
      
-      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo date("M jS, Y", strtotime($value1->dateFrom));?> -  <span class="w3-tag w3-teal w3-round"><?php echo date("M jS, Y", strtotime($value1->dateTo));?></span></h6>
+      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo date("M jS, Y", strtotime($value1->dateFrom));?><!--  -  <span class="w3-tag w3-teal w3-round"> --><?php //echo date("M jS, Y", strtotime($value1->dateTo));?><!-- /span> --></h6>
 
       <hr>
       </div>
