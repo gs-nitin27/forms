@@ -1482,7 +1482,7 @@ for(var i =0; i <window.workexpticket; i++)
     {
      var todate = '';
     }
-    var temp = {"designation":$("#exp_asplayer_name"+i).val(),"organisationName":$("#exp_asplayer_inst_org"+i).val(),"description":$("#exp_asplayer_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate};
+    var temp = {"designation":$("#exp_asplayer_name"+i).val(),"organisationName":$("#exp_asplayer_inst_org"+i).val(),"description":$("#exp_asplayer_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate,"tillDate":'0'};
       asplayerArray.push(temp);
   }
 

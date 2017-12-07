@@ -975,7 +975,7 @@ for(var i =0; i <window.asplayerticket; i++)
 {
   var fromdate = formatDate($("#exp_asplayer_from_date"+i).val());
   var todate = formatDate($("#exp_asplayer_to_date"+i).val());
-  var temp = {"designation":$("#exp_asplayer_name"+i).val(),"organisationName":$("#exp_asplayer_inst_org"+i).val(),"description":$("#exp_asplayer_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate};
+  var temp = {"designation":$("#exp_asplayer_name"+i).val(),"organisationName":$("#exp_asplayer_inst_org"+i).val(),"description":$("#exp_asplayer_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate,"tillDate":'0'};
       asplayerArray.push(temp);
   }
   var ftemp = {"Education":{"formalEducation" : formalArray,"otherCertification":otherArray,"sportEducation":sportArray},"Experience":{"experienceAsPlayer":asplayerArray,"workExperience":workArray},"HeaderDetails":{"acamedy":$("#academy_name").val() ,"description":$("#description").val() ,"designation":$("#prof_name").val() ,"location":$("#location").val()}};
