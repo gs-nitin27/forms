@@ -75,8 +75,8 @@ border: 0.5px solid #ccc;
   <!-- <div id="status"></div><div style="margin-left: 45%;"> -->
  <div class="social_login"><!-- <button class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true" onlogin="checkLoginState()" style="min-width:254px;"></button> --><div class="fb-login-button" data-width="254" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState()"></div><!-- </div> -->
  <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" <h3>Click to login</h3></div> --> <br><br><br>
-<button class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="width:254px;">Sign in with Google</button></div>
-
+<!-- <button class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="width:254px;">Sign in with Google</button></div> -->
+<div class="g-signin2" data-onsuccess="onSignIn" style="width:254px;"></div>
 <!-- <button type="button" class="btn btn-gplus"><i class="fa fa-google-plus left"></i> Google +</button>
 <button type="button" class="btn btn-fb"><i class="fa fa-facebook left"></i> Facebook</button> -->
 

@@ -1041,11 +1041,12 @@ if($value56->tillDate == '1')
                 <div class='input-group-addon'  style="background-color: transparent;border: none;">
                 <span class='glyphicon glyphicon-th'></span></div>
                 </div>
+                <div class='collapse in' id='<?php echo 'workexp_colaps'.$j;?>'>
                 <div class='input-group date' style="margin:5px; overflow: hidden;" data-provide='datepicker'>
                 <input type='text' class='input__field input__field--hoshi'  id="<?php echo 'work_to_date'.$j;?>" value="<?php echo $value56->dateTo;?>" class='form-control'>
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for='from_period'><span class="input__label-content input__label-content--hoshi">To</span></label>
                 <div class='input-group-addon'  style="background-color: transparent;border: none;"><span class='glyphicon glyphicon-th'></span>
-                </div></div><div class='checkbox col-sm-10'><label><input type='checkbox' id='<?php echo 'workexp_cheak'.$i;?>' data-toggle='collapse' data-target='<?php echo '#workexp_colaps'.$i;?>' aria-expanded='false' aria-controls='collapse3rdParty'>Till Date</label></div></div>
+                </div></div></div><div class='checkbox col-sm-10'><label><input type='checkbox' id='<?php echo 'workexp_cheak'.$j;?>' data-toggle='collapse' data-target='<?php echo '#workexp_colaps'.$j;?>' aria-expanded='false' aria-controls='collapse3rdParty'>Till Date</label></div></div>
                     
                      
                     <?php
@@ -1054,6 +1055,7 @@ if($value56->tillDate == '1')
                     {
                     ?>
                     <script type="text/javascript">
+                    //alert('#workexp_cheak'+ workexpticket);
                      $('#workexp_cheak'+ workexpticket).prop('checked', true);
                      $("#work_to_date" + workexpticket).val('');
                      $("#workexp_colaps"+workexpticket).attr('class','collapse'); 
