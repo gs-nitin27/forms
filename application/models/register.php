@@ -2001,7 +2001,7 @@ public function Registration_userdata($item)
         'userid' => $item->id,
         'prof_id' =>$item->prof_id,
         'user_detail' => $item->userdata,
-        'created_date'=>'CURDATE()'
+        'created_date'=> date("Y-m-d")
         );	
   
    $sql = $this->db->insert('gs_userdata', $data);
@@ -2011,7 +2011,7 @@ public function Registration_userdata($item)
     $data = array(
         'prof_id' =>$item->prof_id,
         'user_detail' => $item->userdata,
-        'updated_date'=>'CURDATE()'
+        'updated_date'=> date("Y-m-d")
         );	 
    
     $sql = $this->db->where('userid', $item->id);
