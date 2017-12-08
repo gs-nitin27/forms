@@ -1992,11 +1992,32 @@ public function sendNotification($registration_ids, $message,$google_api)
 }
 
 public function Registration_userdata($item)
-{
-   $insert = "INSERT `gs_userdata`(`userid`,`prof_id`,`user_detail`,`created_date`) VALUES('$item->id','$item->prof_id','$item->userdata',CURDATE()) ON DUPLICATE KEY UPDATE `user_detail` = '$item->userdata',`updated_date` = CURDATE() ";
-
-	$query = $this->db->query($insert);
-	if($query)
+{ 
+   
+   $data = $this->prof_data($item->id);
+   if($data == 0)
+   {
+   $data = array(
+        'userid' => $item->id,
+        'prof_id' =>$item->prof_id,
+        'user_detail' => $item->userdata,
+        'created_date'=>'CURDATE()'
+        );	
+  
+   $sql = $this->db->insert('gs_userdata', $data);
+   }
+   else
+   {
+    $data = array(
+        'prof_id' =>$item->prof_id,
+        'user_detail' => $item->userdata,
+        'updated_date'=>'CURDATE()'
+        );	 
+   
+    $sql = $this->db->where('userid', $item->id);
+           $this->db->update('gs_userdata', $data);
+    }
+	if($sql)
 	{
       return 1;
 	}
