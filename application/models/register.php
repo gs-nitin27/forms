@@ -1993,7 +1993,7 @@ public function sendNotification($registration_ids, $message,$google_api)
 
 public function Registration_userdata($item)
 { 
-   
+   //print_r($item->id);die;
    $data = $this->prof_data($item->id);
    if($data == 0)
    {

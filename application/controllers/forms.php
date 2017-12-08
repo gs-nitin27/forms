@@ -4041,18 +4041,19 @@ public function contentangular()
 
 public function Registration_userdata()
 {
-
+//print_r($_REQUEST);die;
 $data2 = json_decode($_REQUEST['data']);
-$item  = new stdClass(); 
-
 //print_r($data2);die;
+// $item  = new stdClass(); 
 
-$item->id                    = $data2->id;
-$item->userdata              = $data2->userdata;
-$item->prof_id               = $data2->prof_id;
+// //print_r($item);die;
+
+// $item->id                    = $data2['data'];
+// $item->userdata              = $data2['userdata'];
+// $item->prof_id               = $data2['prof_id'];
 
 $this->load->model('register');
-$res = $this->register->Registration_userdata($item);
+$res = $this->register->Registration_userdata($data2);
 
 if($res)
 {
