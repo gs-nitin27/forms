@@ -1,6 +1,7 @@
-<?php session_start();
-
- ?>
+<?php if($this->session->userdata('useritem'))
+{header("Location: editRegisterUserProfile");
+  }
+   ?>
 
 <!DOCTYPE html>
 <html>
