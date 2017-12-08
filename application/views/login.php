@@ -1,7 +1,6 @@
-<?php if(!$this->session->userdata('useritem'))
-{header("Location: https://getsporty.in");
-  }
-   ?>
+<?php session_start();
+
+ ?>
 
 <!DOCTYPE html>
 <html>
