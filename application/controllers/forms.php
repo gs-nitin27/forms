@@ -420,8 +420,8 @@ public function registrationprofile($str)
 
 public function editRegisterUserProfile()
 {
-   // $data = array('id' => $str);
 
+    //print_r($this->session->userdata('useritem'));die;
    $this->load->view('updateRegistarUser');
 
 }
@@ -2328,10 +2328,10 @@ public function profileimage()
 
 }
 
-public function Passwordreset()
-{
-   $data = json_decode($_REQUEST['data']);
-   $email = $data->email;
+public function Passwordreset($confirm)
+{ // print_r($confirm);
+   //$data = json_decode($_REQUEST['data']);
+   $email =   $confirm['email'];//$data->email;$confirm
               require('class.phpmailer.php');
               $mail = new PHPMailer(true);
               $to=$email;
@@ -2340,7 +2340,8 @@ public function Passwordreset()
               $subject="Email varification ";
 
              // $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
-              $emailconform  =  site_url().'/forms/forgotpassword?email=';
+              //$emailconform  =  site_url().'/forms/forgotpassword?email=';
+              $emailconfirm = 'https://localhost/verification?userid='.$confirm['userid'].'&email='.$confirm['email'];
               //global $error;
                // create a new object
               $mail->IsSMTP(); // enable SMTP
@@ -2487,20 +2488,26 @@ public function Passwordreset()
                     <h1 style="margin: 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;">Hello</h1>
                 </td>
             </tr>
-            <tr>
-                <td bgcolor="#ffffff" style="padding: 0 40px 10px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to reset your password.
-                    </p>
+            <tr><td bgcolor="#ffffff" style="padding: 0 40px 10px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to complete your verification process.
+                     </p>
+                '.
+                // <td bgcolor="#ffffff" style="padding: 0 40px 10px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                //     <p style="margin: 0;">Hi,Greetings! You are just a step away from accessing your getsporty account.Just click on the link below to reset your password.
+                //     </p>
+                    '
                 </td>
             </tr>
-      <tr>
-                <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;"><a style="color:#03a9f4;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
-                </td>
-            </tr>
+      <tr><td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                     <p style="margin: 0;"><a style="color:#03a9f4;" href="'.$emailconfirm.'">Validate</a></p>
+                </td>'
+                // <td bgcolor="#ffffff" style="padding: 0 40px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                //     <p style="margin: 0;"><a style="color:#03a9f4;" href="'.$emailconform.''.$email.'">Reset Your Password</a></p>
+                // </td>'
+            .'</tr>
             <tr>
                 <td bgcolor="#ffffff" style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                    <p style="margin: 0;">You will need to enter this new password whenever you sign in to your Get Sporty account in future.</p>
+                    <p style="margin: 0;"></p>
                 </td>
             </tr>
             <tr>
@@ -3551,7 +3558,7 @@ public function getQuestions_data()
 
 public function  new_registration()
 {  $data = $this->session->userdata('useritem');
-
+    //print_r($data);die;
     if($data)
     { 
       if($data['prof_name'] == '')
@@ -4108,7 +4115,6 @@ public function user_register_byAdmin()
   }
 
 }
-
 public function update_profile_info()
 {
   $record = $_REQUEST['data'];
@@ -4130,6 +4136,186 @@ public function update_profile_info()
     }
     echo json_encode($response);
 }
+
+
+// --------------------------------------------------------//
+// Funtion For professional users to Login Via Web Portal
+// into the system For Creating The Profile
+// ---------------------------------------------------------//
+
+
+
+public function gs_login()
+{
+$data = json_decode($_REQUEST['data']);
+if(!isset($data->email))
+{
+  $email = '';//$data->email;
+}else
+{
+  $email = $data->email;
+}
+//$email = $data->email;
+$login_type  = $data->loginType;                     // Login Via Facebook Or Google
+$obj = $this->load->model('register');;
+  if($login_type == '1') {                           // Login From Facebook
+         
+  $app_type = $data->app;                            // L=liteapp , M=manage app 
+  $fb_id = $data->data->id;
+  
+  if($email != '')
+  {
+   $where = "`email` = '".$email."' ";
+   
+   $obj_var = $this->register->find_user_data($where);
+    if($obj_var != 0)
+    {
+      if($obj_var[$app_type.'_fb_id'] == '')
+    {
+    $update = "`".$app_type."_fb_id` = '".$fb_id."'";
+    $where  = "`userid`= '".$obj_var['userid']."'"; 
+    $updt_obj = $this->register->update_user_data($update,$where); //update Facebook Id for the particular email for a app
+    }
+      
+      if($obj_var['prof_id'] == '1' || $obj_var['prof_id'] == '6')
+      {
+         $resp = array('status' => '4','data'=>$obj_var,'msg'=>'Already registered as '.$obj_var['prof_name']);
+      }// sessting session for user data
+      else
+      {
+        $this->session->set_userdata('useritem',$obj_var);
+        $resp = array('status' => '1','data'=>$obj_var,'msg'=>'login successfull');
+      }
+    }
+    else  // No Record found from email value
+    {
+      $where = "`".$app_type."_fb_id` = '".$fb_id."' ";
+      $obj_var = $this->register->find_user_data($where);
+      if($obj_var != 0)
+      {
+       $resp = array('status' =>'2' ,'data'=>$obj_var , 'msg'=>'please update your info'); // To get email id from user verify and update
+      }
+       else
+      {
+       $resp = array('status' =>'3' ,'data'=>[] , 'msg'=>'please sign up to proceed');  //to get details from user validate email id and create a new record;
+      }  
+    }
+  }
+  else  // No Record found from email value
+  {
+    $where = "`".$app_type."_fb_id` = '".$fb_id."' ";
+    $obj_var = $this->register->find_user_data($where);
+    if($obj_var != 0)
+    {
+    if($obj_var['email'] == '')
+      {
+     $resp = array('status' =>'2' ,'data'=>$obj_var , 'msg'=>'please update your info'); // To get email id from user verify and update
+      }
+    else
+      {
+    $this->session->set_userdata('useritem',$obj_var);    
+    $resp = array('status' =>'1' ,'data'=>$obj_var , 'msg'=>'Successfully logged in'); // To get email id from user verify and update
+      }
+    }
+     else
+    {
+     $resp = array('status' =>'3' ,'data'=>[] , 'msg'=>'please sign up to proceed');  //to get details from user validate email id and create a new record;
+    }  
+   } 
+      //echo json_encode($resp);
+  }
+   else if($login_type == 2)   {                             // Login From Google
+   $google_id = $data->data->id;  
+   $where = "`email` = '".$data->email."'";
+   $obj_var = $this->register->find_user_data($where);
+   
+   if($obj_var != 0)
+    {//echo "dfdedddee";
+    if($obj_var['google_id'] == '')
+    {
+       $update_clause  = "`google_id` = '".$data->data->id."'";// google id updation on successfull login from google
+       $where = "`userid` = '".$obj_var['userid']."'";
+       $updt_obj = $this->register->update_user_data($update_clause,$where); 
+    }
+    if($obj_var['prof_id'] == '1' || $obj_var['prof_id'] == '6')
+      {
+         $resp = array('status' => '4','data'=>$obj_var,'msg'=>'Already registered as '.$obj_var['prof_name']);
+      }// sessting session for user data
+      else
+      {
+        $this->session->set_userdata('useritem',$obj_var);
+        $resp = array('status' => '1','data'=>$obj_var,'msg'=>'login successfull');
+      }
+    }
+    else
+    {
+    $resp = array('status' =>'3' ,'data'=>[] , 'msg'=>'please sign up to proceed');  //to get details from user validate email id and create a new record;
+    }
+  }
+  echo json_encode($resp);
+ }
+
+// --------------------------------------------------------//
+// Funtion For professional users to Get registered Via Web Portal
+// into the system For Creating The Profile
+// ---------------------------------------------------------//
+
+public function gs_signup()
+{
+$data = json_decode($_REQUEST['data']);
+//print_r($data);
+$email        = $data->email; //$_REQUEST['email'];
+$loginType    = $data->user_info->loginType;//$_REQUEST['login'];
+$app_type     = $data->user_info->app;//$_REQUEST['app'];  
+$login_status = $data->user_info->status;//$_REQUEST['status']; // login status got in response basis on which the updation or new record creation process will be carried out;
+$app_id       = $data->user_info->data->id;//$_REQUEST['app_id'];
+$obj = $this->load->model('register');
+if($login_status == '2' && $loginType == '1')
+{
+  $where = "`email` = '".$email."'";
+  $resp = $this->register->find_user_data($where);
+  if($resp != 0)
+  {
+  $array = array('status' =>'0' ,'data'=>$resp , 'msg'=>'user already exist with same email id'); 
+  }
+  else
+  {
+  $update = "`email`= '".$email."'";
+  $where  = "`".$app_type."_fb_id` = '".$app_id."'";
+  $resp   = $this->register->update_user_data($update,$where);
+  if($resp != 0)
+   {
+    $this->session->set_userdata('useritem',$resp);
+    $confirm = array('email' =>$resp['email'],'userid'=>$resp['userid'] );
+    $this->Passwordreset($confirm);
+    $array = array('status' =>'1' ,'data'=>$resp , 'msg'=>'user info successfully updated');
+   }
+   else
+   {
+    $array = array('status' =>'0' ,'data'=>$resp , 'msg'=>'user info not updated');
+   }  
+  }
+ }
+else if($login_status == '3')
+  {
+      $create = $this->register->create_new_user($data);
+      if($create !=0)
+      { 
+        $this->session->set_userdata('useritem',$create);
+        $confirm = array('email' =>$create['email'],'userid'=>$create['userid'] );
+        $this->Passwordreset($confirm);
+        $resp = array('status' => '1', 'data'=>$create ,  'msg'=>'record created');
+      }
+      else
+      {
+        $resp = array('status' => '0', 'data'=>[] ,  'msg'=>'record not created');
+      }
+      
+  }
+echo json_encode($resp);
+}
+
+
 
 }
 

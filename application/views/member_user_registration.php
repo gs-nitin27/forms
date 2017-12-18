@@ -497,17 +497,21 @@ if(professions!=null)
   else{
   prof_data = $("#profession").val();
   }
-
+  var dob = $("#dob").val().split('/')
+  dob = dob[2]+'-'+dob[1]+'-'+dob[0];
+  var user_data = JSON.parse(localStorage.getItem('userdata'));
+  var status = user_data.status;
   var data1 = {
     "name"      : $("#name").val(),
     "email"     : $("#email").val(),
     "phone_no"  : $("#phone_no").val(),
-    "dob"       : $("#dob").val(),
+    "dob"       : dob,
     "sport"     : $("#sport").val(),
     "prof_name" : prof_name,
     "prof_id"   : prof_id,
     'location'  : $("#location").val(),
-    "gender"    : $("#gender").val()
+    "gender"    : $("#gender").val(),
+    "user_info" : user_data
   };
 
   console.log(JSON.stringify(data1));
@@ -515,13 +519,13 @@ if(professions!=null)
   var data = JSON.stringify(data1);
     $.ajax({ 
      type: "POST",
-     url: "<?php echo site_url('forms/user_register');?>",                  
+     url: "<?php echo site_url('forms/gs_signup');?>",                  
      data:"data="+data,                        
      dataType: 'JSON',        
      success:function(result)
      {
        //alert(result.data);
-       if(result.data == 3 || result.data == 4)
+       if(result.status == 3 || result.status == 4)
        { 
         $("#imagelodar").hide();
 
@@ -702,9 +706,10 @@ if(professions!=null)
        }
        else
        {
+
     $.confirm({
-        title: 'Congratulations!',
-        content: '<h3>Registration is complete .</h3>',
+        title: 'Successfully registered',
+        content: '<p>Please confirm your email Id by confirmation link sent on your registed email address</p>',
         type: 'green',
         boxWidth: '33%',
         useBootstrap: false,
@@ -716,11 +721,13 @@ if(professions!=null)
                 text: 'Thank You !',
                 btnClass: 'btn-green',
                 action: function(){
-                  window.location.href = profileurl+ "/forms/registrationprofile/" + result.data;
+                  // window.location.href = profileurl+ "/forms/registrationprofile/" + result.data;
+                  window.location.href = profileurl+ "/forms/new_registration/";// + result.data;
                 }
             },
             close: function () {
-              window.location.href = profileurl+ "/forms/registrationprofile/" + result.data;
+              window.location.href = profileurl+ "/forms/new_registration/";
+             // window.location.href = profileurl+ "/forms/registrationprofile/" + result.data;
             }
         }
     });

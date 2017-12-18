@@ -113,8 +113,9 @@ function statusChangeCallback(response) {
 function testAPI() {
   console.log('Welcome!  Fetching your information.... ');
   FB.api('/me?fields=id,email,first_name,last_name',function(response) {
+        console.log(response);
         var email = response.email;
-        login(email,response)
+        login(email,response,1)
         console.log('Successful login for: ' + response.name);
      //   document.getElementById('status').innerHTML = "<img src='"+response.picture.data.url+"'>";
       }, {scope:'email'});
@@ -138,12 +139,14 @@ function testAPI() {
       });
 </script>
 <script type="text/javascript">
-function login(emailid,user_data)
+function login(emailid,user_data,type)
   {
    var data1 = {
      "email"    : emailid,
      "password" : emailid,
-     "data"     : user_data
+     "data"     : user_data,
+     "app"      : 'L',
+     "loginType": type
      };
      
 var url = '<?php echo site_url();?>';
@@ -151,31 +154,37 @@ console.log(JSON.stringify(data1));
 var data = JSON.stringify(data1);
   $.ajax({
     type: "POST",
-    url: '<?php echo site_url('forms/gmaillogin'); ?>',
+    url: '<?php echo site_url('forms/gs_login');?>',
     data: "data="+data,
     dataType: "text",
     success: function(result) {
       var result  = JSON.parse(result);
-      //alert(result.status);
-      if(result.status==3){
+      if(result.status==4){// for Successfull login of athlete and parent
        alert(result.msg);
-     /*return;*/window.location.href = 'https://play.google.com/store/apps/details?id=getsportylite.darkhoprsesport.com.getsportylite&hl=en';//url+"/forms/home";
+       window.location.href = 'https://play.google.com/store/apps/details?id=getsportylite.darkhoprsesport.com.getsportylite&hl=en';//url+"/forms/home";
     }
-    if(result.status==1){//alert(1);
-      localStorage.setItem('userdata',JSON.stringify(data1));
+    if(result.status==1){  alert(JSON.stringify(result));return;    // for Successfull login
+     //localStorage.setItem('userdata',JSON.stringify(data1));
      window.location.href = url+"/forms/new_registration";
     }
-    else if(result.status==0) 
-    {//alert(2);//return;
+    else if(result.status==2) // for updating email and other info
+    { alert(JSON.stringify(result));//return;
+      data1.status = result.status;
+      //alert(JSON.stringify(data1));return;
       localStorage.setItem('userdata',JSON.stringify(data1));
-     window.location.href = url+"/forms/new_registration";
+      window.location.href = url+"/forms/new_registration";
+    }
+    else if(result.status==3) // for creating new record
+    { //alert(JSON.stringify(result));return;
+      data1.status = result.status;
+      //alert(JSON.stringify(data1));return;
+      localStorage.setItem('userdata',JSON.stringify(data1));
+      window.location.href = url+"/forms/new_registration";
     }
    }
 });
   }
   function onSignIn(googleUser) {
-
-   // alert("hii");
         var profile = googleUser.getBasicProfile();
         console.log("ID: " + profile.getId()); // Don't send this directly to your server!
         console.log('Full Name: ' + profile.getName());
@@ -189,10 +198,10 @@ var data = JSON.stringify(data1);
         if( localStorage.getItem("count") == 2)
         {
          var email = profile.getEmail();
-         var user_data = {"name":profile.getName(),"image":profile.getImageUrl(),"Email":profile.getEmail()};
+         var user_data = {"name":profile.getName(),"image":profile.getImageUrl(),"Email":profile.getEmail(),"id":profile.getId()};
         //alert(JSON.stringify(data2));return;
          //localStorage.setItem('data2',data2);
-         login(email,user_data);
+         login(email,user_data,2);
          }
          else
          {

@@ -1,11 +1,12 @@
 <?php if(!$this->session->userdata('useritem'))
 {header("Location: https://getsporty.in");
-  }
+  }else{print_r($this->session->userdata('useritem'));die;}
+
    ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Getsporty</title>
+<title>Getsportykj</title>
  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
  <script src="<?php echo base_url('assets/plugins/jQuery/jquery-2.2.3.min.js'); ?>"></script>
  <script type="text/javascript" src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>

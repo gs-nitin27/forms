@@ -1,7 +1,8 @@
 <?php if(!$this->session->userdata('useritem'))
-{header("Location: https://getsporty.in");
-  }
+{header("Location: https://getsporty.in");}
+  // }else{print_r($this->session->userdata('useritem'));}
    ?>
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -605,8 +606,9 @@ var data = JSON.stringify(data);
     $data=$this->session->userdata('useritem');  
     $userid = $data['userid'];
     $prof_id = $data['prof_id'];
-     $response1=file_get_contents(API_URL.'/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
+    $response1=file_get_contents(API_URL.'/userEdit.php?act=getUserProfile&userid='.$userid.'&prof_id='.$prof_id);
      $pdata = json_decode($response1);
+     //print_r($response1);echo "nitin";die;
      $temp = 0;
     if($pdata)
     {

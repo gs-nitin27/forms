@@ -2103,6 +2103,93 @@ public function update_user_profile($record,$userid)
 	}
 }
 
+//--------------------------------------------------- 
+// Service function for registartion and login through 
+// wep portal on site.
+// 
+// --------------------------------------------------
+
+
+public function find_user_data($where)
+{
+  $query = "SELECT `userid`, `userType`, `status`, `name`, `email`, `contact_no`, `sport`, `gender`, `dob`, `prof_id`, `prof_name`, `user_image`, `location`, `device_id`, `date_created`, `date_updated`, `m_device_id`, `M_fb_id`, `L_fb_id`,`google_id` FROM `user` WHERE ".$where."";
+  //echo $query;die;
+  $sql = mysql_query($query);
+  if(mysql_num_rows($sql)>0)
+	{
+		return mysql_fetch_assoc($sql);
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+public function update_user_data($update,$where)
+ {
+
+	$query = "UPDATE `user` SET  ".$update."  WHERE  ".$where." ";
+	//echo $query;
+	$sql = $this->db->query($query);
+	//echo "dasadas";
+	if($sql)
+	{
+		return $this->find_user_data($where);
+	}else
+	{
+		return 0;
+	}
+
+ }
+public function create_new_user($data)
+ {  
+ 	$userType = '103';//$_REQUEST['userType'];
+ 	$name  = $data->name;
+ 	$email = $data->email; //$_REQUEST['email'];
+ 	$contact_no = $data->phone_no;
+ 	$sport = $data->sport;//$_REQUEST['sport'];
+ 	$gender = $data->gender;// $_REQUEST['gender'];
+ 	$dob  = $data->dob;//$_REQUEST['dob'];
+ 	$prof_id = $data->prof_id;//$_REQUEST['prof_id'];
+ 	$prof_name = $data->prof_name;//$_REQUEST['prof_name'];
+    $location = $data->location;
+    if($data->user_info->loginType == 1)
+    {
+      $app_id_field = "`".$data->user_info->app."_fb_id`";
+      $id = $data->user_info->data->id;
+    }
+    else if($data->user_info->loginType == 2)
+    {
+    	$app_id_field = "`google_id`";
+    	$id = $data->user_info->data->id;
+    } 
+    else
+    {
+         return 0;
+    	//die('Invalid Login');
+    }
+    // if($apptype != '')
+    // {
+    //   $fb_id = "`".$app_type."_fb_id`";
+    // }
+   $password = md5($email);
+   $query = "INSERT INTO `user`(`userType`, `name`, `password`,`email`, `contact_no`, `sport`, `gender`, `dob`, `prof_id`, `prof_name`,`location`, `date_created`,".$app_id_field.") VALUES ('$userType','$name','$password','$email','$contact_no','$sport','$gender','$dob','$prof_id','$prof_name','$location',CURDATE(),'$id')";
+   $sql = $this->db->query($query);
+   $log_id = mysql_insert_id();
+   if($sql)
+   {
+
+   	$where = "`userid` = '".$log_id."'";
+   	return $this->find_user_data($where);
+   }
+   else
+   {
+   	return 0;
+   }
+}
+
+
+
 
 }
 
