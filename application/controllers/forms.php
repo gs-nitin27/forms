@@ -1082,6 +1082,7 @@ public function deleteResources($str)
 	    	$this->load->view('templates/template',$data);
 }
 
+
 public function deleteJob($str)
 {
         $id = $this->stringtonumber($str);

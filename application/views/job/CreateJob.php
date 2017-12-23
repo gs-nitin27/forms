@@ -1,13 +1,43 @@
-<!-- Js files-->
+
+<script src="<?php echo base_url('assets/plugin1/jquery.js'); ?>" > </script>
+
+<script src="<?php echo base_url('assets/plugin1/croppie.js'); ?>" > </script>
+
+<link rel="stylesheet" href="<?php echo base_url('assets/plugin1/bootstrap-3.min.css'); ?>" > 
+
+<link rel="stylesheet" href="<?php echo base_url('assets/plugin1/croppie.css'); ?>" > 
+
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+<!-- Js files
 
   <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
   <script src="http://demo.itsolutionstuff.com/plugin/croppie.js"></script>
   <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
   <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/croppie.css">
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+ 
+-->
+
+<script src="<?php echo base_url('assets/plugin1/jquery.min.js'); ?>" > </script>
+
+
   <script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" > </script>
 
 
- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+
 
 
  <!--
@@ -19,9 +49,12 @@
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
    
     <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+
         rel="stylesheet" type="text/css" />
+
     <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
-        type="text/javascript"></script>
+        type="text/javascript">
+      </script>
   
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->

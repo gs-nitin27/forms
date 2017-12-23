@@ -4,6 +4,7 @@
  * Description:
  *      This is a demo file used only for the main dashboard (index.html)
  **/
+ 
 
 $(function () {
 
@@ -17,6 +18,7 @@ $(function () {
     forcePlaceholderSize: true,
     zIndex: 999999
   });
+  
   $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
 
   //jQuery UI sortable for the todo list
