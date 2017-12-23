@@ -163,12 +163,11 @@ var data = JSON.stringify(data1);
        alert(result.msg);
        window.location.href = 'https://play.google.com/store/apps/details?id=getsportylite.darkhoprsesport.com.getsportylite&hl=en';//url+"/forms/home";
     }
-    if(result.status==1){  alert(JSON.stringify(result));return;    // for Successfull login
-     //localStorage.setItem('userdata',JSON.stringify(data1));
+    if(result.status==1){      // for Successfull login
      window.location.href = url+"/forms/new_registration";
     }
     else if(result.status==2) // for updating email and other info
-    { alert(JSON.stringify(result));//return;
+    { //alert(JSON.stringify(result));//return;
       data1.status = result.status;
       //alert(JSON.stringify(data1));return;
       localStorage.setItem('userdata',JSON.stringify(data1));
