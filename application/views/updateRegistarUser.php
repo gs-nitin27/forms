@@ -465,7 +465,7 @@ var data = JSON.stringify(data);
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/Registration_userdata'); ?>',
-    data: "data="+data,
+     data: data,
     dataType: "text",
     success: function(result) {
     // alert(result);
