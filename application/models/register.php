@@ -2053,7 +2053,7 @@ public function prof_data($userid)
 }
 
 public function getMessages($id)
- {
+ {    
 	    $this->db->select('data');
 	    $this->db->from('gs_message');
 	    $this->db->where('reciever_id',$id);
