@@ -2342,7 +2342,7 @@ public function Passwordreset($confirm)
 
              // $emailconform="http://staging.getsporty.in/index.php/forms/forgotpassword?email=";
               //$emailconform  =  site_url().'/forms/forgotpassword?email=';
-              $emailconfirm = 'https://localhost/verification?userid='.$confirm['userid'].'&email='.$confirm['email'];
+              $emailconfirm = DEV_ENV.'/verification?userid='.$confirm['userid'].'&email='.$confirm['email'].'&user_env='.USER_ENV;
               //global $error;
                // create a new object
               $mail->IsSMTP(); // enable SMTP
