@@ -193,7 +193,7 @@
               <div class="col-md-4">
               <div class="form-group">
               <label class="exampleInputEmail1" for="rolename">Sports</label>
-              <select id="dates-field2"  multiple="multiple" onchange="get_sport()">
+              <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" onchange="get_sport()">
                <?php  $sports = $this->register->getSport();?>
                <?php if(!empty($sports))
                {
