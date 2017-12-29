@@ -869,6 +869,10 @@ var userid = '<?php echo $login_user_id; ?>';
      $("#message").html(list);
     }
   });
+      function show_profile(id)
+      {
+      window.location.href = "<?php echo site_url();?>"+'/forms/show_profile/'+id;
+      }
 
 }
 </script>
