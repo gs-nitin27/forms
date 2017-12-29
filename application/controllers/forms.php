@@ -68,7 +68,7 @@ public function show_profile($id)
    $use_info = $this->register->user_basic($id);
    $data['user_data'] = $userdata;
    $data['user_info'] = $use_info;
-   if($use_info['prof_id'] == '1' && $use_info['userType'] == '104')
+   if($use_info['prof_id'] == '1')//&& $use_info['userType'] == '104'
    {
    $this->load->view('athlete_profile',$data);
    }
@@ -79,22 +79,9 @@ public function show_profile($id)
  
 }
 public function show_user_profile()
-{  $sessdata = $this->session->userdata('useritem'); 
-   $id = $sessdata['userid'];
-   $this->load->model('register');
-   $userdata = $this->register->prof_data($id);
-   $use_info = $this->register->user_basic($id);
-   $data['user_data'] = $userdata;
-   $data['user_info'] = $use_info;
-   if($use_info['prof_id'] == '1' && $use_info['userType'] == '104')
-   {
-   $this->load->view('athlete_profile',$data);
-   }
-      //{
+ { 
    $this->load->view('user_profile');
-   //}
-
-}
+ }
 public function newadmin()
 {
     $username = $_POST['username'];
@@ -4101,7 +4088,7 @@ public function user_register_byAdmin()
       }
       else
       {
-       echo json_encode(array('data' => 0,'message' => 'Sorry resgistration in not done' ));
+       echo json_encode(array('data' => 0,'message' => 'Sorry registration in not done' ));
       }
 
   }

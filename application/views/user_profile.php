@@ -27,8 +27,16 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
 <body class="w3-light-grey">
 
-<?php 
-  $userdata = $this->session->userdata('useritem');//print_r($userdata);die;
+<?php
+
+if(isset($user_info))
+  {
+    $userdata = $user_info;  
+  }
+  else
+  {
+    $userdata = $this->session->userdata('useritem');
+  }
   $profile = $this->register->profile($userdata['userid']); 
   $userid = $userdata['userid'];
   $profile_image = $profile[0]['user_image'];
