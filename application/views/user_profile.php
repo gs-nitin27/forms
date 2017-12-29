@@ -37,6 +37,8 @@ if(isset($user_info))
   {
     $userdata = $this->session->userdata('useritem');
   }
+  $login_user = $this->session->userdata('useritem');
+  $login_user_id = $login_user['userid'];
   $profile = $this->register->profile($userdata['userid']); 
   $userid = $userdata['userid'];
   $profile_image = $profile[0]['user_image'];
@@ -837,7 +839,7 @@ foreach ($profiledata->Bio as $key => $value)
 
 function getmessage()
 {
-var userid = '<?php echo $userid; ?>';
+var userid = '<?php echo $login_user_id; ?>';
     $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/get_coach_messages'); ?>',
