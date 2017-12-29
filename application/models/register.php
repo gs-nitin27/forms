@@ -165,10 +165,6 @@ if($query)
 
 public function create_job($item)
 {
-
- $str= preg_replace( "/\r|\n/", "", $item->desc ) ; //str_replace("\n\n"," ",$item->desc);
-
-
  $data = array(
          'id' => $item->id,
          'userid' => $item->userid,
@@ -176,30 +172,32 @@ public function create_job($item)
          'gender' => $item->gender,
          'sport' => $item->sports,
          'type' => $item->type,
-         'work_experience' => $item->work_exp,
-         'description' => $str,
-         'desired_skills' => $item->desiredskill,
+         'work_experience' => $item->work_experience,
+         'description' => $item->description,
+         'desired_skills' => $item->desired_skills,
          'qualification' => $item->qualification,
-         'key_requirement' => $item->keyreq,
+         'key_requirement' => $item->key_requirement,
          'org_address1' => $item->org_address1,
          'org_address2' => $item->org_address2,
          'org_city' => $item->org_city,
          'org_state' => $item->org_state, 
          'org_pin' => $item->org_pin,
-         'organisation_name' => $item->org_name,
+         'organisation_name' => $item->organisation_name,
          'about' => $item->about,
-         'address1' => $item->address1,
-         'address2' => $item->address2,
+         'address1' => $item->address_line1,
+         'address2' => $item->address_line2,
          'state' => $item->state,
          'city' => $item->city,
          'pin' => $item->pin,
          'contact' => $item->contact,
          'image' => $item->image,
-         'email' => $item->email,
-         'job_link' => $item->job_link,
+         'email' => $item->email_app_collection,
+         'job_link' => $item->job_links,
          'date_created' => date('Y-m-d'),
          'date_updated' => date('Y-m-d')
 );
+
+ 
 
 if($this->db->insert('gs_jobInfo', $data))
 {

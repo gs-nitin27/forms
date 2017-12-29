@@ -612,43 +612,9 @@ public function CreateJob()
 
 public function saveJob()
 {
-
-
-
-$item  = new stdClass(); 
-
-$item->id                    = $_POST['id'];
-$item->userid                = $_POST['userid'];
-$item->title                 = mysql_real_escape_string($_POST['title']);
-$item->type                  = $_POST['type'];
-$item->sports                = $_POST['sports'];
-$item->gender                = $_POST['gender'];
-$item->work_exp              = mysql_real_escape_string($_POST['work_experience']);
-$item->desc                  = $_POST['description'];
-$item->desiredskill          = mysql_real_escape_string($_POST['desired_skills']);
-$item->qualification         = mysql_real_escape_string($_POST['qualification']);
-$item->keyreq                = mysql_real_escape_string($_POST['key_requirement']);
-$item->org_address1          = mysql_real_escape_string($_POST['org_address1']);
-$item->org_address2          = mysql_real_escape_string($_POST['org_address2']);
-$item->org_city              = mysql_real_escape_string($_POST['org_city']);
-$item->org_state             = mysql_real_escape_string($_POST['org_state']);
-$item->org_pin               = $_POST['org_pin'];
-$item->org_name              = $_POST['organisation_name'];
-$item->about                 = mysql_real_escape_string($_POST['about']);
-$item->address1              = mysql_real_escape_string($_POST['address_line1']); 
-$item->address2              = mysql_real_escape_string( $_POST['address_line2']);
-$item->state                 = $_POST['state'];
-$item->city                  = $_POST['city'];
-$item->pin                   = $_POST['pin'];
-$item->contact               = $_POST['contact'];
-$item->image                 = $_POST['image'];
-$item->email                 = $_POST['email_app_collection'];
-$item->job_link              = $_POST['job_links'];
-
-//print_r($item->desc);die;
-
+$jobData  = json_decode(file_get_contents('php://input'));
 $this->load->model('register');
-$res = $this->register->create_job($item);
+$res = $this->register->create_job($jobData);
 if($res == 1)
 {
 echo "1";

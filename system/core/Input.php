@@ -740,11 +740,16 @@ class CI_Input {
 	* @access	private
 	* @param	string
 	* @return	string
+
+	
 	*/
+
 	function _clean_input_keys($str)
 	{
+
 		 if ( !preg_match("/^[a-z0-9\x{4e00}-\x{9fa5}\:\;\.\,\?\!\@\#\$%\^\*\"\~\'+=\\\ &_\/\.\[\]-\}\{]+$/iu", $str))
 		{  // echo $str;
+
 			exit('Disallowed Key Characters.');
 		}
 

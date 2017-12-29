@@ -1,4 +1,6 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
 <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
         rel="stylesheet" type="text/css" /> -->
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
@@ -7,6 +9,8 @@
         type="text/javascript"></script>
 <script src="<?php echo base_url('assets/plugin1/jquery.js'); ?>" > </script>
 
+
+<script src="<?php echo base_url('assets/plugin1/jquery.js'); ?>" > </script>
 <script src="<?php echo base_url('assets/plugin1/croppie.js'); ?>" > </script>
 
 <link rel="stylesheet" href="<?php echo base_url('assets/plugin1/bootstrap-3.min.css'); ?>" > 
@@ -555,7 +559,8 @@ $(function() {
       var editorData      =  editor.getData();
       var description     =  editorData.replace(/[\/\\<>~\{}]/g, '');
        
-   if($("#jtitle").val() !="" && description !="" && $("#orgName").val() !="" & $("#job_link").val() !="" )
+   if($("#jtitle").val() !="" )
+
      {
             save();
        }else
@@ -610,12 +615,8 @@ $(function() {
 function save()
 {
 
-
-
   $("#imagelodar").show();
   var description     = editor.getData();
-
-  // alert(description);return;
 
 var data1 = {
     "id"                      : 0, 
@@ -650,19 +651,16 @@ var data1 = {
     "gender"                  : $("#gender").val()
 
 };
+
 var url = '<?php echo site_url();?>';
+var data = JSON.stringify(data1);
 
-//console.log(JSON.stringify(data1));
-
-var data = eval(data1);
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/saveJob'); ?>',
     data: data,
-    dataType: "text",
+    dataType: 'text',
     success: function(result) {
-
-     // alert(result);//return;
 
        if(result == '1')
          {
