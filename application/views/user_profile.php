@@ -836,7 +836,10 @@ foreach ($profiledata->Bio as $key => $value)
      var location = $("#location1").val();
     $("#location").text(location);
   });
-
+function show_profile(id)
+      {
+      window.location.href = "<?php echo site_url();?>"+'/forms/show_profile/'+id;
+      }
 function getmessage()
 {
 var userid = '<?php echo $login_user_id; ?>';
@@ -869,10 +872,7 @@ var userid = '<?php echo $login_user_id; ?>';
      $("#message").html(list);
     }
   });
-      function show_profile(id)
-      {
-      window.location.href = "<?php echo site_url();?>"+'/forms/show_profile/'+id;
-      }
+     
 
 }
 </script>
