@@ -27,8 +27,18 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
 <body class="w3-light-grey">
 
-<?php 
-  $userdata = $this->session->userdata('useritem');//print_r($userdata);die;
+<?php
+
+if(isset($user_info))
+  {
+    $userdata = $user_info;  
+  }
+  else
+  {
+    $userdata = $this->session->userdata('useritem');
+  }
+  $login_user = $this->session->userdata('useritem');
+  $login_user_id = $login_user['userid'];
   $profile = $this->register->profile($userdata['userid']); 
   $userid = $userdata['userid'];
   $profile_image = $profile[0]['user_image'];
@@ -826,10 +836,13 @@ foreach ($profiledata->Bio as $key => $value)
      var location = $("#location1").val();
     $("#location").text(location);
   });
-
+function show_profile(id)
+      {
+      window.location.href = "<?php echo site_url();?>"+'/forms/show_profile/'+id;
+      }
 function getmessage()
 {
-var userid = '<?php echo $userid; ?>';
+var userid = '<?php echo $login_user_id; ?>';
     $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/get_coach_messages'); ?>',
@@ -859,6 +872,7 @@ var userid = '<?php echo $userid; ?>';
      $("#message").html(list);
     }
   });
+     
 
 }
 </script>
