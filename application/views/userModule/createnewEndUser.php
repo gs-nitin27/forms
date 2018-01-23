@@ -12,6 +12,7 @@
 
 function saveUserProfile(userjson)
 {
+  
 $("#imagelodar").show();
 
 var data = {
@@ -20,16 +21,16 @@ var data = {
     "prof_id"                  : $("#profid").val(),   
     "userdata"                 : userjson
 };
-console.log(JSON.stringify(data));
+
 var data = JSON.stringify(data);
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/Registration_userdata'); ?>',
-    data: "data="+data,
+    data: data,
+
     dataType: "text",
     success: function(result) {
-     //alert(result);
-      if(result == '1')
+     if(result == '1')
       {
          
         $.confirm({
@@ -367,16 +368,22 @@ $("#basicdata").click(function()
     "prof_id"     : prof_id,
     "gender"      : $("#gender").val()
     };
-    console.log(JSON.stringify(data1));
+
+    //console.log(JSON.stringify(data1));
+   // console.log("ganga");
     var url  = '<?php echo site_url();?>';
     var data = JSON.stringify(data1);
+
     $.ajax({
       type : "POST",
       url  : "<?php echo site_url('forms/user_register_byAdmin');?>",
-      data : "data="+data,
-      dataType : "JSON",
+      data : data,
+      dataType : "text",
       success : function(result)
       {
+
+        console.log(result);
+
           if(result.data == 0)
           {
              $.confirm({

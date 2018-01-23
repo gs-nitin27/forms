@@ -3,14 +3,13 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/ui.theme.css'); ?>" type="text/ css" media="all" />
  <script>
 
-//document.domain = "getsporty.in";
 
 function save()
 {
 $('#imagelodar').show();
 var summary1=$("#rsummary").val();
-//var summary12=summary1.toString();
-//var string = summary12.replace(/[&\/\\#,+$~%.:*?{}]/g, '');
+
+
 summary1 = summary1.toString();
 var data1 = {
     "id"                      : 0, 
@@ -28,18 +27,17 @@ var data1 = {
     "token"                   : $("#token").val(),
     "sport"                   : $("#sport").val().toString()
 };
-console.log(JSON.stringify(data1));
+
 var url = '<?php echo site_url();?>'
-var jsondata = eval(data1);
-//jsondata = JSON.stringify(jsondata);
+var jsondata = JSON.stringify(data1);
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/SaveshareResources'); ?>',
     data: jsondata,
-    dataType: "json",
+    dataType: "text",
     success: function(result) {
       // $('#imagelodar').hide();
-      if(result.response == '1')
+      if(result == '1')
       {
         $.confirm({
         animationSpeed: 1500,

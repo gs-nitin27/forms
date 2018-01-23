@@ -27,7 +27,7 @@
 			<hr class="colorgraph"><br>
 			<input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
 			<input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
-			<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>
+			<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login hi " type="Submit">Login</button>
 		</form>		
     <div class="container" style="background-color:#f1f1f1; text-align: center;">
     <span class="psw"><h3>Forgot <a href="<?php echo site_url('forms/emailsearch'); ?>">password?</a></h3></span>

@@ -12,6 +12,9 @@ public function __construct()
                
 public function index()
 {   
+
+    
+
      $this->adminlogin();
 }
 
@@ -409,8 +412,14 @@ public function createNewUser()
 
 public function newEndUser()
 {
-  $data['middle'] = 'userModule/createnewEndUser';
-  $this->load->view('templates/template',$data);
+
+
+//echo "dev "; die();
+ $data['middle'] = 'userModule/createnewEndUser';
+
+ $this->load->view('templates/template',$data);
+
+
 }
 public function registrationprofile($str)
 { 
@@ -500,56 +509,56 @@ public function userCreateEvent()
 public function event()
 {
 
-$item = new stdClass();
+$resourcesData  = json_decode(file_get_contents('php://input'));
 
-$item->id                        = $_POST['id'];
-$item->userid                    = $_POST['userid'];
-$item->feetype                   = mysql_real_escape_string($_POST['etypes']);
-//$item->fee                       = $_POST['price'];
-$item->ticket_detail             = mysql_real_escape_string($_POST['ticketdetails']);
-//$item->no_of_ticket              = $_POST['noofticket']; 
-$item->type                      = $_POST['type'];
-$item->name                      = mysql_real_escape_string($_POST['name']);
-$item->address1                  = mysql_real_escape_string($_POST['address_line1']);
-$item->address2                  = mysql_real_escape_string($_POST['address_line2']);
-$item->city                      = $_POST['city'];
-$item->pin                       = $_POST['pin'];
-$item->description               = mysql_real_escape_string($_POST['description']);
-$item->eligibility1              = mysql_real_escape_string($_POST['eligibility1']);
-//$item->eligibility2              = mysql_real_escape_string($_POST['eligibility2']);
-$item->state                     = $_POST['state'];
-$item->tandc1                    = mysql_real_escape_string($_POST['terms_and_conditions1']);
-//$item->tandc2                    = mysql_real_escape_string($_POST['terms_and_conditions2']);
-$item->organizer_name            = mysql_real_escape_string($_POST['organizer_name']);
-$item->mobile                    = $_POST['mobile'];
-$item->org_address1              = mysql_real_escape_string($_POST['organizer_address_line1']);
-$item->org_address2              = mysql_real_escape_string($_POST['organizer_address_line2']);
-$item->organizer_city            = $_POST['organizer_city'];
-$item->organizer_pin             = $_POST['organizer_pin'];
-$item->organizer_state           = $_POST['organizer_state'];
-$item->event_links               = mysql_real_escape_string($_POST['event_links']);
-$item->start_date                = $_POST['start_date'];//strtotime();
-$item->end_date                  = $_POST['end_date'];//strtotime($data1['end_date']);
-$item->sport                     = $_POST['sport'];
-$item->sport_name                = $_POST['sport_name'];
-$item->entry_start_date          = $_POST['entry_start_date'];//strtotime($data1['entry_start_date']);
-$item->entry_end_date            = $_POST['entry_end_date'];//strtotime($data1['entry_end_date']);
-//$item->file_name                 = $_POST['file_name'];
+// $item = new stdClass();
+// $item->id                        = $_POST['id'];
+// $item->userid                    = $_POST['userid'];
+// $item->feetype                   = mysql_real_escape_string($_POST['etypes']);
+// //$item->fee                       = $_POST['price'];
+// $item->ticket_detail             = mysql_real_escape_string($_POST['ticketdetails']);
+// //$item->no_of_ticket              = $_POST['noofticket']; 
+// $item->type                      = $_POST['type'];
+// $item->name                      = mysql_real_escape_string($_POST['name']);
+// $item->address1                  = mysql_real_escape_string($_POST['address_line1']);
+// $item->address2                  = mysql_real_escape_string($_POST['address_line2']);
+// $item->city                      = $_POST['city'];
+// $item->pin                       = $_POST['pin'];
+// $item->description               = mysql_real_escape_string($_POST['description']);
+// $item->eligibility1              = mysql_real_escape_string($_POST['eligibility1']);
+// //$item->eligibility2              = mysql_real_escape_string($_POST['eligibility2']);
+// $item->state                     = $_POST['state'];
+// $item->tandc1                    = mysql_real_escape_string($_POST['terms_and_conditions1']);
+// //$item->tandc2                    = mysql_real_escape_string($_POST['terms_and_conditions2']);
+// $item->organizer_name            = mysql_real_escape_string($_POST['organizer_name']);
+// $item->mobile                    = $_POST['mobile'];
+// $item->org_address1              = mysql_real_escape_string($_POST['organizer_address_line1']);
+// $item->org_address2              = mysql_real_escape_string($_POST['organizer_address_line2']);
+// $item->organizer_city            = $_POST['organizer_city'];
+// $item->organizer_pin             = $_POST['organizer_pin'];
+// $item->organizer_state           = $_POST['organizer_state'];
+// $item->event_links               = mysql_real_escape_string($_POST['event_links']);
+// $item->start_date                = $_POST['start_date'];//strtotime();
+// $item->end_date                  = $_POST['end_date'];//strtotime($data1['end_date']);
+// $item->sport                     = $_POST['sport'];
+// $item->sport_name                = $_POST['sport_name'];
+// $item->entry_start_date          = $_POST['entry_start_date'];//strtotime($data1['entry_start_date']);
+// $item->entry_end_date            = $_POST['entry_end_date'];//strtotime($data1['entry_end_date']);
+// //$item->file_name                 = $_POST['file_name'];
 
-$item->email_app_collection      = $_POST['email_app_collection'];
-$item->image                     = $_POST['image']; 
+// $item->email_app_collection      = $_POST['email_app_collection'];
+// $item->image                     = $_POST['image']; 
+
  
 $this->load->model('register');
-$res = $this->register->saveEvent($item);
-
+$res = $this->register->saveEvent($resourcesData);
 
 if($res == '1')
  {
-    $event_type = $this->register->cheakeventtype($item->type);
-  //  print_r($event_type);
+    $event_type = $this->register->cheakeventtype($resourcesData->type);
     if(!$event_type)
     {
-          $new_type = $this->register->CreateEventType($item->type);  
+          $new_type = $this->register->CreateEventType($resourcesData->type);  
     } 
 
 echo "1";
@@ -625,6 +634,7 @@ public function CreateJob()
 
 public function saveJob()
 {
+
 $jobData  = json_decode(file_get_contents('php://input'));
 $this->load->model('register');
 $res = $this->register->create_job($jobData);
@@ -648,36 +658,15 @@ public function getJob()
 
 public function saveEditJob()
 {
-$item  = new stdClass(); 
-$item->id                    = $_POST['id'];
-$item->userid                = $_POST['userid'];
-$item->title                 = mysql_real_escape_string($_POST['title']);
-$item->type                  = $_POST['type'];
-$item->sports                = $_POST['sports'];
-$item->gender                = $_POST['gender'];
-$item->work_exp              = mysql_real_escape_string($_POST['work_experience']);
-$item->desc                  = mysql_real_escape_string($_POST['description']);
-$item->desiredskill          = mysql_real_escape_string($_POST['desired_skills']);
-$item->qualification         = mysql_real_escape_string($_POST['qualification']);
-$item->keyreq                = mysql_real_escape_string($_POST['key_requirement']);
-$item->org_address1          = mysql_real_escape_string($_POST['org_address1']);
-$item->org_address2          = mysql_real_escape_string($_POST['org_address2']);
-$item->org_city              = mysql_real_escape_string($_POST['org_city']);
-$item->org_state             = mysql_real_escape_string($_POST['org_state']);
-$item->org_pin               = $_POST['org_pin'];
-$item->org_name              = $_POST['organisation_name'];
-$item->about                 = mysql_real_escape_string($_POST['about']);
-$item->address1              = mysql_real_escape_string($_POST['address_line1']); 
-$item->address2              = $_POST['address_line2'];
-$item->state                 = $_POST['state'];
-$item->city                  = $_POST['city'];
-$item->pin                   = $_POST['pin'];
-$item->contact               = $_POST['contact'];
-$item->image                 = $_POST['image'];
-$item->email                 = $_POST['email_app_collection'];
-//$item->job_link              = $_POST['job_links'];
+
+
+$jobData  = json_decode(file_get_contents('php://input'));
+
 $this->load->model('register');
-$res = $this->register->save_Edit_Job($item);
+
+ $res = $this->register->save_Edit_Job($jobData);
+
+
 if($res == 1)
 {
 echo "1";
@@ -799,48 +788,55 @@ public function CreateTournament()
 
 public function saveTournament()
 {
-$item  = new stdClass(); 
-$item->id                      = $_POST['id'];//$data2->id;
-//$item->organizer_name          = $_POST['organizer_name'];//$data1->$_POST;
-$item->tournament_level        = $_POST['tournament_level'];//$data1->tournament_level;
 
-//$item->tournament_category     = $data1->catagory;
 
-$item->tournament_ageGroup     = mysql_real_escape_string($_POST['tournament_ageGroup']);//$data1->tournament_ageGroup;
-$item->tournament_gender       = $_POST['tournament_gender'];//$data1->tournament_gender;
-$item->userid                  = $_POST['userid']; //$data1->userid;
-$item->type                    = mysql_real_escape_string($_POST['tournament_name']); //$data1->tournament_name;
-$item->address_line1           = mysql_real_escape_string($_POST['address_line1']);//$data1->address_line1;
-$item->address_line2           = mysql_real_escape_string($_POST['address_line2']);//$data1->address_line2;
-$item->city                    = $_POST['city'];//$data1->city;
-$item->state                   = $_POST['state'];//$data1->state;
-$item->pin                     = $_POST['pin'];//$data1->pin;
-$item->description             = mysql_real_escape_string($_POST['description']);//$data1->description;
-$item->eligibility1            = mysql_real_escape_string($_POST['eligibility1']);//$data1->eligibility1;
-$item->eligibility2            = mysql_real_escape_string($_POST['eligibility2']);//$data1->eligibility2;
-$item->terms_and_conditions1   = mysql_real_escape_string($_POST['terms_and_conditions1']);//$data1->terms_and_conditions1;
-$item->terms_and_conditions2   = mysql_real_escape_string($_POST['terms_and_conditions2']);//$data1->terms_and_conditions2;
-$item->organizer_name          = mysql_real_escape_string($_POST['organizer_name']);//$data1->organizer_name;
-$item->mobile                  = $_POST['mobile'];//$data1->mobile;
-$item->emailid                 = $_POST['emailid'];//$data1->emailid;
-$item->organizer_address_line1 = mysql_real_escape_string($_POST['organizer_address_line1']);//$data1->organizer_address_line1;
-$item->organizer_address_line2 = mysql_real_escape_string($_POST['organizer_address_line2']);//$data1->organizer_address_line2;
-$item->organizer_city          = $_POST['organizer_city'];//$data1->organizer_city;
-$item->organizer_state         = $_POST['organizer_state'];//$data1->organizer_state;
-$item->organizer_pin           = $_POST['organizer_pin'];// $data1->organizer_pin;
-$item->tournament_links        = $_POST['tournament_links'];//$data1->tournament_links;
-$item->start_date              = $_POST['start_date'];//$data1->start_date;//$data1['start_date'];
-$item->end_date                = $_POST['end_date'];//$data1->end_date;//$data1['end_date'];
-$item->entry_start_date        = $_POST['entry_start_date'];//$data1->entry_start_date;//$data1['entry_start_date'];;
-$item->entry_end_date          = $_POST['entry_end_date'];//$data1->entry_end_date;//$data1['entry_end_date'];
-$item->file_name               = $_POST['file_name'];//$data1->file_name;
-$item->sport                   = $_POST['sport'];//$data1->sport;
-$item->publish                 = 0;
-$item->image                   = $_POST['image'];//$data1->image;  
+$data  = json_decode(file_get_contents('php://input'));
+
+
+
+// $item  = new stdClass(); 
+// $item->id                      = $_POST['id'];//$data2->id;
+// //$item->organizer_name          = $_POST['organizer_name'];//$data1->$_POST;
+// $item->tournament_level        = $_POST['tournament_level'];//$data1->tournament_level;
+
+// //$item->tournament_category     = $data1->catagory;
+
+// $item->tournament_ageGroup     = mysql_real_escape_string($_POST['tournament_ageGroup']);//$data1->tournament_ageGroup;
+// $item->tournament_gender       = $_POST['tournament_gender'];//$data1->tournament_gender;
+// $item->userid                  = $_POST['userid']; //$data1->userid;
+// $item->type                    = mysql_real_escape_string($_POST['tournament_name']); //$data1->tournament_name;
+// $item->address_line1           = mysql_real_escape_string($_POST['address_line1']);//$data1->address_line1;
+// $item->address_line2           = mysql_real_escape_string($_POST['address_line2']);//$data1->address_line2;
+// $item->city                    = $_POST['city'];//$data1->city;
+// $item->state                   = $_POST['state'];//$data1->state;
+// $item->pin                     = $_POST['pin'];//$data1->pin;
+// $item->description             = mysql_real_escape_string($_POST['description']);//$data1->description;
+// $item->eligibility1            = mysql_real_escape_string($_POST['eligibility1']);//$data1->eligibility1;
+// $item->eligibility2            = mysql_real_escape_string($_POST['eligibility2']);//$data1->eligibility2;
+// $item->terms_and_conditions1   = mysql_real_escape_string($_POST['terms_and_conditions1']);//$data1->terms_and_conditions1;
+// $item->terms_and_conditions2   = mysql_real_escape_string($_POST['terms_and_conditions2']);//$data1->terms_and_conditions2;
+// $item->organizer_name          = mysql_real_escape_string($_POST['organizer_name']);//$data1->organizer_name;
+// $item->mobile                  = $_POST['mobile'];//$data1->mobile;
+// $item->emailid                 = $_POST['emailid'];//$data1->emailid;
+// $item->organizer_address_line1 = mysql_real_escape_string($_POST['organizer_address_line1']);//$data1->organizer_address_line1;
+// $item->organizer_address_line2 = mysql_real_escape_string($_POST['organizer_address_line2']);//$data1->organizer_address_line2;
+// $item->organizer_city          = $_POST['organizer_city'];//$data1->organizer_city;
+// $item->organizer_state         = $_POST['organizer_state'];//$data1->organizer_state;
+// $item->organizer_pin           = $_POST['organizer_pin'];// $data1->organizer_pin;
+// $item->tournament_links        = $_POST['tournament_links'];//$data1->tournament_links;
+// $item->start_date              = $_POST['start_date'];//$data1->start_date;//$data1['start_date'];
+// $item->end_date                = $_POST['end_date'];//$data1->end_date;//$data1['end_date'];
+// $item->entry_start_date        = $_POST['entry_start_date'];//$data1->entry_start_date;//$data1['entry_start_date'];;
+// $item->entry_end_date          = $_POST['entry_end_date'];//$data1->entry_end_date;//$data1['entry_end_date'];
+// $item->file_name               = $_POST['file_name'];//$data1->file_name;
+// $item->sport                   = $_POST['sport'];//$data1->sport;
+ // $data->publish                 = 0;
+// $item->image                   = $_POST['image'];//$data1->image;  
 
 $this->load->model('register');
 
-$res = $this->register->saveTournament($item);
+$res = $this->register->saveTournament($data);
+
 if($res == '1')
  {
  echo "1";
@@ -849,7 +845,26 @@ else
 {
  echo "0";
 }
+
 }
+
+
+public function saveEditTournament()
+{
+$data  = json_decode(file_get_contents('php://input'));
+$this->load->model('register');
+$res = $this->register->edit_Tournament($data);
+if($res == '1')
+ {
+ echo "1";
+ }
+else
+{
+ echo "0";
+}
+
+}
+
 
 
 public function usercreateTournament()
@@ -942,59 +957,53 @@ public function shareResources()
 public function SavecreateResources()
 {
 
+$resourcesData  = json_decode(file_get_contents('php://input'));
 
 
-$item  = new stdClass(); 
-$item->id                    = $_POST['id'];//$data2->id;
-$item->userid                = $_POST['userid'];//$data2->userid;
-$item->title                 = $_POST['title'];//mysql_real_escape_string($data2->title);
-$item->url                   = $_POST['url'];//$data2->url;
-$item->status                = $_POST['status'];//$data2->status;
-$item->summary               = $_POST['summary'];//mysql_real_escape_string($data2->summary);
-$item->keyword               = $_POST['keyword'];//$data2->keyword;
-$item->description           = $_POST['description'];//mysql_real_escape_string($data2->description);
-$item->topic_of_artical      = $_POST['topic_of_artical'];//$data2->topic_of_artical;
-$item->sport                 = $_POST['sport'];//$data2->sport;
-$item->location              = $_POST['location'];//$data2->location;
-$item->image                 = $_POST['image'];//$data2->image;
-$item->token                 = $_POST['token'];//$data2->token;
-$item->date_created          = $_POST['date_created'];//$data2->date_created;
+
+// $item  = new stdClass(); 
+// $item->id                    = $_POST['id'];//$data2->id;
+// $item->userid                = $_POST['userid'];//$data2->userid;
+// $item->title                 = $_POST['title'];//mysql_real_escape_string($data2->title);
+// $item->url                   = $_POST['url'];//$data2->url;
+// $item->status                = $_POST['status'];//$data2->status;
+// $item->summary               = $_POST['summary'];//mysql_real_escape_string($data2->summary);
+// $item->keyword               = $_POST['keyword'];//$data2->keyword;
+// $item->description           = $_POST['description'];//mysql_real_escape_string($data2->description);
+// $item->topic_of_artical      = $_POST['topic_of_artical'];//$data2->topic_of_artical;
+// $item->sport                 = $_POST['sport'];//$data2->sport;
+// $item->location              = $_POST['location'];//$data2->location;
+// $item->image                 = $_POST['image'];//$data2->image;
+// $item->token                 = $_POST['token'];//$data2->token;
+// $item->date_created          = $_POST['date_created'];//$data2->date_created;
 
 
  // print_r($item->title);die;
 
 
 $this->load->model('register');
-$res = $this->register->saveResources($item);
-echo json_encode(array('response' => $res));
+$res = $this->register->saveResources($resourcesData);
+
+echo "1";
+
+//echo json_encode(array('response' => $res));
+
 }
 
 
 
 public function SaveshareResources()
 {
-$item  = new stdClass(); 
-$item->id                    = $_REQUEST['id'];
-$item->userid                = $_REQUEST['userid'];//$data2->userid;
-$item->title                 = $_REQUEST['title'];//mysql_real_escape_string($data2->title);
-$item->url                   = $_REQUEST['url'];//$data2->url;
-$item->status                = $_REQUEST['status'];//$data2->status;
-$item->summary               = $_REQUEST['summary'];//mysql_real_escape_string($data2->summary);
-$item->keyword               = $_REQUEST['keyword'];//$data2->keyword;
-$item->description           = $_REQUEST['description'];//mysql_real_escape_string($data2->description);
-$item->topic_of_artical      = $_REQUEST['topic_of_artical'];//$data2->topic_of_artical;
-$item->sport                 = $_REQUEST['sport'];//$data2->sport;
-$item->location              = $_REQUEST['location'];//$data2->location;
-$item->image                 = $_REQUEST['image'];//$data2->image;
-$item->token                 = $_REQUEST['token'];//$data2->token;
-$item->date_created          = $_REQUEST['date_created'];//$data2->date_created;
 
-
-$this->load->model('register');
-$res = $this->register->saveResources($item);
-echo json_encode(array('response' => $res));
-//die;
+ $resourcesData  = json_decode(file_get_contents('php://input'));
+ $res = $this->register->saveResources($resourcesData);
+ echo $res;
 }
+
+
+
+
+
 public function viewResources($str)
 {
 	    $id = $this->stringtonumber($str);
@@ -1018,27 +1027,30 @@ public function editResources($str)
 
 public function saveEditResources()
 {
-$item  = new stdClass(); 
-//print_r($_POST);//die;
-$item->id                    = $_POST['id'];//$data2->id;
-$item->userid                = $_POST['userid'];//$data2->userid;
-$item->title                 = $_POST['title'];//mysql_real_escape_string($data2->title);
-$item->url                   = $_POST['url'];//$data2->url;
-$item->summary               = $_POST['summary'];//mysql_real_escape_string($data2->summary);
-$item->description           = $_POST['description'];//mysql_real_escape_string($data2->description);
-$item->topic_of_artical      = $_POST['topic_of_artical'];//$data2->topic_of_artical;
-$item->sport                 = $_POST['sport'];//$data2->sport;
-$item->location              = $_POST['location'];//$data2->location;
-$item->image                 = $_POST['image'];//$data2->image;
-$item->status                = $_POST['status'];//$data2->status;
-$item->keyword               = $_POST['keyword'];//$data2->keyword;
-$item->token                 = $_POST['token'];//$data2->token;
-$item->date_created          = @$_POST['date_created'];//$data2->date_created;
-
+$resourcesData  = json_decode(file_get_contents('php://input'));
 $this->load->model('register');
-$res = $this->register->saveEditResources($item);
+$res = $this->register->saveEditResources($resourcesData);
 echo json_encode(array('response' => $res));
+
 }
+
+
+
+
+
+public function saveEditEvent()
+{
+$data  = json_decode(file_get_contents('php://input'));
+$this->load->model('register');
+$res = $this->register->edit_event($data);
+echo $res;
+}
+
+
+
+
+
+
 
 public function deleteResources($str)
 {
@@ -1822,6 +1834,7 @@ public function Emailfind()
                 $filename1 = '';
                }
 
+
      switch ($newpath) {
       case 'uploads/resources/':
             $prename = 'resources';
@@ -1836,6 +1849,7 @@ public function Emailfind()
             }
               }
         break;
+
       case 'uploads/tournament/':
               $prename = 'tournament';
               if ($_POST['oldimageid'])
@@ -4015,11 +4029,9 @@ public function contentangular()
 
 public function Registration_userdata()
 {
-
 $data2 = json_decode(file_get_contents("php://input")); 
 $this->load->model('register');
 $res = $this->register->Registration_userdata($data2);
-
 if($res)
 {
     echo $res; 
@@ -4035,8 +4047,7 @@ else
 
 public function user_register_byAdmin()
 {
-  $data = json_decode($_REQUEST['data']);
-  
+  $data = json_decode(file_get_contents("php://input")); 
   $item = new stdClass();
   $item->userType        = 103;
   $item->name            = $data->name;
@@ -4049,10 +4060,7 @@ public function user_register_byAdmin()
   $item->prof_id         = $data->prof_id;
   $item->gender          = $data->gender;
   $item->access_module   = "1,2,3";
-
-
   $this->load->model('register');
- 
   $emailid = $this->register->Emailfind($data->email);
   if($emailid)
   {

@@ -38,6 +38,8 @@
  
 -->
 
+
+
 <script src="<?php echo base_url('assets/plugin1/jquery.min.js'); ?>" > </script>
 
 
@@ -559,11 +561,12 @@ $(function() {
       var editorData      =  editor.getData();
       var description     =  editorData.replace(/[\/\\<>~\{}]/g, '');
        
-   if($("#jtitle").val() !="" )
+   if($("#jtitle").val() !=""  )
+   {
+              save();
 
-     {
-            save();
-       }else
+       }
+       else
        {
                   $("#2").css("color","red");
                   $("html, body").animate({ scrollTop: 0 }, 500);
@@ -652,7 +655,10 @@ var data1 = {
 
 };
 
+
+
 var url = '<?php echo site_url();?>';
+
 var data = JSON.stringify(data1);
 
   $.ajax({
@@ -661,7 +667,6 @@ var data = JSON.stringify(data1);
     data: data,
     dataType: 'text',
     success: function(result) {
-
        if(result == '1')
          {
          $.confirm({

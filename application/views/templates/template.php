@@ -54,7 +54,9 @@
             //print_r("hars"); die();
            //print_r($id); 
           //foreach ($profile as $value) 
-              
+   
+
+
           
 if(empty($required))
 {
@@ -65,11 +67,18 @@ if(!isset($noheader))
 {
 $this->load->view('templates/header');
 }
+
+
 $this->load->view($middle, $required);
+
+
 	//echo $middle;die();
 //if(!isset($noheader)){
 
 $this->load->view('templates/sidebar');
 //}
+
 $this->load->view('templates/footer');
+
+
 ?>
