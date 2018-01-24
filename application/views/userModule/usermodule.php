@@ -27,6 +27,8 @@
                  <!--  <th style="background: #5262bc; color: #ffffff;">Usertype <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th> -->
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
                   <th style="background: #5262bc;color: #ffffff;">View</th>
+
+                  <th style="background: #5262bc;color: #ffffff;">Edit</th>
                  <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
                   <th style="background: #5262bc;color: #ffffff;">Status</th>
                    <th style="background: #5262bc;">
@@ -58,7 +60,10 @@
 
                           ?>
 
+
+
                 <tr class="content">
+
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $user['email']; ?></td>
                     <td><?php echo $user['name']; ?></td>
@@ -93,6 +98,10 @@
                                 { ?>
 
                      <td><a href = "<?php echo site_url('forms/userprofile/'.$num.'?module'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
+
+                     <td><a href = "<?php echo site_url('forms/newEndUser/module'.$num.''); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+
+
 
                     <!-- <td><a href = "<?php// echo site_url('forms/edituserProfile/'.$user['userid']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-edit"></i></a></td>  -->
                     <!-- <td><a href = "<?php// echo site_url('forms/deleteUser/'.$user['userid']); ?>" onclick="return confirm('Are you sure you want to Deactivate this User?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>  -->
