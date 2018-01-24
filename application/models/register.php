@@ -2253,11 +2253,8 @@ public function sendNotification($registration_ids, $message,$google_api)
 
 public function Registration_userdata($item)
 { 
-   //print_r($item);die;
+  
    $data = $this->prof_data($item->id);
-
-  // print_r($data);
-
    if($data == 0)
    {
    $data = array(
@@ -2267,6 +2264,7 @@ public function Registration_userdata($item)
         'created_date'=> date("Y-m-d")
         );	
   
+
    $sql = $this->db->insert('gs_userdata', $data);
    }
    else

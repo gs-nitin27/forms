@@ -4,8 +4,6 @@ class Forms extends CI_Controller
 {
 public function __construct() 
 { 
-   
-
     parent::__construct();
 		$this->load->model('register');
 		$this->load->library('session');	
@@ -73,7 +71,7 @@ public function show_profile($id)
    $use_info = $this->register->user_basic($id);
    $data['user_data'] = $userdata;
    $data['user_info'] = $use_info;
-   if($use_info['prof_id'] == '1')//&& $use_info['userType'] == '104'
+   if($use_info['prof_id'] == '1' && $use_info['userType'] == '104')
    {
    $this->load->view('athlete_profile',$data);
    }
@@ -84,9 +82,22 @@ public function show_profile($id)
  
 }
 public function show_user_profile()
- { 
+{  $sessdata = $this->session->userdata('useritem'); 
+   $id = $sessdata['userid'];
+   $this->load->model('register');
+   $userdata = $this->register->prof_data($id);
+   $use_info = $this->register->user_basic($id);
+   $data['user_data'] = $userdata;
+   $data['user_info'] = $use_info;
+   if($use_info['prof_id'] == '1' && $use_info['userType'] == '104')
+   {
+   $this->load->view('athlete_profile',$data);
+   }
+      //{
    $this->load->view('user_profile');
- }
+   //}
+
+}
 public function newadmin()
 {
     $username = $_POST['username'];
@@ -4037,6 +4048,7 @@ else
 public function user_register_byAdmin()
 {
   $data = json_decode(file_get_contents("php://input")); 
+
   $item = new stdClass();
   $item->userType        = 103;
   $item->name            = $data->name;
@@ -4048,8 +4060,12 @@ public function user_register_byAdmin()
   $item->prof_name       = $data->prof_name;
   $item->prof_id         = $data->prof_id;
   $item->gender          = $data->gender;
+  $item->location        = $data->location;
   $item->access_module   = "1,2,3";
   $this->load->model('register');
+
+  $this->emailVarification($item->email);
+
   $emailid = $this->register->Emailfind($data->email);
   if($emailid)
   {
@@ -4064,12 +4080,91 @@ public function user_register_byAdmin()
       }
       else
       {
-       echo json_encode(array('data' => 0,'message' => 'Sorry registration in not done' ));
+       echo json_encode(array('data' => 0,'message' => 'Sorry resgistration in not done' ));
       }
 
   }
-
 }
+
+public function emailVarification($email)
+{
+              require('class.phpmailer.php');
+              $mail = new PHPMailer();
+              $to=$email;
+              $from="info@getsporty.in";
+              $from_name="Getsporty Lite";
+              $subject="Email varification ";
+              $emailconform="getsporty.in/emailactivation.php?email=";
+              $mail = new PHPMailer();  // create a new object
+              $mail->IsSMTP(); // enable SMTP
+              $mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
+              $mail->SMTPAuth = true;  // authentication enabled
+              $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+              //$mail->Host = 'dezire.websitewelcome.com';
+              $mail->Host = 'smtp.gmail.com';
+              $mail->Port = 465; 
+              $mail->Username ="info@darkhorsesports.in";  
+              $mail->Password = "2016Darkhorse";           
+              $mail->SetFrom($from, $from_name);
+              $mail->Subject = $subject;
+              $mail->Body = '<div style="font-family:HelveticaNeue-Light,Arial,sans-serif;background-color:#5666be;">
+
+ <table align="center" border="4" cellpadding="4" cellspacing="3" style="max-width:440px" width="100%" class="" >
+<tbody><tr>
+<td align="center" valign="top">
+<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;  border-bottom:2px solid #e5e5e5;border-radius:4px" width="100%">
+<tbody><tr>
+
+<td align="center" style="padding-right:20px;padding-left:20px" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="left" valign="top" style="padding-top:40px;padding-bottom:30px">
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<h1 style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:28px;font-style:normal;font-weight:600;line-height:36px;letter-spacing:normal;margin:0;padding:0;text-align:left">Please verify your email Address.</h1>
+</td>
+</tr>
+<tr>
+<td style="padding-bottom:20px" valign="top">
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left">To validate Your email Address, you MUST click the link below.<strong><br><h1> Click activate to login</br> <a href="'.$emailconform.''.$email.'">Activate<br></strong>
+<p style="color:#5666be;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;padding-top:0;margin-top:0;text-align:left"><br>Note:- If clicking the link does not work, you can copy and paste the link into your browser address window,or retype it there.<br><br><br><br><br>Thanks you for visiting</p></br><p>GetSporty Team</p> 
+
+</td>
+</tr>
+<tr>
+<td align="center" style="padding-bottom:60px" valign="top">
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td align="center" valign="middle">
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</div>'; 
+               $txt='This email was sent in HTML format. Please make sure your preferences allow you to view HTML emails.'; 
+               $mail->AltBody = $txt; 
+               $mail->AddAddress($to);
+               $mail->Send();
+          return 1;
+   
+          } // End Function
+
+
+
+
+
+
+
 public function update_profile_info()
 {
   $record = $_REQUEST['data'];
