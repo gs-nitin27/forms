@@ -54,19 +54,19 @@ var data1 = {
     "gender"                  : $('#gender').val()
 
 };
-var url = '<?php echo site_url();?>';
-console.log(JSON.stringify(data1));
-//console.log($("input[name='gender']:checked").val()+'nitin');return; 
-var data = eval(data1);//JSON.stringify(data1);
-  $.ajax({
 
+var url = '<?php echo site_url();?>';
+
+
+
+var data = JSON.stringify(data1);
+  $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/saveEditJob'); ?>',
     data: data,
     dataType: "text",  
     success: function(result) {
-      //alert(result);
-     $("#imagelodar").hide();
+    $("#imagelodar").hide();
        if(result == '1')
          {
          $("#imagelodar").hide();
@@ -111,6 +111,7 @@ var data = eval(data1);//JSON.stringify(data1);
 
     }
 });
+
 }
 </script>
 
@@ -316,7 +317,13 @@ var data = eval(data1);//JSON.stringify(data1);
     <div class="form-group">
 	<label for="pin">Pin</label>
 	<input type="text" class="form-control"  id="jpin" placeholder="Enter Pin" value="<?php echo $job['pin'];?>">
-	</div >		
+	</div >	
+  <div class="form-group">
+          <label for="link">Job Link</label>
+          <input type="text" class="form-control"   id="job_link" placeholder="http://">
+          <label id="job_links_error" hidden>Job Link is required .</label> 
+          </div >
+
     </div>
     </div>
      <!-- /.tab-pane -->

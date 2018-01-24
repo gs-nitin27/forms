@@ -81,6 +81,10 @@
 				<div class="timeline-item">
 				<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['pin'];?></h5>
 				</div>
+				<div class="timeline-item">
+				<h5 class="timeline-header no-border"><b>JOB LINK: </b> &nbsp;<?php echo $job['job_link'];?></h5>
+				</div>
+
 				<!-- STATE IS ID BASED -->	
                 </div>
                 </div>
@@ -203,6 +207,11 @@
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $job['pin'];?></h5>
 					</div>
+					<div class="timeline-item">
+				<h5 class="timeline-header no-border"><b>JOB LINK: </b> &nbsp;<?php echo $job['job_link'];?></h5>
+				</div>
+				
+
 					<!-- STATE IS ID BASED -->
               </div>
               </div>

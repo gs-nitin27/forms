@@ -447,15 +447,18 @@ var data = {
     "userdata"                 : userjson,
     "prof_id"                  : $("#prof_id").val()
 };
+
 console.log(JSON.stringify(data));
+
 var data = JSON.stringify(data);
+
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/Registration_userdata'); ?>',
     data: data,
     dataType: "text",
     success: function(result) {
-     //alert(result);
+     console.log(result);
       if(result == '1')
       {
          

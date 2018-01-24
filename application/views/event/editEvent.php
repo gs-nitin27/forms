@@ -63,24 +63,24 @@ var data1 =
 
 
 };
+
 var url = '<?php echo site_url();?>';
 
-console.log(JSON.stringify(data1));
+var data =  JSON.stringify(data1);
 
-var data =  eval(data1);//JSON.stringify(data1);
   $.ajax({
     type: "POST",
-    url: '<?php echo site_url('forms/event'); ?>',
+    url: '<?php echo site_url('forms/saveEditEvent'); ?>',
     data: data,
     dataType: "text",
     success: function(result) 
     {
-    	//alert(result);
+    
     	 if(result == '1')
          {
          $.confirm({
          title: 'Congratulations!',
-         content: 'Event is Created.',
+         content: 'Event is Updated.',
          type: 'green',
          typeAnimated: true,
          buttons: {

@@ -173,6 +173,8 @@ var data = JSON.stringify(data);
 </script>  
 
 <?php  
+
+
       $profile = $this->register->profile($id); 
 
 
@@ -214,6 +216,9 @@ var data = JSON.stringify(data);
         <div class="useravatar">
 
             <?php 
+
+
+
                     if($value['user_image']) {
              ?>
            <img class="card-bkimg" alt="" src="<?php echo $value['user_image'];?>" alt="User profile picture">
@@ -507,7 +512,7 @@ var data = JSON.stringify(data);
 
 <?php 
 $prof_data = $this->register->prof_data($id);
-     // print_r($prof_data);
+    //  print_r($prof_data);
 //die;
 if($prof_data)
 {
@@ -539,17 +544,18 @@ if($value['userType'] == 103)
   <div class="w3-container w3-card w3-white">
   <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><?php echo $key ?></h2>
  <?php
-      foreach ($value as $key1 => $value1) 
+// print_r($value);
+      foreach ($value as $key1 => $value1)
+
       { ?>
 
       <div class="w3-container">
       <h5 class="w3-opacity"><b>Organisation : </b></h5><p><?php echo $value1->organisation; ?></p>
       <h5 class="w3-opacity"><b>Degree : </b></h5><p><?php echo $value1->degree; ?></p>
       <h5 class="w3-opacity"><b>Stream : </b></h5><p><?php echo $value1->stream; ?></p>   
-      <h6 class="w3-text-teal"><b>Date From :</b><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
-        $value1->dateFrom ;?></h6>
-      <h6 class="w3-text-teal"><b>Date To :</b><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
-        $value1->dateTo ;?></h6>
+      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
+        $value1->courseDuration ;?></h6>
+  
       <hr>
       </div>
 
