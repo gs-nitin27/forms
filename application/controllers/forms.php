@@ -9,7 +9,7 @@ public function __construct()
 		$this->load->library('session');	
     include('assets/emailtemplate/simple_html_dom.php');
 }    
-               
+                    
 public function index()
 {   
 
