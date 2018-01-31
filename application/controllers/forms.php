@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+       
 class Forms extends CI_Controller
 {
 public function __construct() 
@@ -9,7 +9,7 @@ public function __construct()
 		$this->load->library('session');	
     include('assets/emailtemplate/simple_html_dom.php');
 }    
-               
+                    
 public function index()
 {   
 
