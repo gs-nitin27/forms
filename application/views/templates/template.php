@@ -68,8 +68,7 @@ if(!isset($noheader))
 $this->load->view('templates/header');
 }
 
-
-$this->load->view($middle, $required);
+ $this->load->view($middle, $required);
 
 
 	//echo $middle;die();

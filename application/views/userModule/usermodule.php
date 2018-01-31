@@ -41,9 +41,12 @@
         <tbody>
                 <?php
                 $data = $this->session->userdata('item');
+
                 $i =1;
 
                 $users = $this->register->getUserInfo();  
+
+
                  if(!empty($users)){
                         foreach($users as $user){ 
                          $acti = '';
@@ -77,6 +80,7 @@
                     <button class="badge bg-green" onclick="myfunction(<?php //echo $user['userid'];?>,0)"><?php //echo "Deactivate";?></button>
                     <?php //} ?>
                     </td> -->
+
                     <?php  $list=array('a' => 0,
                                 'b' => 1,
                                 'c' => 2,
@@ -95,11 +99,13 @@
                                 $temp.=array_search($data,$list);
                                 }
                                 $num=$temp;
-                                { ?>
+                                { 
+                                  $userid = $user['userid'];
+                                  ?>
 
                      <td><a href = "<?php echo site_url('forms/userprofile/'.$num.'?module'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
 
-                     <td><a href = "<?php echo site_url('forms/newEndUser/module'.$num.''); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
+                     <td><a href = "<?php echo site_url('forms/userModify/'.$userid.''); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
 
 
 

@@ -421,6 +421,25 @@ public function newEndUser()
 
 
 }
+
+public function userModify($userid)
+{
+   $user_basic = $this->register->user_basic($userid);
+   $prof_data = $this->register->prof_data($userid);
+
+   $data['middle'] = 'userModule/user_modify';
+
+   $data['required']= array('user_basic' => $user_basic , 'prof_data'=>$prof_data  );
+
+   //$data['user_data'] = 
+  
+   $this->load->view('templates/template',$data);
+   
+
+}
+
+
+
 public function registrationprofile($str)
 { 
       $data = array( 'id' => $str);
