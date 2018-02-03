@@ -1,3 +1,6 @@
+
+
+
 <link rel="stylesheet" href="<?php echo base_url('assets/jquery-ui.css'); ?>" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo base_url('assets/ui.theme.css'); ?>" type="text/ css" media="all" />
 <script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" > </script>
@@ -27,17 +30,26 @@ function save()
               	  "token"                   : $("#token").val(),
                   "sport"                   : $("#sport").val().toString()
               };
-          console.log(JSON.stringify(data1)); 
+
+          //console.log(JSON.stringify(data1));
+
+          var data = JSON.stringify(data1);
+
+          var data = JSON.stringify(data1);
+
+          
           var url = '<?php echo site_url();?>'
-          var data = eval(data1);//JSON.stringify(data1);
+          
+          //var data = eval(data1);//JSON.stringify(data1);
+
           $.ajax({
             type: "POST",
             url: '<?php echo site_url('forms/SavecreateResources'); ?>',
             data: data,
-            dataType: "json",
+            dataType: "text",
             success: function(result) 
             {
-              if(result.response == '1')
+             if(result== '1')
               {
                       $.confirm({
                           animationSpeed: 1000,

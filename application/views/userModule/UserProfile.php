@@ -173,6 +173,8 @@ var data = JSON.stringify(data);
 </script>  
 
 <?php  
+
+
       $profile = $this->register->profile($id); 
 
 
@@ -214,7 +216,7 @@ var data = JSON.stringify(data);
         <div class="useravatar">
 
             <?php 
-                    if($value['user_image']) {
+                   if($value['user_image']) {
              ?>
            <img class="card-bkimg" alt="" src="<?php echo $value['user_image'];?>" alt="User profile picture">
              <?php } else { if($value['gender'] == 'Female') { ?>
@@ -439,8 +441,8 @@ var data = JSON.stringify(data);
       <div class="w3-white w3-text-grey w3-card-4">
         <div class="w3-container">
           <br>
-              <strong><i class="fa fa-venus-double margin-r-5"></i>Gender</strong>
-              <p class="text-muted">
+              <strong><i class="fa fa-venus-double margin-r-5"></i><b> Gender : </b></strong>
+              
                 <?php echo $value['gender'];?>
               </p>
               <hr>
@@ -448,23 +450,24 @@ var data = JSON.stringify(data);
               <i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
               <p class="text-muted"><?php echo $value['address1'];?></p>
+
               <p class="text-muted"><?php echo $value['address2'];?></p>
                <p class="text-muted"><?php echo $value['location'];?></p>
               <p class="text-muted"><?php echo $value['address3'];?></p>
               <hr>
-            <strong><i class="fa fa-mobile margin-r-5"></i>Contact No</strong>
-            <p><?php echo $value['contact_no'];?></p>
+            <strong><i class="fa fa-mobile margin-r-5"></i>Contact No :</strong>
+            <?php echo $value['contact_no'];?></p>
             <hr>
 
-          <strong><i class="fa fa-futbol-o margin-r-5"></i>Sport</strong>
-          <p class="text-muted">
+          <strong><i class="fa fa-futbol-o margin-r-5"></i>Sport :</strong>
+          
                 <?php echo $value['sport'];?>
             </p>
             <hr>
-            <strong><i class="fa fa-calendar-check-o margin-r-5"></i>DOB</strong>
-            <p class="text-muted"><?php echo $value['dob'];?></p>
+            <strong><i class="fa fa-calendar-check-o margin-r-5"></i>DOB : </strong>
+            <?php echo $value['dob'];?></p>
             <hr>
-            <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+            <strong><i class="fa fa-pencil margin-r-5"></i> Skills :</strong>
             <p>
             <span class="label label-danger"><?php echo $value['prof_language'];?></span>
             <span class="label label-success"><?php echo $value['other_skill_name'];?></span>
@@ -473,9 +476,11 @@ var data = JSON.stringify(data);
                 <span class="label label-primary">Node.js</span> -->
             </p>
             <hr>
-            <strong><i class="fa fa-envelope margin-r-5"></i>Email</strong>
+            <strong><i class="fa fa-envelope margin-r-5"></i>Email : </strong>
+            <?php echo $value['email'];?></p>
+
             <button style="margin-left: 71%;" id="ebutton"><i class="fa fa-pencil margin-r-5"></i></button>
-            <p><?php echo $value['email'];?></p>
+            
 
               <script>
               $(document).ready(function(){
@@ -507,7 +512,7 @@ var data = JSON.stringify(data);
 
 <?php 
 $prof_data = $this->register->prof_data($id);
-     // print_r($prof_data);
+    //  print_r($prof_data);
 //die;
 if($prof_data)
 {
@@ -524,7 +529,7 @@ if($value['userType'] == 103)
     foreach ($profiledata->HeaderDetails as $key => $value) 
     {
     ?>
-    <h5 class="w3-opacity"><b><?php echo $key ;?> - </b><?php echo $value; ?></h5>
+    <h5 class="w3-opacity"><b><?php echo ucwords($key); ?> : </b><?php echo $value; ?></h5>
     <?php     
     }
 ?>
@@ -537,19 +542,20 @@ if($value['userType'] == 103)
 
   
   <div class="w3-container w3-card w3-white">
-  <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><?php echo $key ?></h2>
+  <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><?php echo ucwords($key); ?></h2>
  <?php
-      foreach ($value as $key1 => $value1) 
+// print_r($value);
+      foreach ($value as $key1 => $value1)
+
       { ?>
 
       <div class="w3-container">
-      <h5 class="w3-opacity"><b>Organisation : </b></h5><p><?php echo $value1->organisation; ?></p>
-      <h5 class="w3-opacity"><b>Degree : </b></h5><p><?php echo $value1->degree; ?></p>
-      <h5 class="w3-opacity"><b>Stream : </b></h5><p><?php echo $value1->stream; ?></p>   
-      <h6 class="w3-text-teal"><b>Date From :</b><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
-        $value1->dateFrom ;?></h6>
-      <h6 class="w3-text-teal"><b>Date To :</b><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
-        $value1->dateTo ;?></h6>
+      <h5 class="w3-opacity"><b>Organisation :</b> <?php echo ucfirst($value1->organisation); ?></p>
+      <h5 class="w3-opacity"><b>Degree :</b> <?php echo ucwords($value1->degree); ?></p>
+      <h5 class="w3-opacity"><b>Stream :</b> <?php echo $value1->stream; ?></p>   
+      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
+        $value1->courseDuration ;?></h6>
+  
       <hr>
       </div>
 
@@ -566,7 +572,7 @@ if($value['userType'] == 103)
       ?> 
       
       <div class="w3-container w3-card w3-white w3-margin-bottom" id="exphide">
-      <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><?php echo $key;?></h2>
+      <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><?php echo ucwords($key);?></h2>
 
       <?php
         foreach ($value as $key1 => $value1) {
@@ -578,9 +584,9 @@ if($value['userType'] == 103)
       
         
     <div class="w3-container">
-    <h5 class="w3-opacity"><b>Organisation Name : </b></h5><p><?php echo $value1->organisationName ;?></p>
-    <h5 class="w3-opacity"><b>Designation : </b></h5><p><?php echo $value1->designation ;?></p> 
-    <h5 class="w3-opacity"><b>Description : </b></h5><p><?php echo $value1->description ;?></p> 
+    <h5 class="w3-opacity"><b>Organisation :</b> <?php echo $value1->organisationName ;?></p>
+    <h5 class="w3-opacity"><b>Designation :</b> <?php echo $value1->designation ;?></p> 
+    <h5 class="w3-opacity"><b>Description :</b> <?php echo $value1->description ;?></p> 
     <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo $value1->dateFrom; ?> -  <span class="w3-tag w3-teal w3-round"><?php echo $value1->dateTo; ?></span></h6>
     <hr>
     </div>
@@ -595,9 +601,9 @@ if($value['userType'] == 103)
  <?php }  } else { ?>  
  
     <div class="w3-container">
-    <h5 class="w3-opacity"><b>Organisation Name : </b></h5><p><?php echo $value1->organisationName ;?></p>
-    <h5 class="w3-opacity"><b>Designation : </b></h5><p><?php echo $value1->designation ;?></p> 
-    <h5 class="w3-opacity"><b>Description : </b></h5><p><?php echo $value1->description ;?></p> 
+    <h5 class="w3-opacity"><b> Organisation:</b> <?php echo $value1->organisationName ;?></p>
+    <h5 class="w3-opacity"><b>Designation :</b> <?php echo $value1->designation ;?></p> 
+    <h5 class="w3-opacity"><b>Description :</b> <?php echo $value1->description ;?></p> 
     <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo $value1->dateFrom; ?> -  <span class="w3-tag w3-teal w3-round"><?php echo $value1->dateTo; ?></span></h6>
     <hr>
     </div>
@@ -620,7 +626,7 @@ if($profiledata)
 foreach ($profiledata->Header as $key => $value) 
 {
 ?>
-<h5 class="w3-opacity"><b><?php echo $key; ?> : </b></h5><p><?php echo $value; ?></p>
+<h5 class="w3-opacity"><b><?php echo ucwords($key); ?> : </b></h5><p><?php echo $value; ?></p>
 <?php } ?>
  <hr>
 </div>
@@ -639,8 +645,8 @@ foreach ($value as $key1 => $value1)
   ?>
 
       <div class="w3-container">
-      <h5 class="w3-opacity"><b>Name Of Award : </b></h5><p><?php echo $value1->nameOfAward; ?></p>
-      <h5 class="w3-opacity"><b>Description : </b></h5><p><?php echo $value1->description; ?></p>
+      <h5 class="w3-opacity"><b>Name Of Award :</b> <?php echo $value1->nameOfAward; ?></p>
+      <h5 class="w3-opacity"><b>Description : </b><?php echo $value1->description; ?></p>
       <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
         $value1->date ;?></h6>
       <hr>
@@ -662,9 +668,9 @@ foreach ($value as $key1 => $value1)
       { 
         ?>
       <div class="w3-container">
-      <h5 class="w3-opacity"><b>Name Of Comptation: </b></h5><p><?php echo $value1->nameComptation; ?></p>
-      <h5 class="w3-opacity"><b>Rounds : </b></h5><p><?php echo $value1->rounds; ?></p>
-      <h5 class="w3-opacity"><b>Result : </b></h5><p><?php echo $value1->result; ?></p>   
+      <h5 class="w3-opacity"><b>Name Of Comptation:</b><?php echo $value1->nameComptation; ?></p>
+      <h5 class="w3-opacity"><b>Rounds :</b> <?php echo $value1->rounds; ?></p>
+      <h5 class="w3-opacity"><b>Result :</b><?php echo $value1->result; ?></p>   
       <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
         $value1->date ;?></h6>
       <hr>
@@ -686,7 +692,7 @@ foreach ($value as $key1 => $value1)
 foreach ($profiledata->Bio as $key => $value) 
 {
 ?>
-<h5 class="w3-opacity"><b><?php echo $key; ?> : </b></h5><p><?php echo $value; ?></p>
+<h5 class="w3-opacity"><?php echo ucwords($key); ?> : <?php echo $value; ?></p>
 <?php 
 }
 ?>
@@ -702,10 +708,10 @@ foreach ($profiledata->Bio as $key => $value)
         ?>
   <div class="w3-container">
       <h5 class="w3-opacity"><b>Name Of Competation : </b></h5><p><?php echo $value1->nameOfCompetation;?></p> 
-        <h5 class="w3-opacity"><b>Detail : </b></h5><p><?php echo $value1->detail;?></p> 
-      <h5 class="w3-opacity"><b>Opponent : </b></h5><p><?php echo $value1->opponent; ?></p>
-      <h5 class="w3-opacity"><b>Round : </b></h5><p><?php echo $value1->round; ?></p> 
-      <h5 class="w3-opacity"><b>Score : </b></h5><p><?php echo $value1->score; ?></p>  
+        <h5 class="w3-opacity"><b>Detail :</b> <?php echo $value1->detail;?></p> 
+      <h5 class="w3-opacity"><b>Opponent :</b> <?php echo $value1->opponent; ?></p>
+      <h5 class="w3-opacity"><b>Round :</b> <?php echo $value1->round; ?></p> 
+      <h5 class="w3-opacity"><b>Score :</b> <?php echo $value1->score; ?></p>  
       <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
         $value1->dateOfCompetation ;?></h6> 
    <hr> 
@@ -805,6 +811,7 @@ foreach ($profiledata->Bio as $key => $value)
 
 
           ?>
+
          <!--  </div> -->
 
            <!--  <div class="col-md-6">

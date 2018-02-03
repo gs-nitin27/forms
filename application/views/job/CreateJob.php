@@ -1,6 +1,16 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
+
+<!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+        rel="stylesheet" type="text/css" /> -->
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+        type="text/javascript"></script>
 <script src="<?php echo base_url('assets/plugin1/jquery.js'); ?>" > </script>
 
+
+<script src="<?php echo base_url('assets/plugin1/jquery.js'); ?>" > </script>
 <script src="<?php echo base_url('assets/plugin1/croppie.js'); ?>" > </script>
 
 <link rel="stylesheet" href="<?php echo base_url('assets/plugin1/bootstrap-3.min.css'); ?>" > 
@@ -27,6 +37,8 @@
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
  
 -->
+
+
 
 <script src="<?php echo base_url('assets/plugin1/jquery.min.js'); ?>" > </script>
 
@@ -549,10 +561,12 @@ $(function() {
       var editorData      =  editor.getData();
       var description     =  editorData.replace(/[\/\\<>~\{}]/g, '');
        
-   if($("#jtitle").val() !="" && description !="" && $("#orgName").val() !="" & $("#job_link").val() !="" )
-     {
-            save();
-       }else
+   if($("#jtitle").val() !=""  )
+   {
+              save();
+
+       }
+       else
        {
                   $("#2").css("color","red");
                   $("html, body").animate({ scrollTop: 0 }, 500);
@@ -604,12 +618,8 @@ $(function() {
 function save()
 {
 
-
-
   $("#imagelodar").show();
   var description     = editor.getData();
-
-  // alert(description);return;
 
 var data1 = {
     "id"                      : 0, 
@@ -644,20 +654,19 @@ var data1 = {
     "gender"                  : $("#gender").val()
 
 };
+
+
+
 var url = '<?php echo site_url();?>';
 
-//console.log(JSON.stringify(data1));
+var data = JSON.stringify(data1);
 
-var data = eval(data1);
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/saveJob'); ?>',
     data: data,
-    dataType: "text",
+    dataType: 'text',
     success: function(result) {
-
-     // alert(result);//return;
-
        if(result == '1')
          {
          $.confirm({

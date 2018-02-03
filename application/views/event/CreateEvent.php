@@ -54,27 +54,19 @@ var data1 =
     "ticketdetails"           : totalTicket,
     "terms_and_conditions1"   : totalTerm,
     "eligibility1"            : totalCriteria
-
-
-    
+   
    // "ticketArray" 			  :	ticketArray;
-
 
 };
 
+
 var url = '<?php echo site_url();?>';
-
-//console.log(JSON.stringify(data1));
-
-
-
-var data2 =  eval(data1);//JSON.stringify(data1);
-
+var data =  JSON.stringify(data1);//JSON.stringify(data1);
 
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/event'); ?>',
-    data: data2,
+    data: data,
     dataType: "text",
     success: function(result) 
     {

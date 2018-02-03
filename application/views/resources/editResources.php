@@ -88,19 +88,22 @@ var data1 = {
      "token"                  : $("#token").val(),
     "sport"                   : $("#sport").val().toString()
 };
-console.log(JSON.stringify(data1));//return;
+
+
 var url = '<?php echo site_url();?>'
-var data = eval(data1);//JSON.stringify(data1);
+
+var data =JSON.stringify(data1);
+
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/saveEditResources'); ?>',
     data: data,
     dataType: "json",
     success: function(result) {
-      // $('#imagelodar').hide();
+
      if(result.response == '1')
       {
-         //alert(result.response);
+
         $.confirm({
         animationSpeed: 1000,
         animationBounce: 3,

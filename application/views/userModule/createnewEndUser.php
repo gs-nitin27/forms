@@ -12,6 +12,7 @@
 
 function saveUserProfile(userjson)
 {
+  
 $("#imagelodar").show();
 
 var data = {
@@ -20,16 +21,23 @@ var data = {
     "prof_id"                  : $("#profid").val(),   
     "userdata"                 : userjson
 };
-console.log(JSON.stringify(data));
+
+
 var data = JSON.stringify(data);
+
+//console.log(data);
+
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/Registration_userdata'); ?>',
-    data: "data="+data,
+    data: data,
+
     dataType: "text",
     success: function(result) {
-     //alert(result);
-      if(result == '1')
+
+      console.log(result);
+
+     if(result == '1')
       {
          
         $.confirm({
@@ -341,12 +349,15 @@ $("#basicdata").click(function()
  
     if(professions!=null)
     {
-    var prof_data = professions.split(",");
+    var prof_data  = professions.split(",");
     var prof_id    = prof_data[1];
     var prof_name  = prof_data[0];
    
     $("#profid").val(prof_id);
+
     $("#designation").val(prof_name);
+
+
    }
 
     var data1 = 
@@ -358,18 +369,28 @@ $("#basicdata").click(function()
     "sport"       : $("#sport").val(),
     "prof_name"   : prof_name,
     "prof_id"     : prof_id,
-    "gender"      : $("#gender").val()
+    "gender"      : $("#gender").val(),
+    "location"    : $("#location").val()
     };
-    console.log(JSON.stringify(data1));
+
+    //console.log(JSON.stringify(data1));
+   // console.log("ganga");
     var url  = '<?php echo site_url();?>';
+
     var data = JSON.stringify(data1);
+
+
     $.ajax({
       type : "POST",
       url  : "<?php echo site_url('forms/user_register_byAdmin');?>",
-      data : "data="+data,
-      dataType : "JSON",
+      data : data,
+      dataType : "text",
       success : function(result)
       {
+
+
+
+
           if(result.data == 0)
           {
              $.confirm({
@@ -393,7 +414,9 @@ $("#basicdata").click(function()
 
 
 
-          }else if(result.data == 3){
+          }
+
+          else if(result.data == 3){
            $.confirm({
               title: 'Ohh!',
               content: 'You are Aleardy register with Us!',
@@ -419,8 +442,11 @@ $("#basicdata").click(function()
          {
 
             $("#exp_as_player").show();
-         }  
-         $("#newuserid").val(result.data);
+         } 
+
+        
+        var userid    =  JSON.parse(result);
+        $("#newuserid").val(userid.data);
 			   $("#tab_event").hide();
 			   $("#basicdata").hide();
 			   $("#2").show();
@@ -457,6 +483,7 @@ $("#basicdata").click(function()
     });
 }
 });
+
 </script>
 <script type="text/javascript">
 	

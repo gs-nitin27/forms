@@ -74,21 +74,23 @@ var data1 = {
     "image"                   : $("#photo_url").val() 
 };
 
-console.log(JSON.stringify(data1));
+//console.log(JSON.stringify(data1));
+
 var url = '<?php echo site_url();?>';
-//var data = JSON.stringify(data1);
-var data =  eval(data1);
+
+var data = JSON.stringify(data1);
+
+//var data =  eval(data1);
+
   $.ajax({
     type: "POST",
-    url: '<?php echo site_url('forms/saveTournament'); ?>',
+    url: '<?php echo site_url('forms/saveEditTournament'); ?>',
     data: data,
-    dataType: "json",
+    dataType: "text",
     success: function(result) {
-      // $("#imagelodar").hide();
-      $("#imagelodar").hide();
-       if(result == '1')
-         {
-
+  	$("#imagelodar").hide();
+    if(result == '1')
+    {
          $.confirm({
          title: 'Congratulations!',
          content: 'Tournament is Updated.',
