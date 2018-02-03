@@ -301,17 +301,10 @@ var data = JSON.stringify(data);
         <input type="button" class="btn btn-lg btn-primary" id="save"  value="Submit" name="Create">
 		</div>
         </div>
-           
             </div>
             </form>
-         
-          
-			 
-			
           </div>
 	  </div>
-		
-	  
 </div>
 </div>
 </section>
@@ -321,7 +314,7 @@ var data = JSON.stringify(data);
     $("#dob").datepicker();
   });
    
-    $("#exp_as_player").hide();
+   $("#exp_as_player").hide();
    $("#2").hide();
    $("#3").hide(); 
    $("#4").hide();
@@ -540,7 +533,7 @@ $("#next").click(function()
 $("#next1").click(function() 
 {
 	$("#others2").addClass("active");
-    $("#experience2").removeClass('active');
+  $("#experience2").removeClass('active');
 	$("#tabs").tabs("option", "active", 3);
 });
 
