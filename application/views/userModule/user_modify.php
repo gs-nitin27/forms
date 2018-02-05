@@ -131,7 +131,7 @@ var data = JSON.stringify(data);
 				<label for="sports">Sport</label>
 
 
-				<select id="sport" class="form-control" >
+				<select id="sport" class="form-control"  disabled>
 				<option ><?php echo $user_basic['sport'];?></option> 
 					<?php if(!empty($sports)){
 						foreach($sports as $sport){?>
