@@ -111,17 +111,17 @@ var data = JSON.stringify(data);
           
 
 			    <label for="eventName">Name</label>
-				<input type="text" class="form-control"  id="name" value="<?php echo $user_basic['name'];?>" >
+				<input type="text" class="form-control"  id="name" value="<?php echo $user_basic['name'];?>" disabled>
                 <label id="name_error" hidden>Name is required .</label>
 			    </div>
 			    <div class="form-group">
 			    <label for="eventName">Email</label>
-				<input type="text" class="form-control"  id="email" value="<?php echo $user_basic['email'];?>">
+				<input type="text" class="form-control"  id="email" value="<?php echo $user_basic['email'];?>" disabled>
                 <p class="text-danger" id="email_error" hidden="">Email is required.</p>
 			    </div>
 			    <div class="form-group">
 			    <label for="eventName">Phone</label>
-				<input type="text" class="form-control"  id="phone" value="<?php echo $user_basic['contact_no'];?>">
+				<input type="text" class="form-control"  id="phone" value="<?php echo $user_basic['contact_no'];?>" disabled>
                 <label id="phone_error" hidden>Phone is required .</label>
 			    </div>
 			    <div class="form-group">
@@ -135,7 +135,7 @@ var data = JSON.stringify(data);
 				<option ><?php echo $user_basic['sport'];?></option> 
 					<?php if(!empty($sports)){
 						foreach($sports as $sport){?>
-				<option value ="<?php echo $sport['sports'];?>"><?php echo $sport['sports'];?> </option>
+				<option value ="<?php echo $sport['sports'];?>" disabled><?php echo $sport['sports'];?> </option>
 					<?php 	}
 						}	
 					?>
@@ -146,11 +146,11 @@ var data = JSON.stringify(data);
         <div class="form-group">
 				<?php  $prof = $this->register->getprofession();?>
 				<label for="prof">Profession</label>
-				<select id="prof" class="form-control" >
+				<select id="prof" class="form-control" disabled>
 				<option ><?php echo $user_basic['prof_name'];?></option> 
 				<?php if(!empty($prof)){
                         foreach($prof as $prf){?>
-                 <option value ="<?php echo $prf['profession'];?>,<?php echo $prf['id'];?>"><?php echo $prf['profession'];?> </option>
+                 <option disabled value ="<?php echo $prf['profession'];?>,<?php echo $prf['id'];?>"><?php echo $prf['profession'];?> </option>
                       <?php   }
                            } 
                          ?>
@@ -158,11 +158,11 @@ var data = JSON.stringify(data);
 					 <p class="text-danger" id="prof_error" hidden="">Profession Name is required.</p>
 					</div>
 					<div class="form-group">
-					<label for="sports">Gender</label>
+					<label for="sports" >Gender</label>
 
 
 
-						<select id="gender" class="form-control" >
+						<select id="gender" class="form-control" disabled>
 							<option><?php echo $user_basic['gender'];?></option>
 							<option id="Male" value="<?php echo $user_basic['name'];?>" >Male</option>
 							<option id="Female" value="<?php echo $user_basic['name'];?>" >Female</option>
@@ -170,7 +170,7 @@ var data = JSON.stringify(data);
 					</div>
 					<div class="form-group">
 					  <label for="link">Date Of Birth</label>
-					  <input type="text" class="form-control"  id="dob" value="<?php echo $user_basic['dob'];?>">
+					  <input disabled type="text" class="form-control"  id="dob" value="<?php echo $user_basic['dob'];?>">
 					  <label id="startD_error" hidden>DOB is required .</label> 
 					</div>
 
