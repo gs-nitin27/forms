@@ -35,7 +35,7 @@ var data = JSON.stringify(data);
     dataType: "text",
     success: function(result) {
 
-      console.log(result);
+     // console.log(result);
 
      if(result == '1')
       {
@@ -359,6 +359,8 @@ $("#basicdata").click(function()
 
 
    }
+   
+    $("#imagelodar").show();
 
     var data1 = 
     {
@@ -387,10 +389,6 @@ $("#basicdata").click(function()
       dataType : "text",
       success : function(result)
       {
-
-
-
-
           if(result.data == 0)
           {
              $.confirm({
@@ -411,11 +409,7 @@ $("#basicdata").click(function()
                   }
               }
           });
-
-
-
           }
-
           else if(result.data == 3){
            $.confirm({
               title: 'Ohh!',

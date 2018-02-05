@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 $('#save').click(function(){
 
-
+   $("#imagelodar").show();  
 //alert($("#proftype").val());
 
 var prof_data = $("#proftype").val();
@@ -51,8 +51,10 @@ var data = JSON.stringify(data1);
     {
      // alert(result.response);
        
-        if(result.response== 1)
+      if(result.response== 1)
       {
+        $("#imagelodar").hide();  
+
          $.confirm({
          title: 'Exits',
          content: 'User already registered!',
@@ -100,6 +102,7 @@ var data = JSON.stringify(data1);
       }
       else 
       {
+          $("#imagelodar").hide();   
            $.confirm({
               title: 'Encountered an error!',
               content: 'Something went Worng, this may be server issue.',
@@ -130,7 +133,7 @@ var data = JSON.stringify(data1);
 $(function(){
     $("#dob").datepicker(); 
   });
-
+ 
   </script>
         
        <div class="content-wrapper">
@@ -142,6 +145,7 @@ $(function(){
       </h1>
      
     </section>
+    <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
          <section class="content"> 
       <div class="row">
       <div class="col-md-12">
@@ -218,7 +222,7 @@ $(function(){
                             <option>-select-</option>
                             <option id="Male">Male</option>
                             <option id="Female">Female</option>
-                            <option id="Transgender">All</option>
+                            <option id="Transgender">Transgender</option>
                         </select>
                     </div>
                     <div class="form-group">

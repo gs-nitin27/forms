@@ -2,7 +2,7 @@
   <script>
 $(document).ready(function(){
              
-
+  $('#imagelodar').show();
   $('#save').click(function(){
     
 var data1 = {
@@ -38,7 +38,7 @@ var data = JSON.stringify(data1);
     success: function(result) {
 
      // alert(result);
-      // $("#imagelodar").hide();
+       $("#imagelodar").hide();
        if(result == '1')
          {
 
@@ -81,21 +81,12 @@ var data = JSON.stringify(data1);
               }
           });
       }
-      
     }
-
-
 });
-
-    
 });});
 
- 
   $(function() {
     $( "#dob" ).datepicker();
-   
-    
-    
   });
 
   </script>
@@ -108,6 +99,7 @@ var data = JSON.stringify(data1);
         
       </h1>
     </section>
+    <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div>
          <section class="content"> 
       <div class="row">
       <div class="col-md-12">
@@ -321,6 +313,7 @@ else
 {
 if(pass1==pass2)
 {
+  $('#imagelodar').show();
 var data=  {
    
    "userid"           :$("#uid").val(),
@@ -341,7 +334,7 @@ $.ajax({
   dataType : "json",
   success :function(result){
   // alert(result.response);
-
+  $('#imagelodar').hide();
    if(result.response == '1')
       {
         $("#msgdiv2" ).hide();
