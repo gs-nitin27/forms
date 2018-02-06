@@ -114,9 +114,9 @@
                       <?php }?>
                   <td>
                   <?php if($user['activeuser']==0){?>
-                  <button class="badge bg-red" onclick="myfunction(<?php echo $user['userid'];?>,1)"><?php echo "Activate";?></button>
+                  <button class="badge bg-red" onclick="myfunction(<?php echo $user['userid'];?>,1,<?php echo $user['email'];?>)"><?php echo "Activate";?></button>
                     <?php }else{?> 
-                  <button class="badge bg-green" onclick="myfunction(<?php echo $user['userid'];?>,0)"><?php echo "Deactivate";?></button>
+                  <button class="badge bg-green" onclick="myfunction(<?php echo $user['userid'];?>,0,<?php echo $user['email'];?>)"><?php echo "Deactivate";?></button>
                     <?php } ?>
                   </td>
                   <td>
@@ -131,9 +131,9 @@
                   <th style="width:10px;background:#5262bc;color:#ffffff;">#</th>
                   <th style="background:#5262bc; color:#ffffff;">Email</th>
                   <th style="background:#5262bc; color:#ffffff;">Name</th>
-                 <!--  <th style="background:#5262bc; color:#ffffff;">Userid</th> -->
                   <th style="background:#5262bc; color:#ffffff;">Profession</th>
                   <th style="background:#5262bc; color:#ffffff;">View</th>
+                  <th style="background:#5262bc; color:#ffffff;">Edit</th>
                   <th style="background:#5262bc; color:#ffffff;">Status</th>
                   <th style="background:#5262bc; color:#ffffff;">Activated/Dactivated</th>
                 </tr>
@@ -153,7 +153,7 @@
     $(document).ready(function() {
     $('#example1').DataTable({
         initComplete: function () {
-          this.api().columns([3,6]).every( function () {
+          this.api().columns([3,7]).every( function () {
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
                     .appendTo( $(column.header()).empty() )
@@ -175,10 +175,11 @@
 </script>
 
 <script type="text/javascript">
-function myfunction(id,activeuser)
+function myfunction(id,activeuser,email)
 { 
     var data1 = {
-    "userid"                  : id, 
+    "userid"                  : id,
+    "email"                   : email, 
     "activeuser"              : activeuser
 };
 console.log(JSON.stringify(data1));

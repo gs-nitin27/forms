@@ -365,12 +365,18 @@ public function ActivateUser()
 $data2 = json_decode($_REQUEST['data']);
 $item  = new stdClass(); 
 $item->userid                = $data2->userid;
+$item->email                 = $data2->email;
 $item->activeuser            = $data2->activeuser;
 $this->load->model('register');
 $res = $this->register->ActivateUser($item);
+
 if($res)
 {
-	echo "User Is Activate";
+    echo "User Is Activate";
+    if($data2->activeuser)
+    {
+      $this->emailVarification($data2->email);
+    }
 }
 else
 {
@@ -4083,9 +4089,10 @@ public function user_register_byAdmin()
   $item->access_module   = "1,2,3";
   $this->load->model('register');
 
-  $this->emailVarification($item->email);
+//   $this->emailVarification($item->email);
 
   $emailid = $this->register->Emailfind($data->email);
+
   if($emailid)
   {
     echo json_encode(array('data' =>3 ,'message' =>'User is already registered with Us!'));    

@@ -1,4 +1,16 @@
 <script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>" ></script>
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+        type="text/javascript"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+        rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+        type="text/javascript">
+</script>        
+        
 <script>
 window.flagTicket = 0;
 window.flagTerm   = 0;
@@ -238,7 +250,7 @@ var data =  JSON.stringify(data1);//JSON.stringify(data1);
 				         {      
 				         	    $("#otherevent").hide();
 				         	    $("#evtype").val(selectedCountry);
-				         	   // alert(selectedCountry);
+
 				         }
 				       });
 				    </script>
@@ -247,6 +259,48 @@ var data =  JSON.stringify(data1);//JSON.stringify(data1);
                     <input type="text" class="form-control"  name="eventtype" id="evtype">
                     <label id="type_error" hidden>Event Type is required .</label>
                     </div>
+
+
+<!-- 
+    <script type="text/javascript">
+        $(function() {
+        $('.multiselect-ui').multiselect({
+            includeSelectAllOption: true
+            });
+        });
+
+
+      get_sport = function()
+     {
+        $('#sport').val('');
+        var list = $('#dates-field2').val().join(',');
+        $('#sport').val(list);   
+     }
+    </script>
+
+              <div class="form-group">
+              <div class="col-md-4">
+              <div class="form-group">
+              <label class="exampleInputEmail1" for="rolename">Sports</label>
+              <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple" onchange="get_sport()">
+               <?php//  $sports = $this->register->getSport();?>
+               <?php// if(!empty($sports))
+             //  {
+                       // foreach($sports as $sport){?>
+              <option  value ="<?php// echo $sport['sports'];?>"><?php// echo $sport['sports'];?> </option>
+                  <?php // }
+                        //  } 
+                         ?>
+      </select>
+      </div>
+     </div>
+<input type="text" id="sport" class="form-control" name="sport" value="" disabled="">
+</div> -->
+
+
+
+
+
 					<div class="form-group">
 						<?php  $sports = $this->register->getSport();
 						?>
@@ -262,28 +316,37 @@ var data =  JSON.stringify(data1);//JSON.stringify(data1);
 					</select>
 					<label id="sport_error" hidden>Sport is required .</label> 
 					</div >
+
+
+
+
+
+
+
+
+
 					<div class="form-group">
 					<label for="address1">Address Line1</label>
 					<input type="text" class="form-control"  id="add1" placeholder="Enter Address">
 					<label id="address_line1_error" hidden>Address Line1 is required .</label> 
-					</div >
+					</div>
 					<div class="form-group">
 					<label for="address2">Address Line2</label>
 					<input type="text" class="form-control"  id="add2" placeholder="Enter Address">
 				    <label id="address_line2_error" hidden>Address Line2 is required .</label> 
-					</div >
+					</div>
 					<div class="form-group">
 					<label for="city">City</label>
 					<input type="text" class="form-control"  id="city" placeholder="Enter City">
 					<label id="city_error" hidden>City is required .</label> 
-					</div >
+					</div>
 					<div class="form-group">
 
 					<label for="state">State</label>
 					
 					<input type="text" class="form-control"  id="state" placeholder="Enter State" >
 					<label id="state_error" hidden>State is required .</label> 
-					</div >
+					</div>
 
 					<div class="form-group">
 					<label for="pin">Pin</label>
@@ -455,11 +518,6 @@ document.getElementById("addCriteria").onclick = function()
 }
 
 </script>
-
-
-
-
-
 
 
 
