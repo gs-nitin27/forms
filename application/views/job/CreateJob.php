@@ -215,7 +215,7 @@
                           } 
                          ?>
       </select>
-      </div>
+      </div> 
      </div>
 <input type="text" id="sport" class="form-control" name="sport" value="" disabled="">
 </div>
