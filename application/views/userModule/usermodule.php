@@ -114,7 +114,7 @@
                       <?php }?>
                   <td>
                   <?php if($user['activeuser']==0){?>
-                  <button class="badge bg-red" onclick="myfunction(<?php echo $user['userid'];?>,1,<?php echo $user['email'];?>)"><?php echo "Activate";?></button>
+                  <button class="badge bg-red" onclick="myfunction(<?php echo $user['userid'];?>,1,'<?php echo $user['email'];?>')"><?php echo "Activate";?></button>
                     <?php }else{?> 
                   <button class="badge bg-green" onclick="myfunction(<?php echo $user['userid'];?>,0,<?php echo $user['email'];?>)"><?php echo "Deactivate";?></button>
                     <?php } ?>
@@ -177,6 +177,7 @@
 <script type="text/javascript">
 function myfunction(id,activeuser,email)
 { 
+  alert("joii");return;
     var data1 = {
     "userid"                  : id,
     "email"                   : email, 
