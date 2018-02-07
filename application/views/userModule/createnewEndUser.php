@@ -15,13 +15,8 @@ var data = {
     "userdata"                 : userjson
 };
 
+
 var data = JSON.stringify(data);
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 4bd8bdc76f36cffbcdee90e0ec13463417dbea3e
-//console.log(data);
 
 
 
