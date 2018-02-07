@@ -174,22 +174,18 @@ var data = JSON.stringify(data);
 
 <?php  
 
-
       $profile = $this->register->profile($id); 
-
 
      // print_r($profile[0]['prof_id']);die;
 
      foreach ($profile as $value) 
       {
-
               $event      = $this->register->event($value['userid']);
               $tournament = $this->register->tournament($value['userid']);
               $job        = $this->register->job($value['userid']);
               $resources  = $this->register->resources($value['userid']);
               $Content    = $this->register->content($value['userid']); 
-             
-              {
+             {
       ?>
        <input type="hidden" class="form-control" name="event"  id="event_graph" value="<?php echo $event; ?>">
        <input type="hidden" class="form-control" name="tournament"  id="tournament_graph" value="<?php echo $tournament; ?>">
@@ -227,8 +223,6 @@ var data = JSON.stringify(data);
 
 
         </div>
-         
-   
 
         <div class="card-info"><span class="card-title"><?php echo $value['name'];?></span></div>
       <?php if($value['prof_name']) {?>

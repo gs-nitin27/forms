@@ -1,20 +1,13 @@
-
 <script>
-
    window.sportsticket = 0;
    window.formalticket = 0;
    window.ohterticket = 0; 
    window.workexpticket =0;
    window.asplayerticket = 0; 
 
-
-
-
 function saveUserProfile(userjson)
 {
-  
 $("#imagelodar").show();
-
 var data = {
 
     "id"                       : $("#newuserid").val(),
@@ -22,16 +15,13 @@ var data = {
     "userdata"                 : userjson
 };
 
-
 var data = JSON.stringify(data);
-
 //console.log(data);
 
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/Registration_userdata'); ?>',
     data: data,
-
     dataType: "text",
     success: function(result) {
 
@@ -173,7 +163,7 @@ var data = JSON.stringify(data);
 					  <label id="startD_error" hidden>DOB is required .</label> 
 					</div>
 
-				<input type="button" class="btn btn-lg btn-primary" id="basicdata" onclick="" value="Submit" name="Create">
+				<input type="button" class="btn btn-lg btn-primary" id="basicdata" onclick="" value="Register" name="Create">
 
 				</div>
               </div>
@@ -354,14 +344,10 @@ $("#basicdata").click(function()
     var prof_name  = prof_data[0];
    
     $("#profid").val(prof_id);
-
     $("#designation").val(prof_name);
-
-
    }
    
     $("#imagelodar").show();
-
     var data1 = 
     {
     "name"        : $("#name").val(),

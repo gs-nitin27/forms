@@ -101,7 +101,7 @@
                                 $num=$temp;
                                 { 
                                   $userid = $user['userid'];
-                                  ?>
+                                ?>
 
                      <td><a href = "<?php echo site_url('forms/userprofile/'.$num.'?module'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
 
@@ -111,7 +111,8 @@
 
                     <!-- <td><a href = "<?php// echo site_url('forms/edituserProfile/'.$user['userid']); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-edit"></i></a></td>  -->
                     <!-- <td><a href = "<?php// echo site_url('forms/deleteUser/'.$user['userid']); ?>" onclick="return confirm('Are you sure you want to Deactivate this User?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>  -->
-                      <?php }?>
+                    <?php }?>
+
                   <td>
                   <?php if($user['activeuser']==0){?>
                   <button class="badge bg-red" onclick="myfunction(<?php echo $user['userid'];?>,1,'<?php echo $user['email'];?>')"><?php echo "Activate";?></button>
@@ -182,7 +183,7 @@ function myfunction(id,activeuser,email)
     "email"                   : email, 
     "activeuser"              : activeuser
 };
-console.log(JSON.stringify(data1));
+
 var url = '<?php echo site_url();?>'
 var data = JSON.stringify(data1);
     $.ajax({
