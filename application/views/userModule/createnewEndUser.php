@@ -22,10 +22,14 @@ var data = {
     "userdata"                 : userjson
 };
 
-
 var data = JSON.stringify(data);
 
+
 //console.log(data);
+
+
+
+
 
   $.ajax({
     type: "POST",
@@ -479,13 +483,18 @@ $("#basicdata").click(function()
 });
 
 </script>
+
+
+
+
+
 <script type="text/javascript">
 	
 document.getElementById("addSportEdu").onclick = function() 
 {
   var form     = document.getElementById("SportTicket");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'style='background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><label>Name Of Sport Education</label><input type='text' class='form-control' id='nameofsporteducation"+ window.sportsticket +"'></div><div><label>Institution/Organisation Name</label><input type='text' class='form-control' id='sport_inst_org"+ window.sportsticket +"'></div><div><label>Stream /Specialisation</label><input type='text' class='form-control' id='sport_stream_spel"+ window.sportsticket +"'></div><label>Period</label><div></div><label>From</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control'   id='sport_from_date"+ window.sportsticket +"'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div><label>To</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control' id='sport_to_date"+ window.sportsticket +"' class='form-control'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'style='background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><label>Name Of Sport Education</label><input type='text' class='form-control' id='nameofsporteducation"+ window.sportsticket +"'></div><div><label>Institution/Organisation Name</label><input type='text' class='form-control' id='sport_inst_org"+ window.sportsticket +"'></div><div><label>Stream /Specialisation</label><input type='text' class='form-control' id='sport_stream_spel"+ window.sportsticket +"'></div><label>Period</label><div></div><label>From</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control'   id='sport_from_date"+ window.sportsticket +"'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div><div><label>To</label></div><div class= 'collapse in' id = 'to_date"+window.sportsticket+"'> <div  class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control' id='sport_to_date"+ window.sportsticket +"' class='form-control'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div></div><input type='checkbox' id='sportedu_cheak"+window.sportsticket+"' data-toggle='collapse' data-target='#to_date"+ window.sportsticket +"' aria-expanded='false' aria-controls='to_date"+ window.sportsticket +"'><label style='color:#494242;'>Till Date</label></div></div>"; 
     form.appendChild(newDiv);
     window.sportsticket++;
 }
@@ -495,7 +504,7 @@ document.getElementById("addSportFormal").onclick = function()
 {
   var form     = document.getElementById("FormalEducation");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><label>Name of Formal Education</label><input type='text' class='form-control' id='formal_education"+  window.formalticket +"'></div><div><label>Institution / Organisation Name</label><input type='text' class='form-control' id='formal_inst_org"+ window.formalticket +"'></div><div><label>Stream /Specialisation</label><input type='text' class='form-control' id='formal_stream"+ window.formalticket +"'></div><label>Period</label><div></div><label>From</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control'   id='formal_from_date"+ window.formalticket +"'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div><label>To</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control' id='formal_to_date"+  window.formalticket +"' class='form-control'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><label>Name of Formal Education</label><input type='text' class='form-control' id='formal_education"+  window.formalticket +"'></div><div><label>Institution / Organisation Name</label><input type='text' class='form-control' id='formal_inst_org"+ window.formalticket +"'></div><div><label>Stream /Specialisation</label><input type='text' class='form-control' id='formal_stream"+ window.formalticket +"'></div><label>Period</label><div></div><label>From</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control'   id='formal_from_date"+ window.formalticket +"'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div><div><label>To</label></div><div class= 'collapse in' id = 'to_dateFormal"+window.formalticket+"'> <div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control' id='formal_to_date"+  window.formalticket +"' class='form-control'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div></div><input type='checkbox' id='formaledu_cheak"+ window.formalticket +"'  data-toggle='collapse' data-target='#to_dateFormal"+ window.formalticket +"' aria-expanded='false' aria-controls='to_dateFormal"+ window.formalticket +"'><label style='color:#494242;'>Till Date</label></div></div>"; 
     form.appendChild(newDiv);
     window.formalticket++;
 }
@@ -504,7 +513,7 @@ document.getElementById("addothereducation").onclick = function()
 {
   var form     = document.getElementById("OtherEducation");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><label>Name of Certificate</label><input type='text' class='form-control' id='certi_name"+  window.ohterticket +"'></div><div><label>Institution / Organisation Name</label><input type='text' class='form-control' id='certi_inst_org"+ window.ohterticket +"'></div><div><label>Stream /Specialisation</label><input type='text' class='form-control' id='certi_stream"+window.ohterticket +"'></div><label>Period</label><div></div><label>From</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control'   id='certi_from_date"+ window.ohterticket +"'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div><label>To</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control' id='certi_to_date"+ window.ohterticket +"' class='form-control'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><label>Name of Certificate</label><input type='text' class='form-control' id='certi_name"+  window.ohterticket +"'></div><div><label>Institution / Organisation Name</label><input type='text' class='form-control' id='certi_inst_org"+ window.ohterticket +"'></div><div><label>Stream /Specialisation</label><input type='text' class='form-control' id='certi_stream"+window.ohterticket +"'></div><label>Period</label><div></div><label>From</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control'   id='certi_from_date"+ window.ohterticket +"'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div><div><label>To</label></div><div class= 'collapse in' id = 'to_dateOther"+window.ohterticket+"'><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control' id='certi_to_date"+ window.ohterticket +"' class='form-control'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div></div><input type='checkbox' id='otheredu_cheak"+window.ohterticket+"' data-toggle='collapse' value='1' data-target='#to_dateOther"+ window.ohterticket +"' aria-expanded='false' aria-controls='to_dateOther"+ window.ohterticket +"'><label style='color:#494242;'>Till Date</label></div></div>"; 
     form.appendChild(newDiv);
     window.ohterticket++;
 }
@@ -514,7 +523,7 @@ document.getElementById("workexp").onclick = function()
 {
   var form     = document.getElementById("workexpericence");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd; '><div><label style='color:#494242;'>Designation</label><input type='text' class='form-control' id='work_exp_name"+ window.workexpticket +"'></div><div><label style='color:#494242;'>Institution / Organisation Name</label><input type='text' class='form-control' id='work_exp_inst_org"+ window.workexpticket +"'></div><div><label style='color:#494242;'>Description</label><input type='text' class='form-control' id='work_exp_desc"+ window.workexpticket +"'></div><label style='color:#494242;'>Period</label><div></div><label style='color:#494242;'>From</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control'   id='work_from_date"+ window.workexpticket +"'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div><label style='color:#494242;'>To</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text'  id='work_to_date"+ window.workexpticket +"'  class='form-control'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd; '><div><label style='color:#494242;'>Designation</label><input type='text' class='form-control' id='work_exp_name"+ window.workexpticket +"'></div><div><label style='color:#494242;'>Institution / Organisation Name</label><input type='text' class='form-control' id='work_exp_inst_org"+ window.workexpticket +"'></div><div><label style='color:#494242;'>Description</label><input type='text' class='form-control' id='work_exp_desc"+ window.workexpticket +"'></div><label style='color:#494242;'>Period</label><div></div><label style='color:#494242;'>From</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control'   id='work_from_date"+ window.workexpticket +"'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div><div><label style='color:#494242;'>To</label></div><div class= 'collapse in' id = 'to_dateWork"+window.workexpticket+"'> <div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text'  id='work_to_date"+ window.workexpticket +"'  class='form-control'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div></div><input type='checkbox' id='workexp_cheak"+window.workexpticket+"' data-toggle='collapse' value='1' data-target='#to_dateWork"+ window.workexpticket +"' aria-expanded='false' aria-controls='to_dateWork"+ window.workexpticket +"'><label style='color:#494242;'>Till Date</label></div></div>"; 
     form.appendChild(newDiv);
     window.workexpticket++;
 }
@@ -522,7 +531,7 @@ document.getElementById("asplayerexp").onclick = function()
 {
   var form     = document.getElementById("playerexp");
   var newDiv     = document.createElement("div");
-  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><label style='color:#494242;'>Best results</label><input type='text' class='form-control' id='exp_asplayer_name"+ window.asplayerticket +"'></div><div><label style='color:#494242;'>Tournament / Competetion Name</label><input type='text' class='form-control' id='exp_asplayer_inst_org"+ window.asplayerticket +"'></div><div><label style='color:#494242;'>Level </label><input type='text' class='form-control' id='exp_asplayer_desc"+ window.asplayerticket +"'></div><label style='color:#494242;'>Period</label><div></div><label style='color:#494242;'>From</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control'   id='exp_asplayer_from_date"+ window.asplayerticket +"'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div><label style='color:#494242;'>To</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control' id='exp_asplayer_to_date"+ window.asplayerticket +"'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div></div>"; 
+  newDiv.innerHTML = "<div class='box-body'  style='    background-color: white;border-color: black;border-radius: 4px;padding: 10px 20px;margin-bottom: 30px;margin-top: 10px; box-shadow: 0px 0px 3px #bbbdbd;    -webkit-box-shadow: 0px 0px 3px #bbbdbd;'><div><label style='color:#494242;'>Best results</label><input type='text' class='form-control' id='exp_asplayer_name"+ window.asplayerticket +"'></div><div><label style='color:#494242;'>Tournament / Competetion Name</label><input type='text' class='form-control' id='exp_asplayer_inst_org"+ window.asplayerticket +"'></div><div><label style='color:#494242;'>Level </label><input type='text' class='form-control' id='exp_asplayer_desc"+ window.asplayerticket +"'></div><label style='color:#494242;'>Period</label><div></div><label style='color:#494242;'>From</label><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control'   id='exp_asplayer_from_date"+ window.asplayerticket +"'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div><div><label style='color:#494242;'>To</label></div><div class= 'collapse in' id = 'to_dateAsplayer"+window.asplayerticket+"'><div class='input-group date' style='margin:5px; overflow: hidden;' data-provide='datepicker'><input type='text' class='form-control' id='exp_asplayer_to_date"+ window.asplayerticket +"'><div style='background-color: transparent;border: none;' class='input-group-addon'></div></div></div><input type='checkbox' id='workexpas_cheak"+window.asplayerticket+"' data-toggle='collapse'  data-target='#to_dateAsplayer"+ window.asplayerticket +"' aria-expanded='false' aria-controls='to_dateAsplayer"+ window.asplayerticket +"'><label style='color:#494242;'>Till Date</label></div></div>"; 
     form.appendChild(newDiv);
     window.asplayerticket++;
 }
@@ -567,73 +576,163 @@ $("#save").click(function()
  var workArray = [];
  var asplayerArray = [];
  var finalArray = [];
+for(var i =0; i <window.sportsticket; i++)
+{   
+     if($("#sport_from_date"+i).val())
+     {
+     var fromdate = formatDate($("#sport_from_date"+i).val());
+     }
+     else
+     {
+        $("#sport_from_date"+i).css("border-bottom-color","red");
+        var fromdate = '';
+       //return ;
+     }
+     
 
 
-if($("#designation").val() == "Trainer" )
-{ 
-  if(window.sportsticket == 0)
+
+
+
+  if($("#sportedu_cheak"+i).is(':checked'))
   {
-  $("#2").css('color', 'red');  
-  $("#sport_edu_error").show();
-  return ; 
 
+    var todate = "Till Date";
+    var tilldate = '1';
   }
-}
-
-  for(var i =0; i <window.sportsticket; i++)
+  else
   {
-    var fromdate = formatDate($("#sport_from_date"+i).val());
-     var todate = formatDate($("#sport_to_date"+i).val());
-
-    var temp = {"degree":$("#nameofsporteducation"+i).val(),"organisation":$("#sport_inst_org"+i).val(),"stream":$("#sport_stream_spel"+i).val(),"courseDuration":fromdate + " to " + todate };
-      sportArray.push(temp);
-
+   var todate = formatDate($("#sport_to_date"+i).val());
+   var tilldate = '0';
   }
-
+  
+  var temp = {"degree":$("#nameofsporteducation"+i).val(),"organisation":$("#sport_inst_org"+i).val(),"stream":$("#sport_stream_spel"+i).val(),"dateFrom":fromdate, "dateTo":todate,"tillDate":tilldate};
+    sportArray.push(temp);
+  }
   for(var i =0; i <window.formalticket; i++)
   {
+     if($("#formal_from_date"+i).val())
+     {
      var fromdate = formatDate($("#formal_from_date"+i).val());
-     var todate = formatDate($("#formal_to_date"+i).val());
-    var temp = {"degree":$("#formal_education"+i).val(),"organisation":$("#formal_inst_org"+i).val(),"stream":$("#formal_stream"+i).val(),"courseDuration":fromdate + " to " + todate };
+     }
+     else
+     {
+       var fromdate = '';
+     }
+
+if($("#formaledu_cheak"+i).is(':checked'))
+  {
+    var todate = "Till Date";
+    var tilldate = '1';
+  }
+  else
+  {
+   var todate = formatDate($("#formal_to_date"+i).val());
+   var tilldate = '0';
+  }
+    var temp = {"degree":$("#formal_education"+i).val(),"organisation":$("#formal_inst_org"+i).val(),"stream":$("#formal_stream"+i).val(),"dateFrom":fromdate, "dateTo":todate,"tillDate":tilldate};
       formalArray.push(temp);
 
   }
 
   for(var i =0; i <window.ohterticket; i++)
   {
+     if($("#certi_from_date"+i).val())
+     {
      var fromdate = formatDate($("#certi_from_date"+i).val());
-     var todate = formatDate($("#certi_to_date"+i).val());
-
-    var temp = {"degree":$("#certi_name"+i).val(),"organisation":$("#certi_inst_org"+i).val(),"stream":$("#certi_stream"+i).val(),"courseDuration":fromdate + " to " + todate };
+     }
+     else
+     {
+      var fromdate = '';
+     }
+   if($("#otheredu_cheak"+i).is(':checked'))
+   {
+    var todate = "Till Date";
+    var tilldate = '1';
+   }
+   else
+   {
+    var todate = formatDate($("#certi_to_date"+i).val());
+    var tilldate = '0';
+   }
+    var temp = {"degree":$("#certi_name"+i).val(),"organisation":$("#certi_inst_org"+i).val(),"stream":$("#certi_stream"+i).val(),"dateFrom":fromdate, "dateTo":todate, "tillDate":tilldate};
       otherArray.push(temp);
 
   }
 
 for(var i =0; i <window.workexpticket; i++)
-  {
+  { 
+     if($("#work_from_date"+i).val())
+     {
      var fromdate = formatDate($("#work_from_date"+i).val());
-     var todate = formatDate($("#work_to_date"+i).val());
-
-    var temp = {"designation":$("#work_exp_name"+i).val(),"organisationName":$("#work_exp_inst_org"+i).val(),"description":$("#work_exp_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate};
+     }
+     else
+     {
+      var fromdate = '';
+     }
+    if($("#workexp_cheak"+i).is(':checked'))
+       {
+        var todate = "Till Date";
+        var tilldate = '1';
+       }
+   else
+       {
+        var todate = formatDate($("#work_to_date"+i).val());
+        var tilldate = '0';
+       } 
+    var temp = {"designation":$("#work_exp_name"+i).val(),"organisationName":$("#work_exp_inst_org"+i).val(),"description":$("#work_exp_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate,"tillDate":tilldate};
       workArray.push(temp);
 
   }
 
   for(var i =0; i <window.asplayerticket; i++)
   {
-     var fromdate = formatDate($("#exp_asplayer_from_date"+i).val());
-     var todate = formatDate($("#exp_asplayer_to_date"+i).val());
+    if($("#exp_asplayer_from_date"+i).val())
+    {
+    var fromdate = formatDate($("#exp_asplayer_from_date"+i).val());
+    }
+    else
+    {
+      var fromdate = '';
+    }
+  if($("#workexpas_cheak"+i).is(':checked'))
+       {
+        var todate = "Till Date";
+        var tilldate = '1';
+       }
+   else
+       {
+        var todate = formatDate($("#work_to_date"+i).val());
+        var tilldate = '0';
+       } 
 
-    var temp = {"designation":$("#exp_asplayer_name"+i).val(),"organisationName":$("#exp_asplayer_inst_org"+i).val(),"description":$("#exp_asplayer_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate};
+
+    // if($("#exp_asplayer_to_date"+i).val())
+    // {
+    // var todate = formatDate($("#exp_asplayer_to_date"+i).val());
+    // }
+    // else
+    // {
+    //  var todate = '';
+    // }
+
+
+    var temp = {"designation":$("#exp_asplayer_name"+i).val(),"organisationName":$("#exp_asplayer_inst_org"+i).val(),"description":$("#exp_asplayer_desc"+i).val(),"dateFrom":fromdate,"dateTo":todate,"tillDate":tilldate};
       asplayerArray.push(temp);
-
   }
 
+    // var totalsportArray = JSON.stringify(sportArray);
+    // var totalformalArray = JSON.stringify(formalArray);
+    // var totalotherArray = JSON.stringify(otherArray);
+    // var totalworkArray = JSON.stringify(workArray);
+    // var totalasplayerArray = JSON.stringify(asplayerArray);
 
-  
   var ftemp = {"Education":{"formalEducation" : formalArray,"otherCertification":otherArray,"sportEducation":sportArray},"Experience":{"experienceAsPlayer":asplayerArray,"workExperience":workArray},"HeaderDetails":{"acamedy":$("#academy_name").val() ,"description":$("#description").val() ,"designation":$("#designation").val() ,"location":$("#location").val()}};
 
 var totalftemp = JSON.stringify(ftemp);
+
+//alert(totalftemp);
+
 saveUserProfile(totalftemp);
 
 });
