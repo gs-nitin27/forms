@@ -16,12 +16,7 @@ var data = {
 };
 
 
-var data = JSON.stringify(data);
-
-
-
-
-
+  var data = JSON.stringify(data);
   $.ajax({
     type: "POST",
     url: '<?php echo site_url('forms/Registration_userdata'); ?>',
@@ -379,7 +374,11 @@ $("#basicdata").click(function()
       dataType : "text",
       success : function(result)
       {
-          if(result.data == 0)
+        //console.log(result);
+
+        var userid    =  JSON.parse(result);
+        var userid1   =  userid.data;
+        if(userid1 == 0)
           {
              $.confirm({
               title: 'Encountered an error!',
@@ -400,7 +399,7 @@ $("#basicdata").click(function()
               }
           });
           }
-          else if(result.data == 3){
+          else if(userid1 == 3){
            $.confirm({
               title: 'Ohh!',
               content: 'You are Aleardy register with Us!',
@@ -427,10 +426,10 @@ $("#basicdata").click(function()
 
             $("#exp_as_player").show();
          } 
-
         
-        var userid    =  JSON.parse(result);
-        $("#newuserid").val(userid.data);
+         //var userid    =  JSON.parse(result);
+        // console.log(userid);
+         $("#newuserid").val(userid1);
 			   $("#tab_event").hide();
 			   $("#basicdata").hide();
 			   $("#2").show();
