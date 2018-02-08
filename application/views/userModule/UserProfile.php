@@ -547,8 +547,8 @@ if($value['userType'] == 103)
       <h5 class="w3-opacity"><b>Organisation :</b> <?php echo ucfirst($value1->organisation); ?></p>
       <h5 class="w3-opacity"><b>Degree :</b> <?php echo ucwords($value1->degree); ?></p>
       <h5 class="w3-opacity"><b>Stream :</b> <?php echo $value1->stream; ?></p>   
-      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo 
-        $value1->courseDuration ;?></h6>
+      <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo $value1->dateFrom; ?> -  <span class="w3-tag w3-teal w3-round"><?php echo $value1->dateTo; ?></span></h6>
+
   
       <hr>
       </div>

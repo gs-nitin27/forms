@@ -726,6 +726,7 @@ var data = JSON.stringify(data);
                 </div></div>
               </div>
               </div>
+
               <div class='checkbox col-sm-10'><label><input type='checkbox' id='<?php echo 'formaledu_cheak'.$i;?>' data-toggle='collapse' data-target='<?php echo '#formaledu_colaps'.$i;?>' aria-expanded='false' aria-controls='collapse3rdParty'>Till Date</label></div>
               <?php
               if($value56->tillDate == '1')
@@ -1733,7 +1734,8 @@ $(function() {
 });
 
 function update_info(id)
-{  var value = '';
+{  
+  var value = '';
   if(id == 'languages_known')
   {
     value  = $('#language').val();
