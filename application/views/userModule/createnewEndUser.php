@@ -410,21 +410,18 @@ $("#basicdata").click(function()
                         $("#imagelodar").hide();
                       }
                   },
-                  close: function () {
-                    $("#imagelodar").hide();
+                  close: function () 
+                  {
+                    $("#imagelodar").hide(); 
                   }
               }
           });
-
           }else{
-           
-         if($("#designation").val() == "Trainer" || $("#designation").val() == "Coach" )
+         if($("#designation").val() == "Refree" || $("#designation").val() == "Coach" )
          {
-
             $("#exp_as_player").show();
          } 
 
-        
         var userid    =  JSON.parse(result);
         $("#newuserid").val(userid.data);
 			   $("#tab_event").hide();
