@@ -76,9 +76,9 @@
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Level: </b> &nbsp;<?php echo $event['level'];?></h5>
 					</div>
-					<div class="timeline-item">
+					<!-- <div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Category: </b> &nbsp;<?php echo $event['category'];?></h5>
-					</div>
+					</div> -->
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Age Group: </b> &nbsp;<?php echo $event['age_group']. " Years ";?></h5>
 					</div>

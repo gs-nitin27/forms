@@ -6,7 +6,6 @@
   <!-- Bootstrap 3.3.6 -->
   
 </head>
-
 <div class="wrapper">
   <div class="content-wrapper">
     <section class="content">
@@ -14,12 +13,12 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header" style="text-align: center;">
-              <h3 class="box-title"><b> Tournament List</b></h3>
+            <h3 class="box-title"><b> Tournament List</b></h3>
             </div>
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                 <tr>
+            <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
                   <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
                   <th style="background: #5262bc; color: #ffffff;">Tournament Name <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
@@ -82,7 +81,6 @@
 					<span class="badge bg-green"><?php echo "Active";?></span>
 					<?php } ?>
 					</td>
-
            <?php
              if($usertype==101 || $usertype==102 )
                    {
