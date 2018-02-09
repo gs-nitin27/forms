@@ -11,46 +11,35 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header" style="text-align: center;">
-              <h3 class="box-title"><b>User List</b></h3>
+            <h3 class="box-title"><b>User List</b></h3>
             </div>
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                 <th style="width: 10px; background: #5262bc;color: #ffffff;"><img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px>#</img></th>
-                  <th style="background: #5262bc;color: #ffffff;" >Email <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img> </th>
-                  <th style="background: #5262bc;color: #ffffff;" >Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
-
-                  <!-- <th style="background: #5262bc;color: #ffffff;" >Userid  <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th> -->
-
-                  <th style="background: #5262bc;">Profession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
-                 <!--  <th style="background: #5262bc; color: #ffffff;">Usertype <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th> -->
-                 <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
-                  <th style="background: #5262bc;color: #ffffff;">View</th>
-
-                  <th style="background: #5262bc;color: #ffffff;">Edit</th>
-                 <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
-                  <th style="background: #5262bc;color: #ffffff;">Status</th>
-                   <th style="background: #5262bc;">
-
-
-                    
-                 </th>
+            <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th style="width: 10px; background: #5262bc;color: #ffffff;"><img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px>#</img></th>
+                <th style="background: #5262bc;color: #ffffff;" >Email <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img> </th>
+                <th style="background: #5262bc;color: #ffffff;" >Name  <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>
+                <!-- <th style="background: #5262bc;color: #ffffff;" >Userid  <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th> -->
+                <th style="background: #5262bc;">Profession <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th>
+                <!--  <th style="background: #5262bc; color: #ffffff;">Usertype <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px> </th> -->
+                <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;"><img src="<?php //echo base_url('img/sort.png')?>" alt="" height=10px width=10px>Permission</th> -->
+                <th style="background: #5262bc;color: #ffffff;">View</th>
+                <th style="background: #5262bc;color: #ffffff;">Edit</th>
+                <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
+                <th style="background: #5262bc;color: #ffffff;">Status</th>
+                <th style="background: #5262bc;">    
+                </th>
                 </tr>
                 </thead>
-        <tbody>
+            <tbody>
                 <?php
                 $data = $this->session->userdata('item');
-
                 $i =1;
-
                 $users = $this->register->getUserInfo();  
-
-
                  if(!empty($users)){
                         foreach($users as $user){ 
                          $acti = '';
-
                         if($user['activeuser'] == 0)
                          {
                            $acti = 'Activate'; 
@@ -59,14 +48,8 @@
                          {
                           $acti = 'Deactivate';
                          }
-
-
                           ?>
-
-
-
                 <tr class="content">
-
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $user['email']; ?></td>
                     <td><?php echo $user['name']; ?></td>
@@ -80,8 +63,8 @@
                     <button class="badge bg-green" onclick="myfunction(<?php //echo $user['userid'];?>,0)"><?php //echo "Deactivate";?></button>
                     <?php //} ?>
                     </td> -->
-
-                    <?php  $list=array('a' => 0,
+                    <?php  $list=array(
+                                'a' => 0,
                                 'b' => 1,
                                 'c' => 2,
                                 'd' => 3,
@@ -126,9 +109,9 @@
                 </tr>
                 <?php } }
                 ?>
-                </tbody>
-                <tfoot>
-               <tr>
+              </tbody>
+              <tfoot>
+              <tr>
                   <th style="width:10px;background:#5262bc;color:#ffffff;">#</th>
                   <th style="background:#5262bc; color:#ffffff;">Email</th>
                   <th style="background:#5262bc; color:#ffffff;">Name</th>
@@ -137,8 +120,8 @@
                   <th style="background:#5262bc; color:#ffffff;">Edit</th>
                   <th style="background:#5262bc; color:#ffffff;">Status</th>
                   <th style="background:#5262bc; color:#ffffff;">Activated/Dactivated</th>
-                </tr>
-                </tfoot>
+              </tr>
+              </tfoot>
               </table>
             </div>
           </div>

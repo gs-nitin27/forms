@@ -419,13 +419,10 @@ public function createNewUser()
 public function newEndUser()
 {
 
-
 //echo "dev "; die();
  $data['middle'] = 'userModule/createnewEndUser';
 
  $this->load->view('templates/template',$data);
-
-
 }
 
 public function userModify($userid)
@@ -594,27 +591,27 @@ else
 
 }
 
-public function usergetEvent(){
-
+public function usergetEvent()
+{
        // $data['middle'] = 'event/index'; 
         $this->load->view('event/index');
      // $this->load->view('templates/template');
-  }
+}
 
-public function getEvent(){
-
-	    	$data['middle'] = 'event/index'; 
-	    	$this->load->view('templates/template',$data);
+public function getEvent()
+{
+	$data['middle'] = 'event/index'; 
+	$this->load->view('templates/template',$data);
      // $this->load->view('templates/template');
-	}
+}
 	
 public function viewEvent($str)
 {
           $id = $this->stringtonumber($str);
 	      	$data['middle'] = 'event/view';
 	      	$data['required'] = array(
-									                 'id'=>$id	
-							                    	 );
+									     'id'=>$id	
+							         );
 	       	$this->load->view('templates/template',$data);
 	}
 

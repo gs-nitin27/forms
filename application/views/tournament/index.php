@@ -24,7 +24,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Tournament Name <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Level <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #5262bc; color: #ffffff;">Category <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <!-- <th style="background: #5262bc; color: #ffffff;">Category <img src="<?php// echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th> -->
                   <th style="background: #5262bc; color: #ffffff;">Location <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Organiser <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Status <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
@@ -72,7 +72,7 @@
 					<td><?php echo $tournament['name']; ?></td>
 					<td><?php echo $tournament['sport']; ?></td>
 					<td><?php echo $tournament['level']; ?></td>
-					<td><?php echo $tournament['category']; ?></td>
+					<!-- <td><?php //echo $tournament['category']; ?></td> -->
 					<td><?php echo $tournament['location']; ?></td>
 					<td><?php echo $tournament['organiser_name']; ?></td>										
 					<td>
@@ -137,7 +137,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Tournament Name</th>
                   <th style="background: #5262bc; color: #ffffff;">Sport</th>
                   <th style="background: #5262bc; color: #ffffff;">Level</th>
-                  <th style="background: #5262bc; color: #ffffff;">Category</th>
+                  <!-- <th style="background: #5262bc; color: #ffffff;">Category</th> -->
                   <th style="background: #5262bc; color: #ffffff;">Location</th>
                   <th style="background: #5262bc; color: #ffffff;">Organiser</th>
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Status</th>
