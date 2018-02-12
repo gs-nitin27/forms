@@ -67,7 +67,6 @@
 						<div class="timeline-body">
 						  <?php echo $event['description'];?>
 						</div>
-					   
 					  </div>
 					
 					<div class="timeline-item">
@@ -88,11 +87,8 @@
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>End Date: </b> &nbsp;<?php echo $event['end_date'];?></h5>
 					</div>
-					
-					
-					<!-- STATE IS ID BASED -->
-					
-					
+								
+					<!-- STATE IS ID BASED -->							
               </div>
               </div>
 				<div class="tab-pane" id="tab_info">
@@ -159,8 +155,6 @@
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $event['org_pin'];?></h5>
 					</div>
-					
-					 
 					
 				</div>
               </div>
