@@ -107,8 +107,6 @@ return 0;
 
 public function saveEvent($item)
 {
-
-
 $data = array(
     'id'=> $item->id,
     'userid'=>$item->userid,
