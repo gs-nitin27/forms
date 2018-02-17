@@ -123,7 +123,7 @@ $(temp).addClass('active');
 var pathname = window.location.pathname;
 var fields1 = pathname.split('/');
 //alert(fields1);
-var temp1 = '#' + fields1[4];
+var temp1 = '#' + fields1[3];
 //alert(temp1);
 
 
