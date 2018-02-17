@@ -4009,7 +4009,7 @@ public function bugemail($email,$buglist,$subject,$name)
                $mail->AddAddress($to);
                $mail->Send();
              
-             print_r($data);
+             //print_r($data);
               echo "1";
 }
 

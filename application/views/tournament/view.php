@@ -155,7 +155,6 @@
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Pin: </b> &nbsp;<?php echo $event['org_pin'];?></h5>
 					</div>
-					
 				</div>
               </div>
               <!-- /.tab-pane -->
@@ -170,7 +169,6 @@
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>Criteria 2: </b> &nbsp;<?php echo $event['eligibility2'];?></h5>
 					</div>
-					
 					<div class="timeline-item">
 						<h5 class="timeline-header no-border"><b>T & C 1: </b> &nbsp;<?php echo $event['terms_and_cond1'];?></h5>
 					</div>
@@ -181,12 +179,9 @@
               </div>
               <!-- /.tab-pane -->
             </div>
-            
-
             <!-- /.tab-content -->
           </div>
 	  </div>
-
 	   <div class="col-md-4">
             <div class="box box-primary">
             <div class="box-header with-border">
@@ -201,50 +196,23 @@
             </div>
           </div>
           </div>
-	  
-
-
-
-
-
-
-
-
-
-
-
 	<!--  <div class="col-md-3">
-         	
-  
-
 	  </div> -->
-
 </div>
 </div>
 </section>
-
-
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content" style="    width: 511px;">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Mobile View</h4>
-      </div>
-      <div class="modal-body">
-		
-
-
-
-
-      </div>
-      
-    </div>
-  </div>
+<div class="modal-dialog">
+<div class="modal-content" style="    width: 511px;">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<h4 class="modal-title" id="myModalLabel">Mobile View</h4>
 </div>
-
-
+<div class="modal-body">		
+</div>      
+</div>
+</div>
+</div>
 
 <script>
 	$('#myModal').click(function(){
