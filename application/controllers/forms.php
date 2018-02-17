@@ -803,7 +803,7 @@ public function editjob($str)
 
 
 public function CreateTournament()
-	{
+	{ 
 	$data['middle'] = 'tournament/CreateTournament';
     $this->load->view('templates/template',$data);	
 	}

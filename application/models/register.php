@@ -138,7 +138,8 @@ $data = array(
     'image'=>$item->image,
     'ticket_detail'=>$item->ticketdetails,
     'terms_cond1'=>$item->terms_and_conditions1,
-    'eligibility1'=>$item->eligibility1
+    'eligibility1'=>$item->eligibility1,
+    'dateCreated' => date('Y-m-d')
 
 );
 
@@ -186,7 +187,7 @@ else
 // }
 
 
-
+ 
 public function saveTournament($item)
 {
   $data = array (
@@ -221,6 +222,7 @@ public function saveTournament($item)
     'age_group' => $item->tournament_ageGroup,
     'file_name' => $item->file_name,
     'image' => $item->image,
+    'date_created' => date('Y-m-d'),
     'publish' => 0
 );
 
@@ -271,6 +273,7 @@ public function edit_Tournament($item)
     'age_group' => $item->tournament_ageGroup,
     'file_name' => $item->file_name,
     'image' => $item->image,
+    'date_updated' => date('Y-m-d'),
     'publish' => 0
 );
 
@@ -451,10 +454,6 @@ else
 // }
 
 
-
-
-
-
 	#Function for Get all the event type
 public function getEventType($id = false)
 {
@@ -491,7 +490,7 @@ public function getTournamentCategory()
 }
 	
 public function getJobInfo($id = false)
-{       $this->db->select('*');
+{   $this->db->select('*');
 		$this->db->from('gs_jobInfo GR');
 		if($id > 0){
 			$this->db->where('GR.id', $id);
@@ -688,7 +687,7 @@ public function saveResources($item)
          'keyword' => $item->keyword,
          'topic_of_artical' => $item->topic_of_artical,
          'sport' => $item->sport,
-		 'location' => $item->location,
+		     'location' => $item->location,
          'token' => $item->token,
          'status' => $item->status,
          'date_created' => date('Y-m-d'),
@@ -781,8 +780,6 @@ if($this->db->update('gs_resources', $data))
 
 public function edit_event($item)
 {
-
-
  $data = array(
     
     'name'=>$item->name,
@@ -811,8 +808,8 @@ public function edit_event($item)
     'image'=>$item->image,
     'ticket_detail'=>$item->ticketdetails,
     'terms_cond1'=>$item->terms_and_conditions1,
-    'eligibility1'=>$item->eligibility1
-
+    'eligibility1'=>$item->eligibility1,
+    'date_updated' => date('Y-m-d')
 
   
 );
