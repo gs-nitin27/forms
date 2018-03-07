@@ -320,7 +320,7 @@ var data = JSON.stringify(data1);
 	</div >	
   <div class="form-group">
           <label for="link">Job Link</label>
-          <input type="text" class="form-control"   id="job_link" placeholder="http://">
+          <input type="text" class="form-control" value="<?php echo $job['job_link'];?>"  id="job_link" placeholder="http://">
           <label id="job_links_error" hidden>Job Link is required .</label> 
           </div >
 
