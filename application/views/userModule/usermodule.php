@@ -28,7 +28,8 @@
                 <th style="background: #5262bc;color: #ffffff;">Edit</th>
                 <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th> -->
                 <th style="background: #5262bc;color: #ffffff;">Status</th>
-                <th style="background: #5262bc;">    
+                <th style="background: #5262bc;">
+                <th style="background: #5262bc;color: #ffffff;">Joined on <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></th>    
                 </th>
                 </tr>
                 </thead>
@@ -106,6 +107,7 @@
                   <td>
                   <?php echo $acti; ?>
                   </td>
+                  <td><?php echo $user['date_created']; ?></td>
                 </tr>
                 <?php } }
                 ?>
@@ -119,6 +121,7 @@
                   <th style="background:#5262bc; color:#ffffff;">View</th>
                   <th style="background:#5262bc; color:#ffffff;">Edit</th>
                   <th style="background:#5262bc; color:#ffffff;">Status</th>
+                  <th style="background:#5262bc; color:#ffffff;">Date Joined</th>
                   <th style="background:#5262bc; color:#ffffff;">Activated/Dactivated</th>
               </tr>
               </tfoot>
