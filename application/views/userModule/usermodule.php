@@ -107,7 +107,8 @@
                   <td>
                   <?php echo $acti; ?>
                   </td>
-                  <td><?php echo $user['date_created']; ?></td>
+                  <td><?php $dtime = new DateTime($user['date_created']);
+                     echo  $dtime->format("d/m/y");?></td>
                 </tr>
                 <?php } }
                 ?>
