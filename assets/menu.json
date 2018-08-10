@@ -215,7 +215,29 @@
                         "name": "New End User"
                        }
       }
-    }
+    },
+    "9" :  {
+
+                 "url": "#ACADEMY",
+                 "class": "fa fa-university fa-x",
+                 "name": "ACADEMY",
+                 "id":"academy",
+                 "child" :
+                 {
+                   "1" :{
+                        "admin" :"1",
+                        "id":"usermodule",
+                        "url": "/forms/add_property_form",
+                        "name": "ADD PROPERTY"
+                        },
+                  "2" : {
+                        "admin" :"1",
+                        "id":"newEndUser",
+                        "url": "/forms/newEndUser?module1",
+                        "name": "VIEW LISTING"
+                        }
+                  }
+           }
 
 
          

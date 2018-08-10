@@ -2395,7 +2395,7 @@ public function update_user_data($update,$where)
 	}else
 	{
 		return 0;
-	}
+	}              
 
  }
 public function create_new_user($data)
@@ -2445,9 +2445,35 @@ public function create_new_user($data)
    }
 }
 
-
-
-
+    public function add_property($data)
+    {
+     $data = json_decode($data);
+     $prop_data = array(
+        'name' => $data->name,
+        'address' => $data->name,
+        'location' => $data->location,
+        'type'=> $data->type,
+       // 'coaches_info'=> $data->coaches,
+        'residential'=>$data->residential,
+        'hostel_available'=>$data->hostel,
+        'schooling'=>$data->schooling,
+        'date_created'=>'CURDATE()',
+        'date_updated'=>'CURDATE()',
+        'sports'=>$data->sport,
+        'level'=>$data->level,
+        'fee'=>$data->fee,
+        'email'=>$data->email,
+        'status'=>'0'
+      );
+     $query = $this->db->insert('gs_prop_list', $prop_data);
+     if($query)
+     {
+        return true;
+     }else
+     {
+        return false;
+     }
+    }
 }
 
  ?>

@@ -513,9 +513,9 @@ console.log(result);
       },
       success: function(data)
         {
-                $('#imagelodar').hide();
-                $('#mess').show();
-                $("#photo_url").val(data);   
+        $('#imagelodar').hide();
+        $('#mess').show();
+        $("#photo_url").val(data);   
         },
         error: function(e) 
         {

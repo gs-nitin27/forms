@@ -4388,7 +4388,24 @@ else if($login_status == '3')
 echo json_encode($resp);
 }
 
+public function add_property_form()
+ {
+    $data['middle'] = 'property/add_property';
+    $this->load->view('templates/template',$data);
+ }
 
-
+public function add_property()
+{
+  $data = file_get_contents('php://input');
+  $obj =  $this->register->add_property($data);
+  if($obj == true)
+  {
+    $resp = array('status' => '1', 'msg'=>'Record saved');
+  }else
+  {
+    $resp = array('status' => '0', 'msg'=>'Record not saved');
+  }
+  echo json_encode($resp);
+}
 }
 
