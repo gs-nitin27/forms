@@ -1,4 +1,5 @@
 
+
   <script>
 $(document).ready(function(){
              
@@ -35,6 +36,7 @@ var data1 = {
     "location"                : $("#city").val()
 
     
+
 };
  
 console.log(JSON.stringify(data1));
@@ -157,9 +159,9 @@ $(function(){
 
             <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_event" data-toggle="tab">Name </a></li>
+              <li class="active"><a href="#tab_event" data-toggle="tab">Name</a></li>
               <li><a href="#tab_organiser" data-toggle="tab">Address</a></li>
-             </ul>   
+            </ul>   
              <form role="form" action="" class="register">  
             <div class="tab-content">
               <div class="tab-pane active" id="tab_event">
