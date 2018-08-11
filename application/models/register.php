@@ -1041,7 +1041,19 @@ public function StatusEvent($item)
       return 0;
     }
 }
-
+public function StatusPropertyUpdate($item)
+{
+   $update = "UPDATE  `gs_prop_list` SET  `status` ='$item->publish' , `date_updated` = CURDATE() WHERE `id` = '$item->id' ";
+   $query = $this->db->query($update);
+   if($query)
+    {
+      return 1;
+    }
+   else
+    {
+      return 0;
+    }
+}
 // public function addEventData($item)
 // {
 //      $id=$item[0]['infoId'];
@@ -1746,7 +1758,12 @@ public function deleteEvent($id)
 { $this->remove_Image($id);
   $this->db->where('id',$id);
   $this->db->delete('gs_eventinfo');
-} 
+}
+public function deletePropertyFunction($id)
+{ $this->remove_Image($id);
+  $this->db->where('id',$id);
+  $this->db->delete('gs_eventinfo');
+}  
 public function remove_Image($id)
 {
 
@@ -2471,6 +2488,32 @@ public function create_new_user($data)
      {
         return false;
      }
+    }
+
+    public function get_academy_listing($id = false)
+    {
+       $this->db->select('*');
+        $this->db->from('gs_prop_list GR');
+        if($id > 0){
+            $this->db->where('GR.id', $id);
+        }else{
+         $this->db->order_by("GR.id", "desc"); 
+        }
+        $query = $this->db->get();
+        $q =  $query->result_array();
+        return $q;
+      // $query = $this->db->get('gs_prop_list'); 
+      // if(mysql_num_rows($query)>0)
+      // {
+      //   while ($row = mysql_fetch_assoc($query)) {
+      //       $rows[] = $row;
+      //   }
+      // return $rows;
+      // }else
+      // {
+      //   return 0;
+      // }
+
     }
 }
 

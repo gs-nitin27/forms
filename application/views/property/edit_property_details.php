@@ -1,3 +1,20 @@
+<?php $prop = $this->register->get_academy_listing($id); 
+        if(!empty($prop)){
+          $prop = $prop[0];
+          @$coaches = json_decode($prop['coaches_info']);
+           if($coaches != '')
+           {
+            @$no_of_coaches = $coaches->no_of_coach;
+            @$head_coaches = $coaches->head_coach;
+           }else
+           {
+            $no_of_coaches = '';
+            $head_coaches = '';
+           }
+        }
+
+      
+      ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -17,13 +34,13 @@
               <div class="box-body">
           <div class="form-group">
             <label for="name">Name of property</label>
-            <input type="text" class="form-control"  id="pname" >
+            <input type="text" class="form-control"  id="pname" value="<?php echo $prop['name'] ?>">
             <label id="pname_error" hidden>Name is required.</label>
           </div>
           
           <div class="form-group">
             <label for="proptype">Type</label>
-            <input type="text" class="form-control"  id="ptype" >
+            <input type="text" class="form-control"  id="ptype" value="<?php echo $prop['type'] ?>">
             <label id="ptype_error" hidden>Property Type is required.</label>
           </div>
 
@@ -41,25 +58,25 @@
          
           <div class="form-group">
             <label for="proplocation">Location</label>
-            <input type="text" class="form-control"  id="proplocation" >
+            <input type="text" class="form-control"  id="proplocation" value="<?php echo $prop['location'] ?>">
             <label id="plocation_error" hidden>Location is required.</label>
           </div>
 
           <div class="form-group">
             <label for="propaddres">Address</label>
-            <input type="text" class="form-control"  id="propaddress" >
+            <input type="text" class="form-control"  id="propaddress" value="<?php echo $prop['address'] ?>">
             <label id="paddress_error" hidden>address is required.</label>
           </div>
 
           <div class="form-group">
             <label for="propemail">Email</label>
-            <input type="email" class="form-control"  id="propemail" >
+            <input type="email" class="form-control"  id="propemail" value="<?php echo $prop['email'] ?>">
             <label id="pemail_error" hidden>Email is required.</label>
           </div>
 
           <div class="form-group">
             <label for="propphone">Contact Number</label>
-            <input type="text" class="form-control"  id="propphone" >
+            <input type="text" class="form-control"  id="propphone" value="<?php echo $prop['phone'] ?>">
             <label id="pphone_error" hidden>Contact number is required.</label>
           </div>
 
@@ -92,15 +109,15 @@
           <div class="box-body">
           <div class="form-group">
             <label for="fee">Fee(in Rs.)</label>
-            <input type="text" class="form-control"  id="fee" placeholder="">
+            <input type="text" class="form-control"  id="fee" placeholder="" value="<?php echo $prop['fee'] ?>">
           </div >
           <div class="form-group">
             <label for="no_coaches">Number of Coaches</label>
-            <input type="text" class="form-control"  id="no_coaches" placeholder="10">
+            <input type="text" class="form-control"  id="no_coaches" placeholder="10" value="<?php echo $no_of_coaches; ?>">
           </div>
           <div class="form-group">
             <label for="no_coaches">Head coach</label>
-            <input type="text" class="form-control"  id="hcoach" placeholder="">
+            <input type="text" class="form-control"  id="hcoach" placeholder="" value="<?php echo $head_coaches; ?>">
           </div>
           
           <!-- STATE IS ID BASED -->
@@ -268,6 +285,22 @@ var autocomplete = new google.maps.places.Autocomplete($("#proplocation")[0], {}
                /// console.log(place.address_components);return;
             });
 $(document).ready(function(){
+$('#proplevel').val('<?php echo $prop['level'] ?>');
+$('#psport').val('<?php echo $prop['sports'] ?>');
+var hostel = '<?php echo $prop['hostel_available']; ?>';
+var residential = '<?php echo $prop['residential']; ?>';
+var schooling = '<?php echo $prop['schooling']; ?>';
+if(hostel != '0')
+{
+$('#hostel').prop('checked',true);
+}
+if(schooling != '0')
+{
+$('#schooling').prop('checked',true);
+}if(residential != '0')
+{
+$('#residential').prop('checked',true);
+}
 $('#save').on('click',function(){
 if(validate() == true)
   {

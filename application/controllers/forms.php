@@ -898,8 +898,7 @@ public function usercreateTournament()
 public function getTournament()
 {
 		$data['middle'] = 'tournament/index';
-
-		$this->load->view('templates/template',$data);
+    $this->load->view('templates/template',$data);
 }
 public function viewTournament($str)
 {
@@ -1898,6 +1897,18 @@ public function Emailfind()
         break;
          case 'uploads/event/':
          $prename = 'event';
+              if ($_POST['oldimageid'])
+                     {
+            if($_POST['oldimage'])
+            {
+                $id = $_POST['oldimageid'];
+                  $image = $_POST['oldimage'];
+                $temp= $this->register->removeeventimage($id,$image);
+                  }
+              }
+        break;
+        case 'uploads/property/':
+         $prename = 'property';
               if ($_POST['oldimageid'])
                      {
             if($_POST['oldimage'])
@@ -4407,5 +4418,59 @@ public function add_property()
   }
   echo json_encode($resp);
 }
+public function getPropListView()
+{
+    $data['middle'] = 'property/index';
+    $this->load->view('templates/template',$data);
+}
+public function property_list()
+{
+  $obj =  $this->register->get_academy_listing();
+  if($obj != 0)
+  {
+    $resp = array('status' => '1', 'data'=>$obj,'msg'=>'Record saved');
+  }else
+  {
+    $resp = array('status' => '0', 'data'=>'0','msg'=>'Record not saved');
+  }
+  echo json_encode($resp);
+}
+public function StatusProperty()
+{
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
+
+$item->id                    = $data2->id;
+$item->publish               = $data2->publish;
+
+$this->load->model('register');
+//$res1 = $this->register->addStatusData($data2->id);
+$res = $this->register->StatusPropertyUpdate($item);
+if($data2->publish==1)
+{
+  $edata=$this->register->get_academy_listing($data2->id);
+  $this->register->addEventData($edata);
+}
+else{
+  $this->register->deletePublishEvent($data2->id);
+}
+}
+public function deleteProperty($str)
+  {
+     $id = $this->stringtonumber($str);
+     $this->load->model('register');
+     $this->register->deletePropertyFunction($id);
+     $data['middle'] = 'property/index';
+     $this->load->view('templates/template',$data);
+
+  }
+public function editProperty($str)
+  {
+      $id = $this->stringtonumber($str);
+      $data['middle'] = 'property/edit_property_details';
+      $data['required'] = array( 'id' => $id ); 
+      $this->load->view('templates/template',$data);
+  }
+
 }
 
