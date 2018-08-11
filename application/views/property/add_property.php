@@ -267,6 +267,7 @@ var autocomplete = new google.maps.places.Autocomplete($("#proplocation")[0], {}
                 var place = autocomplete.getPlace();
                /// console.log(place.address_components);return;
             });
+var url = '<?php echo site_url();?>';
 $(document).ready(function(){
 $('#save').on('click',function(){
 if(validate() == true)
@@ -289,7 +290,7 @@ if(validate() == true)
     "coaches_info":{"no_of_coach":$('#no_coaches').val(),"head_coach":$('#hcoach').val()}
    };
   data = JSON.stringify(data);
-  
+
    $.ajax({
       url: "<?php echo site_url('forms/add_property'); ?>",
       type: "POST",
@@ -299,12 +300,53 @@ if(validate() == true)
       {
         $("#err").fadeOut();
       },
-      success: function(data)
-        {
-                $('#imagelodar').hide();
-                $('#mess').show();
-                $("#photo_url").val(data);   
-        },
+      success: function(result)
+      {
+      var result = JSON.parse(result);
+      result = result.status;
+       if(result == '1')
+         {
+         $.confirm({
+         title: 'Congratulations!',
+         content: 'Property successfully added',
+         type: 'green',
+         typeAnimated: true,
+         buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                 window.location.href = url+"/forms/getPropListView";
+                }
+            },
+            close: function () {
+            window.location.href = url+"/forms/getPropListView";
+            }
+        }
+    });
+      }
+      else
+      { 
+            $("#imagelodar").hide();
+             $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                      }
+                  },
+                  close: function () {
+                  }
+              }
+          });
+      }
+    
+    },
         error: function(e) 
         {
       
