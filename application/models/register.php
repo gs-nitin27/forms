@@ -2473,6 +2473,7 @@ public function create_new_user($data)
         'level'=>$data->level,
         'fee'=>$data->fee,
         'email'=>$data->email,
+        'phone'=>$data->phone,
         'status'=>'0'
       );
      $query = $this->db->insert('gs_prop_list', $prop_data);
@@ -2498,19 +2499,40 @@ public function create_new_user($data)
         $q =  $query->result_array();
         return $q;
     }
-    public function update_property_data_function($data)
-    {
-    // $query = mysql_query("UPDATE")
-
-
-
-    }
     public function deletePropertyFunction($id)
     { 
         //$this->remove_Image($id);
         $this->db->where('id',$id);
         $this->db->delete('gs_prop_list');
     } 
+    public function update_property_data_function($data)
+    {  //print_r($data->id);die;
+       $set = array(
+        'name' => $data->name,
+        'address' => $data->name,
+        'location' => $data->location,
+        'type'=> $data->type,
+        'coaches_info'=> json_encode($data->coaches_info),
+        'residential'=>$data->residential,
+        'hostel_available'=>$data->hostel,
+        'schooling'=>$data->schooling,
+        'sports'=>$data->sport,
+        'level'=>$data->level,
+        'fee'=>$data->fee,
+        'email'=>$data->email,
+        'phone'=>$data->phone,
+        'status'=>'0'
+        );
+        $this->db->where('id', $data->id);
+        $resp =  $this->db->update('gs_prop_list', $set);
+        if($resp)
+        {
+            return 1;
+        }else
+        {
+            return 0;
+        }
+    }
 }
 
  ?>

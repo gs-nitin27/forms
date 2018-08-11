@@ -134,7 +134,7 @@
     <label class="form-check-label" for="schooling">Is schooling available?</label>
          </div>
         <div class="box-footer">
-              <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Add Property" name="Create">
+              <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Update Property" name="Create">
         </div>
         </div>
         </div>
@@ -279,6 +279,7 @@ $(function() {
 
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDv7v3jJInF4dT2KKMXQIR6SHmtkMLX1SE&sensor=false&libraries=places&language=en-AU"></script>
 <script type="text/javascript">
+  var url = '<?php echo site_url();?>';
 var autocomplete = new google.maps.places.Autocomplete($("#proplocation")[0], {});
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
                 var place = autocomplete.getPlace();
@@ -324,7 +325,7 @@ if(validate() == true)
    };
   data = JSON.stringify(data);
    $.ajax({
-      url: "<?php echo site_url('forms/update_property'); ?>",
+      url: "<?php echo site_url('forms/update_property_info'); ?>",
       type: "POST",
       data:  data,
       
@@ -332,12 +333,53 @@ if(validate() == true)
       {
         $("#err").fadeOut();
       },
-      success: function(data)
-        {
-                $('#imagelodar').hide();
-                $('#mess').show();
-                $("#photo_url").val(data);   
-        },
+     success: function(result)
+      {
+      var result = JSON.parse(result);
+      result = result.status;
+       if(result == '1')
+         {
+         $.confirm({
+         title: 'Congratulations!',
+         content: 'Property successfully updated',
+         type: 'green',
+         typeAnimated: true,
+         buttons: {
+            tryAgain: {
+                text: 'Thank You !',
+                btnClass: 'btn-green',
+                action: function(){
+                 window.location.href = url+"/forms/getPropListView";
+                }
+            },
+            close: function () {
+            window.location.href = url+"/forms/getPropListView";
+            }
+        }
+    });
+      }
+      else
+      { 
+            $("#imagelodar").hide();
+             $.confirm({
+              title: 'Encountered an error!',
+              content: 'Something went Worng, this may be server issue.',
+              type: 'dark',
+              typeAnimated: true,
+              buttons: {
+                  tryAgain: {
+                      text: 'Try again',
+                      btnClass: 'btn-dark',
+                      action: function(){
+                      }
+                  },
+                  close: function () {
+                  }
+              }
+          });
+      }
+    
+    },
         error: function(e) 
         {
       

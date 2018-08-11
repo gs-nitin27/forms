@@ -4475,7 +4475,7 @@ public function update_property_info()
 {
 
     $data = json_decode(file_get_contents('php://input'));
-    $obj  = $this->update_property_data_function($data);
+    $obj  = $this->register->update_property_data_function($data);
     if($obj != 0)
     {
       $resp = array('status' => '1','msg'=>'Success');
