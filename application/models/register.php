@@ -2457,8 +2457,6 @@ public function create_new_user($data)
         'residential'=>$data->residential,
         'hostel_available'=>$data->hostel,
         'schooling'=>$data->schooling,
-        'date_created'=>'CURDATE()',
-        'date_updated'=>'CURDATE()',
         'sports'=>$data->sport,
         'level'=>$data->level,
         'fee'=>$data->fee,
