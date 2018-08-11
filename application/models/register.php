@@ -2507,7 +2507,7 @@ public function create_new_user($data)
     }
     public function deletePropertyFunction($id)
     { 
-        $this->remove_Image($id);
+        //$this->remove_Image($id);
         $this->db->where('id',$id);
         $this->db->delete('gs_prop_list');
     } 
