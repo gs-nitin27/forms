@@ -305,6 +305,7 @@ $('#save').on('click',function(){
 if(validate() == true)
   {
     var data = {
+    "id":'<?php echo $prop['id']; ?>',  
     "name":$('#pname').val(),
     "address":$('#propaddress').val(),
     "location":$('#proplocation').val(),
@@ -318,11 +319,12 @@ if(validate() == true)
     "fee":$('#fee').val(),
     "hostel":$('#hostel').is(':checked')?'1':'0',
     "residential":$('#residential').is(':checked')?'1':'0',
-    "schooling":$('#schooling').is(':checked')?'1':'0'
+    "schooling":$('#schooling').is(':checked')?'1':'0',
+    "coaches_info":{"no_of_coach":$('#no_coaches').val(),"head_coach":$('#hcoach').val()}
    };
   data = JSON.stringify(data);
    $.ajax({
-      url: "<?php echo site_url('forms/add_property'); ?>",
+      url: "<?php echo site_url('forms/update_property'); ?>",
       type: "POST",
       data:  data,
       

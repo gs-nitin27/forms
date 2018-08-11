@@ -270,7 +270,7 @@ var autocomplete = new google.maps.places.Autocomplete($("#proplocation")[0], {}
 $(document).ready(function(){
 $('#save').on('click',function(){
 if(validate() == true)
-  {
+  { 
     var data = {
     "name":$('#pname').val(),
     "address":$('#propaddress').val(),
@@ -285,9 +285,11 @@ if(validate() == true)
     "fee":$('#fee').val(),
     "hostel":$('#hostel').is(':checked')?'1':'0',
     "residential":$('#residential').is(':checked')?'1':'0',
-    "schooling":$('#schooling').is(':checked')?'1':'0'
+    "schooling":$('#schooling').is(':checked')?'1':'0',
+    "coaches_info":{"no_of_coach":$('#no_coaches').val(),"head_coach":$('#hcoach').val()}
    };
   data = JSON.stringify(data);
+  
    $.ajax({
       url: "<?php echo site_url('forms/add_property'); ?>",
       type: "POST",
@@ -308,7 +310,6 @@ if(validate() == true)
       
         }           
      });
-  console.log(data);return;
   } 
 });
 

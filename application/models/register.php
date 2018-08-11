@@ -2470,7 +2470,7 @@ public function create_new_user($data)
         'address' => $data->name,
         'location' => $data->location,
         'type'=> $data->type,
-       // 'coaches_info'=> $data->coaches,
+        'coaches_info'=> json_encode($data->coaches_info),
         'residential'=>$data->residential,
         'hostel_available'=>$data->hostel,
         'schooling'=>$data->schooling,
@@ -2502,17 +2502,12 @@ public function create_new_user($data)
         $query = $this->db->get();
         $q =  $query->result_array();
         return $q;
-      // $query = $this->db->get('gs_prop_list'); 
-      // if(mysql_num_rows($query)>0)
-      // {
-      //   while ($row = mysql_fetch_assoc($query)) {
-      //       $rows[] = $row;
-      //   }
-      // return $rows;
-      // }else
-      // {
-      //   return 0;
-      // }
+    }
+    public function update_property_data_function($data)
+    {
+    // $query = mysql_query("UPDATE")
+
+
 
     }
 }

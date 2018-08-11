@@ -4471,6 +4471,22 @@ public function editProperty($str)
       $data['required'] = array( 'id' => $id ); 
       $this->load->view('templates/template',$data);
   }
+public function update_property_info()
+{
+
+    $data = json_decode(file_get_contents('php://input'));
+    $obj  = $this->update_property_data_function($data);
+    if($obj != 0)
+    {
+      $resp = array('status' => '1','msg'=>'Success');
+    }else
+    {
+      $resp = array('status' => '0','msg'=>'Failure');
+    }
+    echo json_encode($resp);
+
+}
+
 
 }
 
