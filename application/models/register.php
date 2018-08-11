@@ -1759,11 +1759,6 @@ public function deleteEvent($id)
   $this->db->where('id',$id);
   $this->db->delete('gs_eventinfo');
 }
-public function deletePropertyFunction($id)
-{ $this->remove_Image($id);
-  $this->db->where('id',$id);
-  $this->db->delete('gs_eventinfo');
-}  
 public function remove_Image($id)
 {
 
@@ -2510,6 +2505,12 @@ public function create_new_user($data)
 
 
     }
+    public function deletePropertyFunction($id)
+    { 
+        $this->remove_Image($id);
+        $this->db->where('id',$id);
+        $this->db->delete('gs_prop_list');
+    } 
 }
 
  ?>
