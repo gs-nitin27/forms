@@ -68,7 +68,7 @@
                         <?php if($event['image']){?>
 
                       <ul class="enlarge">
-                     <li><img src="<?php echo base_url().'uploads/property/'.$event['image'] ;?>" width="50px" height="50px" alt="Dechairs" /><span><img src="<?php echo base_url().'uploads/property/'.$event['image'] ;?>" width="450px" height="400px" alt="Deckchairs" /></span></li>
+                     <li><img src="<?php echo $event['image'] ;?>" width="50px" height="50px" alt="Dechairs" /><span><img src="<?php echo $event['image']; ?>" width="450px" height="400px" alt="Deckchairs" /></span></li>
                     </ul>
                     <?php } else { ?>
                      <img style="width: 50px;height: 50px; border: 2px solid red; margin-left: 39%; " src="<?php echo base_url('img/no-image.jpg');?>">
