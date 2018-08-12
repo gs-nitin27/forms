@@ -20,11 +20,7 @@
     <section class="content-header">
          <h1> Add Property </h1>
     </section>
-     <section class="content"> 
-         <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div> 
-      <div class="row">
-    
-    <div class="col-md-12">
+    <div class="loading" id="imagelodar" hidden="">Loading&#8230;</div> 
     <div class=" alert alert-success" id="msgdiv" style="display:none">
       <strong>Info! <span id = "msg"></span></strong> 
     </div>
