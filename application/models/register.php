@@ -2510,7 +2510,7 @@ public function create_new_user($data)
     {  //print_r($data->id);die;
        $set = array(
         'name' => $data->name,
-        'address' => $data->name,
+        'address' => $data->address,
         'location' => $data->location,
         'type'=> $data->type,
         'coaches_info'=> json_encode($data->coaches_info),
@@ -2522,7 +2522,8 @@ public function create_new_user($data)
         'fee'=>$data->fee,
         'email'=>$data->email,
         'phone'=>$data->phone,
-        'status'=>'0'
+        'status'=>'0',
+        'image'=>$data->image
         );
         $this->db->where('id', $data->id);
         $resp =  $this->db->update('gs_prop_list', $set);
