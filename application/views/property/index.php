@@ -65,7 +65,7 @@
 					<td><?php echo $event['name']; ?></td>
 					<td><?php echo $event['location']; ?></td>
           <td>
-                        <?php if($property['image']){?>
+                        <?php if($event['image']){?>
 
                       <ul class="enlarge">
                      <li><img src="<?php echo base_url().'uploads/property/'.$event['image'] ;?>" width="50px" height="50px" alt="Dechairs" /><span><img src="<?php echo base_url().'uploads/property/'.$event['image'] ;?>" width="450px" height="400px" alt="Deckchairs" /></span></li>
