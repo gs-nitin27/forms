@@ -141,7 +141,7 @@
               <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Update Property" name="Create">
         </div>
         </div>
-        </div>
+        </div></div></form>
 <form id="form1"  method="post" enctype="multipart/form-data">
                <!--  Image : <input type="file" name="file" id="file" /> -->
    <div class="container">
