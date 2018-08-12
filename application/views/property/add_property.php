@@ -268,6 +268,7 @@ var autocomplete = new google.maps.places.Autocomplete($("#proplocation")[0], {}
                /// console.log(place.address_components);return;
             });
 var url = '<?php echo site_url();?>';
+var base_url = '<?php echo base_url();?>';
 $(document).ready(function(){
 $('#save').on('click',function(){
 if(validate() == true)
@@ -287,7 +288,8 @@ if(validate() == true)
     "hostel":$('#hostel').is(':checked')?'1':'0',
     "residential":$('#residential').is(':checked')?'1':'0',
     "schooling":$('#schooling').is(':checked')?'1':'0',
-    "coaches_info":{"no_of_coach":$('#no_coaches').val(),"head_coach":$('#hcoach').val()}
+    "coaches_info":{"no_of_coach":$('#no_coaches').val(),"head_coach":$('#hcoach').val()},
+    "image": base_url+'/uploads/property/'+$("#photo_url").val()
    };
   data = JSON.stringify(data);
 

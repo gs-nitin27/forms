@@ -176,6 +176,8 @@
               <input type="hidden" class="form-control" name="photo" id="photo_url"> 
               <div id="mess" hidden>Image Uploded</div>
 <script type="text/javascript">
+ 
+  var base_url = '<?php echo base_url();?>';
   $(document).ready(function (e) {
 
   $("#form1").on('submit',(function(e) 
@@ -288,6 +290,7 @@ var autocomplete = new google.maps.places.Autocomplete($("#proplocation")[0], {}
 $(document).ready(function(){
 $('#proplevel').val('<?php echo $prop['level'] ?>');
 $('#psport').val('<?php echo $prop['sports'] ?>');
+$("#photo_url").val('<?php echo $prop['image']; ?>');
 var hostel = '<?php echo $prop['hostel_available']; ?>';
 var residential = '<?php echo $prop['residential']; ?>';
 var schooling = '<?php echo $prop['schooling']; ?>';
@@ -321,7 +324,8 @@ if(validate() == true)
     "hostel":$('#hostel').is(':checked')?'1':'0',
     "residential":$('#residential').is(':checked')?'1':'0',
     "schooling":$('#schooling').is(':checked')?'1':'0',
-    "coaches_info":{"no_of_coach":$('#no_coaches').val(),"head_coach":$('#hcoach').val()}
+    "coaches_info":{"no_of_coach":$('#no_coaches').val(),"head_coach":$('#hcoach').val()},
+    "image":base_url+'/uploads/property/'+$("#photo_url").val()
    };
   data = JSON.stringify(data);
    $.ajax({
