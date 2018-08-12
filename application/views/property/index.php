@@ -33,7 +33,7 @@
                     <?php } else {?>
                    <th style="width: 40px; background: #5262bc; color: #ffffff;">Activate <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                    <?php } ?>
-                  <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
+                  <!-- <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th> -->
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
                 <?php  if($usertype==101)
                    {
@@ -108,7 +108,7 @@
                                 }
                                 $num=$temp;
                                 {  ?>
-				      	<td><a href = "<?php echo site_url('forms/viewevent/'.$num.'?event'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td>
+				      	<!-- <td><a href = "<?php //echo site_url('forms/viewevent/'.$num.'?event'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="View" ><i class="glyphicon glyphicon-eye-open"></i></a></td> -->
                
                  <td><a href = "<?php echo site_url('forms/editProperty/'.$num.'?event'); ?>" class="btn btn-xs btn-default bs-tooltip"  title="Edit" ><i class="glyphicon glyphicon-edit"></i></a></td>
 
@@ -145,7 +145,7 @@
                   <?php
                   } }?>
 
-                  <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th>
+                 <!--  <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th> -->
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>
                   <?php  if($usertype==101)
                    {
