@@ -20,6 +20,7 @@
                   <th style="width: 10px; background: #5262bc; color: #ffffff;">#<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Name <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Location<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Image<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff; min-width:7%">Sport <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff; min-width: 8%;">Type<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <?php
@@ -63,6 +64,16 @@
 				  <td><?php echo $i++; ?></td> 
 					<td><?php echo $event['name']; ?></td>
 					<td><?php echo $event['location']; ?></td>
+          <td>
+                        <?php if($resource['image']){?>
+
+                      <ul class="enlarge">
+                     <li><img src="<?php echo base_url().'uploads/resources/'.$event['image'] ;?>" width="50px" height="50px" alt="Dechairs" /><span><img src="<?php echo base_url().'uploads/property/'.$event['image'] ;?>" width="450px" height="400px" alt="Deckchairs" /></span></li>
+                    </ul>
+                    <?php } else { ?>
+                     <img style="width: 50px;height: 50px; border: 2px solid red; margin-left: 39%; " src="<?php echo base_url('img/no-image.jpg');?>">
+                     <?php }?>
+                    </td>
 					<td><?php echo $event['sports']; ?></td>
 					<td><?php echo $event['type']; ?></td>
 				<?php
@@ -131,6 +142,7 @@
                   <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
                   <th style="background: #5262bc; color: #ffffff;">Name</th>
                   <th style="background: #5262bc; color: #ffffff;">Location</th>
+                  <th style="background: #5262bc; color: #ffffff; width: 70px;">Image <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Sports</th>
                   <th style="background: #5262bc; color: #ffffff;">type</th>
                 <?php 
