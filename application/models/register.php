@@ -2474,7 +2474,8 @@ public function create_new_user($data)
         'fee'=>$data->fee,
         'email'=>$data->email,
         'phone'=>$data->phone,
-        'status'=>'0'
+        'status'=>'0',
+        'image'=>$data->image
       );
      $query = $this->db->insert('gs_prop_list', $prop_data);
      if($query)

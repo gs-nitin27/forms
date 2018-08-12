@@ -325,7 +325,7 @@ if(validate() == true)
     "residential":$('#residential').is(':checked')?'1':'0',
     "schooling":$('#schooling').is(':checked')?'1':'0',
     "coaches_info":{"no_of_coach":$('#no_coaches').val(),"head_coach":$('#hcoach').val()},
-    "image":base_url+'/uploads/property/'+$("#photo_url").val()
+    "image":base_url+'uploads/property/'+$("#photo_url").val()
    };
   data = JSON.stringify(data);
    $.ajax({

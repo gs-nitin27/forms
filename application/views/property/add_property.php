@@ -128,7 +128,7 @@
         <div class="col-xs-6 col-md-4 col-md-offset-2 col-sm-6 col-sm-offset-2" style="float: left;margin-left: 0%;">  
             <!-- image-preview-filename input [CUT FROM HERE]-->
             <div class="input-group image-preview">
-                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                <input type="text" class="form-control image-preview-filename" disabled="disabled" id="image_name"> <!-- don't give a name === doesn't send on POST/GET -->
                 <span class="input-group-btn">
                     <!-- image-preview-clear button -->
                     <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
@@ -289,7 +289,7 @@ if(validate() == true)
     "residential":$('#residential').is(':checked')?'1':'0',
     "schooling":$('#schooling').is(':checked')?'1':'0',
     "coaches_info":{"no_of_coach":$('#no_coaches').val(),"head_coach":$('#hcoach').val()},
-    "image": base_url+'/uploads/property/'+$("#photo_url").val()
+    "image": base_url+'/uploads/property/'+$("#image_name").val()
    };
   data = JSON.stringify(data);
 
