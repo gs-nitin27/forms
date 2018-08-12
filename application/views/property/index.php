@@ -215,3 +215,136 @@ var data = JSON.stringify(data1);
  
 </script>
 
+<style>
+.container{
+    margin-top:20px;
+}
+.image-preview-input {
+    position: relative;
+  overflow: hidden;
+  margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+  </style>
+
+<script type="text/javascript">
+   $(document).on('click', '#close-preview', function(){ 
+    $('.image-preview').popover('hide');
+    // Hover befor close the preview    
+});
+
+$(function() {
+    // Create the close button
+    var closebtn = $('<button/>', {
+        type:"button",
+        text: 'x',
+        id: 'close-preview',
+        style: 'font-size: initial;',
+    });
+    closebtn.attr("class","close pull-right");
+    // Clear event
+    $('.image-preview-clear').click(function(){
+        $('.image-preview').attr("data-content","").popover('hide');
+        $('.image-preview-filename').val("");
+        $('.image-preview-clear').hide();
+        $('.image-preview-input input:file').val("");
+        $(".image-preview-input-title").text("Browse"); 
+    }); 
+    // Create the preview image
+    $(".image-preview-input input:file").change(function (){     
+        var img = $('<img/>', {
+            id: 'dynamic',
+            width:250,
+            height:200
+        });      
+
+        //alert(img);
+        var file = this.files[0];
+        var reader = new FileReader();
+        // Set preview image into the popover data-content
+        reader.onload = function (e) {
+            $(".image-preview-input-title").text("Change");
+            $(".image-preview-clear").show();
+            $(".image-preview-filename").val(file.name);
+        }        
+        reader.readAsDataURL(file);
+    });  
+});
+  </script>
+
+  <style type="text/css" media="screen">
+    ul.enlarge{
+    list-style-type:none; /*remove the bullet point*/
+    margin-left:0;
+    }
+    ul.enlarge li{
+    display:inline-block; /*places the images in a line*/
+    position: relative;
+    z-index: 0; /*resets the stack order of the list items - later we'll increase this*/
+    margin:10px 40px 0 20px;
+    }
+    ul.enlarge img{
+    background-color:#eae9d4;
+    padding: 6px;
+    -webkit-box-shadow: 0 0 6px rgba(132, 132, 132, .75);
+    -moz-box-shadow: 0 0 6px rgba(132, 132, 132, .75);
+    box-shadow: 0 0 6px rgba(132, 132, 132, .75);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    }
+    ul.enlarge span{
+    position:absolute;
+    left: -9999px;
+    background-color:#eae9d4;
+    padding: 10px;
+    font-family: 'Droid Sans', sans-serif;
+    font-size:.9em;
+    text-align: center;
+    color: #495a62;
+    -webkit-box-shadow: 0 0 20px rgba(0,0,0, .75));
+    -moz-box-shadow: 0 0 20px rgba(0,0,0, .75);
+    box-shadow: 0 0 20px rgba(0,0,0, .75);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius:8px;
+    }
+    ul.enlarge li:hover{
+    z-index: 50;
+    cursor:pointer;
+    }
+    ul.enlarge span img{
+    padding:2px;
+    background:#ccc;
+    }
+    ul.enlarge li:hover span{
+    top: -200px; /*the distance from the bottom of the thumbnail to the top of the popup image*/
+    left: -20px; /*distance from the left of the thumbnail to the left of the popup image*/
+    }
+    ul.enlarge li:hover:nth-child(2) span{
+    left: -100px;
+    }
+    ul.enlarge li:hover:nth-child(3) span{
+    left: -200px;
+    }
+    /**IE Hacks - see http://css3pie.com/ for more info on how to use CS3Pie and to download the latest version**/
+    ul.enlarge img, ul.enlarge span{
+    behavior: url(pie/PIE.htc);
+    }
+    </style>
