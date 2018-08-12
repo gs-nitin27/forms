@@ -294,7 +294,18 @@ var autocomplete = new google.maps.places.Autocomplete($("#proplocation")[0], {}
 $(document).ready(function(){
 $('#proplevel').val('<?php echo $prop['level'] ?>');
 $('#psport').val('<?php echo $prop['sports'] ?>');
-$("#image_name").val('<?php echo $prop['image']; ?>');
+var image = '<?php echo $prop['image']; ?>';
+if(image != '')
+{
+var last = image.split('/');
+var valu = last.pop();
+$("#image_name").val(valu);
+}
+else
+{
+ $("#image_name").val(''); 
+}
+
 var hostel = '<?php echo $prop['hostel_available']; ?>';
 var residential = '<?php echo $prop['residential']; ?>';
 var schooling = '<?php echo $prop['schooling']; ?>';
