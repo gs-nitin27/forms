@@ -299,11 +299,11 @@ if(image != '')
 {
 var last = image.split('/');
 var valu = last.pop();
-$("#image_name").val(valu);
+$("#photo_url").val(valu);
 }
 else
 {
- $("#image_name").val(''); 
+ $("#photo_url").val(''); 
 }
 
 var hostel = '<?php echo $prop['hostel_available']; ?>';
@@ -340,7 +340,7 @@ if(validate() == true)
     "residential":$('#residential').is(':checked')?'1':'0',
     "schooling":$('#schooling').is(':checked')?'1':'0',
     "coaches_info":{"no_of_coach":$('#no_coaches').val(),"head_coach":$('#hcoach').val()},
-    "image":base_url+'/uploads/property/'+$("#image_name").val()
+    "image":base_url+'/uploads/property/'+$("#photo_url").val()
    };
   data = JSON.stringify(data);
    $.ajax({
