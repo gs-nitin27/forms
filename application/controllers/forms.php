@@ -1963,7 +1963,7 @@ public function Emailfind()
             $newheight =$_POST['height'];
           // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
             $thumb = imagecreatetruecolor( $newwidth, $newheight );
-           
+            ini_set('memory_limit', '-1');
             $source = $ftype( $resize_image );
           // Resize the $thumb image.
             imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
