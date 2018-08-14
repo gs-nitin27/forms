@@ -2462,7 +2462,7 @@ public function create_new_user($data)
      $data = json_decode($data);
      $prop_data = array(
         'name' => $data->name,
-        'address' => $data->name,
+        'address' => $data->address,
         'location' => $data->location,
         'type'=> $data->type,
         'coaches_info'=> json_encode($data->coaches_info),
