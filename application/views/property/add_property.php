@@ -42,7 +42,7 @@
               <option id="AIFF Youth League">AIFF Youth League</option>
               <option id="Local">Local</option>
               <option id="Zonal">Zonal</option>
-              <option id="Other">Other</option>
+              <option id="Other">Other</option>   
             </Select>
             <label id="plevel_error" hidden>Level is required.</label>
           </div>
