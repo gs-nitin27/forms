@@ -40,6 +40,9 @@
               <option id="ISL">ISL</option>
               <option id="I-League 2nd division">I-League 2nd division</option>
               <option id="AIFF Youth League">AIFF Youth League</option>
+              <option id="Local">Local</option>
+              <option id="Zonal">Zonal</option>
+              <option id="Other">Other</option>
             </Select>
             <label id="plevel_error" hidden>Level is required.</label>
           </div>
