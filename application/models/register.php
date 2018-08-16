@@ -2499,6 +2499,7 @@ public function create_new_user($data)
         $query = $this->db->get();
         $q =  $query->result_array();
         return $q;
+
     }
     public function deletePropertyFunction($id)
     { 
@@ -2507,7 +2508,7 @@ public function create_new_user($data)
         $this->db->delete('gs_prop_list');
     } 
     public function update_property_data_function($data)
-    {  //print_r($data->id);die;
+    { 
        $set = array(
         'name' => $data->name,
         'address' => $data->address,
@@ -2530,7 +2531,8 @@ public function create_new_user($data)
         if($resp)
         {
             return 1;
-        }else
+        }
+        else
         {
             return 0;
         }
