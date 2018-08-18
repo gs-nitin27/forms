@@ -1640,7 +1640,28 @@ public function removetournamentimage($id,$image)
    // $this->db->where('id', $id);
    // $this->db->delete('gs_tournament_info', array('image' => $image)); 
 }
+public function removeadimage($id,$image)
+{
+    
 
+    if(file_exists("uploads/advertisment/".$image))
+     {
+          unlink("uploads/advertisment/".$image);
+     }
+   // $this->db->where('id', $id);
+   // $this->db->delete('gs_tournament_info', array('image' => $image)); 
+}
+public function removepropertyimage($id,$image)
+{
+    
+
+    if(file_exists("uploads/property/".$image))
+     {
+          unlink("uploads/property/".$image);
+     }
+   // $this->db->where('id', $id);
+   // $this->db->delete('gs_tournament_info', array('image' => $image)); 
+}
 public function verifyuserpassword($email,$password)
 {
      $update = "UPDATE  `user` SET  `password` = '$password' ,`status` = '1' ,`userType` = '103' WHERE `email` = '".$email."' AND `userType` > 102";
@@ -2536,6 +2557,29 @@ public function create_new_user($data)
         {
             return 0;
         }
+    }
+    public function create_ad_service($data)
+    {    
+        $set = array(
+        'title' => $data->title,
+        'module_data' => $data->module,
+        'start_date' => $data->start_date,
+        'end_date'=> $data->end_date,
+        'active_status'=>'0',
+        'date_created'=>'CURDATE()',
+        'duration'=>$data->duration,
+        'image'=> $data->image,
+        'app_type'=>$data->app_type
+        );
+     $query = $this->db->insert('gs_ad_feature', $set);
+     if($query)
+     {
+        return true;
+     }
+     else
+     {
+        return false;
+     }   
     }
 }
 

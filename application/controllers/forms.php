@@ -1915,7 +1915,19 @@ public function Emailfind()
             {
                 $id = $_POST['oldimageid'];
                   $image = $_POST['oldimage'];
-                $temp= $this->register->removeeventimage($id,$image);
+                $temp= $this->register->removepropertyimage($id,$image);
+                  }
+              }
+        break;
+        case 'uploads/advertisment/':
+         $prename = 'advertisment';
+              if ($_POST['oldimageid'])
+                     {
+            if($_POST['oldimage'])
+            {
+                $id = $_POST['oldimageid'];
+                  $image = $_POST['oldimage'];
+                $temp= $this->register->removeadvertismentimage($id,$image);
                   }
               }
         break;
@@ -4486,7 +4498,29 @@ public function update_property_info()
     echo json_encode($resp);
 
 }
-
+public function load_create_ad_view()
+  {
+    $data['middle'] = 'advertisement/create_ad.php';
+    $this->load->view('templates/template',$data);
+  }
+public function load_list_ad_view()
+  {
+    $data['middle'] = 'advertisement/ad_listing.php';
+    $this->load->view('templates/template',$data);
+  }
+public function create_advertisement()
+  {
+   $data = json_decode(file_get_contents('php://input'));
+   $obj_var = $this->register->create_ad_service($data);
+   if($obj_var != true)
+   {
+    $resp  = array('status' =>'0' ,'msg'=>'Failure');
+   }else
+   {
+    $resp  = array('status' =>'1' ,'msg'=>'Success');
+   }
+    echo json_encode($resp);
+  }
 
 }
 

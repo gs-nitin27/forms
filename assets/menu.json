@@ -237,6 +237,28 @@
                         "name": "VIEW LISTING"
                         }
                   }
+           },
+    "10" :  {
+
+                 "url": "#ad_module",
+                 "class": "fa fa-adn fa-x",
+                 "name": "AD MODULE",
+                 "id":"academy",
+                 "child" :
+                 {
+                   "1" :{
+                        "admin" :"1",
+                        "id":"usermodule",
+                        "url": "/forms/load_create_ad_view",
+                        "name": "Create AD"
+                        },
+                  "2" : {
+                        "admin" :"1",
+                        "id":"newEndUser",
+                        "url": "/forms/load_ad_list_view",
+                        "name": "Ad Listing"
+                        }
+                  }
            }
 
 
