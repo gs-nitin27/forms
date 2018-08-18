@@ -2524,10 +2524,23 @@ public function create_new_user($data)
     }
     public function deletePropertyFunction($id)
     { 
-        //$this->remove_Image($id);
+        $this->property_remove_Image($id);
         $this->db->where('id',$id);
         $this->db->delete('gs_prop_list');
     } 
+    public function property_remove_Image($id)
+        {
+
+        $this->db->from('gs_prop_list');
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        $q =  $query->result_array();
+        if($q[0]['image'] != '' && file_exists("uploads/property/".$q[0]['image']))
+        {
+        unlink("uploads/property/".$q[0]['image']);
+        }
+        //return true;
+        }
     public function update_property_data_function($data)
     { 
        $set = array(
