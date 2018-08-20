@@ -71,21 +71,12 @@
             <input type="time" class="form-control"  id="duration" >
           </div>
          </div>
-        </div>
+        </div> </form>
          <div class="tab-pane" id="tab_info">
           <div class="box-header with-border">
                 <h4>Add Advertisement Image</h4>  
           </div>
-          <div class="box-body">
-  
-        <div class="box-footer">
-              <input type="button" class="btn btn-lg btn-primary" id="save" value="Save Advertisement" name="Create">
-        </div>
-        </div>
-        </div>
-        </div>
-      </form>
-       <form id="form1"  method="post" enctype="multipart/form-data">
+           <form id="form1"  method="post" enctype="multipart/form-data">
                <!--  Image : <input type="file" name="file" id="file" /> -->
    <div class="container">
     <div class="row">    
@@ -107,8 +98,8 @@
                          <!-- rename it -->
                     </div>
                      <input id="button" type="submit" class="btn btn-danger" value="Upload Image" name="submit">
-                </span>
-            </div><!-- /input-group image-preview [TO HERE]--> 
+                </span> 
+            </div><div id="mess" hidden>Image Uploded</div><!-- /input-group image-preview [TO HERE]--> 
         </div>
     </div>
 </div>
@@ -120,8 +111,18 @@
                 </div>
                <!--  <input id="button" type="submit" value="Upload"> -->
             </form>
+         </div>
+        </div>
+     
+  
       <input type="hidden" class="form-control" name="photo" id="photo_url"> 
-      <div id="mess" hidden>Image Uploded</div>
+                <div class="box-body">
+  
+        <div class="box-footer">
+              <input type="button" class="btn btn-lg btn-primary" id="save" value="Save Advertisement" name="Create">
+        </div>
+        </div>
+
 <script type="text/javascript">
   $(document).ready(function (e) {
 
@@ -247,7 +248,7 @@ data = {
 "app_type":$('#apptype').val(),
 "image":base_url+'/uploads/advertisment/'+$('#photo_url').val()
 };
-
+console.log(JSON.stringify(data));
 $.ajax({
   url:"<?php echo site_url('forms/create_advertisement'); ?>",
   type:"POST",

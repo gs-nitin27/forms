@@ -4503,7 +4503,7 @@ public function load_create_ad_view()
     $data['middle'] = 'advertisement/create_ad.php';
     $this->load->view('templates/template',$data);
   }
-public function load_list_ad_view()
+public function load_ad_list_view()
   {
     $data['middle'] = 'advertisement/ad_listing.php';
     $this->load->view('templates/template',$data);
@@ -4521,6 +4521,33 @@ public function create_advertisement()
    }
     echo json_encode($resp);
   }
+public function StatusAd()
+{
+$data2 = json_decode($_REQUEST['data']);
+$item  = new stdClass(); 
 
+$item->id                    = $data2->id;
+$item->publish               = $data2->publish;
+
+$this->load->model('register');
+//$res1 = $this->register->addStatusData($data2->id);
+$res = $this->register->StatusAdevrtismentUpdate($item);
+if($data2->publish==1)
+{
+  $edata=$this->register->get_advertisement_listing($data2->id);
+  //$this->register->addEventData($edata);
+}
+// else{
+//   $this->register->deletePublishEvent($data2->id);
+// }
+}
+public function deletAd($str)
+  {
+   $id = $this->stringtonumber($str);
+   $this->load->model('register');
+   $this->register->deleteadvertismentFunction($id);
+   $data['middle'] = 'advertisement/ad_listing';
+   $this->load->view('templates/template',$data);
+  }
 }
 

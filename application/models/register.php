@@ -1054,6 +1054,19 @@ public function StatusPropertyUpdate($item)
       return 0;
     }
 }
+public function StatusAdevrtismentUpdate($item)
+{
+   $update = "UPDATE  `gs_ad_feature` SET  `active_status` ='$item->publish' , `date_updated` = CURDATE() WHERE `id` = '$item->id' ";
+   $query = $this->db->query($update);
+   if($query)
+    {
+      return 1;
+    }
+   else
+    {
+      return 0;
+    }
+}
 // public function addEventData($item)
 // {
 //      $id=$item[0]['infoId'];
@@ -2575,7 +2588,7 @@ public function create_new_user($data)
     {    
         $set = array(
         'title' => $data->title,
-        'module_data' => $data->module,
+        'module_data' => json_encode($data->module),
         'start_date' => $data->start_date,
         'end_date'=> $data->end_date,
         'active_status'=>'0',
@@ -2594,6 +2607,44 @@ public function create_new_user($data)
         return false;
      }   
     }
+
+    public function get_advertisement_listing($id = false)
+    {
+        $this->db->select('*');
+        $this->db->from('gs_ad_feature GR');
+        if($id > 0){
+            $this->db->where('GR.id', $id);
+        }else{
+         $this->db->order_by("GR.id", "desc"); 
+        }
+        $query = $this->db->get();
+        $q =  $query->result_array();
+        return $q;
+    }
+    
+   public function isJSON($string)
+   {
+   return is_string($string) && is_array(json_decode($string, true)) && (json_last_error() == JSON_ERROR_NONE) ? true : false;
+   }
+   public function deleteadvertismentFunction($id)
+    { 
+        $this->advertisment_remove_Image($id);
+        $this->db->where('id',$id);
+        $this->db->delete('gs_ad_feature');
+    }
+    public function advertisment_remove_Image($id)
+        {
+
+        $this->db->from('gs_ad_feature');
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        $q =  $query->result_array();
+        if($q[0]['image'] != '' && file_exists("uploads/advertisement/".$q[0]['image']))
+        {
+        unlink("uploads/advertisement/".$q[0]['image']);
+        }
+        //return true;
+        } 
 }
 
  ?>

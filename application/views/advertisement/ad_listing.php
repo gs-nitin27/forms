@@ -20,8 +20,8 @@
                   <th style="width: 10px; background: #5262bc; color: #ffffff;">#<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Title<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">App<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #5262bc; color: #ffffff;">User<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #5262bc; color: #ffffff; min-width:7%">Image<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Image<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff; min-width:7%">User<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <?php
                  $data=$this->session->userdata('item');
                  $usertype=$data['userType']; 
@@ -47,43 +47,52 @@
         $i =1;
         if($usertype==101 || $usertype==102 )
          {
-            $events = $this->register->get_academy_listing();
+            $events = $this->register->get_advertisement_listing();
+
+            //$user_type = $user_type->usertype;
+            //print_r($events);die;
          }
         else
          {      
             $data=$this->session->userdata('item');
             $userid=$data['userid']; 
-            $events = $this->register->getUserEventInfo($userid);
+            $events = $this->register->getAdvertismentInfo($userid);
          }
 				if(!empty($events)){
 						foreach($events as $event)
-        { 
+                                      { $module = ($event['module_data']);
+                                         if ($this->register->isJSON($module)) 
+                                            { 
+                                              $module = json_decode($module);
+                                              $user_type = $module->usertype;
+                                            }
+                                            else
+                                            {
+                                              $user_type = '';	
+                                            }
+                                      	     
          ?>
         <tr>
-				  <td><?php echo $i++; ?></td> 
-					<td><?php echo $event['name']; ?></td>
-					<td><?php echo $event['location']; ?></td>
+		  <td><?php echo $i++; ?></td> 
+		  <td><?php echo $event['title']; ?></td>
+		  <td><?php echo $event['app_type']; ?></td>
           <td>
                         <?php if($event['image']){?>
 
                       <ul class="enlarge">
                      <li><img src="<?php echo $event['image'] ;?>" width="50px" height="50px" alt="Dechairs" /><span><img src="<?php echo $event['image']; ?>" width="450px" height="400px" alt="Deckchairs" /></span></li>
-                    </ul>
+                      </ul>
                     <?php } else { ?>
                      <img style="width: 50px;height: 50px; border: 2px solid red; margin-left: 39%; " src="<?php echo base_url('img/no-image.jpg');?>">
-                   
-
-
                      <?php }?>
                     </td>
-					<td><?php echo $event['sports']; ?></td>
-					<td><?php echo $event['type']; ?></td>
+					<td><?php echo $user_type; ?></td>
 				<?php
            if($usertype==101 || $usertype==102 )
             {
             ?>
           <td>
-          <?php if($event['status'] ==0){?>
+          <?php if($event['active_status'] ==0){?>
           <button class="badge bg-red" onclick="myfunction(<?php echo $event['id'];?>,1)"><?php echo "Activate";?>
           </button>
           <?php }else{?> 
@@ -114,7 +123,7 @@
                                 'j' => 9);
                                  $num=$event['id']; //your value
                                  $temp='';
-                                 $arr_num=str_split ($num);
+                                 $arr_num=str_split($num);
                                 foreach($arr_num as $data)
                                 {
                                 $temp.=array_search($data,$list);
@@ -128,7 +137,7 @@
                   <?php  if($usertype==101)
                    {
                     ?>
-               <td><a href = "<?php echo site_url('forms/deleteProperty/'.$num.'?event'); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
+               <td><a href = "<?php echo site_url('forms/deletAd/'.$num.'?event'); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
               
                     <?php } }?>
 
