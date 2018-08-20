@@ -2636,7 +2636,7 @@ public function create_new_user($data)
         $this->db->delete('gs_ad_feature');
     }
     public function advertisment_remove_Image($id)
-        {
+    {
 
         $this->db->from('gs_ad_feature');
         $this->db->where('id',$id);
@@ -2646,8 +2646,8 @@ public function create_new_user($data)
         {
         unlink("uploads/advertisement/".$q[0]['image']);
         }
-        //return true;
-        } 
+    //return true;
+    } 
 }
 
  ?>
