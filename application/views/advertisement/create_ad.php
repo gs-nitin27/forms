@@ -274,11 +274,11 @@ $.ajax({
                 text: 'Thank You !',
                 btnClass: 'btn-green',
                 action: function(){
-                 window.location.href = url+"/forms/load_list_ad_view";
+                 window.location.href = url+"/forms/load_ad_list_view";
                 }
             },
             close: function () {
-            window.location.href = url+"/forms/load_list_ad_view";
+            window.location.href = url+"/forms/load_ad_list_view";
             }
         }
     });

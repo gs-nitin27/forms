@@ -137,7 +137,7 @@
                   <?php  if($usertype==101)
                    {
                     ?>
-               <td><a href = "<?php echo site_url('forms/deletAd/'.$num.'?event'); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
+               <td><a href = "<?php echo site_url('forms/delete_Ad/'.$num.'?event'); ?>" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-xs btn-default bs-tooltip" title="delete" ><i class="glyphicon glyphicon-remove"></i></a></td>
               
                     <?php } }?>
 
@@ -153,8 +153,8 @@
                   <th style="width: 10px; background: #5262bc; color: #ffffff;">#</th>
                   <th style="background: #5262bc; color: #ffffff;">Title</th>
                   <th style="background: #5262bc; color: #ffffff;">App</th>
-                  <th style="background: #5262bc; color: #ffffff; width: 70px;">User<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Image</th>
+                  <th style="background: #5262bc; color: #ffffff; width: 70px;">User<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                 <?php 
                     if($usertype==101 || $usertype==102 )
                    {
@@ -211,12 +211,12 @@ var url = '<?php echo site_url();?>'
 var data = JSON.stringify(data1);
   $.ajax({
     type: "POST",
-    url: '<?php echo site_url('forms/StatusProperty'); ?>',
+    url: '<?php echo site_url('forms/StatusAd'); ?>',
     data: "data="+data,
     dataType: "text",
     success: function(result) {
     //  alert(result);
-      window.location.href = url+"/forms/getPropListView";
+      window.location.href = url+"/forms/load_ad_list_view";
 
     }
 });    

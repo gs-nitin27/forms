@@ -1056,7 +1056,7 @@ public function StatusPropertyUpdate($item)
 }
 public function StatusAdevrtismentUpdate($item)
 {
-   $update = "UPDATE  `gs_ad_feature` SET  `active_status` ='$item->publish' , `date_updated` = CURDATE() WHERE `id` = '$item->id' ";
+   $update = "UPDATE  `gs_ad_feature` SET  `active_status` ='$item->publish' WHERE `id` = '$item->id' ";
    $query = $this->db->query($update);
    if($query)
     {
@@ -2612,10 +2612,13 @@ public function create_new_user($data)
     {
         $this->db->select('*');
         $this->db->from('gs_ad_feature GR');
-        if($id > 0){
+        if($id > 0)
+        {
             $this->db->where('GR.id', $id);
-        }else{
-         $this->db->order_by("GR.id", "desc"); 
+        }
+        else
+        {
+            $this->db->order_by("GR.id", "desc"); 
         }
         $query = $this->db->get();
         $q =  $query->result_array();
