@@ -2592,7 +2592,7 @@ public function create_new_user($data)
         'start_date' => $data->start_date,
         'end_date'=> $data->end_date,
         'active_status'=>'0',
-        'date_created'=>'CURDATE()',
+        'date_created'=>'NOW()',
         'duration'=>$data->duration,
         'image'=> $data->image,
         'app_type'=>$data->app_type
