@@ -69,7 +69,7 @@
 					<td><?php echo $event['location']; ?></td>
 					<td><?php echo $event['organizer_name']; ?></td>
 				<td>
-					<?php if(@strtotime($event['end_date']) >= time()){?>
+					<?php echo time(); if(@strtotime($event['end_date']) >= time()){?>
 					<span class="badge bg-green"><?php echo "Active";?></span>
 					<?php }else{?> 
 					 <span class="badge bg-red"><?php echo "Expired";?></span>
