@@ -11,11 +11,8 @@ public function __construct()
 }    
                     
 public function index()
-{    
-
-      
-
-     $this->adminlogin();
+{  
+  $this->adminlogin();
 }
 
 public function home()
@@ -59,10 +56,6 @@ public function gmaillogin()
         $resp = array('status'=>'0','msg'=>'user not registered');
       }
       echo json_encode($resp); 
-      
-    
-
-   
 }
 public function show_profile($id)
 {  

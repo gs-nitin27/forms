@@ -124,6 +124,10 @@
     <input type="checkbox" class="form-check-input" id="schooling" value="1">
     <label class="form-check-label" for="schooling">Is schooling available?</label>
          </div>
+         <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="affilate">
+    <label class="form-check-label" for="affilate_label" id="affilate_label"></label>
+         </div>
         <div class="box-footer">
               <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Add Property" name="Create">
         </div>
@@ -277,7 +281,28 @@ var autocomplete = new google.maps.places.Autocomplete($("#proplocation")[0], {}
             });
 var url = '<?php echo site_url();?>';
 var base_url = '<?php echo base_url();?>';
+// var sports_accr = {
+// "Football":"AIFF",
+// "Cricket":"BCCI",
+// "Lawn-Tennis":"AITA"
+// };
 $(document).ready(function(){
+$('#affilate').hide();
+$('#psport').on('change',function(){
+var sport = $(this).val();
+if(sport == 'Football')
+{
+  $('#affilate').show();
+  $('#affilate_label').text('AIFF ACREDITED');
+  $('#affilate').val('AIFF');
+}else
+{
+  $('#affilate').hide();
+  $('#affilate_label').text('');
+  $('#affilate').val(0);
+}
+
+});
 $('#save').on('click',function(){
 if(validate() == true)
   { 
@@ -297,10 +322,11 @@ if(validate() == true)
     "residential":$('#residential').is(':checked')?'1':'0',
     "schooling":$('#schooling').is(':checked')?'1':'0',
     "coaches_info":{"no_of_coach":$('#no_coaches').val(),"head_coach":$('#hcoach').val()},
-    "image": base_url+'/uploads/property/'+$("#photo_url").val()
+    "image": base_url+'/uploads/property/'+$("#photo_url").val(),
+    "affilation":$('#affilate').is(':checked')? $('#affilate').val():'0',
    };
   data = JSON.stringify(data);
-
+  
    $.ajax({
       url: "<?php echo site_url('forms/add_property'); ?>",
       type: "POST",
