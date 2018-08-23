@@ -140,6 +140,10 @@
     <input type="checkbox" class="form-check-input" id="schooling" value="1">
     <label class="form-check-label" for="schooling">Is schooling available?</label>
          </div>
+         <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="affilate">
+    <label class="form-check-label" for="affilate_label" id="affilate_label"></label>
+         </div>
         <div class="box-footer">
               <input type="button" class="btn btn-lg btn-primary" id="save" onclick="" value="Update Property" name="Create">
         </div>
@@ -295,6 +299,37 @@ var autocomplete = new google.maps.places.Autocomplete($("#proplocation")[0], {}
                /// console.log(place.address_components);return;
             });
 $(document).ready(function(){
+var affilate = '<?php  echo $prop['affilation']; ?>';
+var org_sport = '<?php  echo $prop['sports']; ?>';
+// if(affilate != 0 || affilate != null)
+// {
+
+if(org_sport == 'Football')
+{
+ $('#affilate').show(); 
+ $('#affilate_label').text('AIFF ACREDITED');
+ $('#affilate').val('AIFF');
+ if(affilate  != 0 || affilate != null)
+ {
+  $('#affilate').prop('checked',true);
+ }
+} 
+
+$('#affilate').hide();
+$('#psport').on('change',function(){
+var sport = $(this).val();
+if(sport == 'Football')
+{
+  $('#affilate').show();
+  $('#affilate_label').text('AIFF ACREDITED');
+  $('#affilate').val('AIFF');
+}else
+{
+  $('#affilate').hide();
+  $('#affilate_label').text('');
+  $('#affilate').val(0);
+}});
+
 $('#proplevel').val('<?php echo $prop['level'] ?>');
 $('#psport').val('<?php echo $prop['sports'] ?>');
 var image = '<?php echo $prop['image']; ?>';
