@@ -21,7 +21,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Title<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">App<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Image<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
-                  <th style="background: #5262bc; color: #ffffff; min-width:7%">User<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff; min-width:7%">User<img src="<?php echo base_url('img/sort.png')?>" alt="" height="10px" width="10px"></img></th>
                   <?php
                  $data=$this->session->userdata('item');
                  $usertype=$data['userType']; 
@@ -29,9 +29,9 @@
                  if($usertype==101 || $usertype==102 )
                    {
                     ?>
-                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Publish<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                     <?php } else {?>
-                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Activate <img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Activate<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                    <?php } ?>
                   <!-- <th style="width: 40px; background: #5262bc; color: #ffffff;">View</th> -->
                   <th style="width: 40px; background: #5262bc; color: #ffffff;">Edit</th>

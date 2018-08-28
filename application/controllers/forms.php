@@ -4530,12 +4530,18 @@ public function StatusAd()
   }
 }
 public function delete_Ad($str)
-{
-   $id = $this->stringtonumber($str);
-   $this->load->model('register');
-   $this->register->deleteadvertismentFunction($id);
-   $data['middle'] = 'advertisement/ad_listing';
-   $this->load->view('templates/template',$data);
-}
+  {
+     $id = $this->stringtonumber($str);
+     $this->load->model('register');
+     $this->register->deleteadvertismentFunction($id);
+     $data['middle'] = 'advertisement/ad_listing';
+     $this->load->view('templates/template',$data);
+  }
+public function edit_adv_view
+  {
+     
+    $data['middle'] = 'advertisement/edit_adv.php';
+    $this->load->view('templates/template',$data);
+  }
 }
 

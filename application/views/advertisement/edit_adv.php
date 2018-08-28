@@ -55,8 +55,8 @@
             <label for="usertype">Type of user</label>
             <Select class="form-control"  id="usertype">
               <option>-Select-</option>
-              <option value="1">Athlete</option>
-              <option value="2">Coach</option>
+              <option id="1">Coach</option>
+              <option id="2">Athlete</option>
             </Select>
             <label id="pemail_error" hidden>User type is required.</label>
           </div>
