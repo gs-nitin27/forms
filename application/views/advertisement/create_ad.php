@@ -235,7 +235,7 @@ $('#save').click(function(){
 var ad_data = {
   "module": $('#module').val(),
   "submodule":$('#submodule').val(),
-  "usertype":$('#usertype').text(),
+  "usertype":$('#usertype :selected').text(),
   "prof_id":$('#usertype').val()
 };
 data = {
