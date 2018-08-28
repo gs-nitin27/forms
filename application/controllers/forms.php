@@ -4537,7 +4537,7 @@ public function delete_Ad($str)
      $data['middle'] = 'advertisement/ad_listing';
      $this->load->view('templates/template',$data);
   }
-public function edit_adv_view
+public function edit_adv_view()
   {
      
     $data['middle'] = 'advertisement/edit_adv.php';
