@@ -21,6 +21,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Title<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">App<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff;">Image<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
+                  <th style="background: #5262bc; color: #ffffff;">Status<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                   <th style="background: #5262bc; color: #ffffff; min-width:7%">User<img src="<?php echo base_url('img/sort.png')?>" alt="" height="10px" width="10px"></img></th>
                   <?php
                  $data=$this->session->userdata('item');
@@ -86,6 +87,13 @@
                      <img style="width: 50px;height: 50px; border: 2px solid red; margin-left: 39%; " src="<?php echo base_url('img/no-image.jpg');?>">
                      <?php }?>
                     </td>
+                    <td>
+          <?php if(@strtotime($event['end_date']) >= strtotime(date('m/d/Y',  time()))){?>
+          <span class="badge bg-green"><?php echo "Active";?></span>
+          <?php }else{?> 
+           <span class="badge bg-red"><?php echo "Expired";?></span>
+          <?php } ?>
+          </td>
 					<td><?php echo $user_type; ?></td>
 				<?php
            if($usertype==101 || $usertype==102 )
@@ -154,6 +162,7 @@
                   <th style="background: #5262bc; color: #ffffff;">Title</th>
                   <th style="background: #5262bc; color: #ffffff;">App</th>
                   <th style="background: #5262bc; color: #ffffff;">Image</th>
+                  <th style="background: #5262bc; color: #ffffff;">Status</th>
                   <th style="background: #5262bc; color: #ffffff; width: 70px;">User<img src="<?php echo base_url('img/sort.png')?>" alt="" height=10px width=10px></img></th>
                 <?php 
                     if($usertype==101 || $usertype==102 )
