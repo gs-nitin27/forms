@@ -88,9 +88,9 @@
                      <?php }?>
                     </td>
                     <td>
-          <?php if(@strtotime($event['end_date']) >= strtotime(date('m/d/Y',  time()))){?>
+          <?php if(@strtotime($event['end_date']) >= strtotime(date('m/d/Y',  time()))){ $active = 1;?>
           <span class="badge bg-green"><?php echo "Active";?></span>
-          <?php }else{?> 
+          <?php }else{ $active=0;?> 
            <span class="badge bg-red"><?php echo "Expired";?></span>
           <?php } ?>
           </td>
@@ -263,6 +263,9 @@ var data = JSON.stringify(data1);
   </style>
 
 <script type="text/javascript">
+  $(document).ready(function(){
+    var active = '<?php echo $active; ?>';
+  });
    $(document).on('click', '#close-preview', function(){ 
     $('.image-preview').popover('hide');
     // Hover befor close the preview    
